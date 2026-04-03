@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0c10;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'var(--font-serif), serif';
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Home page CTA animations */
+@keyframes home-cta-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.15); }
+  50% { text-shadow: 0 0 32px rgba(255, 255, 255, 0.35); }
+}
+
+@keyframes home-cta-shine {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
+}
+
+.home-cta-glow {
+  animation: home-cta-glow 3s ease-in-out infinite;
+}
+
+.home-cta-link {
+  animation: home-cta-shine 2.5s ease-in-out infinite;
+}
+
+.home-cta-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-cta-btn:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+
+.btn-inset {
+  background: rgba(80, 80, 80, 0.55);
+  color: white;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Inset text: shadow makes white type look carved into the surface */
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+.btn-inset:hover:not(:disabled) {
+  background: rgba(90, 90, 90, 0.6);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.btn-inset:disabled {
+  opacity: 0.7;
+}
+
+/* Warm gold / amber / khaki / burnt-orange animated gradient text */
+@keyframes discord-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.discordSection {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #78350f 0%,
+    #b45309 18%,
+    #d4af37 38%,
+    #c9a227 55%,
+    #c4a574 72%,
+    #c2410c 100%
+  );
+  --discord-glow: rgba(212, 175, 55, 0.32);
+}
+
+.discordSection--1 {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #92400e 0%,
+    #b8860b 16%,
+    #e8c547 34%,
+    #d97706 52%,
+    #c19a6b 70%,
+    #9a3412 100%
+  );
+  --discord-glow: rgba(217, 119, 6, 0.38);
+}
+
+.discordSection--2 {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #713f12 0%,
+    #a16207 20%,
+    #f59e0b 42%,
+    #d4af37 58%,
+    #c3b091 78%,
+    #b45309 100%
+  );
+  --discord-glow: rgba(245, 158, 11, 0.36);
+}
+
+.discordSection--3 {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #57534e 0%,
+    #a8a29e 14%,
+    #c9a227 36%,
+    #ea580c 58%,
+    #d4af37 76%,
+    #7c2d12 100%
+  );
+  --discord-glow: rgba(234, 88, 12, 0.34);
+}
+
+.discordSection--4 {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #fbbf24 0%,
+    #d97706 22%,
+    #b45309 40%,
+    #c9a091 58%,
+    #c2410c 78%,
+    #78350f 100%
+  );
+  --discord-glow: rgba(251, 191, 36, 0.4);
+}
+
+.discordSection--lightbox {
+  --discord-gradient: linear-gradient(
+    90deg,
+    #a16207 0%,
+    #d4af37 28%,
+    #c9a227 48%,
+    #ea580c 72%,
+    #92400e 100%
+  );
+  --discord-glow: rgba(201, 162, 39, 0.38);
+}
+
+.discordSection :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    a,
+    li,
+    strong,
+    em,
+    b,
+    i,
+    code,
+    label,
+    button
+  ) {
+  color: transparent !important;
+  background-image: var(--discord-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: discord-gradient-shift 5s ease-in-out infinite;
+  text-shadow: 0 0 16px var(--discord-glow), 0 0 1px rgba(255, 248, 220, 0.2);
+}
+
+/* Keep icon colors readable when parents use gradient text */
+.discordSection svg {
+  color: rgba(254, 243, 199, 0.92) !important;
+  filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.28));
+}
