@@ -250,11 +250,11 @@ export default function Home() {
           Scott G. Dietz - Owner/Artist
         </motion.p>
 
-        <IScottSection
+        {/* <IScottSection
           variants={fadeInUp}
           sessionActive={iScottSessionActive}
           onToggleSession={() => setIScottSessionActive((prev) => !prev)}
-        />
+        /> */}
 
         <motion.h2
           className="text-4xl tracking-wide sm:text-5xl md:text-6xl"
