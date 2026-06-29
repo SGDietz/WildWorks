@@ -1,664 +1,2085 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
-import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import AspectRatioImage from "../../components/AspectRatioImage";
+import Image from "next/image";
+import { motion, useInView, type Variants } from "framer-motion";
 import {
-  LatestXPostCard,
-  LatestXPostCardSkeleton,
-  type LatestXPostPayload,
-} from "../../components/LatestXPostCard";
-import YouTubeVideoBlock from "../../components/YouTubeVideoBlock";
+  Camera,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+  DollarSign,
+  Flame,
+  Globe2,
+  Hammer,
+  Home as HomeIcon,
+  MessageCircle,
+  Phone,
+  Sparkles,
+  UserRound,
+  Wrench,
+  X,
+} from "lucide-react";
+import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import AspectRatioImage from "../../components/AspectRatioImage";
+import BrandText from "../../components/BrandText";
+import ImageLightbox from "../../components/ImageLightbox";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
+const softEase: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
+const softTransition = { duration: 0.72, ease: softEase };
+
+const fadeInUp: Variants = {
+  initial: { opacity: 0, y: 26 },
+  animate: { opacity: 1, y: 0, transition: softTransition },
+};
+
+const fadeInLeft: Variants = {
+  initial: { opacity: 0, x: -34, y: 8 },
+  animate: { opacity: 1, x: 0, y: 0, transition: softTransition },
+};
+
+const fadeInRight: Variants = {
+  initial: { opacity: 0, x: 34, y: 8 },
+  animate: { opacity: 1, x: 0, y: 0, transition: softTransition },
+};
+
+const softScaleIn: Variants = {
+  initial: { opacity: 0, y: 16, scale: 0.975 },
+  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.82, ease: softEase } },
+};
+
+const imageReveal: Variants = {
+  initial: { opacity: 0, x: -28, y: 12 },
+  animate: { opacity: 1, x: 0, y: 0, transition: { duration: 0.82, ease: softEase } },
+};
+
+const imageRevealRight: Variants = {
+  initial: { opacity: 0, x: 28, y: 12 },
+  animate: { opacity: 1, x: 0, y: 0, transition: { duration: 0.82, ease: softEase } },
+};
+
+const cardDrift: Variants = {
+  initial: (custom = 0) => ({
+    opacity: 0,
+    x: [-18, 18, -10, 10][Number(custom) % 4],
+    y: [16, 10, 22, 8][Number(custom) % 4],
+  }),
+  animate: (custom = 0) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: 0.62,
+      delay: Number(custom) * 0.035,
+      ease: softEase,
+    },
+  }),
+};
+
+const smallDrift: Variants = {
+  initial: (custom = 0) => ({
+    opacity: 0,
+    x: Number(custom) % 2 === 0 ? -12 : 12,
+    y: 8,
+  }),
+  animate: (custom = 0) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: Number(custom) * 0.025,
+      ease: softEase,
+    },
+  }),
 };
 
 const stagger = {
   animate: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.08 },
   },
 };
 
-const viewport = { once: true, amount: 0.2 };
+const slowStagger = {
+  animate: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.12 },
+  },
+};
+
 const viewportTight = { once: true, amount: 0.1 };
-/** Replay animations every time section re-enters view (used for all non-image content) */
-const viewportReplay = { once: false, amount: 0.2 };
+const viewportReplay = { once: false, amount: 0.18 };
 
-const LIVE_AVATAR_EMBED_URL = "https://live-avatar-web-sdk-demo.vercel.app/";
+const LIVE_AVATAR_EMBED_URL = "/pages/avatar-iscott";
+const SHOW_PROJECT_WILDFIRE_FLAMES = false;
 
-type LatestTweetApiErr = { ok: false; error: string; detail?: string };
+const noWhiteTextStyle = {
+  color: "rgba(211, 151, 82, 0.9)",
+  WebkitTextFillColor: "rgba(211, 151, 82, 0.9)",
+  backgroundImage: "none",
+};
 
-/** Fetches latest original post via /api/x/latest (X API v2 + X_BEARER_TOKEN on server). */
-function LatestPostFromX() {
-  const [state, setState] = useState<
-    | { status: "loading" }
-    | { status: "error"; message: string }
-    | { status: "ok"; data: LatestXPostPayload }
-  >({ status: "loading" });
+const noWhiteKickerStyle = {
+  color: "rgba(181, 111, 52, 0.94)",
+  WebkitTextFillColor: "rgba(181, 111, 52, 0.94)",
+  backgroundImage: "none",
+};
 
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/api/x/latest");
-        const json = (await res.json()) as LatestXPostPayload | LatestTweetApiErr;
-        if (cancelled) return;
-        if (!json.ok) {
-          const message = json.detail
-            ? `${json.error}\n${json.detail}`
-            : json.error;
-          setState({ status: "error", message });
-          return;
-        }
-        setState({ status: "ok", data: json });
-      } catch {
-        if (!cancelled) setState({ status: "error", message: "Could not load post." });
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+const noWhiteBlendTextStyle = {
+  color: "transparent",
+  WebkitTextFillColor: "transparent",
+  backgroundImage:
+    "linear-gradient(180deg, #e8b66d 0%, #b56f34 58%, #7a3d18 100%)",
+  WebkitBackgroundClip: "text",
+  backgroundClip: "text",
+  backgroundSize: "100% 1.62em",
+  backgroundRepeat: "repeat-y",
+  backgroundPosition: "0 0",
+};
 
-  if (state.status === "loading") {
-    return (
-      <div aria-live="polite" className="flex flex-col items-center">
-        <span className="sr-only">Loading latest post…</span>
-        <LatestXPostCardSkeleton />
-      </div>
-    );
-  }
+const showWildWorksIdentitySection = false;
+const showProcessSection = false;
+const showWildWorksDifferentSection = false;
+const showWildWorksAiSection = false;
+const showWildfireInspirationSection = false;
 
-  if (state.status === "error") {
-    const showEnvHint =
-      /X_BEARER|not configured|503/i.test(state.message) ||
-      /Add .*X_BEARER_TOKEN/i.test(state.message);
-    return (
-      <div className="mx-auto max-w-xl space-y-2 text-sm text-white/75">
-        <p className="whitespace-pre-wrap break-words">{state.message}</p>
-        {showEnvHint ? (
-          <p className="text-white/50">
-            Add <code className="rounded bg-white/10 px-1 py-0.5 text-xs">X_BEARER_TOKEN</code>{" "}
-            to <code className="rounded bg-white/10 px-1 py-0.5 text-xs">.env.local</code>{" "}
-            (see <code className="rounded bg-white/10 px-1 py-0.5 text-xs">.env.example</code>
-            ), then restart <code className="rounded bg-white/10 px-1 py-0.5 text-xs">next dev</code>.
-          </p>
-        ) : null}
-      </div>
-    );
-  }
+const iScottSteps = [
+  {
+    title: "Describe areas you would like beautified and/or problem areas you may have",
+  },
+  {
+    title: "Talk through location, and your timing preferences/needs",
+  },
+  {
+    title: "Bounce ideas off iScott, and he will bounce ideas right back to you",
+  },
+  {
+    title: "If appropriate, iScott will set up either an in-person or Zoom meeting with the real Scott",
+  },
+];
 
-  return <LatestXPostCard data={state.data} />;
-}
+const wildWorksModes = [
+  {
+    number: "1",
+    title: "The Real Human Scott",
+    titleLines: ["The Real", "Human Scott"],
+    body: "Scott can be on the ground, read the land with his own eyes, design the work, and build the kind of stone, terrain, water, fire, and garden art that makes a property feel alive. For the right project, Scott can go anywhere in the world.",
+    points: [
+      "In-person site reads and design/build work",
+      "Travel anywhere for the right WildWorks project",
+      "Real stone, terrain, planting, water, fire, and finish judgment",
+    ],
+    image: "/ww-art-wilds.jpeg",
+    alt: "Scott standing beside a WildWorks natural stone landscape",
+    icon: UserRound,
+  },
+  {
+    number: "2",
+    title: "WildWorks.Ai",
+    titleLines: ["WildWorks.Ai"],
+    body: "The same human Scott can start remotely. Photos, video, Zoom, property goals, contractor bids, and problem areas can be organized by Ai agents so Scott can diagnose, iterate designs fast, direct, and oversee from wherever he is to wherever you are.",
+    points: [
+      "Rapid Ai assisted design iterations for people anywhere",
+      "Remote diagnosis through photos, video, and Zoom",
+      "Use your contractor, let Scott help find one, or bring Scott in",
+      "Ai agents learning how Scott reads and solves real-world property work",
+    ],
+    image: "/Final-GabbyTravis.jpg",
+    alt: "Scott sitting in a WildWorks boulder garden",
+    icon: Globe2,
+  },
+];
+
+const aiCapabilities = [
+  {
+    title: "Beta Intake",
+    titleParts: ["Beta", "Intake"],
+    body: "Start with iScott. Discuss your needs, location, goals, travel considerations, timing, budget range, and how you prefer to be reached. This is the first doorway to world-class design help from WildWorks.Ai.",
+    icon: Camera,
+  },
+  {
+    title: "Human Handoff",
+    titleParts: ["Human", "Handoff"],
+    body: "iScott organizes the details and passes them off to the real Scott, so access to beautiful design still runs through human taste, judgement, and experience while WildWorks.Ai is in beta and building out the system.",
+    icon: Wrench,
+  },
+  {
+    title: "Design Iteration",
+    titleParts: ["Design", "Iteration"],
+    body: "Scott uses 40+ years of taste, field judgement, engineering sense, and Ai assisted design to turn rough photos and goals into tasteful, practical options.",
+    icon: Sparkles,
+  },
+];
+
+const services = [
+  {
+    title: "Wild Design",
+    titleLines: ["Wild Design"],
+    body: [
+      "If you want designs at the limits of human imagination, Scott is looking for you. People that want the world's wildest things, you are the ideal WildWorks client, wherever you are in the world.",
+      "With 40 years of design experience, and make no mistake, building the designs hands on with his guys, Scott keeps reaching new heights, and your project could be next among the world's wildest builds.",
+    ],
+    icon: Sparkles,
+  },
+  {
+    title: "Building / Engineering",
+    titleLines: ["Building / Engineering"],
+    body: [
+      "Craftsmanship in any material — stone, wood, water, steel, or living plants — inside or out, has to pass one test: Time.",
+      "Anything can look good on day one. The real proof shows up years later, after the weather, the use, and the wear — when the shortcuts other people take have already failed.",
+      "When Scott revisits a project years later, he can see how cleanly it settled in — no corners cut, nothing to hide, no trip hazards, no blemishes. Work that aged like it was always meant to be there.",
+      "That is the standard on every build: engineer it right, build it to last, and let Time be the judge.",
+    ],
+    icon: Hammer,
+  },
+  {
+    title: "Ballparks",
+    titleLines: ["Ballparks"],
+    body: [
+      "Before any design work begins, WildWorks gives you honest ballpark numbers, so you can decide whether to move forward knowing roughly what it will cost. Agree on the scope, and the design phase starts.",
+    ],
+    icon: DollarSign,
+  },
+  {
+    title: "Problem Solving",
+    titleLines: ["Problem Solving"],
+    body: [
+      "Some home and garden problems get lived with for years, even decades — water, grading, access, safety, and the failed fixes other contractors could never make stick.",
+      "Scott runs toward the problems most contractors back away from, so bring him the hard ones. And if he can't crack it himself, he has a network of trusted contractors and friends he can call on.",
+    ],
+    icon: Wrench,
+  },
+  {
+    title: "Resale Driven Transformations",
+    titleLines: ["Resale Driven Transformations"],
+    body: [
+      "When you're selling, practicality wins. Scott looks at everything through the lens of strict minimalism — the things that, in his honest opinion, simply have to be fixed — and never pushes more than you need, always at the fairest price.",
+      "It might sound self-serving coming from him, but Scott means it: if you're upgrading to sell, don't wait until you're about to list. Do the work now, and enjoy it yourself first.",
+    ],
+    icon: HomeIcon,
+  },
+  {
+    title: "How much can WildWorks do?",
+    titleLines: ["How much can WildWorks do?"],
+    body: [
+      "WildWorks can be a true one-stop shop, or a design and diagnosis layer around the people you already have: property scouting, house and site placement, clearing, whole-property design direction, contractor guidance, design/build from the ground up, obstacle solving, and work in stone, wood, pavers, segmental block, water, fire, and planting.",
+    ],
+    icon: Globe2,
+  },
+  {
+    title: "Will WildWorks Travel?",
+    titleLines: ["Will WildWorks Travel?"],
+    body: [
+      "Yes, WildWorks will travel anywhere for you. Many projects can also start with a remote design or diagnosis conversation through photos, video, and/or Zoom. Start with iScott. Give him the location, scope, timing, photos, and every detail you can, and he will hand it off to the real Scott, who will pick it up from there.",
+    ],
+    icon: CheckCircle2,
+  },
+];
+
+const signatureWork = [
+  {
+    title: "The Ruins",
+    titleLines: ["The", "Ruins"],
+    body: [
+      "Want the Coolest Party Zone or Outdoor Kitchen You Have Ever Seen in Your Own Back Yard?",
+      "If You've Got a Space, We can Create a Purpose-Built Area to Look Like the Original Farmhouse that the Neighborhood Was Built Around, or a Long Forgotten Gristmill — that is Now Party Central.",
+      `Wherever you are, if you want a space that feels unforgettable — something people will talk about for generations — call me.
++1(443) 797-2166
+or Talk to iScott
+He'll reach out to me, and I will get back to you.`,
+    ],
+    image: "/ww-art-ruins.jpeg",
+    alt: "The Ruins stonework garden and reflecting pool by WildWorks",
+    variant: "feature",
+    href: "/pages/The-ruins",
+    cta: "Explore The Ruins",
+  },
+  {
+    title: "My Work Sells People's Homes. Period.",
+    titleLines: ["My Work", "Sells People's", "Homes. Period."],
+    body: 'Not sure how many times I have had clients say to me, "Scott, you sold our home."',
+    image: "/GabbyTravis-Final-20260622.jpg",
+    alt: "Scott sitting in a WildWorks boulder garden",
+    variant: "featureSell",
+    href: "/pages/I-sell",
+    cta: "See How",
+  },
+];
+
+const wildfireNightImages = [
+  {
+    src: "/ww-wildfire-night-01-fireplace-patio.jpg",
+    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
+    className: "wild-wildfire-photo--hero",
+  },
+  {
+    src: "/ww-wildfire-night-03-deck-fireplace.jpg",
+    alt: "Project Wildfire rooftop lounge and outdoor fireplace at night",
+    className: "wild-wildfire-photo--deck",
+  },
+  {
+    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
+    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
+    className: "wild-wildfire-photo--garden",
+  },
+  {
+    src: "/ww-wildfire-night-02-celtic-patio.jpg",
+    alt: "Project Wildfire Celtic cross patio and outdoor fireplace from above",
+    className: "wild-wildfire-photo--patio",
+  },
+  {
+    src: "/ww-wildfire-night-05-celtic-detail.jpg",
+    alt: "Project Wildfire Celtic cross patio stone detail",
+    className: "wild-wildfire-photo--detail",
+  },
+];
+
+const wildfireInspirationImages = [
+  {
+    src: "/ww-wildfire-inspiration-loggia.png",
+    alt: "Ai inspiration image of an outdoor lounge and loggia with a fireplace",
+    className: "wild-wildfire-inspiration-card--loggia",
+    width: 655,
+    height: 652,
+  },
+  {
+    src: "/ww-wildfire-inspiration-patio.jpg",
+    alt: "Ai inspiration image of a patterned stone patio with planting",
+    className: "wild-wildfire-inspiration-card--patio",
+    width: 474,
+    height: 711,
+  },
+];
+
+const wildfireLightboxImages = [...wildfireNightImages, ...wildfireInspirationImages];
+
+const processSteps = [
+  {
+    title: "Background",
+    titleLines: ["Background"],
+    body: "iScott collects the project idea, location, budget range, timeline, photos, and whether you need design, diagnosis, contractor support, or a full WildWorks build.",
+  },
+  {
+    title: "Set Appointment",
+    titleLines: ["Set Appointment"],
+    body: "Scott follows up for the right next conversation: a local site visit when location allows, or a Zoom call when the project is outside his local range.",
+  },
+  {
+    title: "Meeting",
+    titleLines: ["Meeting"],
+    body: "You meet with Scott, either on-site or over Zoom, and discuss your needs. Scott loves to bounce ideas back and forth. Often in this meeting, he can give you ballparks for the work you need, or get them to you soon after.",
+  },
+  {
+    title: "Designs and Estimates",
+    titleLines: ["Designs and", "Estimates"],
+    body: "The strongest direction becomes rapid design iteration when a design is appropriate. Projects that are mainly problem solving may not need a design; they may need the right fix, scope, and estimate.",
+  },
+  {
+    title: "Buildout",
+    titleLines: ["Buildout"],
+    body: "Whether it is a fix or an installation, once the direction is clear, the work can move through your contractor, a contractor Scott helps source, or Scott and WildWorks directly when the fit is right.",
+  },
+];
+
+const aiWebsiteCapabilities = [
+  {
+    title: "Avatar Intake",
+    titleLines: ["Avatar Intake"],
+    body: "Let the Ai collect context, photos, set appointments, and answer any and all questions automatically.",
+    icon: MessageCircle,
+  },
+  {
+    title: "Ai-Native Build",
+    titleLines: ["Ai-Native Build"],
+    body: "Design, copy, media, automations, and lead flow built in and around your company brand.",
+    icon: Sparkles,
+  },
+  {
+    title: "Human Voice",
+    titleLines: ["Human Voice"],
+    body: "Though your site will be Ai-driven, it will feel like the real people that run the company, nothing generic.",
+    icon: HomeIcon,
+  },
+];
 
 function IScottSection({
   variants,
-  sessionActive,
-  onToggleSession,
+  wakeKey,
 }: {
-  variants: typeof fadeInUp;
-  sessionActive: boolean;
-  onToggleSession: () => void;
+  variants: Variants;
+  wakeKey: number;
 }) {
   return (
-    <div className="flex flex-col items-center w-full max-w-[26rem] mx-auto">
+    <div className="flex w-full max-w-[26rem] flex-col items-center">
       <motion.div
-        className="mx-auto w-full max-w-[26rem] px-4 py-4 sm:py-6 flex justify-center"
+        className="mx-auto flex w-full justify-center px-2 py-3 sm:px-4"
         variants={variants}
       >
-        <div className="relative aspect-[9/16] w-full max-w-[min(100%,calc(85vh*9/16))] min-h-[180px] overflow-hidden rounded-lg bg-black/40">
-          {/* {sessionActive ? ( */}
-            <LiveAvatarEmbedInner />
-          {/* ) : ( */}
-            {/* <Image
-              src="/Avatar1.png"
-              alt="iScott - Talk to iScott"
-              fill
-              className="object-cover"
-              sizes="22rem"
-              priority={false}
-              unoptimized
-              // onClick={onToggleSession}
-            /> */}
-          {/* )} */}
-
-            {/* <motion.button
-            type="button"
-            onClick={onToggleSession}
-            className={`absolute bottom-[23.5%] left-1/2 -translate-x-1/2 btn-inset p-3 rounded-lg flex items-center justify-center
-               text-lg font-medium whitespace-nowrap cursor-pointer`}
-            // variants={variants}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            // style={{ opacity: 1, border: "1px solid white" }}
-          >
-            {sessionActive ? "Stop Talking" : "Talk to iScott"}
-          </motion.button> */}
+        <div className="wild-live-avatar-frame relative aspect-[9/16] w-full max-w-[20rem] min-h-[300px] overflow-hidden rounded-lg bg-black/40">
+          <LiveAvatarEmbedInner wakeKey={wakeKey} />
         </div>
-        
       </motion.div>
-      
-        
     </div>
   );
 }
 
-function LiveAvatarEmbedInner() {
+function LiveAvatarEmbedInner({ wakeKey }: { wakeKey: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.2 });
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const shouldMountAvatar = inView || wakeKey > 0;
+  const avatarEmbedSrc =
+    wakeKey > 0 ? `${LIVE_AVATAR_EMBED_URL}?wake=${wakeKey}` : LIVE_AVATAR_EMBED_URL;
+
   return (
     <div ref={ref} className="absolute inset-0">
-      {inView ? (
+      {shouldMountAvatar ? (
         <iframe
-          src={LIVE_AVATAR_EMBED_URL}
+          key={avatarEmbedSrc}
+          src={avatarEmbedSrc}
           title="Live Avatar Web SDK Demo"
           allow="camera; microphone"
           className="absolute inset-0 h-full w-full border-0"
           allowFullScreen
         />
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white/70 text-sm">
-          Loading…
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-sm text-[rgba(246,211,154,0.78)]">
+          Loading...
         </div>
       )}
     </div>
   );
 }
 
-function AnimatedImageSection({
+function lineColorClass(index: number, total: number) {
+  if (total === 1) return "wild-line-title__line--one";
+  if (total === 2) return index === 0 ? "wild-line-title__line--one" : "wild-line-title__line--two";
+  if (total === 3) {
+    return [
+      "wild-line-title__line--one",
+      "wild-line-title__line--two",
+      "wild-line-title__line--three",
+    ][index];
+  }
+  if (index < 2) return "wild-line-title__line--one";
+  if (index === 2) return "wild-line-title__line--two";
+  return "wild-line-title__line--three";
+}
+
+function LineTitle({ lines }: { lines: string[] }) {
+  return (
+    <>
+      {lines.map((line, index) => (
+        <span
+          key={`${line}-${index}`}
+          className={`wild-line-title__line ${lineColorClass(index, lines.length)}`}
+        >
+          <BrandText>{line}</BrandText>
+        </span>
+      ))}
+    </>
+  );
+}
+
+const storyInlineActionStyle: CSSProperties = {
+  color: "#f7d9a5",
+  WebkitTextFillColor: "#f7d9a5",
+  fontWeight: 850,
+  textDecoration: "none",
+};
+
+function renderSignatureStoryLine(
+  line: string,
+  onIScottClick: (event: MouseEvent<HTMLAnchorElement>) => void,
+) {
+  if (line.trim() === "+1(443) 797-2166") {
+    return (
+      <a
+        className="wild-story-contact-link wild-story-contact-link--phone"
+        href="tel:+14437972166"
+        aria-label="Call Scott directly at +1(443) 797-2166"
+        style={storyInlineActionStyle}
+      >
+        +1(443) 797-2166
+      </a>
+    );
+  }
+
+  const iScottText = "Talk to iScott";
+  const iScottIndex = line.indexOf(iScottText);
+
+  if (iScottIndex === -1) {
+    return <BrandText>{line}</BrandText>;
+  }
+
+  return (
+    <>
+      <BrandText>{line.slice(0, iScottIndex)}</BrandText>
+      <a
+        className="wild-story-contact-link wild-story-contact-link--iscott"
+        href="#talk-to-iscott"
+        onClick={onIScottClick}
+        aria-label="Talk to iScott"
+        style={storyInlineActionStyle}
+      >
+        {iScottText}
+      </a>
+      <BrandText>{line.slice(iScottIndex + iScottText.length)}</BrandText>
+    </>
+  );
+}
+
+function signatureStoryLineClassName(line: string) {
+  const normalizedLine = line.trim();
+
+  if (normalizedLine === "+1(443) 797-2166") {
+    return "wild-story-contact-line wild-story-contact-line--phone";
+  }
+
+  if (normalizedLine === "or Talk to iScott") {
+    return "wild-story-contact-line wild-story-contact-line--iscott";
+  }
+
+  if (normalizedLine.startsWith("He'll reach out")) {
+    return "wild-story-contact-follow";
+  }
+
+  return undefined;
+}
+
+function ProjectImage({
   src,
   alt,
   sizes = "100vw",
-  delay = 0,
+  direction = "left",
 }: {
   src: string;
   alt: string;
   sizes?: string;
-  delay?: number;
+  direction?: "left" | "right";
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, viewportTight);
   return (
-    <motion.section
+    <motion.div
       ref={ref}
-      className="relative flex w-full items-center justify-center overflow-hidden px-4 sm:px-6"
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 0.61, 0.36, 1] }}
+      className="wild-image-frame"
+      variants={direction === "left" ? imageReveal : imageRevealRight}
+      initial="initial"
+      animate={inView ? "animate" : "initial"}
     >
-      <motion.div
-        className="w-full"
-        initial={{ scale: 1.05 }}
-        animate={inView ? { scale: 1 } : {}}
-        transition={{ duration: 1, delay: delay + 0.2, ease: [0.22, 0.61, 0.36, 1] }}
-      >
-        <AspectRatioImage
-          src={src}
-          alt={alt}
-          priority={false}
-          sizes={sizes}
-        />
-      </motion.div>
-      <div className="absolute inset-0 pointer-events-none" aria-hidden />
-    </motion.section>
+      <AspectRatioImage
+        src={src}
+        alt={alt}
+        priority={false}
+        sizes={sizes}
+        className="object-contain object-center"
+      />
+    </motion.div>
+  );
+}
+
+function ZoomableFillImage({
+  src,
+  alt,
+  sizes,
+  className,
+  title,
+  quality,
+  style,
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  className: string;
+  title?: string;
+  quality?: number;
+  style?: CSSProperties;
+}) {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  return (
+    <>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        className={className}
+        quality={quality}
+        style={style}
+      />
+      <button
+        type="button"
+        className="wild-zoom-hit-area"
+        onClick={() => setIsLightboxOpen(true)}
+        aria-label={`Enlarge ${alt}`}
+      />
+      <ImageLightbox
+        open={isLightboxOpen}
+        src={src}
+        alt={alt}
+        title={title}
+        onClose={() => setIsLightboxOpen(false)}
+      />
+    </>
   );
 }
 
 export default function Home() {
-  const [iScottSessionActive, setIScottSessionActive] = useState(false);
+  const [wildfireLightboxIndex, setWildfireLightboxIndex] = useState<number | null>(null);
+  const [avatarWakeKey, setAvatarWakeKey] = useState(0);
+  const [phoneCopied, setPhoneCopied] = useState(false);
+  const [callNumberVisible, setCallNumberVisible] = useState(false);
+  const handleCallNow = useCallback(() => {
+    setCallNumberVisible(true);
+    try {
+      void navigator.clipboard?.writeText("+1(443) 797-2166");
+    } catch {}
+    setPhoneCopied(true);
+    window.setTimeout(() => {
+      setPhoneCopied(false);
+      setCallNumberVisible(false);
+    }, 2200);
+  }, []);
+  const showCallNumber = useCallback(() => setCallNumberVisible(true), []);
+  const hideCallNumber = useCallback(() => {
+    if (!phoneCopied) {
+      setCallNumberVisible(false);
+    }
+  }, [phoneCopied]);
+  const activeWildfireImage =
+    wildfireLightboxIndex === null ? null : wildfireLightboxImages[wildfireLightboxIndex] ?? null;
+  const activeWildfireImagePosition = wildfireLightboxIndex === null ? 0 : wildfireLightboxIndex + 1;
+
+  const wakeIScottAvatar = useCallback(() => {
+    setAvatarWakeKey((current) => current + 1);
+  }, []);
+
+  const handleIScottCtaClick = useCallback(
+    (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      wakeIScottAvatar();
+
+      const target = document.getElementById("talk-to-iscott");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}#talk-to-iscott`,
+      );
+    },
+    [wakeIScottAvatar],
+  );
+
+  const closeWildfireLightbox = useCallback(() => {
+    setWildfireLightboxIndex(null);
+  }, []);
+
+  const showPreviousWildfireImage = useCallback(() => {
+    setWildfireLightboxIndex((current) =>
+      current === null ? current : (current - 1 + wildfireLightboxImages.length) % wildfireLightboxImages.length,
+    );
+  }, []);
+
+  const showNextWildfireImage = useCallback(() => {
+    setWildfireLightboxIndex((current) =>
+      current === null ? current : (current + 1) % wildfireLightboxImages.length,
+    );
+  }, []);
+
+  useEffect(() => {
+    if (wildfireLightboxIndex === null) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeWildfireLightbox();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPreviousWildfireImage();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNextWildfireImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    closeWildfireLightbox,
+    showNextWildfireImage,
+    showPreviousWildfireImage,
+    wildfireLightboxIndex,
+  ]);
+
   return (
-    <div className="discordSection discordSection--1 mx-auto lg:max-w-5xl py-4">
-      {/* Hero: image with overlaid text - full image visible */}
+    <div id="top" className="wild-home">
+      <style>{`
+        #top.wild-home {
+          --ww-box-gradient:
+            radial-gradient(ellipse at 34% 8%, rgba(246, 211, 154, 0.08), transparent 24rem),
+            radial-gradient(ellipse at 78% 18%, rgba(224, 168, 90, 0.065), transparent 26rem),
+            linear-gradient(105deg, rgba(74, 36, 13, 0.32) 0%, rgba(63, 29, 10, 0.34) 52%, rgba(45, 19, 7, 0.38) 100%);
+          background: transparent !important;
+        }
+
+        #top.wild-home .wild-section,
+        #top.wild-home #iscott-sales,
+        #top.wild-home #what-is-wildworks,
+        #top.wild-home #services,
+        #top.wild-home #wildworks-ai,
+        #top.wild-home #wildworks-proof,
+        #top.wild-home #project-wildfire,
+        #top.wild-home #signature-work,
+        #top.wild-home .wild-section--intro,
+        #top.wild-home .wild-section--tight,
+        #top.wild-home .wild-section--different,
+        #top.wild-home .wild-section--ai-websites {
+          background: transparent !important;
+          border-top: 0 !important;
+          border-bottom: 0 !important;
+        }
+
+        #top.wild-home :is(.money-panel, .wild-card, .wild-answer-card, .wild-identity-card, .wild-stat, .wild-project-card, .wild-story-card, .wild-process-step) {
+          border-color: rgba(232, 182, 109, 0.14) !important;
+          background: var(--ww-box-gradient) !important;
+          box-shadow:
+            0 12px 32px rgba(16, 6, 1, 0.18),
+            inset 0 1px 0 rgba(246, 211, 154, 0.08) !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell,
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-feature-sell-bg,
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay {
+          background: transparent !important;
+          background-image: none !important;
+          background-color: transparent !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell {
+          display: block !important;
+          aspect-ratio: 1376 / 768 !important;
+          min-height: clamp(28rem, 53vw, 44rem) !important;
+          background: #140702 !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-feature-sell-image {
+          object-fit: cover !important;
+          object-position: center center !important;
+          filter: saturate(0.96) contrast(1.03) brightness(0.92) !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay {
+          position: absolute !important;
+          inset: 0 !important;
+          z-index: 5 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: flex-end !important;
+          align-items: flex-start !important;
+          width: min(62%, 46rem) !important;
+          min-height: 0 !important;
+          padding: 0 0 clamp(2rem, 4.1vw, 3.85rem) clamp(1.65rem, 4.8vw, 4.45rem) !important;
+          pointer-events: none !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay h3,
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay p,
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay .wild-story-cta {
+          position: static !important;
+          inset: auto !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
+          max-width: min(100%, 41rem) !important;
+          margin: 0 !important;
+          font-size: clamp(2.3rem, 4.35vw, 4.85rem) !important;
+          line-height: 0.88 !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
+          display: block !important;
+          width: auto !important;
+          max-width: 100% !important;
+          white-space: normal !important;
+          text-wrap: balance !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+          max-width: min(100%, 43rem) !important;
+          margin: clamp(0.8rem, 1.35vw, 1.05rem) 0 0 !important;
+          padding: 0 !important;
+          color: #f7d9a5 !important;
+          -webkit-text-fill-color: #f7d9a5 !important;
+          background: none !important;
+          background-image: none !important;
+          font-size: clamp(1.42rem, 2.05vw, 2.15rem) !important;
+          font-weight: 820 !important;
+          line-height: 1.18 !important;
+          text-align: left !important;
+          text-shadow:
+            0 0.14rem 0.42rem rgba(5, 2, 0, 0.94),
+            0 0 1.1rem rgba(4, 1, 0, 0.58) !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-cta {
+          pointer-events: auto !important;
+          min-height: 52px !important;
+          margin-top: clamp(1rem, 1.75vw, 1.35rem) !important;
+          padding: 0.9rem 1.34rem !important;
+          font-size: clamp(1.05rem, 1.28vw, 1.18rem) !important;
+        }
+
+        @media (max-width: 899px) {
+          #top.wild-home #signature-work .wild-story-card--featureSell {
+            aspect-ratio: auto !important;
+            min-height: clamp(31rem, 92vw, 38rem) !important;
+          }
+
+          #top.wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay {
+            width: 100% !important;
+            padding: 0 clamp(1.05rem, 5vw, 1.75rem) clamp(1.35rem, 6vw, 2.15rem) !important;
+          }
+
+          #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
+            max-width: min(100%, 24rem) !important;
+            font-size: clamp(2.05rem, 8vw, 3.35rem) !important;
+          }
+
+          #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+            max-width: min(100%, 33rem) !important;
+            font-size: clamp(1.08rem, 4.3vw, 1.72rem) !important;
+          }
+        }
+
+        #top.wild-home :is(.money-panel, .wild-card, .wild-answer-card, .wild-identity-card, .wild-stat, .wild-project-card, .wild-story-card, .wild-process-step)::before,
+        #top.wild-home :is(.money-panel, .wild-card, .wild-answer-card, .wild-identity-card, .wild-stat, .wild-project-card, .wild-story-card, .wild-process-step)::after,
+        #top.wild-home .wild-section-heading::before,
+        #top.wild-home .wild-section-heading::after,
+        #top.wild-home #iscott-sales .wild-copy-stack::before,
+        #top.wild-home #iscott-sales .wild-copy-stack::after,
+        #top.wild-home #wildworks-ai .wild-ai-copy::before,
+        #top.wild-home #wildworks-ai .wild-ai-copy::after,
+        #top.wild-home #wildworks-proof .wild-copy-stack::before,
+        #top.wild-home #wildworks-proof .wild-copy-stack::after,
+        #top.wild-home #signature-work .wild-story-copy--overlay::before,
+        #top.wild-home #signature-work .wild-story-copy--overlay::after {
+          content: none !important;
+          display: none !important;
+          height: 0 !important;
+          margin: 0 !important;
+          background: none !important;
+          box-shadow: none !important;
+        }
+
+        #top.wild-home .wild-card-icon {
+          background: rgba(95, 52, 21, 0.32) !important;
+          border-color: rgba(246, 211, 154, 0.2) !important;
+        }
+
+        #top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
+          border-color: rgba(232, 182, 109, 0.14) !important;
+          background: var(--ww-box-gradient) !important;
+          box-shadow:
+            0 12px 32px rgba(16, 6, 1, 0.18),
+            inset 0 1px 0 rgba(246, 211, 154, 0.08) !important;
+        }
+      `}</style>
+
       <motion.section
-        className="relative flex w-full items-center justify-center overflow-hidden px-4 sm:px-6"
+        className="wild-hero discordSection discordSection--1"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div
-          className="w-full"
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 0.61, 0.36, 1] }}
-        >
+        <div className="wild-hero-media">
           <AspectRatioImage
-            src="/hero-wildworks.jpg"
-            alt="WildWorks - Stone staircase and pathway leading to a rustic house with natural landscaping"
+            src="/ww-art-wilds.jpeg"
+            alt="WildWorks natural stone steps and landscape with the artist standing beside the work"
             priority
             sizes="100vw"
+            className="object-cover"
           />
-        </motion.div>
-        <div className="absolute inset-0 pointer-events-none" aria-hidden />
-      </motion.section>
-
-      {/* Promotional / Contact CTA - black background, centered */}
-      <motion.section
-        className="discordSection discordSection--1 flex flex-col items-center justify-center gap-3 px-4 py-6 text-center text-white sm:gap-4 sm:px-6 sm:py-8"
-        variants={stagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <motion.p className="text-xl text-white/95 sm:text-3xl" variants={fadeInUp}>
-          On a Quest to Create The World&apos;s Wildest Rock Art
-        </motion.p>
-        <motion.p className="text-lg text-white/80 -mt-2 sm:text-2xl" variants={fadeInUp}>
-          Scott G. Dietz - Owner/Artist
-        </motion.p>
-
-        {/* <IScottSection
-          variants={fadeInUp}
-          sessionActive={iScottSessionActive}
-          onToggleSession={() => setIScottSessionActive((prev) => !prev)}
-        /> */}
-
-        <motion.h2
-          className="text-4xl tracking-wide sm:text-5xl md:text-6xl"
-          variants={fadeInUp}
-        >
-          WildWorks
-        </motion.h2>
-
-        <div className="space-y-1 pt-2 sm:pt-4 -mt-5 sm:mt-0">
-          <motion.p className="text-lg mt-3 sm:text-xl md:2xl" variants={fadeInUp}>
-            Fine Art and Practical Landscaping
-          </motion.p>
-          <motion.p className="text-xl mt-3 sm:mt-9 sm:text-2xl md:text-3xl" variants={fadeInUp}>
-            Want Something Stunningly Wild
-          </motion.p>
-          <motion.p className="text-2xl mt-3 sm:mt-9 sm:text-3xl md:text-4xl" variants={fadeInUp}>
-            In Your Back Yard This Season?
-          </motion.p>
         </div>
-
-        <motion.p
-          className="pt-4 mt-2 text-4xl sm:pt-6 sm:text-5xl md:text-6xl home-cta-glow"
-          variants={fadeInUp}
-        >
-          Call Now!
-        </motion.p>
-        <motion.a
-          href="tel:+14437972166"
-          className="text-2xl font-medium text-white hover:opacity-90 transition-opacity mt-1 inline-block min-h-[44px] sm:mt-8 sm:text-4xl md:text-5xl home-cta-link"
-          variants={fadeInUp}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          1+443-797-2166
-        </motion.a>
-        <motion.a
-          href="mailto:Wildworks@pm.me"
-          className="text-2xl font-medium text-white hover:opacity-90 transition-opacity -mt-2 inline-block min-h-[44px] sm:mt-8 sm:text-3xl md:text-4xl"
-          variants={fadeInUp}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          or Wildworks@pm.me
-        </motion.a>
-
-        <motion.p className="text-5xl tracking-widest -mt-2 sm:mt-8 sm:text-6xl" variants={fadeInUp}>
-          Scott
-        </motion.p>
-
-        <motion.p
-          className="text-lg mt-6 sm:mt-8 sm:text-2xl md:text-3xl"
-          variants={fadeInUp}
-        >
-          I WILL TRAVEL ANYWHERE IN THE WORLD TO DESIGN, BUILD, AND PROBLEM SOLVE FOR YOU
-        </motion.p>
-
         <motion.div
-          className="flex items-center justify-center gap-4 pt-4 sm:pt-6"
-          variants={fadeInUp}
+          className="wild-hero-copy"
+          variants={slowStagger}
+          initial="initial"
+          animate="animate"
         >
-          <motion.a
-            href="https://x.com/OfficialSGDietz"
-            aria-label="X (Twitter)"
-            className="flex h-15 w-15 items-center justify-center text-[#FFFFFF] transition-colors hover:opacity-80"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.15, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-8 w-8"
-              fill="currentColor"
-              aria-hidden
+          <motion.div className="wild-brand-lockup" variants={fadeInLeft}>
+            <span
+              className="wild-hero-wordmark-text-orange"
+              style={{
+                display: "block",
+                width: "max-content",
+                maxWidth: "100%",
+                color: "#e8b66d",
+                WebkitTextFillColor: "#e8b66d",
+                backgroundImage: "none",
+                WebkitBackgroundClip: "border-box",
+                backgroundClip: "border-box",
+                fontFamily:
+                  '"Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif',
+                fontSize: "clamp(3rem, 7.3vw, 6.6rem)",
+                fontStyle: "normal",
+                fontWeight: 700,
+                lineHeight: 0.82,
+                letterSpacing: 0,
+                textShadow:
+                  "0 0 14px rgba(224, 168, 90, 0.14), 0 2px 18px rgba(16, 6, 1, 0.76)",
+              }}
             >
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </motion.a>
-          <motion.a
-            href="https://api.whatsapp.com/send?phone=14437972166"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#25D366] text-white transition-colors hover:opacity-90"
-            whileHover={{ scale: 1.15, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor" aria-hidden>
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-          </motion.a>
-        </motion.div>
-        <motion.p className="pt-2 text-base text-white/80 sm:text-xl" variants={fadeInUp}>
-          DM Me on X or WhatsApp
-        </motion.p>
-      </motion.section>
-
-      <AnimatedImageSection
-        src="/20260121-TreeofLife-Branded-A copy.jpg"
-        alt="Tree of Life - A tree with a human face and a tree with a dragon face"
-        delay={0}
-      />
-
-      {/* Current project banner */}
-      <motion.section
-        className="discordSection discordSection--2 flex flex-col items-center justify-center px-4 pt-5 text-center text-white sm:gap-4 sm:px-6"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="text-sm font-normal sm:text-base">
-          The Tree of Life Natural Stone Patio with Creeping Perennial
-          &quot;Leaves&quot;
-        </p>
-        <h2 className="text-2xl mt-2 mb-6 sm:text-4xl">
-          Our Current Project: Wildfire
-        </h2>
-      </motion.section>
-
-      <AnimatedImageSection
-        src="/50.jpg"
-        alt="WildWorks - Stone staircase and pathway leading to a rustic house with natural landscaping"
-        sizes="90vw"
-      />
-
-      {/* Project Wildfire CTA */}
-      <motion.section
-        className="discordSection discordSection--3 px-4 pb-8 sm:pb-14 text-center text-white sm:px-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="mx-auto mb-4 mt-5 text-sm leading-relaxed sm:mb-6 sm:text-base">
-          Project Wildfire is a Natural Stone Outdoor Fireplace that we&apos;re Building RIGHT NOW
-        </p>
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
-          <Link
-            href="/pages/Wildfire"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-2xl bg-white px-2 py-1 font-medium transition-opacity hover:opacity-90 sm:px-6 sm:py-2"
-            style={{ fontFamily: "var(--font-geist-sans), sans-serif", backgroundColor: "white", color: "#888", borderRadius: "10px" }}
-          >
-            Click Here To Check Out Project Wildfire
-          </Link>
-        </motion.div>
-      </motion.section>
-
-      <AnimatedImageSection
-        src="/LewFrenchInspiration-2.png"
-        alt="WildWorks - Stone staircase and pathway leading to a rustic house with natural landscaping"
-      />
-
-      {/* Inspiration: Lew French */}
-      <motion.section
-        className="discordSection discordSection--4 px-4 pt-2 pb-8 sm:pb-10 text-white sm:px-6 sm:pt-8 sm:pb-14"
-        variants={stagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <div className="space-y-2 text-left text-sm leading-relaxed sm:space-y-5">
-          <motion.h2 className="text-2xl text-center sm:text-4xl" variants={fadeInUp}>
-            Inspiration: Lew French
-          </motion.h2>
-          <motion.p className="text-center mb-4 text-sm sm:text-base" variants={fadeInUp}>
-            Project Wildfire Draws Direct Inspiration from the Work of Master Stone Artisan <strong>Lew French</strong>
-          </motion.p>
-          <motion.div className="flex align-center justify-center" variants={fadeInUp} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
-            <Link
-              href="/pages/Inspiration"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-2xl bg-white px-4 py-1 font-medium 
-              transition-opacity hover:opacity-90 sm:px-6 sm:py-2 home-cta-btn"
-              style={{ fontFamily: "var(--font-geist-sans), sans-serif", fontSize: "1rem", backgroundColor: "white", color: "#888", borderRadius: "10px" }}
-            >
-              Click Here For Details
-            </Link>
+              WildWorks
+            </span>
           </motion.div>
-        </div>
-      </motion.section>
-
-      <AnimatedImageSection
-        src="/Ruins-Website-20260127-A copy.jpg"
-        alt="The Ruins - site-specific stonework in Federal Hill, Baltimore"
-      />
-
-      {/* The Ruins CTA */}
-      <motion.section
-        className="discordSection discordSection--1 px-6 pt-2 sm:pt-8 pb-8 sm:pb-14 text-white text-center"
-        variants={stagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <motion.h2 className="text-2xl sm:text-4xl mb-2" variants={fadeInUp}>The Ruins</motion.h2>
-        <p className="text-md text-white/90 mt-2 sm:mt-4 mb-4">My Client asked me, as we stood looking at their normie back yard, “What do you see here?”</p>
-        <motion.div className="inline-block" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
-          <Link
-            href="/pages/The-ruins"
-            className="inline-block rounded-xl bg-white px-8 py-2 text-[#888] font-medium transition-opacity hover:opacity-90"
-            style={{ fontFamily: "var(--font-geist-sans), sans-serif", backgroundColor: "white", color: "#888", borderRadius: "10px", padding: "12px 15px" }}
-          >
-            Click Here to Find Out What I Saw
-          </Link>
-        </motion.div>
-      </motion.section>
-
-      <AnimatedImageSection
-        src="/sell.png"
-        alt="WildWorks - client property and landscape"
-      />
-
-      {/* I sell people's homes. Period. */}
-      <motion.section
-        className="discordSection discordSection--2 px-4 text-white pb-8 sm:pb-14 sm:-mt-12 sm:px-6 sm:pt-16"
-        variants={stagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <div className="space-y-4 text-left leading-relaxed sm:space-y-5">
-          <motion.h2 className="text-2xl text-center sm:text-3xl mt-3" variants={fadeInUp}>
-            My Work Sells People&apos;s Homes. Period.
-          </motion.h2>
-          <motion.p className="text-center text-sm sm:text-base" variants={fadeInUp}>
-            I&apos;ve lost count of how many clients have said the exact same thing to me: &quot;Scott—you sold our house.&quot;
-          </motion.p>
-          <motion.div className="flex align-center justify-center" variants={fadeInUp} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
-            <Link
-              href="/pages/I-sell"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-2xl 
-                    bg-white px-6 font-medium transition-opacity hover:opacity-90 text-sm sm:px-6 sm:py-2 sm:text-base home-cta-btn"
-              style={{ fontFamily: "var(--font-geist-sans), sans-serif", backgroundColor: "white", color: "#888", borderRadius: "10px" }}
+          <motion.h1 className="wild-hero-headline wild-hero-headline--solid" variants={softScaleIn}>
+            <span
+              className="wild-hero-headline__line wild-hero-headline__line--makes-home"
+              style={{ color: "#f7d9a5", WebkitTextFillColor: "#f7d9a5" }}
             >
-              Click Here To See How
-            </Link>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="relative flex md:w-[60%] mx-auto items-center justify-center overflow-hidden px-4 sm:px-6"
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.7 }}
-      >
-        <AspectRatioImage
-          src="/Fireplace.jpg"
-          alt="Stone fireplace with classic ironworks and re-purposed wood from a fallen down barn"
-          priority={false}
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 pointer-events-none" aria-hidden />
-      </motion.section>
-
-      {/* Fireplace caption */}
-      <motion.section
-        className="discordSection discordSection--3 px-4 py-6 text-white sm:px-6 sm:py-8"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="text-center text-white/90">
-          Fireplace with Custom Ironworks and Wood Taken from a Colonial Era Fallen Down Barn
-        </p>
-      </motion.section>
-
-      {/* Video section - YouTube embed with Copy link & Watch on YouTube */}
-      {/* <YouTubeVideoBlock /> */}
-
-      <motion.section
-        className="px-4 pb-8 sm:px-6 sm:pb-10"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="mx-auto w-full max-w-2xl">
-          <video
-            loop
-            muted
-            playsInline
-            controls
-            className="w-full h-auto max-h-[75vh] object-contain"
-          >
-            <source src="/WildWorksVideo.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </motion.section>
-
-
-      {/* Latest X post — text/media from X API v2 (server) */}
-      <motion.section
-        className="discordSection discordSection--4 px-4 pb-8 text-center text-white sm:px-6"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.6 }}
-      >
-        <LatestPostFromX />
-      </motion.section>
-
-      {/* <motion.section
-        className="px-4 pb-8 text-center text-white sm:px-6"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportReplay}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="mx-auto flex max-w-2xl justify-center [&_.twitter-tweet]:mx-auto">
-          <blockquote
-            className="twitter-tweet"
-            dangerouslySetInnerHTML={{
-              __html: `<p lang="en" dir="ltr">Most People Never See Stonework Like This.<br><br>Drone footage of a 
-              handcrafted natural stone terrace, super steps, a seat wall with boulder bookends, and boulder outcroppings.<br><br>
-              When the lush foliage grows in and around this landscape, it's built to look like it's been part of the… 
-              <a href="https://t.co/NPQRR59Eyj">pic.twitter.com/NPQRR59Eyj</a></p>&mdash; WildWorks (@OfficialSGDietz) 
-              <a href="https://twitter.com/OfficialSGDietz/status/2030296263833313522?ref_src=twsrc%5Etfw">March 7, 2026</a>`,
+              Makes Your Home
+            </span>
+            <span
+              className="wild-hero-headline__line wild-hero-headline__line--irresistible"
+              style={{
+                color: "#e79d45",
+                WebkitTextFillColor: "#e79d45",
+                marginTop: "0.12em",
+              }}
+            >
+              <em>Legendary</em>
+            </span>
+          </motion.h1>
+          <motion.p
+            className="wild-lede"
+            variants={fadeInLeft}
+            style={{
+              ...noWhiteTextStyle,
+              fontSize: "clamp(1.06rem, 1.52vw, 1.42rem)",
+              lineHeight: 1.36,
             }}
-          />
-        </div>
-        <Script
-          src="https://platform.twitter.com/widgets.js"
-          strategy="lazyOnload"
-        />
-      </motion.section> */}
+          >
+            by Creating <span className="wild-hero-lede-accent">Beautiful Things</span>, and Solving{" "}
+            <span className="wild-hero-lede-accent">Real-World{" "}<br />Problems</span> that Make Your Property{" "}
+            <span className="wild-hero-lede-accent">UNFORGETTABLE</span>
+          </motion.p>
+          <motion.div className="wild-cta-row" variants={fadeInUp}>
+            <a href="#talk-to-iscott" className="money-cta money-cta--primary" onClick={handleIScottCtaClick}>
+              <Sparkles aria-hidden className="h-5 w-5" />
+              <span>Talk to iScott</span>
+            </a>
+            <span
+              style={{
+                display: "inline-flex",
+                position: "relative",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onMouseEnter={showCallNumber}
+              onMouseLeave={hideCallNumber}
+            >
+              <a
+                href="tel:+14437972166"
+                className="money-cta"
+                onClick={handleCallNow}
+                onFocus={showCallNumber}
+                onBlur={hideCallNumber}
+                aria-describedby="hero-call-number-reveal"
+              >
+                <Phone aria-hidden className="h-5 w-5" />
+                <span>Call Now</span>
+              </a>
+              {callNumberVisible || phoneCopied ? (
+                <motion.a
+                  id="hero-call-number-reveal"
+                  href="tel:+14437972166"
+                  onClick={handleCallNow}
+                  aria-label="Call or copy Scott's number, +1(443) 797-2166"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  style={{
+                    position: "absolute",
+                    top: "calc(100% + 0.55rem)",
+                    left: "50%",
+                    zIndex: 8,
+                    minWidth: "max-content",
+                    transform: "translateX(-50%)",
+                    border: "1px solid rgba(247, 217, 165, 0.34)",
+                    borderRadius: 8,
+                    background:
+                      "linear-gradient(180deg, rgba(78, 39, 13, 0.94), rgba(43, 20, 7, 0.94))",
+                    boxShadow:
+                      "0 10px 24px rgba(16, 6, 1, 0.34), inset 0 1px 0 rgba(247, 217, 165, 0.16)",
+                    color: "#f7d9a5",
+                    WebkitTextFillColor: "#f7d9a5",
+                    fontFamily:
+                      '"Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif',
+                    fontSize: "clamp(1.04rem, 1.45vw, 1.26rem)",
+                    fontWeight: 750,
+                    letterSpacing: "0.02em",
+                    lineHeight: 1,
+                    padding: "0.55rem 0.75rem",
+                    textDecoration: "none",
+                    textShadow: "0 2px 12px rgba(16, 6, 1, 0.48)",
+                  }}
+                >
+                  {phoneCopied ? "Copied! +1(443) 797-2166" : "+1(443) 797-2166"}
+                </motion.a>
+              ) : null}
+            </span>
+          </motion.div>
+        </motion.div>
+      </motion.section>
 
-      {/* Exquisite Art / WildWorks CTA */}
       <motion.section
-        className="discordSection discordSection--1 px-4 py-1 sm:py-8 text-center text-white sm:px-6"
-        variants={stagger}
+        id="iscott-sales"
+        className="wild-section wild-section--intro discordSection discordSection--1"
+        variants={slowStagger}
         initial="initial"
         whileInView="animate"
         viewport={viewportReplay}
       >
-        <div className="space-y-1 sm:space-y-3 sm:space-y-4">
-          <motion.p className="text-2xl sm:text-3xl" variants={fadeInUp}>Exquisite Art</motion.p>
-          <motion.p className="text-2xl sm:text-3xl" variants={fadeInUp}>
-            Unequaled Practicality & Craftsmanship
-          </motion.p>
-          <motion.h2 className="py-4 text-5xl sm:py-8 sm:text-6xl" variants={fadeInUp}>
-            WildWorks
-          </motion.h2>
-          <motion.p className="text-2xl text-white/95 sm:text-3xl" variants={fadeInUp}>
-            A Complete Design/Build Global Co.
-          </motion.p>
-          <motion.a
-            href="tel:+14437972166"
-            className="no-underline inline-block min-h-[44px] py-4 text-3xl decoration-white/50 underline-offset-4 transition-colors hover:decoration-white sm:text-4xl home-cta-link"
-            variants={fadeInUp}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
+        <div className="wild-split wild-split--lead">
+          <div className="wild-copy-stack">
+            <motion.p className="wild-kicker" variants={fadeInLeft} style={noWhiteKickerStyle}>
+              Built to Expedite Your Needs
+            </motion.p>
+            <motion.h2
+              className="wild-section-title wild-iscott-title wild-iscott-title--front-door"
+              aria-label="iScott is the Front Door"
+            >
+              <span className="wild-iscott-title__row">
+                <span className="wild-iscott-title__segment wild-iscott-title__segment--one">iScott</span>{" "}
+                <span className="wild-iscott-title__segment wild-iscott-title__segment--two">is the</span>
+              </span>
+              <span className="wild-iscott-title__segment wild-iscott-title__segment--three">
+                Front Door
+              </span>
+            </motion.h2>
+            <motion.p
+              className="wild-body wild-iscott-body"
+              variants={fadeInRight}
+              style={noWhiteTextStyle}
+            >
+              Scott created his Digital Twin — iScott — to answer all of
+              your questions.
+            </motion.p>
+            <motion.p
+              className="wild-body wild-iscott-body"
+              variants={fadeInRight}
+              style={noWhiteTextStyle}
+            >
+              Click the &quot;Talk to iScott&quot; button, and talk to iScott like you
+              would any other person.
+            </motion.p>
+            <motion.div className="money-step-list wild-iscott-steps-inline" variants={stagger}>
+              {iScottSteps.map((item, index) => (
+                <motion.div key={item.title} variants={smallDrift} custom={index}>
+                  <span>{index + 1}</span>
+                  <div className="money-step-content">
+                    <p>
+                      <BrandText>{item.title}</BrandText>
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+            <motion.p
+              className="wild-body wild-iscott-body"
+              variants={fadeInRight}
+              style={noWhiteTextStyle}
+            >
+              iScott walks you through the entire process, and will brief the
+              real Scott on all the details so that on your first conversation,
+              you literally hit the ground running.
+            </motion.p>
+          </div>
+
+          <motion.div id="talk-to-iscott" className="money-panel wild-iscott-panel" variants={fadeInRight}>
+            <p className="money-panel-kicker">
+              <BrandText>WildWorks Concierge</BrandText>
+            </p>
+            <h2 className="wild-start-title" aria-label="Start with iScott">
+              <span className="wild-start-title__start">Start</span>{" "}
+              <span className="wild-start-title__with">with</span>{" "}
+              <span className="wild-start-title__name">iScott</span>
+            </h2>
+            <IScottSection variants={softScaleIn} wakeKey={avatarWakeKey} />
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {showWildWorksIdentitySection ? (
+        <motion.section
+        id="what-is-wildworks"
+        className="wild-section wild-section--identity discordSection discordSection--2"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-identity-shell">
+          <div className="wild-section-heading wild-identity-heading">
+            <motion.p className="wild-kicker" variants={fadeInLeft} style={noWhiteKickerStyle}>
+              <BrandText>What Is WildWorks?</BrandText>
+            </motion.p>
+            <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
+              <LineTitle lines={["WildWorks is", "Two Things."]} />
+            </motion.h2>
+            <motion.p className="wild-body wild-body--center" variants={fadeInRight} style={noWhiteTextStyle}>
+              <BrandText>
+              It is Scott&apos;s real-world eye for property, stone, terrain, and
+              problem solving. And it is WildWorks.Ai, built to make that eye
+              available earlier, farther away, and with less wasted motion.
+              </BrandText>
+            </motion.p>
+          </div>
+
+          <motion.div className="wild-identity-grid" variants={stagger}>
+            {wildWorksModes.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.article
+                  key={item.title}
+                  className="wild-identity-card"
+                  variants={cardDrift}
+                  custom={index}
+                >
+                  <div className="wild-identity-media">
+                    <ZoomableFillImage
+                      src={item.image}
+                      alt={item.alt}
+                      sizes="(max-width: 899px) 100vw, 34vw"
+                      className="wild-identity-img"
+                      title={item.title}
+                    />
+                  </div>
+                  <div className="wild-identity-copy">
+                    <div className="wild-identity-card-top">
+                      <span>{item.number}</span>
+                      <Icon aria-hidden className="h-6 w-6" />
+                    </div>
+                    <h3 className="wild-line-title">
+                      <LineTitle lines={item.titleLines} />
+                    </h3>
+                    <p>
+                      <BrandText>{item.body}</BrandText>
+                    </p>
+                    <ul>
+                      {item.points.map((point) => (
+                        <li key={point}>
+                          <CheckCircle2 aria-hidden />
+                          <span>
+                            <BrandText>{point}</BrandText>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+        </motion.section>
+      ) : null}
+
+      {showWildWorksAiSection ? (
+        <motion.section
+          id="wildworks-ai"
+          className="wild-section wild-section--ai discordSection discordSection--2"
+          variants={slowStagger}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportReplay}
+          style={{ paddingTop: "clamp(2.5rem, 4.8vw, 4rem)" }}
+        >
+        <div className="wild-ai-shell">
+          <div
+            className="wild-copy-stack wild-ai-copy"
+            style={{ alignContent: "start", gap: "clamp(0.38rem, 0.75vw, 0.62rem)" }}
           >
-            1+443-797-2166
-          </motion.a>
-          <motion.p className="text-3xl sm:text-4xl" variants={fadeInUp}>Call or Text Today!</motion.p>
-          <motion.p className="pt-4 sm:pt-6 text-5xl sm:text-6xl" variants={fadeInUp}>Scott</motion.p>
+            <motion.h2
+              className="wild-section-title wild-line-title"
+              aria-label={'What does it mean, to "Live Like A King?"'}
+              variants={softScaleIn}
+              style={{ marginTop: 0 }}
+            >
+              <LineTitle lines={["What does it mean, to", "\"Live Like A King?\""]} />
+            </motion.h2>
+            <motion.p
+              className="wild-ai-subtitle"
+              variants={fadeInRight}
+              style={{
+                color: "#a76431",
+                WebkitTextFillColor: "#a76431",
+                backgroundImage: "none",
+                fontFamily: "var(--font-serif), Georgia, serif",
+                fontSize: "clamp(1.35rem, 1.85vw, 1.85rem)",
+                fontWeight: 800,
+                lineHeight: 1.08,
+                margin: "clamp(0.25rem, 0.7vw, 0.52rem) 0 clamp(0.42rem, 0.9vw, 0.72rem)",
+                textShadow: "0 2px 13px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              State of the Art Ai for Everyone on Earth.
+            </motion.p>
+            <motion.p className="wild-body wild-ai-mission" variants={fadeInRight} style={noWhiteTextStyle}>
+              <BrandText>
+              Right now, Scott is hands on building WildWorks.Ai Beta himself,
+              using his taste, his judgment, his 40+ years of design experience,
+              and incorporating Ai agents to study his protocols so they can
+              eventually carry the entire workload. When this scales,
+              WildWorks.Ai will be able to bring the most exquisitely beautiful
+              designs to anyone on Earth at a price point that will continuously
+              move towards zero.
+              </BrandText>
+            </motion.p>
+            <motion.p className="wild-body wild-ai-mission" variants={fadeInRight} style={noWhiteTextStyle}>
+              That is what Scott wants: everyone on Earth surrounded by the
+                world&apos;s most beautiful things. That is what &quot;Live Like A King&quot;
+              means.
+            </motion.p>
+            <motion.p className="wild-body wild-ai-mission" variants={fadeInRight} style={noWhiteTextStyle}>
+              Scott is regarded as one of the finest landscape designers in the
+              world. Right now, he is at the peak of his career, and bolting Ai
+              design onto his system is turbocharging his design abilities.
+            </motion.p>
+            <motion.p className="wild-body wild-ai-mission" variants={fadeInRight} style={noWhiteTextStyle}>
+              Who can he help? The range is everything from literal zero-budget
+              DIY design help for people using materials already on site and
+              doing all the labor themselves, through every kind of project in
+              between: design only, help finding a contractor in your area,
+              remote oversight from afar, or full hands on design build and
+              problem solving for Lifestyles of the Rich and Famous level
+              projects where Scott is on site and overseeing the work himself,
+              personally.
+            </motion.p>
+            <motion.p className="wild-body wild-ai-mission" variants={fadeInRight} style={noWhiteTextStyle}>
+              Everything is on the table. Scott will help you in every way he
+              can personally, and iScott will be there in the future to help you
+              in every way imaginable.
+            </motion.p>
+            <motion.div
+              className="wild-cta-row wild-cta-row--center"
+              variants={fadeInUp}
+              style={{
+                justifyContent: "center",
+                width: "min(100%, 42rem)",
+                marginTop: "clamp(1rem, 1.7vw, 1.35rem)",
+              }}
+            >
+              <a href="#talk-to-iscott" className="money-cta money-cta--primary" onClick={handleIScottCtaClick}>
+                <Sparkles aria-hidden className="h-5 w-5" />
+                <span>
+                  <BrandText>Start with WildWorks.Ai</BrandText>
+                </span>
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div className="money-panel wild-ai-panel" variants={fadeInRight}>
+            <div className="wild-ai-human-frame" aria-label="Scott and WildWorks stone art">
+              <ZoomableFillImage
+                src="/ww-art-wilds.jpeg"
+                alt="Scott standing beside WildWorks stonework"
+                sizes="(max-width: 899px) 100vw, 28vw"
+                className="wild-ai-human-img"
+                title="Scott and WildWorks Stone Art"
+              />
+            </div>
+            <p className="money-panel-kicker wild-preserve-ai-case">Ai + Human Judgement</p>
+            <h3 className="wild-line-title" aria-label="iScott Gathers, Scott Designs with Ai, You Move Forward.">
+              <LineTitle lines={["iScott Gathers,", "Scott Designs with Ai,", "You Move Forward."]} />
+            </h3>
+            <p>
+              Using Ai is not replacing human intelligence and creativity, it is
+              turbocharging it. Scott still uses his natural experience and
+              abilities, but is able to produce great designs 100x faster than
+              with a pencil and paper, or traditional computer aided design,
+              plus, Ai opens a whole new world of design ideas that Scott would
+              have never dreamed of. It is just all around wonderful.
+            </p>
+            <p>
+              <BrandText>
+              iScott collects the details and confirms how to reach you, then
+              hands the project to Scott. Scott reviews the area, gets back to
+              you with questions and comments, and uses 40+ years of practical
+              judgement, taste, engineering sense, and Ai assisted design to give
+              you an exquisitely beautiful design, a useful fix, or the clearest
+              next step. In beta, you work directly with Scott while WildWorks.Ai
+              becomes the system you help build.
+              </BrandText>
+            </p>
+          </motion.div>
+
+          <motion.div className="wild-ai-card-grid" variants={stagger}>
+            {aiCapabilities.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.article key={item.title} className="wild-card wild-ai-card wild-ai-capability-card" variants={cardDrift} custom={index}>
+                  <div className="wild-ai-card-heading">
+                    <div className="wild-card-icon">
+                      <Icon aria-hidden className="h-6 w-6" />
+                    </div>
+                    <h3 className="wild-ai-card-title">
+                      <span>{item.titleParts[0]}</span>
+                      {" "}
+                      <span>{item.titleParts[1]}</span>
+                    </h3>
+                  </div>
+                  <p>
+                    <BrandText>{item.body}</BrandText>
+                  </p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+        </motion.section>
+      ) : null}
+
+      <motion.section
+        id="project-wildfire"
+        className="wild-section wild-section--wildfire-feature discordSection discordSection--4"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-wildfire-spread-shell">
+          <div className="wild-section-heading wild-wildfire-spread-heading">
+            <motion.h2
+              className={`wild-wildfire-flame-title${SHOW_PROJECT_WILDFIRE_FLAMES ? "" : " wild-wildfire-flame-title--dormant"}`}
+              variants={softScaleIn}
+              aria-label="Project Wildfire"
+            >
+              {SHOW_PROJECT_WILDFIRE_FLAMES ? (
+                <span className="wild-wildfire-flames" aria-hidden>
+                  <span className="wild-wildfire-flame wild-wildfire-flame--one" />
+                  <span className="wild-wildfire-flame wild-wildfire-flame--two" />
+                  <span className="wild-wildfire-flame wild-wildfire-flame--three" />
+                  <span className="wild-wildfire-flame wild-wildfire-flame--four" />
+                  <span className="wild-wildfire-flame wild-wildfire-flame--five" />
+                </span>
+              ) : null}
+              <span className="wild-wildfire-flame-title__text">Project Wildfire</span>
+            </motion.h2>
+            <motion.h3 className="wild-section-title wild-line-title wild-wildfire-title" variants={fadeInUp}>
+              <LineTitle
+                lines={[
+                  "It Started with a Fireplace.....",
+                ]}
+              />
+            </motion.h3>
+          </div>
+
+          <motion.div className="wild-wildfire-spread" variants={stagger}>
+            {wildfireNightImages.map((image, index) => (
+              <motion.figure
+                key={image.src}
+                className={`wild-wildfire-photo ${image.className}`}
+                variants={cardDrift}
+                custom={index}
+              >
+                <button
+                  type="button"
+                  className="wild-wildfire-photo-button"
+                  onClick={() => setWildfireLightboxIndex(index)}
+                  aria-label={`Enlarge ${image.alt}`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes={
+                      image.className === "wild-wildfire-photo--hero"
+                        ? "(max-width: 899px) 100vw, 58vw"
+                        : "(max-width: 899px) 100vw, 34vw"
+                    }
+                  />
+                </button>
+              </motion.figure>
+            ))}
+          </motion.div>
+
+          {showWildfireInspirationSection ? (
+            <>
+              <motion.p
+                className="wild-body wild-wildfire-inspiration-note"
+                variants={fadeInUp}
+                style={{
+                  ...noWhiteBlendTextStyle,
+                  maxWidth: "min(100%, 58rem)",
+                  margin: "clamp(1.35rem, 2.7vw, 2.2rem) auto 0",
+                  fontSize: "clamp(1.02rem, 1.6vw, 1.3rem)",
+                  lineHeight: 1.58,
+                  textAlign: "center",
+                  textShadow: "0 2px 13px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                Scott designed the outdoor fireplace. When he went searching for
+                ideas for an outdoor lounge, he came across the first image, which
+                led him next to the patio image. As you can see, though they were
+                images, he was looking for real things. They ended up being Ai
+                images. A dead giveaway is one post on the outdoor lounge that would
+                never exist in reality.
+              </motion.p>
+
+              <motion.div
+                className="wild-wildfire-inspiration-grid"
+                variants={stagger}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 28rem), 1fr))",
+                  alignItems: "start",
+                  maxWidth: "78rem",
+                  margin: "clamp(1rem, 2.2vw, 1.75rem) auto 0",
+                  gap: "clamp(0.85rem, 1.45vw, 1.25rem)",
+                }}
+              >
+                {wildfireInspirationImages.map((image, index) => (
+                  <motion.figure
+                    key={image.src}
+                    className={`wild-wildfire-inspiration-card ${image.className}`}
+                    variants={cardDrift}
+                    custom={index}
+                    style={{
+                      position: "relative",
+                      margin: 0,
+                      overflow: "hidden",
+                      border: "1px solid rgba(246, 211, 154, 0.18)",
+                      borderRadius: "8px",
+                      background: "transparent",
+                      boxShadow:
+                        "0 22px 62px rgba(16, 6, 1, 0.44), inset 0 1px 0 rgba(246, 211, 154, 0.08)",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="wild-wildfire-inspiration-button"
+                      onClick={() => setWildfireLightboxIndex(wildfireNightImages.length + index)}
+                      aria-label={`Enlarge ${image.alt}`}
+                      style={{
+                        position: "relative",
+                        display: "block",
+                        width: "100%",
+                        minHeight: "100%",
+                        padding: 0,
+                        border: 0,
+                        background: "transparent",
+                        color: "inherit",
+                        cursor: "zoom-in",
+                      }}
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        sizes="(max-width: 899px) 100vw, 38vw"
+                        className="wild-wildfire-inspiration-image"
+                        style={{
+                          display: "block",
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </button>
+                  </motion.figure>
+                ))}
+              </motion.div>
+            </>
+          ) : null}
 
           <motion.div
-            className="mt-6 sm:mt-10 flex justify-center items-center gap-4 sm:mt-14"
+            className="wild-wildfire-sequence-callout"
             variants={fadeInUp}
+            aria-label="Then Came the Patio. Then Came the Outdoor Lounge."
           >
-            <motion.a
-              href="https://x.com/OfficialSGDietz"
-              aria-label="X (Twitter)"
-              className="flex h-15 w-15 items-center justify-center text-[#FFFFFF] transition-colors hover:opacity-80"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-6 w-6"
-                fill="currentColor"
-                aria-hidden
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </motion.a>
-            <motion.a
-              href="https://api.whatsapp.com/send?phone=14437972166"
-              aria-label="WhatsApp"
-              className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#25D366] text-white transition-opacity hover:opacity-90"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-6 w-6"
-                fill="currentColor"
-                aria-hidden
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-            </motion.a>
+            <span className="wild-wildfire-sequence-callout__line wild-wildfire-sequence-callout__line--patio">
+              Then Came the Patio.
+            </span>
+            <span className="wild-wildfire-sequence-callout__line wild-wildfire-sequence-callout__line--lounge">
+              Then Came the Outdoor Lounge.
+            </span>
           </motion.div>
-          <motion.p className="pt-4 text-base text-white/90 sm:text-xl" variants={fadeInUp}>
-            DM Me directly on X or WhatsApp
+
+          <motion.div className="wild-wildfire-build-note" variants={fadeInUp}>
+            <span className="wild-wildfire-build-note__line">
+              We Documented Every Step of
+            </span>
+            <span className="wild-wildfire-build-note__line">
+              the Build, from Breaking Ground
+            </span>
+            <span className="wild-wildfire-build-note__line">
+              through the First Wood Fire.
+            </span>
+          </motion.div>
+
+          <motion.div className="wild-cta-row wild-cta-row--center" variants={fadeInUp}>
+            <Link href="/pages/Wildfire" className="money-cta money-cta--primary">
+              <Flame aria-hidden className="h-5 w-5" />
+              <span>Check Out Project Wildfire</span>
+            </Link>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {activeWildfireImage ? (
+        <div
+          className="wildfire-lightbox discordSection discordSection--lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeWildfireImage.alt}
+        >
+          <div className="wildfire-lightbox-bar">
+            <span>
+              Project Wildfire {activeWildfireImagePosition} of {wildfireLightboxImages.length}
+            </span>
+            <button type="button" onClick={closeWildfireLightbox} aria-label="Close enlarged image">
+              <X aria-hidden className="h-5 w-5" />
+            </button>
+          </div>
+          <button
+            type="button"
+            className="wildfire-lightbox-nav wildfire-lightbox-nav--left"
+            onClick={showPreviousWildfireImage}
+            aria-label="Previous Project Wildfire image"
+          >
+            <ChevronLeft aria-hidden className="h-6 w-6" />
+          </button>
+          <div className="wildfire-lightbox-image">
+            <Image
+              src={activeWildfireImage.src}
+              alt={activeWildfireImage.alt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              quality={92}
+            />
+          </div>
+          <button
+            type="button"
+            className="wildfire-lightbox-nav wildfire-lightbox-nav--right"
+            onClick={showNextWildfireImage}
+            aria-label="Next Project Wildfire image"
+          >
+            <ChevronRight aria-hidden className="h-6 w-6" />
+          </button>
+        </div>
+      ) : null}
+
+      <motion.section
+        id="wildworks-proof"
+        className="wild-section discordSection discordSection--3"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-split">
+          <ProjectImage
+            src="/ww-art-tree-of-life.jpeg"
+            alt="Tree of Life natural stone patio concept with creeping perennial leaves"
+            sizes="(max-width: 900px) 100vw, 48vw"
+            direction="left"
+          />
+          <div className="wild-copy-stack">
+            <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
+              <LineTitle lines={["The Tree of", "Life Natural", "Stone Patio"]} />
+            </motion.h2>
+            <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
+              An artsy young couple of Irish descent in Mount Washington, Baltimore City,
+              wanted a natural stone patio. I had always been fascinated by the
+              Celtic Tree of Life, so I asked what they thought about building
+              one in their back yard, with rock garden perennials as the
+              leaves. They loved the idea, and I am still grateful they let me
+              build them this work of art.
+            </motion.p>
+            <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
+              What I, Scott G. Dietz, look for most in this world, is people
+              who want exquisite works of art made real.
+            </motion.p>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        id="signature-work"
+        className="wild-section discordSection discordSection--4"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-section-heading">
+          <motion.h2
+            className="wild-section-title wild-signature-title"
+            variants={softScaleIn}
+            aria-label="What Could be Cooler Than Having a RUINS of Your Own?"
+          >
+            <span className="wild-signature-title__line">
+              <span className="wild-signature-title__one">What Could be Cooler</span>
+            </span>
+            {" "}
+            <span className="wild-signature-title__line">
+              <span className="wild-signature-title__two">Than Having a RUINS</span>{" "}
+              <span className="wild-signature-title__three">of Your Own?</span>
+            </span>
+          </motion.h2>
+        </div>
+
+        <div className="wild-story-list">
+          {signatureWork.map((project, index) => (
+            <motion.article
+              key={project.title}
+              className={`wild-story-card wild-story-card--${project.variant}`}
+              variants={cardDrift}
+              custom={index}
+              style={
+                project.variant === "featureSell"
+                  ? {
+                      position: "relative",
+                      isolation: "isolate",
+                      display: "grid",
+                      gridTemplateColumns: "1fr",
+                      width: "100%",
+                      aspectRatio: "1376 / 768",
+                      minHeight: 0,
+                      justifySelf: "center",
+                      overflow: "hidden",
+                      border: "1px solid rgba(246, 211, 154, 0.22)",
+                      borderRadius: "8px",
+                      background: "transparent",
+                      boxShadow:
+                        "0 2rem 5rem rgba(7, 2, 0, 0.46), inset 0 1px 0 rgba(246, 211, 154, 0.12)",
+                    }
+                  : undefined
+              }
+            >
+              {project.variant === "featureSell" ? (
+                <>
+                  <div
+                    className="wild-story-feature-sell-bg"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      zIndex: 0,
+                    }}
+                  >
+                    <ZoomableFillImage
+                      src={project.image}
+                      alt={project.alt}
+                      sizes="(max-width: 900px) 100vw, 86vw"
+                      className="wild-story-feature-sell-image"
+                      quality={90}
+                      title={project.title}
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: "center center",
+                        filter: "saturate(0.96) contrast(1.03) brightness(0.92)",
+                      }}
+                    />
+                  </div>
+                  <div
+                    className="wild-story-copy wild-story-copy--overlay"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      zIndex: 4,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      alignItems: "flex-start",
+                      width: "min(62%, 46rem)",
+                      minHeight: 0,
+                      padding:
+                        "0 0 clamp(2rem, 4.1vw, 3.85rem) clamp(1.65rem, 4.8vw, 4.45rem)",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <h3
+                      className="wild-line-title wild-sell-feature-title"
+                      style={{
+                        position: "static",
+                        maxWidth: "min(100%, 41rem)",
+                        margin: 0,
+                        fontSize: "clamp(2.3rem, 4.35vw, 4.85rem)",
+                        lineHeight: 0.88,
+                        pointerEvents: "none",
+                        backgroundImage: "var(--ww-aiasap-gold-blend)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        WebkitTextFillColor: "transparent",
+                        textShadow:
+                          "0 0.16rem 0.5rem rgba(5, 2, 0, 0.92), 0 0 1.4rem rgba(6, 3, 1, 0.6)",
+                      }}
+                    >
+                      {project.titleLines.map((line, lineIndex) => (
+                        <span
+                          key={line}
+                          className={`wild-line-title__line wild-sell-feature-title__line wild-sell-feature-title__line--${["one", "two", "three"][lineIndex]}`}
+                          style={{
+                            display: "block",
+                            width: "auto",
+                            maxWidth: "100%",
+                            fontSize: "1em",
+                            lineHeight: 0.95,
+                            color: "transparent",
+                            WebkitTextFillColor: "transparent",
+                          }}
+                        >
+                          {line}
+                        </span>
+                      ))}
+                    </h3>
+                    <p
+                      className="wild-sell-feature-proof"
+                      style={{
+                        position: "static",
+                        maxWidth: "min(100%, 43rem)",
+                        margin: "clamp(0.8rem, 1.35vw, 1.05rem) 0 0",
+                        color: "#f7d9a5",
+                        WebkitTextFillColor: "#f7d9a5",
+                        backgroundImage: "none",
+                        WebkitBackgroundClip: "border-box",
+                        backgroundClip: "border-box",
+                        fontSize: "clamp(1.42rem, 2.05vw, 2.15rem)",
+                        fontWeight: 820,
+                        lineHeight: 1.18,
+                        pointerEvents: "none",
+                        textShadow:
+                          "0 0.14rem 0.42rem rgba(5, 2, 0, 0.94), 0 0 1.1rem rgba(4, 1, 0, 0.58)",
+                      }}
+                    >
+                      {project.body}
+                    </p>
+                    {project.href ? (
+                      <Link
+                        href={project.href}
+                        className="money-cta money-cta--primary wild-story-cta wild-sell-feature-cta"
+                        style={{
+                          position: "static",
+                          zIndex: 5,
+                          marginTop: "clamp(1rem, 1.75vw, 1.35rem)",
+                          minHeight: 52,
+                          padding: "0.9rem 1.34rem",
+                          fontSize: "clamp(1.05rem, 1.28vw, 1.18rem)",
+                          pointerEvents: "auto",
+                        }}
+                      >
+                        {project.cta}
+                      </Link>
+                    ) : null}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="wild-story-media">
+                    <AspectRatioImage
+                      src={project.image}
+                      alt={project.alt}
+                      sizes={
+                        project.variant === "feature"
+                          ? "(max-width: 900px) 100vw, 58vw"
+                          : "(max-width: 900px) 100vw, 34vw"
+                      }
+                      className="object-contain object-center"
+                    />
+                  </div>
+                  <div className="wild-story-copy">
+                    <h3 className="wild-line-title">
+                      <LineTitle lines={project.titleLines} />
+                    </h3>
+                    {Array.isArray(project.body) ? (
+                      project.body.map((paragraph, i) => (
+                        <p key={paragraph} className={`ww-c${i + 1}`}>
+                          {paragraph.split("\n").map((line, j) => (
+                            <Fragment key={j}>
+                              {j > 0 ? <br /> : null}
+                              <span className={signatureStoryLineClassName(line)}>
+                                {renderSignatureStoryLine(line, handleIScottCtaClick)}
+                              </span>
+                            </Fragment>
+                          ))}
+                        </p>
+                      ))
+                    ) : (
+                      <p>
+                        <BrandText>{project.body}</BrandText>
+                      </p>
+                    )}
+                    {project.href ? (
+                      <Link
+                        href={project.href}
+                        className={project.variant === "feature" ? "money-cta money-cta--primary wild-story-cta" : "wild-inline-link"}
+                        style={
+                          project.variant === "feature"
+                            ? {
+                                minHeight: 62,
+                                padding: "clamp(1.02rem, 1.9vw, 1.2rem) clamp(1.45rem, 3vw, 1.95rem)",
+                                fontSize: "clamp(1.2rem, 1.9vw, 1.45rem)",
+                              }
+                            : undefined
+                        }
+                      >
+                        {project.cta}
+                      </Link>
+                    ) : null}
+                  </div>
+                </>
+              )}
+            </motion.article>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        id="services"
+        className="wild-section discordSection discordSection--2"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-section-heading">
+          <motion.p className="wild-kicker" variants={fadeInRight}>
+            Services
           </motion.p>
+          <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
+            <LineTitle lines={["What WildWorks", "is Known for."]} />
+          </motion.h2>
+        </div>
+
+        <div className="wild-card-grid">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.article key={service.title} className="wild-card" variants={cardDrift} custom={index}>
+                <div
+                  className="wild-card-heading"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "auto minmax(0, 1fr)",
+                    gap: "clamp(0.78rem, 1.35vw, 1rem)",
+                    alignItems: "center",
+                    marginBottom: "clamp(0.82rem, 1.45vw, 1.15rem)",
+                  }}
+                >
+                  <div className="wild-card-icon" style={{ marginBottom: 0 }}>
+                    <Icon aria-hidden className="h-6 w-6" />
+                  </div>
+                  <h3 className="wild-line-title" style={{ marginBottom: 0 }}>
+                    <LineTitle lines={service.titleLines} />
+                  </h3>
+                </div>
+                <div className="wild-card-body">
+                  {service.body.map((paragraph) => (
+                    <p key={paragraph}>
+                      <BrandText>{paragraph}</BrandText>
+                    </p>
+                  ))}
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
+      </motion.section>
+
+      {showProcessSection ? (
+        <motion.section
+          id="process"
+          className="wild-section wild-section--tight discordSection discordSection--2"
+          variants={slowStagger}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportReplay}
+        >
+          <div className="wild-section-heading">
+            <motion.p
+              className="wild-kicker wild-process-kicker"
+              variants={fadeInRight}
+              style={{ fontSize: "clamp(1.08rem, 1.85vw, 1.58rem)", lineHeight: 1 }}
+            >
+              How This Site Works
+            </motion.p>
+            <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
+              <LineTitle lines={["You Should", "Always Know", "What Comes Next."]} />
+            </motion.h2>
+          </div>
+          <div className="wild-process-grid">
+            {processSteps.map((step, index) => (
+              <motion.article key={step.title} className="wild-process-step" variants={cardDrift} custom={index}>
+                <div
+                  className="wild-process-title"
+                  role="heading"
+                  aria-level={3}
+                  style={{
+                    marginBottom: "0.42rem",
+                    color: "#a76431",
+                    WebkitTextFillColor: "#a76431",
+                    backgroundImage: "none",
+                    fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
+                    fontSize: "clamp(1.35rem, 2.15vw, 1.88rem)",
+                    fontWeight: 900,
+                    lineHeight: 1.02,
+                    letterSpacing: 0,
+                    whiteSpace: "nowrap",
+                    textShadow: "0 2px 16px rgba(16, 6, 1, 0.62)",
+                  }}
+                >
+                  {index + 1}. {step.title}
+                </div>
+                <p style={{ marginTop: 0 }}>
+                  <BrandText>{step.body}</BrandText>
+                </p>
+              </motion.article>
+            ))}
+          </div>
+        </motion.section>
+      ) : null}
+
+      {showWildWorksDifferentSection ? (
+        <motion.section
+          id="wildworks-different"
+          className="wild-section wild-section--different discordSection discordSection--2"
+          variants={slowStagger}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportReplay}
+        >
+          <div className="wild-different-shell">
+            <motion.p className="wild-kicker wild-preserve-ai-case" variants={fadeInLeft}>
+              Bottom Line
+            </motion.p>
+            <motion.h2 className="wild-section-title wild-line-title wild-different-title" variants={softScaleIn}>
+              <LineTitle lines={["What Makes", "WildWorks.Ai Different?"]} />
+            </motion.h2>
+            <motion.div className="wild-different-copy" variants={fadeInRight}>
+              <p>
+                <BrandText>
+                WildWorks.Ai is different because the system being built is not
+                just software. It is Scott&apos;s 40+ years of design experience,
+                his talent, his creative instincts, his practical building
+                knowledge, and his use of state of the art technology all being
+                brought together into one system.
+                </BrandText>
+              </p>
+              <p>
+                The goal is to give people anywhere on Earth designs as beautiful
+                as anything they could receive from anyone else in the world, while
+                continuously pushing the cost of great design down for ordinary
+                people. A single mother in the heart of Africa, a grandmother in
+                the Polynesian islands, or anyone living anywhere on Earth should
+                be able to get surrounded by beautiful design.
+              </p>
+              <p>
+                <BrandText>
+                These designs come from Scott&apos;s mind, imagination, taste, and
+                skill, then get magnified by Ai. If you love the pictures and work
+                on this website, that is the difference: no one else on Earth can
+                do exactly what WildWorks.Ai is doing unless they simply copy the
+                ideas.
+                </BrandText>
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+      ) : null}
+
+      <motion.section
+        id="ai-websites"
+        className="wild-section wild-section--ai-websites discordSection discordSection--3"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <div className="wild-site-offer-shell">
+          <div className="wild-section-heading wild-site-offer-heading">
+            <motion.p className="wild-kicker wild-preserve-ai-case" variants={fadeInLeft}>
+              Ai-Native Websites
+            </motion.p>
+            <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
+              <LineTitle lines={["Want a", "Website Like This?"]} />
+            </motion.h2>
+            <motion.p className="wild-body wild-body--center" variants={fadeInRight}>
+              <BrandText>
+                Scott Himself Built This Site End to End.
+              </BrandText>
+            </motion.p>
+            <motion.p className="wild-body wild-body--center" variants={fadeInRight}>
+              <BrandText>
+                WildWorks is a Working Sample of a State of the Art Ai-Driven Website:
+                Avatar Conversation, Ai Conversion, Lead Intake, Appointment Setting,
+                Information Gathering, Full Automation; With Tasteful Look and Intuitive Feel.
+              </BrandText>
+            </motion.p>
+            <motion.p className="wild-body wild-body--center" variants={fadeInRight}>
+              <BrandText>
+                If You Would Like to Discuss Scott Building a Website for You, Call
+                or Text Scott +1(443) 797-2166 or Talk to iScott, and He Will Reach Out
+                to Scott, Have Him Get in Contact With You.
+              </BrandText>
+            </motion.p>
+            <motion.div className="wild-site-avatar-wrap" variants={fadeInUp}>
+              <a
+                href="#talk-to-iscott"
+                className="wild-site-avatar-link"
+                aria-label="Talk to iScott"
+                onClick={handleIScottCtaClick}
+              >
+                <span className="wild-site-avatar-frame">
+                  <Image
+                    src="/Avatar1-live-startscreen.png"
+                    alt="iScott Avatar"
+                    fill
+                    sizes="(max-width: 720px) 76vw, 20rem"
+                    className="wild-site-avatar-img"
+                    quality={86}
+                  />
+                  <span className="wild-site-avatar-overlay-cta money-cta money-cta--primary">
+                    <Sparkles aria-hidden className="h-5 w-5" />
+                    <span>Talk to iScott</span>
+                  </span>
+                </span>
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div className="wild-site-offer-grid" variants={stagger}>
+            {aiWebsiteCapabilities.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.article key={item.title} className="wild-card wild-site-offer-card" variants={cardDrift} custom={index}>
+                  <div className="wild-card-icon">
+                    <Icon aria-hidden className="h-6 w-6" />
+                  </div>
+                  <h3 className="wild-line-title">
+                    <LineTitle lines={item.titleLines} />
+                  </h3>
+                  <p>{item.body}</p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
         </div>
       </motion.section>
     </div>

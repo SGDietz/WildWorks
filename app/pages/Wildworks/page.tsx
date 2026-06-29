@@ -1,225 +1,78 @@
-export default function WildworksLegal() {
+import Link from "next/link";
+import BrandText from "../../components/BrandText";
+
+const legalPages = [
+  {
+    title: "Privacy Policy",
+    href: "/pages/privacy-policy",
+    body: "How WildWorks handles contact information, project details, photos, iScott intake, email, text, phone, cookies, analytics, vendors, and privacy choices.",
+  },
+  {
+    title: "Terms of Service",
+    href: "/pages/terms-of-service",
+    body: "The basic rules for website use, project submissions, communications, iScott, ownership, third-party services, and when a project becomes a written agreement.",
+  },
+  {
+    title: "Disclaimer",
+    href: "/pages/disclaimer",
+    body: "Limits on website information, project examples, safety, permits, resale claims, iScott responses, estimates, and construction guidance.",
+  },
+  {
+    title: "Communications",
+    href: "/pages/communications",
+    body: "How WildWorks may use email marketing, SMS/text, phone, WhatsApp, social platforms, iScott follow-up, opt-outs, and transactional messages.",
+  },
+  {
+    title: "Accessibility",
+    href: "/pages/accessibility",
+    body: "WildWorks' accessibility statement and how visitors can report barriers or request another way to access the same information.",
+  },
+  {
+    title: "Ai Disclosure",
+    href: "/pages/ai-disclosure",
+    body: "How iScott, avatar intake, assisted organization, automated output, uploaded photos, communications, and human review work on the WildWorks website.",
+  },
+];
+
+export default function WildworksLegalIndex() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 text-white sm:px-6 sm:py-12 discordSection discordSection--4">
-      <div
-        className="space-y-8 text-[0.9rem] leading-relaxed"
-        style={{ fontFamily: "var(--font-serif), serif" }}
-      >
-        <h1 className="text-3xl font-bold sm:text-4xl">
-          WildWorks Website Legal Notice
-        </h1>
-        <p className="font-semibold text-white/95">Effective Date: Jan 1, 2026</p>
-        <p>
-          This website is operated by WildWorks. By accessing or using this website, you agree to the terms described in this Legal Notice.
-        </p>
-        <p>
-          This page serves as the combined Terms of Service, Privacy Policy, Disclaimer, Communications Policy, and Intellectual Property Notice for the WildWorks website.
-        </p>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">1. Website Use</h2>
-          <p className="mb-3">
-            This website provides general information about landscaping, outdoor construction, design services, and related topics.
-          </p>
-          <p>
-            By using this website, you agree to use it only for lawful purposes and in a manner that does not disrupt or damage the website or interfere with other users.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">2. Informational Purposes Only</h2>
-          <p className="mb-3">
-            The information on this website is provided for general informational purposes only.
-          </p>
-          <p className="mb-3">
-            Landscaping and construction projects involve many variables including soil conditions, drainage, structural considerations, weather conditions, and local regulations. Information, examples, project photos, or ideas presented on this website may not be suitable for every property or situation.
-          </p>
-          <p className="mb-3">
-            Professional evaluation and consultation are recommended before beginning any construction or landscaping project.
-          </p>
-          <p>
-            Use of the information on this website is at your own risk.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">3. Services and Project Information</h2>
-          <p className="mb-3">
-            Descriptions of services, materials, construction methods, designs, or project examples presented on this website are for informational purposes only.
-          </p>
-          <p className="mb-3">
-            Nothing on this website constitutes a binding offer or contract.
-          </p>
-          <p>
-            Actual project scope, pricing, materials, timelines, and services are determined through written agreements between WildWorks and its clients.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">4. Ai Assistant and Automated Systems</h2>
-          <p className="mb-3">
-            This website may include an Ai-powered assistant or chatbot designed to answer questions and assist visitors.
-          </p>
-          <p className="mb-3">
-            Ai-generated responses are automated and may contain inaccuracies or incomplete information. Ai responses should not be considered professional advice and should not replace direct consultation with WildWorks.
-          </p>
-          <p className="mb-3">
-            Users should avoid submitting sensitive personal information through chat or automated systems.
-          </p>
-          <p>
-            Information submitted through Ai chat systems may be stored or reviewed to improve services or respond to inquiries.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">5. Information We Collect</h2>
-          <p className="mb-3">
-            When visitors interact with this website, WildWorks may collect certain information voluntarily submitted by users, including:
-          </p>
-          <ul className="mb-3 list-disc pl-6 space-y-1">
-            <li>Name</li>
-            <li>Email address</li>
-            <li>Phone number</li>
-            <li>Messages or project details submitted through forms or chat</li>
-          </ul>
-          <p className="mb-3">
-            Basic website usage information may also be collected through analytics tools to understand how visitors use the website and to improve performance.
-          </p>
-          <p>
-            WildWorks does not sell personal information to third parties.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">6. Email and Communication Consent</h2>
-          <p className="mb-3">
-            By submitting your email address or other contact information through forms, chat systems, or other features on this website, you consent to receiving communication from WildWorks.
-          </p>
-          <p className="mb-3">
-            These communications may include:
-          </p>
-          <ul className="mb-3 list-disc pl-6 space-y-1">
-            <li>Responses to inquiries</li>
-            <li>Project discussions or consultations</li>
-            <li>Service information</li>
-            <li>Follow-up communication related to your inquiry</li>
-          </ul>
-          <p>
-            You may request to stop receiving communications from WildWorks at any time.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">7. Cookies and Analytics</h2>
-          <p>
-            This website may use cookies or analytics tools to measure website traffic, analyze visitor behavior, and improve website functionality and user experience.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">8. Limitation of Liability</h2>
-          <p className="mb-3">
-            WildWorks makes reasonable efforts to provide accurate and useful information but makes no guarantees regarding the completeness or reliability of any information on this website.
-          </p>
-          <p className="mb-3">
-            WildWorks shall not be held liable for any damages, losses, or outcomes resulting from the use of this website or reliance on information presented on the website.
-          </p>
-          <p>
-            Visitors use the website and its information at their own risk.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">9. Intellectual Property</h2>
-          <p className="mb-3">
-            Unless otherwise stated, all content on this website is the property of WildWorks.
-          </p>
-          <p className="mb-3">
-            This includes but is not limited to:
-          </p>
-          <ul className="mb-3 list-disc pl-6 space-y-1">
-            <li>Photographs</li>
-            <li>Project images</li>
-            <li>Landscaping designs</li>
-            <li>Written content</li>
-            <li>Graphics</li>
-            <li>Logos</li>
-            <li>Branding</li>
-            <li>Videos</li>
-          </ul>
-          <p className="mb-3">
-            These materials are protected under applicable copyright and intellectual property laws.
-          </p>
-          <p className="mb-3">
-            Content from this website may not be copied, reproduced, republished, distributed, or used for commercial purposes without permission from WildWorks.
-          </p>
-          <p>
-            Visitors may share links to the website for informational purposes as long as the content itself is not copied or modified.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">10. Third-Party Links</h2>
-          <p>
-            This website may contain links to third-party websites or services. WildWorks is not responsible for the content, policies, or practices of any third-party websites.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">11. Changes to This Legal Notice</h2>
-          <p>
-            WildWorks may update or modify this Legal Notice at any time. Continued use of the website after updates are posted constitutes acceptance of those changes.
-          </p>
-        </section>
-
-        <hr className="border-white/20" />
-
-        <section>
-          <h2 className="mb-3 text-xl font-bold">12. Contact</h2>
-          <p className="mb-2">
-            <a href="mailto:WildWorks@pm.me" className="underline hover:text-white/90">
-              WildWorks@pm.me
-            </a>
-          </p>
-          <p className="mb-2">
-            <a href="tel:+14437972166" className="underline hover:text-white/90">
-              1+443-797-2166
-            </a>
-          </p>
-          <p>
-            <a
-              href="https://WildWorksLandscaping.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-white/90"
+    <main className="wild-home min-h-screen">
+      <section className="wild-section wild-legal-section discordSection discordSection--2">
+        <div className="wild-legal-wrap mx-auto grid max-w-5xl gap-7 px-4 py-4 sm:px-6">
+          <div className="wild-legal-hero grid gap-2 text-center">
+            <h1 className="wild-section-title wild-line-title wild-legal-title text-[#f7d9a5]">
+              Policies and Disclosures
+            </h1>
+            <p
+              className="wild-legal-deck mx-auto max-w-2xl text-base leading-7 text-[rgba(246,211,154,0.78)] sm:text-lg"
+              style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
             >
-              WildWorksLandscaping.com
-            </a>
-          </p>
-        </section>
-      </div>
-    </div>
+              Practical website terms, privacy language, communications rules, accessibility information,
+              disclaimers, and iScott disclosure for <BrandText>WildWorks.Live</BrandText>.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {legalPages.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="grid rounded-lg border border-[rgba(232,182,109,0.2)] bg-[rgba(38,16,5,0.58)] p-5 no-underline shadow-[0_18px_52px_rgba(16,6,1,0.28)] transition-[filter,transform] hover:brightness-110 sm:p-6"
+              >
+                <span className="mb-3 text-2xl font-bold leading-tight text-[#e8b66d] sm:text-3xl">
+                  {page.title}
+                </span>
+                <span
+                  className="text-base leading-7 text-[rgba(246,211,154,0.78)]"
+                  style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+                >
+                  <BrandText>{page.body}</BrandText>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

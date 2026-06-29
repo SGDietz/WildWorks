@@ -2,29 +2,29 @@ import AspectRatioImage from "../../components/AspectRatioImage";
 
 export default function TheRuins() {
     return (
-        <div className="mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
+        <div className="wild-subpage wild-subpage--ruins mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
             {/* First image: same width as header separator line (like who-is-g) */}
             
-            <section className="relative flex w-full mx-auto items-center justify-center overflow-hidden px-4 sm:px-6">
+            <section className="wild-subpage-hero relative flex w-full mx-auto items-center justify-center overflow-hidden px-4 sm:px-6">
                 <AspectRatioImage
-                src="/Ruins-Website-20260127-A copy.jpg"
-                alt="The Ruins - site-specific stonework in Federal Hill, Baltimore"
+                src="/ww-art-ruins.jpeg"
+                alt="Scott seated beside The Ruins stonework and reflecting pool"
                 priority
                 sizes="100vw"
                 />
                 <div className="absolute inset-0  pointer-events-none" aria-hidden />
             </section>
 
-            <section className="discordSection discordSection--1 px-4 pt-6 text-white mx-auto w-full sm:px-6 sm:pt-8 pb-2" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <section className="wild-subpage-section discordSection discordSection--1 px-4 pt-6 text-white mx-auto w-full sm:px-6 sm:pt-8 pb-2" style={{ fontFamily: "var(--font-serif), serif" }}>
                 <h1 className="mb-4 text-3xl text-center sm:mb-6 sm:text-5xl">The Ruins</h1>
                 <p className="text-xs text-white/90 pb-2">Federal Hill, Baltimore City, Maryland</p>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>My client asked me, &quot;What do you see here?&quot;</p>
                     <p>
-                        I stood there looking at a back yard garden—flowers, mulch, a gravel walk, and a wooden bench. … not only was there no there there yet but I felt like, given the location, this area needed a story
+                        I stood there looking at their normie back yard—flowers, mulch, a gravel walk, and a wooden bench—and not only was there no there there, but I felt like, given the location, this area needed a story.
                     </p>
                     <p>
-                        Federal Hill is a high ground overlook of Baltimore&apos;s inner harbor—important early, and absolutely relevant in the War of 1812, when it served as a military observation post, signal station, and a gun battery looking out over the harbor.
+                        Federal Hill is a high ground overlook of Baltimore&apos;s inner harbor—important early, and relevant in the War of 1812, when it served as a military observation post, signal station, and a gun battery looking out over the harbor.
                     </p>
                     <p>
                         So when my client asked that question, my mind didn&apos;t stay in &quot;landscaping mode,&quot; It went straight to: <i>what could have happened here?</i>
@@ -37,8 +37,8 @@ export default function TheRuins() {
                 </div>
             </section>
 
-            <section className="discordSection discordSection--2 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-xl mb-2">What I saw</h2>
+            <section className="wild-subpage-section discordSection discordSection--2 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+                <h2 className="text-xl mb-2">What I Saw</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
                         In my mind, the &quot;backstory&quot; was this: 
@@ -56,9 +56,9 @@ export default function TheRuins() {
                 </div>
             </section>
 
-            <section className="discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-xl mb-2">Building the Ruins</h2>
-                <p className="text-xs leading-relaxed mb-4">The finished space was built to feel real, with:</p>
+            <section className="wild-subpage-section discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
+                <h2 className="text-xl mb-2">Building The Ruins</h2>
+                <p className="text-xs leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
                 <ul className="list-disc list-outside space-y-2 text-xs leading-relaxed mb-2 pl-6">
                     <li>Bluestone patios and a walk</li>
                     <li>Seating placed where you&apos;d naturally want to sit</li>
@@ -68,17 +68,17 @@ export default function TheRuins() {
                 </ul>
             </section>
 
-            <section className="discordSection discordSection--4 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-xl mb-2">This Stone has Baltimore in it</h2>
+            <section className="wild-subpage-section discordSection discordSection--4 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+                <h2 className="text-xl mb-2">This Stone Has Baltimore In It</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                        Much of the stone used is reclaimed granite-the kind that actually spent a previous life of 150+ years as Baltimore street and curb stone.
+                        Much of the stone used is reclaimed granite—the kind that actually spent a previous life of 150+ years as Baltimore street and curb stone.
                     </p>
                     <p>
-                        As streets aged and construction techniques modernized, a lot of that old stone got ripped out, and much discarded into the city dump. Can you believe that-valuable granite, and Baltimore&apos;s history dumped like trash?
+                        As streets aged and construction techniques modernized, a lot of that old stone got ripped out, and much discarded into the city dump. Can you believe that—valuable granite, and Baltimore&apos;s history dumped like trash?
                     </p>
                     <p>
-                        A few local people had set some aside, which we salvaged and used for the build. Hopefully this stone will live another 150+ years right here-maybe a couple thousand!
+                        A few local people had set some aside, which we salvaged and used for the build. Hopefully this stone will live another 150+ years right here—maybe a couple thousand!
                     </p>
                     <p>
                         That&apos;s why the finished work doesn&apos;t feel like &quot;new hardscape pretending to be old.&quot; It feels like it could have been there all along—like Baltimore coughed up one of its older layers and set it down carefully in the present.
@@ -86,22 +86,21 @@ export default function TheRuins() {
                 </div>
             </section>
 
-            <section className="discordSection discordSection--1 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-xl mb-2">Why this works</h2>
+            <section className="wild-subpage-section discordSection discordSection--1 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
+                <h2 className="text-xl mb-2">Why This Works</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                        The Ruins isn&apos;t a replica and is plausible and real-and now it is a place that makes people sit and wonder.
+                        The Ruins isn&apos;t a replica and is plausible and real—and now it is a place that makes people sit and wonder.
                     </p>
                     <p>
                         My hope is that decades from now, even hundreds of years from now, people will still stand there looking at The Ruins and say:
                          &quot;What is this? Where did it come from? What happened here?&quot;
                     </p>
                 </div>
-                <hr className="mt-2 border-white/30" />
             </section>
 
-            <section className="discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6 mt-6" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-2xl mb-2">If you want a Ruin of your own...</h2>
+            <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6 mt-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+                <h2 className="text-2xl mb-2">If You Want A Ruin Of Your Own...</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
                     That would serve in the real world as A Party Zone, A Quiet Morning Spot, A Zen Area, or a Fire and Whiskey Corner, 
@@ -119,7 +118,7 @@ export default function TheRuins() {
                             <strong>Collapsed stone garden walls</strong> from an old stone building that become natural boulder seating, like the structure simply fell into place over time.
                         </li> */}
                         <li className="leading-[2]">
-                            A <strong>gristmill ruin</strong> beside a stream-water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
+                            A <strong>gristmill ruin</strong> beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
                         </li>
                         <li className="leading-[2]">
                             Something along the lines of a &quot;Crumbling Roman-Style Bathhouse&quot; that could feel like it has been there for centuries. Low, arched stone walls remain from what once formed the bathhouse rooms. Some walls stand waist-high, others rise taller, broken irregularly as if the centuries simply took their toll. In the ground lie half-sunken bathing basins, their stone edges softened by time. Clear water flows gently through them, as if an old natural spring still feeds the baths. Small channels
@@ -133,7 +132,7 @@ export default function TheRuins() {
                         </li>
                     </ul>
                     <p>
-                        And yes-done right, this kind of work can dramatically increase the feel—and the value—of a property, because it creates something 
+                        And yes—done right, this kind of work can dramatically increase the feel—and the value—of a property, because it creates something 
                         that is so far beyond ordinary that it is truly extraordinary; something you will love for as long as you own your home, 
                         and buyers will fall in love with and want to have as their own.
                     </p>
@@ -142,8 +141,8 @@ export default function TheRuins() {
                         
                     </p>
                 </div>
-                <a href="tel:+14437972166" className="block mt-10 mb-8 text-2xl text-center sm:mb-10 sm:text-4xl min-h-[44px]">
-                    1+443-797-2166
+                <a href="tel:+14437972166" className="wild-brand-phone block mt-10 mb-8 text-2xl text-center sm:mb-10 sm:text-4xl min-h-[44px]">
+                    +1(443) 797-2166
                 </a>
                 <h1 className="text-center text-5xl sm:text-6xl mb-6 sm:mb-12">Scott</h1>
             </section>
@@ -152,7 +151,7 @@ export default function TheRuins() {
           <a
             href="https://x.com/OfficialSGDietz"
             aria-label="X (Twitter)"
-            className="flex h-12 w-12 items-center justify-center text-[#FFFFFF] transition-opacity hover:opacity-80"
+            className="wild-brand-social-link"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -168,7 +167,7 @@ export default function TheRuins() {
           <a
             href="https://api.whatsapp.com/send?phone=14437972166"
             aria-label="WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#25D366] text-white transition-opacity hover:opacity-90"
+            className="wild-brand-social-link wild-brand-social-link--whatsapp"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -182,7 +181,7 @@ export default function TheRuins() {
             </svg>
           </a>
         </div>
-        <p className="pt-4 text-center text-xs text-white/90 sm:text-base">
+        <p className="wild-brand-contact-note pt-4 text-center text-xs sm:text-base">
             or DM Me directly on X or WhatsApp</p>
         </div>
     );

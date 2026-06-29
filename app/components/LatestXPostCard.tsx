@@ -230,11 +230,9 @@ function PhotoGrid({
  */
 function XTweetEmbedIframe({
   tweetId,
-  postUrl,
   username,
 }: {
   tweetId: string;
-  postUrl: string;
   username: string;
 }) {
   const src = `https://platform.twitter.com/embed/Tweet.html?id=${encodeURIComponent(tweetId)}&theme=dark&dnt=true&maxWidth=550`;
@@ -527,7 +525,6 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
         <div className="px-3 pb-3 pt-1 sm:px-4 sm:pt-2">
           <XTweetEmbedIframe
             tweetId={data.id}
-            postUrl={data.url}
             username={data.author.username}
           />
         </div>

@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const showInspirationSubpage = false;
+
 const navTabs = [
   { label: "HOME", href: "/pages/Home" },
   { label: "WILDFIRE", href: "/pages/Wildfire" },
-  { label: "INSPIRATION", href: "/pages/Inspiration" },
+  ...(showInspirationSubpage ? [{ label: "INSPIRATION", href: "/pages/Inspiration" }] : []),
   { label: "THE RUINS", href: "/pages/The-ruins" },
   { label: "I SELL", href: "/pages/I-sell" },
   { label: "BIO", href: "/pages/who-is-g" },
@@ -19,13 +21,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-transparent text-white discordSection discordSection--1">
+    <header className="wild-site-header bg-transparent discordSection discordSection--1">
       {/* Mobile: hamburger at top right (width < 500px) */}
       <div className="hidden min-h-[56px] items-center justify-end px-4 max-[500px]:flex">
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
-          className="flex h-10 w-10 items-center justify-center rounded text-[#d4d4d4] transition-opacity hover:opacity-90"
+          className="wild-mobile-menu-button flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-90"
           aria-label="Open menu"
         >
           <svg
@@ -44,7 +46,7 @@ export default function Header() {
       </div>
 
       {/* Desktop: logo + nav row (width >= 500px) */}
-      <div className="mx-auto hidden flex-col items-center py-4 min-[501px]:flex sm:gap-4 sm:pt-10">
+      <div className="mx-auto hidden flex-col items-center pb-0 pt-4 min-[501px]:flex sm:gap-4 sm:pt-10">
         <nav className="w-[60%] pt-4 sm:mx-auto sm:px-6 sm:pb-2 sm:pt-12">
           <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3">
             {navTabs.map((tab) => {
@@ -61,11 +63,11 @@ export default function Header() {
                 >
                   <Link
                     href={tab.href}
-                    className={`inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded px-1 py-1 text-xs font-normal 
-                    uppercase tracking-wide transition-colors sm:px-2 sm:py-1 sm:text-sm hover:border hover:bg-white/10 ${
+                    className={`wild-nav-link inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded px-1 py-1 text-xs font-normal 
+                    uppercase tracking-wide transition-colors sm:px-2 sm:py-1 sm:text-sm ${
                       isActive
-                        ? "border border-white/20 bg-white/10 hover:bg-white/15"
-                        : "text-white/70 "
+                        ? "wild-nav-link--active border"
+                        : ""
                     }`}
                     style={{ fontFamily: "var(--font-serif), serif" }}
                   >
@@ -87,17 +89,17 @@ export default function Header() {
       {/* Full-screen mobile menu overlay (like second image) */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black max-[500px]:flex min-[501px]:hidden"
+          className="wild-mobile-menu fixed inset-0 z-50 flex flex-col max-[500px]:flex min-[501px]:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
         >
           {/* Top bar with close (X) on the right */}
-          <div className="flex min-h-[56px] items-center justify-end border-b border-[#333] px-4">
+          <div className="flex min-h-[56px] items-center justify-end border-b px-4">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex h-10 w-10 items-center justify-center rounded text-white transition-opacity hover:opacity-80"
+              className="wild-mobile-menu-button flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-80"
               aria-label="Close menu"
             >
               <svg
@@ -127,7 +129,7 @@ export default function Header() {
                 <Link
                   href={tab.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-normal uppercase tracking-wide text-white transition-opacity hover:opacity-85"
+                  className="wild-mobile-nav-link text-lg font-normal uppercase tracking-wide transition-opacity hover:opacity-85"
                   style={{ fontFamily: "var(--font-serif), serif" }}
                 >
                   {tab.label}

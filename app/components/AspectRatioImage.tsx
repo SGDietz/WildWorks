@@ -1,12 +1,15 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
-import { useState, useCallback } from "react";
+import { useState, useCallback, type SyntheticEvent } from "react";
+import ImageLightbox from "./ImageLightbox";
 
 const DEFAULT_ASPECT = "16 / 9";
 
 type AspectRatioImageProps = Omit<ImageProps, "onLoad"> & {
   onLoad?: ImageProps["onLoad"];
+  enlargeable?: boolean;
+  lightboxTitle?: string;
 };
 
 /**
@@ -19,12 +22,15 @@ export default function AspectRatioImage({
   alt,
   className = "object-contain object-center",
   onLoad,
+  enlargeable = true,
+  lightboxTitle,
   ...rest
 }: AspectRatioImageProps) {
   const [aspectRatio, setAspectRatio] = useState<string>(DEFAULT_ASPECT);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const handleLoad = useCallback(
-    (e: React.SyntheticEvent<HTMLImageElement>) => {
+    (e: SyntheticEvent<HTMLImageElement>) => {
       const img = e.currentTarget;
       const w = img.naturalWidth;
       const h = img.naturalHeight;
@@ -36,7 +42,7 @@ export default function AspectRatioImage({
 
   return (
     <div
-      className="relative w-full overflow-hidden"
+      className={`relative w-full overflow-hidden${enlargeable ? " wild-zoomable-image" : ""}`}
       style={{ aspectRatio }}
     >
       <Image
@@ -47,6 +53,23 @@ export default function AspectRatioImage({
         onLoad={handleLoad}
         {...rest}
       />
+      {enlargeable ? (
+        <>
+          <button
+            type="button"
+            className="wild-zoom-hit-area"
+            onClick={() => setIsLightboxOpen(true)}
+            aria-label={`Enlarge ${alt}`}
+          />
+          <ImageLightbox
+            open={isLightboxOpen}
+            src={src}
+            alt={alt}
+            title={lightboxTitle}
+            onClose={() => setIsLightboxOpen(false)}
+          />
+        </>
+      ) : null}
     </div>
   );
 }

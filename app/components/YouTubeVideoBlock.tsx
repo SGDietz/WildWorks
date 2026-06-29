@@ -1,33 +1,15 @@
 "use client";
 
-import { useState, useCallback } from "react";
-
-const YOUTUBE_COPY_URL = "https://youtu.be/Ij0jTD_FC2g";
-const YOUTUBE_WATCH_URL =
-  "https://www.youtube.com/watch?v=Ij0jTD_FC2g&embeds_referring_euri=https%3A%2F%2Fwww.wildworkslandscaping.com%2F";
 const YOUTUBE_EMBED_URL = "https://www.youtube.com/embed/Ij0jTD_FC2g";
 
 export default function YouTubeVideoBlock() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyLink = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(YOUTUBE_COPY_URL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // fallback for older browsers
-      setCopied(false);
-    }
-  }, []);
-
   return (
     <section className="discordSection discordSection--3 px-4 py-2 sm:px-6">
       <div className="md:w-[60%] mx-auto">
         <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
           <iframe
             src={YOUTUBE_EMBED_URL}
-            title="WildWorks - Fine Art & Practical Landscaping"
+            title="WildWorks — Fine Art & Practical Landscaping"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="absolute inset-0 h-full w-full"

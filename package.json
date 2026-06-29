@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run check:bg && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:bg": "node scripts/check-wildworks-background-lock.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

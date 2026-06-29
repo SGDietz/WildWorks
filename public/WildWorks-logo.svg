@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+  <defs>
+    <radialGradient id="wildWorksLogoGlow" cx="50%" cy="45%" r="68%">
+      <stop offset="0%" stop-color="#3b1807" />
+      <stop offset="58%" stop-color="#230d04" />
+      <stop offset="100%" stop-color="#170702" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="650" fill="url(#wildWorksLogoGlow)" />
+  <text
+    x="600"
+    y="245"
+    text-anchor="middle"
+    fill="#c18a4b"
+    font-family="Goudy Old Style, Garamond, Georgia, serif"
+    font-size="152"
+    font-weight="700"
+  >WildWorks</text>
+  <text
+    x="600"
+    y="325"
+    text-anchor="middle"
+    fill="#c18a4b"
+    font-family="Garamond, EB Garamond, Georgia, serif"
+    font-size="52"
+    font-weight="700"
+  >Fine Art &amp; Practical Living</text>
+  <text
+    x="600"
+    y="445"
+    text-anchor="middle"
+    fill="#c18a4b"
+    font-family="Goudy Old Style, Garamond, Georgia, serif"
+    font-size="126"
+    font-weight="900"
+  >Live Like A King</text>
+</svg>

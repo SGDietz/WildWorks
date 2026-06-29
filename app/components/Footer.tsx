@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { ArrowUp, CheckCircle2, Mail, MessageSquareText, Send } from "lucide-react";
+import BrandText from "./BrandText";
 
 const SCROLL_THRESHOLD = 80;
 
@@ -17,11 +19,42 @@ const stagger = {
   },
 };
 
-const viewportReplay = { once: false, amount: 0.2 };
+const viewportReplay = { once: true, amount: 0.2 };
+type SignupChannel = "email" | "sms" | "both";
 
 export default function Footer() {
   const [showMobileBar, setShowMobileBar] = useState(false);
+  const [signupChannel, setSignupChannel] = useState<SignupChannel>("email");
+  const [signupStatus, setSignupStatus] = useState("");
   const lastScrollY = useRef(0);
+  const brandIconLink = "wild-footer-icon-button";
+  const mobileBrandLink = "wild-footer-mobile-link";
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const signupOptions: Array<{
+    id: SignupChannel;
+    label: string;
+    icon: typeof Mail;
+  }> = [
+    { id: "email", label: "Email", icon: Mail },
+    { id: "sms", label: "SMS", icon: MessageSquareText },
+    { id: "both", label: "Both", icon: CheckCircle2 },
+  ];
+
+  const handleSignupSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.reportValidity()) return;
+
+    const channelCopy =
+      signupChannel === "email" ? "email updates" : signupChannel === "sms" ? "SMS updates" : "email and SMS updates";
+
+    setSignupStatus(`Ready to add you for ${channelCopy}. This prototype has not been connected to a sending service yet.`);
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -37,68 +70,134 @@ export default function Footer() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <footer className="bg-transparent text-white max-[450px]:pb-24 mt-6 discordSection discordSection--2">
+    <footer id="footer" className="bg-transparent text-[#f7d9a5] max-[450px]:pb-24 mt-6 discordSection discordSection--2">
       <motion.div
-        className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 border-t border-[#333]"
+        className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12"
         variants={stagger}
         initial="initial"
         whileInView="animate"
         viewport={viewportReplay}
       >
-        {/* Email signup - responsive: stacked on mobile, two columns on md+ */}
-        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,25%)_minmax(0,50%)]">
-          <motion.div
-            className="hidden pt-14 md:block"
-            style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
-            variants={fadeInUp}
-          >
-            <span className="text-sm text-[#FFFFFF]">
-              Email address <span className="text-[#FFFFFF]">*</span>
-            </span>
-          </motion.div>
-
-          <div>
+        <div className="wild-signup-system">
+          <div className="wild-signup-panel">
             <motion.h3
-              className="mb-3 text-lg font-normal text-[#FFFFFF] sm:mb-4 md:mb-6 md:text-xl text-center"
+              className="wild-signup-title"
               style={{ fontFamily: "var(--font-serif), Georgia, serif" }}
               variants={fadeInUp}
             >
-              Sign Up For Emails
+              Sign Up for Email or SMS
             </motion.h3>
             <motion.form
-              action="#"
-              method="post"
-              className="flex flex-col gap-4"
+              className="wild-signup-form"
               variants={fadeInUp}
+              onSubmit={handleSignupSubmit}
             >
-              <label
-                className="text-sm text-[#FFFFFF] md:hidden"
-                style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
-              >
-                Email address <span className="text-[#FFFFFF]">*</span>
-              </label>
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  aria-label="Email address"
-                  className="w-full min-w-0 rounded border border-[#333] bg-[#1a1a1a] px-3 py-1 text-base text-white placeholder-zinc-500 focus:border-[#555] focus:outline-none"
-                  placeholder=""
-                />
+              <fieldset className="wild-signup-choice" aria-label="Choose email, SMS, or both">
+                {signupOptions.map(({ id, label, icon: Icon }) => (
+                  <button
+                    key={id}
+                    type="button"
+                    className={`wild-signup-choice-button${signupChannel === id ? " is-active" : ""}`}
+                    aria-pressed={signupChannel === id}
+                    onClick={() => {
+                      setSignupChannel(id);
+                      setSignupStatus("");
+                    }}
+                  >
+                    <Icon aria-hidden className="h-4 w-4" />
+                    <span>{label}</span>
+                  </button>
+                ))}
+              </fieldset>
+
+              <div className="wild-signup-fields">
+                {signupChannel !== "sms" ? (
+                  <label className="wild-signup-field">
+                    <span>
+                      Email Address <strong>*</strong>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                    />
+                  </label>
+                ) : null}
+
+                {signupChannel !== "email" ? (
+                  <label className="wild-signup-field">
+                    <span>
+                      Mobile Number <strong>*</strong>
+                    </span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="+1(443) 797-2166"
+                    />
+                  </label>
+                ) : null}
               </div>
-              <div className="pl-0">
+
+              <label className="wild-signup-consent">
+                <input type="checkbox" name="consent" required />
+                <span>
+                  I agree to receive the WildWorks updates I selected. Text messages may include project
+                  follow-up, scheduling, reminders, ideas, offers, and service updates. Message and data
+                  rates may apply. Reply STOP to opt out where supported.
+                </span>
+              </label>
+
+              <div className="wild-signup-action-row">
                 <motion.button
                   type="submit"
-                  className="min-h-[2.4rem] w-full rounded bg-[#d4d4d4] px-5 py-1 text-sm font-medium text-[#555555] transition-colors hover:bg-[#e0e0e0] sm:w-auto cursor-pointer"
-                  style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+                  className="money-cta money-cta--primary wild-signup-submit"
+                  style={{
+                    fontFamily: "var(--font-geist-sans), sans-serif",
+                  }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Submit form
+                  <Send aria-hidden className="h-4 w-4" />
+                  <span>Join the List</span>
                 </motion.button>
               </div>
+
+              {signupStatus ? (
+                <p className="wild-signup-status" role="status" aria-live="polite">
+                  {signupStatus}
+                </p>
+              ) : null}
+
+              <p className="wild-signup-fine-print">
+                You can unsubscribe from emails at any time and opt out of texts by replying STOP
+                where supported. See{" "}
+                <Link href="/pages/privacy-policy" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                  Privacy
+                </Link>{" "}
+                and{" "}
+                <Link href="/pages/communications" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                  Communications
+                </Link>
+                .
+              </p>
             </motion.form>
+            <motion.div className="mt-5 flex justify-center" variants={fadeInUp}>
+              <motion.button
+                type="button"
+                aria-label="Back to top"
+                className="wild-footer-top-button"
+                onClick={scrollToTop}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ArrowUp aria-hidden className="h-5 w-5" />
+              </motion.button>
+            </motion.div>
           </div>
         </div>
 
@@ -107,10 +206,10 @@ export default function Footer() {
             Questions?
           </motion.p>
           <motion.p className="text-xl sm:text-2xl" variants={fadeInUp}>
-            Contact Scott G. Dietz directly on his cell at 1+443-797-2166
+            Contact Scott directly on his cell at +1(443) 797-2166
           </motion.p>
           <motion.p className="text-xl sm:text-2xl" variants={fadeInUp}>
-            Email Scott at: <motion.a href="mailto:Wildworks@pm.me" className="underline hover:text-white/90 cursor-pointer" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>Wildworks@pm.me</motion.a>
+            Email Scott at: <motion.a href="mailto:Wildworks@pm.me" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5] cursor-pointer" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>Wildworks@pm.me</motion.a>
           </motion.p>
           <motion.p className="text-xl sm:text-2xl" variants={fadeInUp}>
             or Message Scott directly on X or WhatsApp
@@ -122,7 +221,7 @@ export default function Footer() {
           <motion.a
             href="https://x.com/OfficialSGDietz"
             aria-label="X (Twitter)"
-            className="flex h-12 w-12 items-center justify-center text-[#FFFFFF] transition-opacity hover:opacity-80"
+            className={brandIconLink}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -2 }}
@@ -140,7 +239,7 @@ export default function Footer() {
           <motion.a
             href="https://api.whatsapp.com/send?phone=14437972166"
             aria-label="WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#25D366] text-white transition-opacity hover:opacity-90"
+            className={brandIconLink}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -2 }}
@@ -160,40 +259,48 @@ export default function Footer() {
 
       {/* Copyright bar - left and right */}
       <motion.div
-        className="border-t border-[#111]"
+        className=""
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2  px-4 py-2 text-center text-sm text-[#FFFFFF] sm:flex-row sm:px-6 sm:text-left">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2  px-4 py-2 text-center text-sm text-[#e8b66d] sm:flex-row sm:px-6 sm:text-left">
           <span
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
-            © 2026 WildWorks. All Rights Reserved.
+            &copy; 2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
           </span>
         </div>
 
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2  px-4 py-2 text-center text-sm text-[#FFFFFF] sm:flex-row sm:px-6 sm:text-left">
-          <span className="ml-4 sm:ml-10 sm:text-sm ">
-            <motion.span whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link href="/pages/Wildworks" target="_blank" className="underline hover:text-white/90">
-                Privacy Policy | Terms of Service | Disclaimer | Communications
-              </Link>
-            </motion.span>
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2  px-4 py-2 text-center text-sm text-[#e8b66d] sm:flex-row sm:px-6 sm:text-left">
+          <span className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:text-sm">
+            {[
+              { label: "Privacy Policy", href: "/pages/privacy-policy" },
+              { label: "Terms of Service", href: "/pages/terms-of-service" },
+              { label: "Communications", href: "/pages/communications" },
+              { label: "Accessibility", href: "/pages/accessibility" },
+              { label: "Ai Disclosure", href: "/pages/ai-disclosure" },
+            ].map((item) => (
+              <motion.span key={item.href} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link href={item.href} className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                  {item.label}
+                </Link>
+              </motion.span>
+            ))}
           </span>
         </div>
       </motion.div>
 
       {/* Mobile-only contact strip: visible when width < 450px; shows on scroll down, hides on scroll up */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 hidden max-[450px]:block border-t border-[#111] bg-[#0b0c10]/95 text-white transition-transform duration-300 ease-out"
+        className="wild-footer-mobile-strip fixed bottom-0 left-0 right-0 z-50 hidden max-[450px]:block transition-transform duration-300 ease-out"
         style={{ transform: showMobileBar ? "translateY(0)" : "translateY(100%)" }}
       >
-        <div className="flex items-center justify-around bg-[#333] px-2 py-4">
+        <div className="wild-footer-mobile-strip-inner flex items-center justify-around px-2 py-4">
           <motion.a
             href="mailto:Wildworks@pm.me"
-            className="flex flex-col items-center gap-1.5 text-white transition-opacity hover:opacity-90"
+            className={mobileBrandLink}
             aria-label="Email"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -205,7 +312,7 @@ export default function Footer() {
           </motion.a>
           <motion.a
             href="tel:+14437972166"
-            className="flex flex-col items-center gap-1.5 text-white transition-opacity hover:opacity-90"
+            className={mobileBrandLink}
             aria-label="Phone"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -217,7 +324,7 @@ export default function Footer() {
           </motion.a>
           <motion.a
             href="https://x.com/OfficialSGDietz"
-            className="flex flex-col items-center gap-1.5 text-white transition-opacity hover:opacity-90"
+            className={mobileBrandLink}
             aria-label="X (Twitter)"
             target="_blank"
             rel="noopener noreferrer"
@@ -230,7 +337,7 @@ export default function Footer() {
           </motion.a>
           <motion.a
             href="https://api.whatsapp.com/send?phone=14437972166"
-            className="flex flex-col items-center gap-1.5 text-white transition-opacity hover:opacity-90"
+            className={mobileBrandLink}
             aria-label="WhatsApp"
             target="_blank"
             rel="noopener noreferrer"

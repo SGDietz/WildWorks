@@ -1,20 +1,21 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
+import BrandText from "../../components/BrandText";
 
 export default function WhoIsG() {
   return (
-    <div className="mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
+    <div className="wild-subpage wild-subpage--bio mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
       {/* Image constrained to same width as header separator line */}
-      <section className="relative mx-auto flex w-full items-center justify-center overflow-hidden px-4 sm:px-6">
+      <section className="wild-subpage-hero relative mx-auto flex w-full items-center justify-center overflow-hidden px-4 sm:px-6">
         <AspectRatioImage
-          src="/Potter-Happy.png"
-          alt="The Ruins - site-specific stonework in Federal Hill, Baltimore"
+          src="/ww-art-wilds.jpeg"
+          alt="Scott G. Dietz with WildWorks stonework"
           priority
           sizes="(max-width: 64rem) 100vw, 64rem"
         />
         <div className="absolute inset-0  pointer-events-none" aria-hidden />
       </section>
 
-      <section className="discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8 ">
+      <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8 ">
         <div className="space-y-2 text-left text-sm leading-relaxed">
           <h1 className="text-2xl sm:text-3xl">Who is Scott G. Dietz?</h1>
           <p className="text-base">
@@ -43,7 +44,9 @@ export default function WhoIsG() {
             Scott is the first to admit he has failed at more things than most people would even attempt to begin (or hasn&apos;t succeeded yet, depending on your outlook). But failure has never been the end of the story. When something doesn&apos;t work, he pivots, restarts, and fires up his creative engines once again.
           </p>
           <p className="text-base">
-            WildWorks exists for one reason: to design and build the world&apos;s wildest art, and solve problems that others simply cannot.
+            <BrandText>
+              WildWorks exists for one reason: to design and build the world&apos;s wildest art, and solve problems that others simply cannot.
+            </BrandText>
           </p>
 
         {/* <div className="mt-6 space-y-2 text-left text-base leading-relaxed"> */}
@@ -69,14 +72,13 @@ export default function WhoIsG() {
         </div>
 
         <h2 className="mb-4 mt-6 text-center text-xl sm:text-2xl">Call or Text Directly:</h2>
-        <a href="tel:+14437972166" className="block py-2 text-2xl text-center text-3xl sm:py-4 sm:text-4xl min-h-[44px]">
-          1+443-797-2166
+        <a href="tel:+14437972166" className="wild-brand-phone block py-2 text-center text-4xl sm:py-4 sm:text-6xl min-h-[44px]">
+          +1(443) 797-2166
         </a>
-        <p className="py-4 text-center text-5xl sm:py-6 sm:text-6xl">Just Do It</p>
-        <p className="py-2 text-center text-5xl sm:py-4 sm:text-6xl">Call or Text Scott.</p>
+        <p className="wild-brand-cta-big py-6 text-center">Scott.</p>
 
-        <p className="pt-4 text-center text-md text-white/90 sm:text-base">
-          or DM Me directly on X or WhatsApp
+        <p className="wild-brand-contact-note pt-4 text-center text-md sm:text-base">
+          or DM Scott directly on X or WhatsApp
         </p>
 
         
@@ -85,7 +87,7 @@ export default function WhoIsG() {
           <a
             href="https://x.com/OfficialSGDietz"
             aria-label="X (Twitter)"
-            className="flex h-12 w-12 items-center justify-center text-[#FFFFFF] transition-opacity hover:opacity-80"
+            className="wild-brand-social-link"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -101,7 +103,7 @@ export default function WhoIsG() {
           <a
             href="https://api.whatsapp.com/send?phone=14437972166"
             aria-label="WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#25D366] text-white transition-opacity hover:opacity-90"
+            className="wild-brand-social-link wild-brand-social-link--whatsapp"
             target="_blank"
             rel="noopener noreferrer"
           >
