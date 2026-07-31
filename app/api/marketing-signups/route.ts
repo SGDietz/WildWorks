@@ -33,19 +33,16 @@ function requestedChannels(channel: SignupChannel) {
   };
 }
 
-function providerConfigurationError(needsEmail: boolean, needsSms: boolean): string | null {
-  if (needsEmail && (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL)) {
-    return "Email signup is being connected right now. Please call, text, or email Scott directly below.";
-  }
-  if (
-    needsSms &&
-    (!process.env.TWILIO_ACCOUNT_SID ||
-      !process.env.TWILIO_AUTH_TOKEN ||
-      (!process.env.TWILIO_MESSAGING_SERVICE_SID && !process.env.TWILIO_FROM_NUMBER))
-  ) {
-    return "Text signup is being connected right now. Please call or text Scott directly below.";
-  }
-  return null;
+function emailProviderReady(): boolean {
+  return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
+}
+
+function smsProviderReady(): boolean {
+  return Boolean(
+    process.env.TWILIO_ACCOUNT_SID &&
+      process.env.TWILIO_AUTH_TOKEN &&
+      (process.env.TWILIO_MESSAGING_SERVICE_SID || process.env.TWILIO_FROM_NUMBER),
+  );
 }
 
 async function updateSignup(id: string, patch: Record<string, unknown>) {
@@ -77,7 +74,7 @@ async function insertSignup(row: Record<string, unknown>) {
 }
 
 function emailHtml() {
-  return `<div style="font-family:Georgia,serif;color:#4b230f;line-height:1.55"><h1 style="color:#a94f24">Welcome to WildWorks</h1><p>Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.</p><p>To unsubscribe from email, <a href="mailto:Wildworks@pm.me?subject=Unsubscribe%20from%20WildWorks%20email">email WildWorks</a>. For help, call or text Scott at +1 (443) 797-2166.</p></div>`;
+  return `<div style="font-family:Georgia,serif;color:#4b230f;line-height:1.55"><h1 style="color:#a94f24">Welcome to WildWorks</h1><p>Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.</p><p>To unsubscribe from email, <a href="mailto:Wildworks@pm.me?subject=Unsubscribe%20from%20WildWorks%20email">email WildWorks</a>. For help, call WildWorks at 1-877-600-2474.</p></div>`;
 }
 
 function escapeHtml(value: string) {
@@ -125,10 +122,8 @@ export async function POST(request: Request) {
       return Response.json({ error: "Enter a valid 10-digit US mobile number." }, { status: 400 });
     }
 
-    const configError = providerConfigurationError(wants.email, wants.sms);
-    if (configError) return Response.json({ error: configError }, { status: 503 });
     if (!isSupabaseAdminConfigured()) {
-      return Response.json({ error: "The signup record is not configured yet. Please contact Scott directly below." }, { status: 503 });
+      return Response.json({ error: "The signup record is not configured yet. Please contact WildWorks directly below." }, { status: 503 });
     }
 
     const id = crypto.randomUUID();
@@ -147,13 +142,17 @@ export async function POST(request: Request) {
     const insertResult = await insertSignup(record);
     if (!insertResult.ok) {
       console.error("marketing signup persistence failed", insertResult.status);
-      return Response.json({ error: "We could not save your signup. Please try again or contact Scott directly below." }, { status: 500 });
+      return Response.json({ error: "We could not save your signup. Please try again or contact WildWorks directly below." }, { status: 500 });
     }
 
     let resendMessageId: string | null = null;
     let twilioMessageId: string | null = null;
-    try {
-      if (wants.email && email) {
+    let emailStatus = wants.email ? "pending" : "not_requested";
+    let smsStatus = wants.sms ? "pending" : "not_requested";
+    const deliveryErrors: string[] = [];
+
+    if (wants.email && email && emailProviderReady()) {
+      try {
         const resend = new Resend(process.env.RESEND_API_KEY!);
         const emailResult = await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL!,
@@ -163,6 +162,7 @@ export async function POST(request: Request) {
         });
         if (emailResult.error) throw new Error("resend_email_failed");
         resendMessageId = emailResult.data?.id ?? null;
+        emailStatus = "sent";
 
         const notifyAddress = process.env.WILDWORKS_SIGNUP_NOTIFY_EMAIL;
         if (notifyAddress) {
@@ -174,9 +174,15 @@ export async function POST(request: Request) {
           });
           if (notification.error) console.error("marketing signup internal notification failed");
         }
+      } catch {
+        emailStatus = "failed";
+        deliveryErrors.push("email_delivery_failed");
+        console.error("marketing signup email delivery failed");
       }
+    }
 
-      if (wants.sms && phone) {
+    if (wants.sms && phone && smsProviderReady()) {
+      try {
         const client = twilio(process.env.TWILIO_ACCOUNT_SID!, process.env.TWILIO_AUTH_TOKEN!);
         const message = await client.messages.create({
           to: phone,
@@ -186,33 +192,35 @@ export async function POST(request: Request) {
             : { from: process.env.TWILIO_FROM_NUMBER! }),
         });
         twilioMessageId = message.sid;
+        smsStatus = "sent";
+      } catch {
+        smsStatus = "failed";
+        deliveryErrors.push("sms_delivery_failed");
+        console.error("marketing signup SMS delivery failed");
       }
-    } catch (error) {
-      await updateSignup(id, {
-        email_delivery_status: wants.email ? "failed" : "not_requested",
-        sms_delivery_status: wants.sms ? "failed" : "not_requested",
-        delivery_error: error instanceof Error ? truncateUtf8String(error.message, 180) : "provider_delivery_failed",
-      });
-      console.error("marketing signup provider delivery failed");
-      return Response.json({ error: "We could not send your confirmation. Please try again or contact Scott directly below." }, { status: 502 });
     }
 
     await updateSignup(id, {
-      email_delivery_status: wants.email ? "sent" : "not_requested",
-      sms_delivery_status: wants.sms ? "sent" : "not_requested",
+      email_delivery_status: emailStatus,
+      sms_delivery_status: smsStatus,
       provider_message_ids: { resend: resendMessageId, twilio: twilioMessageId },
-      delivered_at: new Date().toISOString(),
+      delivery_error: deliveryErrors.length ? deliveryErrors.join(",") : null,
+      delivered_at: emailStatus === "sent" || smsStatus === "sent" ? new Date().toISOString() : null,
     });
 
+    const hasPendingDelivery = emailStatus === "pending" || smsStatus === "pending";
+    const hasFailedDelivery = emailStatus === "failed" || smsStatus === "failed";
     return Response.json({
       ok: true,
-      message: wants.email && wants.sms
-        ? "You’re signed up. Check your inbox and phone for confirmation."
-        : wants.sms
-          ? "You’re signed up. Check your phone for confirmation."
-          : "You’re signed up. Check your inbox for confirmation.",
-    });
+      message: hasPendingDelivery || hasFailedDelivery
+        ? "You're on the WildWorks list. We saved the contact information and choices you provided."
+        : wants.email && wants.sms
+          ? "You’re signed up. Check your inbox and phone for confirmation."
+          : wants.sms
+            ? "You’re signed up. Check your phone for confirmation."
+            : "You’re signed up. Check your inbox for confirmation.",
+    }, { status: hasPendingDelivery || hasFailedDelivery ? 202 : 200 });
   } catch {
-    return Response.json({ error: "We could not complete your signup. Please try again or contact Scott directly below." }, { status: 500 });
+    return Response.json({ error: "We could not complete your signup. Please try again or contact WildWorks directly below." }, { status: 500 });
   }
 }

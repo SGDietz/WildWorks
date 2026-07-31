@@ -1,4 +1,10 @@
 import { API_URL } from "../../../liveavatar/secrets";
+import {
+  assertAllowedOrigin,
+  readLimitedRequestBody,
+  RequestBodyTooLargeError,
+} from "../../../../../src/lib/apiRouteSecurity";
+import { checkRateLimit } from "../../../../../src/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +21,16 @@ function getBearerToken(authHeader: string | null) {
 }
 
 async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
+  const originError = assertAllowedOrigin(request);
+  if (originError) return originError;
+
+  const rateLimitError = await checkRateLimit(request, {
+    prefix: "liveavatar-session-proxy",
+    perMinute: 120,
+    perDay: 2_000,
+  });
+  if (rateLimitError) return rateLimitError;
+
   const token = getBearerToken(request.headers.get("Authorization"));
   if (!token) {
     return Response.json(
@@ -29,13 +45,16 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
   target.search = new URL(request.url).search;
 
   try {
+    const body = request.method === "GET" || request.method === "HEAD"
+      ? undefined
+      : await readLimitedRequestBody(request, 1_000_000);
     const response = await fetch(target, {
       method: request.method,
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": request.headers.get("content-type") ?? "application/json",
       },
-      body: request.method === "GET" || request.method === "HEAD" ? undefined : request.body,
+      body,
       cache: "no-store",
       duplex: "half",
     } as RequestInit & { duplex: "half" });
@@ -48,7 +67,13 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
         "Content-Type": contentType,
       },
     });
-  } catch {
+  } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return Response.json(
+        { code: 413, data: { message: "Request body too large" } },
+        { status: 413 },
+      );
+    }
     return Response.json(
       { code: 500, data: { message: "LiveAvatar session proxy failed" } },
       { status: 500 },

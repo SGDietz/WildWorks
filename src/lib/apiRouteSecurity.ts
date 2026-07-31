@@ -52,8 +52,12 @@ export function assertAllowedOrigin(request: Request, options: { allowDirectNavi
 
   const referer = request.headers.get("referer");
   if (referer !== null) {
-    const ok = Array.from(ALLOWED_ORIGINS).some((o) => referer.startsWith(o)) || originMatchesRequestHost(referer, request);
-    if (ok) return null;
+    try {
+      const refererUrl = new URL(referer);
+      if (isAllowedRequestOrigin(refererUrl.origin, request)) return null;
+    } catch {
+      // Invalid referers are rejected below.
+    }
     return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { "Content-Type": "application/json" } });
   }
 
@@ -74,4 +78,42 @@ export function isSafeTranscriptionSessionId(value: unknown): value is string {
   const v = value.trim();
   if (v.length < 8 || v.length > MAX_TRANSCRIPTION_SESSION_ID_CHARS) return false;
   return SAFE_TRANSCRIPTION_SESSION_ID.test(v);
+}
+
+export class RequestBodyTooLargeError extends Error {
+  constructor() {
+    super("Request body too large");
+    this.name = "RequestBodyTooLargeError";
+  }
+}
+
+export async function readLimitedRequestBody(request: Request, maxBytes: number): Promise<ArrayBuffer> {
+  const contentLength = Number(request.headers.get("content-length") || "0");
+  if (Number.isFinite(contentLength) && contentLength > maxBytes) {
+    throw new RequestBodyTooLargeError();
+  }
+
+  if (!request.body) return new ArrayBuffer(0);
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    totalBytes += value.byteLength;
+    if (totalBytes > maxBytes) {
+      await reader.cancel().catch(() => undefined);
+      throw new RequestBodyTooLargeError();
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return body.buffer;
 }

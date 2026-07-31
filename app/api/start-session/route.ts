@@ -7,10 +7,20 @@ import {
   VOICE_ID,
 } from "../liveavatar/secrets";
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
+import { assertAllowedOrigin } from "../../../src/lib/apiRouteSecurity";
+import { checkCriticalRateLimit } from "../../../src/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const originError = assertAllowedOrigin(request);
+  if (originError) return originError;
+
+  const rateLimitError = await checkCriticalRateLimit(request, {
+    eventType: "rate_limit_liveavatar_session",
+  });
+  if (rateLimitError) return rateLimitError;
+
   if (!API_KEY || !API_URL || !AVATAR_ID || !VOICE_ID) {
     return Response.json(
       {
