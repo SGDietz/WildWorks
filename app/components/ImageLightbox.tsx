@@ -3,6 +3,7 @@
 import Image, { type ImageProps } from "next/image";
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import BrandText from "./BrandText";
 
 type ImageLightboxProps = {
@@ -20,6 +21,8 @@ export default function ImageLightbox({
   title,
   onClose,
 }: ImageLightboxProps) {
+  const visibleTitle = title?.trim();
+
   useEffect(() => {
     if (!open) return;
 
@@ -37,19 +40,23 @@ export default function ImageLightbox({
     };
   }, [onClose, open]);
 
-  if (!open) return null;
+  if (!open || typeof document === "undefined") return null;
 
-  return (
+  return createPortal(
     <div
       className="wild-image-lightbox discordSection discordSection--lightbox"
       role="dialog"
       aria-modal="true"
       aria-label={title ?? alt}
     >
-      <div className="wild-image-lightbox__bar">
-        <span>
-          <BrandText>{title ?? alt}</BrandText>
-        </span>
+      <div
+        className={`wild-image-lightbox__bar${visibleTitle ? "" : " wild-image-lightbox__bar--close-only"}`}
+      >
+        {visibleTitle ? (
+          <span>
+            <BrandText>{visibleTitle}</BrandText>
+          </span>
+        ) : null}
         <button type="button" onClick={onClose} aria-label="Close enlarged image">
           <X aria-hidden className="h-6 w-6" />
         </button>
@@ -69,6 +76,7 @@ export default function ImageLightbox({
           quality={94}
         />
       </button>
-    </div>
+    </div>,
+    document.body,
   );
 }

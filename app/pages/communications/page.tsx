@@ -164,8 +164,8 @@ export default function CommunicationsPage() {
           title: "Contact",
           children: (
             <p>
-              Communication requests, opt-outs, and questions can be sent to Wildworks@pm.me or raised
-              directly with Scott at +1(443) 797-2166.
+              Communication requests, opt-outs, and questions can be sent to Wildworks@pm.me or raised by
+              calling WildWorks at 1-877-600-2474.
             </p>
           ),
         },

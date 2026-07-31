@@ -289,7 +289,7 @@ export default function DormantInspirationPage() {
         </div>
         <div className="inspiration-intro">
           <p className="inspiration-p text-base py-2">
-            Project Wildfire draws direct inspiration from the work of master stone artisan{" "}
+            Project Wildfire Draws Direct Inspiration from the Work of Master Stone Artisan{" "}
             <strong>Lew French</strong> of{" "}
             <a
               href="https://lewfrenchstone.com"
@@ -302,20 +302,20 @@ export default function DormantInspirationPage() {
             .
           </p>
           <p className="inspiration-p text-base py-2">
-            As you can see in the photo above, Lew is a true artist of natural stone. His eye for proportion, balance, and flow is exceptional—I hold his work in the highest regard.
+            As You Can See in the Photo Above, Lew is a True Artist of Natural Stone. His Eye for Proportion, Balance, and Flow is Exceptional—I Hold His Work in the Highest Regard.
           </p>
         </div>
         <h2 className="inspiration-heading text-2xl pt-2">How It Started</h2>
         <span className="inspiration-heading-line block h-0.5 w-16 bg-white/60 origin-left mb-1" />
         <div className="inspiration-text-block">
           <p className="text-base py-2">
-            Over more than 15 years, we had built nearly everything around a couple in Lutherville, Md&apos;s home: the front masonry porch, 2 walks, planting beds, landscape lighting front and back, and the rear bluestone patio with natural stone seat wall. As I walk around the house today, I look with pride, as everything we had built was beautiful artwork that settled in with no trip hazards or visual blemishes.
+            Over More Than 15 Years, We Had Built Nearly Everything Around a Couple in Lutherville, Md&apos;s Home: the Front Masonry Porch, 2 Walks, Planting Beds, Landscape Lighting Front and Back, and the Rear Bluestone Patio with Natural Stone Seat Wall. As I Walk Around the House Today, I Look with Pride, as Everything We Had Built Was Beautiful Artwork That Settled in with No Trip Hazards or Visual Blemishes.
           </p>
           <p className="text-base py-2">
-            In the fall of 2025 the husband had a friend send him a picture of an outdoor fireplace that the friend built himself. Large scale, about the same dimensions as Project Wildfire (14 ft wide x 14ish ft tall). The wife, knowing that the husband loved to sit outside on the patio we had built for them and smoke his cigars, said, &quot;Why don&apos;t you have Scott build one for you.&quot; As he was currently sitting around a small metal firepit, she felt like he earned an upgrade.
+            In the Fall of 2025 the Husband Had a Friend Send Him a Picture of an Outdoor Fireplace That the Friend Built Himself. Large Scale, About the Same Dimensions as Project Wildfire (14 ft Wide x 14ish ft Tall). The Wife, Knowing That the Husband Loved to Sit Outside on the Patio We Had Built for Them and Smoke His Cigars, Said, &quot;Why Don&apos;t You Have Scott Build One for You.&quot; As He Was Currently Sitting Around a Small Metal Firepit, She Felt Like He Earned an Upgrade.
           </p>
           <p className="text-base py-2">
-            The husband reached out to me, sent me the picture his friend had sent him. I sent him a link of Lew&apos;s Fireplace, and asked what he thought of that style. We had not yet agreed to a price, but he said, &quot;Put us into your schedule.&quot;
+            The Husband Reached Out to Me, Sent Me the Picture His Friend Had Sent Him. I Sent Him a Link of Lew&apos;s Fireplace, and Asked What He Thought of That Style. We Had Not Yet Agreed to a Price, But He Said, &quot;Put Us Into Your Schedule.&quot;
           </p>
         </div>
       </section>
@@ -324,7 +324,7 @@ export default function DormantInspirationPage() {
         <div className="inspiration-image-inner relative w-full overflow-hidden rounded-sm">
           <AspectRatioImage
             src="/McNulty-Sketch-Cr.jpg"
-            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural landscaping"
+            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural living space"
             priority
             sizes="(max-width: 64rem) 100vw, 64rem"
           />
@@ -336,10 +336,10 @@ export default function DormantInspirationPage() {
         <span className="inspiration-heading-line block h-0.5 w-16 bg-white/60 origin-left mb-1" />
         <div className="inspiration-text-block">
           <p className="text-base py-2">
-            I had transitioned to CAD years earlier and hadn&apos;t done a hand rendering in nearly a decade. Because of the complexity of the design, I felt like picking up a pencil and sketching.
+            I Had Transitioned to CAD Years Earlier and Hadn&apos;t Done a Hand Rendering in Nearly a Decade. Because of the Complexity of the Design, I Felt Like Picking Up a Pencil and Sketching.
           </p>
           <p className="text-base py-2">
-            Truly, I felt like the ideas just flowed out of me almost on auto pilot, it was almost effortless, with very little thinking. I do many other types of art, including music, stand-up comedy, graphic design, and generally these things are painstaking, iteration after iteration, seriously heavy brain work that takes days and months to get right. But to my amazement, in about 2 hours, I had something I really liked, the design above.
+            Truly, I Felt Like the Ideas Just Flowed Out of Me Almost on Auto Pilot, It Was Almost Effortless, with Very Little Thinking. I Do Many Other Types of Art, Including Music, Stand-Up Comedy, Graphic Design, and Generally These Things Are Painstaking, Iteration After Iteration, Seriously Heavy Brain Work That Takes Days and Months to Get Right. But to My Amazement, in About 2 Hours, I Had Something I Really Liked, the Design Above.
           </p>
         </div>
       </section>
@@ -348,7 +348,7 @@ export default function DormantInspirationPage() {
         <div className="inspiration-image-inner relative w-full overflow-hidden rounded-sm">
           <AspectRatioImage
             src="/McNultyDesign-2.png"
-            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural landscaping"
+            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural living space"
             priority
             sizes="(max-width: 64rem) 100vw, 64rem"
           />
@@ -360,16 +360,16 @@ export default function DormantInspirationPage() {
         <span className="inspiration-heading-line block h-0.5 w-16 bg-white/60 origin-left mb-1" />
         <div className="inspiration-text-block">
           <p className="text-base ">
-            The day after I got the go ahead, I started stone hunting.
+            The Day After I Got the Go Ahead, I Started Stone Hunting.
           </p>
           <p className="text-base ">
-            Sourcing the stone was tricky. All of the larger pieces were to be one-of-a-kind, selected individually for how well they fit into the actual design. Finding these stones was going to take patience, experience, traveling, and none were going to come cheap.
+            Sourcing the Stone Was Tricky. All of the Larger Pieces Were to Be One-of-a-Kind, Selected Individually for How Well They Fit Into the Actual Design. Finding These Stones Was Going to Take Patience, Experience, Traveling, and None Were Going to Come Cheap.
           </p>
           <p className="text-base ">
-            I visited numerous retailers and quarries, and took every stone in the design and did my best to find it in reality. The high horizontal stone in the original design was drawn at almost 12 feet wide. I couldn&apos;t find anything that big, but I found a stone 10&apos; with cutouts on each end. I found the other stones, literally one at a time, from various sources, and then erased and redrew the design with the new stones in place, above.
+            I Visited Numerous Retailers and Quarries, and Took Every Stone in the Design and Did My Best to Find It in Reality. The High Horizontal Stone in the Original Design Was Drawn at Almost 12 Feet Wide. I Couldn&apos;t Find Anything That Big, But I Found a Stone 10&apos; with Cutouts on Each End. I Found the Other Stones, Literally One at a Time, from Various Sources, and Then Erased and Redrew the Design with the New Stones in Place, Above.
           </p>
           <p className="text-base ">
-            This was Version 2.0 that I showed the clients, by text. I was not happy with it, thought something was missing.
+            This Was Version 2.0 That I Showed the Clients, By Text. I Was Not Happy with It, Thought Something Was Missing.
           </p>
         </div>
       </section>
@@ -378,7 +378,7 @@ export default function DormantInspirationPage() {
         <div className="inspiration-image-inner relative w-full overflow-hidden rounded-sm">
           <AspectRatioImage
             src="/20260103_204542-2-high.png"
-            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural landscaping"
+            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural living space"
             priority
             sizes="(max-width: 64rem) 100vw, 64rem"
           />
@@ -388,7 +388,7 @@ export default function DormantInspirationPage() {
       <section className="discordSection discordSection--2 mx-auto w-full px-4 py-2 text-white sm:px-6 sm:py-4">
         <div className="inspiration-text-block">
           <p className="text-base">
-            I took about 2 hours, and started into more curved outer edges. I abandoned the concept after numerous iterations, as I just could not get anything to look pleasing. As I look at it now upon writing this, this style of design could perhaps be magnificent for a future build. King Cobra.
+            I Took About 2 Hours, and Started Into More Curved Outer Edges. I Abandoned the Concept After Numerous Iterations, as I Just Could Not Get Anything to Look Pleasing. As I Look at It Now Upon Writing This, This Style of Design Could Perhaps Be Magnificent for a Future Build. King Cobra.
           </p>
         </div>
       </section>
@@ -397,7 +397,7 @@ export default function DormantInspirationPage() {
         <div className="inspiration-image-inner relative w-full overflow-hidden rounded-sm">
           <AspectRatioImage
             src="/20251222_082817-1-2-high.png"
-            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural landscaping"
+            alt="WildWorks — Stone staircase and pathway leading to a rustic house with natural living space"
             priority
             sizes="(max-width: 64rem) 100vw, 64rem"
           />
@@ -407,14 +407,14 @@ export default function DormantInspirationPage() {
       <section className="discordSection discordSection--3 inspiration-cta mx-auto w-full px-4 py-4 text-white sm:px-6 sm:py-6">
         <div className="inspiration-text-block">
           <p className="text-base ">
-            I realized that we had a pallet of 3 superstepper stones, massive, chunky, and two of them might be perfect to cantilever out as shoulders and be quite the spectacular finishing touch to the entire project.
+            I Realized That We Had a Pallet of 3 Superstepper Stones, Massive, Chunky, and Two of Them Might Be Perfect to Cantilever Out as Shoulders and Be Quite the Spectacular Finishing Touch to the Entire Project.
           </p>
           <p className="text-base "></p>
           <p className="text-base ">
-            As I write this, we are at the point in the build where we need to actually figure out how to engineer building them into the firestack, and do so in a way that is durable and will last. Certainly, everyone is going to want to climb up, and stand and sit on them (I&apos;ll be first).
+            As I Write This, We Are at the Point in the Build Where We Need to Actually Figure Out How to Engineer Building Them Into the Firestack, and Do So in a Way That is Durable and Will Last. Certainly, Everyone is Going to Want to Climb Up, and Stand and Sit on Them (I&apos;ll Be First).
           </p>
           <p className="text-base ">
-            For all its imperfections, above is the final design. We shall see how close we come to this after the build!
+            For All Its Imperfections, Above is the Final Design. We Shall See How Close We Come to This After the Build!
           </p>
         </div>
         <h2 className="inspiration-cta-title pt-6 pb-2 text-2xl sm:text-3xl" style={{ fontFamily: "var(--font-serif), serif" }}>
@@ -423,30 +423,30 @@ export default function DormantInspirationPage() {
         <span className="inspiration-cta-title-line block h-1 w-24 bg-white/80 origin-left my-2" />
         <div>
           <p className="inspiration-cta-p text-base ">
-            Is an original, hand-built outdoor fireplace, in no way a reproduction. It is a custom stone structure built in my own voice—shaped by decades of creative experience—while openly acknowledging the influence of a craftsman whose work continues to inspire me.
+            Is an Original, Hand-Built Outdoor Fireplace, in No Way a Reproduction. It is a Custom Stone Structure Built in My Own Voice—Shaped By Decades of Creative Experience—While Openly Acknowledging the Influence of a Craftsman Whose Work Continues to Inspire Me.
           </p>
           <p className="inspiration-cta-p text-base ">
-            As Isaac Newton wrote, &quot;If I have seen further, it is by standing on the shoulders of giants.&quot;
+            As Isaac Newton Wrote, &quot;If I Have Seen Further, It is By Standing on the Shoulders of Giants.&quot;
           </p>
           <p className="inspiration-cta-p text-base ">
-            Right now, I&apos;m proudly standing on Lew French&apos;s shoulders.
+            Right Now, I&apos;m Proudly Standing on Lew French&apos;s Shoulders.
           </p>
           <p className="inspiration-cta-p text-base ">
-            If you would like a Fireplace along these lines, inside or outside of your home, please feel free to call me on my cell:
+            If You Would Like a Fireplace Along These Lines, Inside or Outside of Your Home, Please Feel Free to Call Me on My Cell:
           </p>
         </div>
 
         <a
-          href="tel:+14437972166"
+          href="tel:+18776002474"
           className="inspiration-cta-phone block pt-4 mt-2 text-4xl text-center text-white/90 sm:mt-4 sm:text-5xl min-h-[44px] mb-6 sm:mb-10 transition-opacity hover:opacity-90"
         >
-          +1(443) 797-2166
+          1-877-600-2474
         </a>
         <h1 className="inspiration-cta-name text-center text-5xl sm:text-6xl mb-6 sm:mb-12">Scott</h1>
 
         <div className="inspiration-cta-socials mt-8 flex justify-center gap-4 sm:mt-10">
           <a
-            href="https://x.com/OfficialSGDietz"
+            href="https://x.com/WildWorksArt"
             aria-label="X (Twitter)"
             className="flex h-12 w-12 items-center justify-center text-[#FFFFFF] transition-opacity hover:opacity-80"
             target="_blank"
@@ -469,7 +469,7 @@ export default function DormantInspirationPage() {
           </a>
         </div>
         <p className="inspiration-cta-dm pt-4 text-center text-sm text-white/90 sm:text-base">
-          or DM Me directly on X or WhatsApp
+          Or DM Me Directly on X or WhatsApp
         </p>
       </section>
     </div>

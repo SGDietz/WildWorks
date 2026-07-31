@@ -1,16 +1,17 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
+import SubpageIScottCta from "../../components/SubpageIScottCta";
 
 export default function ISell() {
     return (
         <div className="wild-subpage wild-subpage--sell mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
             <section className="wild-subpage-hero relative flex w-full items-center justify-center overflow-hidden px-4 sm:px-6">
                 <AspectRatioImage
-                    src="/GabbyTravis-Final-20260622.jpg"
+                    src="/TravisGabby-20260731.png"
                     alt="Scott sitting in a WildWorks boulder garden with perennial flowers"
                     className="wild-sell-hero-image object-contain object-center"
                     priority
                     sizes="100vw"
-                    lightboxTitle="WildWorks art and problem solving"
+                    lightboxTitle="WildWorks Art and Problem Solving"
                 />
             </section>
 
@@ -20,50 +21,51 @@ export default function ISell() {
                 </h1>
                 <div className="wild-sell-copy space-y-2 text-left text-sm leading-relaxed">
                     <p className="text-base">
-                        I don&apos;t work in real estate, but over the years—now more than forty of them—I&apos;ve lost 
-                        count of how many clients have said the exact same thing to me: &quot;Scott—You sold our house.&quot;
+                        I Don&apos;t Work in Real Estate, But Over the Years—Now More Than Forty of Them—I&apos;ve Lost
+                        Count of How Many Clients Have Said the Exact Same Thing to Me: &quot;Scott—You Sold Our House.&quot;
                     </p>
                     <h2 className="wild-sell-break-heading">&quot;You Sold Our House.&quot;</h2>
                     <p className="text-base">
-                        Last summer, I was standing in the front yard of a client&apos;s property after they had sold their old home, and called me in to fix up their new one. The homeowner looked at me and he was absolutely glowing. I didn&apos;t ask him, and he didn&apos;t tell me, but I knew just by the look on his face that they had gotten a great price for their old home.
+                        Last Summer, I Was Standing in the Front Yard of a Client&apos;s Property After They Had Sold Their Old Home, and Called Me in to Fix Up Their New One. The Homeowner Looked at Me and He Was Absolutely Glowing. I Didn&apos;t Ask Him, and He Didn&apos;t Tell Me, But I Knew Just By the Look on His Face That They Had Gotten a Great Price for Their Old Home.
                     </p>
                     <p className="text-base">
-                    He said to me: &quot;You sold our house. It had to be you. You gave us the most beautiful things there!&quot; He also said, &quot;You&apos;re the best! You are absolutely the best there is. You&apos;re going to make our new house spectacular!&quot; This is the house that two 70 year olds with 20 grandkids are going to spend their golden years. They believed in me, that I delivered <em>Spectacular</em>.
+                    He Said to Me: &quot;You Sold Our House. It Had to Be You. You Gave Us the Most Beautiful Things There!&quot; He Also Said, &quot;You&apos;re the Best! You Are Absolutely the Best There is. You&apos;re Going to Make Our New House Spectacular!&quot; This is the House That Two 70 Year Olds with 20 Grandkids Are Going to Spend Their Golden Years. They Believed in Me, That I Delivered <em>Spectacular</em>.
                     </p>
                     <p className="text-base">
-                        Another client told me the same thing after reading their realtor&apos;s report. The buyers specifically mentioned how much they loved the super artsy and wild patio and seat wall area. That outdoor space was the reason they fell in love with the home, and had to have it.
+                        Another Client Told Me the Same Thing After Reading Their Realtor&apos;s Report. The Buyers Specifically Mentioned How Much They Loved the Super Artsy and Wild Patio and Seat Wall Area. That Outdoor Space Was the Reason They Fell in Love with the Home, and Had to Have It.
                     </p>
                     <p className="text-base">
-                        Another family, with two kids under three years old, wanted a practical back yard that was safe to walk and play on. Their backyard was an 80 year old mess of highs, lows, and mysterious holes. We reshaped and fine graded the entire space, and added a patio, firepit, and walkways that made the yard usable and practical. When we were finished, I said that I believed we had added at least the value of what they paid for the project back into their home. 
+                        Another Family, with Two Kids Under Three Years Old, Wanted a Practical Back Yard That Was Safe to Walk and Play on. Their Backyard Was an 80 Year Old Mess of Highs, Lows, and Mysterious Holes. We Reshaped and Fine Graded the Entire Space, and Added a Patio, Firepit, and Walkways That Made the Yard Usable and Practical. When We Were Finished, I Said That I Believed We Had Added at Least the Value of What They Paid for the Project Back Into Their Home.
                     </p>
                     <p className="text-base">
-                    They both nodded vociferously and the wife said, “Oh my God—at least!”
+                    They Both Nodded Vociferously and the Wife Said, “Oh My God—at Least!”
                     </p>
                     <h2 className="wild-sell-break-heading">Not Workarounds. Not Patches.</h2>
                     <p className="text-base">
-                        That kind of result doesn&apos;t happen by accident. It comes from fixing problems correctly—and at a fair price. The best part of all? You, the client, get to enjoy these things as long as you own your home. For these clients, they had not only the dream back yard for their kids to grow up in, the congregating area their family could enjoy for decades, and also an investment that was going to give them maximum Return On Investment.
+                        That Kind of Result Doesn&apos;t Happen By Accident. It Comes from Fixing Problems Correctly—and at a Fair Price. The Best Part of All? You, the Client, Get to Enjoy These Things as Long as You Own Your Home. For These Clients, They Had Not Only the Dream Back Yard for Their Kids to Grow Up in, the Congregating Area Their Family Could Enjoy for Decades, and Also an Investment That Was Going to Give Them Maximum Return on Investment.
                     </p>
                     <p className="text-base">
-                        I&apos;ve always been drawn to not only beauty, but practicality and problem solving. I charge forward into the hardest problems—the ones people live with for years because no one can quite figure them out. The spaces that never worked. The water issues no one could stop. I&apos;ve solved home and garden problems for clients who had been searching—sometimes for decades—for real solutions. Not workarounds. Not patches. Solutions that make sense, last, and actually improve people&apos;s quality of life.
+                        I&apos;ve Always Been Drawn to Not Only Beauty, But Practicality and Problem Solving. I Charge Forward Into the Hardest Problems—the Ones People Live with for Years Because No One Can Quite Figure Them Out. The Spaces That Never Worked. The Water Issues No One Could Stop. I&apos;ve Solved Home and Garden Problems for Clients Who Had Been Searching—Sometimes for Decades—for Real Solutions. Not Workarounds. Not Patches. Solutions That Make Sense, Last, and Actually Improve People&apos;s Quality of Life.
                     </p>
-                    <h2 className="wild-sell-break-heading">Real Return On Investment.</h2>
+                    <h2 className="wild-sell-break-heading">Real Return on Investment.</h2>
                     <p className="text-base">
-                        At the end of the day, solving problems the right way creates real return on investment—sometimes in day-to-day livability, sometimes in resale value, and often in both. Whether you need a purely practical solution to something that isn&apos;t working, or you&apos;re looking for an exquisitely beautiful piece of art, my approach is the same: fair pricing, quality building, and work that gives you the highest return on investment.
+                        At the End of the Day, Solving Problems the Right Way Creates Real Return on Investment—Sometimes in Day-to-Day Livability, Sometimes in Resale Value, and Often in Both. Whether You Need a Purely Practical Solution to Something That Isn&apos;t Working, or You&apos;re Looking for an Exquisitely Beautiful Piece of Art, My Approach is the Same: Fair Pricing, Quality Building, and Work That Gives You the Highest Return on Investment.
                     </p>
                     <h2 className="wild-sell-break-heading">If You&apos;d Like to Talk It Through</h2>
                     <p className="text-base">
-                    If you&apos;d like to talk it through, I&apos;m happy to drive to you or hop on a video call—whether you&apos;re not far away or halfway around the world—and help figure out what will actually make the most sense for you, your family, and your home. Please feel free to call me anytime directly on my cell phone, I&apos;m always happy to talk.
+                    If You&apos;d Like to Talk It Through, I&apos;m Happy to Drive to You or Hop on a Video Call—Whether You&apos;re Not Far Away or Halfway Around the World—and Help Figure Out What Will Actually Make the Most Sense for You, Your Family, and Your Home. Please Feel Free to Call Now—I&apos;m Always Happy to Talk.
                     </p>
-                    <a href="tel:+14437972166" className="wild-brand-phone wild-sell-phone block mt-6 mb-4 text-center sm:mb-10 min-h-[44px]">
-                    +1(443) 797-2166
+                    <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="wild-brand-phone wild-sell-phone block mt-6 mb-4 text-center sm:mb-10 min-h-[44px]">
+                    Call Now
                     </a>
+                    <SubpageIScottCta />
                     <h1 className="wild-sell-signature text-center mb-6 sm:mb-12">Scott.</h1>
                 </div>
             </section>
 
         <div className="flex justify-center gap-4 px-4 sm:px-0">
           <a
-            href="https://x.com/OfficialSGDietz"
+            href="https://x.com/WildWorksArt"
             aria-label="X (Twitter)"
             className="wild-brand-social-link"
             target="_blank"
@@ -96,7 +98,7 @@ export default function ISell() {
           </a>
         </div>
         <p className="wild-brand-contact-note pt-4 text-center text-base sm:text-xl">
-        or DM Me directly on X or WhatsApp</p>
+        Or DM Me Directly on X or WhatsApp</p>
         </div>
     )
 }

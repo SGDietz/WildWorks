@@ -86,7 +86,7 @@ export default function AiDisclosurePage() {
           ),
         },
         {
-          title: "Content Created With Ai",
+          title: "Content Created with Ai",
           children: (
             <p>
               WildWorks may use assisted tools to help create website text, design concepts, summaries,
@@ -100,8 +100,8 @@ export default function AiDisclosurePage() {
           title: "Contact",
           children: (
             <p>
-              Questions about iScott or assisted tools can be sent to Wildworks@pm.me or raised directly with
-              Scott at +1(443) 797-2166.
+              Questions about iScott or assisted tools can be sent to Wildworks@pm.me or raised by calling
+              WildWorks at 1-877-600-2474.
             </p>
           ),
         },

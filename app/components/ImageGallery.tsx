@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState, type SyntheticEvent } from "react";
+import { createPortal } from "react-dom";
 import {
   ChevronLeft,
   ChevronRight,
   Images,
+  Phone,
+  Sparkles,
   X,
 } from "lucide-react";
 
@@ -125,25 +128,27 @@ export default function ImageGallery() {
   return (
     <section id="wildfire-build-journal" className="wildfire-journal discordSection discordSection--2">
       <div className="wildfire-journal-head">
-        <p className="wild-kicker">Build Journal</p>
+        <p className="wild-kicker wild-kicker--framed">Build Journal</p>
         <h2>
           <span className="ww-c1">Every Stone,</span>{" "}
           <span className="ww-c2">Every Decision,</span>{" "}
-          <span className="ww-c3">Every Stage.</span>
+          <span className="ww-c2 wildfire-journal-stage">Every Stage.</span>
         </h2>
         <p>
-          Here is a chronological look at Project Wildfire so you can walk through
-          the build the way it actually happened. Any questions, please feel free to reach out to me on{" "}
-          <a
-            href="https://x.com/OfficialSGDietz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="wildfire-journal-x-link"
-          >
-            X
-          </a>
-          .
+          Here is a Chronological Look at Project Wildfire So You Can Walk Through
+          the Build the Way It Actually Happened. In Kind of Real Time. Any Questions,
+          Feel Free to Talk to iScott or Reach Out to Scott.
         </p>
+        <div className="wildfire-journal-actions">
+          <a href="/pages/Home#talk-to-iscott" className="money-cta money-cta--primary">
+            <Sparkles aria-hidden className="h-5 w-5" />
+            <span>Talk to iScott</span>
+          </a>
+          <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="money-cta">
+            <Phone aria-hidden className="h-5 w-5" />
+            <span>Call Now</span>
+          </a>
+        </div>
       </div>
 
       <div className="wildfire-phase-bar" aria-label="Filter build photos by phase">
@@ -205,7 +210,7 @@ export default function ImageGallery() {
         </div>
       ) : null}
 
-      {activeLightboxItem ? (
+      {activeLightboxItem && typeof document !== "undefined" ? createPortal(
         <div
           className="wildfire-lightbox discordSection discordSection--lightbox"
           role="dialog"
@@ -247,7 +252,8 @@ export default function ImageGallery() {
           >
             <ChevronRight aria-hidden className="h-9 w-9" />
           </button>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </section>
   );

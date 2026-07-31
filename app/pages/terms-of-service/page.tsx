@@ -8,6 +8,15 @@ export default function TermsOfServicePage() {
       description="The basic rules for using the WildWorks website, submitting project information, contacting iScott, receiving communications, and starting a project conversation."
       sections={[
         {
+          title: "Business Identity",
+          children: (
+            <p>
+              These Terms are between you and DietzX LLC, operating under its Wyoming-registered trade name
+              WildWorks.ai (&ldquo;WildWorks&rdquo;).
+            </p>
+          ),
+        },
+        {
           title: "Acceptance of These Terms",
           children: (
             <p>
@@ -190,8 +199,8 @@ export default function TermsOfServicePage() {
           title: "Contact",
           children: (
             <p>
-              Questions about these terms can be sent to Wildworks@pm.me or raised directly with Scott at
-              +1(443) 797-2166.
+              Questions about these terms can be sent to Wildworks@pm.me or raised by calling WildWorks at
+              1-877-600-2474.
             </p>
           ),
         },

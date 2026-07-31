@@ -1,23 +1,47 @@
+import {
+  assertAllowedOrigin,
+  readLimitedRequestBody,
+  RequestBodyTooLargeError,
+} from "../../../src/lib/apiRouteSecurity";
+import { checkRateLimit } from "../../../src/lib/rateLimit";
+
 const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const response = await fetch(`${REMOTE_AVATAR_ORIGIN}/api/analyze-image`, {
-    method: "POST",
-    headers: {
-      "Content-Type": request.headers.get("content-type") ?? "application/octet-stream",
-    },
-    body: request.body,
-    cache: "no-store",
-    duplex: "half",
-  } as RequestInit & { duplex: "half" });
+  const originError = assertAllowedOrigin(request);
+  if (originError) return originError;
 
-  return new Response(response.body, {
-    status: response.status,
-    headers: {
-      "Cache-Control": "no-store",
-      "Content-Type": response.headers.get("content-type") ?? "application/json",
-    },
+  const rateLimitError = await checkRateLimit(request, {
+    prefix: "avatar-analyze-image",
+    perMinute: 12,
+    perDay: 120,
   });
+  if (rateLimitError) return rateLimitError;
+
+  try {
+    const body = await readLimitedRequestBody(request, 15_000_000);
+    const response = await fetch(`${REMOTE_AVATAR_ORIGIN}/api/analyze-image`, {
+      method: "POST",
+      headers: {
+        "Content-Type": request.headers.get("content-type") ?? "application/octet-stream",
+      },
+      body,
+      cache: "no-store",
+    });
+
+    return new Response(response.body, {
+      status: response.status,
+      headers: {
+        "Cache-Control": "no-store",
+        "Content-Type": response.headers.get("content-type") ?? "application/json",
+      },
+    });
+  } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) {
+      return Response.json({ error: "Image payload too large" }, { status: 413 });
+    }
+    return Response.json({ error: "Image analysis unavailable" }, { status: 502 });
+  }
 }

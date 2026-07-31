@@ -1,5 +1,6 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
 import BrandText from "../../components/BrandText";
+import SubpageIScottCta from "../../components/SubpageIScottCta";
 
 export default function WhoIsG() {
   return (
@@ -7,8 +8,8 @@ export default function WhoIsG() {
       {/* Image constrained to same width as header separator line */}
       <section className="wild-subpage-hero relative mx-auto flex w-full items-center justify-center overflow-hidden px-4 sm:px-6">
         <AspectRatioImage
-          src="/ww-art-wilds.jpeg"
-          alt="Scott G. Dietz with WildWorks stonework"
+          src="/wildworks-home-banner-20260726.png"
+          alt="Scott G. Dietz beside WildWorks natural stone steps and landscape"
           priority
           sizes="(max-width: 64rem) 100vw, 64rem"
         />
@@ -19,73 +20,74 @@ export default function WhoIsG() {
         <div className="space-y-2 text-left text-sm leading-relaxed">
           <h1 className="text-2xl sm:text-3xl">Who is Scott G. Dietz?</h1>
           <p className="text-base">
-            From 6 months old, Scott G. Dietz was raised in Bel Air, Maryland, just north of Baltimore City. His roots run deep in the area—both of his parents were born and raised in Baltimore City.
+            From 6 Months Old, Scott G. Dietz Was Raised in Bel Air, Maryland, Just North of Baltimore City. His Roots Run Deep in the Area—Both of His Parents Were Born and Raised in Baltimore City.
           </p>
           <p className="text-base">
-            As a kid, Scott was impossible to control—undisciplined, restless, and constantly pushing boundaries. As he grew and matured, that same force became something powerful: explosive creative energy focused on creativity and building.
+            As a Kid, Scott Was Impossible to Control—Undisciplined, Restless, and Constantly Pushing Boundaries. As He Grew and Matured, That Same Force Became Something Powerful: Explosive Creative Energy Focused on Creativity and Building.
           </p>
           <p className="text-base">
-            For more than 40 years, Scott has channeled that energy into the craft of stone. He is a fine artist, master stonemason, and relentless problem solver known for charging directly into the most complex and unconventional problems people face. His work blends creativity, craftsmanship, and engineering into rock art—stone landscapes designed to feel timeless, powerful, and naturally rooted in the land.
+            For More Than 40 Years, Scott Has Channeled That Energy Into the Craft of Stone. He is a Fine Artist, Master Stonemason, and Relentless Problem Solver Known for Charging Directly Into the Most Complex and Unconventional Problems People Face. His Work Blends Creativity, Craftsmanship, and Engineering Into Rock Art—Stone Landscapes Designed to Feel Timeless, Powerful, and Naturally Rooted in the Land.
           </p>
           <h2 className="text-xl sm:text-2xl mt-6">A Life of Constant Reinvention</h2>
           <p className="text-base">
-            Scott doesn&apos;t see life as something that moves in phases where one chapter ends and another begins. For him, everything stacks. New interests, new skills, new ideas—they all get added into the mix.
+            Scott Doesn&apos;t See Life as Something That Moves in Phases Where One Chapter Ends and Another Begins. For Him, Everything Stacks. New Interests, New Skills, New Ideas—They All Get Added Into the Mix.
           </p>
           <p className="text-base">
-            In his mid-forties he began composing and recording music while learning to play instruments, developing a particular love for the bass guitar. In his mid-fifties he stepped onto a stage for the first time to perform stand-up comedy. At the same time he continued exploring graphic design, technology, and a wide range of creative and technical pursuits.
+            In His Mid-Forties He Began Composing and Recording Music While Learning to Play Instruments, Developing a Particular Love for the Bass Guitar. In His Mid-Fifties He Stepped Onto a Stage for the First Time to Perform Stand-Up Comedy. At the Same Time He Continued Exploring Graphic Design, Technology, and a Wide Range of Creative and Technical Pursuits.
           </p>
           <p className="text-base">
-            Scott is constantly studying, learning, and experimenting. He understands that Ai is reshaping the world and believes the right response is to learn how it works, and use the technology as another tool for creativity, design, and problem solving.
+            Scott is Constantly Studying, Learning, and Experimenting. He Understands That Ai is Reshaping the World and Believes the Right Response is to Learn How It Works, and Use the Technology as Another Tool for Creativity, Design, and Problem Solving.
           </p>
           <p className="text-base">
-            His mindset is simple: <strong><b>Middle Age is Just the Beginning.</b></strong>
+            His Mindset is Simple: <strong><b>Middle Age is Just the Beginning.</b></strong>
           </p>
           <p className="text-base">
-            Scott is the first to admit he has failed at more things than most people would even attempt to begin (or hasn&apos;t succeeded yet, depending on your outlook). But failure has never been the end of the story. When something doesn&apos;t work, he pivots, restarts, and fires up his creative engines once again.
+            Scott is the First to Admit He Has Failed at More Things Than Most People Would Even Attempt to Begin (or Hasn&apos;t Succeeded Yet, Depending on Your Outlook). But Failure Has Never Been the End of the Story. When Something Doesn&apos;t Work, He Pivots, Restarts, and Fires Up His Creative Engines Once Again.
           </p>
           <p className="text-base">
             <BrandText>
-              WildWorks exists for one reason: to design and build the world&apos;s wildest art, and solve problems that others simply cannot.
+              WildWorks Exists for One Reason: to Design and Build the World&apos;s Wildest Art, and Solve Problems That Others Simply Cannot.
             </BrandText>
           </p>
 
         {/* <div className="mt-6 space-y-2 text-left text-base leading-relaxed"> */}
           <p className="text-base">
-            Based in Baltimore, Scott is willing to travel anywhere on Earth to create extraordinary stone landscapes and rock art for people who wish to own exquisite one-of-a-kind things.
+            Based in Baltimore, Scott is Willing to Travel Anywhere on Earth to Create Extraordinary Stone Landscapes and Rock Art for People Who Wish to Own Exquisite One-of-a-Kind Things.
           </p>
-          <p className="text-base">His goals are simple and ambitious:</p>
+          <p className="text-base">His Goals Are Simple and Ambitious:</p>
           <ol className="list-decimal list-outside pl-4 space-y-1 ">
             <li>
-              To become a landscape artist whose work stands among the finest in the world. And...
+              To Become a Landscape Artist Whose Work Stands Among the Finest in the World. And...
             </li>
             <li>
-              To work with as many people, to help them solve as many problems, as is humanly possible.
+              To Work with as Many People, to Help Them Solve as Many Problems, as is Humanly Possible.
             </li>
           </ol>
-          <p className="text-base">Scott G. Dietz believes above everything else:</p>
+          <p className="text-base">Scott G. Dietz Believes Above Everything Else:</p>
           <p className="text-base">
-            Keep creating. Keep building. Always be willing to help others solve their problems. And never stop getting back up.
+            Keep Creating. Keep Building. Always Be Willing to Help Others Solve Their Problems. And Never Stop Getting Back Up.
           </p>
           <p className="text-base">
-            If you would like a work of exquisite art of your own, or need help solving one or more problems—
+            If You Would Like a Work of Exquisite Art of Your Own, or Need Help Solving One or More Problems—
           </p>
         </div>
 
         <h2 className="mb-4 mt-6 text-center text-xl sm:text-2xl">Call or Text Directly:</h2>
-        <a href="tel:+14437972166" className="wild-brand-phone block py-2 text-center text-4xl sm:py-4 sm:text-6xl min-h-[44px]">
-          +1(443) 797-2166
+        <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="wild-brand-phone block py-2 text-center text-4xl sm:py-4 sm:text-6xl min-h-[44px]">
+          Call Now
         </a>
+        <SubpageIScottCta />
         <p className="wild-brand-cta-big py-6 text-center">Scott.</p>
 
         <p className="wild-brand-contact-note pt-4 text-center text-md sm:text-base">
-          or DM Scott directly on X or WhatsApp
+          Or DM Scott Directly on X or WhatsApp
         </p>
 
         
         <div className="mt-4 flex justify-center gap-4">
           
           <a
-            href="https://x.com/OfficialSGDietz"
+            href="https://x.com/WildWorksArt"
             aria-label="X (Twitter)"
             className="wild-brand-social-link"
             target="_blank"

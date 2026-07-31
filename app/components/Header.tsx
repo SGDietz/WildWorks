@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { isLegalRoute } from "../lib/legalRoutes";
 
 const showInspirationSubpage = false;
 
@@ -20,10 +21,14 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (isLegalRoute(pathname)) {
+    return null;
+  }
+
   return (
     <header className="wild-site-header bg-transparent discordSection discordSection--1">
-      {/* Mobile: hamburger at top right (width < 500px) */}
-      <div className="hidden min-h-[56px] items-center justify-end px-4 max-[500px]:flex">
+      {/* Mobile: primary navigation stays on the leading/left side. */}
+      <div className="hidden min-h-[56px] items-center justify-start px-4 max-[500px]:flex">
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
@@ -94,8 +99,8 @@ export default function Header() {
           aria-modal="true"
           aria-label="Navigation menu"
         >
-          {/* Top bar with close (X) on the right */}
-          <div className="flex min-h-[56px] items-center justify-end border-b px-4">
+          {/* Keep close in the same leading/left position as the menu trigger. */}
+          <div className="flex min-h-[56px] items-center justify-start border-b px-4">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}

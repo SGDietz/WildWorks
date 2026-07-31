@@ -1,12 +1,15 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --ww-black: #080302;
   --ww-ink: #0d0502;
   --ww-night: #130702;
   --ww-walnut: #1c0b03;
-  --ww-brown: #2a1304;
+  --ww-brown: #a94f24;
   --ww-wood: #3d1c08;
+  --ww-dark-text: #7b3418;
+  --ww-button-ink: #88421f;
+  --ww-fine-print-ink: #dba35d;
   --ww-bronze: #704d1f;
   --ww-gold: #b7823a;
   --ww-honey: #e0a85a;
@@ -16,7 +19,7 @@
   --ww-panel: rgba(64, 30, 10, 0.72);
   --ww-brand-spectrum: linear-gradient(
     180deg,
-    #fff0bd 0%,
+    #f7d9a5 0%,
     #f3cf92 18%,
     #e0a85a 43%,
     #b7823a 68%,
@@ -51,31 +54,53 @@
     #ffe7b5 28%,
     #f1c777 54%,
     #b56f34 78%,
-    #7a3d18 100%
+    #a94f24 100%
   );
   --ww-box-gradient:
     radial-gradient(ellipse at 34% 8%, rgba(246, 211, 154, 0.13), transparent 24rem),
     radial-gradient(ellipse at 78% 18%, rgba(224, 168, 90, 0.11), transparent 26rem),
     linear-gradient(105deg, rgba(80, 38, 13, 0.76) 0%, rgba(73, 34, 11, 0.78) 52%, rgba(55, 24, 8, 0.82) 100%),
     linear-gradient(180deg, rgba(64, 30, 10, 0.82) 0%, rgba(43, 19, 7, 0.86) 100%);
+  /* WildWorks signature-card blend: a warm burnt-orange/copper interior for
+     The Ruins, distinct from the page field without falling into muddy brown. */
+  --ww-signature-card-gradient:
+    radial-gradient(ellipse at 30% 4%, rgba(255, 210, 146, 0.24), transparent 25rem),
+    radial-gradient(ellipse at 82% 16%, rgba(255, 151, 69, 0.26), transparent 28rem),
+    linear-gradient(105deg, #db874b 0%, #d1733a 52%, #c45b2c 100%);
   --ww-chip-gradient:
     radial-gradient(ellipse at 28% 18%, rgba(246, 211, 154, 0.1), transparent 7.5rem),
     radial-gradient(ellipse at 80% 30%, rgba(183, 130, 58, 0.075), transparent 8.5rem),
     linear-gradient(105deg, rgba(68, 36, 12, 0.76) 0%, rgba(74, 40, 14, 0.72) 52%, rgba(55, 27, 9, 0.78) 100%),
     linear-gradient(180deg, rgba(46, 21, 7, 0.78) 0%, rgba(31, 12, 4, 0.84) 100%);
-  --ww-button-gradient: linear-gradient(180deg, #f9dfae 0%, #e8b66d 36%, #b7823a 68%, #7b471c 100%);
-  /* WildWorks background lock: broad warm center lift, no circle, no stripe, no flat brown drift. */
+  --ww-button-gradient:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #71350f 100%);
+  /* WildWorks universal page-canvas lock. Copper/orange is the dominant
+     impression; the darker values supply edge depth without turning brown.
+     This single recipe is shared by every route and every viewport. */
+  --ww-page-base-copper: #983d17;
+  --ww-center-column-glimmer: linear-gradient(
+    90deg,
+    rgba(255, 205, 130, 0) 0%,
+    rgba(255, 205, 130, 0) 20%,
+    rgba(255, 205, 130, 0.025) 30%,
+    rgba(255, 205, 130, 0.05) 40%,
+    rgba(255, 205, 130, 0.075) 50%,
+    rgba(255, 205, 130, 0.05) 60%,
+    rgba(255, 205, 130, 0.025) 70%,
+    rgba(255, 205, 130, 0) 80%,
+    rgba(255, 205, 130, 0) 100%
+  );
   --ww-center-gold-fade:
-    radial-gradient(ellipse 120% 100% at 50% 36%, #693f18 0%, #502d12 38%, #3a200c 70%, #2b1607 100%);
+    linear-gradient(90deg, #983d17 0%, #a8471d 24%, #b95628 40%, #c26131 50%, #b95628 60%, #a8471d 76%, #983d17 100%);
   --ww-page-background:
+    var(--ww-center-column-glimmer),
     var(--ww-center-gold-fade),
-    #341607;
+    var(--ww-page-base-copper);
   --ww-soft-field:
-    var(--ww-center-gold-fade),
-    #341607;
+    var(--ww-page-background);
   --ww-soft-field-warm:
-    var(--ww-center-gold-fade),
-    #2f1608;
+    var(--ww-page-background);
   --background: var(--ww-black);
   --foreground: var(--ww-parchment);
   --ww-body-copy-font: Cambria, "Cambria Math", Georgia, "Times New Roman", serif;
@@ -211,7 +236,7 @@ body {
   border-radius: 8px;
   background: var(--ww-button-gradient);
   padding: 0.85rem 1rem;
-  color: #130803 !important;
+  color: #a94f24 !important;
   background-size: auto;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
@@ -229,7 +254,7 @@ body {
 }
 
 .money-cta--primary {
-  background: linear-gradient(180deg, #fff0bd 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%);
+  background: linear-gradient(180deg, #f7d9a5 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%);
 }
 
 .money-cta--wide {
@@ -238,7 +263,7 @@ body {
 
 .discordSection .money-cta,
 .discordSection .money-cta :where(span, strong) {
-  color: #130803 !important;
+  color: #a94f24 !important;
   text-shadow: none !important;
 }
 
@@ -247,7 +272,7 @@ body {
 }
 
 .discordSection .money-cta--primary {
-  background-image: linear-gradient(180deg, #fff0bd 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%) !important;
+  background-image: linear-gradient(180deg, #f7d9a5 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%) !important;
 }
 
 .discordSection .money-cta :where(span, strong) {
@@ -255,7 +280,7 @@ body {
 }
 
 .discordSection .money-cta svg {
-  color: #130803 !important;
+  color: #a94f24 !important;
   filter: none;
 }
 
@@ -336,9 +361,97 @@ body {
 
 .wild-live-avatar-frame {
   background:
-    linear-gradient(180deg, rgba(16, 6, 1, 0.04), rgba(16, 6, 1, 0.26)),
+    radial-gradient(ellipse 90% 54% at 50% 13%, rgba(255, 225, 168, 0.24), transparent 62%),
+    radial-gradient(ellipse 88% 62% at 50% 100%, rgba(232, 137, 61, 0.14), transparent 74%),
+    linear-gradient(180deg, rgba(199, 104, 48, 0.22), rgba(139, 58, 17, 0.42)),
     url("/Avatar1-live-startscreen.png") center center / cover no-repeat,
-    rgba(16, 6, 1, 0.58);
+    #9f481d;
+  border: 1px solid rgba(255, 226, 174, 0.34);
+  box-shadow:
+    0 20px 52px rgba(79, 29, 5, 0.26),
+    0 0 26px rgba(224, 148, 58, 0.1),
+    inset 0 1px 0 rgba(255, 236, 190, 0.2);
+}
+
+.wild-live-avatar-loading {
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.1rem, 6vw, 1.6rem);
+  background:
+    radial-gradient(ellipse 94% 62% at 50% 0%, rgba(255, 231, 175, 0.32), transparent 66%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200, 121, 54, 0.28), transparent 72%),
+    linear-gradient(155deg, #cf7140 0%, #bd5929 52%, #a54219 100%);
+}
+
+.wild-live-avatar-loading__card {
+  display: grid;
+  width: min(100%, 17rem);
+  justify-items: center;
+  padding: 1.2rem 1.1rem 1.28rem;
+  border: 1px solid rgba(255, 226, 174, 0.42);
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 238, 194, 0.26), transparent 68%),
+    linear-gradient(180deg, rgba(207, 113, 64, 0.82), rgba(171, 66, 25, 0.88));
+  backdrop-filter: blur(2px);
+  box-shadow:
+    0 14px 32px rgba(74, 25, 4, 0.28),
+    inset 0 1px 0 rgba(255, 239, 201, 0.22);
+  text-align: center;
+}
+
+.wild-live-avatar-loading__card::before,
+.wild-live-avatar-loading__card::after {
+  content: "";
+  display: block;
+  width: min(11rem, 84%);
+  height: 1px;
+  background: var(--ww-rule-hairline);
+}
+
+.wild-live-avatar-loading__card::before {
+  margin-bottom: 0.65rem;
+}
+
+.wild-live-avatar-loading__card::after {
+  margin-top: 0.65rem;
+}
+
+.wild-live-avatar-loading__kicker {
+  color: var(--ww-honey);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.wild-live-avatar-loading__name {
+  color: #f7d9a5;
+  -webkit-text-fill-color: #f7d9a5;
+  background: none;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif;
+  font-size: clamp(2.3rem, 10vw, 3.4rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-shadow:
+    0 1px 0 rgba(255, 239, 201, 0.22),
+    0 2px 18px rgba(73, 23, 4, 0.42);
+}
+
+.wild-live-avatar-loading__copy {
+  margin-top: 0.5rem;
+  color: rgba(247, 217, 165, 0.86);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.35;
 }
 
 .money-step-list {
@@ -407,14 +520,14 @@ body {
   /* LOCKED per G 2026-06-23: multi-line title colors. Line 1 = color 1, line 2 = color 2, line 3 = color 3. */
   --ww-title-1: #f7d9a5;
   --ww-title-2: #e8b66d;
-  --ww-title-3: #c87936;
+  --ww-title-3: #d2934a;
   --ww-display-line-gradient: linear-gradient(
     180deg,
     #fff6d6 0%,
     #ffe7b5 28%,
     #f1c777 54%,
     #b56f34 78%,
-    #7a3d18 100%
+    #a94f24 100%
   );
   position: relative;
   isolation: isolate;
@@ -437,11 +550,80 @@ body {
 }
 
 .wild-top-logo {
+  --ww-top-logo-fill-scale: 1.012;
+  --ww-top-logo-shadow-scale: 1.018;
+  position: relative;
   display: block;
-  width: min(75vw, 57rem);
+  width: min(78vw, 60rem);
   height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 1.1rem 1.4rem rgba(8, 3, 1, 0.42));
+  isolation: isolate;
+}
+
+.wild-top-logo-source {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+.wild-top-logo::before,
+.wild-top-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.wild-top-logo::before {
+  z-index: 0;
+  background: #321005;
+  opacity: 0.78;
+  transform: translateY(clamp(3px, 0.38vw, 5px)) scale(var(--ww-top-logo-shadow-scale));
+  transform-origin: center;
+}
+
+.wild-top-logo::after {
+  z-index: 1;
+  background: #f7d9a5;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
+  transform: scale(var(--ww-top-logo-fill-scale));
+  transform-origin: center;
+}
+
+@media (max-width: 500px) {
+  .wild-top-logo-band {
+    padding-inline: 0.45rem;
+  }
+
+  .wild-top-logo {
+    width: min(94vw, 34rem);
+  }
+}
+
+/* G 2026-07-11: keep the browser scrollbar inside the WildWorks palette. */
+html {
+  scrollbar-color: var(--ww-muted) var(--ww-brown);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--ww-brown);
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ww-brown);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--ww-honey), var(--ww-muted));
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--ww-honey);
 }
 
 @media (min-width: 501px) {
@@ -587,14 +769,14 @@ footer.discordSection .wild-footer-attribution-title {
 .wild-signup-choice-button:focus-visible {
   border-color: rgba(247, 217, 165, 0.56);
   background: linear-gradient(180deg, rgba(196, 120, 50, 0.48), rgba(132, 72, 28, 0.52));
-  color: #fff1d4;
+  color: #f7d9a5;
   outline: none;
 }
 
 .wild-signup-choice-button.is-active {
   border-color: rgba(247, 217, 165, 0.74);
   background: linear-gradient(180deg, rgba(247, 217, 165, 0.36), rgba(200, 121, 54, 0.48));
-  color: #fff1d4;
+  color: #f7d9a5;
   box-shadow: inset 0 1px 0 rgba(246, 211, 154, 0.18);
 }
 
@@ -674,15 +856,15 @@ footer.discordSection .wild-footer-attribution-title {
   content: "";
   width: 0.34rem;
   height: 0.58rem;
-  border: solid #160704;
+  border: solid #d2934a;
   border-width: 0 2px 2px 0;
   opacity: 0;
   transform: rotate(45deg) translateY(-1px);
 }
 
 .wild-signup-consent input[type="checkbox"]:checked {
-  border-color: rgba(255, 241, 212, 0.96);
-  background: linear-gradient(180deg, #fff1d4 0%, #e8b66d 42%, #c87936 100%);
+  border-color: #f7d9a5;
+  background: linear-gradient(180deg, #f7d9a5 0%, #e8b66d 42%, #d2934a 100%);
 }
 
 .wild-signup-consent input[type="checkbox"]:checked::after {
@@ -706,14 +888,19 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wild-signup-status {
   margin: 0;
-  border: 1px solid rgba(232, 182, 109, 0.26);
+  border: 1px solid rgba(255, 226, 174, 0.58);
   border-radius: 8px;
-  background: rgba(57, 30, 11, 0.36);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 227, 172, 0.34), transparent 38%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.97), rgba(195, 91, 39, 0.98) 52%, rgba(186, 82, 33, 0.99));
   padding: 0.72rem 0.82rem;
   color: #f7d9a5;
   font-size: 0.86rem;
   line-height: 1.45;
   text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.18),
+    0 10px 24px rgba(54, 21, 4, 0.16);
 }
 
 .wild-signup-fine-print {
@@ -790,9 +977,9 @@ footer.discordSection .wild-footer-attribution-title {
   border: 1px solid rgba(247, 217, 165, 0.74);
   background:
     radial-gradient(circle at 34% 20%, rgba(255, 246, 214, 0.58), transparent 58%),
-    linear-gradient(180deg, #f9dfae 0%, #e8b66d 38%, #c87936 72%, #8e4f22 100%);
-  color: #241006 !important;
-  -webkit-text-fill-color: #241006 !important;
+    linear-gradient(180deg, #f9dfae 0%, #e8b66d 38%, #d2934a 72%, #8e4f22 100%);
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 241, 212, 0.5),
     0 12px 28px rgba(16, 6, 1, 0.24);
@@ -812,6 +999,33 @@ footer.discordSection .wild-footer-attribution-title {
   border-radius: 999px;
 }
 
+.wild-footer-top-button--closing {
+  margin: clamp(0.75rem, 1.5vw, 1.25rem) auto 0;
+}
+
+.wild-footer-legal-links {
+  align-items: center;
+}
+
+.wild-footer-legal-link {
+  color: #e8b66d;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.wild-footer-legal-link:hover,
+.wild-footer-legal-link:focus-visible {
+  color: #f7d9a5;
+  text-decoration: underline;
+  text-decoration-color: #e8b66d;
+  text-underline-offset: 0.25rem;
+  outline: none;
+}
+
 .wild-footer-icon-button svg,
 .wild-footer-top-button svg,
 .wild-footer-mobile-link svg {
@@ -824,51 +1038,74 @@ footer.discordSection .wild-footer-attribution-title {
 .wild-footer-top-button:hover,
 .wild-footer-top-button:focus-visible {
   border-color: rgba(255, 241, 212, 0.96);
-  color: #160704 !important;
-  -webkit-text-fill-color: #160704 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
   filter: brightness(1.06) saturate(1.08);
   outline: none;
 }
 
-.wild-footer-mobile-strip {
-  background: rgba(75, 37, 12, 0.96);
-  color: #241006 !important;
-  -webkit-text-fill-color: #241006 !important;
-}
-
-.wild-footer-mobile-strip-inner {
+body .wild-footer-mobile-strip {
+  border-top: 1px solid rgba(247, 217, 165, 0.5) !important;
   background:
-    linear-gradient(180deg, rgba(151, 88, 36, 0.92), rgba(92, 45, 15, 0.96));
-  box-shadow: 0 -10px 28px rgba(16, 6, 1, 0.26);
+    linear-gradient(180deg, rgba(203, 98, 45, 0.98), rgba(174, 67, 27, 0.98)) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.12);
+  backdrop-filter: blur(14px) saturate(1.12);
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
+  box-shadow: 0 -8px 24px rgba(89, 31, 6, 0.22) !important;
 }
 
-.wild-footer-mobile-link {
+body .wild-footer-mobile-strip-inner {
+  height: 60px;
+  justify-content: center !important;
+  gap: clamp(0.8rem, 5vw, 1.25rem);
+  padding: 8px 0.75rem !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 202, 124, 0.2), transparent 72%) !important;
+  box-shadow: none !important;
+}
+
+body .wild-footer-mobile-link {
   display: flex;
-  min-width: 3.4rem;
-  min-height: 3.35rem;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  flex: 0 0 44px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  border: 1px solid rgba(247, 217, 165, 0.58);
-  border-radius: 8px;
+  gap: 0 !important;
+  border: 1px solid rgba(247, 217, 165, 0.72) !important;
+  border-radius: 999px !important;
   background:
-    radial-gradient(circle at 34% 20%, rgba(255, 246, 214, 0.46), transparent 58%),
-    linear-gradient(180deg, rgba(249, 223, 174, 0.96), rgba(232, 182, 109, 0.9) 42%, rgba(200, 121, 54, 0.86) 100%);
-  padding: 0.42rem 0.5rem;
-  color: #241006 !important;
-  -webkit-text-fill-color: #241006 !important;
+    radial-gradient(circle at 34% 24%, rgba(255, 232, 178, 0.34), transparent 48%),
+    linear-gradient(180deg, #eaa15e 0%, #d76f35 55%, #c15426 100%) !important;
+  background-image:
+    radial-gradient(circle at 34% 24%, rgba(255, 232, 178, 0.34), transparent 48%),
+    linear-gradient(180deg, #eaa15e 0%, #d76f35 55%, #c15426 100%) !important;
+  padding: 0 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
   text-decoration: none;
   box-shadow:
-    inset 0 1px 0 rgba(255, 241, 212, 0.38),
-    0 8px 18px rgba(16, 6, 1, 0.18);
+    inset 0 1px 0 rgba(255, 238, 194, 0.5),
+    0 4px 12px rgba(92, 31, 6, 0.2) !important;
   transition: filter 0.18s ease, transform 0.18s ease;
 }
 
-.wild-footer-mobile-link:hover,
-.wild-footer-mobile-link:focus-visible {
-  filter: brightness(1.06) saturate(1.08);
-  outline: none;
+body .wild-footer-mobile-link svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+body .wild-footer-mobile-link:hover,
+body .wild-footer-mobile-link:focus-visible {
+  border-color: rgba(247, 217, 165, 0.72) !important;
+  filter: brightness(1.1) saturate(1.04) !important;
+  transform: translateY(-1px) scale(1.03) !important;
+  outline: 2px solid rgba(247, 217, 165, 0.48) !important;
+  outline-offset: 2px !important;
 }
 
 @media (min-width: 720px) {
@@ -1175,6 +1412,24 @@ footer.discordSection .wild-footer-attribution-title {
   text-transform: uppercase;
 }
 
+.wild-kicker--framed,
+.wild-kicker-frame {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  padding: 0.48em 0.88em 0.43em;
+  border: 1px solid rgba(247, 217, 165, 0.62);
+  border-radius: 0.7rem;
+  background:
+    radial-gradient(circle at 32% 18%, rgba(247, 217, 165, 0.16), transparent 52%),
+    linear-gradient(145deg, rgba(200, 121, 54, 0.3), rgba(119, 64, 24, 0.24));
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  box-shadow: 0 0.6rem 1.4rem rgba(77, 28, 5, 0.16);
+}
+
 .wild-hero-copy .wild-kicker {
   max-width: 37rem;
   color: rgba(246, 211, 154, 0.88) !important;
@@ -1307,13 +1562,13 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 #talk-to-iscott .wild-start-title__start {
-  color: #a76431 !important;
-  -webkit-text-fill-color: #a76431 !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
 }
 
 #talk-to-iscott .wild-start-title__with {
-  color: #a76431 !important;
-  -webkit-text-fill-color: #a76431 !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
 }
 
 #talk-to-iscott .wild-start-title__name {
@@ -1637,7 +1892,7 @@ footer.discordSection .wild-footer-attribution-title {
 .wild-zoomable-image,
 .wild-identity-media,
 .wild-ai-human-frame {
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .wild-zoom-hit-area {
@@ -1651,7 +1906,7 @@ footer.discordSection .wild-footer-attribution-title {
   border: 0;
   background: transparent;
   color: rgba(246, 211, 154, 0.94);
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .wild-zoom-hit-area:focus-visible {
@@ -1700,7 +1955,9 @@ footer.discordSection .wild-footer-attribution-title {
   z-index: 140;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: rgba(5, 2, 1, 0.97);
+  background:
+    radial-gradient(ellipse 118% 82% at 50% 18%, rgba(255, 211, 139, 0.18) 0%, rgba(255, 154, 72, 0.08) 46%, transparent 72%),
+    linear-gradient(90deg, #984019 0%, #aa4d21 22%, #ba5b2b 50%, #aa4d21 78%, #984019 100%);
   padding: 0.75rem;
 }
 
@@ -1710,9 +1967,21 @@ footer.discordSection .wild-footer-attribution-title {
   justify-content: space-between;
   gap: 1rem;
   min-height: 3rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.85rem;
+  border: 1px solid rgba(243, 207, 146, 0.38);
+  border-radius: 0.8rem;
+  background:
+    radial-gradient(ellipse at 24% 0%, rgba(255, 226, 171, 0.2), transparent 58%),
+    linear-gradient(145deg, rgba(199, 104, 48, 0.97) 0%, rgba(190, 94, 42, 0.98) 52%, rgba(183, 91, 40, 0.99) 100%);
+  box-shadow: 0 12px 32px rgba(89, 31, 6, 0.28), inset 0 1px 0 rgba(255, 239, 201, 0.28);
   color: rgba(246, 211, 154, 0.88);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.wild-image-lightbox__bar--close-only {
+  justify-content: flex-end;
+  padding-left: 0.55rem;
 }
 
 .wild-image-lightbox__bar span {
@@ -1733,10 +2002,13 @@ footer.discordSection .wild-footer-attribution-title {
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid rgba(246, 211, 154, 0.22);
+  border: 1px solid rgba(255, 240, 189, 0.82);
   border-radius: 50%;
-  background: rgba(16, 6, 1, 0.72);
-  color: rgba(246, 211, 154, 0.9);
+  background: var(--ww-button-gradient);
+  color: #a94f24;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.55),
+    0 8px 20px rgba(28, 11, 3, 0.34);
   cursor: pointer;
 }
 
@@ -1746,10 +2018,17 @@ footer.discordSection .wild-footer-attribution-title {
   min-height: 0;
   width: 100%;
   height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: zoom-out;
+  padding: 0.35rem;
+  overflow: hidden;
+  border: 1px solid rgba(243, 207, 146, 0.36);
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse 96% 60% at 50% 18%, rgba(255, 204, 130, 0.16), transparent 68%),
+    linear-gradient(180deg, rgba(198, 95, 43, 0.96), rgba(174, 67, 27, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 218, 151, 0.16),
+    0 24px 60px rgba(89, 31, 6, 0.32);
+  cursor: default;
 }
 
 .wild-check-list {
@@ -2002,6 +2281,33 @@ footer.discordSection .wild-footer-attribution-title {
   min-height: 100%;
 }
 
+/* The three Ai website capability cards read as compact icon-and-title
+   headers, with the explanatory copy beginning cleanly beneath each row. */
+.wild-site-offer-card__heading {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.72rem, 1.15vw, 0.95rem);
+  margin-bottom: 0.78rem;
+}
+
+.wild-site-offer-card__heading .wild-card-icon {
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+.wild-site-offer-card__heading h3 {
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.wild-site-offer-card__heading h3 .wild-line-title__line {
+  white-space: nowrap;
+}
+
+.wild-site-offer-card > p {
+  margin-top: 0;
+}
+
 .wild-ai-capability-card {
   display: grid;
   align-content: start;
@@ -2120,9 +2426,9 @@ footer.discordSection .wild-footer-attribution-title {
   gap: 0.5rem;
   border: 1px solid rgba(246, 211, 154, 0.42);
   border-radius: 8px;
-  background: linear-gradient(180deg, #f7d9a5 0%, #e6b36e 40%, #c78345 76%, #7a3d18 100%);
+  background: linear-gradient(180deg, #f7d9a5 0%, #e6b36e 40%, #c78345 76%, #a94f24 100%);
   padding: 0.72rem 1rem;
-  color: #130803 !important;
+  color: #a94f24 !important;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: 0;
@@ -2140,8 +2446,8 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wild-logo-download-button svg,
 .wild-logo-download-button span {
-  color: #130803 !important;
-  -webkit-text-fill-color: #130803 !important;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
 }
 
 .wild-logo-download-button--secondary svg,
@@ -2770,7 +3076,7 @@ footer.discordSection .wild-footer-attribution-title {
   border: 0;
   background: transparent;
   color: inherit;
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .wild-wildfire-photo-button:focus-visible {
@@ -2872,7 +3178,7 @@ footer.discordSection .wild-footer-attribution-title {
   border: 0;
   background: transparent;
   color: inherit;
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .wild-wildfire-inspiration-button:focus-visible {
@@ -3246,7 +3552,7 @@ footer.discordSection .wild-footer-attribution-title {
   margin-bottom: 1rem;
   border-radius: 50%;
   background: var(--ww-button-gradient);
-  color: #130803 !important;
+  color: var(--ww-dark-text) !important;
   background-image: var(--ww-button-gradient) !important;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 900;
@@ -3567,6 +3873,7 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wildfire-hero-copy .wild-body {
   max-width: 43rem;
+  text-wrap: balance;
 }
 
 .wildfire-hero-actions {
@@ -3599,6 +3906,10 @@ footer.discordSection .wild-footer-attribution-title {
 .wildfire-journal {
   padding: clamp(3.25rem, 7vw, 6.5rem) clamp(1rem, 4vw, 4rem);
   border-top: 0;
+}
+
+.wildfire-principles > .wild-section-heading {
+  margin-bottom: 0;
 }
 
 .wildfire-origin-title {
@@ -3733,7 +4044,7 @@ footer.discordSection .wild-footer-attribution-title {
 .wildfire-phase-bar button.is-active {
   border-color: rgba(247, 217, 165, 0.7);
   background: linear-gradient(180deg, rgba(247, 217, 165, 0.34), rgba(200, 121, 54, 0.48));
-  color: #fff1d4 !important;
+  color: #f7d9a5 !important;
 }
 
 .wildfire-phase-bar span,
@@ -3798,7 +4109,7 @@ footer.discordSection .wild-footer-attribution-title {
   border: 1px solid rgba(232, 182, 109, 0.18);
   border-radius: 8px;
   background: rgba(64, 30, 10, 0.58);
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
 }
 
@@ -3858,7 +4169,9 @@ footer.discordSection .wild-footer-attribution-title {
   z-index: 100;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: rgba(5, 2, 1, 0.96);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(224, 168, 90, 0.24), transparent 42rem),
+    linear-gradient(135deg, #5a2d0c 0%, #3d1c08 48%, #a94f24 100%);
   padding: 0.75rem;
 }
 
@@ -3867,7 +4180,12 @@ footer.discordSection .wild-footer-attribution-title {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.85rem;
+  border: 1px solid rgba(243, 207, 146, 0.38);
+  border-radius: 0.8rem;
+  background: var(--ww-box-gradient);
+  box-shadow: 0 12px 32px rgba(28, 11, 3, 0.34);
   color: rgba(246, 211, 154, 0.86);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
@@ -3885,10 +4203,13 @@ footer.discordSection .wild-footer-attribution-title {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(246, 211, 154, 0.22);
+  border: 1px solid rgba(255, 240, 189, 0.82);
   border-radius: 50%;
-  background: rgba(16, 6, 1, 0.72);
-  color: rgba(246, 211, 154, 0.9);
+  background: var(--ww-button-gradient);
+  color: #a94f24;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.55),
+    0 8px 20px rgba(28, 11, 3, 0.34);
   cursor: pointer;
 }
 
@@ -3900,6 +4221,15 @@ footer.discordSection .wild-footer-attribution-title {
 .wildfire-lightbox-image {
   position: relative;
   min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(243, 207, 146, 0.36);
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(243, 207, 146, 0.13), transparent 42rem),
+    linear-gradient(135deg, rgba(90, 45, 12, 0.88), rgba(42, 19, 4, 0.94));
+  box-shadow:
+    inset 0 0 0 1px rgba(183, 130, 58, 0.12),
+    0 24px 60px rgba(28, 11, 3, 0.42);
 }
 
 .wildfire-lightbox-nav {
@@ -3922,21 +4252,39 @@ footer.discordSection .wild-footer-attribution-title {
 @media (max-width: 719px) {
   .wildfire-hero {
     min-height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
+    display: block;
+    overflow: visible;
   }
 
   .wildfire-hero::after {
-    background:
-      linear-gradient(180deg, rgba(16, 6, 1, 0) 32%, rgba(16, 6, 1, 0.4) 70%, rgba(16, 6, 1, 0.72) 100%);
+    display: none;
+  }
+
+  .wildfire-hero-media,
+  .wildfire-hero-media > div {
+    position: relative;
+    inset: auto;
+    height: auto;
+  }
+
+  .wildfire-hero-media > div {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .wildfire-hero-media img {
+    object-position: center center;
   }
 
   .wildfire-hero-copy {
-    padding-top: clamp(3.25rem, 9vw, 5rem);
+    width: 100%;
+    padding: 2.25rem 1rem 3.25rem;
   }
 
   .wildfire-hero-copy h1 {
     max-width: 100%;
-    font-size: clamp(2.45rem, 11vw, 3.15rem);
+    font-size: clamp(2.2rem, 10vw, 2.85rem);
+    line-height: 0.98;
   }
 
   .wildfire-hero-copy .wild-body {
@@ -4116,6 +4464,271 @@ footer.discordSection .wild-footer-attribution-title {
 .discordSection--lightbox {
   --discord-gradient: var(--ww-letter-gradient);
   --discord-glow: rgba(224, 168, 90, 0.28);
+  z-index: 200 !important;
+  background:
+    radial-gradient(ellipse 118% 82% at 50% 18%, rgba(255, 211, 139, 0.2) 0%, rgba(255, 154, 72, 0.1) 46%, transparent 72%),
+    linear-gradient(90deg, #ad461b 0%, #bd5425 22%, #cc6734 50%, #bd5425 78%, #ad461b 100%) !important;
+  color: var(--ww-parchment);
+}
+
+/* The Ruins headline stays as five intentional rows on a phone or portrait
+   tablet. On larger screens, pair those rows into the three color groups. */
+@media (min-width: 900px) {
+  body .wild-home #signature-work .wild-signature-title__line {
+    display: inline !important;
+    white-space: nowrap !important;
+  }
+
+  body .wild-home #signature-work :is(
+    .wild-signature-title__one,
+    .wild-signature-title__two,
+    .wild-signature-title__three
+  ) {
+    display: inline !important;
+  }
+
+  body .wild-home #signature-work .wild-signature-title__line:nth-child(1),
+  body .wild-home #signature-work .wild-signature-title__line:nth-child(3) {
+    margin-right: 0.24em;
+  }
+
+  body .wild-home #signature-work .wild-signature-title__line:nth-child(2)::after,
+  body .wild-home #signature-work .wild-signature-title__line:nth-child(4)::after {
+    content: "\A";
+    white-space: pre;
+  }
+}
+
+/* G 2026-07-26: one intentional vertical rhythm across the visitor site.
+   Related content stays close; a true section change keeps a larger pause. */
+body .wild-home > .wild-section {
+  padding-block: clamp(1.65rem, 3.2vw, 2.85rem) !important;
+}
+
+body .wild-home :is(.wild-section-heading, .wild-site-offer-heading) {
+  margin-bottom: clamp(1.2rem, 2.35vw, 2rem) !important;
+}
+
+body .wild-home .wild-copy-stack {
+  gap: clamp(0.62rem, 1.15vw, 0.95rem);
+}
+
+body .wild-home :is(.wild-card-grid, .wild-story-list, .wild-process-grid, .wild-site-offer-grid) {
+  gap: clamp(0.82rem, 1.55vw, 1.25rem) !important;
+}
+
+body .wild-home #project-wildfire .wild-wildfire-spread-shell {
+  gap: clamp(0.85rem, 1.8vw, 1.35rem) !important;
+}
+
+body .wild-home #project-wildfire .wild-wildfire-sequence-callout {
+  margin-top: clamp(0.5rem, 1.2vw, 1rem) !important;
+}
+
+body .wild-home #project-wildfire .wild-wildfire-build-note {
+  gap: clamp(0.28rem, 0.55vw, 0.45rem) !important;
+  margin: clamp(0.4rem, 0.9vw, 0.75rem) auto clamp(0.45rem, 1vw, 0.8rem) !important;
+  padding-block: clamp(0.35rem, 0.7vw, 0.55rem) !important;
+}
+
+body .wild-home #project-wildfire .wild-cta-row--center {
+  margin-top: 0 !important;
+}
+
+body .wild-subpage .wild-subpage-section {
+  padding-block: clamp(1.25rem, 2.5vw, 2.1rem) !important;
+}
+
+body .wild-subpage .wild-subpage-section + .wild-subpage-section {
+  margin-top: clamp(0.2rem, 0.7vw, 0.5rem) !important;
+}
+
+body .wild-subpage .wild-subpage-section :where(p + p, ul, ol) {
+  margin-top: clamp(0.5rem, 0.9vw, 0.72rem) !important;
+}
+
+body .wild-subpage :is(.wildfire-overview, .wildfire-principles, .wildfire-x-section, .wildfire-journal) {
+  padding-block: clamp(2rem, 4vw, 3.75rem) !important;
+}
+
+body .wild-subpage .wild-final-cta {
+  padding-block: clamp(2.6rem, 5.5vw, 4.75rem) !important;
+}
+
+@media (max-width: 719px) {
+  body .wild-home > .wild-section {
+    padding-block: 1.8rem !important;
+  }
+
+  body .wild-home :is(.wild-section-heading, .wild-site-offer-heading) {
+    margin-bottom: 1.15rem !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-spread-shell {
+    gap: 0.9rem !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout {
+    margin-top: 0 !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-build-note {
+    margin-top: 0.45rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  body .wild-subpage .wild-subpage-section {
+    padding-block: 1.15rem !important;
+  }
+
+  body .wild-subpage :is(.wildfire-overview, .wildfire-principles, .wildfire-x-section, .wildfire-journal) {
+    padding-block: 1.65rem !important;
+  }
+}
+
+/* 2026-07-25 visitor visual system: warm copper fields and solid, readable
+   type. Scoped to public visual surfaces; avatar route handlers/API markup are
+   deliberately outside these selectors. */
+:is(.wild-subpage, .wild-home.wild-legal-home) {
+  --ww-visitor-copper-field: var(--ww-page-background);
+  background: transparent !important;
+  color: #f7d9a5;
+}
+
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, p, li, .wild-kicker, .wild-card-cta, .wild-line-title__line, .wildfire-hero-headline__line, .wildfire-origin-title > span) {
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  background-image: none !important;
+}
+
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(p, li, .wild-legal-copy, .wild-legal-copy span, .wild-card-cta) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
+}
+
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
+}
+
+/* Intentional three-color line systems, including Project Wildfire's photo
+   overlay and story sequence. */
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c1,
+.wildfire-hero-headline__line--c1 { color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; }
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c2,
+.wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c3,
+.wildfire-hero-headline__line--c3 { color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }
+
+.wildfire-hero-copy {
+  background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
+}
+
+.wildfire-hero-copy :is(h1, p, .wildfire-hero-headline__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 2px 4px rgba(48, 14, 2, 0.78) !important;
+}
+
+:is(.wild-subpage, .wild-home.wild-legal-home) {
+  background: transparent !important;
+  color: #f7d9a5;
+}
+
+.wild-branded-lightbox-bar {
+  min-height: 3rem;
+  margin-bottom: 0.75rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.85rem;
+  border: 1px solid rgba(243, 207, 146, 0.38);
+  border-radius: 0.8rem;
+  background: var(--ww-box-gradient);
+  color: var(--ww-parchment);
+  box-shadow: 0 12px 32px rgba(28, 11, 3, 0.34);
+}
+
+.wild-branded-lightbox-stage {
+  overflow: hidden;
+  border: 1px solid rgba(243, 207, 146, 0.36);
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(243, 207, 146, 0.13), transparent 42rem),
+    linear-gradient(135deg, rgba(90, 45, 12, 0.88), rgba(42, 19, 4, 0.94));
+  box-shadow:
+    inset 0 0 0 1px rgba(183, 130, 58, 0.12),
+    0 24px 60px rgba(28, 11, 3, 0.42);
+}
+
+.wild-branded-lightbox-close,
+.wild-branded-lightbox-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 240, 189, 0.82);
+  background: var(--ww-button-gradient);
+  color: #a94f24;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.55),
+    0 8px 20px rgba(28, 11, 3, 0.34);
+}
+
+.wild-branded-lightbox-close:hover,
+.wild-branded-lightbox-close:focus-visible,
+.wild-branded-lightbox-nav:hover,
+.wild-branded-lightbox-nav:focus-visible,
+.wild-image-lightbox__bar button:hover,
+.wild-image-lightbox__bar button:focus-visible,
+.wildfire-lightbox-bar button:hover,
+.wildfire-lightbox-bar button:focus-visible,
+.wildfire-lightbox-nav:hover,
+.wildfire-lightbox-nav:focus-visible {
+  filter: brightness(1.08) saturate(1.06);
+  outline: 2px solid rgba(255, 240, 189, 0.5);
+  outline-offset: 2px;
+}
+
+.wild-inspiration-thumbnail {
+  border-color: rgba(183, 130, 58, 0.62);
+  background: rgba(61, 28, 8, 0.72);
+}
+
+.wild-inspiration-viewer {
+  border: 1px solid rgba(243, 207, 146, 0.34);
+  border-radius: 0.8rem;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(243, 207, 146, 0.12), transparent 32rem),
+    linear-gradient(135deg, rgba(90, 45, 12, 0.86), rgba(42, 19, 4, 0.92));
+  box-shadow: 0 18px 44px rgba(28, 11, 3, 0.34);
+}
+
+.wild-inspiration-control {
+  border: 1px solid rgba(255, 240, 189, 0.76);
+  border-radius: 50%;
+  background: var(--ww-button-gradient);
+  color: #a94f24;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.52),
+    0 8px 20px rgba(28, 11, 3, 0.34);
+}
+
+.wild-inspiration-control:hover,
+.wild-inspiration-control:focus-visible {
+  filter: brightness(1.08) saturate(1.06);
+  outline: 2px solid rgba(255, 240, 189, 0.48);
+  outline-offset: 2px;
+}
+
+.wild-inspiration-thumbnail:hover,
+.wild-inspiration-thumbnail:focus-visible {
+  border-color: var(--ww-honey);
+  outline: none;
+}
+
+.wild-inspiration-thumbnail.is-active {
+  border-color: var(--ww-parchment);
+  box-shadow: 0 0 0 2px rgba(183, 130, 58, 0.4);
 }
 
 .discordSection :where(
@@ -4201,7 +4814,7 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .discordSection .money-cta {
-  color: #130803 !important;
+  color: #a94f24 !important;
   background-color: #d99f55 !important;
   background-image: var(--ww-button-gradient) !important;
   -webkit-background-clip: border-box !important;
@@ -4211,11 +4824,11 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .discordSection .money-cta--primary {
-  background-image: linear-gradient(180deg, #fff0bd 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%) !important;
+  background-image: linear-gradient(180deg, #f7d9a5 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%) !important;
 }
 
 .discordSection .money-cta :where(span, strong) {
-  color: #130803 !important;
+  color: #a94f24 !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
@@ -4503,8 +5116,8 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .wild-home #iscott-sales .wild-iscott-title__line--three {
-  color: #7a3d18 !important;
-  -webkit-text-fill-color: #7a3d18 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
 }
 
 .wild-home #wildworks-proof .wild-body {
@@ -4571,7 +5184,7 @@ footer.discordSection .wild-footer-attribution-title {
 .wild-home #iscott-sales {
   --ww-iscott-blend-one: linear-gradient(180deg, #fff6d6 0%, #f7d9a5 48%, #d99f55 100%);
   --ww-iscott-blend-two: linear-gradient(180deg, #ffe7b5 0%, #e8b66d 54%, #b56f34 100%);
-  --ww-iscott-blend-three: linear-gradient(180deg, #e8b66d 0%, #a76431 62%, #7a3d18 100%);
+  --ww-iscott-blend-three: linear-gradient(180deg, #e8b66d 0%, #a76431 62%, #a94f24 100%);
 }
 
 .wild-home #iscott-sales .wild-iscott-title .wild-line-title__line,
@@ -4690,7 +5303,7 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line:nth-child(n + 6) {
-  background-image: linear-gradient(180deg, #e8b66d 0%, #a76431 62%, #7a3d18 100%) !important;
+  background-image: linear-gradient(180deg, #e8b66d 0%, #a76431 62%, #a94f24 100%) !important;
 }
 
 .wild-home #signature-work {
@@ -4812,21 +5425,21 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line:nth-child(n + 6) {
-  color: #7a3d18 !important;
-  -webkit-text-fill-color: #7a3d18 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
   background-image: none !important;
 }
 
 .wild-home #project-wildfire .wild-wildfire-flame-title__text {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  background-image: var(--ww-aiasap-gold-blend) !important;
+  background-image: linear-gradient(180deg, #dfb574 0%, #d1a064 54%, #bf874b 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
   background-position: 0 0 !important;
-  filter: drop-shadow(0 0.06rem 0.14rem rgba(0, 0, 0, 0.6)) drop-shadow(0 0.2rem 1.5rem rgba(0, 0, 0, 0.95)) !important;
+  filter: drop-shadow(0 0.055rem 0.12rem rgba(81, 37, 9, 0.32)) !important;
   text-shadow: none !important;
 }
 
@@ -4844,8 +5457,8 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line:nth-child(1) {
-  color: #fff0bd !important;
-  -webkit-text-fill-color: #fff0bd !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
 }
 
 .wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line:nth-child(2) {
@@ -4876,6 +5489,7 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wild-home #project-wildfire .wild-wildfire-sequence-callout {
   display: grid;
+  gap: clamp(0.18rem, 0.55vw, 0.55rem);
   justify-items: center;
   width: min(100%, 86rem);
   margin: 4.25rem auto 0;
@@ -4885,10 +5499,13 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wild-home #project-wildfire .wild-wildfire-sequence-callout__line {
   display: block;
+  width: max-content;
+  max-width: 100%;
   font-family: var(--font-serif), Georgia, serif;
   font-weight: 900;
   letter-spacing: 0;
   line-height: 0.96;
+  white-space: nowrap;
   text-wrap: balance;
   text-shadow:
     0 0.22rem 0.95rem rgba(8, 3, 1, 0.68),
@@ -4898,14 +5515,21 @@ footer.discordSection .wild-footer-attribution-title {
 .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
   color: #f7d9a5 !important;
   -webkit-text-fill-color: #f7d9a5 !important;
-  font-size: 5.9rem;
+  font-size: clamp(2.05rem, 6.55vw, 5.9rem);
 }
 
 .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
-  margin-top: 0.12em;
-  color: #d99043 !important;
-  -webkit-text-fill-color: #d99043 !important;
-  font-size: 4.85rem;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: clamp(1.78rem, 5.4vw, 4.85rem);
+  font-weight: 850;
+}
+
+.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+  font-size: clamp(1.5rem, 4.35vw, 3.95rem);
+  font-weight: 780;
 }
 
 .wild-home #project-wildfire .wild-wildfire-build-note {
@@ -4969,8 +5593,8 @@ footer.discordSection .wild-footer-attribution-title {
 }
 
 .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(3) {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
 }
 
 @media (max-width: 719px) {
@@ -4978,27 +5602,9 @@ footer.discordSection .wild-footer-attribution-title {
     margin-top: 3.15rem;
   }
 
-  .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
-    font-size: 3.55rem;
-  }
-
-  .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
-    font-size: 2.95rem;
-  }
-
   .wild-home #project-wildfire .wild-wildfire-build-note__line {
     white-space: normal;
     font-size: 1.32rem;
-  }
-}
-
-@media (min-width: 720px) and (max-width: 1099px) {
-  .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
-    font-size: 4.8rem;
-  }
-
-  .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
-    font-size: 3.9rem;
   }
 }
 
@@ -5288,7 +5894,8 @@ footer.discordSection .wild-footer-attribution-title {
 
 @media (max-width: 640px) {
   .wild-home #project-wildfire .wild-wildfire-flame-title {
-    font-size: clamp(1.7rem, 8.7vw, 2.05rem) !important;
+    font-size: clamp(2.65rem, 12vw, 3.2rem) !important;
+    line-height: 0.94 !important;
   }
 
   .wild-home #project-wildfire .wild-wildfire-title {
@@ -5472,6 +6079,48 @@ footer.discordSection .wild-footer-attribution-title {
   margin-top: 0 !important;
 }
 
+.wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-unforgettable {
+  margin-top: 0.08em;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif;
+  font-size: clamp(2.15rem, 4.2vw, 3.8rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0.015em;
+}
+
+/* Home hero typography: elegant serif display type with the WildWorks light-to-deep-gold letter fade. */
+body .wild-home .wild-hero.discordSection .wild-hero-copy :where(
+    .wild-hero-headline__line,
+    .wild-hero-headline__line em,
+    .wild-hero-lede-line,
+    .wild-hero-lede-line .wild-hero-lede-accent
+  ) {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: var(--ww-display-line-gradient) !important;
+  background-image: var(--ww-display-line-gradient) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy :where(
+    .wild-hero-headline,
+    .wild-lede
+  ) {
+  font-family: var(--font-serif), Georgia, serif !important;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
 .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
   margin-top: clamp(0.12rem, 0.34vw, 0.28rem) !important;
 }
@@ -5488,7 +6137,8 @@ footer.discordSection .wild-footer-attribution-title {
   .wild-home .wild-hero.discordSection .wild-hero-copy {
     width: 100%;
     padding-top: clamp(6rem, 20vw, 9rem);
-    padding-bottom: clamp(2.2rem, 8vw, 3.4rem);
+    padding-bottom: clamp(1.1rem, 4vw, 1.7rem);
+    transform: translateY(clamp(0.9rem, 4vw, 1.35rem));
   }
 
   .wild-home .wild-hero.discordSection .wild-hero-wordmark-text {
@@ -5507,6 +6157,54 @@ footer.discordSection .wild-footer-attribution-title {
   .wild-home .wild-hero.discordSection .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
     font-size: clamp(2.75rem, 12.5vw, 3.75rem);
   }
+
+  .wild-home .wild-hero.discordSection .wild-hero-copy .wild-lede {
+    max-width: 100%;
+    font-size: clamp(0.92rem, 4.25vw, 1.08rem) !important;
+    line-height: 1.24 !important;
+  }
+
+  .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-unforgettable {
+    margin-top: 0.12em;
+    max-width: 100%;
+    font-size: 1.78rem !important;
+    line-height: 0.92 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
+    display: grid;
+    width: min(100%, 19rem);
+    gap: 0.7rem;
+  }
+
+  .wild-home .wild-hero.discordSection .wild-cta-row > a,
+  .wild-home .wild-hero.discordSection .wild-cta-row > span,
+  .wild-home .wild-hero.discordSection .wild-cta-row > span > a {
+    width: 100%;
+  }
+}
+
+body .wild-home #ai-websites .wild-site-offer-copy {
+  width: min(100%, 52rem);
+  max-width: 52rem;
+  margin-inline: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.55;
+  text-align: center;
+  text-align-last: center;
+  text-wrap: pretty;
+}
+
+/* Keep the full-photo enlarge control usable without letting it cover the hero CTAs. */
+.wild-home .wild-hero-media .wild-zoom-hit-area {
+  z-index: 1;
+}
+
+.wild-home .wild-hero.discordSection .wild-hero-copy {
+  z-index: 4;
 }
 
 .wild-home #talk-to-iscott p.money-panel-kicker {
@@ -5698,8 +6396,8 @@ footer.discordSection .wild-footer-attribution-title {
 
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line--three {
   font-size: 0.88em;
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
 }
 
 .wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay::before,
@@ -5768,86 +6466,430 @@ footer.discordSection .wild-footer-attribution-title {
   }
 }
 
+/* iScott media intake: desktop/landscape placement and mobile/portrait handoff. */
+.wild-home #iscott-sales .wild-iscott-upload__input {
+  display: none !important;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload {
+  width: min(100%, 34rem);
+  margin-top: clamp(1rem, 2vw, 1.45rem);
+}
+
+.wild-home #iscott-sales .wild-iscott-upload--mobile {
+  display: none;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  width: 100%;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 226, 174, 0.72);
+  border-radius: 10px;
+  background: var(--ww-button-gradient);
+  color: #a94f24;
+  padding: 0.95rem clamp(1.05rem, 2.6vw, 1.7rem);
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif;
+  font-size: clamp(1.18rem, 1.8vw, 1.5rem);
+  font-weight: 760;
+  letter-spacing: 0.015em;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58);
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46);
+  cursor: pointer;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(110deg, transparent 12%, rgba(255, 247, 216, 0.3) 44%, transparent 68%);
+  transform: translateX(-78%);
+  transition: transform 420ms ease;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button:hover {
+  filter: saturate(1.06) brightness(1.04);
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 48px rgba(20, 7, 1, 0.48),
+    0 0 30px rgba(224, 168, 90, 0.24),
+    inset 0 1px 0 rgba(255, 247, 218, 0.84),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46);
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button:hover::after {
+  transform: translateX(78%);
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button:active {
+  transform: translateY(1px);
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__button:focus-visible {
+  outline: 3px solid rgba(255, 239, 194, 0.94);
+  outline-offset: 4px;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  stroke-width: 2.15;
+}
+
+.wild-home #iscott-sales .wild-iscott-upload__status {
+  min-height: 1.35em;
+  margin: 0.62rem 0 0;
+  color: rgba(247, 217, 165, 0.82) !important;
+  -webkit-text-fill-color: rgba(247, 217, 165, 0.82) !important;
+  font-size: clamp(0.78rem, 1vw, 0.9rem) !important;
+  font-weight: 580 !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  text-shadow: 0 1px 8px rgba(8, 3, 1, 0.58);
+}
+
+@media (max-width: 899px), (orientation: portrait) and (max-width: 1024px) {
+  .wild-home #iscott-sales .wild-iscott-upload--desktop {
+    display: none;
+  }
+
+  .wild-home #iscott-sales .wild-iscott-upload--mobile {
+    display: block;
+    width: min(100%, 20rem);
+    margin: clamp(0.85rem, 3vw, 1.2rem) auto 0;
+  }
+
+  .wild-home #iscott-sales .wild-iscott-upload__button {
+    min-height: 60px;
+    font-size: clamp(1.08rem, 4.3vw, 1.32rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wild-home #iscott-sales .wild-iscott-upload__button,
+  .wild-home #iscott-sales .wild-iscott-upload__button::after {
+    transition: none;
+  }
+}
+
 @media (max-width: 719px) {
   .wild-story-card--featureSell h3 {
     font-size: clamp(1.62rem, 8.4vw, 2.35rem);
   }
 }
 
-.wild-home .wild-legal-section {
-  padding-top: clamp(0.35rem, 0.9vw, 0.85rem) !important;
+.wild-home.wild-legal-home {
+  --ww-legal-ink: var(--ww-parchment);
+  --ww-legal-muted: #e8b66d;
+  --ww-legal-title: #f7d9a5;
+  --ww-legal-title-2: #d2934a;
+  --ww-legal-accent: #e0a85a;
+  --ww-legal-panel: rgba(64, 30, 10, 0.78);
+  --ww-legal-panel-warm: rgba(86, 42, 14, 0.78);
+  --ww-legal-border: rgba(232, 182, 109, 0.38);
+  color: var(--ww-legal-ink);
+  background:
+    radial-gradient(ellipse 82% 48% at 50% 0%, rgba(247, 217, 165, 0.2), transparent 34rem),
+    var(--ww-page-background) !important;
 }
 
-.wild-home .wild-legal-wrap {
+.wild-home.wild-legal-home .wild-legal-section {
+  min-height: 100vh;
+  padding-top: clamp(1.25rem, 3vw, 3rem) !important;
+  padding-bottom: clamp(3rem, 7vw, 6rem) !important;
+  background:
+    linear-gradient(180deg, rgba(247, 217, 165, 0.06), rgba(52, 22, 7, 0)),
+    transparent !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-wrap {
   padding-top: 0 !important;
 }
 
-.wild-home .wild-legal-hero {
-  gap: clamp(0.42rem, 0.8vw, 0.72rem) !important;
-  justify-items: center;
-}
-
-.wild-home .wild-legal-kicker {
-  margin-bottom: 0 !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
-  background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  font-size: clamp(0.98rem, 1.7vw, 1.16rem) !important;
-  line-height: 1;
-}
-
-.wild-home .wild-legal-title {
-  margin-inline: auto !important;
+.wild-home.wild-legal-home .wild-legal-topbar {
+  display: flex;
+  width: fit-content;
   max-width: 100%;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
-  background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  text-align: center !important;
-}
-
-.wild-home .wild-legal-deck,
-.wild-home .wild-legal-date,
-.wild-home .wild-legal-note {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
-  background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  text-align: center !important;
-}
-
-.wild-home .wild-legal-card {
-  border-color: rgba(232, 182, 109, 0.38) !important;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  justify-self: center;
+  padding: 0.4rem;
+  border: 1px solid rgba(232, 182, 109, 0.36);
+  border-radius: 8px;
   background:
-    radial-gradient(ellipse at 28% 8%, rgba(247, 217, 165, 0.065), transparent 22rem),
-    linear-gradient(180deg, rgba(43, 20, 7, 0.7), rgba(28, 10, 3, 0.76)) !important;
+    radial-gradient(ellipse at 35% 10%, rgba(247, 217, 165, 0.1), transparent 9rem),
+    rgba(57, 30, 11, 0.76);
+  box-shadow:
+    0 16px 40px rgba(16, 6, 1, 0.32),
+    inset 0 1px 0 rgba(247, 217, 165, 0.12);
+  backdrop-filter: blur(10px);
 }
 
-.wild-home .wild-legal-card-title {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+.wild-home.wild-legal-home .wild-legal-topbar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.1rem;
+  padding: 0.4rem 0.78rem;
+  border-radius: 6px;
+  color: var(--ww-legal-muted) !important;
+  -webkit-text-fill-color: var(--ww-legal-muted) !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.wild-home.wild-legal-home .wild-legal-topbar a:hover,
+.wild-home.wild-legal-home .wild-legal-topbar a:focus-visible {
+  background: rgba(232, 182, 109, 0.14);
+  color: var(--ww-legal-title) !important;
+  -webkit-text-fill-color: var(--ww-legal-title) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-hero {
+  gap: clamp(0.7rem, 1.2vw, 1rem) !important;
+  justify-items: center;
+  padding: clamp(1.15rem, 2.6vw, 2rem) 0 clamp(0.35rem, 1vw, 0.8rem);
+}
+
+.wild-home.wild-legal-home .wild-legal-kicker {
+  margin-bottom: 0 !important;
+  color: var(--ww-legal-accent) !important;
+  -webkit-text-fill-color: var(--ww-legal-accent) !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(0.88rem, 1.3vw, 1rem) !important;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
-.wild-home .wild-legal-copy,
-.wild-home .wild-legal-copy :where(p, li, span) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+.wild-home.wild-legal-home .wild-legal-title {
+  margin-inline: auto !important;
+  max-width: min(100%, 62rem);
+  color: var(--ww-legal-title) !important;
+  -webkit-text-fill-color: var(--ww-legal-title) !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
+  font-size: clamp(3.2rem, 8.6vw, 6.9rem) !important;
+  line-height: 0.9 !important;
+  text-align: center !important;
+  text-shadow:
+    0 0 22px rgba(224, 168, 90, 0.22),
+    0 2px 18px rgba(16, 6, 1, 0.64);
+}
+
+.wild-home.wild-legal-home .wild-legal-deck,
+.wild-home.wild-legal-home .wild-legal-date,
+.wild-home.wild-legal-home .wild-legal-note {
+  color: var(--ww-legal-muted) !important;
+  -webkit-text-fill-color: var(--ww-legal-muted) !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  letter-spacing: 0;
+  text-align: center !important;
   text-shadow: none !important;
 }
 
-.wild-home .wild-legal-copy :where(a, strong) {
+.wild-subpage--wildfire .wildfire-journal-head h2 .wildfire-journal-stage {
+  display: block;
+  margin-top: 0.04em;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  font-size: 1em;
+  font-style: normal;
+  box-shadow: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+.wildfire-journal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+  margin-top: clamp(1.35rem, 2.8vw, 2rem);
+}
+
+.wildfire-journal-actions .money-cta {
+  min-width: min(100%, 13rem);
+}
+
+body .wild-subpage--wildfire .wildfire-journal-head .wild-kicker.wild-kicker--framed {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto clamp(1rem, 1.8vw, 1.35rem);
+  padding: clamp(0.52rem, 0.9vw, 0.68rem) clamp(0.88rem, 1.7vw, 1.22rem);
+  border: 1px solid #e8b66d;
+  border-radius: 7px;
+  background: #d2934a !important;
+  background-image: none !important;
   color: #f7d9a5 !important;
   -webkit-text-fill-color: #f7d9a5 !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 1px 0 rgba(91, 39, 10, 0.56) !important;
+  box-shadow:
+    0 12px 28px rgba(116, 52, 15, 0.24),
+    inset 0 1px 0 rgba(247, 217, 165, 0.3),
+    inset 0 -1px 0 rgba(112, 50, 15, 0.24);
+}
+
+.wild-home.wild-legal-home .wild-legal-deck {
+  font-weight: 650;
+}
+
+.wild-home.wild-legal-home .wild-legal-meta-row {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+
+.wild-home.wild-legal-home .wild-legal-meta-row span {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  border: 1px solid rgba(232, 182, 109, 0.34);
+  border-radius: 8px;
+  background: rgba(57, 30, 11, 0.58);
+  color: var(--ww-legal-title) !important;
+  -webkit-text-fill-color: var(--ww-legal-title) !important;
+  padding: 0.34rem 0.68rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.wild-home.wild-legal-home .wild-legal-note {
+  padding-top: 0.15rem;
+}
+
+.wild-home.wild-legal-home .wild-legal-card {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  overflow: hidden;
+  padding: clamp(1.3rem, 2.5vw, 2rem);
+  border: 1px solid var(--ww-legal-border) !important;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 24% 0%, rgba(247, 217, 165, 0.1), transparent 18rem),
+    linear-gradient(180deg, var(--ww-legal-panel-warm), var(--ww-legal-panel)) !important;
+  box-shadow:
+    0 24px 58px rgba(16, 6, 1, 0.36),
+    inset 0 1px 0 rgba(247, 217, 165, 0.12);
+}
+
+.wild-home.wild-legal-home .wild-legal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.32rem;
+  background: linear-gradient(180deg, var(--ww-legal-title), var(--ww-legal-title-2));
+}
+
+.wild-home.wild-legal-home .wild-legal-card-title {
+  color: var(--ww-legal-title) !important;
+  -webkit-text-fill-color: var(--ww-legal-title) !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  letter-spacing: 0;
+  text-shadow: 0 2px 16px rgba(16, 6, 1, 0.5) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-copy,
+.wild-home.wild-legal-home .wild-legal-copy :where(p, li, span) {
+  color: var(--ww-legal-ink) !important;
+  -webkit-text-fill-color: var(--ww-legal-ink) !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  font-weight: 520;
+  text-shadow: none !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-copy :where(a, strong) {
+  color: var(--ww-legal-title) !important;
+  -webkit-text-fill-color: var(--ww-legal-title) !important;
+  font-weight: 800;
+}
+
+.wild-home.wild-legal-home .wild-legal-copy ul {
+  padding-left: 1.2rem;
+}
+
+.wild-home.wild-legal-home .wild-legal-copy li::marker {
+  color: var(--ww-legal-accent);
+}
+
+.wild-home.wild-legal-home .wild-legal-index-card {
+  min-height: 15rem;
+  align-content: start;
+  text-decoration: none !important;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.wild-home.wild-legal-home .wild-legal-index-card:hover,
+.wild-home.wild-legal-home .wild-legal-index-card:focus-visible {
+  border-color: rgba(247, 217, 165, 0.62) !important;
+  box-shadow:
+    0 30px 70px rgba(16, 6, 1, 0.42),
+    inset 0 1px 0 rgba(247, 217, 165, 0.18);
+  transform: translateY(-2px);
+}
+
+.wild-home.wild-legal-home .wild-legal-index-cta {
+  align-self: end;
+  justify-self: start;
+  margin-top: 1rem;
+  border-bottom: 2px solid rgba(232, 182, 109, 0.58);
+  color: var(--ww-legal-muted) !important;
+  -webkit-text-fill-color: var(--ww-legal-muted) !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 /* Shared WildWorks hairline motif: elegant dividers without changing copy. */
@@ -6027,8 +7069,8 @@ footer.discordSection .wild-footer-quote-wrap::after {
 }
 
 .wild-home #project-wildfire .wild-wildfire-build-note > .wild-wildfire-build-note__line:nth-child(3) {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
 }
 
 .wild-home .wild-section-heading::before,
@@ -6254,6 +7296,356 @@ footer.discordSection .wild-footer-quote-wrap::after,
   }
 }
 
+/* Sitewide WildWorks button material, based on G's approved gallery button. */
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  ) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 226, 174, 0.72) !important;
+  border-radius: 10px !important;
+  background: var(--ww-button-gradient) !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.015em !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  cursor: pointer;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
+}
+
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  )::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(110deg, transparent 12%, rgba(255, 247, 216, 0.32) 44%, transparent 68%);
+  pointer-events: none;
+  transform: translateX(-82%);
+  transition: transform 420ms ease;
+}
+
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  ):hover {
+  filter: saturate(1.06) brightness(1.04) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 48px rgba(20, 7, 1, 0.48),
+    0 0 30px rgba(224, 168, 90, 0.24),
+    inset 0 1px 0 rgba(255, 247, 218, 0.84),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+}
+
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  ):hover::after {
+  transform: translateX(82%);
+}
+
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  ):active {
+  transform: translateY(1px);
+}
+
+:where(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wildfire-phase-bar button,
+    .wild-utility-button,
+    .wild-card-cta,
+    .wild-legal-index-cta
+  ):focus-visible {
+  outline: 3px solid rgba(255, 239, 194, 0.94) !important;
+  outline-offset: 4px !important;
+}
+
+.money-cta {
+  min-height: 58px !important;
+  padding: 0.92rem clamp(1.1rem, 2.4vw, 1.55rem) !important;
+  font-size: clamp(1.06rem, 1.45vw, 1.26rem) !important;
+}
+
+.money-cta,
+.money-cta--primary,
+.discordSection .money-cta,
+.discordSection .money-cta--primary,
+.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-cta {
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+}
+
+.money-cta svg,
+.money-cta :where(span, strong),
+.wild-signup-choice-button :where(span, svg),
+.wildfire-phase-bar button :where(span, small),
+.wild-utility-button svg {
+  position: relative;
+  z-index: 1;
+  color: #7b3418 !important;
+  -webkit-text-fill-color: #7b3418 !important;
+}
+
+.wild-signup-choice-button {
+  min-height: 46px !important;
+  padding: 0.68rem 0.72rem !important;
+  font-size: clamp(0.84rem, 1.4vw, 0.94rem) !important;
+}
+
+.wild-signup-choice-button.is-active,
+.wildfire-phase-bar button.is-active {
+  border-color: rgba(255, 246, 214, 0.98) !important;
+  filter: brightness(1.08) saturate(1.08);
+  box-shadow:
+    0 0 0 3px rgba(232, 182, 109, 0.24),
+    0 16px 38px rgba(20, 7, 1, 0.44),
+    inset 0 1px 0 rgba(255, 247, 218, 0.88) !important;
+}
+
+.wildfire-phase-bar button {
+  min-height: 54px !important;
+  padding: 0.72rem 0.9rem !important;
+}
+
+.wildfire-phase-bar button span {
+  font-size: 1rem;
+}
+
+.wildfire-phase-bar button small {
+  opacity: 0.7;
+}
+
+.wild-utility-button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  padding: 0.48rem 0.72rem;
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
+.wild-x-post-cta {
+  width: 100%;
+  min-height: 52px !important;
+}
+
+.wild-card-cta,
+.wild-home.wild-legal-home .wild-legal-index-cta {
+  display: inline-flex !important;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  border-bottom-width: 1px !important;
+  padding: 0.58rem 0.9rem;
+  font-size: 0.88rem !important;
+  text-transform: none;
+}
+
+/* Icon buttons keep their purpose-built shape, now in the same approved material. */
+:where(
+    .wild-mobile-menu-button,
+    .wild-footer-icon-button,
+    .wild-footer-top-button,
+    .wild-footer-mobile-link,
+    .wild-brand-social-link,
+    .wild-branded-lightbox-close,
+    .wild-branded-lightbox-nav,
+    .wild-image-lightbox__bar button,
+    .wildfire-lightbox-bar button,
+    .wildfire-lightbox-nav,
+    .wild-inspiration-control,
+    .wild-wildfire-expand
+  ) {
+  border: 1px solid rgba(255, 226, 174, 0.78) !important;
+  background: var(--ww-button-gradient) !important;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.5) !important;
+  box-shadow:
+    0 12px 30px rgba(20, 7, 1, 0.4),
+    0 0 18px rgba(224, 168, 90, 0.14),
+    inset 0 1px 0 rgba(255, 247, 218, 0.74),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.4) !important;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
+}
+
+:where(
+    .wild-mobile-menu-button,
+    .wild-footer-icon-button,
+    .wild-footer-top-button,
+    .wild-footer-mobile-link,
+    .wild-brand-social-link,
+    .wild-branded-lightbox-close,
+    .wild-branded-lightbox-nav,
+    .wild-image-lightbox__bar button,
+    .wildfire-lightbox-bar button,
+    .wildfire-lightbox-nav,
+    .wild-inspiration-control,
+    .wild-wildfire-expand
+  ):hover {
+  filter: brightness(1.08) saturate(1.08) !important;
+  transform: translateY(-2px);
+}
+
+:where(
+    .wild-mobile-menu-button,
+    .wild-footer-icon-button,
+    .wild-footer-top-button,
+    .wild-footer-mobile-link,
+    .wild-brand-social-link,
+    .wild-branded-lightbox-close,
+    .wild-branded-lightbox-nav,
+    .wild-image-lightbox__bar button,
+    .wildfire-lightbox-bar button,
+    .wildfire-lightbox-nav,
+    .wild-inspiration-control,
+    .wild-wildfire-expand
+  ):focus-visible {
+  outline: 3px solid rgba(255, 239, 194, 0.9) !important;
+  outline-offset: 3px !important;
+}
+
+.wild-mobile-menu-button {
+  border-radius: 50% !important;
+}
+
+.wild-brand-social-link,
+.wild-brand-social-link--whatsapp {
+  border-color: rgba(255, 226, 174, 0.78) !important;
+  background: var(--ww-button-gradient) !important;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+}
+
+:where(
+    .wild-mobile-menu-button,
+    .wild-footer-icon-button,
+    .wild-footer-top-button,
+    .wild-footer-mobile-link,
+    .wild-brand-social-link,
+    .wild-branded-lightbox-close,
+    .wild-branded-lightbox-nav,
+    .wild-image-lightbox__bar button,
+    .wildfire-lightbox-bar button,
+    .wildfire-lightbox-nav,
+    .wild-inspiration-control,
+    .wild-wildfire-expand
+  ) svg {
+  color: currentColor !important;
+  filter: none !important;
+}
+
+/* Image buttons remain photographic, with the same luminous gold edge. */
+:where(
+    .wildfire-photo-card,
+    .wild-inspiration-thumbnail,
+    .wild-wildfire-photo,
+    .wild-wildfire-inspiration-card,
+    .wild-media-button
+  ) {
+  border-color: rgba(255, 226, 174, 0.58) !important;
+  box-shadow:
+    0 16px 40px rgba(20, 7, 1, 0.38),
+    0 0 18px rgba(224, 168, 90, 0.1),
+    inset 0 1px 0 rgba(255, 247, 218, 0.34) !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease !important;
+}
+
+:where(
+    .wildfire-photo-card,
+    .wild-inspiration-thumbnail,
+    .wild-wildfire-photo,
+    .wild-wildfire-inspiration-card,
+    .wild-media-button
+  ):hover,
+:where(
+    .wildfire-photo-card,
+    .wild-inspiration-thumbnail,
+    .wild-wildfire-photo,
+    .wild-wildfire-inspiration-card,
+    .wild-media-button
+  ):focus-visible {
+  border-color: rgba(255, 239, 194, 0.92) !important;
+  box-shadow:
+    0 20px 48px rgba(20, 7, 1, 0.44),
+    0 0 26px rgba(224, 168, 90, 0.2),
+    inset 0 1px 0 rgba(255, 247, 218, 0.52) !important;
+}
+
+/* Footer policy links intentionally stay plain text. */
+.wild-footer-legal-link {
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  text-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+      .money-cta,
+      .wild-signup-choice-button,
+      .wildfire-phase-bar button,
+      .wild-utility-button,
+      .wild-card-cta,
+      .wild-legal-index-cta
+    ),
+  :where(
+      .money-cta,
+      .wild-signup-choice-button,
+      .wildfire-phase-bar button,
+      .wild-utility-button,
+      .wild-card-cta,
+      .wild-legal-index-cta
+    )::after {
+    transition: none !important;
+  }
+}
+
 .wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel,
 body .wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
   border-color: rgba(232, 182, 109, 0.3) !important;
@@ -6270,7 +7662,7 @@ body .wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
 html,
 body {
   background: var(--ww-page-background) !important;
-  background-attachment: fixed !important;
+  background-attachment: var(--ww-bg-attachment, fixed) !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
@@ -6582,11 +7974,11 @@ body {
     0 0.18rem 0.95rem rgba(5, 2, 0, 0.78) !important;
 }
 
-/* G 2026-06-23: Wildfire hero title — solid per-line colors (1/2/3), NO blend. Kicker = solid color 3. */
+/* G 2026-06-23: Wildfire hero title â€” solid per-line colors (1/2/3), NO blend. Kicker = solid color 3. */
 .wildfire-hero-copy .wild-kicker {
   background-image: none !important;
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
 }
 .wildfire-hero-copy h1 .wildfire-hero-headline__line {
   display: block;
@@ -6597,7 +7989,7 @@ body {
 .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
 .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }
 
-/* G 2026-06-23: balance the subpage header — equal air above the menu bar and below
+/* G 2026-06-23: balance the subpage header â€” equal air above the menu bar and below
    the logo, with a clean gap between menu and logo, and an even gap down to the first
    pic. Scoped to subpages only via :has(.wild-subpage) so the Home hero is untouched. */
 body:has(.wild-subpage) .wild-site-header div.flex-col {
@@ -6608,7 +8000,7 @@ body:has(.wild-subpage) .wild-site-header nav {
   padding-bottom: 0.5rem !important;
 }
 body:has(.wild-subpage) .wild-top-logo-band {
-  margin-top: 0.5rem !important;     /* was negative — give the menu real breathing room */
+  margin-top: 0.5rem !important;     /* was negative â€” give the menu real breathing room */
   padding-bottom: 0.45rem !important; /* tighten logo->pic so it equals the air above the menu */
 }
 @media (min-width: 501px) {
@@ -6621,9 +8013,8 @@ body:has(.wild-subpage) .wild-top-logo-band {
    G 2026-06-23: WildWorks cleanup batch
    ============================================================ */
 
-/* 1) Kill the gradient-clip "fudged" text look — CLEAN SOLID headings/titles
-   site-wide. Per-span hero colors (home + wildfire heroes) keep their own
-   colors because those rules are more specific / inline. */
+/* 1) WildWorks display lettering: light at the crown, deep gold at the foot.
+   Keep paragraphs and legal copy solid for readability. */
 .discordSection :where(
     h1, h2, h3, h4, h5, h6,
     .wild-section-title, .wild-hero-copy h1, .wild-final-cta h2,
@@ -6631,33 +8022,42 @@ body:has(.wild-subpage) .wild-top-logo-band {
     .wildfire-journal-head h2, .money-panel h2,
     .wild-story-card--feature h3, .wild-story-card--featureSell h3, .wild-story-card--portrait h3
   ) {
-  color: #f1cf93 !important;
-  -webkit-text-fill-color: #f1cf93 !important;
-  background-image: none !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  text-shadow: 0 2px 14px rgba(16, 6, 1, 0.5) !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: var(--ww-display-line-gradient) !important;
+  background-image: var(--ww-display-line-gradient) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow: 0 2px 14px rgba(16, 6, 1, 0.58) !important;
 }
 .discordSection :where(
     .wild-brand-name, .wild-brand-subtitle, .wild-kicker, .money-panel-kicker,
     .wild-card h3, .wild-project-card h3, .wild-process-step h3, .wild-answer-card h3
   ) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
-  background-image: none !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: var(--ww-letter-gradient-soft) !important;
+  background-image: var(--ww-letter-gradient-soft) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
 }
 .wild-sell-hero-title span,
 .wild-subpage-section :where(h2).wild-sell-break-heading {
-  color: #f1cf93 !important;
-  -webkit-text-fill-color: #f1cf93 !important;
-  background-image: none !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: var(--ww-display-line-gradient) !important;
+  background-image: var(--ww-display-line-gradient) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
 }
 
 /* 2) Remove the leftover horizontal hairline dividers on subpages. */
@@ -6669,7 +8069,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   display: none !important;
 }
 
-/* 3) Tighten the air above the "origin" poem now that it sits under the gallery —
+/* 3) Tighten the air above the "origin" poem now that it sits under the gallery â€”
    the gallery's bottom padding + the poem's top padding were stacking. */
 .wildfire-principles {
   padding-top: clamp(0.5rem, 1.2vw, 1rem) !important;
@@ -6678,26 +8078,26 @@ body:has(.wild-subpage) .wild-top-logo-band {
   padding-bottom: clamp(1.25rem, 3vw, 2.5rem) !important;
 }
 
-/* 4) Brand the X / WhatsApp buttons (were too dark) — gold-amber, dark glyph. */
+/* 4) Brand the X / WhatsApp buttons (were too dark) â€” gold-amber, dark glyph. */
 .wild-brand-social-link,
 .wild-brand-social-link--whatsapp {
   border-color: rgba(120, 70, 28, 0.5) !important;
   background:
     radial-gradient(circle at 34% 22%, rgba(255, 246, 214, 0.55), transparent 60%),
     linear-gradient(180deg, #f9dfae 0%, #e8b66d 38%, #c9823e 70%, #8e4f22 100%) !important;
-  color: #2a1206 !important;
-  -webkit-text-fill-color: #2a1206 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
 }
 .wild-brand-social-link svg {
-  color: #2a1206 !important;
+  color: #a94f24 !important;
   filter: none !important;
 }
 .wild-brand-social-link:hover,
 .wild-brand-social-link:focus-visible,
 .wild-brand-social-link--whatsapp:hover,
 .wild-brand-social-link--whatsapp:focus-visible {
-  color: #1a0c03 !important;
-  -webkit-text-fill-color: #1a0c03 !important;
+  color: #a94f24 !important;
+  -webkit-text-fill-color: #a94f24 !important;
   border-color: rgba(247, 217, 165, 0.9) !important;
 }
 
@@ -6727,7 +8127,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* G 2026-06-23: restore the I-Sell feature headline "My Work Sells People's Homes. Period."
-   — solid, BOLD, fully visible. The transparent-fill spans were rendering dark; force a
+   â€” solid, BOLD, fully visible. The transparent-fill spans were rendering dark; force a
    clean solid gold fill (border-box clip) so it reads as the strong headline G wants. */
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title,
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
@@ -6740,7 +8140,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
     0 0.16rem 0.5rem rgba(5, 2, 0, 0.92),
     0 0 1.2rem rgba(6, 3, 1, 0.55) !important;
 }
-/* G 2026-06-23: 3 tones, one per line — My Work / Sells People's / Homes. Period.
+/* G 2026-06-23: 3 tones, one per line â€” My Work / Sells People's / Homes. Period.
    (span modifier class is wild-sell-feature-title__line--one/two/three). */
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--one {
   color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important;
@@ -6749,10 +8149,10 @@ body:has(.wild-subpage) .wild-top-logo-band {
   color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important;
 }
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--three {
-  color: #c87936 !important; -webkit-text-fill-color: #c87936 !important;
+  color: #d2934a !important; -webkit-text-fill-color: #d2934a !important;
 }
 
-/* G 2026-06-23: 3 tones, one per Ruins-card paragraph — high specificity to beat the
+/* G 2026-06-23: 3 tones, one per Ruins-card paragraph â€” high specificity to beat the
    global ".discordSection :where(... .wild-story-card p ...)" color override. */
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title,
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
@@ -6780,7 +8180,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--three {
-  background-image: linear-gradient(180deg, #ffd18a 0%, #c87936 48%, #702f12 100%) !important;
+  background-image: linear-gradient(180deg, #ffd18a 0%, #d2934a 48%, #702f12 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -6799,6 +8199,28 @@ body:has(.wild-subpage) .wild-top-logo-band {
     0 -1px 0 rgba(255, 246, 207, 0.18) !important;
 }
 
+.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof__line {
+  display: block !important;
+  white-space: nowrap !important;
+}
+
+.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof__line:first-child {
+  background-image: linear-gradient(180deg, #fff8d5 0%, #f3cf8d 48%, #b96f31 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof__line:last-child {
+  margin-top: 0.16em !important;
+  background-image: linear-gradient(180deg, #ffe9ad 0%, #d9903d 52%, #74300f 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
 .wild-home #signature-work .wild-story-card--feature p.ww-c1 {
   color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
@@ -6806,7 +8228,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
 .wild-home #signature-work .wild-story-card--feature p.ww-c3 {
-  color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
+  color: #d2934a !important; -webkit-text-fill-color: #d2934a !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
 
 .wild-home #signature-work .wild-story-card--feature p + p {
@@ -6819,44 +8241,46 @@ body:has(.wild-subpage) .wild-top-logo-band {
   align-items: center;
   text-align: center;
   width: 100%;
-  margin-block: 0.42rem;
+  margin-block: 0.62rem;
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-line--phone {
-  margin-top: 0.78rem;
+  margin-top: 1.15rem;
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-line--iscott {
-  margin-top: 0.72rem;
-  font-size: 0.94em;
+  flex-direction: column;
+  gap: 0.58rem;
+  margin-top: 1rem;
+  font-size: 1em;
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  gap: 0.72rem;
+  width: min(100%, 20rem);
+  min-height: 3.65rem;
+  border: 1px solid rgba(255, 226, 174, 0.74);
+  border-radius: 10px;
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  padding: 0.78rem 1.25rem;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 700 !important;
   text-decoration: none !important;
-  text-shadow:
-    0 0.08rem 0.32rem rgba(8, 3, 1, 0.86),
-    0 0 0.85rem rgba(232, 182, 109, 0.16) !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+  box-shadow:
+    0 14px 34px rgba(20, 7, 1, 0.34),
+    inset 0 1px 0 rgba(255, 247, 218, 0.76),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.42);
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-link::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -0.08em;
-  width: 100%;
-  height: 1px;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(246, 211, 154, 0.7) 50%,
-    transparent 100%
-  );
+  content: none;
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-link {
@@ -6864,14 +8288,28 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-link--phone {
-  font-size: 1.08em;
+  font-size: 1.12em;
   letter-spacing: 0.02em;
+}
+
+.wild-home #signature-work .wild-story-card--feature .wild-story-contact-icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: 0 0 auto;
+}
+
+.wild-home #signature-work .wild-story-card--feature .wild-story-contact-or {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 0.88em;
+  font-style: italic;
 }
 
 .wild-home #signature-work .wild-story-card--feature .wild-story-contact-follow {
   display: block;
   max-width: 27rem;
-  margin: 0.82rem auto 0;
+  margin: 1.15rem auto 0;
   text-align: center;
   color: #e8b66d !important;
   -webkit-text-fill-color: #e8b66d !important;
@@ -6916,7 +8354,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   background-clip: border-box !important;
 }
 
-/* G 2026-06-23: images shouldn't run edge-to-edge — give the Home hero a little
+/* G 2026-06-23: images shouldn't run edge-to-edge â€” give the Home hero a little
    side breathing room so it's framed like the rest of the contained layout. */
 .wild-home .wild-hero.discordSection {
   width: calc(100% - clamp(1.5rem, 5vw, 4.5rem));
@@ -6959,13 +8397,13 @@ body:has(.wild-subpage) .wild-top-logo-band {
 /* space between the wife's quote and the "Then Came" lines in the poem. */
 .wildfire-origin-title .ww-gap { display: block; margin-top: 0.7em; }
 
-/* G 2026-06-23: Build Journal kicker — bigger. */
+/* G 2026-06-23: Build Journal kicker â€” bigger. */
 .wildfire-journal-head .wild-kicker {
   font-size: clamp(1.05rem, 2.1vw, 1.6rem) !important;
   letter-spacing: 0.2em;
 }
 
-/* G 2026-06-23: Ruins subpage section headings — big like the I-Sell page (big-to-small ratio). */
+/* G 2026-06-23: Ruins subpage section headings â€” big like the I-Sell page (big-to-small ratio). */
 .wild-subpage--ruins .wild-subpage-section :where(h2) {
   font-size: clamp(2.6rem, 5.4vw, 5.4rem) !important;
   line-height: 0.98 !important;
@@ -7186,27 +8624,2173 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 @media (max-width: 899px) {
   .wild-home #signature-work .wild-story-card--featureSell {
-    aspect-ratio: auto !important;
-    min-height: clamp(31rem, 92vw, 38rem) !important;
+    display: block !important;
+    aspect-ratio: 1376 / 768 !important;
+    min-height: 0 !important;
+    height: auto !important;
   }
 
   .wild-home #signature-work .wild-story-card--featureSell::before {
     background:
-      linear-gradient(180deg, rgba(11, 4, 1, 0.38) 0%, rgba(12, 4, 1, 0.18) 34%, rgba(10, 3, 1, 0.9) 100%) !important;
+      linear-gradient(0deg, rgba(8, 2, 0, 0.95) 0%, rgba(9, 3, 1, 0.8) 34%, rgba(10, 4, 1, 0.38) 62%, transparent 88%),
+      linear-gradient(90deg, rgba(8, 2, 0, 0.7) 0%, rgba(8, 2, 0, 0.32) 55%, transparent 100%) !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-story-feature-sell-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    background: #140702 !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-story-feature-sell-image {
+    object-fit: contain !important;
+    object-position: center center !important;
   }
 
   .wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay {
+    position: absolute !important;
+    inset: 0 !important;
     width: 100% !important;
-    padding: 0 clamp(1.05rem, 5vw, 1.75rem) clamp(1.35rem, 6vw, 2.15rem) !important;
+    justify-content: flex-end !important;
+    padding: 0 1rem 1rem !important;
+    background: transparent !important;
+    border-top: 0 !important;
   }
 
   .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
     max-width: min(100%, 24rem) !important;
-    font-size: clamp(2.05rem, 8vw, 3.35rem) !important;
+    font-size: clamp(1.58rem, 7.35vw, 2.05rem) !important;
+    line-height: 0.88 !important;
   }
 
   .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
-    max-width: min(100%, 33rem) !important;
-    font-size: clamp(1.08rem, 4.3vw, 1.72rem) !important;
+    max-width: min(100%, 25rem) !important;
+    font-size: clamp(0.78rem, 3.35vw, 0.96rem) !important;
+    line-height: 1.18 !important;
+    margin-top: 0.48rem !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof__line {
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-cta {
+    min-height: 42px !important;
+    margin-top: 0.62rem !important;
+    padding: 0.68rem 0.95rem !important;
+    font-size: 0.92rem !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 899px) {
+  .wild-home #signature-work .wild-story-card--featureSell .wild-story-copy--overlay {
+    padding: 0 1.5rem 1.35rem !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
+    font-size: 2.65rem !important;
+  }
+
+  .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+    font-size: 1.16rem !important;
+  }
+}
+
+.wild-home #signature-work .wild-story-card--feature .wild-story-cta {
+  margin-inline: auto;
+}
+
+/* Final display lock: major lettering carries the WildWorks light-to-deep-gold fade,
+   including headings built from individually colored spans. */
+body .discordSection.discordSection :where(h1, h2, h3, h4, h5, h6),
+body .discordSection.discordSection :where(h1, h2, h3, h4, h5, h6) :where(span, em) {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: var(--ww-display-line-gradient) !important;
+  background-image: var(--ww-display-line-gradient) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* The Ruins is intentionally exempt from the gradient system: three solid brand
+   colors and a more characterful editorial serif. */
+body .wild-home #signature-work .wild-signature-title,
+body .wild-home #signature-work .wild-signature-title span,
+body .wild-home #signature-work .wild-story-card--feature h3,
+body .wild-home #signature-work .wild-story-card--feature h3 span {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  font-family: var(--font-serif), Georgia, serif !important;
+  font-weight: 700 !important;
+}
+
+body .wild-home #signature-work .wild-signature-title__one {
+  display: block;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home #signature-work .wild-signature-title__two {
+  display: block;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body .wild-home #signature-work .wild-signature-title__three {
+  display: block;
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+@media (min-width: 720px) {
+  body .wild-home #signature-work .wild-signature-title {
+    max-width: min(100%, 24ch) !important;
+  }
+
+  body .wild-home #signature-work .wild-signature-title__line {
+    white-space: nowrap;
+  }
+}
+
+/* Tree of Life uses G's permanent line-by-line Color 1 / 2 / 3 key. */
+body .wild-home #wildworks-proof .wild-copy-stack > .wild-section-title,
+body .wild-home #wildworks-proof .wild-copy-stack > .wild-section-title .wild-line-title__line {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 0.08em 0.18em rgba(56, 20, 3, 0.38) !important;
+}
+
+body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--one {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  opacity: 1 !important;
+}
+
+body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--two {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  opacity: 1 !important;
+}
+
+body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--three {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+  opacity: 1 !important;
+}
+
+/* Permanent WildWorks three-color key, taken directly from the three Ruins
+   headline lines: Color 1 #f7d9a5, Color 2 #e8b66d, Color 3 #d2934a. */
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--one,
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--two,
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 0.1rem 0.28rem rgba(42, 14, 3, 0.68) !important;
+}
+
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--one {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--two {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
+  display: inline !important;
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+body .wild-home #signature-work .wild-story-card--feature h3 .wild-line-title__line:nth-child(1) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home #signature-work .wild-story-card--feature h3 .wild-line-title__line:nth-child(2) {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+/* Final cascade lock: the approved gallery-button material wins over legacy page overrides. */
+body .money-cta.money-cta,
+body .discordSection .money-cta.money-cta,
+body .wild-home#top .money-cta.money-cta,
+body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-cta,
+body :where(.wild-signup-choice-button, .wildfire-phase-bar button, .wild-utility-button),
+body .wild-home.wild-legal-home .wild-legal-index-cta,
+body .wild-card-cta {
+  border-color: rgba(255, 226, 174, 0.72) !important;
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+}
+
+body .money-cta.money-cta :where(span, strong, svg),
+body .wild-home#top .money-cta.money-cta :where(span, strong, svg) {
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+}
+
+body :where(
+    .wild-mobile-menu-button,
+    .wild-footer-icon-button,
+    .wild-footer-top-button,
+    .wild-footer-mobile-link,
+    .wild-brand-social-link,
+    .wild-brand-social-link--whatsapp,
+    .wild-branded-lightbox-close,
+    .wild-branded-lightbox-nav,
+    .wild-image-lightbox__bar button,
+    .wildfire-lightbox-bar button,
+    .wildfire-lightbox-nav,
+    .wild-inspiration-control,
+    .wild-wildfire-expand
+  ) {
+  border-color: rgba(255, 226, 174, 0.78) !important;
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+  box-shadow:
+    0 12px 30px rgba(20, 7, 1, 0.4),
+    0 0 18px rgba(224, 168, 90, 0.14),
+    inset 0 1px 0 rgba(255, 247, 218, 0.74),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.4) !important;
+}
+
+body :where(.wild-footer-legal-link) {
+  border: 0 !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  text-shadow: none !important;
+}
+
+/* Mobile Home hero lock: near-edge wordmark, contained copy, and matched CTAs. */
+@media (max-width: 500px) {
+  body .wild-top-logo-band {
+    padding-inline: 0.35rem !important;
+  }
+
+  body .wild-top-logo {
+    width: 94vw !important;
+    max-width: 94vw !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body .wild-home .wild-hero.discordSection {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Final visitor-surface type reset: must follow the legacy display-gradient
+   rules above so live text is always a solid, readable brand color. */
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, p, li, .wild-kicker, .wild-card-cta, .wild-line-title__line, .wildfire-hero-headline__line, .wildfire-origin-title > span) {
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  background-image: none !important;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(p, li, .wild-legal-copy, .wild-legal-copy span, .wild-card-cta) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c1,
+.wildfire-hero-headline__line--c1 { color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; }
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c2,
+.wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+:is(.wild-subpage, .wild-home.wild-legal-home) .ww-c3,
+.wildfire-hero-headline__line--c3 { color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }
+.wildfire-hero-copy {
+  background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
+}
+.wildfire-hero-copy :is(h1, p, .wildfire-hero-headline__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 2px 4px rgba(48, 14, 2, 0.78) !important;
+}
+
+/* G 2026-07-11: match every word in the small Home hero lede to its bright accents. */
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  .wild-hero-lede-line:not(.wild-hero-lede-unforgettable),
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  .wild-hero-lede-line:not(.wild-hero-lede-unforgettable) .wild-hero-lede-accent {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Approved WildWorks signature-card treatment: darker copper/walnut inside
+   the card against the brighter copper page field. */
+#top.wild-home #signature-work .wild-story-card--feature {
+  --ww-box-gradient: var(--ww-signature-card-gradient);
+}
+
+.wild-home #signature-work .wild-story-card--feature p.ww-c3 {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+.wild-home #signature-work .wild-story-media-link {
+  display: block;
+  min-width: 0;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wild-home #signature-work .wild-story-media-link .wild-story-media,
+.wild-home #signature-work .wild-story-media-link .wild-story-media > div {
+  height: 100%;
+}
+
+.wild-home #signature-work .wild-story-media-link:focus-visible {
+  outline: 2px solid #f7d9a5;
+  outline-offset: -5px;
+}
+
+/* The Ruins actions hug their labels and sit directly beneath the content. */
+.wild-home #signature-work .wild-story-actions {
+  display: grid;
+  box-sizing: border-box;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, max-content);
+  order: 3;
+  justify-content: center;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+  width: 100%;
+  margin: 0;
+  padding: clamp(1rem, 1.35vw, 1.25rem) clamp(0.75rem, 1.4vw, 1rem) clamp(0.72rem, 1.1vw, 0.9rem);
+  align-self: start;
+}
+
+.wild-home #signature-work .wild-story-actions .wild-story-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  width: auto;
+  min-width: 0;
+  min-height: clamp(2.85rem, 3.35vw, 3rem) !important;
+  margin: 0 !important;
+  padding: 0.54rem clamp(0.82rem, 1.2vw, 1.05rem) !important;
+  border: 1px solid rgba(255, 226, 174, 0.72) !important;
+  border-radius: 0.65rem !important;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem) !important;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.wild-home #signature-work .wild-story-action-icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: 0 0 auto;
+}
+
+.wild-home #signature-work .wild-story-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  cursor: pointer;
+}
+
+.wild-home #signature-work .wild-story-card-link:focus-visible {
+  outline: 2px solid #f7d9a5;
+  outline-offset: -6px;
+}
+
+@media (min-width: 901px) {
+  .wild-home #signature-work .wild-story-card--feature {
+    grid-template-columns: minmax(22rem, 0.78fr) minmax(0, 1.22fr) !important;
+    grid-template-rows: auto auto;
+    min-height: 0;
+    align-items: center;
+  }
+
+  .wild-home #signature-work .wild-story-card--feature .wild-story-copy {
+    order: 1;
+    grid-column: 1;
+    grid-row: 1;
+    align-content: center;
+    padding:
+      clamp(1.6rem, 2.8vw, 2.4rem)
+      clamp(2.25rem, 4vw, 3.5rem)
+      clamp(1.15rem, 2vw, 1.65rem);
+  }
+
+  .wild-home #signature-work .wild-story-card--feature .wild-story-media-link {
+    order: 2;
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    margin: 0;
+    align-self: stretch;
+    z-index: 1;
+  }
+
+  .wild-home #signature-work .wild-story-card--feature .wild-story-media-link .wild-story-media,
+  .wild-home #signature-work .wild-story-card--feature .wild-story-media-link .wild-story-media > div {
+    height: 100%;
+  }
+
+  .wild-home #signature-work .wild-story-card--feature h3 {
+    font-size: clamp(4.5rem, 7.4vw, 6.6rem);
+  }
+
+  .wild-home #signature-work .wild-story-card--feature p {
+    font-size: clamp(1rem, 1.35vw, 1.15rem);
+  }
+
+  .wild-home #signature-work .wild-story-actions {
+    grid-template-columns: repeat(3, max-content);
+    grid-row: 2;
+    z-index: 2;
+  }
+
+  .wild-home #signature-work .wild-story-actions .wild-story-action {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .wild-home #signature-work .wild-story-actions {
+    grid-template-columns: minmax(0, 22rem);
+  }
+
+  .wild-home #signature-work .wild-story-actions .wild-story-action {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+/* G 2026-07-11: warmer amber tone pass. Keep the brown WildWorks identity,
+   but lift the field, cards, and forms out of the heavy dark treatment. */
+:root {
+  --ww-line: rgba(255, 217, 154, 0.42);
+  --ww-panel: rgba(108, 53, 17, 0.58);
+  --ww-box-gradient:
+    radial-gradient(ellipse at 30% 4%, rgba(255, 232, 184, 0.24), transparent 24rem),
+    radial-gradient(ellipse at 82% 16%, rgba(232, 157, 72, 0.2), transparent 27rem),
+    linear-gradient(105deg, rgba(124, 61, 19, 0.62) 0%, rgba(106, 50, 15, 0.62) 52%, rgba(86, 38, 12, 0.66) 100%),
+    linear-gradient(180deg, rgba(110, 52, 16, 0.68) 0%, rgba(82, 35, 10, 0.72) 100%);
+  --ww-chip-gradient:
+    radial-gradient(ellipse at 24% 8%, rgba(255, 232, 184, 0.24), transparent 8rem),
+    radial-gradient(ellipse at 86% 28%, rgba(232, 157, 72, 0.18), transparent 9rem),
+    linear-gradient(105deg, rgba(118, 60, 19, 0.6) 0%, rgba(112, 55, 17, 0.58) 52%, rgba(88, 39, 12, 0.62) 100%);
+  --ww-bg-attachment: fixed;
+  --ww-soft-field:
+    var(--ww-page-background);
+  --ww-soft-field-warm:
+    var(--ww-page-background);
+}
+
+html,
+body {
+  background: var(--ww-page-background) !important;
+}
+
+.wild-site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--ww-page-background);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+html {
+  background: var(--ww-page-base-copper) !important;
+}
+
+body {
+  background: transparent !important;
+}
+
+.wild-home :where(.money-panel, .wild-card, .wild-answer-card, .wild-identity-card, .wild-stat, .wild-project-card, .wild-story-card, .wild-process-step),
+.wild-subpage :where(.money-panel, .wild-card, .wild-answer-card, .wild-stat, .wild-project-card, .wild-story-card, .wild-process-step) {
+  border-color: rgba(255, 217, 154, 0.32) !important;
+  background:
+    radial-gradient(ellipse at 28% 0%, rgba(255, 236, 190, 0.2), transparent 22rem),
+    radial-gradient(ellipse at 88% 12%, rgba(239, 166, 77, 0.17), transparent 24rem),
+    linear-gradient(105deg, rgba(121, 62, 20, 0.48) 0%, rgba(105, 50, 15, 0.5) 52%, rgba(83, 37, 11, 0.56) 100%) !important;
+  box-shadow:
+    0 14px 36px rgba(58, 23, 5, 0.2),
+    0 0 30px rgba(224, 148, 58, 0.06),
+    inset 0 1px 0 rgba(255, 236, 190, 0.16) !important;
+}
+
+.wild-home :where(.money-panel p:not(.money-panel-kicker), .wild-card p, .wild-answer-card p, .wild-story-card p, .wild-process-step p),
+.wild-subpage :where(.money-panel p:not(.money-panel-kicker), .wild-card p, .wild-answer-card p, .wild-story-card p, .wild-process-step p) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+.wild-home .wild-card-icon,
+.wild-subpage .wild-card-icon {
+  border-color: rgba(255, 226, 174, 0.34) !important;
+  background:
+    radial-gradient(circle at 42% 18%, rgba(255, 236, 190, 0.24), transparent 58%),
+    linear-gradient(180deg, rgba(143, 75, 25, 0.64), rgba(111, 52, 16, 0.6)) !important;
+  color: #ffe2ae !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.16),
+    0 10px 24px rgba(54, 21, 4, 0.16) !important;
+}
+
+.wild-signup-title {
+  color: #ffe2ae !important;
+  -webkit-text-fill-color: #ffe2ae !important;
+  text-shadow: 0 2px 14px rgba(54, 21, 4, 0.46);
+}
+
+.wild-signup-choice {
+  border-color: rgba(255, 226, 174, 0.58) !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 236, 190, 0.22), transparent 78%),
+    linear-gradient(180deg, rgba(164, 91, 33, 0.7), rgba(122, 60, 20, 0.68)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.2),
+    0 10px 24px rgba(54, 21, 4, 0.18) !important;
+}
+
+.wild-signup-field {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+.wild-signup-field input {
+  border-color: rgba(255, 226, 174, 0.62) !important;
+  background:
+    linear-gradient(180deg, rgba(143, 75, 25, 0.66), rgba(105, 49, 15, 0.64)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.16),
+    0 8px 20px rgba(54, 21, 4, 0.12) !important;
+}
+
+.wild-signup-field input::placeholder {
+  color: #f7d9a5 !important;
+}
+
+/* Legal/detail pages share the same bright copper system as every public
+   WildWorks subpage; they no longer keep a separate dark walnut material. */
+.wild-home.wild-legal-home {
+  --ww-legal-ink: #f7d9a5;
+  --ww-legal-muted: #f7d9a5;
+  --ww-legal-title: #f7d9a5;
+  --ww-legal-title-2: #d2934a;
+  --ww-legal-accent: #e0a85a;
+  --ww-legal-border: rgba(255, 226, 174, 0.5);
+  background: var(--ww-page-background) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-section {
+  background:
+    radial-gradient(ellipse 52% 32% at 50% 6%, rgba(247, 217, 165, 0.045), transparent 34rem),
+    linear-gradient(90deg, rgba(10, 3, 1, 0.18), transparent 22%, transparent 78%, rgba(10, 3, 1, 0.18)),
+    transparent !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-topbar {
+  border-color: rgba(255, 226, 174, 0.5) !important;
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.16), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.14), transparent 58%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.97) 0%, rgba(195, 91, 39, 0.98) 52%, rgba(186, 82, 33, 0.99) 100%) !important;
+  box-shadow:
+    0 18px 42px rgba(89, 31, 6, 0.28),
+    inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-topbar a:hover,
+.wild-home.wild-legal-home .wild-legal-topbar a:focus-visible {
+  background: rgba(232, 182, 109, 0.14) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-topbar a {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-title {
+  text-shadow:
+    0 0 22px rgba(224, 168, 90, 0.16),
+    0 2px 18px rgba(16, 6, 1, 0.64) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-deck,
+.wild-home.wild-legal-home .wild-legal-date,
+.wild-home.wild-legal-home .wild-legal-note {
+  color: var(--ww-legal-muted) !important;
+  -webkit-text-fill-color: var(--ww-legal-muted) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-meta-row span {
+  border-color: rgba(255, 226, 174, 0.54) !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 231, 175, 0.24), transparent 72%),
+    linear-gradient(145deg, rgba(190, 94, 42, 0.98), rgba(177, 74, 29, 0.99)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 239, 201, 0.28),
+    0 8px 20px rgba(89, 31, 6, 0.22) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-card {
+  border-color: var(--ww-legal-border) !important;
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.16), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.14), transparent 58%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.97) 0%, rgba(195, 91, 39, 0.98) 52%, rgba(186, 82, 33, 0.99) 100%) !important;
+  box-shadow:
+    0 18px 42px rgba(89, 31, 6, 0.28),
+    inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-card-title {
+  text-shadow: 0 2px 16px rgba(16, 6, 1, 0.5) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-copy,
+.wild-home.wild-legal-home .wild-legal-copy :where(p, li, span) {
+  color: var(--ww-legal-ink) !important;
+  -webkit-text-fill-color: var(--ww-legal-ink) !important;
+}
+
+.wild-home.wild-legal-home .wild-legal-index-card:hover,
+.wild-home.wild-legal-home .wild-legal-index-card:focus-visible {
+  border-color: rgba(247, 217, 165, 0.62) !important;
+  box-shadow:
+    0 30px 70px rgba(16, 6, 1, 0.42),
+    0 0 24px rgba(224, 148, 58, 0.055),
+    inset 0 1px 0 rgba(247, 217, 165, 0.18) !important;
+}
+
+/* G 2026-07-11: Home hero text reset. Solid stepped colors, no muddy letter blends. */
+body .wild-home .wild-hero.discordSection .wild-hero-copy {
+  isolation: isolate;
+  gap: clamp(0.34rem, 0.72vw, 0.62rem) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy::before {
+  content: none !important;
+  display: none !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  :where(.wild-hero-wordmark-text, .wild-hero-wordmark-text-orange),
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  :where(.wild-hero-headline__line, .wild-hero-headline__line em, .wild-hero-lede-line, .wild-hero-lede-accent) {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  :where(.wild-hero-wordmark-text, .wild-hero-wordmark-text-orange) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(3.35rem, 6.75vw, 6.75rem) !important;
+  line-height: 0.8 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 247, 213, 0.3),
+    0 0.12rem 0.32rem rgba(7, 2, 0, 0.96),
+    0 0.5rem 1.25rem rgba(7, 2, 0, 0.72) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy h1.wild-hero-headline--solid {
+  max-width: min(100%, 44rem) !important;
+  margin-top: clamp(0.1rem, 0.32vw, 0.28rem) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  line-height: 0.88 !important;
+  text-shadow: none !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--makes-home {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(2.5rem, 4.15vw, 4.75rem) !important;
+  line-height: 0.92 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 247, 213, 0.22),
+    0 0.12rem 0.34rem rgba(7, 2, 0, 0.98),
+    0 0.48rem 1.18rem rgba(7, 2, 0, 0.72) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible,
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible em {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+  font-size: clamp(4rem, 6.75vw, 7.25rem) !important;
+  line-height: 0.76 !important;
+  margin-top: 0.04em !important;
+  letter-spacing: 0 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 224, 160, 0.2),
+    0 0.14rem 0.34rem rgba(7, 2, 0, 0.98),
+    0 0.58rem 1.28rem rgba(7, 2, 0, 0.78),
+    0 0 1.15rem rgba(194, 111, 43, 0.18) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-lede {
+  max-width: min(100%, 42rem) !important;
+  margin-top: clamp(0.9rem, 1.35vw, 1.2rem) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif !important;
+  font-size: clamp(1.42rem, 2.05vw, 1.88rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0 !important;
+  text-shadow:
+    0 0.1rem 0.28rem rgba(7, 2, 0, 0.98),
+    0 0.34rem 1rem rgba(7, 2, 0, 0.7) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line {
+  display: block !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  white-space: nowrap !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line .wild-hero-lede-accent {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font-style: italic;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line--italic {
+  font-style: italic !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1),
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1) .wild-hero-lede-accent {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) .wild-hero-lede-accent {
+  color: #f1c777 !important;
+  -webkit-text-fill-color: #f1c777 !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) {
+  font-size: clamp(1.3rem, 1.89vw, 1.73rem) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: clamp(1.9rem, 2.71vw, 2.48rem) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-unforgettable {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+  margin-top: 0.08em !important;
+  font-size: clamp(2.05rem, 3.65vw, 3.55rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: 0.01em !important;
+  text-shadow:
+    0 1px 0 rgba(255, 218, 147, 0.16),
+    0 0.14rem 0.32rem rgba(7, 2, 0, 0.98),
+    0 0.5rem 1.15rem rgba(7, 2, 0, 0.74) !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
+  margin-top: clamp(0.28rem, 0.48vw, 0.42rem) !important;
+}
+
+@media (max-width: 719px) {
+  body .wild-home .wild-hero.discordSection .wild-hero-copy::before {
+    content: none;
+    display: none;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy
+    :where(.wild-hero-wordmark-text, .wild-hero-wordmark-text-orange) {
+    font-size: clamp(3rem, 13vw, 4.05rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+    .wild-hero-headline__line--makes-home {
+    font-size: clamp(1.72rem, 7.15vw, 2.18rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+    .wild-hero-headline__line--irresistible,
+  body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+    .wild-hero-headline__line--irresistible em {
+    font-size: clamp(2.75rem, 12.05vw, 3.62rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-lede {
+    max-width: min(100%, 22rem) !important;
+    font-size: clamp(0.9rem, 3.75vw, 1.12rem) !important;
+    line-height: 1.18 !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) {
+    font-size: clamp(0.84rem, 3.42vw, 1.04rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
+    font-size: clamp(1.18rem, 4.95vw, 1.44rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-unforgettable {
+    font-size: clamp(1.58rem, 7.25vw, 1.9rem) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection::after {
+    background:
+      radial-gradient(ellipse 86% 62% at 22% 60%, rgba(7, 2, 0, 0.64), rgba(7, 2, 0, 0.36) 46%, transparent 74%),
+      linear-gradient(90deg, rgba(7, 2, 0, 0.68) 0%, rgba(7, 2, 0, 0.4) 50%, rgba(7, 2, 0, 0.12) 75%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, rgba(7, 2, 0, 0.08) 42%, rgba(7, 2, 0, 0.48) 100%) !important;
+  }
+}
+
+/* G 2026-07-12: on phones, show the full WildWorks hero photo side-to-side before text. */
+@media (max-width: 719px) {
+  body .wild-home .wild-hero.discordSection {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    overflow: hidden !important;
+    background:
+      linear-gradient(180deg, rgba(24, 9, 2, 0.98) 0%, rgba(9, 3, 1, 0.98) 100%) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-media,
+  body .wild-home .wild-hero.discordSection .wild-hero-media > div {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 2 !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+    background: #140702 !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-media img {
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.08rem 1rem 1.28rem !important;
+    transform: none !important;
+    align-content: start !important;
+    background:
+      radial-gradient(ellipse 88% 58% at 50% 0%, rgba(247, 217, 165, 0.09), transparent 70%),
+      linear-gradient(180deg, rgba(24, 9, 2, 0.98) 0%, rgba(8, 2, 0, 0.98) 100%) !important;
+    border-top: 1px solid rgba(246, 211, 154, 0.16) !important;
+  }
+}
+
+/* Final public-route override, intentionally after historical theme rules. */
+:is(.wild-subpage, .wild-home.wild-legal-home) {
+  background: transparent !important;
+  color: #f7d9a5;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, p, li, .wild-kicker, .wild-card-cta, .wild-line-title__line, .wildfire-hero-headline__line, .wildfire-origin-title > span) {
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  background-image: none !important;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(p, li, .wild-legal-copy, .wild-legal-copy span, .wild-card-cta) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
+}
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
+}
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c1 { color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; }
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }
+.wild-subpage--wildfire .wildfire-hero-copy {
+  background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
+}
+.wild-subpage--wildfire .wildfire-hero-copy :is(h1, p, .wildfire-hero-headline__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 2px 4px rgba(48, 14, 2, 0.78) !important;
+}
+
+/* Shared signup and Home concierge type are content, not a logo treatment. */
+:is(.wild-home, .wild-subpage) .wild-signup-title,
+.wild-home :is(.wild-iscott-title__row, .wild-iscott-body, .wild-start-title, .wild-live-avatar-loading__name) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
+}
+
+.wild-home :is(.wild-iscott-body, .money-panel-kicker) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* Keep the iScott introduction legible against its copper field, especially on phones. */
+.wild-home #iscott-sales :is(
+  .wild-kicker,
+  .wild-iscott-title__segment,
+  .wild-iscott-body,
+  .wild-iscott-steps-inline span,
+  .wild-iscott-steps-inline p
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82) !important;
+}
+
+/* G 2026-07-26: signup typography and controls use only the permanent 1 / 2 / 3 brand colors. */
+#footer .wild-signup-title {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+#footer .wild-signup-field {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+#footer :is(.wild-signup-consent, .wild-signup-fine-print) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-weight: 700 !important;
+}
+
+#footer .wild-signup-field input {
+  border-color: rgba(247, 217, 165, 0.62) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 227, 172, 0.28), transparent 42%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.96), rgba(195, 91, 39, 0.97) 52%, rgba(186, 82, 33, 0.98)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.2),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+}
+
+#footer .wild-signup-field input::placeholder {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* Keep the signup response as a copper call-to-action card. The broader
+   paragraph reset intentionally strips decorative backgrounds elsewhere. */
+#footer .wild-signup-status {
+  border-color: rgba(255, 226, 174, 0.58) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 227, 172, 0.34), transparent 38%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.97), rgba(195, 91, 39, 0.98) 52%, rgba(186, 82, 33, 0.99)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* G 2026-07-26: signup actions use the approved Upload Photos or Videos
+   gold material with its legible dark-ink label and icon treatment. */
+#footer :is(
+    .wild-signup-choice-button,
+    .wild-signup-choice-button span,
+    .wild-signup-choice-button svg,
+    .wild-signup-submit,
+    .wild-signup-submit span,
+    .wild-signup-submit svg
+  ) {
+  color: var(--ww-dark-text) !important;
+  -webkit-text-fill-color: var(--ww-dark-text) !important;
+  text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+}
+
+#footer :is(.wild-signup-choice-button, .wild-signup-submit) {
+  border-color: rgba(255, 226, 174, 0.72) !important;
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.015em !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+}
+
+#footer .wild-signup-submit {
+  min-height: 64px !important;
+  font-size: clamp(1.18rem, 1.8vw, 1.5rem) !important;
+}
+
+/* G 2026-07-25: Home hero uses the permanent Color 1 / 2 / 3 key twice.
+   Big lines: WildWorks / Makes Your Home / Legendary.
+   Small lines: By Creating / And Solving / Anywhere on Planet Earth. */
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  :where(.wild-hero-wordmark-text, .wild-hero-wordmark-text-orange) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--makes-home {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible,
+body .wild-home .wild-hero.discordSection .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible em {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1),
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  .wild-hero-lede-line:nth-child(1) .wild-hero-lede-accent {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  .wild-hero-lede-line:nth-child(2) .wild-hero-lede-accent {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3),
+body .wild-home .wild-hero.discordSection .wild-hero-copy
+  .wild-hero-lede-line:nth-child(3) .wild-hero-lede-accent {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+/* G 2026-07-26: phone hero gaps use the same universal copper canvas. There
+   is no phone-only brown/black background exception. */
+@media (max-width: 719px) {
+  body .wild-home .wild-hero.discordSection,
+  body .wild-home .wild-hero.discordSection .wild-hero-media,
+  body .wild-home .wild-hero.discordSection .wild-hero-media > div {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* Taper the three small lines without reducing their height:
+     line 1 stays full width, line 2 comes in slightly, line 3 comes in more. */
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line {
+    width: max-content !important;
+    max-width: 100% !important;
+    transform-origin: left center !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) {
+    transform: scaleX(0.96) !important;
+  }
+
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
+    transform: scaleX(0.92) !important;
+  }
+}
+
+/* G 2026-07-26: one copper/orange canvas on every public page and all five
+   standard device formats. Page and section wrappers stay transparent so the
+   fixed center glimmer is continuous from top to bottom. Cards, controls,
+   photographs, and image overlays retain their intentional materials. */
+html,
+body,
+body .wild-site-backdrop {
+  background: var(--ww-page-background) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+body .wild-site-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+}
+
+body :is(.wild-home, .wild-subpage),
+body :is(.wild-home, .wild-subpage) > :is(section, main),
+body .wild-home.wild-legal-home .wild-legal-section,
+body .wild-subpage .wild-subpage-section,
+body footer.discordSection {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* G 2026-07-25: phone Home surfaces stay in the WildWorks gold/amber family.
+   Remove the near-black falloff that was muddying the bottom of the iScott card. */
+@media (max-width: 719px) {
+  body #top#top.wild-home {
+    --ww-box-gradient:
+      radial-gradient(ellipse at 24% 2%, rgba(255, 240, 189, 0.3), transparent 24rem),
+      radial-gradient(ellipse at 88% 96%, rgba(224, 168, 90, 0.18), transparent 28rem),
+      linear-gradient(145deg, rgba(196, 142, 66, 0.94) 0%, rgba(166, 96, 31, 0.95) 56%, rgba(126, 63, 16, 0.97) 100%);
+  }
+
+  body #top#top.wild-home #iscott-sales
+    #talk-to-iscott.money-panel.wild-iscott-panel {
+    border-color: rgba(255, 239, 202, 0.56) !important;
+    background:
+      radial-gradient(ellipse at 24% 0%, rgba(255, 216, 151, 0.26), transparent 52%),
+      radial-gradient(ellipse at 88% 100%, rgba(232, 137, 61, 0.2), transparent 58%),
+      linear-gradient(145deg, rgba(216, 132, 67, 0.88) 0%, rgba(198, 111, 52, 0.92) 52%, rgba(183, 91, 40, 0.96) 100%) !important;
+    box-shadow:
+      0 18px 42px rgba(66, 27, 5, 0.3),
+      0 0 28px rgba(224, 168, 90, 0.13),
+      inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+  }
+
+body #top#top.wild-home #iscott-sales
+    :is(.wild-iscott-upload__status, #talk-to-iscott > p:last-child) {
+    color: #f7d9a5 !important;
+    -webkit-text-fill-color: #f7d9a5 !important;
+    text-shadow:
+      0 1px 0 rgba(82, 35, 7, 0.56),
+      0 2px 7px rgba(49, 18, 3, 0.72) !important;
+  }
+}
+
+/* Shared WildWorks card language: the iScott panel's clear gold-to-copper
+   surface now carries the site's other reading cards as well. */
+body :is(.wild-home, .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-answer-card,
+  .wild-identity-card,
+  .wild-stat
+) {
+  border-color: rgba(255, 239, 202, 0.56) !important;
+  background:
+    radial-gradient(ellipse at 24% 0%, rgba(255, 216, 151, 0.26), transparent 52%),
+    radial-gradient(ellipse at 88% 100%, rgba(232, 137, 61, 0.2), transparent 58%),
+    linear-gradient(145deg, rgba(216, 132, 67, 0.88) 0%, rgba(198, 111, 52, 0.92) 52%, rgba(183, 91, 40, 0.96) 100%) !important;
+  box-shadow:
+    0 18px 42px rgba(66, 27, 5, 0.3),
+    0 0 28px rgba(224, 168, 90, 0.13),
+    inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+}
+
+/* Project Wildfire's story sequence keeps the Color 1 / 2 / 3 hierarchy;
+   contrast comes from the shared shadow, not from turning every line white. */
+body .wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-build-note__line
+) {
+  text-shadow:
+    0 2px 5px rgba(42, 12, 2, 0.82),
+    0 0 0.8rem rgba(116, 46, 11, 0.28) !important;
+}
+
+body .wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line--patio,
+  .wild-wildfire-build-note__line:nth-child(1)
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line--lounge,
+  .wild-wildfire-build-note__line:nth-child(2)
+) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body .wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line--going,
+  .wild-wildfire-build-note__line:nth-child(3)
+) {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+/* The footer closes with an invitation to act, not a generic contact list. */
+footer.discordSection .wild-footer-contact-cta {
+  width: min(100% - 2rem, 48rem);
+  margin-inline: auto;
+  padding: clamp(1.35rem, 3vw, 2.4rem);
+  border: 1px solid rgba(255, 239, 202, 0.56);
+  border-radius: 0.85rem;
+  background:
+    radial-gradient(ellipse at 24% 0%, rgba(255, 216, 151, 0.26), transparent 52%),
+    radial-gradient(ellipse at 88% 100%, rgba(232, 137, 61, 0.2), transparent 58%),
+    linear-gradient(145deg, rgba(216, 132, 67, 0.88) 0%, rgba(198, 111, 52, 0.92) 52%, rgba(183, 91, 40, 0.96) 100%);
+  box-shadow:
+    0 18px 42px rgba(66, 27, 5, 0.3),
+    0 0 28px rgba(224, 168, 90, 0.13),
+    inset 0 1px 0 rgba(255, 243, 213, 0.36);
+  text-align: center;
+}
+
+footer.discordSection .wild-footer-contact-cta__kicker {
+  margin: 0 0 0.35rem;
+  color: #f7d9a5 !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+footer.discordSection .wild-footer-contact-cta__title {
+  margin: 0;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(1.7rem, 4.75vw, 3.35rem);
+  line-height: 0.98;
+  white-space: nowrap;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82);
+}
+
+footer.discordSection .wild-footer-contact-cta__copy {
+  max-width: 36rem;
+  margin: 0.85rem auto 0;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(1rem, 2.5vw, 1.18rem);
+  line-height: 1.45;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+}
+
+footer.discordSection .wild-footer-contact-cta__prompt {
+  max-width: 38rem;
+  margin: 0.55rem auto 0;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+}
+
+footer.discordSection .wild-footer-contact-cta__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+}
+
+footer.discordSection .wild-footer-contact-cta__actions .money-cta {
+  min-height: 3.5rem;
+  padding-inline: 0.75rem;
+  font-size: clamp(0.88rem, 2vw, 1rem);
+}
+
+footer.discordSection .wild-footer-contact-cta__secondary {
+  margin: 1rem 0 0;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+}
+
+footer.discordSection .wild-footer-social-cta {
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+}
+
+/* Color 3 is an accent, never a disappearing line. Match the Home hero's
+   bright copper and strong separation wherever a semantic third line appears. */
+body :is(
+  .ww-c3,
+  .wild-line-title__line--three,
+  .wildfire-hero-headline__line--c3,
+  .wild-wildfire-sequence-callout__line--going
+) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 224, 160, 0.2),
+    0 0.14rem 0.34rem rgba(7, 2, 0, 0.98),
+    0 0.58rem 1.28rem rgba(7, 2, 0, 0.78),
+    0 0 1.15rem rgba(194, 111, 43, 0.18) !important;
+}
+
+/* Color 1 is the universal reading color. Small copy must never compete with
+   the copper canvas through a darker decorative shade. */
+body :is(.wild-home, .wild-subpage) :is(
+  p,
+  li,
+  label,
+  .wild-body,
+  .wild-kicker,
+  .money-panel-kicker,
+  .wild-stat span,
+  .wild-card p,
+  .wild-project-card p,
+  .wild-story-card p,
+  .wild-process-step p,
+  .wild-answer-card p,
+  .wild-check-list li,
+  .wild-iscott-disclosure,
+  .wild-iscott-upload__status
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72) !important;
+}
+
+/* Final iScott reading lock: every small word in this high-traffic section
+   uses Color 1, including step numbers and concierge/disclosure copy. */
+body .wild-home #iscott-sales :is(
+  .wild-kicker,
+  p,
+  li,
+  .money-step-list > div > span,
+  .money-step-list p,
+  .money-panel-kicker,
+  .wild-iscott-disclosure,
+  .wild-iscott-upload__status
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.76) !important;
+}
+
+footer.discordSection :is(p, label, .wild-footer-legal-link) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72) !important;
+}
+
+/* Gold controls use one shared walnut-copper ink, never black. */
+body :is(.wild-home, .wild-subpage, footer.discordSection) :is(
+  .money-cta,
+  .wild-mobile-menu-button,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-mobile-link,
+  .wild-brand-social-link,
+  .wild-logo-download-button,
+  .wild-signup-submit,
+  .wild-signup-choice-button,
+  button,
+  input,
+  select,
+  textarea
+),
+body :is(.wild-home, .wild-subpage, footer.discordSection) :is(
+  .money-cta,
+  .wild-mobile-menu-button,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-mobile-link,
+  .wild-brand-social-link,
+  .wild-logo-download-button,
+  .wild-signup-submit,
+  .wild-signup-choice-button,
+  button
+) :is(span, strong, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+}
+
+/* The iScott panel stays consistently in its deep copper material. */
+body #top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
+  background:
+    linear-gradient(145deg, rgba(190, 96, 43, 0.98) 0%, rgba(186, 93, 41, 0.98) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+}
+
+/* Mobile navigation belongs to the same copper world as the rest of the site. */
+body .wild-mobile-menu {
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.1), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.1), transparent 58%),
+    linear-gradient(145deg, rgba(190, 96, 43, 0.99) 0%, rgba(186, 93, 41, 0.99) 52%, rgba(183, 91, 40, 0.99) 100%) !important;
+}
+
+body .wild-mobile-menu > div {
+  border-color: rgba(255, 239, 202, 0.42) !important;
+}
+
+body .wild-mobile-menu .wild-mobile-nav-link {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.76) !important;
+}
+
+/* One shared WildWorks card material: rich copper with a restrained glimmer. */
+body :is(.wild-home, .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-answer-card,
+  .wild-identity-card,
+  .wild-stat
+) {
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
+    linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+}
+
+footer.discordSection .wild-footer-contact-cta {
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
+    linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+}
+
+@media (max-width: 640px) {
+  footer.discordSection .wild-footer-contact-cta {
+    width: calc(100% - 2rem);
+  }
+
+  footer.discordSection .wild-footer-contact-cta__title {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  footer.discordSection .wild-footer-contact-cta__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 719px) {
+  /* Let Project Wildfire's phone hero meet the shared copper page field with
+     enough air below its now button-free description. */
+  .wild-subpage--wildfire .wildfire-hero-copy {
+    padding-bottom: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Let the final Patio line land with the same deliberate Color 3 finish
+     while keeping the quote and its first two payoff lines unchanged. */
+  .wild-subpage--wildfire .wildfire-origin-title > .ww-c3:last-child {
+    margin-top: 0.06em;
+    color: #c87936 !important;
+    -webkit-text-fill-color: #c87936 !important;
+    font-size: 1.15em;
+    font-style: italic;
+    font-weight: 850;
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+    text-shadow:
+      0 1px 0 rgba(255, 229, 176, 0.28),
+      0 2px 5px rgba(68, 21, 3, 0.9),
+      0 0 0.85rem rgba(200, 121, 54, 0.28) !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+    font-size: clamp(1.72rem, 5vw, 3.95rem) !important;
+    font-weight: 850 !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-build-note__line {
+    font-size: 1.4rem !important;
+  }
+
+  /* On the brighter phone canvas, the desktop Color 3 is too low-contrast
+     for a full headline line. Preserve the hierarchy with warmth and weight,
+     not by letting its final line disappear. */
+  body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--two {
+    color: #f7d9a5 !important;
+    -webkit-text-fill-color: #f7d9a5 !important;
+  }
+
+  body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--three {
+    color: #f7d9a5 !important;
+    -webkit-text-fill-color: #f7d9a5 !important;
+    font-weight: 850 !important;
+    text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82) !important;
+  }
+}
+
+/* Every expanded-image view—Bio, The Ruins, I Sell, Wildfire, and galleries—
+   shares the same bright copper field. This late lock prevents an older
+   lightbox material from quietly returning to muddy brown on a subpage. */
+body :is(.wild-image-lightbox, .wildfire-lightbox, .wild-branded-lightbox).discordSection--lightbox {
+  background:
+    radial-gradient(ellipse 118% 82% at 50% 18%, rgba(255, 211, 139, 0.22) 0%, rgba(255, 154, 72, 0.12) 46%, transparent 72%),
+    linear-gradient(90deg, #ad461b 0%, #bd5425 22%, #cc6734 50%, #bd5425 78%, #ad461b 100%) !important;
+}
+
+body :is(.wild-image-lightbox__stage, .wildfire-lightbox-image, .wild-branded-lightbox-stage) {
+  background:
+    radial-gradient(ellipse 96% 60% at 50% 18%, rgba(255, 204, 130, 0.16), transparent 68%),
+    linear-gradient(180deg, rgba(211, 108, 54, 0.98), rgba(183, 73, 29, 0.99)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 218, 151, 0.16),
+    0 24px 60px rgba(89, 31, 6, 0.3) !important;
+}
+
+body :is(.wild-image-lightbox__bar, .wildfire-lightbox-bar, .wild-branded-lightbox-bar) {
+  background:
+    radial-gradient(ellipse at 24% 0%, rgba(255, 226, 171, 0.22), transparent 58%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.98) 0%, rgba(195, 91, 39, 0.99) 52%, rgba(186, 82, 33, 0.99) 100%) !important;
+  box-shadow: 0 12px 32px rgba(89, 31, 6, 0.28), inset 0 1px 0 rgba(255, 239, 201, 0.3) !important;
+}
+
+/* Legal pages are public subpages too: use the shared copper material rather
+   than the retired dark walnut panels. Color 1 remains the reading color. */
+body .wild-home.wild-legal-home {
+  --ww-legal-ink: #f7d9a5;
+  --ww-legal-muted: #f7d9a5;
+  --ww-legal-border: rgba(255, 226, 174, 0.5);
+  background: var(--ww-page-background) !important;
+}
+
+body .wild-home.wild-legal-home .wild-legal-topbar,
+body .wild-home.wild-legal-home .wild-legal-card {
+  border-color: rgba(255, 226, 174, 0.5) !important;
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.16), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.14), transparent 58%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.97) 0%, rgba(195, 91, 39, 0.98) 52%, rgba(186, 82, 33, 0.99) 100%) !important;
+  box-shadow:
+    0 18px 42px rgba(89, 31, 6, 0.28),
+    inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+}
+
+body .wild-home.wild-legal-home .wild-legal-topbar a,
+body .wild-home.wild-legal-home :is(.wild-legal-deck, .wild-legal-date, .wild-legal-note, .wild-legal-copy, .wild-legal-copy :where(p, li, span)) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body .wild-home.wild-legal-home .wild-legal-meta-row span {
+  border-color: rgba(255, 226, 174, 0.54) !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 231, 175, 0.24), transparent 72%),
+    linear-gradient(145deg, rgba(190, 94, 42, 0.98), rgba(177, 74, 29, 0.99)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 239, 201, 0.28),
+    0 8px 20px rgba(89, 31, 6, 0.22) !important;
+}
+
+/* The footer email/SMS fields must keep their copper material when Chrome
+   supplies a saved value. WebKit otherwise paints an opaque light autofill
+   rectangle over the field, even though the normal and focused states are
+   already branded. */
+body:has(#top.wild-home) #footer .wild-signup-field input {
+  appearance: none;
+  -webkit-appearance: none;
+  color-scheme: dark;
+  border-color: rgba(232, 182, 109, 0.74) !important;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(255, 227, 172, 0.28), transparent 42%),
+    radial-gradient(ellipse at 86% 100%, rgba(200, 121, 54, 0.16), transparent 62%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.96), rgba(195, 91, 39, 0.97) 52%, rgba(186, 82, 33, 0.98)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  caret-color: #e8b66d !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+}
+
+body:has(#top.wild-home) #footer .wild-signup-field input::placeholder {
+  color: rgba(247, 217, 165, 0.76) !important;
+  -webkit-text-fill-color: rgba(247, 217, 165, 0.76) !important;
+  opacity: 1;
+}
+
+body:has(#top.wild-home) #footer .wild-signup-field input:focus,
+body:has(#top.wild-home) #footer .wild-signup-field input:focus-visible {
+  border-color: #f7d9a5 !important;
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 243, 213, 0.3),
+    0 0 0 3px rgba(232, 182, 109, 0.22),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+}
+
+body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill,
+body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:hover,
+body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:focus,
+body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:active {
+  -webkit-text-fill-color: #f7d9a5 !important;
+  caret-color: #e8b66d !important;
+  background-color: #b85a2a !important;
+  -webkit-box-shadow:
+    0 0 0 1000px #b85a2a inset,
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+  box-shadow:
+    0 0 0 1000px #b85a2a inset,
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* Project Wildfire follows the same clear photo-then-copper-content rhythm
+   as the rest of the site. The night image stays a photograph, never a
+   tinted text backdrop. */
+.wild-subpage--wildfire .wildfire-hero {
+  display: block;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+
+.wild-subpage--wildfire .wildfire-hero::after {
+  display: none;
+}
+
+.wild-subpage--wildfire .wildfire-hero-media,
+.wild-subpage--wildfire .wildfire-hero-media > div {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9 !important;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy {
+  position: relative;
+  z-index: auto;
+  width: 100%;
+  padding: clamp(2.75rem, 5vw, 5.5rem) clamp(1rem, 4vw, 4rem) clamp(3rem, 6vw, 5rem);
+}
+
+/* Project Wildfire's photograph now hands off directly to the shared copper
+   field. The old full-width dark overlay left a large empty right half and
+   visually pulled the Build Journal up into the hero. */
+.wild-subpage--wildfire .wildfire-hero-copy {
+  top: auto !important;
+  bottom: auto !important;
+  background: transparent !important;
+}
+
+@media (min-width: 720px) {
+  .wild-subpage--wildfire .wildfire-hero-copy {
+    width: min(100%, 76rem);
+    margin-inline: auto;
+    padding-inline: clamp(1.5rem, 4vw, 4rem);
+    text-align: center;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy h1,
+  .wild-subpage--wildfire .wildfire-hero-copy .wild-body {
+    margin-inline: auto;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy h1 {
+    max-width: 18ch;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy .wild-body {
+    max-width: 56rem;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 719px) {
+  /* A gentle crop removes the source photo's black utility strip at the
+     extreme left while preserving the fireplace and the stone work. */
+  .wild-subpage--wildfire .wildfire-hero-media > div {
+    aspect-ratio: 3 / 2 !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-media img {
+    object-position: 58% center;
+  }
+
+  /* The I Sell contact close should read as one compact invitation before
+     the signup system: keep the phone number intact, then balance the
+     signature, social links, and signup heading. */
+  .wild-subpage--sell .wild-sell-phone {
+    margin-top: 1.4rem !important;
+    margin-bottom: 0.55rem !important;
+    font-size: clamp(2.15rem, 9vw, 2.65rem) !important;
+    line-height: 1.05 !important;
+    white-space: nowrap;
+  }
+
+  .wild-subpage--sell .wild-sell-signature {
+    margin-bottom: 1.25rem !important;
+    font-size: clamp(2.55rem, 10.5vw, 3.25rem) !important;
+    line-height: 1 !important;
+  }
+
+  .wild-subpage.wild-subpage--sell {
+    padding-bottom: 0.5rem !important;
+  }
+
+  body:has(.wild-subpage--sell) footer#footer {
+    margin-top: 0 !important;
+  }
+
+  body:has(.wild-subpage--sell) footer#footer > div.mx-auto {
+    padding-top: 1rem !important;
+  }
+}
+
+/* Signup fields are shared footer controls, not Home-only controls. Keep both
+   typed and browser-autofilled values inside the WildWorks copper material on
+   every route. */
+footer#footer .wild-signup-field input {
+  appearance: none;
+  -webkit-appearance: none;
+  color-scheme: dark;
+  border-color: rgba(232, 182, 109, 0.74) !important;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(255, 227, 172, 0.28), transparent 42%),
+    radial-gradient(ellipse at 86% 100%, rgba(200, 121, 54, 0.16), transparent 62%),
+    linear-gradient(145deg, rgba(207, 109, 53, 0.96), rgba(195, 91, 39, 0.97) 52%, rgba(186, 82, 33, 0.98)) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  caret-color: #e8b66d !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+}
+
+footer#footer .wild-signup-field input::placeholder {
+  color: rgba(247, 217, 165, 0.76) !important;
+  -webkit-text-fill-color: rgba(247, 217, 165, 0.76) !important;
+  opacity: 1;
+}
+
+footer#footer .wild-signup-field input:focus,
+footer#footer .wild-signup-field input:focus-visible {
+  border-color: #f7d9a5 !important;
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 243, 213, 0.3),
+    0 0 0 3px rgba(232, 182, 109, 0.22),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+}
+
+footer#footer .wild-signup-field input:-webkit-autofill,
+footer#footer .wild-signup-field input:-webkit-autofill:hover,
+footer#footer .wild-signup-field input:-webkit-autofill:focus,
+footer#footer .wild-signup-field input:-webkit-autofill:active {
+  -webkit-text-fill-color: #f7d9a5 !important;
+  caret-color: #e8b66d !important;
+  background-color: #b85a2a !important;
+  -webkit-box-shadow:
+    0 0 0 1000px #b85a2a inset,
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+  box-shadow:
+    0 0 0 1000px #b85a2a inset,
+    inset 0 1px 0 rgba(255, 236, 190, 0.24),
+    0 8px 20px rgba(86, 34, 8, 0.18) !important;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* Final Project Wildfire desktop/mobile handoff: keep the completed-night
+   photo clear, then continue in the approved warm copper field rather than
+   creating a dark, half-empty hero panel. */
+.wild-subpage--wildfire .wildfire-hero-copy {
+  top: auto !important;
+  bottom: auto !important;
+  background: transparent !important;
+}
+
+@media (min-width: 720px) {
+  .wild-subpage--wildfire .wildfire-hero-copy {
+    width: min(100%, 76rem) !important;
+    margin-inline: auto !important;
+    padding-inline: clamp(1.5rem, 4vw, 4rem) !important;
+    text-align: center !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy h1,
+  .wild-subpage--wildfire .wildfire-hero-copy .wild-body {
+    margin-inline: auto !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy h1 {
+    max-width: 18ch !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-copy .wild-body {
+    max-width: 56rem !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-actions {
+    justify-content: center !important;
+  }
+}
+
+/* G: give every large display line on The Ruins, I Sell, and Bio the same
+   Color 1 plus dimensional dark-shadow language as the WildWorks logo.
+   Keep this route-scoped so body copy, cards, buttons, legal pages, and the
+   rest of the site retain their established treatments. */
+body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section.wild-subpage-section :is(h1, h2),
+body .wild-subpage--sell.wild-subpage--sell .wild-subpage-section.wild-subpage-section :is(h1, h2),
+body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-section :is(h1, h2),
+body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-section p.wild-brand-cta-big,
+body :is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio)
+  :is(.wild-brand-phone, .wild-brand-cta-big, .wild-sell-phone, .wild-sell-signature) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow:
+    0 clamp(3px, 0.38vw, 5px) 0 rgba(50, 16, 5, 0.78),
+    0 0.38rem 0.58rem rgba(74, 31, 9, 0.32) !important;
+}
+
+body .wild-subpage--ruins.wild-subpage--ruins
+  .wild-subpage-section.wild-subpage-section :is(h1, h2) {
+  text-align: left !important;
+}
+
+/* Keep the editorial contact close consistent on the three narrative
+   subpages. */
+.wild-subpage-iscott-cta {
+  display: flex;
+  justify-content: center;
+  margin: clamp(0.9rem, 2vw, 1.35rem) 0;
+}
+
+.wild-subpage-iscott-cta .money-cta {
+  min-width: min(100%, 13rem);
+}
+
+body .wild-subpage .wild-brand-phone {
+  font-size: clamp(2.15rem, 4vw, 3rem) !important;
+  line-height: 1.05 !important;
+}
+
+/* Home statement between the visual hero and the iScott concierge. */
+body #top.wild-home .wild-home-statement {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(2.4rem, 4vw, 3.25rem);
+  background: transparent;
+  text-align: center;
+}
+
+body #top.wild-home .wild-home-statement__title {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  max-width: min(100%, 32ch);
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2.55rem, 4.35vw, 5.2rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(63, 21, 4, 0.46);
+}
+
+body #top.wild-home .wild-home-statement__line {
+  display: block;
+  min-width: 0;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+body #top.wild-home .wild-home-statement__phrase {
+  display: inline;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+body #top.wild-home .wild-home-statement__line--one {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body #top.wild-home .wild-home-statement__line--one .wild-home-statement__phrase {
+  display: block;
+}
+
+body #top.wild-home .wild-home-statement__line--two {
+  margin-top: 0.32em;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body #top.wild-home .wild-home-statement__line--four {
+  margin-top: 0.48em;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+/* Match the approved top-logo cream-and-gold treatment across the entire
+   mid-page WildWorks wordmark and flourish. */
+body #top.wild-home .wild-home-statement__brand-lockup {
+  --ww-brand-lockup-scale: 1.133;
+  --ww-brand-lockup-shadow-scale: 1.138;
+  display: block;
+  width: min(100%, 60rem);
+  aspect-ratio: 1058 / 215;
+  margin: clamp(1.2rem, 2.4vw, 2rem) auto 0;
+  justify-self: center;
+  position: relative;
+  isolation: isolate;
+  background: none !important;
+  background-image: none !important;
+}
+
+body #top.wild-home .wild-home-statement__brand-lockup::before,
+body #top.wild-home .wild-home-statement__brand-lockup::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: url("/wildworks-live-logo-transparent-living-v13.png");
+  mask-image: url("/wildworks-live-logo-transparent-living-v13.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
+  -webkit-mask-position: center 14.9%;
+  mask-position: center 14.9%;
+  pointer-events: none;
+}
+
+body #top.wild-home .wild-home-statement__brand-lockup::before {
+  z-index: 0;
+  background: #321005 !important;
+  background-image: none !important;
+  opacity: 0.78;
+  transform: translateY(clamp(3px, 0.38vw, 5px)) scale(var(--ww-brand-lockup-shadow-scale));
+  transform-origin: center;
+}
+
+body #top.wild-home .wild-home-statement__brand-lockup::after {
+  z-index: 1;
+  background: #f7d9a5 !important;
+  background-image: none !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
+  transform: scale(var(--ww-brand-lockup-scale));
+  transform-origin: center;
+}
+
+body .wild-home-hero-stonework-note {
+  width: max-content;
+  max-width: calc(100% - 1rem);
+  margin: clamp(0.4rem, 1vw, 0.65rem) auto 0;
+  padding: 0;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(0.72rem, 0.95vw, 0.84rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  text-align: center;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.72);
+  white-space: nowrap;
+}
+
+@media (max-width: 719px) {
+  body #top.wild-home .wild-home-statement {
+    padding: clamp(2.15rem, 10vw, 3.25rem) 1.25rem 2.5rem;
+  }
+
+  body #top.wild-home .wild-home-statement__title {
+    max-width: 19ch;
+    font-size: clamp(1.75rem, 7.8vw, 2.4rem);
+    line-height: 0.96;
+  }
+
+  body #top.wild-home .wild-home-statement__phrase {
+    display: block;
+    white-space: nowrap;
+  }
+
+  body #top.wild-home .wild-home-statement__line--four {
+    margin-top: 0.5em;
+    font-size: 0.72em;
+  }
+
+  body #top.wild-home .wild-home-statement__brand-lockup {
+    --ww-brand-lockup-scale: 1.096;
+    --ww-brand-lockup-shadow-scale: 1.101;
+    width: 100%;
+    margin-top: 1.15rem;
+    margin-inline: auto;
+    justify-self: center;
+  }
+
+  body .wild-home-hero-stonework-note {
+    width: max-content;
+    max-width: calc(100% - 1rem);
+    margin-top: 0.45rem;
+    margin-bottom: 0;
+    font-size: clamp(0.68rem, 2.75vw, 0.78rem);
+    white-space: nowrap;
+  }
+
+}
+
+@media (max-width: 359px) {
+  body .wild-home-hero-stonework-note {
+    width: calc(100% - 1rem);
+    white-space: normal;
+  }
+}
+
+/* The authenticity line is a visible trust statement on every nonlegal page,
+   directly above the WildWorks copyright. */
+#footer .wild-footer-stonework-note {
+  margin: clamp(1.3rem, 2.2vw, 1.75rem) auto clamp(1.5rem, 2.6vw, 2rem);
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2.1rem, 3.8vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+  white-space: nowrap;
+}
+
+@media (max-width: 1440px) {
+  #footer .wild-footer-stonework-note {
+    max-width: min(100%, 68rem);
+    padding-inline: 1rem;
+    text-wrap: balance;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 1024px) {
+  #footer .wild-footer-stonework-note {
+    max-width: min(100%, 54rem);
+    padding-inline: 1rem;
+    text-wrap: balance;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 719px) {
+  #footer .wild-footer-stonework-note {
+    font-size: clamp(1.85rem, 7.5vw, 2.1rem);
+    white-space: normal;
   }
 }

@@ -1,9 +1,10 @@
-const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
+﻿const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
+const LOCAL_AVATAR_ASSET_PREFIX = "/pages/avatar-iscott-assets/_next/";
 
 export const dynamic = "force-dynamic";
 
 const sparkleIcon =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23130803' stroke-width='2.35' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M7 5H3'/%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2388421f' stroke-width='2.35' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M7 5H3'/%3E%3C/svg%3E";
 
 const wildWorksButtonCss = `
   <style id="wildworks-avatar-button-style">
@@ -15,6 +16,71 @@ const wildWorksButtonCss = `
       --ww-avatar-honey: #e0a85a;
       --ww-avatar-parchment: #f3cf92;
       --ww-avatar-cream: #f7d9a5;
+      --ww-avatar-button-ink: #88421f;
+    }
+
+    html,
+    body,
+    #__next {
+      min-height: 100% !important;
+      background:
+        radial-gradient(ellipse 94% 62% at 50% 0%, rgba(255, 231, 175, 0.32), transparent 66%),
+        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200, 121, 54, 0.28), transparent 72%),
+        linear-gradient(155deg, #cf7140 0%, #bd5929 52%, #a54219 100%) !important;
+      color: var(--ww-avatar-parchment) !important;
+    }
+
+    body {
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    body::before {
+      content: "Loading iScott" !important;
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      padding-bottom: 0 !important;
+      color: #f7d9a5 !important;
+      -webkit-text-fill-color: #f7d9a5 !important;
+      background: none !important;
+      font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
+      font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
+      font-weight: 800 !important;
+      font-style: italic !important;
+      letter-spacing: -0.025em !important;
+      line-height: 0.95 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      text-shadow: 0 1px 0 rgba(255, 239, 201, 0.22), 0 2px 18px rgba(73, 23, 4, 0.42) !important;
+    }
+
+    body > :not(script):not(style) {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
+    /* The remote app briefly mounts a dark start-screen layer. WildWorks owns
+       the loading experience, so keep that entire phase on the orange field. */
+    [class*="bg-black"],
+    [class*="bg-neutral-950"],
+    [class*="bg-zinc-950"],
+    [class*="bg-stone-950"],
+    [style*="background: black"],
+    [style*="background-color: black"],
+    [style*="background-color: rgb(0, 0, 0)"] {
+      background:
+        radial-gradient(ellipse 82% 58% at 50% 22%, rgba(255, 231, 175, 0.34), rgba(232, 182, 109, 0.16) 44%, transparent 74%),
+        linear-gradient(155deg, #d97b42 0%, #c96731 52%, #b95022 100%) !important;
+    }
+
+    video,
+    canvas {
+      background: transparent !important;
     }
 
     .btn-wood,
@@ -28,17 +94,24 @@ const wildWorksButtonCss = `
       gap: 0.55rem !important;
       border: 1px solid rgba(246, 211, 154, 0.36) !important;
       border-radius: 8px !important;
-      background: linear-gradient(180deg, #fff0bd 0%, #f7d9a5 22%, #e0a85a 48%, #a86d35 76%, #7b471c 100%) !important;
+      background:
+        radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #71350f 100%) !important;
       padding: 0.85rem 1rem !important;
-      color: #130803 !important;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-      font-size: 1.05rem !important;
-      font-weight: 700 !important;
+      color: var(--ww-avatar-button-ink) !important;
+      font-family: Georgia, "Times New Roman", serif !important;
+      font-size: 1.12rem !important;
+      font-weight: 750 !important;
       line-height: 1 !important;
       letter-spacing: 0 !important;
       text-decoration: none !important;
       text-shadow: none !important;
-      box-shadow: 0 12px 34px rgba(16, 6, 1, 0.52), inset 0 1px 0 rgba(255, 232, 190, 0.38) !important;
+      text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+      box-shadow:
+        0 16px 42px rgba(20, 7, 1, 0.42),
+        0 0 24px rgba(224, 168, 90, 0.18),
+        inset 0 1px 0 rgba(255, 247, 218, 0.78),
+        inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease !important;
       white-space: nowrap !important;
     }
@@ -266,7 +339,7 @@ const wildWorksSessionEndedScript = `
           '<div class="wildworks-session-ended-card">',
           '  <p class="wildworks-session-ended-kicker">WildWorks Concierge</p>',
           '  <h2 class="wildworks-session-ended-title">Session Ended</h2>',
-          '  <p class="wildworks-session-ended-copy">Thank you for talking with iScott.</p>',
+          '  <p class="wildworks-session-ended-copy">Thank You for Talking with iScott.</p>',
           '  <button id="wildworks-avatar-restart" class="btn-wood" type="button">Restart iScott</button>',
           '</div>',
         ].join("");
@@ -298,6 +371,286 @@ const wildWorksSessionEndedScript = `
   </script>
 `;
 
+const wildWorksCaptureBridgeScript = `
+  <script id="wildworks-avatar-capture-bridge">
+    (() => {
+      const VISITOR_KEY = "wildworks.anonymousVisitorId";
+      const SESSION_KEY = "wildworks.clientSessionId";
+      const state = {
+        liveAvatarSessionId: null,
+        sessionToken: null,
+        nextTimestamp: null,
+        syncing: false,
+        intervalId: null,
+      };
+
+      const safeRandomId = (prefix) => {
+        const random = crypto?.randomUUID
+          ? crypto.randomUUID().replace(/-/g, "")
+          : Math.random().toString(36).slice(2) + Date.now().toString(36);
+        return (prefix + "_" + random).slice(0, 120);
+      };
+
+      const storageGet = (key) => {
+        try {
+          return window.localStorage.getItem(key);
+        } catch {
+          return null;
+        }
+      };
+
+      const storageSet = (key, value) => {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch {}
+      };
+
+      const getOrCreateId = (key, prefix) => {
+        const existing = storageGet(key);
+        if (existing) return existing;
+        const value = safeRandomId(prefix);
+        storageSet(key, value);
+        return value;
+      };
+
+      const anonymousVisitorId = () => getOrCreateId(VISITOR_KEY, "wwv");
+      const clientSessionId = () => getOrCreateId(SESSION_KEY, "wws");
+      const viewport = () => window.innerWidth + "x" + window.innerHeight;
+
+      const postJson = (url, body, keepalive = false) => {
+        const serialized = JSON.stringify(body);
+        if (keepalive && navigator.sendBeacon) {
+          try {
+            const blob = new Blob([serialized], { type: "application/json" });
+            if (navigator.sendBeacon(url, blob)) return Promise.resolve();
+          } catch {}
+        }
+        return fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: serialized,
+          keepalive,
+        }).catch(() => undefined);
+      };
+
+      const logEvent = (eventType, payload = {}, keepalive = false) =>
+        postJson(
+          "/api/app-events/log",
+          {
+            category: "app",
+            eventType,
+            provider: "liveavatar",
+            sessionId: clientSessionId(),
+            clientSessionId: clientSessionId(),
+            anonymousVisitorId: anonymousVisitorId(),
+            route: window.location.pathname,
+            viewport: viewport(),
+            payload,
+          },
+          keepalive,
+        );
+
+      const extractSession = (json) => {
+        const data = json && typeof json === "object" && json.data && typeof json.data === "object"
+          ? json.data
+          : json;
+        if (!data || typeof data !== "object") return null;
+        const sessionToken = typeof data.session_token === "string" ? data.session_token : null;
+        const liveAvatarSessionId = typeof data.session_id === "string" ? data.session_id : null;
+        return sessionToken && liveAvatarSessionId ? { sessionToken, liveAvatarSessionId } : null;
+      };
+
+      const syncTranscript = async (reason, keepalive = false) => {
+        if (!state.liveAvatarSessionId || !state.sessionToken || state.syncing) return;
+        state.syncing = true;
+        try {
+          const response = await postJson(
+            "/api/liveavatar/session-transcript/sync",
+            {
+              liveAvatarSessionId: state.liveAvatarSessionId,
+              sessionToken: state.sessionToken,
+              startTimestamp: state.nextTimestamp,
+              anonymousVisitorId: anonymousVisitorId(),
+              route: window.location.pathname,
+              viewport: viewport(),
+              reason,
+            },
+            keepalive,
+          );
+          const data = response && "json" in response ? await response.json().catch(() => null) : null;
+          if (data && typeof data.nextTimestamp === "number") {
+            state.nextTimestamp = data.nextTimestamp;
+          }
+        } finally {
+          state.syncing = false;
+        }
+      };
+
+      const observeSession = (sessionInfo) => {
+        if (!sessionInfo || sessionInfo.liveAvatarSessionId === state.liveAvatarSessionId) return;
+        state.liveAvatarSessionId = sessionInfo.liveAvatarSessionId;
+        state.sessionToken = sessionInfo.sessionToken;
+        state.nextTimestamp = null;
+        storageSet("wildworks.liveAvatarSessionId", state.liveAvatarSessionId);
+        logEvent("avatar_proxy_session_observed", { liveAvatarSessionId: state.liveAvatarSessionId });
+
+        if (!state.intervalId) {
+          state.intervalId = window.setInterval(() => syncTranscript("interval"), 30000);
+        }
+      };
+
+      const originalFetch = window.fetch.bind(window);
+      window.fetch = async (input, init) => {
+        const response = await originalFetch(input, init);
+        try {
+          const url = typeof input === "string" ? input : input?.url || "";
+          if (url.includes("/api/start-session")) {
+            response.clone().json().then((json) => observeSession(extractSession(json))).catch(() => {});
+          } else if (url.includes("/api/v1/sessions/start") && response.ok) {
+            syncTranscript("session_started");
+          } else if (url.includes("/api/v1/sessions/stop")) {
+            syncTranscript("session_stop", true);
+          }
+        } catch {}
+        return response;
+      };
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") syncTranscript("page_hidden", true);
+      });
+      window.addEventListener("pagehide", () => syncTranscript("pagehide", true));
+    })();
+  </script>
+`;
+
+const wildWorksGalleryBridgeScript = `
+  <script id="wildworks-avatar-gallery-bridge">
+    (() => {
+      let pendingUpload = null;
+      let lastDeliveredUploadId = null;
+      let observedGalleryInput = null;
+
+      const notifyParent = (type, payload = {}) => {
+        if (window.parent === window) return;
+        window.parent.postMessage({ type, ...payload }, window.location.origin);
+      };
+
+      const persistInternalGalleryFile = async (file) => {
+        if (!file || (!file.type.startsWith("image/") && !file.type.startsWith("video/"))) return;
+        const formData = new FormData();
+        formData.append("media", file, file.name || "wildworks-media");
+        formData.append("uploadId", crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()));
+        formData.append("anonymousVisitorId", localStorage.getItem("wildworks.anonymousVisitorId") || "");
+        formData.append("clientSessionId", localStorage.getItem("wildworks.clientSessionId") || "");
+        formData.append("liveAvatarSessionId", localStorage.getItem("wildworks.liveAvatarSessionId") || "");
+        formData.append("route", window.location.pathname);
+        formData.append("viewport", window.innerWidth + "x" + window.innerHeight);
+
+        const response = await fetch("/api/media/capture", { method: "POST", body: formData });
+        const data = await response.json().catch(() => null);
+        if (!response.ok) throw new Error(data?.error || "iScott could not save that media right now.");
+        notifyParent("wildworks:gallery-saved", { fileName: file.name || "your media" });
+      };
+
+      const watchGalleryInput = (input) => {
+        if (!input || input === observedGalleryInput) return;
+        observedGalleryInput = input;
+        input.addEventListener("change", () => {
+          if (pendingUpload) return;
+          const file = input.files?.[0];
+          if (!file) return;
+          persistInternalGalleryFile(file).catch((error) => {
+            notifyParent("wildworks:gallery-error", {
+              message: error instanceof Error ? error.message : "iScott could not save that media right now.",
+            });
+          });
+        });
+      };
+
+      const galleryInput = () => {
+        const input = Array.from(document.querySelectorAll('input[type="file"]')).find((candidate) => {
+          const accept = (candidate.getAttribute("accept") || "").toLowerCase();
+          return accept.includes("image") && accept.includes("video");
+        });
+        watchGalleryInput(input);
+        return input;
+      };
+
+      const deliverPendingFile = () => {
+        const input = galleryInput();
+        if (!input) return false;
+
+        notifyParent("wildworks:gallery-ready");
+        if (!pendingUpload) {
+          notifyParent("wildworks:gallery-ready");
+          return true;
+        }
+
+        if (pendingUpload.uploadId === lastDeliveredUploadId) {
+          notifyParent("wildworks:gallery-accepted", {
+            fileName: pendingUpload.file.name || "your media",
+          });
+          pendingUpload = null;
+          return true;
+        }
+
+        try {
+          const transfer = new DataTransfer();
+          transfer.items.add(pendingUpload.file);
+          input.files = transfer.files;
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+          lastDeliveredUploadId = pendingUpload.uploadId;
+          notifyParent("wildworks:gallery-accepted", {
+            fileName: pendingUpload.file.name || "your media",
+          });
+          pendingUpload = null;
+        } catch (error) {
+          notifyParent("wildworks:gallery-error", {
+            message: "iScott could not open that file. Please try another photo or video.",
+          });
+          pendingUpload = null;
+        }
+
+        return true;
+      };
+
+      window.addEventListener("message", (event) => {
+        if (event.source !== window.parent || event.origin !== window.location.origin) return;
+        const message = event.data;
+        if (!message || typeof message !== "object") return;
+
+        if (message.type === "wildworks:gallery-status") {
+          deliverPendingFile();
+          return;
+        }
+
+        if (message.type !== "wildworks:gallery-upload") return;
+
+        const file = message.file;
+        const fileType = typeof file?.type === "string" ? file.type : "";
+        if (!file || (!fileType.startsWith("image/") && !fileType.startsWith("video/"))) {
+          notifyParent("wildworks:gallery-error", {
+            message: "Please choose a photo or video file.",
+          });
+          return;
+        }
+
+        const uploadId = typeof message.uploadId === "string" && message.uploadId
+          ? message.uploadId
+          : String(Date.now());
+        pendingUpload = { file, uploadId };
+        deliverPendingFile();
+      });
+
+      deliverPendingFile();
+      window.addEventListener("load", deliverPendingFile);
+
+      const observer = new MutationObserver(deliverPendingFile);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    })();
+  </script>
+`;
+
 export async function GET(request: Request) {
   const shouldWake = new URL(request.url).searchParams.has("wake");
   const response = await fetch(`${REMOTE_AVATAR_ORIGIN}/`, {
@@ -309,12 +662,13 @@ export async function GET(request: Request) {
   }
 
   const html = (await response.text())
-    .replaceAll("/_next/", `${REMOTE_AVATAR_ORIGIN}/_next/`)
+    .replaceAll("/_next/", LOCAL_AVATAR_ASSET_PREFIX)
     .replaceAll("/favicon.ico", `${REMOTE_AVATAR_ORIGIN}/favicon.ico`)
+    .replaceAll("/startscreen.png", "/Avatar1-live-startscreen.png")
     .replace("</head>", `${wildWorksButtonCss}</head>`)
     .replace(
       "</body>",
-      `${wildWorksStartScreenScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+      `${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
   return new Response(html, {
