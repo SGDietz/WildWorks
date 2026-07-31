@@ -8,6 +8,15 @@ export default function PrivacyPolicyPage() {
       description="How WildWorks collects, uses, shares, protects, and responds to information submitted through this website, iScott, email, text, phone, WhatsApp, social media, and project conversations."
       sections={[
         {
+          title: "Business Identity",
+          children: (
+            <p>
+              For purposes of this Privacy Policy, &ldquo;WildWorks&rdquo; means DietzX LLC operating under its
+              Wyoming-registered trade name WildWorks.ai.
+            </p>
+          ),
+        },
+        {
           title: "Information WildWorks Collects",
           children: (
             <>
@@ -31,7 +40,7 @@ export default function PrivacyPolicyPage() {
           ),
         },
         {
-          title: "How Information Is Used",
+          title: "How Information is Used",
           children: (
             <>
               <p>
@@ -188,8 +197,8 @@ export default function PrivacyPolicyPage() {
           title: "Contact",
           children: (
             <p>
-              Privacy questions can be sent to Wildworks@pm.me or raised directly with Scott at
-              +1(443) 797-2166.
+              Privacy questions can be sent to Wildworks@pm.me or raised by calling WildWorks at
+              1-877-600-2474.
             </p>
           ),
         },

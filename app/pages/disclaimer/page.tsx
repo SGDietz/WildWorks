@@ -10,7 +10,7 @@ export default function DisclaimerPage() {
           title: "Informational Website",
           children: (
             <p>
-              This website provides general information about WildWorks, design, landscaping, stonework,
+              This website provides general information about WildWorks, design, living spaces, stonework,
               building, art, problem solving, resale preparation, iScott intake, and related ideas. It is not
               engineering, architecture, legal, permitting, safety, real estate, tax, financial, appraisal,
               insurance, or medical advice.
@@ -39,7 +39,7 @@ export default function DisclaimerPage() {
           ),
         },
         {
-          title: "No Work Should Start From Website Content Alone",
+          title: "No Work Should Start from Website Content Alone",
           children: (
             <p>
               Do not begin construction, demolition, excavation, grading, fireplace work, retaining wall work,
@@ -97,8 +97,8 @@ export default function DisclaimerPage() {
           title: "Contact",
           children: (
             <p>
-              Questions about this disclaimer can be sent to Wildworks@pm.me or raised directly with Scott at
-              +1(443) 797-2166.
+              Questions about this disclaimer can be sent to Wildworks@pm.me or raised by calling WildWorks at
+              1-877-600-2474.
             </p>
           ),
         },

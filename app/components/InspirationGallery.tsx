@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 const GALLERY_IMAGES = [
   { src: "/LewFrenchInspiration-2.png", alt: "Lew French inspiration" },
@@ -22,6 +23,23 @@ export default function InspirationGallery() {
   const [isFading, setIsFading] = useState(false);
   const [aspectRatios, setAspectRatios] = useState<Record<string, string>>({});
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsExpanded(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isExpanded]);
 
   const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>, src: string) => {
     const img = e.currentTarget;
@@ -85,7 +103,7 @@ export default function InspirationGallery() {
       <div className="mx-auto max-w-6xl cursor-pointer">
         {/* Main image viewer - arrows and expand show on hover; container aspect ratio matches current image */}
         <div
-          className="group relative mx-auto w-full max-w-4xl overflow-hidden bg-black"
+          className="wild-inspiration-viewer group relative mx-auto w-full max-w-4xl overflow-hidden"
           style={{ aspectRatio: aspectRatios[current.src] ?? DEFAULT_ASPECT }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -111,7 +129,7 @@ export default function InspirationGallery() {
             type="button"
             onClick={goPrev}
             aria-label="Previous image"
-            className={`cursor-pointer absolute left-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center text-white transition-opacity duration-200 hover:opacity-90 md:left-4 md:h-14 md:w-14 ${
+            className={`wild-inspiration-control cursor-pointer absolute left-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center transition-opacity duration-200 hover:opacity-90 md:left-4 md:h-14 md:w-14 ${
               isHovering ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
@@ -125,7 +143,7 @@ export default function InspirationGallery() {
             type="button"
             onClick={goNext}
             aria-label="Next image"
-            className={`cursor-pointer absolute right-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center text-white transition-opacity duration-200 hover:opacity-90 md:right-4 md:h-14 md:w-14 ${
+            className={`wild-inspiration-control cursor-pointer absolute right-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center transition-opacity duration-200 hover:opacity-90 md:right-4 md:h-14 md:w-14 ${
               isHovering ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
@@ -139,7 +157,7 @@ export default function InspirationGallery() {
             type="button"
             onClick={() => setIsExpanded(true)}
             aria-label="Expand fullscreen"
-            className={`cursor-pointer absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center text-white transition-opacity duration-200 ${
+            className={`wild-inspiration-control cursor-pointer absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center transition-opacity duration-200 ${
               isHovering ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
@@ -156,10 +174,8 @@ export default function InspirationGallery() {
               key={img.src}
               type="button"
               onClick={() => goToIndex(i)}
-              className={`relative shrink-0 overflow-hidden rounded border-2 transition-colors ${
-                i === currentIndex
-                  ? "border-sky-400"
-                  : "border-zinc-600 hover:border-zinc-500"
+              className={`wild-inspiration-thumbnail relative shrink-0 overflow-hidden rounded border-2 transition-colors${
+                i === currentIndex ? " is-active" : ""
               }`}
               style={{
                 width: "4rem",
@@ -179,9 +195,9 @@ export default function InspirationGallery() {
       </div>
 
       {/* Fullscreen expand overlay */}
-      {isExpanded && (
+      {isExpanded && typeof document !== "undefined" ? createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+          className="wild-branded-lightbox discordSection discordSection--lightbox fixed inset-0 z-50 flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Image fullscreen"
@@ -190,14 +206,14 @@ export default function InspirationGallery() {
             type="button"
             onClick={() => setIsExpanded(false)}
             aria-label="Close fullscreen"
-            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded text-white hover:bg-white/10"
+            className="wild-branded-lightbox-close absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded"
           >
             <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
           <div
-            className="relative w-full max-h-[90vh] max-w-6xl mx-auto"
+            className="wild-branded-lightbox-stage relative w-full max-h-[90vh] max-w-6xl mx-auto"
             style={{ aspectRatio: aspectRatios[current.src] ?? DEFAULT_ASPECT }}
           >
             <Image
@@ -209,8 +225,9 @@ export default function InspirationGallery() {
               onClick={() => setIsExpanded(false)}
             />
           </div>
-        </div>
-      )}
+        </div>,
+        document.body,
+      ) : null}
     </section>
   );
 }

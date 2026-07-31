@@ -143,7 +143,7 @@ function PhotoGrid({
       key={localIdx}
       type="button"
       onClick={() => onOpen(startIndex + localIdx)}
-      className={`relative block w-full overflow-hidden bg-[#0f1419] ${className}`}
+      className={`wild-media-button relative block w-full overflow-hidden bg-[#0f1419] ${className}`}
     >
       <Image
         src={urls[localIdx]}
@@ -205,7 +205,7 @@ function PhotoGrid({
       <button
         type="button"
         onClick={() => onOpen(startIndex + 3)}
-        className="relative aspect-square overflow-hidden bg-black/80"
+        className="wild-media-button relative aspect-square overflow-hidden bg-black/80"
       >
         <Image
           src={urls[3]}
@@ -292,30 +292,30 @@ function PhotoLightbox({
 
   const node = (
     <div
-      className="discordSection discordSection--lightbox fixed inset-0 z-[100] flex flex-col bg-black/92 p-2 sm:p-4"
+      className="wild-branded-lightbox discordSection discordSection--lightbox fixed inset-0 z-[100] flex flex-col p-2 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"
     >
-      <div className="flex shrink-0 items-center justify-between gap-2 pb-2 text-white">
+      <div className="wild-branded-lightbox-bar flex shrink-0 items-center justify-between gap-2">
         <span className="text-sm tabular-nums opacity-80">
           {index + 1} / {urls.length}
         </span>
         <button
           type="button"
           onClick={onClose}
-          className="rounded-full p-2 hover:bg-white/10"
+          className="wild-branded-lightbox-close rounded-full p-2"
           aria-label="Close"
         >
           <X className="h-6 w-6" strokeWidth={2} />
         </button>
       </div>
-      <div className="relative flex min-h-0 flex-1 items-center justify-center">
+      <div className="wild-branded-lightbox-stage relative flex min-h-0 flex-1 items-center justify-center">
         {urls.length > 1 ? (
           <button
             type="button"
             onClick={onPrev}
-            className="absolute left-0 z-10 rounded-full p-2 text-white hover:bg-white/10 sm:left-2"
+            className="wild-branded-lightbox-nav absolute left-0 z-10 rounded-full p-2 sm:left-2"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-10 w-10" strokeWidth={1.5} />
@@ -333,7 +333,7 @@ function PhotoLightbox({
           <button
             type="button"
             onClick={onNext}
-            className="absolute right-0 z-10 rounded-full p-2 text-white hover:bg-white/10 sm:right-2"
+            className="wild-branded-lightbox-nav absolute right-0 z-10 rounded-full p-2 sm:right-2"
             aria-label="Next image"
           >
             <ChevronRight className="h-10 w-10" strokeWidth={1.5} />
@@ -364,16 +364,15 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
 
   const onCopyLink = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(data.url);
+      await navigator.clipboard.writeText("https://x.com/WildWorksArt");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       /* ignore */
     }
-  }, [data.url]);
+  }, []);
 
-  const followUrl = `https://x.com/intent/follow?screen_name=${encodeURIComponent(data.author.username)}`;
-  const replyUrl = `https://x.com/intent/tweet?in_reply_to=${data.id}`;
+  const profileUrl = "https://x.com/WildWorksArt";
 
   const photoUrls = useMemo(
     () => data.media.filter((m) => m.type === "photo").map((m) => m.url),
@@ -433,7 +432,7 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
       <div className="flex items-start justify-between gap-3 px-4 pb-1 pt-3 sm:px-4 sm:pt-4">
         <div className="flex min-w-0 flex-1 gap-3">
           <a
-            href={data.url}
+            href={profileUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#111827]"
@@ -452,7 +451,7 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
           <div className="min-w-0 flex-1 leading-tight">
             <div className="flex flex-wrap items-center gap-1">
               <a
-                href={data.url}
+                href={profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="truncate font-bold text-[15px] text-[#0f1419] hover:underline"
@@ -471,7 +470,7 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
               <span className="text-[#0f1419]">@{data.author.username}</span>
               <span className="mx-1">·</span>
               <a
-                href={followUrl}
+                href={profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium hover:underline"
@@ -483,7 +482,7 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
           </div>
         </div>
         <a
-          href={data.url}
+          href={profileUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 text-[#0f1419] opacity-90 hover:opacity-100"
@@ -512,10 +511,9 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
           <button
             type="button"
             onClick={() => setExpanded((e) => !e)}
-            className="text-left text-[15px] font-medium hover:underline"
-            style={{ color: X_BLUE }}
+            className="wild-utility-button"
           >
-            {expanded ? "Show less" : "Show more"}
+            {expanded ? "Show Less" : "Show More"}
           </button>
         ) : null}
       </div>
@@ -544,13 +542,13 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
                 />
                 <div className="flex justify-end">
                   <a
-                    href={data.url}
+                    href={profileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-1.5 rounded-full border border-[#cfd9de] bg-white px-3 py-1.5 text-[13px] font-semibold text-[#0f1419] shadow-sm transition-colors hover:bg-[#f7f9f9]"
                   >
                     <OpenOnXIcon className="h-4 w-4" />
-                    View on X
+                    Visit WildWorks on X
                   </a>
                 </div>
               </div>
@@ -586,34 +584,33 @@ export function LatestXPostCard({ data }: { data: LatestXPostPayload }) {
           <span style={{ color: X_GRAY }}>{data.likeCount}</span>
         </span>
         <a
-          href={replyUrl}
+          href={profileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 hover:underline"
-          style={{ color: X_BLUE }}
+          className="wild-utility-button"
         >
           <MessageCircle className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
-          Reply
+          Open Profile
         </a>
         <button
           type="button"
           onClick={onCopyLink}
-          className="inline-flex items-center gap-1.5 hover:underline"
+          className="wild-utility-button"
         >
           <Link2 className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
-          {copied ? "Copied!" : "Copy link"}
+          {copied ? "Copied!" : "Copy Profile Link"}
         </button>
       </div>
 
       {/* CTA */}
       <div className="px-4 pb-4">
         <a
-          href={data.url}
+          href={profileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center rounded-full border-2 border-transparent bg-transparent py-2.5 text-[15px] font-bold transition-colors hover:bg-white/5"
+          className="money-cta money-cta--wide wild-x-post-cta"
         >
-          See full post on X
+          Visit WildWorks on X
         </a>
       </div>
     </article>

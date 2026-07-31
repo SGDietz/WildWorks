@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 /** Public handle (no @) */
-const X_USERNAME = "OfficialSGDietz";
+const X_USERNAME = "WildWorksArt";
+const X_PROFILE_URL = "https://x.com/WildWorksArt";
 
 export const dynamic = "force-dynamic";
 
@@ -235,7 +236,7 @@ export async function GET() {
       text: tweet.text ?? "",
       createdAt: tweet.created_at ?? "",
       id: tweet.id,
-      url: `https://x.com/${X_USERNAME}/status/${tweet.id}`,
+      url: X_PROFILE_URL,
       media,
       author: {
         name: userData.name,

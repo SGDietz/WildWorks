@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BrandText from "../../components/BrandText";
+import { legalNavItems } from "../../lib/legalRoutes";
 
 const legalPages = [
   {
@@ -36,15 +37,24 @@ const legalPages = [
 
 export default function WildworksLegalIndex() {
   return (
-    <main className="wild-home min-h-screen">
+    <main className="wild-home wild-legal-home min-h-screen">
       <section className="wild-section wild-legal-section discordSection discordSection--2">
-        <div className="wild-legal-wrap mx-auto grid max-w-5xl gap-7 px-4 py-4 sm:px-6">
+        <div className="wild-legal-wrap mx-auto grid max-w-5xl gap-8 px-4 py-6 sm:px-6 lg:py-10">
+          <nav className="wild-legal-topbar" aria-label="Legal navigation">
+            <Link href="/pages/Home">Home</Link>
+            {legalNavItems.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
           <div className="wild-legal-hero grid gap-2 text-center">
-            <h1 className="wild-section-title wild-line-title wild-legal-title text-[#f7d9a5]">
-              Policies and Disclosures
+            <h1 className="wild-section-title wild-line-title wild-legal-title">
+              Terms, Privacy, and Website Details
             </h1>
             <p
-              className="wild-legal-deck mx-auto max-w-2xl text-base leading-7 text-[rgba(246,211,154,0.78)] sm:text-lg"
+              className="wild-legal-deck mx-auto max-w-3xl text-base leading-7 sm:text-lg"
               style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
             >
               Practical website terms, privacy language, communications rules, accessibility information,
@@ -57,17 +67,18 @@ export default function WildworksLegalIndex() {
               <Link
                 key={page.href}
                 href={page.href}
-                className="grid rounded-lg border border-[rgba(232,182,109,0.2)] bg-[rgba(38,16,5,0.58)] p-5 no-underline shadow-[0_18px_52px_rgba(16,6,1,0.28)] transition-[filter,transform] hover:brightness-110 sm:p-6"
+                className="wild-legal-card wild-legal-index-card no-underline"
               >
-                <span className="mb-3 text-2xl font-bold leading-tight text-[#e8b66d] sm:text-3xl">
+                <span className="wild-legal-card-title mb-3 text-2xl font-bold leading-tight sm:text-3xl">
                   {page.title}
                 </span>
                 <span
-                  className="text-base leading-7 text-[rgba(246,211,154,0.78)]"
+                  className="wild-legal-copy text-base leading-7"
                   style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
                 >
                   <BrandText>{page.body}</BrandText>
                 </span>
+                <span className="wild-legal-index-cta">Open Details</span>
               </Link>
             ))}
           </div>
