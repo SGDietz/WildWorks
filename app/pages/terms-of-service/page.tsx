@@ -85,6 +85,13 @@ export default function TermsOfServicePage() {
                 .
               </p>
               <p>
+                If you choose SMS, WildWorks may send recurring text messages about project follow-up,
+                scheduling, reminders, design ideas, offers, and service updates. Message frequency varies.
+                Message and data rates may apply. Carriers are not liable for delayed or undelivered messages.
+                Reply HELP for help and STOP to opt out. Consent to receive marketing texts is not required to
+                purchase services. For help, email Wildworks@pm.me or call WildWorks at 1-877-600-2474.
+              </p>
+              <p>
                 You may opt out of marketing communications. Opting out of marketing does not prevent
                 WildWorks from sending necessary transactional, project, safety, legal, payment, appointment,
                 or service-related communications.
