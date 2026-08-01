@@ -73,8 +73,7 @@ export function signVoiceEvent(secret: string, timestamp: string, rawBody: strin
 
 function defaultSleep(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
-    const timer = setTimeout(resolve, milliseconds);
-    timer.unref?.();
+    setTimeout(resolve, milliseconds);
   });
 }
 
@@ -107,7 +106,6 @@ export class HmacRuntimeEventPublisher implements RuntimeEventPublisher {
     const timestamp = Math.floor(this.nowMs() / 1_000).toString();
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.options.timeoutMs);
-    timer.unref?.();
     try {
       const response = await this.fetchImpl(this.options.endpointUrl, {
         method: "HEAD",
@@ -136,7 +134,6 @@ export class HmacRuntimeEventPublisher implements RuntimeEventPublisher {
       const timestamp = Math.floor(this.nowMs() / 1_000).toString();
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), this.options.timeoutMs);
-      timer.unref?.();
       try {
         const response = await this.fetchImpl(this.options.endpointUrl, {
           method: "POST",
