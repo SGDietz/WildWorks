@@ -81,7 +81,7 @@ export default function ISell() {
             </svg>
           </a>
           <a
-            href="https://api.whatsapp.com/send?phone=14437972166"
+            href="https://api.whatsapp.com/send?phone=18776002474"
             aria-label="WhatsApp"
             className="wild-brand-social-link wild-brand-social-link--whatsapp"
             target="_blank"
