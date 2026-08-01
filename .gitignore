@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/services/iscott-voice/node_modules/
+/services/iscott-voice/dist/
 /.pnp
 .pnp.*
 .yarn/*

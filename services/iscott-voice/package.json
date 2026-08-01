@@ -1,0 +1,26 @@
+{
+  "name": "@wildworks/iscott-voice",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Isolated Twilio ConversationRelay WebSocket service for iScott voice calls.",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node --env-file-if-exists=.env dist/server.js",
+    "start:dev": "node --env-file-if-exists=.env --experimental-strip-types src/server.ts",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "twilio": "^6.0.2",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.2"
+  }
+}

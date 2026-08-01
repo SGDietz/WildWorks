@@ -289,7 +289,7 @@ export default function Footer() {
               <Phone aria-hidden className="h-5 w-5" />
               <span>Call Now</span>
             </motion.a>
-            <motion.a href="sms:+14437972166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="sms:+18776002474" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <MessageSquareText aria-hidden className="h-5 w-5" />
               <span>Text Scott</span>
             </motion.a>
@@ -298,7 +298,7 @@ export default function Footer() {
               <span>Email Scott</span>
             </motion.a>
             <motion.a
-              href="https://api.whatsapp.com/send?phone=14437972166"
+              href="https://api.whatsapp.com/send?phone=18776002474"
               aria-label="DM Scott on WhatsApp"
               className="money-cta money-cta--primary"
               target="_blank"
@@ -405,7 +405,7 @@ export default function Footer() {
             <span className="sr-only">Email</span>
           </motion.a>
           <motion.a
-            href="https://api.whatsapp.com/send?phone=14437972166"
+            href="https://api.whatsapp.com/send?phone=18776002474"
             className={mobileBrandLink}
             aria-label="WhatsApp"
             target="_blank"

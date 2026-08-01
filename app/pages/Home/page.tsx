@@ -3439,7 +3439,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 State-of-the-Art Ai-Driven Website: Avatar Conversation, Ai Conversion, Lead
                 Intake, Appointment Setting, Information Gathering, Full Automation; with
                 Tasteful Look and Intuitive Feel. If You Would Like to Discuss Scott Building
-                a Website for You, Call or Text Scott, or Talk to iScott, and iScott Will Have
+                a Website for You, Call or Text WildWorks, or Talk to iScott, and iScott Will Have
                 the Real Scott Reach Out to You.
               </BrandText>
             </motion.p>

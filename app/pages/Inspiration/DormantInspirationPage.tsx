@@ -432,7 +432,7 @@ export default function DormantInspirationPage() {
             Right Now, I&apos;m Proudly Standing on Lew French&apos;s Shoulders.
           </p>
           <p className="inspiration-cta-p text-base ">
-            If You Would Like a Fireplace Along These Lines, Inside or Outside of Your Home, Please Feel Free to Call Me on My Cell:
+            If You Would Like a Fireplace Along These Lines, Inside or Outside of Your Home, Please Feel Free to Call Now:
           </p>
         </div>
 
@@ -457,7 +457,7 @@ export default function DormantInspirationPage() {
             </svg>
           </a>
           <a
-            href="https://api.whatsapp.com/send?phone=14437972166"
+            href="https://api.whatsapp.com/send?phone=18776002474"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"

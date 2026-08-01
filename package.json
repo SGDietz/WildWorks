@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run check:bg && npm run check:x-links && next build",
+    "build": "npm run check:bg && npm run check:x-links && npm run check:phone-links && next build",
     "start": "next start",
     "lint": "eslint",
     "check:bg": "node scripts/check-wildworks-background-lock.mjs",
-    "check:x-links": "node scripts/check-wildworks-x-links.mjs"
+    "check:x-links": "node scripts/check-wildworks-x-links.mjs",
+    "check:phone-links": "node scripts/check-wildworks-phone-links.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

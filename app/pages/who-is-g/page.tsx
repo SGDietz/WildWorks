@@ -72,7 +72,7 @@ export default function WhoIsG() {
           </p>
         </div>
 
-        <h2 className="mb-4 mt-6 text-center text-xl sm:text-2xl">Call or Text Directly:</h2>
+        <h2 className="mb-4 mt-6 text-center text-xl sm:text-2xl">Call or Text WildWorks:</h2>
         <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="wild-brand-phone block py-2 text-center text-4xl sm:py-4 sm:text-6xl min-h-[44px]">
           Call Now
         </a>
@@ -103,7 +103,7 @@ export default function WhoIsG() {
             </svg>
           </a>
           <a
-            href="https://api.whatsapp.com/send?phone=14437972166"
+            href="https://api.whatsapp.com/send?phone=18776002474"
             aria-label="WhatsApp"
             className="wild-brand-social-link wild-brand-social-link--whatsapp"
             target="_blank"

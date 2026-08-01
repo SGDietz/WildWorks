@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: wildworks-iscott-voice
+    runtime: docker
+    plan: starter
+    region: virginia
+    rootDir: services/iscott-voice
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    maxShutdownDelaySeconds: 130
+    autoDeployTrigger: off
+    numInstances: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: AI_ENABLED
+        value: "false"
+      - key: BUDGET_BACKEND
+        value: supabase
+      - key: PUBLIC_WSS_URL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: LLM_ENDPOINT_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: WILDWORKS_VOICE_EVENT_URL
+        sync: false
+      - key: WILDWORKS_VOICE_EVENT_SECRET
+        sync: false
+      - key: WILDWORKS_VOICE_CRON_SECRET
+        sync: false

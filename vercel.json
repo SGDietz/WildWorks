@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/internal/voice-retention",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/internal/voice-email-drain",
+      "schedule": "0 7 * * *"
+    }
+  ]
+}
