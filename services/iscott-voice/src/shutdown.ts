@@ -64,7 +64,6 @@ export class GracefulCallDrain {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const timeout = new Promise<void>((resolve) => {
       timer = setTimeout(resolve, timeoutMs);
-      timer.unref?.();
     });
     await Promise.race([empty, timeout]);
     if (timer) clearTimeout(timer);
