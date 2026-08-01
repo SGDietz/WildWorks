@@ -70,8 +70,8 @@ export default function CommunicationsPage() {
                 one consent as permission for unrelated third-party sellers to text you.
               </p>
               <p>
-                Where supported, reply STOP to opt out of marketing texts and HELP for help. You may also
-                request text opt-out by emailing Wildworks@pm.me or contacting WildWorks directly.
+                Reply HELP for help and STOP to opt out of marketing texts. You may also request help or text
+                opt-out by emailing Wildworks@pm.me or calling WildWorks at 1-877-600-2474.
               </p>
             </>
           ),

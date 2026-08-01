@@ -6,7 +6,7 @@ import twilio from "twilio";
 
 type SignupChannel = "email" | "sms" | "both";
 
-const SIGNUP_CONSENT_VERSION = "2026-07-29";
+const SIGNUP_CONSENT_VERSION = "2026-08-01";
 const CHANNELS = new Set<SignupChannel>(["email", "sms", "both"]);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -186,7 +186,7 @@ export async function POST(request: Request) {
         const client = twilio(process.env.TWILIO_ACCOUNT_SID!, process.env.TWILIO_AUTH_TOKEN!);
         const message = await client.messages.create({
           to: phone,
-          body: "WildWorks: You’re signed up for the updates you selected. Reply STOP to opt out. Reply HELP for help.",
+          body: "WildWorks: You’re subscribed to project follow-up, scheduling, reminders, design ideas, offers, and service updates. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to cancel.",
           ...(process.env.TWILIO_MESSAGING_SERVICE_SID
             ? { messagingServiceSid: process.env.TWILIO_MESSAGING_SERVICE_SID }
             : { from: process.env.TWILIO_FROM_NUMBER! }),

@@ -216,9 +216,11 @@ export default function Footer() {
               <label className="wild-signup-consent">
                 <input type="checkbox" name="consent" required />
                 <span>
-                  I agree to receive the WildWorks updates I selected. Text messages may include project
-                  follow-up, scheduling, reminders, ideas, offers, and service updates. Message and data
-                  rates may apply. Reply STOP to opt out where supported.
+                  I agree to receive the WildWorks updates I selected. If I select SMS or Both, WildWorks may
+                  send recurring text messages about project follow-up, scheduling, reminders, design ideas,
+                  offers, and service updates to the mobile number provided. Message frequency varies. Message
+                  and data rates may apply. Reply HELP for help and STOP to opt out. Consent is not a condition
+                  of purchase.
                 </span>
               </label>
 
@@ -247,13 +249,17 @@ export default function Footer() {
 
               <p className="wild-signup-fine-print">
                 You can unsubscribe from emails at any time and opt out of texts by replying STOP
-                where supported. See{" "}
+                where supported. See the{" "}
+                <Link href="/pages/terms-of-service" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                  Terms of Service
+                </Link>
+                ,{" "}
                 <Link href="/pages/privacy-policy" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
-                  Privacy
+                  Privacy Policy
                 </Link>{" "}
                 and{" "}
                 <Link href="/pages/communications" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
-                  Communications
+                  Communications Policy
                 </Link>
                 .
               </p>

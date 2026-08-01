@@ -104,6 +104,10 @@ export default function PrivacyPolicyPage() {
                 amounts owed, to investigate misuse, or as part of a business transfer, reorganization, or
                 similar transaction.
               </p>
+              <p>
+                All the above categories exclude text messaging originator opt-in data and consent; this
+                information won&apos;t be shared with any third parties.
+              </p>
             </>
           ),
         },
