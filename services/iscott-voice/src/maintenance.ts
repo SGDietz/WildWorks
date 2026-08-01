@@ -18,7 +18,6 @@ export async function runVoiceMaintenanceOnce(
 ): Promise<boolean> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), options.timeoutMs);
-  timer.unref?.();
   try {
     const response = await (options.fetchImpl ?? fetch)(options.endpointUrl, {
       method: "POST",
