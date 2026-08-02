@@ -26,7 +26,7 @@ export default function Wildfire() {
       >
         <div className="wildfire-hero-media" aria-hidden>
           <AspectRatioImage
-            src="/ww-wildfire-night-01-fireplace-patio.jpg"
+            src="/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png"
             alt="Finished Project Wildfire natural stone outdoor fireplace at night"
             priority
             sizes="100vw"

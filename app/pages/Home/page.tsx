@@ -317,7 +317,7 @@ const signatureWork = [
 
 const wildfireNightImages = [
   {
-    src: "/ww-wildfire-night-01-fireplace-patio.jpg",
+    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
     alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
     className: "wild-wildfire-photo--hero",
   },
