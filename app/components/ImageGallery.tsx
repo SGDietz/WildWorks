@@ -7,8 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Images,
-  Phone,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -127,30 +125,6 @@ export default function ImageGallery() {
 
   return (
     <section id="wildfire-build-journal" className="wildfire-journal discordSection discordSection--2">
-      <div className="wildfire-journal-head">
-        <p className="wild-kicker wild-kicker--framed">Build Journal</p>
-        <h2>
-          <span className="ww-c1">Every Stone,</span>{" "}
-          <span className="ww-c2">Every Decision,</span>{" "}
-          <span className="ww-c2 wildfire-journal-stage">Every Stage.</span>
-        </h2>
-        <p>
-          Here is a Chronological Look at Project Wildfire So You Can Walk Through
-          the Build the Way It Actually Happened. In Kind of Real Time. Any Questions,
-          Feel Free to Talk to iScott or Reach Out to Scott.
-        </p>
-        <div className="wildfire-journal-actions">
-          <a href="/pages/Home#talk-to-iscott" className="money-cta money-cta--primary">
-            <Sparkles aria-hidden className="h-5 w-5" />
-            <span>Talk to iScott</span>
-          </a>
-          <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="money-cta">
-            <Phone aria-hidden className="h-5 w-5" />
-            <span>Call Now</span>
-          </a>
-        </div>
-      </div>
-
       <div className="wildfire-phase-bar" aria-label="Filter build photos by phase">
         {phases.map((phase) => (
           <button

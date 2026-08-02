@@ -89,7 +89,7 @@ export default function TermsOfServicePage() {
                 scheduling, reminders, design ideas, offers, and service updates. Message frequency varies.
                 Message and data rates may apply. Carriers are not liable for delayed or undelivered messages.
                 Reply HELP for help and STOP to opt out. Consent to receive marketing texts is not required to
-                purchase services. For help, email Wildworks@pm.me or call WildWorks at 1-877-600-2474.
+                purchase services. For help, email hello@wildworks.ai or call WildWorks at 1-877-600-2474.
               </p>
               <p>
                 You may opt out of marketing communications. Opting out of marketing does not prevent
@@ -206,7 +206,7 @@ export default function TermsOfServicePage() {
           title: "Contact",
           children: (
             <p>
-              Questions about these terms can be sent to Wildworks@pm.me or raised by calling WildWorks at
+              Questions about these terms can be sent to hello@wildworks.ai or raised by calling WildWorks at
               1-877-600-2474.
             </p>
           ),

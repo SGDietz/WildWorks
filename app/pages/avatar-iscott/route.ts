@@ -59,6 +59,19 @@ const wildWorksButtonCss = `
       text-shadow: 0 1px 0 rgba(255, 239, 201, 0.22), 0 2px 18px rgba(73, 23, 4, 0.42) !important;
     }
 
+    html.wildworks-avatar-loading body::before {
+      z-index: 2147483646 !important;
+      background:
+        radial-gradient(ellipse 94% 62% at 50% 0%, rgba(255, 231, 175, 0.32), transparent 66%),
+        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200, 121, 54, 0.28), transparent 72%),
+        linear-gradient(155deg, #cf7140 0%, #bd5929 52%, #a54219 100%) !important;
+      pointer-events: auto !important;
+    }
+
+    html.wildworks-avatar-loading body > :not(script):not(style) {
+      pointer-events: none !important;
+    }
+
     body > :not(script):not(style) {
       position: relative !important;
       z-index: 1 !important;
@@ -259,6 +272,94 @@ const wildWorksButtonCss = `
       margin-top: 1.25rem !important;
     }
   </style>
+`;
+
+const wildWorksLoadingBootstrapScript = `
+  <script id="wildworks-avatar-loading-bootstrap">
+    (() => {
+      if (new URLSearchParams(window.location.search).has("wake")) {
+        document.documentElement.classList.add("wildworks-avatar-loading");
+      }
+    })();
+  </script>
+`;
+
+const wildWorksLoadingGateScript = `
+  <script id="wildworks-avatar-loading-gate">
+    (() => {
+      const loadingClass = "wildworks-avatar-loading";
+      const startPattern = /^(?:talk to iscott|go live|start|restart iscott)$/i;
+      const releasePattern = /session ended|avatar app unavailable|try again|failed to|error occurred/i;
+      const seenVideos = new WeakSet();
+      let loadingStartedAt = document.documentElement.classList.contains(loadingClass)
+        ? Date.now()
+        : 0;
+
+      const endLoading = () => {
+        document.documentElement.classList.remove(loadingClass);
+        loadingStartedAt = 0;
+      };
+
+      const beginLoading = () => {
+        loadingStartedAt = Date.now();
+        document.documentElement.classList.add(loadingClass);
+        watchVideos();
+      };
+
+      const releaseAfterRealFrame = (video) => {
+        if (!document.documentElement.classList.contains(loadingClass)) return;
+        if (!video || video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) return;
+
+        if (typeof video.requestVideoFrameCallback === "function") {
+          video.requestVideoFrameCallback(() => endLoading());
+          return;
+        }
+
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+              endLoading();
+            }
+          });
+        });
+      };
+
+      function watchVideos() {
+        document.querySelectorAll("video").forEach((video) => {
+          if (!seenVideos.has(video)) {
+            seenVideos.add(video);
+            video.addEventListener("playing", () => releaseAfterRealFrame(video));
+            video.addEventListener("loadeddata", () => {
+              if (!video.paused) releaseAfterRealFrame(video);
+            });
+          }
+          if (!video.paused) releaseAfterRealFrame(video);
+        });
+      }
+
+      document.addEventListener(
+        "click",
+        (event) => {
+          const button = event.target instanceof Element ? event.target.closest("button") : null;
+          const label = (button?.textContent || "").trim();
+          if (button && !button.disabled && startPattern.test(label)) beginLoading();
+        },
+        true,
+      );
+
+      const syncLoadingState = () => {
+        watchVideos();
+        if (!loadingStartedAt || Date.now() - loadingStartedAt < 1500) return;
+        const visibleText = document.body?.innerText || "";
+        if (releasePattern.test(visibleText)) endLoading();
+      };
+
+      if (document.documentElement.classList.contains(loadingClass)) beginLoading();
+      window.addEventListener("load", syncLoadingState);
+      const observer = new MutationObserver(syncLoadingState);
+      observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+    })();
+  </script>
 `;
 
 const wildWorksAutoWakeScript = `
@@ -665,10 +766,10 @@ export async function GET(request: Request) {
     .replaceAll("/_next/", LOCAL_AVATAR_ASSET_PREFIX)
     .replaceAll("/favicon.ico", `${REMOTE_AVATAR_ORIGIN}/favicon.ico`)
     .replaceAll("/startscreen.png", "/Avatar1-live-startscreen.png")
-    .replace("</head>", `${wildWorksButtonCss}</head>`)
+    .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
     .replace(
       "</body>",
-      `${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
   return new Response(html, {

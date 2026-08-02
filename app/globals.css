@@ -542,6 +542,7 @@ body {
   display: flex;
   width: min(100%, 76rem);
   margin-top: clamp(-0.75rem, -1.8vw, -0.35rem);
+  margin-bottom: -10px !important;
   margin-inline: auto;
   justify-content: center;
   padding: clamp(0.75rem, 1.2vw, 1rem) clamp(1rem, 4vw, 2rem) clamp(0.7rem, 1.6vw, 1.15rem);
@@ -573,6 +574,9 @@ body {
   inset: 0;
   -webkit-mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
   mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  /* The Living line is rendered independently below so it can receive the
+     requested one-point reduction without disturbing the approved lockup. */
+  clip-path: inset(0 0 31% 0);
   pointer-events: none;
 }
 
@@ -590,6 +594,44 @@ body {
   filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
   transform: scale(var(--ww-top-logo-fill-scale));
   transform-origin: center;
+}
+
+.wild-top-logo-living,
+.wild-top-logo-living::before,
+.wild-top-logo-living::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.wild-top-logo-living::before,
+.wild-top-logo-living::after {
+  content: "";
+  -webkit-mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  clip-path: inset(67% 32% 17% 32%);
+  transform-origin: 50% 75%;
+}
+
+.wild-top-logo-living::before {
+  z-index: 0;
+  background: #321005;
+  opacity: 0.78;
+  transform: translateX(-0.3%) translateY(clamp(3px, 0.38vw, 5px)) scale(0.998);
+}
+
+.wild-top-logo-living::after {
+  z-index: 1;
+  background: #f7d9a5;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
+  transform: translateX(-0.3%) scale(0.992);
+}
+
+/* Home only: visually center the logo between the fixed menu and hero without
+   moving either neighboring element. */
+body:has(#top.wild-home) .wild-top-logo {
+  transform: translateY(clamp(1rem, 2vw, 2rem));
 }
 
 @media (max-width: 500px) {
@@ -2028,7 +2070,7 @@ body .wild-footer-mobile-link:focus-visible {
   box-shadow:
     inset 0 0 0 1px rgba(255, 218, 151, 0.16),
     0 24px 60px rgba(89, 31, 6, 0.32);
-  cursor: default;
+  cursor: zoom-in;
 }
 
 .wild-check-list {
@@ -5577,7 +5619,7 @@ body .wild-subpage .wild-final-cta {
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.65rem;
+  font-size: 2.65rem;
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.14;
@@ -5604,7 +5646,7 @@ body .wild-subpage .wild-final-cta {
 
   .wild-home #project-wildfire .wild-wildfire-build-note__line {
     white-space: normal;
-    font-size: 1.32rem;
+    font-size: 2.32rem;
   }
 }
 
@@ -6690,17 +6732,15 @@ body .wild-home #ai-websites .wild-site-offer-copy {
 .wild-home.wild-legal-home .wild-legal-title {
   margin-inline: auto !important;
   max-width: min(100%, 62rem);
-  color: var(--ww-legal-title) !important;
-  -webkit-text-fill-color: var(--ww-legal-title) !important;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
   font-size: clamp(3.2rem, 8.6vw, 6.9rem) !important;
   line-height: 0.9 !important;
   text-align: center !important;
-  text-shadow:
-    0 0 22px rgba(224, 168, 90, 0.22),
-    0 2px 18px rgba(16, 6, 1, 0.64);
+  text-shadow: none !important;
 }
 
 .wild-home.wild-legal-home .wild-legal-deck,
@@ -6825,13 +6865,13 @@ body .wild-subpage--wildfire .wildfire-journal-head .wild-kicker.wild-kicker--fr
 }
 
 .wild-home.wild-legal-home .wild-legal-card-title {
-  color: var(--ww-legal-title) !important;
-  -webkit-text-fill-color: var(--ww-legal-title) !important;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
   letter-spacing: 0;
-  text-shadow: 0 2px 16px rgba(16, 6, 1, 0.5) !important;
+  text-shadow: none !important;
 }
 
 .wild-home.wild-legal-home .wild-legal-copy,
@@ -7754,12 +7794,9 @@ body {
 .wild-subpage-hero > .wild-zoomable-image {
   border: 1px solid rgba(232, 182, 109, 0.34);
   border-radius: 8px;
-  background:
-    radial-gradient(ellipse at 30% 10%, rgba(246, 211, 154, 0.08), transparent 22rem),
-    rgba(16, 6, 1, 0.58);
-  box-shadow:
-    0 24px 70px rgba(16, 6, 1, 0.46),
-    inset 0 1px 0 rgba(246, 211, 154, 0.1);
+  /* The image owns the frame; a dark backing reads as unwanted pillarboxing. */
+  background: transparent;
+  box-shadow: none;
 }
 
 .wild-subpage-hero > .wild-zoomable-image img {
@@ -9267,9 +9304,7 @@ body {
 }
 
 .wild-home.wild-legal-home .wild-legal-title {
-  text-shadow:
-    0 0 22px rgba(224, 168, 90, 0.16),
-    0 2px 18px rgba(16, 6, 1, 0.64) !important;
+  text-shadow: none !important;
 }
 
 .wild-home.wild-legal-home .wild-legal-deck,
@@ -9301,7 +9336,7 @@ body {
 }
 
 .wild-home.wild-legal-home .wild-legal-card-title {
-  text-shadow: 0 2px 16px rgba(16, 6, 1, 0.5) !important;
+  text-shadow: none !important;
 }
 
 .wild-home.wild-legal-home .wild-legal-copy,
@@ -9580,22 +9615,26 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
   -webkit-text-fill-color: #f7d9a5 !important;
   text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
 }
-:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
-  text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
-}
-.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c1 { color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; }
-.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
-.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }
-.wild-subpage--wildfire .wildfire-hero-copy {
-  background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
-}
-.wild-subpage--wildfire .wildfire-hero-copy :is(h1, p, .wildfire-hero-headline__line) {
+:is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line, .ww-c1, .ww-c2, .ww-c3) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
-  text-shadow: 0 2px 4px rgba(48, 14, 2, 0.78) !important;
+  text-shadow: none !important;
+}
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c1 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+.wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }
+.wild-subpage--wildfire .wildfire-hero-copy {
+  background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
+}
+.wild-subpage--wildfire .wildfire-hero-copy :is(h1, .wildfire-hero-headline__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: none !important;
 }
 
 /* Shared signup and Home concierge type are content, not a logo treatment. */
@@ -9908,6 +9947,21 @@ body .wild-home #project-wildfire :is(
 }
 
 /* The footer closes with an invitation to act, not a generic contact list. */
+footer.discordSection .wild-footer-main {
+  display: flex;
+  flex-direction: column;
+}
+
+footer.discordSection .wild-footer-contact-cta {
+  order: 1;
+  margin-top: 0 !important;
+}
+
+footer.discordSection .wild-signup-system {
+  order: 2;
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
 footer.discordSection .wild-footer-contact-cta {
   width: min(100% - 2rem, 48rem);
   margin-inline: auto;
@@ -9939,7 +9993,7 @@ footer.discordSection .wild-footer-contact-cta__title {
   margin: 0;
   color: #f7d9a5 !important;
   -webkit-text-fill-color: #f7d9a5 !important;
-  font-size: clamp(1.7rem, 4.75vw, 3.35rem);
+  font-size: clamp(1.7rem, 4.1vw, 2.85rem);
   line-height: 0.98;
   white-space: nowrap;
   text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82);
@@ -9956,14 +10010,33 @@ footer.discordSection .wild-footer-contact-cta__copy {
 }
 
 footer.discordSection .wild-footer-contact-cta__prompt {
-  max-width: 38rem;
-  margin: 0.55rem auto 0;
+  max-width: 100%;
+  margin: 1.15rem auto 0;
   color: #e8b66d !important;
   -webkit-text-fill-color: #e8b66d !important;
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-size: clamp(1.7rem, 4.1vw, 2.85rem);
   font-weight: 800;
-  line-height: 1.35;
-  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+  line-height: 0.98;
+  letter-spacing: 0.025em;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82);
+}
+
+@media (max-width: 500px) {
+  footer.discordSection .wild-footer-contact-cta__kicker,
+  footer.discordSection .wild-footer-contact-cta__prompt {
+    font-size: 1rem;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  footer.discordSection .wild-footer-contact-cta__kicker {
+    letter-spacing: 0.11em;
+  }
+
+  footer.discordSection .wild-footer-contact-cta__prompt {
+    font-size: clamp(1.45rem, 6.55vw, 1.7rem);
+    letter-spacing: -0.035em;
+  }
 }
 
 footer.discordSection .wild-footer-contact-cta__actions {
@@ -9999,12 +10072,12 @@ footer.discordSection .wild-footer-social-cta {
   text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
 }
 
-/* Color 3 is an accent, never a disappearing line. Match the Home hero's
-   bright copper and strong separation wherever a semantic third line appears. */
+/* Color 3 remains the Home-only accent. Visitor subpages use solid Color 2
+   for all display lines. */
 body :is(
   .ww-c3,
   .wild-line-title__line--three,
-  .wildfire-hero-headline__line--c3,
+  .wild-home .wildfire-hero-headline__line--c3,
   .wild-wildfire-sequence-callout__line--going
 ) {
   color: #c87936 !important;
@@ -10195,7 +10268,7 @@ footer.discordSection .wild-footer-contact-cta {
   }
 
   body .wild-home #project-wildfire .wild-wildfire-build-note__line {
-    font-size: 1.4rem !important;
+    font-size: 2.4rem !important;
   }
 
   /* On the brighter phone canvas, the desktop Color 3 is too low-contrast
@@ -10347,6 +10420,12 @@ body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:activ
   display: none;
 }
 
+.wild-subpage--wildfire .wildfire-hero-mosaic {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 2.5vw, 2rem);
+}
+
 .wild-subpage--wildfire .wildfire-hero-media,
 .wild-subpage--wildfire .wildfire-hero-media > div {
   position: relative;
@@ -10370,6 +10449,7 @@ body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:activ
   top: auto !important;
   bottom: auto !important;
   background: transparent !important;
+  text-align: center !important;
 }
 
 @media (min-width: 720px) {
@@ -10497,9 +10577,15 @@ footer#footer .wild-signup-field input:-webkit-autofill:active {
    photo clear, then continue in the approved warm copper field rather than
    creating a dark, half-empty hero panel. */
 .wild-subpage--wildfire .wildfire-hero-copy {
+  position: relative !important;
   top: auto !important;
+  right: auto !important;
   bottom: auto !important;
+  left: auto !important;
+  width: min(100%, 76rem) !important;
+  margin-inline: auto !important;
   background: transparent !important;
+  text-align: center !important;
 }
 
 @media (min-width: 720px) {
@@ -10528,8 +10614,7 @@ footer#footer .wild-signup-field input:-webkit-autofill:active {
   }
 }
 
-/* G: give every large display line on The Ruins, I Sell, and Bio the same
-   Color 1 plus dimensional dark-shadow language as the WildWorks logo.
+/* Large narrative-subpage display lines use solid Color 2.
    Keep this route-scoped so body copy, cards, buttons, legal pages, and the
    rest of the site retain their established treatments. */
 body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section.wild-subpage-section :is(h1, h2),
@@ -10538,20 +10623,31 @@ body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-sec
 body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-section p.wild-brand-cta-big,
 body :is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio)
   :is(.wild-brand-phone, .wild-brand-cta-big, .wild-sell-phone, .wild-sell-signature) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
-  text-shadow:
-    0 clamp(3px, 0.38vw, 5px) 0 rgba(50, 16, 5, 0.78),
-    0 0.38rem 0.58rem rgba(74, 31, 9, 0.32) !important;
+  text-shadow: none !important;
 }
 
 body .wild-subpage--ruins.wild-subpage--ruins
   .wild-subpage-section.wild-subpage-section :is(h1, h2) {
   text-align: left !important;
+}
+
+/* Bio only: crop the source image's dark edge strips without changing the
+   image asset or the surrounding subpage layout. The second editorial
+   heading intentionally matches the Bio h1's established display scale. */
+body .wild-subpage--bio .wild-subpage-hero > .wild-zoomable-image img {
+  object-fit: cover !important;
+  transform: scale(1.04) !important;
+}
+
+body .wild-subpage--bio .wild-subpage-section .wild-bio-reinvention-heading {
+  font-size: clamp(2.55rem, 5.1vw, 5.15rem) !important;
+  line-height: 0.96 !important;
 }
 
 /* Keep the editorial contact close consistent on the three narrative
@@ -10573,15 +10669,29 @@ body .wild-subpage .wild-brand-phone {
 
 /* Home statement between the visual hero and the iScott concierge. */
 body #top.wild-home .wild-home-statement {
+  position: relative;
   display: grid;
   place-items: center;
-  margin: 0;
-  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(2.4rem, 4vw, 3.25rem);
-  background: transparent;
+  width: min(calc(100% - 2rem), 72rem);
+  box-sizing: border-box;
+  margin: clamp(2rem, 4vw, 3.5rem) auto;
+  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 3.4vw, 2.75rem) clamp(1.85rem, 3.5vw, 2.75rem);
+  border: 1px solid rgba(255, 239, 202, 0.56);
+  border-radius: 0.9rem;
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
+    radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
+    linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+  box-shadow:
+    0 1.35rem 2.2rem rgba(57, 20, 3, 0.34),
+    0 0 1.25rem rgba(200, 121, 54, 0.14),
+    inset 0 1px 0 rgba(255, 243, 213, 0.28);
   text-align: center;
 }
 
 body #top.wild-home .wild-home-statement__title {
+  position: relative;
+  z-index: 1;
   display: grid;
   width: 100%;
   min-width: 0;
@@ -10619,12 +10729,14 @@ body #top.wild-home .wild-home-statement__line--one {
   -webkit-text-fill-color: #f7d9a5 !important;
 }
 
-body #top.wild-home .wild-home-statement__line--one .wild-home-statement__phrase {
-  display: block;
+body #top.wild-home .wild-home-statement__line--one,
+body #top.wild-home .wild-home-statement__line--two {
+  display: grid;
+  row-gap: 0.14em;
 }
 
 body #top.wild-home .wild-home-statement__line--two {
-  margin-top: 0.32em;
+  margin-top: 0.14em;
   color: #e8b66d !important;
   -webkit-text-fill-color: #e8b66d !important;
 }
@@ -10633,7 +10745,7 @@ body #top.wild-home .wild-home-statement__line--four {
   margin-top: 0.48em;
   color: #e8b66d !important;
   -webkit-text-fill-color: #e8b66d !important;
-  font-size: 0.78em;
+  font-size: 0.84em;
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.96;
@@ -10708,12 +10820,14 @@ body .wild-home-hero-stonework-note {
 
 @media (max-width: 719px) {
   body #top.wild-home .wild-home-statement {
-    padding: clamp(2.15rem, 10vw, 3.25rem) 1.25rem 2.5rem;
+    width: calc(100% - 1rem);
+    margin: clamp(1.5rem, 7vw, 2.25rem) auto;
+    padding: clamp(1.7rem, 7vw, 2.25rem) 0.75rem clamp(1.65rem, 6vw, 2rem);
   }
 
   body #top.wild-home .wild-home-statement__title {
-    max-width: 19ch;
-    font-size: clamp(1.75rem, 7.8vw, 2.4rem);
+    max-width: 100%;
+    font-size: clamp(1.45rem, 6.1vw, 1.75rem);
     line-height: 0.96;
   }
 
@@ -10724,14 +10838,14 @@ body .wild-home-hero-stonework-note {
 
   body #top.wild-home .wild-home-statement__line--four {
     margin-top: 0.5em;
-    font-size: 0.72em;
+    font-size: 0.78em;
   }
 
   body #top.wild-home .wild-home-statement__brand-lockup {
-    --ww-brand-lockup-scale: 1.096;
-    --ww-brand-lockup-shadow-scale: 1.101;
+    --ww-brand-lockup-scale: 1.02;
+    --ww-brand-lockup-shadow-scale: 1.025;
     width: 100%;
-    margin-top: 1.15rem;
+    margin-top: 0.55rem;
     margin-inline: auto;
     justify-self: center;
   }

@@ -20,10 +20,7 @@ const navTabs = [
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  if (isLegalRoute(pathname)) {
-    return null;
-  }
+  const legalRoute = isLegalRoute(pathname);
 
   return (
     <header className="wild-site-header bg-transparent discordSection discordSection--1">
@@ -32,8 +29,10 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
-          className="wild-mobile-menu-button flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-90"
+          className="wild-mobile-menu-button wild-mobile-menu-trigger fixed left-4 top-3 z-40 flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-90"
           aria-label="Open menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="wild-mobile-navigation"
         >
           <svg
             viewBox="0 0 24 24"
@@ -50,40 +49,42 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Desktop: logo + nav row (width >= 500px) */}
-      <div className="mx-auto hidden flex-col items-center pb-0 pt-4 min-[501px]:flex sm:gap-4 sm:pt-10">
-        <nav className="w-[60%] pt-4 sm:mx-auto sm:px-6 sm:pb-2 sm:pt-12">
-          <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3">
-            {navTabs.map((tab) => {
-              const isActive =
-                tab.href === "/pages/Home"
-                  ? pathname === "/" || pathname === "/pages/Home"
-                  : pathname.startsWith(tab.href);
-              return (
-                <motion.div
-                  key={tab.href}
-                  className="inline-flex"
-                  whileHover={{ scale: 1.08, y: -3 }}
-                  whileTap={{ scale: 0.98, y: 0 }}
-                >
-                  <Link
-                    href={tab.href}
-                    className={`wild-nav-link inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded px-1 py-1 text-xs font-normal 
-                    uppercase tracking-wide transition-colors sm:px-2 sm:py-1 sm:text-sm ${
-                      isActive
-                        ? "wild-nav-link--active border"
-                        : ""
-                    }`}
-                    style={{ fontFamily: "var(--font-serif), serif" }}
+      {/* Legal pages keep their purpose-built desktop legal navigation. */}
+      {!legalRoute && (
+        <div className="mx-auto hidden flex-col items-center pb-0 pt-4 min-[501px]:flex sm:gap-4 sm:pt-10">
+          <nav className="w-[60%] pt-4 sm:mx-auto sm:px-6 sm:pb-2 sm:pt-12">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3">
+              {navTabs.map((tab) => {
+                const isActive =
+                  tab.href === "/pages/Home"
+                    ? pathname === "/" || pathname === "/pages/Home"
+                    : pathname.startsWith(tab.href);
+                return (
+                  <motion.div
+                    key={tab.href}
+                    className="inline-flex"
+                    whileHover={{ scale: 1.08, y: -3 }}
+                    whileTap={{ scale: 0.98, y: 0 }}
                   >
-                    {tab.label}
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </nav>
-      </div>
+                    <Link
+                      href={tab.href}
+                      className={`wild-nav-link inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded px-1 py-1 text-xs font-normal
+                      uppercase tracking-wide transition-colors sm:px-2 sm:py-1 sm:text-sm ${
+                        isActive
+                          ? "wild-nav-link--active border"
+                          : ""
+                      }`}
+                      style={{ fontFamily: "var(--font-serif), serif" }}
+                    >
+                      {tab.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </nav>
+        </div>
+      )}
 
       {/* Separator: hide on mobile (hamburger only), show on desktop */}
       {/* <div
@@ -94,6 +95,7 @@ export default function Header() {
       {/* Full-screen mobile menu overlay (like second image) */}
       {mobileMenuOpen && (
         <div
+          id="wild-mobile-navigation"
           className="wild-mobile-menu fixed inset-0 z-50 flex flex-col max-[500px]:flex min-[501px]:hidden"
           role="dialog"
           aria-modal="true"

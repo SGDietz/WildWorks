@@ -295,7 +295,7 @@ const signatureWork = [
     body: [
       "Want the Coolest Party Zone You Have Ever Seen — in Your Own Back Yard?",
       "If You've Got a Space, We Can Create an Area That Looks Like the Original Farmhouse the Neighborhood Was Built Around, and Turn It Into a Purpose-Built Outdoor Kitchen Your Family Will Love, While Giving Your Home Incredible Resale Value.",
-      "Wherever You Are, Anywhere in the World, If You Want a Space That is Unforgettable — Something People Will Talk About for Generations — Call Now or Talk to iScott.",
+      "Wherever You Are, Anywhere in the World, If You Want a Space That is Unforgettable — Something People Will Talk About for Generations — Talk to iScott or Call Now.",
     ],
     image: "/ww-art-ruins.jpeg",
     alt: "The Ruins stonework garden and reflecting pool by WildWorks",
@@ -360,7 +360,7 @@ const wildfireInspirationImages = [
   },
 ];
 
-const wildfireLightboxImages = [...wildfireNightImages, ...wildfireInspirationImages];
+const wildfireLightboxImages = wildfireNightImages;
 
 const processSteps = [
   {
@@ -2318,34 +2318,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       </motion.section>
 
       <motion.section
-        className="wild-home-statement discordSection"
-        variants={slowStagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <motion.h2
-          className="wild-home-statement__title"
-          variants={softScaleIn}
-          aria-label="Design at the Limits of Human Imagination. A Contractor that Faithfully Brings Those Designs to Life. WildWorks. Where Fine Art Meets the Wild"
-        >
-          <span className="wild-home-statement__line wild-home-statement__line--one">
-            <span className="wild-home-statement__phrase">Design at the Limits</span>{" "}
-            <span className="wild-home-statement__phrase">of Human Imagination.</span>
-          </span>
-          <span className="wild-home-statement__line wild-home-statement__line--two">
-            <span className="wild-home-statement__phrase">A Contractor that</span>{" "}
-            <span className="wild-home-statement__phrase">Faithfully Brings</span>{" "}
-            <span className="wild-home-statement__phrase">Those Designs to Life.</span>
-          </span>
-          <span className="wild-home-statement__brand-lockup" aria-hidden="true" />
-          <span className="wild-home-statement__line wild-home-statement__line--four">
-            Where Fine Art Meets the Wild
-          </span>
-        </motion.h2>
-      </motion.section>
-
-      <motion.section
         id="iscott-sales"
         className="wild-section wild-section--intro discordSection discordSection--1"
         variants={slowStagger}
@@ -2899,6 +2871,33 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         </div>
       </motion.section>
 
+      <motion.section
+        className="wild-home-statement discordSection"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <motion.h2
+          className="wild-home-statement__title"
+          variants={softScaleIn}
+          aria-label="Design at the Limits of Human Imagination. A Contractor that Faithfully Brings Those Designs to Life. Wild Works. Where Fine Art Meets the Wild"
+        >
+          <span className="wild-home-statement__line wild-home-statement__line--one">
+            <span className="wild-home-statement__phrase">Design at the Limits</span>{" "}
+            <span className="wild-home-statement__phrase">of Human Imagination.</span>
+          </span>
+          <span className="wild-home-statement__line wild-home-statement__line--two">
+            <span className="wild-home-statement__phrase">A Contractor that Faithfully</span>{" "}
+            <span className="wild-home-statement__phrase">Brings Those Designs to Life.</span>
+          </span>
+          <span className="wild-home-statement__brand-lockup" aria-hidden="true" />
+          <span className="wild-home-statement__line wild-home-statement__line--four">
+            Where Fine Art Meets the Wild
+          </span>
+        </motion.h2>
+      </motion.section>
+
       {activeWildfireImage && typeof document !== "undefined" ? createPortal(
         <div
           className="wildfire-lightbox discordSection discordSection--lightbox"
@@ -3439,7 +3438,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 State-of-the-Art Ai-Driven Website: Avatar Conversation, Ai Conversion, Lead
                 Intake, Appointment Setting, Information Gathering, Full Automation; with
                 Tasteful Look and Intuitive Feel. If You Would Like to Discuss Scott Building
-                a Website for You, Call or Text WildWorks, or Talk to iScott, and iScott Will Have
+                a Website for You, Talk to iScott, Call, or Text WildWorks, and iScott Will Have
                 the Real Scott Reach Out to You.
               </BrandText>
             </motion.p>

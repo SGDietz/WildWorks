@@ -163,7 +163,7 @@ export default function RootLayout({
         "@id": `${siteUrl}/#organization`,
         name: "WildWorks",
         url: siteUrl,
-        email: "Wildworks@pm.me",
+        email: "hello@wildworks.ai",
         telephone: "+1-877-600-2474",
         image: heroImageUrl,
         logo: `${siteUrl}/wildLogo.png`,

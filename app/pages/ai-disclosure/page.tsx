@@ -100,7 +100,7 @@ export default function AiDisclosurePage() {
           title: "Contact",
           children: (
             <p>
-              Questions about iScott or assisted tools can be sent to Wildworks@pm.me or raised by calling
+              Questions about iScott or assisted tools can be sent to hello@wildworks.ai or raised by calling
               WildWorks at 1-877-600-2474.
             </p>
           ),

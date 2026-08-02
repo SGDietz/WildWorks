@@ -176,7 +176,7 @@ export default function PrivacyPolicyPage() {
             <>
               <p>
                 You may ask WildWorks to update, delete, or stop using contact information by emailing
-                Wildworks@pm.me. WildWorks may need to keep certain information for project records, legal
+                hello@wildworks.ai. WildWorks may need to keep certain information for project records, legal
                 compliance, dispute resolution, fraud prevention, security, or other legitimate business
                 reasons.
               </p>
@@ -201,7 +201,7 @@ export default function PrivacyPolicyPage() {
           title: "Contact",
           children: (
             <p>
-              Privacy questions can be sent to Wildworks@pm.me or raised by calling WildWorks at
+              Privacy questions can be sent to hello@wildworks.ai or raised by calling WildWorks at
               1-877-600-2474.
             </p>
           ),

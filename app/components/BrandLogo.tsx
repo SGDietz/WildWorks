@@ -36,6 +36,7 @@ export default function BrandLogo() {
           sizes="(max-width: 500px) 94vw, (max-width: 1216px) 75vw, 57rem"
           className="wild-top-logo-source"
         />
+        <span className="wild-top-logo-living" aria-hidden="true" />
       </span>
     </motion.div>
   );

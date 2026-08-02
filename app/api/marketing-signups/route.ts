@@ -74,7 +74,7 @@ async function insertSignup(row: Record<string, unknown>) {
 }
 
 function emailHtml() {
-  return `<div style="font-family:Georgia,serif;color:#4b230f;line-height:1.55"><h1 style="color:#a94f24">Welcome to WildWorks</h1><p>Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.</p><p>To unsubscribe from email, <a href="mailto:Wildworks@pm.me?subject=Unsubscribe%20from%20WildWorks%20email">email WildWorks</a>. For help, call WildWorks at 1-877-600-2474.</p></div>`;
+  return `<div style="font-family:Georgia,serif;color:#4b230f;line-height:1.55"><h1 style="color:#a94f24">Welcome to WildWorks</h1><p>Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.</p><p>To unsubscribe from email, <a href="mailto:hello@wildworks.ai?subject=Unsubscribe%20from%20WildWorks%20email">email WildWorks</a>. For help, call WildWorks at 1-877-600-2474.</p></div>`;
 }
 
 function escapeHtml(value: string) {
