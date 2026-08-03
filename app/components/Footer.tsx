@@ -106,7 +106,10 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer id="footer" className="bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2">
+    <footer
+      id="footer"
+      className={`bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}`}
+    >
       <style>{`
         body .wild-footer-mobile-strip.wild-footer-mobile-strip {
           border-top-color: rgba(247, 217, 165, 0.5) !important;
@@ -268,10 +271,11 @@ export default function Footer() {
         </div>
 
         <div className="wild-footer-contact-cta mt-12 sm:mt-16">
-          <motion.p className="wild-footer-contact-cta__kicker" variants={fadeInUp}>
-            Your Project Starts Here
-          </motion.p>
-          <motion.h2 className="wild-footer-contact-cta__title" variants={fadeInUp}>
+          <motion.h2
+            className="wild-footer-contact-cta__title"
+            variants={fadeInUp}
+            style={{ marginTop: 0, whiteSpace: "normal" }}
+          >
             Let&apos;s Talk About Your Dream Project.
           </motion.h2>
           <motion.div className="wild-footer-contact-cta__actions" variants={fadeInUp}>
@@ -292,7 +296,11 @@ export default function Footer() {
               <span>Email Now</span>
             </motion.a>
           </motion.div>
-          <motion.p className="wild-footer-contact-cta__prompt" variants={fadeInUp}>
+          <motion.p
+            className="wild-footer-contact-cta__kicker"
+            variants={fadeInUp}
+            style={{ marginTop: "1.15rem", whiteSpace: "normal" }}
+          >
             Start the Conversation Now
           </motion.p>
         </div>

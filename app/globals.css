@@ -4513,9 +4513,9 @@ body .wild-footer-mobile-link:focus-visible {
   color: var(--ww-parchment);
 }
 
-/* The Ruins headline stays as five intentional rows on a phone or portrait
-   tablet. On larger screens, pair those rows into the three color groups. */
-@media (min-width: 900px) {
+/* The Ruins headline stays as five intentional rows on a phone. From portrait
+   tablet upward, pair those rows into the three intentional color groups. */
+@media (min-width: 720px) {
   body .wild-home #signature-work .wild-signature-title__line {
     display: inline !important;
     white-space: nowrap !important;
@@ -5637,6 +5637,26 @@ body .wild-subpage .wild-final-cta {
 .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(3) {
   color: #d2934a !important;
   -webkit-text-fill-color: #d2934a !important;
+}
+
+/* Preserve the desktop story hierarchy on portrait tablets: the three
+   "Then Came" payoff lines lead, while the build-record note supports them. */
+@media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
+    font-size: 4.5rem !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
+    font-size: 3.75rem !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+    font-size: 3.25rem !important;
+  }
+
+  body .wild-home #project-wildfire .wild-wildfire-build-note__line {
+    font-size: 2.2rem !important;
+  }
 }
 
 @media (max-width: 719px) {
@@ -8600,7 +8620,8 @@ body:has(.wild-subpage) .wild-top-logo-band {
   max-width: min(100%, 41rem) !important;
   margin: 0 !important;
   font-size: clamp(2.3rem, 4.35vw, 4.85rem) !important;
-  line-height: 0.88 !important;
+  line-height: 0.98 !important;
+  transform: translateY(0.65rem) !important;
 }
 
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
@@ -8609,9 +8630,14 @@ body:has(.wild-subpage) .wild-top-logo-band {
   max-width: 100% !important;
   white-space: normal !important;
   text-wrap: balance !important;
+  line-height: 1 !important;
   text-shadow:
     0 0.12rem 0.38rem rgba(5, 2, 0, 0.92),
     0 0 1.05rem rgba(6, 3, 1, 0.62) !important;
+}
+
+.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line + .wild-line-title__line {
+  margin-top: 0.1em !important;
 }
 
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
@@ -8625,7 +8651,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   -webkit-text-fill-color: #f7d9a5 !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
-  font-size: clamp(1.42rem, 2.05vw, 2.15rem) !important;
+  font-size: clamp(1.67rem, 2.3vw, 2.4rem) !important;
   font-weight: 820 !important;
   line-height: 1.18 !important;
   text-align: left !important;
@@ -8702,12 +8728,13 @@ body:has(.wild-subpage) .wild-top-logo-band {
   .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
     max-width: min(100%, 24rem) !important;
     font-size: clamp(1.58rem, 7.35vw, 2.05rem) !important;
-    line-height: 0.88 !important;
+    line-height: 0.98 !important;
+    transform: translateY(0.4rem) !important;
   }
 
   .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
     max-width: min(100%, 25rem) !important;
-    font-size: clamp(0.78rem, 3.35vw, 0.96rem) !important;
+    font-size: clamp(1.03rem, 4.35vw, 1.21rem) !important;
     line-height: 1.18 !important;
     margin-top: 0.48rem !important;
   }
@@ -8735,7 +8762,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   }
 
   .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
-    font-size: 1.16rem !important;
+    font-size: 1.41rem !important;
   }
 }
 
@@ -9467,6 +9494,10 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:n
   -webkit-text-fill-color: #f7d9a5 !important;
 }
 
+body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1) {
+  font-size: 107% !important;
+}
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
 body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) .wild-hero-lede-accent {
   color: #f1c777 !important;
@@ -9980,13 +10011,18 @@ footer.discordSection .wild-footer-contact-cta {
 }
 
 footer.discordSection .wild-footer-contact-cta__kicker {
+  width: 100%;
   margin: 0 0 0.35rem;
   color: #f7d9a5 !important;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.7rem, 3.3vw, 2.55rem);
+  line-height: 1;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.045em;
   text-transform: uppercase;
+  white-space: nowrap !important;
+  text-align: center;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82);
 }
 
 footer.discordSection .wild-footer-contact-cta__title {
@@ -10030,7 +10066,8 @@ footer.discordSection .wild-footer-contact-cta__prompt {
   }
 
   footer.discordSection .wild-footer-contact-cta__kicker {
-    letter-spacing: 0.11em;
+    font-size: clamp(1rem, 4.25vw, 1.3rem);
+    letter-spacing: 0.035em;
   }
 
   footer.discordSection .wild-footer-contact-cta__prompt {
@@ -10267,8 +10304,13 @@ footer.discordSection .wild-footer-contact-cta {
     font-weight: 850 !important;
   }
 
+  body .wild-home #project-wildfire .wild-wildfire-build-note {
+    padding-inline: 0.25rem !important;
+  }
+
   body .wild-home #project-wildfire .wild-wildfire-build-note__line {
-    font-size: 2.4rem !important;
+    font-size: clamp(1.4rem, 6.2vw, 1.65rem) !important;
+    white-space: nowrap !important;
   }
 
   /* On the brighter phone canvas, the desktop Color 3 is too low-contrast
@@ -10650,6 +10692,25 @@ body .wild-subpage--bio .wild-subpage-section .wild-bio-reinvention-heading {
   line-height: 0.96 !important;
 }
 
+/* Keep the Bio's closing invitation visually attached to the shared contact
+   card. The card's own spacing remains unchanged; only the stacked page/footer
+   gap is collapsed on this route. */
+body .wild-subpage--bio.wild-subpage--bio {
+  padding-bottom: clamp(0.4rem, 0.8vw, 0.65rem) !important;
+}
+
+body .wild-subpage--bio.wild-subpage--bio .wild-subpage-contact.wild-subpage-contact {
+  padding-bottom: clamp(0.55rem, 1.2vw, 0.9rem) !important;
+}
+
+body footer#footer.wild-footer--bio.wild-footer--bio {
+  margin-top: 0 !important;
+}
+
+body footer#footer.wild-footer--bio.wild-footer--bio .wild-footer-main.wild-footer-main {
+  padding-top: clamp(0.65rem, 1.4vw, 1rem) !important;
+}
+
 /* Keep the editorial contact close consistent on the three narrative
    subpages. */
 .wild-subpage-iscott-cta {
@@ -10801,6 +10862,25 @@ body #top.wild-home .wild-home-statement__brand-lockup::after {
   transform-origin: center;
 }
 
+/* Keep the statement comfortably framed on portrait tablets. The four
+   headline lines breathe evenly, and the wordmark no longer grazes the card. */
+@media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
+  body #top.wild-home .wild-home-statement__line--one,
+  body #top.wild-home .wild-home-statement__line--two {
+    row-gap: 0.2em;
+  }
+
+  body #top.wild-home .wild-home-statement__line--two {
+    margin-top: 0.2em;
+  }
+
+  body #top.wild-home .wild-home-statement__brand-lockup {
+    --ww-brand-lockup-scale: 1.06;
+    --ww-brand-lockup-shadow-scale: 1.065;
+    width: 96%;
+  }
+}
+
 body .wild-home-hero-stonework-note {
   width: max-content;
   max-width: calc(100% - 1rem);
@@ -10906,5 +10986,130 @@ body .wild-home-hero-stonework-note {
   #footer .wild-footer-stonework-note {
     font-size: clamp(1.85rem, 7.5vw, 2.1rem);
     white-space: normal;
+  }
+}
+
+/* Project Wildfire introduction: two centered three-line systems that grow
+   wider as they descend, using the permanent Color 1 / 2 / 3 sequence. */
+.wild-subpage--wildfire .wildfire-hero-copy {
+  width: min(100%, 92rem) !important;
+  margin-inline: auto !important;
+  padding-bottom: clamp(0.3rem, 0.8vw, 0.65rem) !important;
+  text-align: center !important;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 0.04em;
+  max-width: none !important;
+  margin-inline: auto !important;
+  font-size: clamp(2.7rem, 5.2vw, 5.8rem) !important;
+  line-height: 0.94 !important;
+  text-align: center !important;
+}
+
+.wild-subpage--wildfire .wildfire-hero-headline__line {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  white-space: nowrap !important;
+  text-align: center;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline .wildfire-hero-headline__line--c1 {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 0.78em;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline .wildfire-hero-headline__line--c2 {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: 0.86em;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline .wildfire-hero-headline__line--c3 {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-size: 1.18em;
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.28),
+    0 2px 3px rgba(54, 20, 5, 0.86),
+    0 4px 8px rgba(54, 20, 5, 0.62) !important;
+}
+
+.wild-subpage--wildfire .wildfire-hero-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08em;
+  max-width: 90rem !important;
+  margin: clamp(0.55rem, 1vw, 0.85rem) auto 0 !important;
+  font-size: clamp(1.5rem, 2vw, 2.05rem) !important;
+  font-weight: 700;
+  line-height: 1.16 !important;
+  text-align: center;
+}
+
+.wild-subpage--wildfire .wildfire-hero-summary__line {
+  display: block;
+  margin-inline: auto;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary .wildfire-hero-summary__line--c1 {
+  width: 78%;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 0.86em;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary .wildfire-hero-summary__line--c2 {
+  width: 88%;
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: 0.93em;
+}
+
+.wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary .wildfire-hero-summary__line--c3 {
+  width: 96%;
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-size: 1em;
+  transform: translateY(clamp(0.8rem, 1.8vw, 1.65rem));
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.28),
+    0 2px 3px rgba(54, 20, 5, 0.86),
+    0 4px 8px rgba(54, 20, 5, 0.62) !important;
+}
+
+.wild-subpage--wildfire .wildfire-journal {
+  padding-top: clamp(0.35rem, 0.9vw, 0.75rem) !important;
+}
+
+@media (min-width: 720px) and (max-width: 900px) {
+  .wild-subpage--wildfire .wildfire-hero-summary {
+    font-size: clamp(1.02rem, 2.15vw, 1.18rem) !important;
+  }
+}
+
+@media (max-width: 719px) {
+  .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline {
+    font-size: clamp(1.28rem, 5.6vw, 2.3rem) !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-summary {
+    gap: 0.22em;
+    font-size: clamp(1.02rem, 4.6vw, 1.22rem) !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-hero-summary__line {
+    width: 100%;
+    white-space: normal;
+    text-wrap: balance;
   }
 }

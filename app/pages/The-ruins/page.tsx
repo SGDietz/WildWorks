@@ -1,6 +1,4 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
-import SubpageCallCta from "../../components/SubpageCallCta";
-import SubpageIScottCta from "../../components/SubpageIScottCta";
 
 export default function TheRuins() {
     return (
@@ -21,20 +19,20 @@ export default function TheRuins() {
                 <h1 className="mb-4 text-3xl text-center sm:mb-6 sm:text-5xl">The Ruins</h1>
                 <p className="text-xs text-white/90 pb-2">Federal Hill, Baltimore City, Maryland</p>
                 <div className="space-y-2 text-xs leading-relaxed">
-                    <p>My Client Asked Me, &quot;What Do You See Here?&quot;</p>
+                    <p>My client asked me, &quot;What do you see here?&quot;</p>
                     <p>
-                        I Stood There Looking at Their Normie Back Yard—Flowers, Mulch, a Gravel Walk, and a Wooden Bench—and Not Only Was There No There There, But I Felt Like, Given the Location, This Area Needed a Story.
+                        I stood there looking at their Normie Back Yard—flowers, mulch, a gravel walk, and a wooden bench—and not only was there no there there, but I felt like, given the location, this area needed a story.
                     </p>
                     <p>
-                        Federal Hill is a High Ground Overlook of Baltimore&apos;s Inner Harbor—Important Early, and Relevant in the War of 1812, When It Served as a Military Observation Post, Signal Station, and a Gun Battery Looking Out Over the Harbor.
+                        Federal Hill is a high ground overlook of Baltimore&apos;s Inner Harbor—important early, and relevant in the War of 1812, when it served as a military observation post, signal station, and a gun battery looking out over the harbor.
                     </p>
                     <p>
-                        So When My Client Asked That Question, My Mind Didn&apos;t Stay in &quot;Landscaping Mode,&quot; It Went Straight to: <i>What Could Have Happened Here?</i>
+                        So when my client asked that question, my mind didn&apos;t stay in &quot;landscaping mode,&quot; it went straight to: <i>What could have happened here?</i>
                     </p>
                     <p>
-                        We&apos;d Already Done a Couple Projects with These Clients in the Years Prior, So I Knew Something Important: They
-                         Were Open to &quot;Cool and Wild,&quot; as Long as It Made Sense and Was Executed Well.
-                         That&apos;s Why I Didn&apos;t Rush It. I Spent a Couple Weeks Thinking—Pencil and Paper, Sitting in the Space, Staring at It from Different Angles—Because I Knew If I Could Come Up with the Right Idea, They&apos;d Let Me Build It.
+                        We&apos;d already done a couple projects with these clients in the years prior, so I knew something important: they
+                         were open to &quot;cool and wild,&quot; as long as it made sense and was executed well.
+                         That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
                     </p>
                 </div>
             </section>
@@ -43,30 +41,30 @@ export default function TheRuins() {
                 <h2 className="text-xl mb-2">What I Saw</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                        In My Mind, the &quot;Backstory&quot; Was This:
+                        In my mind, the &quot;backstory&quot; was this:
                     </p>
                     <p>
-                        A Stone Munitions Structure—a Small Powder Store Connected to Harbor Defense—Stood on This Ground Back in That Era.
-                        Then a Stray Cannonball During the War of 1812 Found It and—Boom! What Remained Were the Wall Pieces That We See Today.
+                        A stone munitions structure—a small powder store connected to harbor defense—stood on this ground back in that era.
+                        Then a stray cannonball during the War of 1812 found it and—boom! What remained were the wall pieces that we see today.
                     </p>
                     <p>
                     </p>
                     <p>
-                        And Then—More Than 200 Years Later—the Present-Day Owners Didn&apos;t &quot;Clean It Up,&quot; They Preserved
-                        the Ruins and Memorialized Them By Building Gardens and a Reflecting Pool Around Them.
+                        And then—more than 200 years later—the present-day owners didn&apos;t &quot;clean it up,&quot; they preserved
+                        The Ruins and memorialized them by building gardens and a reflecting pool around them.
                     </p>
                 </div>
             </section>
 
             <section className="wild-subpage-section discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
                 <h2 className="text-xl mb-2">Building the Ruins</h2>
-                <p className="text-xs leading-relaxed mb-4">The Finished Space Was Built to Feel Wild and Real, with:</p>
+                <p className="text-xs leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
                 <ul className="list-disc list-outside space-y-2 text-xs leading-relaxed mb-2 pl-6">
-                    <li>Bluestone Patios and a Walk</li>
-                    <li>Seating Placed Where You&apos;d Naturally Want to Sit</li>
-                    <li>A Reflecting Pool</li>
-                    <li>A Rusting Urn with Overflowing Water</li>
-                    <li>And the Ruin Fragments Themselves—Built Like True Remnants</li>
+                    <li>Bluestone patios and a walk</li>
+                    <li>Seating placed where you&apos;d naturally want to sit</li>
+                    <li>A reflecting pool</li>
+                    <li>A rusting urn with overflowing water</li>
+                    <li>And the Ruin fragments themselves—built like true remnants</li>
                 </ul>
             </section>
 
@@ -74,16 +72,16 @@ export default function TheRuins() {
                 <h2 className="text-xl mb-2">This Stone Has Baltimore in It</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                        Much of the Stone Used is Reclaimed Granite—the Kind That Actually Spent a Previous Life of 150+ Years as Baltimore Street and Curb Stone.
+                        Much of the stone used is reclaimed granite—the kind that actually spent a previous life of 150+ years as Baltimore street and curb stone.
                     </p>
                     <p>
-                        As Streets Aged and Construction Techniques Modernized, a Lot of That Old Stone Got Ripped Out, and Much Discarded Into the City Dump. Can You Believe That—Valuable Granite, and Baltimore&apos;s History Dumped Like Trash?
+                        As streets aged and construction techniques modernized, a lot of that old stone got ripped out, and much discarded into the city dump. Can you believe that—valuable granite, and Baltimore&apos;s history dumped like trash?
                     </p>
                     <p>
-                        A Few Local People Had Set Some Aside, Which We Salvaged and Used for the Build. Hopefully This Stone Will Live Another 150+ Years Right Here—Maybe a Couple Thousand!
+                        A few local people had set some aside, which we salvaged and used for the build. Hopefully this stone will live another 150+ years right here—maybe a couple thousand!
                     </p>
                     <p>
-                        That&apos;s Why the Finished Work Doesn&apos;t Feel Like &quot;New Hardscape Pretending to Be Old.&quot; It Feels Like It Could Have Been There All Along—Like Baltimore Coughed Up One of Its Older Layers and Set It Down Carefully in the Present.
+                        That&apos;s why the finished work doesn&apos;t feel like &quot;new hardscape pretending to be old.&quot; It feels like it could have been there all along—like Baltimore coughed up one of its older layers and set it down carefully in the present.
                     </p>
                 </div>
             </section>
@@ -92,60 +90,57 @@ export default function TheRuins() {
                 <h2 className="text-xl mb-2">Why This Works</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                        The Ruins Isn&apos;t a Replica and is Plausible and Real—and Now It is a Place That Makes People Sit and Wonder.
+                        The Ruins isn&apos;t a replica and is plausible and real—and now it is a place that makes people sit and wonder.
                     </p>
                     <p>
-                        My Hope is That Decades from Now, Even Hundreds of Years from Now, People Will Still Stand There Looking at the Ruins and Say:
-                         &quot;What is This? Where Did It Come from? What Happened Here?&quot;
+                        My hope is that decades from now, even hundreds of years from now, people will still stand there looking at The Ruins and say:
+                         &quot;What is this? Where did it come from? What happened here?&quot;
                     </p>
                 </div>
             </section>
 
             <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6 mt-6" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h2 className="text-2xl mb-2">If You Want a Ruin of Your Own...</h2>
+                <h2 className="text-2xl mb-2">Want a Ruin of Your Own?</h2>
                 <div className="space-y-2 text-xs leading-relaxed">
                     <p>
-                    That Would Serve in the Real World as a Party Zone, a Quiet Morning Spot, a Zen Area, or a Fire and Whiskey Corner,
-                    <i>Whatever Would Be Most Useful to You</i>, Whatever We Can Imagine Your Own Personal Ruins Might Be, Let&apos;s Talk, and Throw Around Ideas.                     </p>
-                    <p>I&apos;ll Happily Come Over to Your House, or Jump on a Video Call with You, Wherever You Are in the World, to Discuss Ideas.</p>
-                    <p>The “Ruin” Concept Can Go a Hundred Directions, and It Can Be Purpose-Built to Suit Your Life&apos;s Needs. Your Ruin Could Be:</p>
+                    That would serve in the real world as a Party Zone, a Quiet Morning Spot, a Zen Area, or a Fire-and-Whiskey Corner,{" "}
+                    <i>whatever would be most useful to you</i>, whatever we can imagine your own personal Ruins might be, let&apos;s talk, and throw around ideas.                     </p>
+                    <p>I&apos;ll happily come over to your house, or jump on a video call with you, wherever you are in the world, to discuss ideas.</p>
+                    <p>The “Ruin” concept can go a hundred directions, and it can be purpose-built to suit your life&apos;s needs. Your Ruin could be:</p>
                     <ul className="list-disc list-outside space-y-2 text-xs leading-relaxed mb-2 pl-6">
                         <li className="leading-[2]">
-                            The Remains of the Original Farmhouse That &quot;Predates the Neighborhood,&quot;
-                            Where the Gnarly, Jagged, Broken Base of an Old Stone Chimney Becomes
-                             a Modern, Purpose Built, Working Wood-Fire Feature—Surrounded By Stone Floors with Intentionally Fractured Edges.
-                             What is It Today? Ultra Cool Party Zone That You Will Want to Live in, and Friends Will Want to Come Over and Have Fun in.
+                            The remains of the original farmhouse that &quot;predates the neighborhood,&quot;
+                            where the gnarly, jagged, broken base of an old stone chimney becomes
+                             a modern, purpose built, working wood-fire feature—surrounded by stone floors with intentionally fractured edges.
+                             What is it today? Ultra cool party zone that you will want to live in, and friends will want to come over and have fun in.
                         </li>
                         {/* <li>
                             <strong>Collapsed stone garden walls</strong> from an old stone building that become natural boulder seating, like the structure simply fell into place over time.
                         </li> */}
                         <li className="leading-[2]">
-                            A <strong>Gristmill Ruin</strong> Beside a Stream—Water, Stone, Moss, Worn Thresholds—Built to Feel Like It is All That Remains from an Early 1700&apos;s Real Gristmill.
+                            A <strong>Gristmill Ruin</strong> beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
                         </li>
                         <li className="leading-[2]">
-                            Something Along the Lines of a &quot;Crumbling Roman-Style Bathhouse&quot; That Could Feel Like It Has Been There for Centuries. Low, Arched Stone Walls Remain from What Once Formed the Bathhouse Rooms. Some Walls Stand Waist-High, Others Rise Taller, Broken Irregularly as If the Centuries Simply Took Their Toll. In the Ground Lie Half-Sunken Bathing Basins, Their Stone Edges Softened By Time. Clear Water Flows Gently Through Them, as If an Old Natural Spring Still Feeds the Baths. Small Channels
-                            Guide the Water from One Basin to the Next, Echoing the Way Roman Baths Once Circulated Water Through Different Pools. <br/>
-                            Everything Appears Aged, Imperfect, and Naturally Deteriorated—Yet Beneath the Historic Look is a Fully Modern, Purpose Built System.
-                            The “Ancient” Baths Can Operate as a Hot Tub, a Plunge or Lap Pool, or Even Part of a Larger Swimming Pool Design.
+                            Something along the lines of a &quot;Crumbling Roman-Style Bathhouse&quot; that could feel like it has been there for centuries. Low, arched stone walls remain from what once formed the bathhouse rooms. Some walls stand waist-high, others rise taller, broken irregularly as if the centuries simply took their toll. In the ground lie half-sunken bathing basins, their stone edges softened by time. Clear water flows gently through them, as if an old natural spring still feeds the baths. Small channels
+                            guide the water from one basin to the next, echoing the way Roman baths once circulated water through different pools. <br/>
+                            Everything appears aged, imperfect, and naturally deteriorated—yet beneath the historic look is a fully modern, purpose built system.
+                            The “ancient” baths can operate as a hot tub, a plunge or lap pool, or even part of a larger swimming pool design.
                         </li>
                         <li className="leading-[2]">
-                            A Ruin of Any Type That&apos;s Half Gathering Space, Half Sanctuary—Something You&apos;ll Use Constantly,
-                            and That People Will Talk About Forever.
+                            A Ruin of any type that&apos;s half gathering space, half sanctuary—something you&apos;ll use constantly,
+                            and that people will talk about forever.
                         </li>
                     </ul>
                     <p>
-                        And Yes—Done Right, This Kind of Work Can Dramatically Increase the Feel—and the Value—of a Property, Because It Creates Something
-                        That is So Far Beyond Ordinary That It is Truly Extraordinary; Something You Will Love for as Long as You Own Your Home,
-                        and Buyers Will Fall in Love with and Want to Have as Their Own.
+                        And yes—done right, this kind of work can dramatically increase the feel—and the value—of a property, because it creates something
+                        that is so far beyond ordinary that it is truly extraordinary; something you will love for as long as you own your home,
+                        and buyers will fall in love with and want to have as their own.
                     </p>
                     <p>
-                        If You&apos;ve Got a Space and Want to Turn It Into a Place with a Past,{" "} You Can Call Now—I&apos;d Love to Discuss Ideas with You.
+                        If you&apos;ve got a space and want to turn it into a place with a past,{" "} you can call now—I&apos;d love to discuss ideas with you.
                         
                     </p>
                 </div>
-                <SubpageIScottCta />
-                <SubpageCallCta />
-                <h1 className="text-center text-5xl sm:text-6xl mb-6 sm:mb-12">Scott</h1>
             </section>
         </div>
     );

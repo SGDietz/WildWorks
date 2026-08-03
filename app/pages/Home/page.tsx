@@ -1558,13 +1558,43 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
             width: 100% !important;
             max-width: none !important;
-            font-size: clamp(1rem, 2vw, 1.25rem) !important;
+            font-size: clamp(1.25rem, calc(2vw + 0.25rem), 1.5rem) !important;
             white-space: nowrap !important;
           }
 
           #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof__line {
             display: inline !important;
             white-space: nowrap !important;
+          }
+        }
+
+        /* Final I-Sell placement lock: keep the CTA anchored while the copy sits fully in the grass. */
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title {
+          line-height: 1 !important;
+          transform: translateY(0.45rem) !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
+          line-height: 1 !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line + .wild-line-title__line {
+          margin-top: 0.1em !important;
+        }
+
+        #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+          transform: translateY(0.45rem) !important;
+        }
+
+        @media (max-width: 640px) {
+          #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+            font-size: 1.15rem !important;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 899px) {
+          #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof {
+            font-size: 1.41rem !important;
           }
         }
 
@@ -1751,9 +1781,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         /* iPad portrait: match the Tree of Life display scale to the Ruins
            headline below it while preserving the intentional left alignment. */
-        @media (min-width: 720px) and (max-width: 899px) {
+        @media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
           body #top#top.wild-home #wildworks-proof .wild-tree-title {
-            font-size: clamp(3rem, 5.85vw, 6.45rem) !important;
+            font-size: clamp(3.15rem, 5.2vw, 3.4rem) !important;
             line-height: 0.95 !important;
             text-align: left !important;
           }
@@ -2240,7 +2270,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             }}
           >
             <span className="wild-hero-lede-line">
-              By Creating <span className="wild-hero-lede-accent">the World&apos;s Wildest Art</span>
+              By Creating <span className="wild-hero-lede-accent">Exquisite Works of Art</span>
             </span>
             <span className="wild-hero-lede-line">
               And Solving Your Real World Problems

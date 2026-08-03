@@ -117,16 +117,21 @@ export default function Wildfire() {
           <motion.p className="wild-kicker" variants={fadeInUp}>
             Project Wildfire
           </motion.p>
-          <motion.h1 variants={fadeInUp}>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">Project Build</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">From Breaking</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">Ground to the</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">First Wood Fire.</span>
+          <motion.h1 className="wildfire-hero-headline" variants={fadeInUp}>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete Project</span>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">Build from Breaking Ground</span>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">To the First Wood Fire.</span>
           </motion.h1>
-          <motion.p className="wild-body" variants={fadeInUp}>
-            This is Not a Before-and-After Page. It is a Full Build Record for an
-            Outdoor Fireplace, Patio, and Outdoor Lounge with an Upper Viewing Deck.
+          <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
+            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
+              This is Not a Before-and-After Page. It is a Full Build Record
+            </span>
+            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
+              for an Outdoor Fireplace, Patio, an Outdoor Lounge, and an Upper Viewing Deck.
+            </span>
+            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
+              Pics Only, No Descriptions Currently — We’re Working on It!
+            </span>
           </motion.p>
         </div>
       </motion.section>
