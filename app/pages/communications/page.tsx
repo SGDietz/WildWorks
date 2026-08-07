@@ -4,7 +4,7 @@ export default function CommunicationsPage() {
   return (
     <LegalPage
       title="Communications Policy"
-      description="How WildWorks may contact visitors and clients by email, SMS/text, phone, WhatsApp, social platforms, iScott follow-up, and related marketing or project channels."
+      description="How WildWorks may contact visitors and clients by email, SMS/text, phone, social platforms, iScott follow-up, and related marketing or project channels."
       sections={[
         {
           title: "Contact Permission",
@@ -12,12 +12,12 @@ export default function CommunicationsPage() {
             <>
               <p>
                 When you submit contact information through this website, iScott, a form, email, phone, SMS,
-                WhatsApp, X, social media, or another channel, you authorize WildWorks to contact you about
+                X, social media, or another channel, you authorize WildWorks to contact you about
                 your inquiry, project, photos, goals, budget, timing, and related WildWorks services.
               </p>
               <p>
                 WildWorks may respond through the same channel you used or through another contact method you
-                provided, including email, phone, text message, WhatsApp, social direct message, or future
+                provided, including email, phone, text message, social direct message, or future
                 WildWorks communication tools.
               </p>
             </>
@@ -97,11 +97,11 @@ export default function CommunicationsPage() {
           ),
         },
         {
-          title: "WhatsApp, X, Social Media, and Third-Party Platforms",
+          title: "X, Social Media, and Third-Party Platforms",
           children: (
             <>
               <p>
-                If you contact WildWorks through WhatsApp, X, Instagram, Facebook, direct message, or another
+                If you contact WildWorks through X, Instagram, Facebook, direct message, or another
                 third-party platform, WildWorks may respond through that platform and may keep records of the
                 communication.
               </p>
@@ -154,7 +154,7 @@ export default function CommunicationsPage() {
           title: "No Emergency Channel",
           children: (
             <p>
-              This website, iScott, email, SMS/text, social media, WhatsApp, and voicemail are not emergency
+              This website, iScott, email, SMS/text, social media, and voicemail are not emergency
               channels. For immediate safety issues, utility strikes, fire, collapse, injury, dangerous site
               conditions, or other emergencies, contact emergency services or the appropriate local authority.
             </p>

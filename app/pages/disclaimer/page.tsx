@@ -86,7 +86,7 @@ export default function DisclaimerPage() {
           title: "No Emergency Channel",
           children: (
             <p>
-              This website, iScott, email, SMS/text, social media, WhatsApp, and voicemail are not emergency
+              This website, iScott, email, SMS/text, social media, and voicemail are not emergency
               channels. For immediate danger, fire, injury, utility strike, collapse, unsafe structure,
               flooding, gas smell, or similar emergencies, contact emergency services or the appropriate
               local authority.

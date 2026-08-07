@@ -1,0 +1,42 @@
+/* G 2026-08-06: all visible narrative type on Ruins and Bio uses permanent
+   Color 1. Existing black dimensional shadows and filters remain untouched. */
+html body#wildworks-body :is(
+  .wild-subpage--ruins,
+  .wild-subpage--bio
+) .wild-subpage-section :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li
+),
+html body#wildworks-body :is(
+  .wild-subpage--ruins,
+  .wild-subpage--bio
+) .wild-subpage-section :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li
+) :is(
+  span,
+  strong,
+  b,
+  em,
+  i,
+  a:not(.money-cta)
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body :is(
+  .wild-subpage--ruins,
+  .wild-subpage--bio
+) .wild-subpage-section li::marker {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}

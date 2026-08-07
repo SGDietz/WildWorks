@@ -1,0 +1,86 @@
+/* The signup is a compact form card, not a stack of competing visual effects. */
+body footer#footer .wild-signup-panel {
+  box-sizing: border-box;
+  width: min(calc(100% - 1.5rem), 34rem) !important;
+  padding: clamp(1.1rem, 2.2vw, 1.65rem) !important;
+  border: 1px solid #8f3612 !important;
+  border-radius: 1rem !important;
+  background: #c85a24 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body footer#footer .wild-signup-title {
+  margin: 0 0 clamp(0.7rem, 1.3vw, 0.95rem) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(1.65rem, 3.1vw, 2.15rem) !important;
+  line-height: 1.03 !important;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.76), 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+body footer#footer .wild-signup-form {
+  gap: clamp(0.62rem, 1.15vw, 0.82rem) !important;
+}
+
+body footer#footer .wild-signup-choice {
+  padding: 0.26rem !important;
+  border: 1px solid rgba(247, 217, 165, 0.46) !important;
+  border-radius: 0.68rem !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body footer#footer .wild-signup-choice-button {
+  min-height: 2.65rem !important;
+  font-size: 1rem !important;
+}
+
+body footer#footer .wild-signup-field {
+  gap: 0.28rem !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 1rem !important;
+  line-height: 1.15 !important;
+}
+
+body footer#footer .wild-signup-field input {
+  min-height: 2.8rem !important;
+  padding: 0.55rem 0.78rem !important;
+  font-size: 1rem !important;
+}
+
+body footer#footer .wild-signup-consent,
+body footer#footer .wild-signup-fine-print {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(0.78rem, 1.45vw, 0.88rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.56) !important;
+}
+
+body footer#footer .wild-signup-consent > span,
+body footer#footer .wild-signup-fine-print :is(a, strong) {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+body footer#footer .wild-signup-submit {
+  min-width: min(100%, 14rem) !important;
+  min-height: 3.15rem !important;
+  padding-inline: 1.15rem !important;
+  font-size: 1.12rem !important;
+}
+
+@media (max-width: 560px) {
+  body footer#footer .wild-signup-panel {
+    width: min(calc(100% - 1rem), 34rem) !important;
+    padding: 1rem !important;
+  }
+
+  body footer#footer .wild-signup-choice-button {
+    min-height: 2.5rem !important;
+    font-size: 0.94rem !important;
+  }
+}

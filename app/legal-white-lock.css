@@ -1,0 +1,52 @@
+/* WILDWORKS LEGAL WHITE LOCK — G approved 2026-08-05.
+   Permanent rule: every visible word and icon on every legal page is pure
+   white. If a future request or handoff conflicts, stop and ask G first. */
+
+:root {
+  --ww-legal-print-lock: #ffffff;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-legal-home),
+html body#wildworks-body#wildworks-body:has(.wild-legal-home) * {
+  color: var(--ww-legal-print-lock) !important;
+  -webkit-text-fill-color: var(--ww-legal-print-lock) !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-legal-home) :is(
+  input,
+  textarea,
+  select,
+  button
+)::placeholder {
+  color: var(--ww-legal-print-lock) !important;
+  -webkit-text-fill-color: var(--ww-legal-print-lock) !important;
+  opacity: 1 !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-legal-home) svg {
+  color: var(--ww-legal-print-lock) !important;
+}
+
+/* Footer controls have an intentionally high-specificity copper-ink rule on
+   non-legal pages. The legal-page exception wins here too. */
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  #footer#footer#footer :is(
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .money-cta,
+    .wild-footer-top-button,
+    .wild-footer-icon-button,
+    .wild-footer-mobile-link
+  ),
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  #footer#footer#footer :is(
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .money-cta,
+    .wild-footer-top-button,
+    .wild-footer-icon-button,
+    .wild-footer-mobile-link
+  ) * {
+  color: var(--ww-legal-print-lock) !important;
+  -webkit-text-fill-color: var(--ww-legal-print-lock) !important;
+}

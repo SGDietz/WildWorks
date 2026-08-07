@@ -1,0 +1,22 @@
+/* Final readability lock for the shared signup on the A/B narrative pages.
+   The page bands and gold controls keep their approved materials. */
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins),
+html body:has(.wild-subpage--sell):has(.wild-subpage--sell),
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio) {
+  --ww-signup-readable-copy: #f7d9a5;
+}
+
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio))
+  footer#footer#footer .wild-signup-system.wild-signup-system
+  :is(
+    .wild-signup-field > span,
+    .wild-signup-consent > span,
+    .wild-signup-fine-print,
+    .wild-signup-fine-print a,
+    .wild-signup-status
+  ) {
+  color: var(--ww-signup-readable-copy) !important;
+  -webkit-text-fill-color: var(--ww-signup-readable-copy) !important;
+  text-shadow: 0 1px 2px rgba(61, 22, 5, 0.72) !important;
+  opacity: 1 !important;
+}

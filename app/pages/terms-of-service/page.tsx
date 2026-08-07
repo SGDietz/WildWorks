@@ -157,7 +157,7 @@ export default function TermsOfServicePage() {
           children: (
             <p>
               The website may link to or use third-party services, including hosting, analytics, email,
-              SMS/text, phone, social platforms, WhatsApp, payment tools, scheduling tools, maps, storage,
+              SMS/text, phone, social platforms, payment tools, scheduling tools, maps, storage,
               automation, and media services. WildWorks is not responsible for third-party websites, policies,
               outages, security, content, or practices.
             </p>

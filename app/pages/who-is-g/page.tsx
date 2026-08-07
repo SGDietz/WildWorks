@@ -16,9 +16,10 @@ export default function WhoIsG() {
         <div className="absolute inset-0  pointer-events-none" aria-hidden />
       </section>
 
-      <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8 ">
+      <div className="wild-ab-band wild-tone--a wild-ab-band--intro">
+      <section className="wild-subpage-section discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8 ">
         <div className="space-y-2 text-left text-sm leading-relaxed">
-          <h1 className="text-2xl sm:text-3xl">Who is Scott G. Dietz?</h1>
+          <h1 id="ww-bio-primary-heading" className="text-2xl sm:text-3xl">Who is Scott G. Dietz?</h1>
           <p className="text-base">
             From 6 months old, Scott G. Dietz was raised in Bel Air, Maryland, just north of Baltimore City. His roots run deep in the area—both of his parents were born and raised in Baltimore City.
           </p>
@@ -28,7 +29,14 @@ export default function WhoIsG() {
           <p className="text-base">
             For more than 40 years, Scott has channeled that energy into the craft of stone. He is a fine artist, master stonemason, and relentless problem solver known for charging directly into the most complex and unconventional problems people face. His work blends creativity, craftsmanship, and engineering into rock art—stone landscapes designed to feel timeless, powerful, and naturally rooted in the land.
           </p>
-          <h2 className="wild-bio-reinvention-heading text-2xl sm:text-3xl mt-6">A Life of Constant Reinvention</h2>
+        </div>
+      </section>
+      </div>
+
+      <div className="wild-ab-band wild-tone--b">
+      <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 mx-auto w-full px-4 py-4 text-white sm:px-6">
+        <div className="space-y-2 text-left text-sm leading-relaxed">
+          <h2 className="wild-bio-reinvention-heading text-2xl sm:text-3xl">A Life of Constant Reinvention</h2>
           <p className="text-base">
             Scott doesn&apos;t see life as something that moves in phases where one chapter ends and another begins. For him, everything stacks. New interests, new skills, new ideas—they all get added into the mix.
           </p>
@@ -39,7 +47,8 @@ export default function WhoIsG() {
             Scott is constantly studying, learning, and experimenting. He understands that Ai is reshaping the world and believes the right response is to learn how it works, and use the technology as another tool for creativity, design, and problem solving.
           </p>
           <p className="text-base">
-            His mindset is simple: <strong><b>Middle age is just the beginning.</b></strong>
+            His mindset is simple:{" "}
+            <span className="wild-bio-mindset-line">Life Begins at Middle Age</span>
           </p>
           <p className="text-base">
             Scott is the first to admit he has failed at more things than most people would even attempt to begin (or hasn&apos;t succeeded yet, depending on your outlook). But failure has never been the end of the story. When something doesn&apos;t work, he pivots, restarts, and fires up his creative engines once again.
@@ -73,6 +82,7 @@ export default function WhoIsG() {
         </div>
 
       </section>
+      </div>
 
     </div>
   );

@@ -1,0 +1,287 @@
+/* G 2026-08-06: use only the approved flat page copper and flat card copper.
+   No card receives a blend, lighting pass, highlight, or darkening layer. */
+:root {
+  --ww-page-flat: #983e17;
+  /* Clean flat copper for every card.  The previous #b34f1f read muddy on
+     mobile against the warmer page field. */
+  --ww-card-flat: #c85a24;
+}
+
+/* The page field is the only other background material: solid copper, with no
+   radial wash, center light, shade, or responsive color drift. */
+html:has(body#wildworks-body),
+html body#wildworks-body#wildworks-body,
+html body#wildworks-body#wildworks-body .wild-site-backdrop,
+html body#wildworks-body#wildworks-body :is(.wild-home, .wild-subpage, .wild-legal-section, .wild-subpage-section, footer.discordSection) {
+  background: #983e17 !important;
+  background-image: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo
+),
+html body .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo
+),
+html body .wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
+  .money-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar,
+  .wild-footer-contact-cta,
+  .wild-signup-panel
+) {
+  background: var(--ww-card-flat) !important;
+  background-image: none !important;
+}
+
+/* These panels had decorative wash layers of their own.  Removing only their
+   non-content overlays keeps the shared material truly one flat color. */
+html body #top#top#top#top#top#top#top#top#top#top.wild-home :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo,
+)::before,
+html body #top#top#top#top#top#top#top#top#top#top.wild-home :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo
+)::after,
+html body .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo
+)::before,
+html body .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel
+)::after,
+html body .wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
+  .money-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar,
+  .wild-footer-contact-cta,
+  .wild-signup-panel
+)::before,
+html body .wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
+  .money-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar,
+  .wild-footer-contact-cta,
+  .wild-signup-panel
+)::after {
+  background: none !important;
+  background-image: none !important;
+}
+
+/* A few earlier Home and legal locks were intentionally written with repeated
+   IDs.  This final, route-aware selector is stronger than those old locks and
+   keeps their gradients from returning at a particular breakpoint. */
+html body#wildworks-body#wildworks-body:has(#top.wild-home) #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+),
+html body#wildworks-body#wildworks-body:has(#top.wild-home) footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-footer-contact-cta {
+  background: var(--ww-card-flat) !important;
+  background-image: none !important;
+}
+
+/* Home injects a late canvas rule at several breakpoints.  Match its entire
+   route envelope so the final paint stays the approved flat page copper. */
+html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body) {
+  background: #983e17 !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-site-backdrop {
+  background: #983e17 !important;
+  background-image: none !important;
+}
+
+/* Legal routes use <main> instead of the Home #top wrapper, so they need the
+   same final lock on their own rendered container. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body main.wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
+  .money-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar,
+  .wild-signup-panel
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-footer-contact-cta {
+  background: var(--ww-card-flat) !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-signup-panel {
+  background: var(--ww-card-flat) !important;
+  background-image: none !important;
+}

@@ -16,7 +16,7 @@ const wildWorksButtonCss = `
       --ww-avatar-honey: #e0a85a;
       --ww-avatar-parchment: #f3cf92;
       --ww-avatar-cream: #f7d9a5;
-      --ww-avatar-button-ink: #88421f;
+      --ww-avatar-button-ink: #7d2f20;
     }
 
     html,
@@ -49,14 +49,24 @@ const wildWorksButtonCss = `
       font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
       font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
       font-weight: 800 !important;
-      font-style: italic !important;
+      font-style: normal !important;
       letter-spacing: -0.025em !important;
       line-height: 0.95 !important;
       text-align: center !important;
       white-space: nowrap !important;
       opacity: 1 !important;
       pointer-events: none !important;
-      text-shadow: 0 1px 0 rgba(255, 239, 201, 0.22), 0 2px 18px rgba(73, 23, 4, 0.42) !important;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.72), 0 0.38rem 0.58rem rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* On a phone, use the frame's height to give the loading name a clean
+       two-line lockup without changing its approved color or depth. */
+    @media (max-width: 560px) {
+      body::before {
+        content: "Loading\\A iScott" !important;
+        line-height: 0.9 !important;
+        white-space: pre-line !important;
+      }
     }
 
     html.wildworks-avatar-loading body::before {
@@ -119,7 +129,6 @@ const wildWorksButtonCss = `
       letter-spacing: 0 !important;
       text-decoration: none !important;
       text-shadow: none !important;
-      text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
       box-shadow:
         0 16px 42px rgba(20, 7, 1, 0.42),
         0 0 24px rgba(224, 168, 90, 0.18),
@@ -776,6 +785,7 @@ export async function GET(request: Request) {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/html; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
     },
   });
 }

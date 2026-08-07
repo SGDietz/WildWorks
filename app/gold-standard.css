@@ -1,0 +1,1078 @@
+/* Screenshot 2026-08-04 221029: the actual approved statement material.
+   The screenshot predates the visibly brighter H26/H45 diagonal experiment. */
+:root {
+  --ww-gold-fill:
+    radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+    linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%);
+  --ww-gold-border: #8f3612;
+  --ww-gold-shadow:
+    0 18px 42px rgba(53, 17, 4, 0.28),
+    inset 0 1px 0 rgba(255, 210, 145, 0.1);
+  --ww-color-1: #f7d9a5;
+  --ww-card-love-fill: var(--ww-gold-fill);
+  --ww-box-gradient: var(--ww-gold-fill);
+  --ww-chip-gradient: var(--ww-gold-fill);
+}
+
+html body :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-story-card--portrait,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-identity-card,
+  .wild-travel-panel,
+  .wild-signup-status,
+  .wild-footer-contact-cta,
+  .wild-final-cta-inner,
+  .wild-live-avatar-loading__card
+),
+html body #top#top#top.wild-home :is(
+  .money-panel,
+  .wild-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-site-offer-card,
+  .wild-ai-panel,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-travel-panel,
+  #services .wild-card,
+  #signature-work .wild-story-card--feature,
+  #ai-websites .wild-site-offer-card,
+  #talk-to-iscott
+),
+html body #footer#footer .wild-footer-contact-cta,
+html body .wild-home.wild-legal-home :is(.wild-legal-card, .wild-legal-topbar),
+html body .wild-home.wild-legal-home .wild-legal-meta-row span {
+  border: 1px solid var(--ww-gold-border) !important;
+  border-radius: 0.9rem !important;
+  background: var(--ww-gold-fill) !important;
+  box-shadow: var(--ww-gold-shadow) !important;
+}
+
+/* Beat the older high-specificity rim rules without changing the canvas. */
+html body #top#top#top#top#top.wild-home .wild-home-statement.wild-home-statement,
+html body #top#top#top#top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel,
+html body #footer#footer#footer#footer .wild-footer-contact-cta.wild-footer-contact-cta,
+html body #top#top#top#top#top.wild-legal-home :is(.wild-legal-card, .wild-legal-index-card, .wild-legal-topbar),
+html body #top#top#top#top#top.wild-legal-home .wild-legal-meta-row span {
+  border-color: var(--ww-gold-border) !important;
+}
+
+/* Legal pages inject their page-level styles after global CSS. This final
+   guard keeps their real cards on the same dark ember rim as the gold card. */
+html body #top#top#top#top#top#top#top#top.wild-legal-home :is(
+  .wild-legal-card.wild-legal-card,
+  .wild-legal-index-card.wild-legal-index-card,
+  .wild-legal-topbar.wild-legal-topbar
+),
+html body #top#top#top#top#top#top#top#top.wild-legal-home .wild-legal-meta-row span {
+  border-color: var(--ww-gold-border) !important;
+  background: var(--ww-gold-fill) !important;
+}
+
+html body .wild-home.wild-home.wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
+  .wild-legal-card.wild-legal-card,
+  .wild-legal-index-card.wild-legal-index-card,
+  .wild-legal-topbar.wild-legal-topbar
+),
+html body .wild-home.wild-home.wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home .wild-legal-meta-row span {
+  border-color: var(--ww-gold-border) !important;
+  background: var(--ww-gold-fill) !important;
+}
+
+/* The travel feature was the one remaining hardcoded graphite card. Remove
+   its black wash so the approved screenshot fill is the visible interior. */
+html body #top#top#top#top.wild-home .wild-travel-panel::before {
+  background: none !important;
+}
+
+/* H42: non-legal card type is Color 1, never white or near-white. */
+html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-site-offer-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-iscott-panel,
+  .wild-ai-panel,
+  .wild-travel-panel,
+  .wild-signup-status,
+  .wild-footer-contact-cta,
+  .wild-identity-card,
+  .wild-process-step,
+  .wild-stat,
+  .wild-project-card
+) :is(h1, h2, h3, h4, p, li, span, a:not(.money-cta), em, strong, .wild-line-title__line, .wild-card-body, .money-panel-kicker) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  opacity: 1 !important;
+}
+
+html body #top#top#top#top.wild-home #services .wild-card :is(h3, h3 .wild-line-title__line, p, li, span, strong, em, i),
+html body #top#top#top#top.wild-home #services .wild-card-icon,
+html body #top#top#top#top.wild-home #signature-work .wild-story-card--feature :is(h3, p, span, a:not(.money-cta), .ww-c1, .ww-c2, .ww-c3) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  opacity: 1 !important;
+}
+
+html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
+  .wild-body,
+  .wild-kicker,
+  .money-panel-kicker,
+  .wild-subpage-section p,
+  .wild-subpage-section li
+),
+html body :is(.wild-nav-link, .wild-mobile-nav-link) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins .ruins-tone--b.ruins-tone--b .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, p, li, strong, em, i, span, a) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  opacity: 1 !important;
+}
+
+/* H40: protect the statement hierarchy and the cream mask wordmark. */
+html body #top#top#top#top.wild-home .wild-home-statement {
+  border: 1px solid var(--ww-gold-border) !important;
+  background: var(--ww-gold-fill) !important;
+  box-shadow: var(--ww-gold-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home .wild-home-statement.wild-home-statement {
+  box-shadow: var(--ww-gold-shadow) !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__line--one,
+html body #top#top#top#top.wild-home .wild-home-statement__line--one :is(span, .wild-home-statement__phrase) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 18px rgba(63, 21, 4, 0.46) !important;
+}
+
+html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four),
+html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four) :is(span, .wild-home-statement__phrase) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__line--four {
+  font-size: 0.84em !important;
+  font-weight: 700 !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup {
+  --ww-brand-lockup-scale: 1.133;
+  --ww-brand-lockup-shadow-scale: 1.138;
+  display: block !important;
+  position: relative !important;
+  width: min(100%, 60rem) !important;
+  aspect-ratio: 1058 / 215 !important;
+  margin: clamp(1.2rem, 2.4vw, 2rem) auto 0 !important;
+  background: none !important;
+  background-image: none !important;
+  isolation: isolate !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::before,
+html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  -webkit-mask-image: url("/wildworks-live-logo-transparent-living-v13.png") !important;
+  mask-image: url("/wildworks-live-logo-transparent-living-v13.png") !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-size: 100% auto !important;
+  mask-size: 100% auto !important;
+  -webkit-mask-position: center 14.9% !important;
+  mask-position: center 14.9% !important;
+  pointer-events: none !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::before {
+  z-index: 0 !important;
+  background: #321005 !important;
+  opacity: 0.78 !important;
+  transform: translateY(clamp(3px, 0.38vw, 5px)) scale(var(--ww-brand-lockup-shadow-scale)) !important;
+  transform-origin: center !important;
+  filter: none !important;
+}
+
+html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::after {
+  z-index: 1 !important;
+  background: #f7d9a5 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  transform: scale(var(--ww-brand-lockup-scale)) !important;
+  transform-origin: center !important;
+}
+
+/* H43: restore the Ai-Native Websites soft glass kicker. */
+html body #top#top#top#top.wild-home #ai-websites .wild-kicker--framed {
+  display: inline-flex !important;
+  width: fit-content !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-inline: auto !important;
+  padding: 0.48em 0.88em 0.43em !important;
+  border: 1px solid rgba(247, 217, 165, 0.62) !important;
+  border-radius: 0.7rem !important;
+  background: radial-gradient(circle at 32% 18%, rgba(247, 217, 165, 0.22), transparent 52%), linear-gradient(145deg, rgba(200, 121, 54, 0.42), rgba(119, 64, 24, 0.32)) !important;
+  background-color: transparent !important;
+  box-shadow: 0 0.6rem 1.4rem rgba(77, 28, 5, 0.16), inset 0 1px 0 rgba(255, 243, 213, 0.22) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  letter-spacing: 0.24em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+/* H44: only A Complete Project Build grows two steps. */
+html body .wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy h1.wildfire-hero-headline .wildfire-hero-headline__line--c1 {
+  font-size: clamp(2.3rem, 4.9vw, 3.65rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* Legal remains the only pure-white surface. */
+html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
+  h1, h2, h3, h4, h5, h6,
+  p, li, span, a, strong, em, b, i, small, label, time
+),
+body #footer#footer.wild-footer--legal :is(
+  h1, h2, h3, h4, h5, h6,
+  p, li, span, a, strong, em, b, i, small, label, time, button
+) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* G 2026-08-05: the Tree of Life authenticity caption belongs cleanly under
+   the photograph. Do not let the generic image-frame shadow create a dark
+   brown band beneath it, and keep the trust statement two type steps larger. */
+html body #top#top.wild-home #wildworks-proof
+  .wild-home-proof-figure .wild-image-frame {
+  box-shadow: none !important;
+}
+
+html body #top#top.wild-home #wildworks-proof
+  .wild-home-hero-stonework-note {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-inline: 0.5rem !important;
+  font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
+  text-wrap: balance;
+  white-space: normal !important;
+}
+
+/* Restore G's approved pre-H29 button system. Card typography must never
+   clear the gradient on CTA links nested inside a card. */
+:root {
+  --ww-button-ink: #7d2f20;
+  --ww-button-gradient:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 38%, #d37d3d 62%, #be5824 80%, #a94419 100%);
+  --ww-button-gradient-primary:
+    linear-gradient(180deg, #f7d9a5 0%, #f7d9a5 22%, #e0a85a 44%, #cf7038 64%, #be5824 82%, #a94419 100%);
+}
+
+html body .money-cta.money-cta,
+html body #top#top#top#top#top#top#top#top :is(a.money-cta.money-cta, button.money-cta.money-cta),
+html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-site-offer-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-iscott-panel,
+  .wild-ai-panel,
+  .wild-travel-panel,
+  .wild-footer-contact-cta,
+  .wild-identity-card,
+  .wild-process-step
+) :is(a.money-cta.money-cta, button.money-cta.money-cta) {
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  text-shadow: none !important;
+  box-shadow:
+    0 12px 34px rgba(16, 6, 1, 0.52),
+    inset 0 1px 0 rgba(255, 232, 190, 0.38) !important;
+}
+
+html body .money-cta.money-cta.money-cta--primary,
+html body #top#top#top#top#top#top#top#top :is(a.money-cta.money-cta--primary, button.money-cta.money-cta--primary),
+html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-site-offer-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-iscott-panel,
+  .wild-ai-panel,
+  .wild-travel-panel,
+  .wild-footer-contact-cta,
+  .wild-identity-card,
+  .wild-process-step
+) :is(a.money-cta.money-cta--primary, button.money-cta.money-cta--primary) {
+  background: var(--ww-button-gradient-primary) !important;
+  background-image: var(--ww-button-gradient-primary) !important;
+}
+
+html body .money-cta.money-cta :is(span, strong, svg),
+html body #top#top#top#top#top#top#top#top .money-cta.money-cta :is(span, strong, svg),
+html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-site-offer-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-iscott-panel,
+  .wild-ai-panel,
+  .wild-travel-panel,
+  .wild-footer-contact-cta,
+  .wild-identity-card,
+  .wild-process-step
+) .money-cta.money-cta :is(span, strong, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  text-shadow: none !important;
+}
+
+html body :is(
+  .wild-footer-icon-button.wild-footer-icon-button,
+  .wild-footer-top-button.wild-footer-top-button,
+  .wild-footer-top-button--closing.wild-footer-top-button--closing
+) {
+  border-color: rgba(247, 217, 165, 0.74) !important;
+  background:
+    radial-gradient(circle at 34% 20%, rgba(255, 246, 214, 0.58), transparent 58%),
+    linear-gradient(180deg, #f9dfae 0%, #e8b66d 36%, #d37d3d 62%, #be5824 82%, #a94419 100%) !important;
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+}
+
+html body .wild-footer-mobile-strip.wild-footer-mobile-strip
+  .wild-footer-mobile-link.wild-footer-mobile-link.wild-footer-mobile-link {
+  background: var(--ww-button-gradient) !important;
+  background-image: var(--ww-button-gradient) !important;
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+}
+
+/* The wide Home hero is much shallower than its 3:2 source photograph.
+   Anchor the crop at the top so G's full head stays in frame; the portrait
+   tablet and phone layouts already preserve the complete photograph. */
+@media (min-width: 1101px) {
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media img {
+    object-position: 50% 0% !important;
+  }
+}
+
+/* Ruins + Bio exact two-color lock requested by G.
+   These are intentionally solid: using the shared gradients here made the
+   visible color drift with each band's height and created a false third tone. */
+:root {
+  --ww-two-tone-a: #a3471c;
+  --ww-two-tone-b: #b85927;
+}
+
+/* These two routes use only the exact A/B colors, including the transparent
+   canvas around their heroes and the shared footer regions. */
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--bio),
+html body:has(.wild-subpage--ruins) .wild-site-backdrop,
+html body:has(.wild-subpage--bio) .wild-site-backdrop {
+  --ww-color-a: var(--ww-two-tone-a);
+  --ww-color-b: var(--ww-two-tone-b);
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins
+  .ruins-tone--a.ruins-tone--a,
+html body .wild-subpage--bio.wild-subpage--bio
+  .wild-tone--a.wild-tone--a {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins
+  .ruins-tone--b.ruins-tone--b,
+html body .wild-subpage--bio.wild-subpage--bio
+  .wild-tone--b.wild-tone--b {
+  background: var(--ww-two-tone-b) !important;
+  background-color: var(--ww-two-tone-b) !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-tone--b.wild-tone--b
+  .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, p, li, strong, em, i, span, a) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 1px rgba(57, 20, 3, 0.4) !important;
+}
+
+/* The Dream Project area is one A surface on both routes: the field and card
+   do not introduce two competing colors inside the same area. */
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-contact-cta.wild-footer-contact-cta {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+/* Bio follows G's marked map: the full Dream Project section uses the page
+   background (A), while the card inside it keeps the approved card material. */
+html body:has(.wild-subpage--bio) footer#footer#footer#footer
+  .wild-footer-contact-region--a {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+html body:has(.wild-subpage--bio) footer#footer#footer#footer
+  .wild-signup-system,
+html body:has(.wild-subpage--bio) footer#footer#footer#footer
+  .wild-footer-closing-region--a {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+/* Remove the inherited air that split Bio's marked middle B run with a thin
+   A seam between the story band and the Dream Project field. */
+html body .wild-subpage--bio.wild-subpage--bio {
+  padding-bottom: 0 !important;
+}
+
+html body:has(.wild-subpage--bio) footer#footer#footer#footer
+  .wild-footer-main.wild-footer-main {
+  padding-top: 0 !important;
+}
+
+/* Final Ruins route lock. Keep this after every inherited Ruins experiment so
+   the page mirrors Bio's exact solid A/B palette at every viewport. */
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--ruins) .wild-site-backdrop,
+html body .wild-subpage--ruins.wild-subpage--ruins {
+  --ww-color-a: var(--ww-two-tone-a);
+  --ww-color-b: var(--ww-two-tone-b);
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--a {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--b {
+  background: var(--ww-two-tone-b) !important;
+  background-color: var(--ww-two-tone-b) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-contact-region--a,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-contact-cta.wild-footer-contact-cta,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-closing-region--a {
+  background: var(--ww-two-tone-a) !important;
+  background-color: var(--ww-two-tone-a) !important;
+  background-image: none !important;
+}
+
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-signup-system {
+  background: var(--ww-two-tone-b) !important;
+  background-color: var(--ww-two-tone-b) !important;
+  background-image: none !important;
+}
+
+/* Grok H47, reviewed: keep the approved vertical copper card material and
+   restore crisp Color 1 type instead of the muddy transparent text blend. */
+html body #top#top#top.wild-home #iscott-sales
+  #talk-to-iscott.money-panel.wild-iscott-panel {
+  border-color: var(--ww-gold-border) !important;
+  background: var(--ww-gold-fill) !important;
+  background-image: var(--ww-gold-fill) !important;
+}
+
+html body #top#top#top.wild-home #iscott-sales :is(
+  .wild-kicker,
+  .money-panel-kicker,
+  .wild-iscott-body,
+  .money-step-content,
+  .wild-iscott-disclosure,
+  .wild-start-title__start,
+  .wild-start-title__with
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background-image: none !important;
+}
+
+html body #top#top#top.wild-home #iscott-sales :is(
+  .wild-start-title__name,
+  .wild-iscott-privacy-link
+) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  background-image: none !important;
+}
+
+/* Grok H49 plus G's mobile correction: desktop uses the full 3:2 hero shell.
+   On phones the complete 3:2 photograph comes first and the complete message
+   and both buttons remain in normal flow directly beneath it. */
+@media (min-width: 720px) {
+  html body #top#top#top.wild-home .wild-hero.discordSection {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 3 / 2 !important;
+    overflow: hidden !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media,
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media > div {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media img {
+    object-fit: cover !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    position: absolute !important;
+    inset: auto auto clamp(1.6rem, 4vw, 4.5rem) clamp(1.5rem, 4.6vw, 5rem) !important;
+    z-index: 3 !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html body #top#top#top.wild-home .wild-hero.discordSection {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media,
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media > div {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 3 / 2 !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-media img {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 3 !important;
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 1.45rem 1.35rem 1.7rem !important;
+  }
+}
+
+/* G 2026-08-05: final Ruins material lock.
+   A is the approved rich page blend. B is the approved gold-standard card
+   interior. Keep the marked A/B section rhythm, but never flatten either
+   material into a third solid orange or brown. */
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--ruins) .wild-site-backdrop,
+html body .wild-subpage--ruins.wild-subpage--ruins {
+  --ww-color-a: var(--ww-page-background);
+  --ww-color-b: var(--ww-gold-fill);
+  background: var(--ww-page-background) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-column-glimmer), var(--ww-center-gold-fade) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--a {
+  background: var(--ww-page-background) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-column-glimmer), var(--ww-center-gold-fade) !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--b {
+  background: var(--ww-gold-fill) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-gold-fill) !important;
+  box-shadow: none !important;
+}
+
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-contact-region--a,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-contact-cta.wild-footer-contact-cta,
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-footer-closing-region--a {
+  background: var(--ww-page-background) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-column-glimmer), var(--ww-center-gold-fade) !important;
+}
+
+html body:has(.wild-subpage--ruins) footer#footer#footer#footer
+  .wild-signup-system {
+  background: var(--ww-gold-fill) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-gold-fill) !important;
+}
+
+/* Grok H50, corrected for Lucide outline icons: the approved red-copper ink
+   applies everywhere, while SVGs keep their intentional fill behavior. */
+:root {
+  --ww-button-ink: #7d2f20;
+}
+
+html body :is(
+  .money-cta,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-signup-choice-button,
+  .wild-iscott-upload__button,
+  button[class*="money-cta"]
+),
+html body :is(
+  .money-cta,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-signup-choice-button,
+  .wild-iscott-upload__button
+) :is(span, strong, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  text-shadow: none !important;
+}
+
+html body :is(
+  .money-cta,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-signup-choice-button,
+  .wild-iscott-upload__button
+) svg {
+  stroke: currentColor !important;
+}
+
+/* Grok H51: The Ruins story rail gets a dignified display face for headings
+   and a deliberately simpler reading face for all body copy. */
+html body .wild-subpage--ruins .wild-ruins-rail :is(h1, h2) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body .wild-subpage--ruins .wild-ruins-rail h1 {
+  font-size: clamp(2.6rem, 5.2vw, 5.15rem) !important;
+}
+
+html body .wild-subpage--ruins .wild-ruins-rail h2 {
+  font-size: clamp(1.85rem, 3.2vw, 3rem) !important;
+}
+
+html body .wild-subpage--ruins .wild-ruins-rail :is(p, li) {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+  font-size: clamp(1.05rem, 1.35vw, 1.16rem) !important;
+}
+
+@media (max-width: 719px) {
+  html body .wild-subpage--ruins .wild-ruins-rail h1 {
+    font-size: 2.2rem !important;
+  }
+
+  html body .wild-subpage--ruins .wild-ruins-rail h2 {
+    font-size: 1.7rem !important;
+  }
+
+  html body .wild-subpage--ruins .wild-ruins-rail :is(p, li) {
+    font-size: 1.0625rem !important;
+  }
+}
+
+/* Grok H52/H54: close the desktop menu-to-logo air without disturbing the
+   phone's fixed hamburger clearance. */
+@media (min-width: 501px) {
+  html body .wild-site-header {
+    padding-bottom: 0 !important;
+  }
+
+  html body #top#top.wild-home .wild-brand-lockup {
+    margin-top: -1.65rem !important;
+    margin-bottom: -0.35rem !important;
+    padding-bottom: 0.45rem !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 500px) {
+  html body #top#top.wild-home .wild-brand-lockup {
+    margin-top: 0.15rem !important;
+  }
+}
+
+/* Grok H53: the first Wildfire hero line yields enough room for the cleaner
+   three-line summary beneath it. */
+html body .wild-subpage--wildfire .wildfire-hero-headline__line--c1 {
+  font-size: clamp(2.05rem, 4.35vw, 3.25rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* Grok H55: only the iScott sales kicker is reduced. */
+html body #top#top.wild-home #iscott-sales .wild-kicker {
+  font-size: clamp(1.15rem, 2.05vw, 1.32rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.2em !important;
+}
+
+/* Grok H56: give the three Wildfire summary lines the same dimensional
+   crown/dark-offset treatment as First Wood Fire, and halve their air before
+   the 01-20 journal controls. */
+html body .wild-subpage--wildfire .wildfire-hero-summary__line {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: none !important;
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.28),
+    0 2px 3px rgba(54, 20, 5, 0.86),
+    0 4px 8px rgba(54, 20, 5, 0.62) !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-summary__line--c1 {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
+  .wildfire-hero-headline__line--c3 {
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.28),
+    0 2px 3px rgba(54, 20, 5, 0.86),
+    0 4px 8px rgba(54, 20, 5, 0.62) !important;
+  filter: none !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
+  :is(.wildfire-hero-headline__line--c1, .wildfire-hero-headline__line--c2) {
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.22),
+    0 2px 3px rgba(54, 20, 5, 0.8),
+    0 4px 10px rgba(54, 20, 5, 0.55) !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary {
+  margin-top: clamp(0.28rem, 0.5vw, 0.42rem) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-journal {
+  padding-top: clamp(0.18rem, 0.45vw, 0.38rem) !important;
+  margin-top: 0 !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-phase-bar {
+  margin-top: 0 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero-copy {
+  padding-bottom: clamp(0.75rem, 2vh, 1.5rem) !important;
+}
+
+html body .wild-subpage--wildfire .wildfire-hero {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Grok H57: exactly the six requested Home Wildfire sequence/build-note lines
+   receive that same depth. No neighboring Home type is included. */
+html body #top#top#top.wild-home #project-wildfire
+  :is(.wild-wildfire-sequence-callout__line, .wild-wildfire-build-note__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: none !important;
+  text-shadow:
+    0 1px 0 rgba(247, 217, 165, 0.28),
+    0 2px 3px rgba(54, 20, 5, 0.86),
+    0 4px 8px rgba(54, 20, 5, 0.62) !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-build-note__line {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(2) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(3) {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+/* H53 specificity guard: older page-level Wildfire type rules are also
+   important, so this final selector must outrank them. */
+html body .wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy h1.wildfire-hero-headline
+  .wildfire-hero-headline__line.wildfire-hero-headline__line--c1 {
+  font-size: clamp(2.05rem, 4.35vw, 3.25rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* Phone containment guard for Home Project Wildfire. Long nowrap headings
+   were inflating the grid to ~470px inside a 390px viewport; every photo then
+   inherited that width and the card-drift transforms pushed them farther out. */
+@media (max-width: 640px) {
+  html body .wild-home #project-wildfire,
+  html body .wild-home #project-wildfire .wild-wildfire-spread-shell,
+  html body .wild-home #project-wildfire .wild-wildfire-spread-shell > *,
+  html body .wild-home #project-wildfire .wild-wildfire-spread-heading,
+  html body .wild-home #project-wildfire .wild-wildfire-spread,
+  html body .wild-home #project-wildfire .wild-wildfire-sequence-callout,
+  html body .wild-home #project-wildfire .wild-wildfire-build-note,
+  html body .wild-home #project-wildfire .wild-cta-row--center {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  html body .wild-home #project-wildfire .wild-wildfire-flame-title {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+  }
+
+  html body .wild-home #project-wildfire .wild-wildfire-flame-title__text {
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+  }
+
+  html body .wild-home #project-wildfire
+    .wild-wildfire-title .wild-line-title__line {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    text-wrap: balance !important;
+  }
+
+  html body .wild-home #project-wildfire .wild-wildfire-photo {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  html body .wild-home #project-wildfire
+    :is(.wild-wildfire-photo-button, .wild-wildfire-photo img) {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body .wild-home #project-wildfire
+    :is(.wild-wildfire-sequence-callout__line, .wild-wildfire-build-note__line) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    text-wrap: balance !important;
+  }
+
+  html body .wild-home #project-wildfire .wild-cta-row--center .money-cta {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* G 2026-08-05: make the complete six-card Services set four points larger
+   without changing the card geometry, typefaces, or approved colors. */
+html body #top#top#top#top.wild-home #services .wild-card h3 {
+  font-size: clamp(1.25rem, calc(1.25vw + 0.25rem), 1.49rem) !important;
+}
+
+html body #top#top#top#top.wild-home #services .wild-card p {
+  font-size: clamp(1.07rem, calc(1vw + 0.25rem), 1.17rem) !important;
+}
+
+@media (max-width: 520px) {
+  html body #top#top#top#top.wild-home #services .wild-card h3 {
+    font-size: 1.21rem !important;
+  }
+
+  html body #top#top#top#top.wild-home #services .wild-card p {
+    font-size: 1.07rem !important;
+  }
+}
+
+/* G 2026-08-05: give the footer's closing invitation the same visual scale
+   as its Dream Project heading. Let the longer uppercase sentence balance
+   naturally instead of shrinking it into a small single line on phones. */
+html body #footer#footer#footer .wild-footer-contact-cta__kicker {
+  font-size: clamp(1.7rem, 4.1vw, 2.85rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0.025em !important;
+  white-space: normal !important;
+  text-wrap: balance !important;
+}
+
+/* Mobile statement refinement requested by G: the late H40 desktop lock was
+   overriding the phone scale and margin, making the masked wordmark/scrollwork
+   wider than its card. Keep the desktop treatment unchanged. */
+@media (max-width: 719px) {
+  html body #top#top#top#top.wild-home
+    .wild-home-statement__brand-lockup.wild-home-statement__brand-lockup {
+    --ww-brand-lockup-scale: 0.97;
+    --ww-brand-lockup-shadow-scale: 0.975;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0.25rem auto 0 !important;
+  }
+
+  /* The Wildfire headline lines used their desktop nowrap widths inside a
+     narrow 18ch heading, so the text was centered against the wrong box and
+     clipped on the right. Center all three against the real phone width. */
+  html body .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy h1.wildfire-hero-headline {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    justify-items: center !important;
+  }
+
+  html body .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy h1.wildfire-hero-headline
+    .wildfire-hero-headline__line {
+    width: fit-content !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    text-wrap: balance !important;
+  }
+}

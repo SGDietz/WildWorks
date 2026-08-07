@@ -1,0 +1,50 @@
+/* Mobile Home balance lock: use the exact approved desktop pair. */
+@media (max-width: 719px) {
+  html:root:has(#top.wild-home) {
+    --ww-reference-a: #983e17 !important;
+    --ww-reference-b: #c85a24 !important;
+    --ww-reference-page: #983e17 !important;
+    --ww-reference-mobile-page: #983e17 !important;
+    --ww-reference-card: #c85a24 !important;
+    --ww-home-page-background: var(--ww-reference-page) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home),
+  html body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home)
+    #wild-site-backdrop.wild-site-backdrop {
+    background: var(--ww-reference-page) !important;
+    background-color: #983e17 !important;
+    background-image: var(--ww-reference-page) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+    #top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    border-color: rgba(82, 27, 7, 0.5) !important;
+    background: var(--ww-reference-card) !important;
+    background-color: #c85a24 !important;
+    background-image: var(--ww-reference-card) !important;
+    box-shadow:
+      0 7px 18px rgba(55, 17, 4, 0.16),
+      inset 0 1px 0 rgba(247, 217, 165, 0.12) !important;
+  }
+
+  /* Legendary keeps a small, crisp black grounding layer instead of the
+     oversized mobile shadow. Shift the complete word left as requested. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+    #top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+    position: relative !important;
+    left: -0.14em !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+    #top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
+    filter: none !important;
+    text-shadow:
+      0 1px 0 #000,
+      0 2px 1px rgba(0, 0, 0, 0.52) !important;
+  }
+}

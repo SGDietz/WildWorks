@@ -1,0 +1,132 @@
+/* G 2026-08-06: every real non-legal site control uses one clean, darker,
+   redder copper ink. This file sits after the legacy visual layers so no old
+   text or icon effect can muddy the controls. The legal white lock follows it
+   and remains the sole color exception. */
+:root {
+  --ww-button-ink: #7d2f20;
+}
+
+html body :is(
+  .wild-home.wild-home.wild-home.wild-home.wild-home,
+  .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage
+) :is(
+  button,
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button
+),
+html body #footer#footer#footer#footer :is(
+  button,
+  a.money-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button
+),
+html body :is(.wild-image-lightbox, .wildfire-lightbox) button {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  text-shadow: none !important;
+}
+
+html body :is(
+  .wild-home.wild-home.wild-home.wild-home.wild-home,
+  .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage
+) :is(
+  button,
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button
+) :is(span, strong, small, svg),
+html body #footer#footer#footer#footer :is(
+  button,
+  a.money-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button
+) :is(span, strong, small, svg),
+html body :is(.wild-image-lightbox, .wildfire-lightbox)
+  button :is(span, strong, small, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body :is(
+  .wild-home.wild-home.wild-home.wild-home.wild-home,
+  .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage,
+  #footer#footer#footer#footer,
+  .wild-image-lightbox,
+  .wildfire-lightbox
+) button svg,
+html body :is(
+  .wild-home.wild-home.wild-home.wild-home.wild-home,
+  .wild-subpage.wild-subpage.wild-subpage.wild-subpage.wild-subpage,
+  #footer#footer#footer#footer
+) :is(
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button
+) svg {
+  stroke: currentColor !important;
+}
+
+/* The shared header and footer sit outside the page main, and Home's global
+   type treatment carries unusually high specificity. This final non-legal
+   lock keeps every actual control glyph clean without touching the polished
+   button background, border, or box shadow. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  [class*="-button"]
+) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  text-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  [class*="-button"]
+) :is(span, strong, small, i, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  [class*="-button"]
+) svg {
+  stroke: currentColor !important;
+}

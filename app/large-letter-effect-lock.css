@@ -1,0 +1,14 @@
+/* G 2026-08-07: one midpoint black construction for the site's large
+   display lettering. It sits between the former over-heavy written phone
+   number and the under-defined Project Wildfire line. */
+
+html body#wildworks-body :is(
+  .wild-legal-title,
+  .wild-legal-title *,
+  .wild-legal-section > h1,
+  .wild-legal-section > h1 *,
+  .wild-legal-section :is(h2, h2 *)
+) {
+  filter: none !important;
+  text-shadow: var(--ww-home-wordmark-text-effect) !important;
+}

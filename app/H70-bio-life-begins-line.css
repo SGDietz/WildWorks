@@ -1,0 +1,26 @@
+/* Bio mindset line: same treatment as its surrounding body copy. */
+html body .wild-subpage--bio .wild-subpage-section p .wild-bio-mindset-line,
+html body .wild-subpage--bio .wild-ab-band .wild-bio-mindset-line {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  background: none !important;
+  background-image: none !important;
+  text-shadow: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+html body .wild-subpage--bio .wild-tone--a .wild-subpage-section p .wild-bio-mindset-line {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 1px rgba(57, 20, 3, 0.34) !important;
+}
+
+html body .wild-subpage--bio .wild-tone--b .wild-subpage-section p .wild-bio-mindset-line {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 1px rgba(45, 15, 3, 0.42) !important;
+}

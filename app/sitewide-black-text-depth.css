@@ -1,0 +1,286 @@
+/* G 2026-08-06: HOME + EVERY NON-LEGAL SUBPAGE.
+   Match every piece of public-site text to the crisp dark construction of the
+   approved WildWorks wordmark: a clean face, a solid black lower layer, and a
+   short black falloff. Preserve all approved gold/copper face colors.
+   Do not touch either WildWorks masked wordmark, any button/control, or any
+   legal page. */
+
+:root {
+  --ww-home-wordmark-text-effect:
+    0 clamp(0.75px, 0.021em, 3px) 0 #000,
+    0 clamp(1.55px, 0.032em, 4.5px) clamp(0.15px, 0.009em, 1.2px) rgba(0, 0, 0, 0.78),
+    0 clamp(2.45px, 0.047em, 6px) clamp(0.3px, 0.023em, 3px) rgba(0, 0, 0, 0.4);
+  --ww-home-copy-text-effect:
+    0 clamp(0.95px, 0.048em, 1.3px) 0 #000,
+    0 clamp(1.45px, 0.074em, 2px) clamp(0.25px, 0.014em, 0.42px) #000,
+    0 clamp(2px, 0.1em, 2.7px) clamp(0.8px, 0.045em, 1.25px) rgba(0, 0, 0, 0.78);
+  /* One calibrated large-letter effect everywhere: more definition than the
+     old Project Wildfire treatment, but without the long black falloff that
+     made the written phone number look heavy. */
+  --ww-project-wildfire-heading-effect: var(--ww-home-wordmark-text-effect);
+  --ww-home-iscott-large-effect: var(--ww-home-wordmark-text-effect);
+  --ww-home-iscott-copy-effect: var(--ww-home-copy-text-effect);
+}
+
+/* Replace the historical brown effect variables on Home and every live
+   non-legal subpage. The permanent legal white-print family is excluded. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) {
+  --ww-letter-effect-filter: none !important;
+  --ww-letter-effect-text-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-letter-effect-filter-small: none !important;
+  --ww-letter-effect-text-shadow-small: var(--ww-home-copy-text-effect) !important;
+  --ww-small-letter-effect-filter: none !important;
+  --ww-small-letter-effect-text-shadow: var(--ww-home-copy-text-effect) !important;
+  --ww-ruins-card-title-filter: none !important;
+  --ww-ruins-card-title-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-ruins-card-copy-filter: none !important;
+  --ww-ruins-card-copy-shadow: var(--ww-home-copy-text-effect) !important;
+  --ww-services-title-filter: none !important;
+  --ww-services-title-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-services-copy-filter: none !important;
+  --ww-services-copy-shadow: var(--ww-home-copy-text-effect) !important;
+  --ww-ai-site-title-filter: none !important;
+  --ww-ai-site-title-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-ai-site-copy-filter: none !important;
+  --ww-ai-site-copy-shadow: var(--ww-home-copy-text-effect) !important;
+  --ww-footer-title-filter: none !important;
+  --ww-footer-title-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-footer-copy-filter: none !important;
+  --ww-footer-copy-shadow: var(--ww-home-copy-text-effect) !important;
+  --ww-subpage-title-filter: none !important;
+  --ww-subpage-title-shadow: var(--ww-home-wordmark-text-effect) !important;
+  --ww-subpage-copy-filter: none !important;
+  --ww-subpage-copy-shadow: var(--ww-home-copy-text-effect) !important;
+}
+
+/* All actual text on Home and non-legal subpages, including the shared header,
+   menu, and footer. The masked WildWorks logos are not text nodes and are left
+   exactly as approved. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  label,
+  figcaption,
+  blockquote,
+  dd,
+  dt,
+  small,
+  time,
+  summary,
+  legend,
+  caption,
+  a:not(:has(img)),
+  span,
+  strong,
+  em,
+  i,
+  b
+) {
+  filter: none !important;
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+}
+
+/* Display lettering and ordinary copy now use the same two-layer construction;
+   em scaling keeps that construction proportional at every text size. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) :is(
+  h1,
+  h1 *,
+  h2,
+  h2 *,
+  h3,
+  h3 *,
+  h4,
+  h4 *,
+  h5,
+  h5 *,
+  h6,
+  h6 *,
+  blockquote,
+  blockquote *,
+  .wild-footer-closing > span,
+  .wild-footer-closing > span *,
+  #services > .wild-section-heading > .wild-kicker,
+  #services > .wild-section-heading > .wild-kicker *
+) {
+  text-shadow: var(--ww-home-wordmark-text-effect) !important;
+}
+
+/* Service-card headings are display labels rendered at copy scale. The large
+   wordmark formula falls below a pixel here, so give all six title lines the
+   crisp opaque-black construction used by the surrounding small text. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services .wild-card :is(h3, h3 *) {
+  filter: none !important;
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+}
+
+/* Services focus lock: the section label and all six card labels use a crisp,
+   visibly black lower layer. Face colors, sizing, icons, and layout stay put. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services > .wild-section-heading > .wild-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services > .wild-section-heading > .wild-kicker *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services .wild-card h3,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services .wild-card h3 * {
+  filter: none !important;
+  text-shadow:
+    0 clamp(1px, 0.04em, 3px) 0 #000,
+    0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000,
+    0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) rgba(0, 0, 0, 0.82) !important;
+}
+
+/* Form-entry text is text too. Keep the control itself intact and change only
+   its glyph treatment. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) :is(
+  input,
+  textarea,
+  select,
+  option
+) {
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) :is(input, textarea)::placeholder {
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+}
+
+/* G 2026-08-06: reduce Services by the requested full 6pt from its prior
+   treatment, bringing it level with the visible section title. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services > .wild-section-heading > .wild-section-title {
+  font-size: clamp(3rem, 6.1vw, 6.65rem) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services > .wild-section-heading > .wild-kicker {
+  font-size: clamp(1.5rem, 3.05vw, 3.325rem) !important;
+  line-height: 0.96 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #services#services > .wild-section-heading > .wild-kicker > .wild-kicker-frame {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* Every visual button and everything inside it remains completely clean. */
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:is(
+  :has(#top#top.wild-home:not(.wild-legal-home)),
+  :has(.wild-subpage.wild-subpage)
+) :is(
+  button,
+  button *,
+  [role="button"],
+  [role="button"] *,
+  .money-cta,
+  .money-cta *,
+  .wild-footer-mobile-link,
+  .wild-footer-mobile-link *,
+  .wild-footer-top-button,
+  .wild-footer-top-button *,
+  .wild-footer-icon-button,
+  .wild-footer-icon-button *,
+  .wild-signup-submit,
+  .wild-signup-submit *,
+  .wild-signup-choice-button,
+  .wild-signup-choice-button *,
+  .wild-logo-download-button,
+  .wild-logo-download-button *,
+  .wild-legal-index-cta,
+  .wild-legal-index-cta *,
+  [class*="-button"],
+  [class*="-button"] *
+) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* G 2026-08-06: focused iScott / Project Wildfire pass. Pull back only the
+   three oversized headings visible in this frame; leave every other Home
+   heading on the current treatment until G signs off section by section. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home :is(
+    #iscott-sales .wild-iscott-title,
+    #iscott-sales .wild-iscott-title *,
+    #talk-to-iscott > .wild-start-title,
+    #talk-to-iscott > .wild-start-title *,
+    #project-wildfire .wild-wildfire-flame-title,
+    #project-wildfire .wild-wildfire-flame-title *
+  ) {
+  text-shadow: var(--ww-home-iscott-large-effect) !important;
+}
+
+/* Project Wildfire carries its own clean, compact effect so the end of the
+   word never blooms into a fuzzy black smear at large sizes. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #project-wildfire :is(
+    .wild-wildfire-flame-title,
+    .wild-wildfire-flame-title *
+  ) {
+  text-shadow: var(--ww-project-wildfire-heading-effect) !important;
+}
+
+/* The small copy in the same screenshot was already close; give only these
+   lines the requested smidge more opaque-black lift. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home))
+  #top#top.wild-home #iscott-sales :is(
+    .wild-copy-stack > .wild-kicker,
+    .wild-copy-stack > .wild-kicker *,
+    .wild-iscott-body,
+    .wild-iscott-body *,
+    .wild-iscott-steps-inline,
+    .wild-iscott-steps-inline *,
+    #talk-to-iscott .money-panel-kicker,
+    #talk-to-iscott .money-panel-kicker *,
+    #talk-to-iscott .wild-iscott-disclosure,
+    #talk-to-iscott .wild-iscott-disclosure *
+) {
+  text-shadow: var(--ww-home-iscott-copy-effect) !important;
+}
+
+/* G 2026-08-06: the one approved in-page authenticity sentence lives only
+   beneath the Tree of Life photograph. It uses the same small black lift as
+   the approved Home copy. The shared footer supplies the only other copy. */
+html body#wildworks-body#wildworks-body #top.wild-home
+  .wild-home-image-stonework-note {
+  display: block !important;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: clamp(0.4rem, 1vw, 0.65rem) auto 0 !important;
+  padding: 0 0.5rem !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-family: var(--font-serif), Georgia, serif !important;
+  font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.012em !important;
+  text-align: center !important;
+  text-wrap: balance;
+  filter: var(--ww-home-copy-filter) !important;
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+}

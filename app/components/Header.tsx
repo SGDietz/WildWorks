@@ -7,13 +7,14 @@ import { motion } from "framer-motion";
 import { isLegalRoute } from "../lib/legalRoutes";
 
 const showInspirationSubpage = false;
+const showISellSubpage = false;
 
 const navTabs = [
   { label: "HOME", href: "/pages/Home" },
   { label: "WILDFIRE", href: "/pages/Wildfire" },
   ...(showInspirationSubpage ? [{ label: "INSPIRATION", href: "/pages/Inspiration" }] : []),
-  { label: "THE RUINS", href: "/pages/The-ruins" },
-  { label: "I SELL", href: "/pages/I-sell" },
+  { label: "RUINS", href: "/pages/The-ruins" },
+  ...(showISellSubpage ? [{ label: "I SELL", href: "/pages/I-sell" }] : []),
   { label: "BIO", href: "/pages/who-is-g" },
 ];
 
@@ -51,8 +52,8 @@ export default function Header() {
 
       {/* Legal pages keep their purpose-built desktop legal navigation. */}
       {!legalRoute && (
-        <div className="mx-auto hidden flex-col items-center pb-0 pt-4 min-[501px]:flex sm:gap-4 sm:pt-10">
-          <nav className="w-[60%] pt-4 sm:mx-auto sm:px-6 sm:pb-2 sm:pt-12">
+        <div className="mx-auto hidden flex-col items-center pb-0 pt-3 min-[501px]:flex sm:gap-0 sm:pt-5">
+          <nav className="w-[60%] pt-1 sm:mx-auto sm:px-6 sm:pb-1 sm:pt-2">
             <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3">
               {navTabs.map((tab) => {
                 const isActive =

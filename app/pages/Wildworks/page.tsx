@@ -21,7 +21,7 @@ const legalPages = [
   {
     title: "Communications",
     href: "/pages/communications",
-    body: "How WildWorks may use email marketing, SMS/text, phone, WhatsApp, social platforms, iScott follow-up, opt-outs, and transactional messages.",
+    body: "How WildWorks may use email marketing, SMS/text, phone, social platforms, iScott follow-up, opt-outs, and transactional messages.",
   },
   {
     title: "Accessibility",

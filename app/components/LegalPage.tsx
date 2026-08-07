@@ -9,6 +9,7 @@ type LegalSection = {
 };
 
 type LegalPageProps = {
+  pageKey?: string;
   title: string;
   description: string;
   sections: LegalSection[];
@@ -16,9 +17,9 @@ type LegalPageProps = {
 
 const lastUpdated = "July 31, 2026";
 
-export default function LegalPage({ title, description, sections }: LegalPageProps) {
+export default function LegalPage({ pageKey, title, description, sections }: LegalPageProps) {
   return (
-    <main className="wild-home wild-legal-home min-h-screen">
+    <main className={`wild-home wild-legal-home min-h-screen${pageKey ? ` wild-legal-page--${pageKey}` : ""}`}>
       <section className="wild-section wild-legal-section discordSection discordSection--2">
         <div className="wild-legal-wrap mx-auto grid max-w-5xl gap-8 px-4 py-6 sm:px-6 lg:py-10">
           <nav className="wild-legal-topbar" aria-label="Legal navigation">

@@ -46,6 +46,9 @@ const galleryItems: GalleryItem[] = Array.from({ length: TOTAL_IMAGES }, (_, i) 
   };
 });
 
+const buildPhotoAlt = (index: number) =>
+  `Project Wildfire construction field photo ${String(index).padStart(2, "0")} of ${TOTAL_IMAGES}, documenting the outdoor fireplace, patio, lounge, and upper deck build`;
+
 export default function ImageGallery() {
   const [activePhase, setActivePhase] = useState<PhaseId>("p1");
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
@@ -156,7 +159,7 @@ export default function ImageGallery() {
           >
             <Image
               src={item.src}
-              alt={`Project Wildfire build step ${item.index}`}
+              alt={buildPhotoAlt(item.index)}
               fill
               className="object-contain"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -189,7 +192,7 @@ export default function ImageGallery() {
           className="wildfire-lightbox discordSection discordSection--lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={`Project Wildfire build step ${activeLightboxItem.index}`}
+          aria-label={buildPhotoAlt(activeLightboxItem.index)}
         >
           <div className="wildfire-lightbox-bar">
             <span>
@@ -211,7 +214,7 @@ export default function ImageGallery() {
           <div className="wildfire-lightbox-image">
             <Image
               src={activeLightboxItem.src}
-              alt={`Project Wildfire build step ${activeLightboxItem.index}`}
+              alt={buildPhotoAlt(activeLightboxItem.index)}
               fill
               className="object-contain"
               sizes="100vw"

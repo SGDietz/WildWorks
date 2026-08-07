@@ -1,0 +1,35 @@
+/*
+ * Home / iScott mobile labels
+ *
+ * G wants both eyebrow labels smaller and locked to a single line. This file
+ * loads last so old high-specificity H30/H31 sizing cannot make them wrap.
+ */
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body
+    .wild-home
+    #iscott-sales
+    .wild-copy-stack
+    > .wild-kicker {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(0.82rem, 3.4vw, 0.95rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0.14em !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    .wild-home
+    #iscott-sales
+    #talk-to-iscott
+    > .money-panel-kicker {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(0.92rem, 3.9vw, 1.05rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0.14em !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+  }
+}

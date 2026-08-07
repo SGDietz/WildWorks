@@ -1,0 +1,152 @@
+/* G 2026-08-05: visitor-facing text is always one of the permanent WildWorks
+   type colors. Legacy white and near-white rules must never win. */
+
+/* Home statement and the shared conversation card were the remaining
+   near-white (#fff4e4) offenders on the primary pages. */
+html body#wildworks-body#wildworks-body
+  .wild-home .wild-home-statement__title,
+html body#wildworks-body#wildworks-body
+  footer#footer#footer .wild-footer-contact-cta__title {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body
+  footer#footer#footer :is(
+    .wild-footer-contact-cta__kicker,
+    .wild-signup-title,
+    .wild-footer-legal-links,
+    .wild-footer-legal-link
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body#wildworks-body#wildworks-body
+  footer#footer#footer :is(
+    .wild-signup-field,
+    .wild-signup-consent,
+    .wild-signup-fine-print,
+    .wild-footer-closing,
+    .wild-footer-stonework-note
+  ),
+html body#wildworks-body#wildworks-body
+  footer#footer#footer :is(
+    .wild-signup-field,
+    .wild-signup-consent,
+    .wild-signup-fine-print,
+    .wild-footer-closing
+  ) :is(span, strong, em) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* G 2026-08-05: legal pages are the permanent exception to this file.
+   Every visible legal-page word stays pure white. */
+html body#wildworks-body#wildworks-body
+  .wild-home.wild-legal-home,
+html body#wildworks-body#wildworks-body
+  .wild-home.wild-legal-home :where(
+    p, li, span, strong, em, b, i, small, label, time
+  ) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body#wildworks-body#wildworks-body
+  .wild-home.wild-legal-home :where(
+    h1, h2, h3, h4, h5, h6,
+    .wild-legal-title,
+    .wild-legal-card-title
+  ) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body#wildworks-body#wildworks-body
+  .wild-home.wild-legal-home :where(
+    a,
+    .wild-legal-index-cta
+  ) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* The shared footer sits outside the legal page root and remains white too. */
+html body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer :where(
+    p, li, span, a, strong, em, b, i, small, label, time
+  ) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer :where(h1, h2, h3, h4, h5, h6),
+html body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer .wild-footer-contact-cta__title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer :where(a, .wild-footer-legal-link) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Buttons retain the approved red-copper ink rather than inheriting a footer
+   or legal text color. */
+html body#wildworks-body#wildworks-body :is(
+  .money-cta,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-signup-choice-button,
+  .wild-iscott-upload__button
+),
+html body#wildworks-body#wildworks-body :is(
+  .money-cta,
+  .wild-footer-icon-button,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-signup-choice-button,
+  .wild-iscott-upload__button
+) :is(span, strong, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+}
+
+/* Preserve the intentional Color 1 / 2 / 3 hierarchy after the general
+   no-white guards above. */
+html body#wildworks-body#wildworks-body :is(
+  .ww-c1,
+  [class*="--c1"],
+  .wild-home-statement__line--one,
+  .wild-signature-title__one
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .ww-c2,
+  [class*="--c2"],
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four,
+  .wild-signature-title__two
+) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .ww-c3,
+  [class*="--c3"],
+  .wild-signature-title__three
+) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}

@@ -1,0 +1,20 @@
+/* Keep the shared non-legal footer compact and evenly paced. Ruins and Bio
+   use full-width color bands around the signup, so their spacing belongs on
+   the band itself; Home and Wildfire use the signup's outer margin. */
+html body:not(:has(.wild-legal-home))
+  footer#footer#footer .wild-footer-main.wild-footer-main {
+  padding-bottom: clamp(0.75rem, 1.5vw, 1rem) !important;
+}
+
+html body:not(:has(.wild-legal-home))
+  footer#footer#footer .wild-signup-system.wild-signup-system {
+  margin-top: clamp(1.5rem, 3vw, 2rem) !important;
+}
+
+html body:not(:has(.wild-legal-home)):has(
+    :is(.wild-subpage--ruins, .wild-subpage--bio)
+  ) footer#footer#footer .wild-signup-system.wild-signup-system {
+  margin-top: 0 !important;
+  padding-top: clamp(1.5rem, 3vw, 2rem) !important;
+  padding-bottom: clamp(0.75rem, 1.5vw, 1rem) !important;
+}

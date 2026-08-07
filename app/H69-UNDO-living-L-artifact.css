@@ -1,0 +1,72 @@
+/* Restore the pre-H64 logo geometry and remove the dark scrap on Living's L. */
+html body .wild-top-logo,
+html body:has(#top.wild-home) .wild-top-logo,
+html body:has(.wild-subpage) .wild-top-logo {
+  overflow: visible !important;
+  --ww-top-logo-fill-scale: 1.012 !important;
+  --ww-top-logo-shadow-scale: 1.018 !important;
+  transform: none !important;
+}
+
+html body .wild-top-logo::before,
+html body .wild-top-logo::after,
+html body:has(#top.wild-home) .wild-top-logo::before,
+html body:has(#top.wild-home) .wild-top-logo::after {
+  overflow: visible !important;
+  clip-path: inset(0 0 31% 0) !important;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-position: center center !important;
+  mask-position: center center !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+}
+
+html body .wild-top-logo::before,
+html body:has(#top.wild-home) .wild-top-logo::before {
+  background: #321005 !important;
+  opacity: 0.78 !important;
+  transform: translateY(clamp(3px, 0.38vw, 5px))
+    scale(var(--ww-top-logo-shadow-scale)) !important;
+  transform-origin: center !important;
+  filter: none !important;
+}
+
+html body .wild-top-logo::after,
+html body:has(#top.wild-home) .wild-top-logo::after {
+  background: #f7d9a5 !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  transform: scale(var(--ww-top-logo-fill-scale)) !important;
+  transform-origin: center !important;
+}
+
+html body .wild-top-logo-living::before,
+html body .wild-top-logo-living::after,
+html body:has(#top.wild-home) .wild-top-logo-living::before,
+html body:has(#top.wild-home) .wild-top-logo-living::after,
+html body:has(.wild-subpage) .wild-top-logo-living::before,
+html body:has(.wild-subpage) .wild-top-logo-living::after {
+  clip-path: inset(67% 32% 17% 32%) !important;
+  transform-origin: 50% 75% !important;
+  -webkit-mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat !important;
+  mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat !important;
+}
+
+html body .wild-top-logo-living::before,
+html body:has(#top.wild-home) .wild-top-logo-living::before,
+html body:has(.wild-subpage) .wild-top-logo-living::before {
+  z-index: 0 !important;
+  background: #321005 !important;
+  opacity: 0.78 !important;
+  transform: translateX(-0.3%) translateY(clamp(3px, 0.38vw, 5px)) scale(0.906) !important;
+  filter: none !important;
+}
+
+html body .wild-top-logo-living::after,
+html body:has(#top.wild-home) .wild-top-logo-living::after,
+html body:has(.wild-subpage) .wild-top-logo-living::after {
+  z-index: 1 !important;
+  background: #f7d9a5 !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  transform: translateX(-0.3%) scale(0.9) !important;
+}

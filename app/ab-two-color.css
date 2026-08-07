@@ -1,0 +1,78 @@
+/* Bio and Ruins use exactly two flat page-band colors.
+   A = #983e17, B = #c85a24. Gradients are intentionally forbidden here. */
+
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--bio) {
+  --ww-ab-a: #983e17;
+  --ww-ab-b: #c85a24;
+  --ww-color-a: #983e17;
+  --ww-color-b: #c85a24;
+}
+
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--bio),
+html body:has(.wild-subpage--ruins) .wild-site-backdrop,
+html body:has(.wild-subpage--bio) .wild-site-backdrop {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+}
+
+html body .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+html body .wild-subpage--bio .wild-ab-band.wild-tone--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+html body .wild-subpage--bio .wild-ab-band.wild-tone--b {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body :is(.wild-subpage--ruins, .wild-subpage--bio)
+  :is(.ruins-color-band, .wild-ab-band)
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html body :is(.wild-subpage--ruins, .wild-subpage--bio)
+  :is(.ruins-color-band, .wild-ab-band) {
+  margin-block: 0 !important;
+}
+
+/* Ruins: final B field continues through Dream Project, signup, and closing. */
+html body:has(.wild-subpage--ruins) footer#footer,
+html body:has(.wild-subpage--ruins) footer#footer .wild-footer-main,
+html body:has(.wild-subpage--ruins) footer#footer .wild-footer-contact-region--a,
+html body:has(.wild-subpage--ruins) footer#footer .wild-signup-system,
+html body:has(.wild-subpage--ruins) footer#footer .wild-footer-closing-region--a {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+/* Bio: Dream Project is B; signup and closing return to A. */
+html body:has(.wild-subpage--bio) footer#footer .wild-footer-contact-region--a {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+html body:has(.wild-subpage--bio) footer#footer,
+html body:has(.wild-subpage--bio) footer#footer .wild-footer-main,
+html body:has(.wild-subpage--bio) footer#footer .wild-signup-system,
+html body:has(.wild-subpage--bio) footer#footer .wild-footer-closing-region--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}

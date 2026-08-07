@@ -1,6 +1,56 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Libre_Baskerville, Great_Vibes } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Libre_Baskerville,
+  Great_Vibes,
+  Playfair_Display,
+  Manrope,
+} from "next/font/google";
 import "./globals.css";
+import "./gold-standard.css";
+import "./grok-h58-h64.css";
+import "./ab-two-color.css";
+import "./H67-SOLID-blocks-only.css";
+import "./H68-then-came-LOGO-EXACT.css";
+import "./H69-UNDO-living-L-artifact.css";
+import "./H70-bio-life-begins-line.css";
+import "./H71-ruins-bio-playfair-manrope.css";
+import "./signup-contrast.css";
+import "./page-copper-lock.css";
+import "./bio-hero-cleanup.css";
+import "./footer-card-cleanup.css";
+import "./narrative-footer-fix.css";
+import "./gold-reference-sitewide.css";
+import "./wildfire-summary-size.css";
+import "./no-white-text.css";
+import "./iscott-mobile-labels.css";
+import "./home-hero-sizing.css";
+import "./grok-h71r-h81.css";
+import "./grok-h82-h96.css";
+import "./sitewide-black-text-depth.css";
+import "./button-ink.css";
+import "./legal-white-lock.css";
+import "./header-spacing-lock.css";
+import "./subpage-color1-lock.css";
+import "./narrative-band-lock.css";
+import "./mobile-home-hero-balance.css";
+import "./footer-spacing-lock.css";
+import "./mobile-home-hero-rhythm-lock.css";
+import "./mobile-subpage-home-palette.css";
+import "./home-small-type-size-lock.css";
+import "./button-text-size-lock.css";
+import "./home-hero-copy-top-left.css";
+import "./legal-footer-spacing-lock.css";
+import "./all-card-surface-lock.css";
+import "./legal-button-ink-lock.css";
+import "./phone-number-lines.css";
+import "./footer-signup-cleanup.css";
+import "./wildfire-subpage-hero-rhythm-lock.css";
+import "./brand-logo-tagline-effect-lock.css";
+import "./home-hero-problems-size-lock.css";
+import "./card-surface-final-lock.css";
+import "./large-letter-effect-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
 import Footer from "./components/Footer";
@@ -28,8 +78,19 @@ const greatVibes = Great_Vibes({
   subsets: ["latin"],
 });
 
+const playfairDisplay = Playfair_Display({
+  weight: ["500", "600", "700"],
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
+const manrope = Manrope({
+  weight: ["400", "500", "600"],
+  variable: "--font-manrope",
+  subsets: ["latin"],
+});
+
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wildworks.live").replace(/\/$/, "");
-const homeUrl = `${siteUrl}/pages/Home`;
 const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 
 // Permanent route-level canvas guard. This lives in the shared layout so a
@@ -37,25 +98,32 @@ const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 // copper/orange field on one device while leaving desktop correct.
 const universalCopperCanvasCss = `
   :root {
-    --ww-page-base-copper: #983d17 !important;
-    --ww-center-column-glimmer: linear-gradient(90deg, rgba(255, 205, 130, 0) 0%, rgba(255, 205, 130, 0) 20%, rgba(255, 205, 130, 0.025) 30%, rgba(255, 205, 130, 0.05) 40%, rgba(255, 205, 130, 0.075) 50%, rgba(255, 205, 130, 0.05) 60%, rgba(255, 205, 130, 0.025) 70%, rgba(255, 205, 130, 0) 80%, rgba(255, 205, 130, 0) 100%) !important;
-    --ww-center-gold-fade: linear-gradient(90deg, #983d17 0%, #a8471d 24%, #b95628 40%, #c26131 50%, #b95628 60%, #a8471d 76%, #983d17 100%) !important;
-    --ww-page-background: var(--ww-center-column-glimmer), var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
+    --ww-page-base-copper: #983e17 !important;
+    --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
+    --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+    --ww-page-background: var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
+    --ww-home-page-background: var(--ww-page-background) !important;
+    --ww-soft-field: var(--ww-page-background) !important;
+    --ww-soft-field-warm: var(--ww-page-background) !important;
   }
 
   html,
   body,
   body .wild-site-backdrop {
     background: var(--ww-page-background) !important;
-    background-color: var(--ww-page-base-copper) !important;
+    background-color: #983e17 !important;
+    background-image: var(--ww-page-background) !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     background-size: cover !important;
+    background-attachment: fixed !important;
   }
 
   body .wild-site-backdrop {
     position: fixed !important;
     inset: 0 !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
   }
 
   body :is(.wild-home, .wild-subpage),
@@ -67,14 +135,23 @@ const universalCopperCanvasCss = `
     background-image: none !important;
   }
 
-  @media (max-width: 719px) {
+  @media (min-width: 720px) and (max-width: 1680px) {
     :root {
-      --ww-page-base-copper: #a8461b !important;
-      --ww-center-column-glimmer: radial-gradient(ellipse 156% 92% at 50% 25%, rgba(255, 207, 137, 0.1) 0%, rgba(255, 178, 93, 0.05) 46%, rgba(255, 151, 64, 0.02) 68%, transparent 84%) !important;
-      --ww-center-gold-fade: linear-gradient(90deg, #a8461b 0%, #b34f21 20%, #bd5928 38%, #c3632f 50%, #bd5928 62%, #b34f21 80%, #a8461b 100%) !important;
-      --ww-page-background: var(--ww-center-column-glimmer), var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
+      --ww-page-base-copper: #983e17 !important;
+      --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
+      --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+      --ww-page-background: var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
     }
 
+    html,
+    body,
+    body .wild-site-backdrop {
+      background: var(--ww-page-background) !important;
+      background-color: #983e17 !important;
+    }
+  }
+
+  @media (max-width: 719px) {
     body .wild-home .wild-hero.discordSection,
     body .wild-home .wild-hero.discordSection .wild-hero-media,
     body .wild-home .wild-hero.discordSection .wild-hero-media > div,
@@ -103,14 +180,10 @@ export const metadata: Metadata = {
     "design build landscaping",
     "resale landscaping",
   ],
-  alternates: {
-    canonical: "/pages/Home",
-  },
   openGraph: {
     title: "WildWorks | Fine Art Natural Stone Landscaping",
     description:
       "Natural stone patios, outdoor fireplaces, stairs, boulder work, and rare exterior transformations built to make properties unforgettable.",
-    url: homeUrl,
     siteName: "WildWorks",
     images: [
       {
@@ -147,7 +220,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#983d17",
+  themeColor: "#983e17",
 };
 
 export default function RootLayout({
@@ -168,6 +241,10 @@ export default function RootLayout({
         image: heroImageUrl,
         logo: `${siteUrl}/wildLogo.png`,
         sameAs: ["https://x.com/WildWorksArt"],
+        areaServed: {
+          "@type": "Place",
+          name: "Worldwide",
+        },
         description:
           "WildWorks designs and builds fine art natural stone landscapes, outdoor fireplaces, stone patios, stairs, boulder work, ruins, and property transformations.",
       },
@@ -177,21 +254,6 @@ export default function RootLayout({
         url: siteUrl,
         name: "WildWorks",
         publisher: { "@id": `${siteUrl}/#organization` },
-        inLanguage: "en-US",
-      },
-      {
-        "@type": "WebPage",
-        "@id": `${homeUrl}/#webpage`,
-        url: homeUrl,
-        name: "WildWorks Fine Art Natural Stone Landscaping",
-        isPartOf: { "@id": `${siteUrl}/#website` },
-        about: { "@id": `${siteUrl}/#organization` },
-        primaryImageOfPage: {
-          "@type": "ImageObject",
-          url: heroImageUrl,
-          width: 2304,
-          height: 1536,
-        },
         inLanguage: "en-US",
       },
       {
@@ -207,7 +269,10 @@ export default function RootLayout({
           "Retaining and drainage features",
           "Landscape transformations",
         ],
-        areaServed: "United States",
+        areaServed: {
+          "@type": "Place",
+          name: "Worldwide",
+        },
         description:
           "Design/build natural stone landscapes for properties that need outdoor fireplaces, patios, stairs, boulder work, ruins, and unforgettable exterior spaces.",
       },
@@ -223,11 +288,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} antialiased`}
+        id="wildworks-body"
+        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${manrope.variable} antialiased`}
       >
         <style data-wildworks-copper-canvas>{universalCopperCanvasCss}</style>
         <div className="relative min-h-screen overflow-hidden">
-          <div className="wild-site-backdrop" aria-hidden="true" />
+          <div id="wild-site-backdrop" className="wild-site-backdrop" aria-hidden="true" />
           <div className="relative z-10 flex min-h-screen flex-col">
             <Header />
             <BrandLogo />

@@ -1,0 +1,40 @@
+/* Shared BrandLogo lock: keep the Fine Art & Practical / Living shadow close
+   to the letters and slightly wider than the gold fill. This preserves the
+   dimensional black edge without exposing a copper/salmon gap beneath it. */
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before,
+html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
+  z-index: 0 !important;
+  background: #000 !important;
+  opacity: 0.82 !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before {
+  transform:
+    translateY(clamp(2px, 0.24vw, 3px))
+    scale(1.026) !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
+  z-index: 1 !important;
+  background: #f7d9a5 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0.38rem 0.42rem rgba(0, 0, 0, 0.55)) !important;
+  transform: scale(var(--ww-top-logo-fill-scale)) !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
+  transform:
+    translateX(-0.3%)
+    translateY(clamp(2px, 0.24vw, 3px))
+    scale(0.914) !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-living::after {
+  z-index: 1 !important;
+  background: #f7d9a5 !important;
+  opacity: 0.94 !important;
+  filter: drop-shadow(0 0.38rem 0.42rem rgba(0, 0, 0, 0.55)) !important;
+  transform: translateX(-0.3%) scale(0.9) !important;
+}

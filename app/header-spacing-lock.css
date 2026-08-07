@@ -1,0 +1,51 @@
+/* G 2026-08-06: one shared header rhythm for the four main visitor pages.
+   Home is the approved baseline. The first image sits 20% closer to Living. */
+@media (min-width: 501px) {
+  html body#wildworks-body:has(:is(
+    #top.wild-home,
+    .wild-subpage--wildfire,
+    .wild-subpage--ruins,
+    .wild-subpage--bio
+  )) .wild-site-header > div.flex-col {
+    gap: 0 !important;
+    padding-top: 1.25rem !important;
+  }
+
+  html body#wildworks-body:has(:is(
+    #top.wild-home,
+    .wild-subpage--wildfire,
+    .wild-subpage--ruins,
+    .wild-subpage--bio
+  )) .wild-site-header nav {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  html body#wildworks-body:has(:is(
+    #top.wild-home,
+    .wild-subpage--wildfire,
+    .wild-subpage--ruins,
+    .wild-subpage--bio
+  )) .wild-top-logo-band {
+    overflow: visible !important;
+    margin-top: -0.9rem !important;
+    margin-bottom: -1.7rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0.15rem !important;
+  }
+
+  html body#wildworks-body :is(
+    .wild-subpage--ruins,
+    .wild-subpage--bio
+  ) {
+    padding-top: 0 !important;
+  }
+
+  html body#wildworks-body :is(
+    .wild-subpage--ruins,
+    .wild-subpage--bio
+  ) .wild-subpage-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}

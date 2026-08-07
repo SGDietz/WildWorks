@@ -64,7 +64,7 @@ export default function AccessibilityPage() {
           children: (
             <p>
               If a website feature does not work for you, WildWorks will make a reasonable effort to provide
-              the same information or service through email, phone, text, WhatsApp, or another practical
+              the same information or service through email, phone, text, or another practical
               channel.
             </p>
           ),

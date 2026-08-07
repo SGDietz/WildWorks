@@ -1,0 +1,47 @@
+/* G 2026-08-06: every readable button label uses the approved Join the List size.
+   Icon-only controls keep their deliberately compact shape. */
+:root {
+  --ww-button-label-size: clamp(1.06rem, 1.45vw, 1.26rem);
+}
+
+html body :is(
+  .money-cta,
+  .wild-signup-choice-button,
+  .wildfire-phase-bar button,
+  .wild-utility-button,
+  .wild-card-cta,
+  .wild-legal-index-cta,
+  .wild-iscott-upload__button,
+  .wild-logo-download-button,
+  .wild-wildfire-photo-button,
+  .wild-wildfire-inspiration-button
+) {
+  font-size: var(--ww-button-label-size) !important;
+  line-height: 1.1 !important;
+}
+
+html body :is(
+  .money-cta,
+  .wild-signup-choice-button,
+  .wildfire-phase-bar button,
+  .wild-utility-button,
+  .wild-card-cta,
+  .wild-legal-index-cta,
+  .wild-iscott-upload__button,
+  .wild-logo-download-button,
+  .wild-wildfire-photo-button,
+  .wild-wildfire-inspiration-button
+) :is(span, strong, small) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* This matches the previous mobile Hero selector so its smaller 16px rule
+   cannot shrink Talk to iScott and Call Now below the approved reference. */
+@media (max-width: 640px) {
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row .money-cta {
+    font-size: var(--ww-button-label-size) !important;
+  }
+}

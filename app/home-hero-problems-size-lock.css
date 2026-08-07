@@ -1,0 +1,16 @@
+/* G 2026-08-06: raise only the Real World Problems hero line one type step. */
+html body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line--problems {
+  font-size: clamp(1.42rem, 2.06vw, 1.9rem) !important;
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--problems {
+    font-size: clamp(1.06rem, 4.4vw, 1.28rem) !important;
+  }
+}

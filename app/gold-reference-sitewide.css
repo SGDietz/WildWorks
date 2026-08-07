@@ -1,0 +1,243 @@
+/* Final sitewide palette lock, sampled from Screenshot 2026-08-04 221029.
+   A = the rich red-copper page field. B = the warm card-interior copper.
+   Narrative A/B bands stay solid; actual cards retain the luminous blend. */
+
+:root {
+  --ww-reference-a: #983e17;
+  --ww-reference-b: #c85a24;
+  --ww-reference-page:
+    radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%),
+    linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%);
+  --ww-reference-card:
+    radial-gradient(ellipse 95% 55% at 50% 0%, rgba(231, 136, 72, 0.14), transparent 62%),
+    linear-gradient(180deg, #c0612b 0%, #c85a24 52%, #a9451a 100%);
+  /* Never invent a separate phone canvas. Mobile inherits the same approved
+     page material, and Home can apply its verified device compensation by
+     overriding this shared reference alongside --ww-reference-page. */
+  --ww-reference-mobile-page: var(--ww-reference-page);
+  --ww-page-base-copper: var(--ww-reference-a) !important;
+  --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
+  --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+  --ww-page-background: var(--ww-reference-page) !important;
+  --ww-home-page-background: var(--ww-reference-page) !important;
+  --ww-soft-field: var(--ww-reference-page) !important;
+  --ww-soft-field-warm: var(--ww-reference-page) !important;
+  --ww-signature-card-gradient: var(--ww-reference-card) !important;
+  --ww-gold-fill: var(--ww-reference-card) !important;
+  --ww-card-love-fill: var(--ww-reference-card) !important;
+  --ww-box-gradient: var(--ww-reference-card) !important;
+  --ww-chip-gradient: var(--ww-reference-card) !important;
+  --ww-color-a: var(--ww-reference-a) !important;
+  --ww-color-b: var(--ww-reference-b) !important;
+  --ww-ab-a: var(--ww-reference-a) !important;
+  --ww-ab-b: var(--ww-reference-b) !important;
+  --ww-solid-a: var(--ww-reference-a) !important;
+  --ww-solid-b: var(--ww-reference-b) !important;
+  --ww-color-1: #f7d9a5 !important;
+  --ww-color-2: #e8b66d !important;
+  --ww-color-3: #c87936 !important;
+}
+
+html,
+html body#wildworks-body#wildworks-body,
+html body#wildworks-body#wildworks-body #wild-site-backdrop.wild-site-backdrop {
+  background: var(--ww-reference-page) !important;
+  background-color: var(--ww-reference-a) !important;
+  background-image: var(--ww-reference-page) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+/* Ordinary page sections reveal the shared A field instead of painting a
+   competing orange or walnut rectangle over it. */
+html body#wildworks-body#wildworks-body
+  :is(.wild-home, .wild-subpage):not(.wild-subpage--ruins):not(.wild-subpage--bio),
+html body#wildworks-body#wildworks-body
+  :is(.wild-home, .wild-subpage):not(.wild-subpage--ruins):not(.wild-subpage--bio)
+  > :is(section, main),
+html body#wildworks-body#wildworks-body
+  .wild-home.wild-legal-home .wild-legal-section {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Every true card uses the exact inner material from the reference image. */
+html body#wildworks-body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-story-card--feature,
+  .wild-story-card--featureSell,
+  .wild-story-card--portrait,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-identity-card,
+  .wild-travel-panel,
+  .wild-signup-status,
+  .wild-footer-contact-cta,
+  .wild-final-cta-inner,
+  .wild-live-avatar-loading__card
+) {
+  background: var(--ww-reference-card) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: var(--ww-reference-card) !important;
+  border-color: #8f3612 !important;
+}
+
+/* The Ruins and Bio maps are deliberately only two flat colors. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins),
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio),
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) #wild-site-backdrop,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio) #wild-site-backdrop,
+html body#wildworks-body#wildworks-body :is(.wild-subpage--ruins, .wild-subpage--bio),
+html body#wildworks-body#wildworks-body
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+html body#wildworks-body#wildworks-body
+  .wild-subpage--bio .wild-ab-band.wild-tone--a {
+  background: var(--ww-reference-a) !important;
+  background-color: var(--ww-reference-a) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+html body#wildworks-body#wildworks-body
+  .wild-subpage--bio .wild-ab-band.wild-tone--b {
+  background: var(--ww-reference-b) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body
+  :is(.wild-subpage--ruins, .wild-subpage--bio)
+  :is(.ruins-color-band, .wild-ab-band)
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Ruins continues on B through the shared footer. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  footer#footer#footer#footer,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  footer#footer#footer#footer :is(
+    .wild-footer-main,
+    .wild-footer-contact-region--a,
+    .wild-signup-system,
+    .wild-footer-closing-region--a
+  ) {
+  background: var(--ww-reference-b) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+}
+
+/* Bio's Dream Project section is B; signup and closing return to A. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer .wild-footer-contact-region--a {
+  background: var(--ww-reference-b) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer :is(
+    .wild-footer-main,
+    .wild-signup-system,
+    .wild-footer-closing-region--a
+  ) {
+  background: var(--ww-reference-a) !important;
+  background-color: var(--ww-reference-a) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+}
+
+/* The Dream Project object is a card, so it gets the inner blend without an
+   extra brown drop-bar underneath it. */
+html body#wildworks-body#wildworks-body
+  footer#footer#footer#footer .wild-footer-contact-cta.wild-footer-contact-cta {
+  background: var(--ww-reference-card) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: var(--ww-reference-card) !important;
+  box-shadow: none !important;
+}
+
+/* Mobile footer bar belongs to the same copper family; its four controls keep
+   the approved gold button material and red-copper ink. */
+html body#wildworks-body#wildworks-body
+  :is(.wild-footer-mobile-bar, .wild-mobile-contact-bar, .wild-mobile-contact-strip) {
+  background: var(--ww-reference-card) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: var(--ww-reference-card) !important;
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body,
+  html body#wildworks-body#wildworks-body #wild-site-backdrop.wild-site-backdrop {
+    background: var(--ww-reference-mobile-page) !important;
+    background-color: var(--ww-reference-a) !important;
+    background-image: var(--ww-reference-mobile-page) !important;
+  }
+
+  /* Phone displays were rendering the desktop's dark edge value as a flat
+     dirt-brown slab. Keep the same copper family while lifting the mobile A
+     field to the reference card's rich lower copper. */
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins),
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--bio),
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--bio .wild-ab-band.wild-tone--a,
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer,
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer :is(
+      .wild-footer-main,
+      .wild-signup-system,
+      .wild-footer-closing-region--a
+    ) {
+    background: #a9451a !important;
+    background-color: #a9451a !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--bio .wild-ab-band.wild-tone--b,
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer#footer#footer,
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer#footer#footer :is(
+      .wild-footer-main,
+      .wild-footer-contact-region--a,
+      .wild-signup-system,
+      .wild-footer-closing-region--a
+    ),
+  html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer .wild-footer-contact-region--a {
+    background: var(--ww-reference-b) !important;
+    background-color: var(--ww-reference-b) !important;
+    background-image: none !important;
+  }
+}

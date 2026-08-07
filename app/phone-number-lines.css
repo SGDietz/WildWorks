@@ -1,0 +1,258 @@
+/* The written phone number is a standalone call line, never a card or button. */
+body .wild-phone-number-line {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: clamp(0.45rem, 1vw, 0.85rem) auto;
+  padding: 0 clamp(0.5rem, 2vw, 1.5rem);
+  text-align: center;
+}
+
+body .wild-phone-number-line > a {
+  display: block;
+  max-width: 100%;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  background-image: none !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif;
+  font-size: clamp(3.6rem, 6.85vw, 7.8rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: clamp(0.12em, 0.62vw, 0.3em);
+  text-decoration: none;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.84);
+  paint-order: stroke fill;
+  text-shadow: var(--ww-home-wordmark-text-effect);
+  white-space: nowrap;
+}
+
+body .wild-phone-number-line > a:hover,
+body .wild-phone-number-line > a:focus-visible {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  text-decoration: none;
+}
+
+body .wild-phone-number-line__call-today {
+  display: block;
+  margin-top: clamp(0.32rem, 0.8vw, 0.62rem);
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif;
+  font-size: clamp(2.45rem, 4.4vw, 4.55rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: 0.025em;
+  text-shadow: var(--ww-home-wordmark-text-effect);
+}
+
+body .wild-phone-number-line__call-today--emphasis {
+  font-size: clamp(2.85rem, 5.4vw, 5.2rem);
+}
+
+body .wild-phone-number-line--subpage {
+  /* The gallery hands directly to this two-line callout. Equal space above
+     and below centers it between the photo field and the contact card. */
+  margin-top: 0;
+  margin-bottom: clamp(2.6rem, 3.6vw, 3.7rem);
+}
+
+/* Subpage callouts use the same actual face rendered by the Home callouts.
+   Do not let the footer's Playfair rules turn the number ornamental. */
+body .wild-phone-number-line--subpage > a,
+body .wild-phone-number-line--subpage .wild-phone-number-line__call-today {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+/* Keep the callout attached to the story/gallery above and give the contact
+   card one deliberate beat below it. This only applies where the subpage
+   phone callout exists, so Home and the legal footers are untouched. */
+html body#wildworks-body footer#footer:has(.wild-phone-number-line--subpage) {
+  margin-top: 0 !important;
+}
+
+html body#wildworks-body footer#footer:has(.wild-phone-number-line--subpage) .wild-footer-main {
+  padding-top: 0 !important;
+}
+
+/* Keep the full written number inside the centered footer rail at desktop
+   widths. The previous size overran the rail and made the visible glyphs look
+   shifted to the right. */
+@media (min-width: 700px) {
+  html body#wildworks-body footer#footer:has(.wild-phone-number-line--subpage)
+    .wild-phone-number-line--subpage > a {
+    font-size: clamp(3.6rem, 6.1vw, 7.2rem);
+  }
+
+  /* The Ruins story finishes on a deliberately narrower reading rail. Keep
+     its footer number inside that same visual width and give the two-line
+     callout even breathing room before the Dream Project card. */
+  html body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer
+    .wild-phone-number-line--subpage {
+    width: min(100% - 2rem, 52rem);
+    margin-top: clamp(2.15rem, 2.7vw, 2.8rem);
+    margin-bottom: clamp(1rem, 1.6vw, 1.5rem);
+    /* Pull the callout toward the last Ruins paragraph without pulling the
+       Dream Project card with it; the card keeps a clean, even gap below. */
+    transform: translateY(clamp(-2.3rem, -2.5vw, -2rem));
+  }
+
+  html body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer
+    .wild-phone-number-line--subpage > a {
+    font-size: clamp(3.1rem, 4.5vw, 4.25rem);
+  }
+
+  /* Legal pages use the same centered phone treatment, sized to their
+     narrower contact rail rather than the full browser width. */
+  html body#wildworks-body:has(.wild-legal-home)
+    footer#footer
+    .wild-phone-number-line--legal {
+    width: min(100% - 2rem, 64rem);
+    margin-bottom: clamp(4rem, 5vw, 5rem);
+  }
+
+  html body#wildworks-body:has(.wild-legal-home)
+    footer#footer
+    .wild-phone-number-line--legal > a {
+    font-size: clamp(3.4rem, 4.9vw, 5.3rem);
+  }
+}
+
+/* The legal pages keep their document copy white, but the footer callout is
+   an intentional WildWorks advertisement: Color 1 number, Color 2 call line. */
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer#footer
+  .wild-phone-number-line--legal > a {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer#footer
+  .wild-phone-number-line--legal .wild-phone-number-line__call-today {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* Legal CTA labels already use the normal warm-copper ink; carry that exact
+   ink into their icons instead of letting the legal white-copy rule win. */
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer#footer
+  .wild-footer-contact-cta .money-cta :is(span, strong, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  stroke: currentColor !important;
+  text-shadow: none !important;
+}
+
+body .wild-phone-number-line--home-hero .wild-phone-number-line__call-today {
+  margin-top: clamp(0.75rem, 1.25vw, 1.1rem);
+}
+
+/* Keep the number and its call line as one deliberate bridge between the
+   hero image and the iScott section, with a little air on both sides. */
+body #top.wild-home .wild-phone-number-line--home-hero {
+  margin-top: clamp(1.3rem, 3.2vw, 2.75rem);
+  margin-bottom: clamp(1.3rem, 3.2vw, 2.75rem);
+}
+
+body .wild-phone-number-line--home-hero > a {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+body #top.wild-home .wild-phone-number-line--home-hero + #iscott-sales {
+  padding-top: clamp(1.2rem, 2.2vw, 2rem) !important;
+}
+
+body #top.wild-home .wild-phone-number-line--home-tree {
+  margin-top: clamp(0.55rem, 1.1vw, 1rem);
+  margin-bottom: clamp(0.55rem, 1.1vw, 1rem);
+}
+
+body #top.wild-home #signature-work + .wild-phone-number-line--home-services {
+  margin-top: clamp(0.15rem, 0.65vw, 0.5rem);
+}
+
+/* The Ruins placement is the one warm Color 2 number-only callout. */
+body #top.wild-home .wild-phone-number-line--home-services > a {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+body #top.wild-home .wild-phone-number-line--home-services + #services {
+  padding-top: clamp(1.1rem, 2.1vw, 1.9rem) !important;
+}
+
+body #top.wild-home #signature-work .wild-story-card--feature .wild-story-actions {
+  transform: translateY(clamp(-0.48rem, -0.55vw, -0.3rem));
+}
+
+@media (max-width: 560px) {
+  body .wild-phone-number-line {
+    margin: clamp(0.6rem, 3.2vw, 0.95rem) auto;
+    padding-inline: 0.35rem;
+  }
+
+  body .wild-phone-number-line > a {
+    font-size: clamp(1.62rem, 8.2vw, 2.65rem);
+    letter-spacing: clamp(0.06em, 0.68vw, 0.13em);
+  }
+
+  body .wild-phone-number-line__call-today {
+    font-size: clamp(2.2rem, 9.6vw, 2.9rem);
+  }
+
+  body .wild-phone-number-line__call-today--emphasis {
+    font-size: clamp(2.65rem, 11.5vw, 3.25rem);
+  }
+
+  /* Home's first callout is the big invitation between the hero and iScott:
+     its number should lead the two-line call phrase by a small, intentional
+     amount, without pushing either line into the mobile edges. */
+  body #top.wild-home .wild-phone-number-line--home-hero > a {
+    font-size: clamp(2.05rem, 8.55vw, 3.1rem);
+  }
+
+  body #top.wild-home .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    font-size: clamp(2.1rem, 6.8vw, 2.45rem);
+  }
+}
+
+/* Some modern phones present a 576–640px layout viewport. Keep the Home
+   callout in its mobile proportion there too instead of falling back to the
+   much larger desktop number. */
+@media (min-width: 561px) and (max-width: 640px) {
+  body #top.wild-home .wild-phone-number-line--home-hero > a {
+    font-size: clamp(2.05rem, 8.55vw, 3.1rem);
+    letter-spacing: clamp(0.06em, 0.68vw, 0.13em);
+  }
+
+  body #top.wild-home .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    font-size: clamp(2.1rem, 6.8vw, 2.45rem);
+  }
+}
+
+/* The written phone number is the strongest mobile call-to-action.  Keep it
+   decisively larger and heavier at every phone width without letting it touch
+   either edge. */
+@media (max-width: 640px) {
+  body .wild-phone-number-line > a {
+    font-size: clamp(2.45rem, 9.2vw, 3.45rem);
+    font-weight: 800;
+    letter-spacing: clamp(0.04em, 0.5vw, 0.095em);
+    -webkit-text-stroke-width: 1.15px;
+  }
+
+  body #top.wild-home .wild-phone-number-line--home-hero > a {
+    font-size: clamp(2.6rem, 9.65vw, 3.65rem);
+  }
+}

@@ -1,0 +1,113 @@
+/* Home-only readability pass.
+   G asked for every supporting/small-copy tier to move up two pixels on
+   desktop and mobile, while display headlines and button labels stay put. */
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) .wild-body:not(.wild-iscott-body) {
+  font-size: clamp(1.125rem, calc(1.7vw + 0.125rem), 1.305rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-iscott-body {
+  font-size: clamp(1.045rem, calc(1.08vw + 0.125rem), 1.155rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #iscott-sales
+  .wild-iscott-steps-inline .money-step-content > p {
+  font-size: clamp(0.985rem, calc(1.15vw + 0.125rem), 1.105rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #iscott-sales
+  .wild-iscott-steps-inline > div > span {
+  font-size: 0.945rem !important;
+}
+
+html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top#top#top#top#top.wild-home:not(.wild-legal-home)
+  #services#services .wild-card :is(p, li),
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #ai-websites .wild-site-offer-card :is(p, li) {
+  font-size: clamp(1.195rem, calc(1vw + 0.375rem), 1.295rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #signature-work
+  .wild-story-card--feature :is(p, li) {
+  font-size: clamp(1.075rem, calc(1.8vw + 0.125rem), 1.275rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #signature-work .wild-sell-feature-proof {
+  font-size: clamp(1.155rem, calc(1.35vw + 0.125rem), 1.365rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) .wild-home-image-stonework-note {
+  font-size: clamp(1.125rem, calc(1.25vw + 0.125rem), 1.25rem) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-iscott-disclosure,
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-iscott-disclosure a {
+  font-size: 0.875rem !important;
+}
+
+/* The concierge eyebrow is supporting copy, so it receives the same two-pixel
+   lift. The title beneath it gets the separately requested three-step jump. */
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #talk-to-iscott .money-panel-kicker {
+  font-size: 1.405rem !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-start-title {
+  font-size: 3.225rem !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-consent > span,
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-fine-print,
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-fine-print a {
+  font-size: 0.905rem !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-footer-legal-link {
+  font-size: 0.945rem !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-footer-closing > span {
+  font-size: 1rem !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-field input,
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-field select,
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+  footer#footer:not(.wild-footer--legal) .wild-signup-field textarea {
+  font-size: 1.125rem !important;
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-copy-stack > .wild-kicker {
+    font-size: 1.205rem !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home:not(.wild-legal-home) #talk-to-iscott .money-panel-kicker {
+    font-size: 1.076rem !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-start-title {
+    font-size: 2.475rem !important;
+  }
+}

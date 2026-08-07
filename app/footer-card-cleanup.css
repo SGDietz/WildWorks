@@ -1,0 +1,6 @@
+/* Remove the dark horizontal shadow bar beneath the narrative-page CTA card. */
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  footer#footer#footer#footer#footer#footer
+  .wild-footer-contact-cta.wild-footer-contact-cta {
+  box-shadow: none !important;
+}

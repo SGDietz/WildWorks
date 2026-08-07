@@ -80,6 +80,38 @@ export default function Wildfire() {
 
   return (
     <div className="wild-subpage wild-subpage--wildfire wildfire-page">
+      <style>{`
+        html:has(.wild-subpage--wildfire) {
+          /* Match the approved rich copper page field without changing any
+             Project Wildfire cards, galleries, buttons, or content surfaces. */
+          --ww-wildfire-page-background:
+            radial-gradient(circle at 16% 9rem, rgba(255, 190, 94, 0.16), transparent 32rem),
+            radial-gradient(circle at 84% 50rem, rgba(255, 181, 82, 0.12), transparent 36rem),
+            radial-gradient(
+              ellipse 180% 122% at 50% 34%,
+              #8d5520 0%,
+              #874d1e 42%,
+              #804419 74%,
+              #793f16 100%
+            ),
+            #793f16 !important;
+          background: var(--ww-wildfire-page-background) !important;
+          background-attachment: fixed !important;
+          background-repeat: no-repeat !important;
+          background-size: cover !important;
+        }
+
+        body:has(.wild-subpage--wildfire) {
+          background: transparent !important;
+        }
+
+        body:has(.wild-subpage--wildfire) .wild-site-backdrop {
+          background: var(--ww-wildfire-page-background) !important;
+          background-position: center !important;
+          background-repeat: no-repeat !important;
+          background-size: cover !important;
+        }
+      `}</style>
       <motion.section
         className="wildfire-hero discordSection discordSection--1"
         variants={stagger}
@@ -118,19 +150,19 @@ export default function Wildfire() {
             Project Wildfire
           </motion.p>
           <motion.h1 className="wildfire-hero-headline" variants={fadeInUp}>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete Project</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">Build from Breaking Ground</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">To the First Wood Fire.</span>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete Project Build</span>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">from Breaking Ground to</span>
+            <span id="ww-wildfire-first-fire" className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">The First Wood Fire.</span>
           </motion.h1>
           <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
-              This is Not a Before-and-After Page. It is a Full Build Record
+              This is Not a Before-and-After Page. It is
             </span>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
-              for an Outdoor Fireplace, Patio, an Outdoor Lounge, and an Upper Viewing Deck.
+              a Full Build Record for an Outdoor Fireplace,
             </span>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
-              Pics Only, No Descriptions Currently — We’re Working on It!
+              Patio, Outdoor Lounge, and an Upper Viewing Deck.
             </span>
           </motion.p>
         </div>

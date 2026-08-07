@@ -1,0 +1,136 @@
+/* Final card material rule: every card gets one clean copper surface.
+   No brown blend, lighting pass, glow, or dark haze is allowed to return. */
+html body#wildworks-body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+) {
+  background: var(--ww-card-flat) !important;
+  background-color: var(--ww-card-flat) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Some earlier mobile rules were written with repeated IDs.  Match that
+   specificity here so they cannot put the brown haze back on a card. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-card-icon,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wildfire-photo-card,
+  .wild-inspiration-thumbnail,
+  .wild-wildfire-photo,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+) {
+  background: var(--ww-card-flat) !important;
+  background-color: var(--ww-card-flat) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+)::before,
+html body#wildworks-body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-project-card,
+  .wild-story-card,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-live-avatar-loading__card,
+  .wild-live-avatar-loading,
+  .wild-live-avatar-frame,
+  .wild-site-avatar-frame,
+  .wild-final-cta-inner,
+  .wild-footer-contact-cta,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+)::after {
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}

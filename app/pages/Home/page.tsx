@@ -36,7 +36,9 @@ import { createPortal } from "react-dom";
 import AspectRatioImage from "../../components/AspectRatioImage";
 import BrandText from "../../components/BrandText";
 import ImageLightbox from "../../components/ImageLightbox";
+import PhoneNumberLine from "../../components/PhoneNumberLine";
 import { getAnonymousVisitorId, getClientSessionId } from "../../lib/clientTelemetry";
+import { STONEWORK_AUTHENTICITY_LINE } from "../../lib/wildworksCopy";
 
 const softEase: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
 const softTransition = { duration: 0.72, ease: softEase };
@@ -126,27 +128,23 @@ const LIVE_AVATAR_EMBED_URL = "/pages/avatar-iscott";
 const SHOW_PROJECT_WILDFIRE_FLAMES = false;
 
 const noWhiteTextStyle = {
-  color: "rgba(211, 151, 82, 0.9)",
-  WebkitTextFillColor: "rgba(211, 151, 82, 0.9)",
+  color: "#f7d9a5",
+  WebkitTextFillColor: "#f7d9a5",
   backgroundImage: "none",
 };
 
 const noWhiteKickerStyle = {
-  color: "rgba(181, 111, 52, 0.94)",
-  WebkitTextFillColor: "rgba(181, 111, 52, 0.94)",
+  color: "#f7d9a5",
+  WebkitTextFillColor: "#f7d9a5",
   backgroundImage: "none",
 };
 
 const noWhiteBlendTextStyle = {
-  color: "transparent",
-  WebkitTextFillColor: "transparent",
-  backgroundImage:
-    "linear-gradient(180deg, #e8b66d 0%, #b56f34 58%, #a94f24 100%)",
-  WebkitBackgroundClip: "text",
-  backgroundClip: "text",
-  backgroundSize: "100% 1.62em",
-  backgroundRepeat: "repeat-y",
-  backgroundPosition: "0 0",
+  color: "#f7d9a5",
+  WebkitTextFillColor: "#f7d9a5",
+  backgroundImage: "none",
+  WebkitBackgroundClip: "border-box",
+  backgroundClip: "border-box",
 };
 
 const showWildWorksIdentitySection = false;
@@ -157,16 +155,16 @@ const showWildfireInspirationSection = false;
 
 const iScottSteps = [
   {
-    title: "Describe Areas You Would Like Beautified and/or Problem Areas You May Have",
+    title: "Describe areas you'd like beautified or problem areas you may have.",
   },
   {
-    title: "Talk Through Location, and Your Timing Preferences/Needs",
+    title: "Talk through location and your timing preferences.",
   },
   {
-    title: "Bounce Ideas Off iScott, and He Will Bounce Ideas Right Back to You",
+    title: "Bounce ideas off iScott, and he will bounce ideas right back at you.",
   },
   {
-    title: "If Appropriate, iScott Will Set Up Either an In-Person or Zoom Meeting with the Real Scott",
+    title: "If appropriate, iScott will set up either an in-person or video chat with the real Scott.",
   },
 ];
 
@@ -189,7 +187,7 @@ const wildWorksModes = [
     number: "2",
     title: "WildWorks.Ai",
     titleLines: ["WildWorks.Ai"],
-    body: "The Same Human Scott Can Start Remotely. Photos, Video, Zoom, Property Goals, Contractor Bids, and Problem Areas Can Be Organized By Ai Agents So Scott Can Diagnose, Iterate Designs Fast, Direct, and Oversee from Wherever He is to Wherever You Are.",
+    body: "The Same Human Scott Can Start Remotely. Photos, Video, Zoom, Property Goals, Contractor Bids, and Problem Areas Can Be Organized by Ai Agents so Scott Can Diagnose, Iterate Designs Fast, Direct, and Oversee from Wherever He is to Wherever You Are.",
     points: [
       "Rapid Ai Assisted Design Iterations for People Anywhere",
       "Remote Diagnosis Through Photos, Video, and Zoom",
@@ -231,12 +229,12 @@ const services = [
       <>
         WildWorks is for People Who Want Designs at the Limits of Human Imagination, and a Contractor that Can
         Faithfully Bring Those Designs to Life. If You Want a Space Created with Exquisite Taste and Originality - You
-        Are the Kind of Client Scott is Looking for, <em>Wherever You Are in the World.</em>
+        are the Kind of Client Scott is Looking for, <em>Wherever You are in the World.</em>
       </>,
       <>
-        After Four Decades+ of Designing and Building Hands-On, Scott Does Not Stop at Merely Cool Ideas. He Keeps
-        Pushing Designs to New Heights and Carries Them Into the Real World with the Judgement, Craft, and Experience
-        They Require. <strong>Your Project Could Be the Next Among the World&apos;s Wildest Builds.</strong>
+        After Four Decades+ of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps
+        Pushing Designs to New Heights and Carries Them into the Real World with the Judgement, Craft, and Experience
+        They Require. <strong>Your Project Could be the Next Among the World&apos;s Wildest Builds.</strong>
       </>,
     ],
     icon: Sparkles,
@@ -245,8 +243,8 @@ const services = [
     title: "Problem Solving",
     titleLines: ["Problem Solving"],
     body: [
-      "Some Home and Garden Problems Get Lived with for Years - Even Decades. Water, Grading, Access, Wet Walls, Cracked Foundations, and Failed Repairs Can Become Part of the Property Because Nobody Has Found the Real Cause or Built a Fix That Will Actually Hold.",
-      "Scott Loves Challenges and Charges Into the Problems Most Contractors Shy Away from, So Bring Him Your Hard Ones! He Will Do All That is Possible to Analyze the Entire Issue Entirely, and Come Up with a Lasting, Practical Solution.",
+      "Some Home and Garden Problems Get Lived with for Years - Even Decades. Water, Grading, Access, Wet Walls, Cracked Foundations, and Failed Repairs Can Become Part of the Property Because Nobody has Found the Real Cause or Built a Fix that Will Actually Hold.",
+      "Scott Loves Challenges and Charges into the Problems Most Contractors Shy Away from, so Bring Him Your Hard Ones! He will Do All that is Possible to Analyze the Entire Issue Entirely, and Come Up with a Lasting, Practical Solution.",
     ],
     icon: Wrench,
   },
@@ -254,8 +252,8 @@ const services = [
     title: "Building / Engineering",
     titleLines: ["Building / Engineering"],
     body: [
-      "WildWorks Builds Are Made for the Real World: Sun, Cold, Water, Wear, Outdoors, and in. Every Material—from Stone to Steel, Wood to Tile and Concrete—is Durable, Strong, and Crafted with Engineering Integrity.",
-      "Scott Often Revisits Projects Years Later, and is Always Surprised By How Cleanly the Work Has Settled: No Blemishes, No Trip Hazards, No Shortcuts Showing Through. That is What Good Judgment, Engineering, and Hands-On Craft Are for: Build It Right, Build It to Last, and Time Will Judge It Fairly.",
+      "WildWorks Builds are Made for the Real World: Sun, Cold, Water, Wear, Outdoors, and In. Every Material—from Stone to Steel, Wood to Tile and Concrete—is Durable, Strong, and Crafted with Engineering Integrity.",
+      "Scott Often Revisits Projects Years Later, and is Always Surprised by How Cleanly the Work has Settled: No Blemishes, No Trip Hazards, No Shortcuts Showing Through. That is What Good Judgment, Engineering, and Hands-On Craft are for: Build It Right, Build It to Last, and Time will Judge It Fairly.",
     ],
     icon: Hammer,
   },
@@ -264,7 +262,7 @@ const services = [
     titleLines: ["Ballparks"],
     body: [
       "40+ Years of Design and Build Experience Creates Practical Wisdom Which Scott Draws Upon to Give Ballpark Numbers Early, to Help Set Clear Expectations, and the Scope of Work, Before Any Design is to Begin.",
-      "Once the Range and Scope Are Real and Practical, Design Begins. You Move Forward Informed, Without Spending Time and Money Developing a Plan That Does Not Fit the Budget.",
+      "Once the Range and Scope are Real and Practical, Design Begins. You Move Forward Informed, Without Spending Time and Money Developing a Plan that Does not Fit the Budget.",
     ],
     icon: DollarSign,
   },
@@ -272,8 +270,8 @@ const services = [
     title: "How Much Can WildWorks Do?",
     titleLines: ["How Much Can WildWorks Do?"],
     body: [
-      "WildWorks is the Place to Start Any Project, Any Material, Inside or Outside Your Home to Full Design/Build Work from the Ground Up. WildWorks Can Also Serve as the Design and Diagnosis Layer Around the Contractor Team You Already Have.",
-      "Scott and His Crews Do Much of the Work in House, and We Have a Full Roster of Trusted Allied Specialists to Call Upon When Needed; Electricians, Plumbers, HVAC Specialists, Etc.",
+      "WildWorks is the Place to Start Any Project, Any Material, Inside or Outside Your Home to Full Design/Build Work from the Ground Up. WildWorks Can Also Serve as the Design and Diagnosis Layer around the Contractor Team You Already have.",
+      "Scott and His Crews Do Much of the Work in House, and We have a Full Roster of Trusted Allied Specialists to Call upon When Needed; Electricians, Plumbers, HVAC Specialists, Etc.",
     ],
     icon: Compass,
   },
@@ -281,8 +279,8 @@ const services = [
     title: "Anywhere in the World",
     titleLines: ["Anywhere in the World"],
     body: [
-      "Start with What You Have: Photographs, Videos, a Plan, a Problem, or Just a Dream. iScott Can Organize the Details So Scott Has a Clear First Look at the Property and the Conversation Can Begin By Phone or Video Chat.",
-      "Any Project, Anywhere in the World, Scott Would Be Super Happy to Travel to You, Design and Build – for You. Talk to iScott, Get Things Moving. Scott Can Start Remotely with a Design or Diagnosis Conversation, Even Design and Work Through Budgets.",
+      "Start with What You have: Photographs, Videos, a Plan, a Problem, or Just a Dream. iScott Can Organize the Details so Scott has a Clear First Look at the Property and the Conversation Can Begin by Phone or Video Chat.",
+      "Any Project, Anywhere in the World, Scott would be Super Happy to Travel to You, Design and Build – for You. Talk to iScott, Get Things Moving. Scott Can Start Remotely with a Design or Diagnosis Conversation, Even Design and Work through Budgets.",
     ],
     icon: Globe2,
   },
@@ -294,8 +292,8 @@ const signatureWork = [
     titleLines: ["The", "Ruins"],
     body: [
       "Want the Coolest Party Zone You Have Ever Seen — in Your Own Back Yard?",
-      "If You've Got a Space, We Can Create an Area That Looks Like the Original Farmhouse the Neighborhood Was Built Around, and Turn It Into a Purpose-Built Outdoor Kitchen Your Family Will Love, While Giving Your Home Incredible Resale Value.",
-      "Wherever You Are, Anywhere in the World, If You Want a Space That is Unforgettable — Something People Will Talk About for Generations — Talk to iScott or Call Now.",
+      "If You've Got a Space, We Can Create an Area that Looks Like the Original Farmhouse the Neighborhood Was Built Around, and Turn It into a Purpose-Built Outdoor Kitchen Your Family Will Love, While Giving Your Home Incredible Resale Value.",
+      "Wherever You Are, Anywhere in the World, If You Want a Space that is Unforgettable — Something People Will Talk About for Generations — Talk to iScott or Call Now.",
     ],
     image: "/ww-art-ruins.jpeg",
     alt: "The Ruins stonework garden and reflecting pool by WildWorks",
@@ -314,6 +312,10 @@ const signatureWork = [
     cta: "See How",
   },
 ];
+
+// Temporarily retire I SELL from the public site while preserving its complete
+// card definition and artwork for a future restoration.
+const showISellFeature = false;
 
 const wildfireNightImages = [
   {
@@ -381,7 +383,7 @@ const processSteps = [
   {
     title: "Designs and Estimates",
     titleLines: ["Designs and", "Estimates"],
-    body: "The Strongest Direction Becomes Rapid Design Iteration When a Design is Appropriate. Projects That Are Mainly Problem Solving May Not Need a Design; They May Need the Right Fix, Scope, and Estimate.",
+    body: "The Strongest Direction Becomes Rapid Design Iteration When a Design is Appropriate. Projects that are Mainly Problem Solving May Not Need a Design; They May Need the Right Fix, Scope, and Estimate.",
   },
   {
     title: "Buildout",
@@ -394,19 +396,19 @@ const aiWebsiteCapabilities = [
   {
     title: "Avatar Intake",
     titleLines: ["Avatar Intake"],
-    body: "Let the Ai Collect Context, Photos, Set Appointments, and Answer Any and All Questions Automatically.",
+    body: "Let the Ai Collect Context, Photos, Set Appointments, and Answer Most Questions Automatically.",
     icon: MessageCircle,
   },
   {
     title: "Ai-Native Build",
     titleLines: ["Ai-Native Build"],
-    body: "Design, Copy, Media, Automations, and Lead Flow Built in and Around Your Company Brand.",
+    body: "Ai-Native Design, Copy, Media, Automations, and Lead Flow Built in and Around Your Company Brand.",
     icon: Sparkles,
   },
   {
     title: "Human Voice",
     titleLines: ["Human Voice"],
-    body: "Though Your Site Will Be Ai-Driven, It Will Feel Like the Real People That Run the Company, Nothing Generic.",
+    body: "Human Voice. Your Site Will Be Ai-Driven and Will Feel Like the Real People that Run the Company. Nothing Generic.",
     icon: HomeIcon,
   },
 ];
@@ -904,25 +906,10 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     <div id="top" className="wild-home">
       <style>{`
         html:has(#top.wild-home) {
-          --ww-home-page-background:
-            radial-gradient(
-              ellipse 150% 92% at 50% 25%,
-              rgba(255, 205, 130, 0.085) 0%,
-              rgba(255, 196, 112, 0.045) 44%,
-              rgba(255, 188, 96, 0.018) 66%,
-              transparent 82%
-            ),
-            linear-gradient(
-              90deg,
-              #96431e 0%,
-              #9e4821 18%,
-              #a65326 34%,
-              #aa5a2d 50%,
-              #a65326 66%,
-              #9e4821 82%,
-              #96431e 100%
-            ),
-            #96431e;
+          /* G 2026-08-06: one Home canvas at every width and browser zoom.
+             This points directly to the Aug 4 reference palette; the deleted
+             legacy gradient was the recurring dirt-brown source. */
+          --ww-home-page-background: var(--ww-reference-page) !important;
           background: var(--ww-home-page-background) !important;
           background-attachment: fixed !important;
           background-repeat: no-repeat !important;
@@ -941,10 +928,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home {
-          --ww-box-gradient:
-            radial-gradient(ellipse at 30% 4%, rgba(255, 232, 184, 0.2), transparent 25rem),
-            radial-gradient(ellipse at 82% 16%, rgba(232, 182, 109, 0.14), transparent 28rem),
-            linear-gradient(145deg, rgba(176, 92, 32, 0.76) 0%, rgba(143, 61, 17, 0.8) 54%, rgba(107, 40, 8, 0.84) 100%);
+          --ww-box-gradient: var(--ww-reference-card);
           /* The site-wide desktop copper-brown field lives on the fixed body
              canvas so it stays dimensional instead of stretching down Home. */
           --ww-home-night-backdrop: var(--ww-page-background);
@@ -980,18 +964,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         body #top#top.wild-home #signature-work .wild-story-card--feature {
           --ww-box-gradient:
-            radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
-            radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
-            linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
-          border-color: rgba(255, 239, 202, 0.56) !important;
+            radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+            linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
+          border-color: #8f3612 !important;
           background:
-            radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
-            radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
-            linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+            radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+            linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
           box-shadow:
-            0 18px 42px rgba(66, 27, 5, 0.3),
-            0 0 28px rgba(224, 168, 90, 0.13),
-            inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+            0 18px 42px rgba(53, 17, 4, 0.28),
+            inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
         }
 
         #top.wild-home .wild-travel-panel {
@@ -1004,15 +985,14 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           margin: 0 auto;
           padding: clamp(1.55rem, 3.7vw, 3.7rem);
           overflow: hidden;
-          border: 1px solid rgba(246, 211, 154, 0.24);
+          border: 1px solid #8f3612;
           border-radius: 8px;
           background:
-            radial-gradient(circle at 11% 16%, rgba(255, 232, 184, 0.1), transparent 23rem),
-            radial-gradient(circle at 86% 30%, rgba(217, 139, 63, 0.055), transparent 26rem),
-            linear-gradient(145deg, rgba(42, 45, 46, 0.97) 0%, rgba(18, 20, 21, 0.98) 56%, rgba(7, 8, 9, 0.99) 100%);
+            radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+            linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%);
           box-shadow:
-            0 22px 58px rgba(0, 0, 0, 0.46),
-            inset 0 1px 0 rgba(255, 236, 190, 0.11);
+            0 18px 42px rgba(53, 17, 4, 0.28),
+            inset 0 1px 0 rgba(255, 210, 145, 0.1);
         }
 
         #top.wild-home .wild-travel-panel::before {
@@ -1021,9 +1001,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           inset: 0;
           z-index: -1;
           pointer-events: none;
-          background:
-            linear-gradient(90deg, rgba(255, 226, 174, 0.1), transparent 38%),
-            radial-gradient(ellipse at 55% 115%, rgba(0, 0, 0, 0.58), transparent 62%);
+          background: none;
         }
 
         #top.wild-home .wild-travel-copy,
@@ -1728,15 +1706,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home :is(.wild-kicker, .money-panel-kicker, .wild-process-kicker, .wild-travel-kicker, .wild-signup-eyebrow) {
-          color: #f1c777 !important;
-          -webkit-text-fill-color: #f1c777 !important;
+          color: #f7d9a5 !important;
+          -webkit-text-fill-color: #f7d9a5 !important;
           background-image: none !important;
           text-shadow: 0 1px 2px rgba(57, 20, 3, 0.42) !important;
         }
 
         #top.wild-home :is(.wild-section-title, .wild-card h3, .wild-project-card h3, .wild-answer-card h3, .wild-process-step h3):not(.wild-signature-title):not(.wild-sell-feature-title) {
-          color: #f1c777 !important;
-          -webkit-text-fill-color: #f1c777 !important;
+          color: #f7d9a5 !important;
+          -webkit-text-fill-color: #f7d9a5 !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1745,8 +1723,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home .wild-section-title:not(.wild-signature-title):not(.wild-sell-feature-title) .wild-line-title__line {
-          color: #f1c777 !important;
-          -webkit-text-fill-color: #f1c777 !important;
+          color: #f7d9a5 !important;
+          -webkit-text-fill-color: #f7d9a5 !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1789,45 +1767,62 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           }
         }
 
+        /* Tighten the transition from the Ruins card into Services without
+           changing spacing inside either section. */
+        #top.wild-home #signature-work {
+          padding-bottom: clamp(1.5rem, 3vw, 2.75rem) !important;
+        }
+
         /* Services keeps its glass cards while the shared desktop backdrop
            remains continuous behind them. */
         #top.wild-home #services {
+          padding-top: clamp(2rem, 4vw, 3.5rem) !important;
           background: transparent !important;
           background-color: transparent !important;
         }
 
-        /* Services needs its own lifted glass: the shared box gradient is
-           intentionally deeper for artwork cards, but was too brown here. */
+        /* Services use the approved screenshot statement material and brand type. */
         #top.wild-home #services .wild-card {
-          border-color: rgba(247, 217, 165, 0.5) !important;
+          border-color: #8f3612 !important;
           background:
-            radial-gradient(ellipse at 18% 0%, rgba(255, 238, 202, 0.28), transparent 52%),
-            radial-gradient(ellipse at 92% 100%, rgba(232, 182, 109, 0.2), transparent 58%),
-            linear-gradient(135deg, rgba(205, 130, 64, 0.62) 0%, rgba(177, 95, 34, 0.6) 54%, rgba(139, 63, 18, 0.54) 100%) !important;
+            radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+            linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
           box-shadow:
-            0 15px 32px rgba(74, 27, 4, 0.18),
-            0 0 26px rgba(247, 217, 165, 0.1),
-            inset 0 1px 0 rgba(255, 239, 208, 0.38),
-            inset 0 -1px 0 rgba(96, 39, 9, 0.18) !important;
+            0 18px 42px rgba(53, 17, 4, 0.28),
+            inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
         }
 
         #top.wild-home #services .wild-card-icon {
-          border-color: rgba(247, 217, 165, 0.58) !important;
+          border-color: rgba(255, 239, 202, 0.5) !important;
           background:
-            radial-gradient(circle at 42% 18%, rgba(255, 242, 211, 0.38), transparent 58%),
-            linear-gradient(180deg, rgba(210, 137, 70, 0.72), rgba(159, 79, 27, 0.68)) !important;
+            radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
+            linear-gradient(145deg, rgba(199, 104, 48, 0.95), rgba(183, 91, 40, 0.98)) !important;
           color: #f7d9a5 !important;
-          box-shadow: inset 0 1px 0 rgba(255, 241, 212, 0.34) !important;
+          box-shadow: inset 0 1px 0 rgba(255, 243, 213, 0.18) !important;
         }
 
         #top.wild-home #services .wild-card h3,
         #top.wild-home #services .wild-card h3 .wild-line-title__line {
           color: #f7d9a5 !important;
           -webkit-text-fill-color: #f7d9a5 !important;
+          font-size: clamp(1.05rem, 1.3vw, 1.28rem) !important;
+          font-weight: 600 !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
           background-clip: border-box !important;
+          text-shadow: 0 1px 2px rgba(40, 12, 2, 0.35) !important;
+        }
+
+        #top.wild-home #services .wild-card p,
+        #top.wild-home #services .wild-card p :is(strong, em, i, span) {
+          color: #f7d9a5 !important;
+          -webkit-text-fill-color: #f7d9a5 !important;
+          font-size: clamp(0.88rem, 1.02vw, 0.96rem) !important;
+          font-weight: 500 !important;
+          line-height: 1.48 !important;
+          opacity: 1 !important;
+          text-shadow: 0 1px 1px rgba(40, 12, 2, 0.28) !important;
         }
 
         /* The Home project stories use discrete brand colors by phrase/line,
@@ -1908,6 +1903,43 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           text-shadow: 0 0.08rem 0.2rem rgba(67, 25, 5, 0.44) !important;
         }
 
+        /* G 2026-08-06: the photographed-build statement is a deliberate
+           centered taper: longest first line, medium second, shortest close. */
+        #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line {
+          width: fit-content;
+          max-width: 100%;
+          margin-inline: auto;
+          white-space: nowrap !important;
+        }
+
+        @media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--lead {
+            font-size: 1.95rem !important;
+          }
+
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--middle {
+            font-size: 2.05rem !important;
+          }
+
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--close {
+            font-size: 2.15rem !important;
+          }
+        }
+
+        @media (max-width: 719px) {
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--lead {
+            font-size: clamp(0.98rem, 4.3vw, 1.15rem) !important;
+          }
+
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--middle {
+            font-size: clamp(1.05rem, 4.8vw, 1.3rem) !important;
+          }
+
+          #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--close {
+            font-size: clamp(1.12rem, 5.4vw, 1.42rem) !important;
+          }
+        }
+
         /* Reusable framed eyebrow: reserved for short, centered section labels. */
         #top#top.wild-home .wild-kicker.wild-kicker--framed,
         #top#top.wild-home .wild-kicker-frame {
@@ -1986,15 +2018,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #ai-websites .wild-site-offer-card {
-          border-color: rgba(255, 239, 202, 0.56) !important;
+          border-color: #8f3612 !important;
           background:
-            radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
-            radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
-            linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+            radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+            linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
           box-shadow:
-            0 18px 42px rgba(66, 27, 5, 0.3),
-            0 0 28px rgba(224, 168, 90, 0.13),
-            inset 0 1px 0 rgba(255, 243, 213, 0.36) !important;
+            0 18px 42px rgba(53, 17, 4, 0.28),
+            inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
         }
 
         #top.wild-home #ai-websites .wild-site-offer-card .wild-card-icon {
@@ -2098,36 +2128,31 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               0 18px 42px rgba(91, 35, 8, 0.24) !important;
         }
 
-        /* The laptop and tablet-width canvas needs a brighter copper-orange
-           balance than desktop. Keep the large desktop field untouched. */
-        @media (min-width: 720px) and (max-width: 1365px) {
+        /* G 2026-08-07: every Home viewport shares the approved desktop pair.
+           Do not reintroduce a phone-only red/orange compensation: it made the
+           same page look painfully hot on a real phone. */
+        @media (max-width: 1536px) {
           html:has(#top.wild-home) {
-            --ww-home-page-background:
-              radial-gradient(
-                ellipse 154% 92% at 50% 25%,
-                rgba(255, 204, 129, 0.09) 0%,
-                rgba(255, 172, 83, 0.045) 46%,
-                rgba(255, 146, 56, 0.018) 68%,
-                transparent 84%
-              ),
-              linear-gradient(
-                90deg,
-                #a2471d 0%,
-                #ad4d21 19%,
-                #b65727 37%,
-                #bd602d 50%,
-                #b65727 63%,
-                #ad4d21 81%,
-                #a2471d 100%
-              ),
-              #a2471d;
+            --ww-reference-a: #983e17 !important;
+            --ww-reference-b: #c85a24 !important;
+            --ww-reference-page: #983e17 !important;
+            --ww-reference-mobile-page: #983e17 !important;
+            --ww-reference-card: #c85a24 !important;
+            --ww-home-page-background: var(--ww-reference-page) !important;
+            background: var(--ww-home-page-background) !important;
           }
 
+          body:has(#top.wild-home) .wild-site-backdrop {
+            background: var(--ww-reference-page) !important;
+            background-color: #983e17 !important;
+          }
+        }
+
+        @media (min-width: 720px) and (max-width: 1365px) {
           body #top#top.wild-home #signature-work .wild-story-card--feature {
             background:
-              radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
-              radial-gradient(ellipse at 84% 100%, rgba(232, 137, 61, 0.12), transparent 58%),
-              linear-gradient(145deg, rgba(199, 104, 48, 0.95) 0%, rgba(190, 94, 42, 0.97) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+              radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+              linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
           }
         }
 
@@ -2135,28 +2160,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
            homepage canvas. Keep the approved gold button material, but remove
            the broad exterior shadows that visually joined into a dark card. */
         @media (max-width: 719px) {
-          html:has(#top.wild-home) {
-            --ww-home-page-background:
-              radial-gradient(
-                ellipse 156% 92% at 50% 25%,
-                rgba(255, 207, 137, 0.1) 0%,
-                rgba(255, 178, 93, 0.05) 46%,
-                rgba(255, 151, 64, 0.02) 68%,
-                transparent 84%
-              ),
-              linear-gradient(
-                90deg,
-                #ad4e20 0%,
-                #b95a2a 20%,
-                #c36333 38%,
-                #c36333 50%,
-                #c36333 62%,
-                #b95a2a 80%,
-                #ad4e20 100%
-              ),
-              #ad4e20;
-          }
-
           body #top#top.wild-home #project-wildfire
             :is(.wild-wildfire-photo, .wild-wildfire-inspiration-card) {
             box-shadow:
@@ -2223,8 +2226,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 display: "block",
                 width: "max-content",
                 maxWidth: "100%",
-                color: "#e8b66d",
-                WebkitTextFillColor: "#e8b66d",
+                color: "#f7d9a5",
+                WebkitTextFillColor: "#f7d9a5",
                 backgroundImage: "none",
                 WebkitBackgroundClip: "border-box",
                 backgroundClip: "border-box",
@@ -2245,15 +2248,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           <motion.h1 className="wild-hero-headline wild-hero-headline--solid" variants={softScaleIn}>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--makes-home"
-              style={{ color: "#f7d9a5", WebkitTextFillColor: "#f7d9a5" }}
+              style={{ color: "#e8b66d", WebkitTextFillColor: "#e8b66d" }}
             >
               Makes Your Home
             </span>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--irresistible"
               style={{
-                color: "#e79d45",
-                WebkitTextFillColor: "#e79d45",
+                color: "#c87936",
+                WebkitTextFillColor: "#c87936",
                 marginTop: "0.12em",
               }}
             >
@@ -2265,14 +2268,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             variants={fadeInLeft}
             style={{
               ...noWhiteTextStyle,
-              fontSize: "clamp(1.06rem, 1.52vw, 1.42rem)",
               lineHeight: 1.36,
             }}
           >
             <span className="wild-hero-lede-line">
               By Creating <span className="wild-hero-lede-accent">Exquisite Works of Art</span>
             </span>
-            <span className="wild-hero-lede-line">
+            <span className="wild-hero-lede-line wild-hero-lede-line--problems">
               And Solving Your Real World Problems
             </span>
             <span className="wild-hero-lede-line wild-hero-lede-line--italic">
@@ -2347,6 +2349,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         </motion.div>
       </motion.section>
 
+      <PhoneNumberLine className="wild-phone-number-line--home-hero" />
+
       <motion.section
         id="iscott-sales"
         className="wild-section wild-section--intro discordSection discordSection--1"
@@ -2357,13 +2361,30 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       >
         <style>{`
           body #top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
-            border-color: rgba(255, 224, 168, 0.58) !important;
+            border: 1px solid #8f3612 !important;
             background:
-              linear-gradient(145deg, rgba(190, 96, 43, 0.98) 0%, rgba(186, 93, 41, 0.98) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+              radial-gradient(ellipse 115% 90% at 50% 3%, rgba(232, 182, 109, 0.11), transparent 62%),
+              linear-gradient(180deg, rgba(190, 88, 36, 0.94) 0%, rgba(169, 68, 25, 0.97) 100%) !important;
+            background-color: #a94419 !important;
             box-shadow:
-              0 18px 42px rgba(66, 27, 5, 0.26),
-              0 0 30px rgba(224, 168, 90, 0.14),
-              inset 0 1px 0 rgba(255, 243, 213, 0.38) !important;
+              0 18px 42px rgba(53, 17, 4, 0.28),
+              inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
+          }
+
+          body #top#top.wild-home :is(
+            #signature-work .wild-story-card--feature,
+            #services .wild-card,
+            #wildworks-ai .wild-ai-card,
+            #ai-websites .wild-site-offer-card
+          ),
+          body footer.discordSection .wild-footer-contact-cta {
+            border: 1px solid #8f3612 !important;
+            background: #c85a24 !important;
+            background-image: none !important;
+            background-color: #c85a24 !important;
+            box-shadow:
+              0 18px 42px rgba(53, 17, 4, 0.28),
+              inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
           }
 
           #talk-to-iscott > .wild-iscott-disclosure {
@@ -2404,18 +2425,19 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               variants={fadeInRight}
               style={noWhiteTextStyle}
             >
-              Start with iScott, Scott&apos;s Digital Twin. Show Him Your Space,
-              Describe What You Want, and He Will Organize the Details for the
-              Real Scott.
+              Start with iScott, Scott&apos;s digital twin. Talk to him like you
+              would the real Scott. Tell him your goals, timing, dream projects,
+              and any home and garden problems you have.
             </motion.p>
             <motion.p
               className="wild-body wild-iscott-body wild-iscott-body--color-one"
               variants={fadeInRight}
               style={noWhiteTextStyle}
             >
-              Talk to iScott Like You Would Talk to Scott: Location, Photos,
-              Goals, Timing, Budget Range, and the Problem or Dream You Want
-              Solved.
+              Show him your space using the Upload Photos or Videos button.
+              Describe what you want, and he will organize the details for the
+              real Scott. This helps Scott have context for when your first
+              conversation begins.
             </motion.p>
             <motion.div className="money-step-list wild-iscott-steps-inline" variants={stagger}>
               {iScottSteps.map((item, index) => (
@@ -2434,9 +2456,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               variants={fadeInRight}
               style={noWhiteTextStyle}
             >
-              iScott Gathers, Explains, Qualifies, and Hands Off. He Does Not
-              Replace Scott; He Briefs the Real Scott So Your First Conversation
-              Starts with Context.
+              iScott gathers, discusses, gathers information, and hands off. He
+              does not replace Scott. He briefs the real Scott so your first
+              conversation starts with understanding.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <IScottUploadAction
@@ -2881,13 +2903,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           </motion.div>
 
           <motion.div className="wild-wildfire-build-note" variants={fadeInUp}>
-            <span className="wild-wildfire-build-note__line">
-              We Documented Every Step of
+            <span className="wild-wildfire-build-note__line wild-wildfire-build-note__line--lead">
+              We Photographed Every Step of the
             </span>
-            <span className="wild-wildfire-build-note__line">
-              The Build, from Breaking Ground
+            <span className="wild-wildfire-build-note__line wild-wildfire-build-note__line--middle">
+              Build, from pre-Breaking Ground
             </span>
-            <span className="wild-wildfire-build-note__line">
+            <span className="wild-wildfire-build-note__line wild-wildfire-build-note__line--close">
               Through the First Wood Fire.
             </span>
           </motion.div>
@@ -2899,33 +2921,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             </Link>
           </motion.div>
         </div>
-      </motion.section>
-
-      <motion.section
-        className="wild-home-statement discordSection"
-        variants={slowStagger}
-        initial="initial"
-        whileInView="animate"
-        viewport={viewportReplay}
-      >
-        <motion.h2
-          className="wild-home-statement__title"
-          variants={softScaleIn}
-          aria-label="Design at the Limits of Human Imagination. A Contractor that Faithfully Brings Those Designs to Life. Wild Works. Where Fine Art Meets the Wild"
-        >
-          <span className="wild-home-statement__line wild-home-statement__line--one">
-            <span className="wild-home-statement__phrase">Design at the Limits</span>{" "}
-            <span className="wild-home-statement__phrase">of Human Imagination.</span>
-          </span>
-          <span className="wild-home-statement__line wild-home-statement__line--two">
-            <span className="wild-home-statement__phrase">A Contractor that Faithfully</span>{" "}
-            <span className="wild-home-statement__phrase">Brings Those Designs to Life.</span>
-          </span>
-          <span className="wild-home-statement__brand-lockup" aria-hidden="true" />
-          <span className="wild-home-statement__line wild-home-statement__line--four">
-            Where Fine Art Meets the Wild
-          </span>
-        </motion.h2>
       </motion.section>
 
       {activeWildfireImage && typeof document !== "undefined" ? createPortal(
@@ -2974,6 +2969,38 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       ) : null}
 
       <motion.section
+        className="wild-home-statement discordSection"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <motion.h2
+          className="wild-home-statement__title"
+          variants={softScaleIn}
+          aria-label="Design at the Limits of Human Imagination. A Contractor that Faithfully Brings Those Designs to Life. Wild Works. Where Fine Art Meets the Wild"
+        >
+          <span className="wild-home-statement__line wild-home-statement__line--one">
+            <span className="wild-home-statement__phrase">Design at the Limits</span>{" "}
+            <span className="wild-home-statement__phrase">of Human Imagination.</span>
+          </span>
+          <span className="wild-home-statement__line wild-home-statement__line--two">
+            <span className="wild-home-statement__phrase">A Contractor that Faithfully</span>{" "}
+            <span className="wild-home-statement__phrase">Brings Those Designs to Life.</span>
+          </span>
+          <span className="wild-home-statement__brand-lockup" aria-hidden="true" />
+          <span className="wild-home-statement__line wild-home-statement__line--four">
+            Where Fine Art Meets the Wild
+          </span>
+        </motion.h2>
+      </motion.section>
+
+      <PhoneNumberLine
+        className="wild-phone-number-line--home-tree"
+        showCallToday={false}
+      />
+
+      <motion.section
         id="wildworks-proof"
         className="wild-section discordSection discordSection--3"
         variants={slowStagger}
@@ -2982,21 +3009,26 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         viewport={viewportReplay}
       >
         <div className="wild-split">
-          <ProjectImage
-            src="/ww-art-tree-of-life.jpeg"
-            alt="Tree of Life natural stone patio concept with creeping perennial leaves"
-            sizes="(max-width: 900px) 100vw, 48vw"
-            direction="left"
-          />
+          <figure className="wild-home-proof-figure">
+            <ProjectImage
+              src="/ww-art-tree-of-life.jpeg"
+              alt="Tree of Life natural stone patio concept with creeping perennial leaves"
+              sizes="(max-width: 900px) 100vw, 48vw"
+              direction="left"
+            />
+            <figcaption className="wild-home-hero-stonework-note wild-home-image-stonework-note">
+              {STONEWORK_AUTHENTICITY_LINE}
+            </figcaption>
+          </figure>
           <div className="wild-copy-stack">
             <motion.h2 className="wild-section-title wild-line-title wild-tree-title" variants={softScaleIn}>
               <LineTitle lines={["The Tree of", "Life Natural", "Stone Patio"]} />
             </motion.h2>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
               An Artsy Young Couple of Irish Descent in Mount Washington, Baltimore City,
-              Wanted a Natural Stone Patio. I Had Always Been Fascinated by the
-              Celtic Tree of Life, So I Asked What They Thought About Building
-              One in Their Back Yard. They Loved the Idea, and I Am Still
+              Wanted a Natural Stone Patio. I had Always Been Fascinated by the
+              Celtic Tree of Life, so I Asked What They Thought about Building
+              One in Their Back Yard. They Loved the Idea, and I am Still
               Grateful They Let Us Build This Work of Art.
             </motion.p>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
@@ -3020,7 +3052,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           <motion.h2
             className="wild-section-title wild-signature-title"
             variants={softScaleIn}
-            aria-label="What Could Be Cooler Than Having A Ruins Of Your Own?"
+            aria-label="What Could Be Cooler Than Having A Ruin Of Your Own?"
           >
             <span className="wild-signature-title__line">
               <span className="wild-signature-title__one">What Could</span>
@@ -3032,7 +3064,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               <span className="wild-signature-title__two">Than Having</span>
             </span>
             <span className="wild-signature-title__line">
-              <span className="wild-signature-title__two">A Ruins</span>
+            <span className="wild-signature-title__two">A Ruin</span>
             </span>
             <span className="wild-signature-title__line">
               <span className="wild-signature-title__three">Of Your Own?</span>
@@ -3041,7 +3073,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         </div>
 
         <div className="wild-story-list">
-          {signatureWork.map((project, index) => (
+          {signatureWork
+            .filter((project) => showISellFeature || project.variant !== "featureSell")
+            .map((project, index) => (
             <motion.article
               key={project.title}
               className={`wild-story-card wild-story-card--${project.variant}`}
@@ -3229,7 +3263,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                     </h3>
                     {Array.isArray(project.body) ? (
                       project.body.map((paragraph, i) => (
-                        <p key={paragraph} className={i === 2 ? "ww-c1" : `ww-c${i + 1}`}>
+                        <p key={paragraph} className="ww-c1">
                           {(i === 2 ? [paragraph.split("\n")[0]] : paragraph.split("\n")).map((line, j) => (
                             <Fragment key={j}>
                               {j > 0 ? <br /> : null}
@@ -3286,9 +3320,14 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 </>
               )}
             </motion.article>
-          ))}
+            ))}
         </div>
       </motion.section>
+
+      <PhoneNumberLine
+        className="wild-phone-number-line--home-services"
+        showCallToday={false}
+      />
 
       <motion.section
         id="services"
@@ -3303,7 +3342,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             <span className="wild-kicker-frame">Services</span>
           </motion.p>
           <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
-            <LineTitle lines={["What WildWorks", "is Known for."]} />
+            <LineTitle lines={["What WildWorks", "is Known for:"]} />
           </motion.h2>
         </div>
 
@@ -3463,38 +3502,22 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               className="wild-body wild-body--center wild-site-offer-copy"
               variants={fadeInRight}
             >
-              <BrandText>
-                Scott Himself Built This Site End-to-End. WildWorks is a Working Sample of a
-                State-of-the-Art Ai-Driven Website: Avatar Conversation, Ai Conversion, Lead
-                Intake, Appointment Setting, Information Gathering, Full Automation; with
-                Tasteful Look and Intuitive Feel. If You Would Like to Discuss Scott Building
-                a Website for You, Talk to iScott, Call, or Text WildWorks, and iScott Will Have
-                the Real Scott Reach Out to You.
-              </BrandText>
+              <span className="wild-site-offer-copy__line">
+                Scott himself built this site end-to-end. WildWorks is a working sample
+              </span>
+              <span className="wild-site-offer-copy__line">
+                of a state-of-the-art Ai-driven website: avatar conversation, Ai conversion,
+              </span>
+              <span className="wild-site-offer-copy__line">
+                lead intake, appointment setting, information gathering, and full automation,
+              </span>
+              <span className="wild-site-offer-copy__line">
+                with a tasteful look and intuitive feel. If you would like Scott to build your website,
+              </span>
+              <span className="wild-site-offer-copy__line">
+                talk to iScott, call, or text WildWorks. iScott will have the real Scott reach out to you.
+              </span>
             </motion.p>
-            <motion.div className="wild-site-avatar-wrap" variants={fadeInUp}>
-              <a
-                href="#talk-to-iscott"
-                className="wild-site-avatar-link"
-                aria-label="Talk to iScott"
-                onClick={handleIScottCtaClick}
-              >
-                <span className="wild-site-avatar-frame">
-                  <Image
-                    src="/Avatar1-live-startscreen.png"
-                    alt="iScott Avatar"
-                    fill
-                    sizes="(max-width: 720px) 76vw, 20rem"
-                    className="wild-site-avatar-img"
-                    quality={86}
-                  />
-                  <span className="wild-site-avatar-overlay-cta money-cta money-cta--primary">
-                    <Sparkles aria-hidden className="h-5 w-5" />
-                    <span>Talk to iScott</span>
-                  </span>
-                </span>
-              </a>
-            </motion.div>
           </div>
 
           <motion.div className="wild-site-offer-grid" variants={stagger}>
@@ -3517,6 +3540,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           </motion.div>
         </div>
       </motion.section>
+
+      <PhoneNumberLine
+        className="wild-phone-number-line--home-footer"
+        callText="Call Today!"
+        emphasizeCallText
+      />
     </div>
   );
 }

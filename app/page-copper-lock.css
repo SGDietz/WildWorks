@@ -1,0 +1,55 @@
+/* Final page-canvas lock: keep the rich desktop copper/orange field on every
+   viewport. Ruins and Bio retain their explicitly approved solid A/B bands. */
+:root {
+  --ww-page-base-copper: #983e17 !important;
+  --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
+  --ww-center-gold-fade: linear-gradient(
+    180deg,
+    #9d421a 0%,
+    #983e17 48%,
+    #963e17 100%
+  ) !important;
+  --ww-page-background: var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
+}
+
+html body:not(:has(.wild-subpage--ruins)):not(:has(.wild-subpage--bio)),
+html body:not(:has(.wild-subpage--ruins)):not(:has(.wild-subpage--bio))
+  #wild-site-backdrop.wild-site-backdrop {
+  background: linear-gradient(
+    180deg,
+    #9d421a 0%,
+    #983e17 48%,
+    #963e17 100%
+  ) !important;
+  background-color: #983e17 !important;
+  background-image: linear-gradient(
+    180deg,
+    #9d421a 0%,
+    #983e17 48%,
+    #963e17 100%
+  ) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+@media (max-width: 719px) {
+  html body:not(:has(.wild-subpage--ruins)):not(:has(.wild-subpage--bio)),
+  html body:not(:has(.wild-subpage--ruins)):not(:has(.wild-subpage--bio))
+    #wild-site-backdrop.wild-site-backdrop {
+    background: linear-gradient(
+      180deg,
+      #9d421a 0%,
+      #983e17 48%,
+      #963e17 100%
+    ) !important;
+    background-color: #983e17 !important;
+    background-image: linear-gradient(
+      180deg,
+      #9d421a 0%,
+      #983e17 48%,
+      #963e17 100%
+    ) !important;
+  }
+}

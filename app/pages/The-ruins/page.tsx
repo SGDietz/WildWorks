@@ -2,7 +2,7 @@ import AspectRatioImage from "../../components/AspectRatioImage";
 
 export default function TheRuins() {
     return (
-        <div className="wild-subpage wild-subpage--ruins mx-auto lg:max-w-5xl py-4 discordSection discordSection--1">
+        <div className="wild-subpage wild-subpage--ruins mx-auto py-4 discordSection discordSection--1">
             {/* First image: same width as header separator line (like who-is-g) */}
             
             <section className="wild-subpage-hero relative flex w-full mx-auto items-center justify-center overflow-hidden px-4 sm:px-6">
@@ -15,10 +15,12 @@ export default function TheRuins() {
                 <div className="absolute inset-0  pointer-events-none" aria-hidden />
             </section>
 
-            <section className="wild-subpage-section discordSection discordSection--1 px-4 pt-6 text-white mx-auto w-full sm:px-6 sm:pt-8 pb-2" style={{ fontFamily: "var(--font-serif), serif" }}>
-                <h1 className="mb-4 text-3xl text-center sm:mb-6 sm:text-5xl">The Ruins</h1>
-                <p className="text-xs text-white/90 pb-2">Federal Hill, Baltimore City, Maryland</p>
-                <div className="space-y-2 text-xs leading-relaxed">
+            <div className="ruins-color-band ruins-tone--a ruins-color-band--intro">
+            <section className="wild-subpage-section discordSection discordSection--1 px-4 pt-6 text-white mx-auto w-full sm:px-6 sm:pt-8 pb-2">
+                <div className="wild-ruins-rail">
+                <h1 className="mb-4 text-3xl sm:mb-6 sm:text-5xl">The Ruins</h1>
+                <p className="text-white/90 pb-2">Federal Hill, Baltimore City, Maryland</p>
+                <div className="space-y-2 leading-relaxed">
                     <p>My client asked me, &quot;What do you see here?&quot;</p>
                     <p>
                         I stood there looking at their Normie Back Yard—flowers, mulch, a gravel walk, and a wooden bench—and not only was there no there there, but I felt like, given the location, this area needed a story.
@@ -35,11 +37,15 @@ export default function TheRuins() {
                          That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
                     </p>
                 </div>
+                </div>
             </section>
+            </div>
 
-            <section className="wild-subpage-section discordSection discordSection--2 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <div className="ruins-color-band ruins-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--2 px-4 py-4 text-white mx-auto w-full sm:px-6">
+                <div className="wild-ruins-rail">
                 <h2 className="text-xl mb-2">What I Saw</h2>
-                <div className="space-y-2 text-xs leading-relaxed">
+                <div className="space-y-2 leading-relaxed">
                     <p>
                         In my mind, the &quot;backstory&quot; was this:
                     </p>
@@ -54,23 +60,31 @@ export default function TheRuins() {
                         The Ruins and memorialized them by building gardens and a reflecting pool around them.
                     </p>
                 </div>
+                </div>
             </section>
+            </div>
 
-            <section className="wild-subpage-section discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <div className="ruins-color-band ruins-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2">
+                <div className="wild-ruins-rail">
                 <h2 className="text-xl mb-2">Building the Ruins</h2>
-                <p className="text-xs leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
-                <ul className="list-disc list-outside space-y-2 text-xs leading-relaxed mb-2 pl-6">
+                <p className="leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
+                <ul className="list-disc list-outside space-y-2 leading-relaxed mb-2 pl-6">
                     <li>Bluestone patios and a walk</li>
                     <li>Seating placed where you&apos;d naturally want to sit</li>
                     <li>A reflecting pool</li>
                     <li>A rusting urn with overflowing water</li>
                     <li>And the Ruin fragments themselves—built like true remnants</li>
                 </ul>
+                </div>
             </section>
+            </div>
 
-            <section className="wild-subpage-section discordSection discordSection--4 px-4 py-4 text-white mx-auto w-full sm:px-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <div className="ruins-color-band ruins-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--4 px-4 py-4 text-white mx-auto w-full sm:px-6">
+                <div className="wild-ruins-rail">
                 <h2 className="text-xl mb-2">This Stone Has Baltimore in It</h2>
-                <div className="space-y-2 text-xs leading-relaxed">
+                <div className="space-y-2 leading-relaxed">
                     <p>
                         Much of the stone used is reclaimed granite—the kind that actually spent a previous life of 150+ years as Baltimore street and curb stone.
                     </p>
@@ -84,11 +98,15 @@ export default function TheRuins() {
                         That&apos;s why the finished work doesn&apos;t feel like &quot;new hardscape pretending to be old.&quot; It feels like it could have been there all along—like Baltimore coughed up one of its older layers and set it down carefully in the present.
                     </p>
                 </div>
+                </div>
             </section>
+            </div>
 
-            <section className="wild-subpage-section discordSection discordSection--1 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <div className="ruins-color-band ruins-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--1 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2">
+                <div className="wild-ruins-rail">
                 <h2 className="text-xl mb-2">Why This Works</h2>
-                <div className="space-y-2 text-xs leading-relaxed">
+                <div className="space-y-2 leading-relaxed">
                     <p>
                         The Ruins isn&apos;t a replica and is plausible and real—and now it is a place that makes people sit and wonder.
                     </p>
@@ -97,17 +115,21 @@ export default function TheRuins() {
                          &quot;What is this? Where did it come from? What happened here?&quot;
                     </p>
                 </div>
+                </div>
             </section>
+            </div>
 
-            <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6 mt-6" style={{ fontFamily: "var(--font-serif), serif" }}>
+            <div className="ruins-color-band ruins-tone--a">
+            <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6">
+                <div className="wild-ruins-rail">
                 <h2 className="text-2xl mb-2">Want a Ruin of Your Own?</h2>
-                <div className="space-y-2 text-xs leading-relaxed">
+                <div className="space-y-2 leading-relaxed">
                     <p>
                     That would serve in the real world as a Party Zone, a Quiet Morning Spot, a Zen Area, or a Fire-and-Whiskey Corner,{" "}
                     <i>whatever would be most useful to you</i>, whatever we can imagine your own personal Ruins might be, let&apos;s talk, and throw around ideas.                     </p>
                     <p>I&apos;ll happily come over to your house, or jump on a video call with you, wherever you are in the world, to discuss ideas.</p>
                     <p>The “Ruin” concept can go a hundred directions, and it can be purpose-built to suit your life&apos;s needs. Your Ruin could be:</p>
-                    <ul className="list-disc list-outside space-y-2 text-xs leading-relaxed mb-2 pl-6">
+                    <ul className="list-disc list-outside space-y-2 leading-relaxed mb-2 pl-6">
                         <li className="leading-[2]">
                             The remains of the original farmhouse that &quot;predates the neighborhood,&quot;
                             where the gnarly, jagged, broken base of an old stone chimney becomes
@@ -141,7 +163,9 @@ export default function TheRuins() {
                         
                     </p>
                 </div>
+                </div>
             </section>
+            </div>
         </div>
     );
 }

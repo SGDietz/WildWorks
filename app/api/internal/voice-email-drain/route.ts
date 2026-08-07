@@ -12,12 +12,8 @@ import { voicemailFallbackEventId } from "@/src/lib/voiceNotificationIds";
 
 export const runtime = "nodejs";
 
-export function authorizeVoiceEmailDrain(request: Request): boolean {
-  return authorizeVoiceEmailDrainRequest(request);
-}
-
 async function handle(request: Request): Promise<Response> {
-  if (!authorizeVoiceEmailDrain(request)) {
+  if (!authorizeVoiceEmailDrainRequest(request)) {
     return Response.json({ ok: false, error: "forbidden" }, { status: 403 });
   }
   const result = await drainVoiceEmailOutbox({ limit: 10 });

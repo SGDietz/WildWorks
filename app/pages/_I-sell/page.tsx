@@ -14,7 +14,8 @@ export default function ISell() {
                 />
             </section>
 
-            <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8" >
+            <div className="wild-ab-band wild-tone--a wild-ab-band--intro">
+            <section className="wild-subpage-section discordSection discordSection--2 mx-auto w-full px-4 pt-6 text-white sm:px-6 sm:pt-8" >
                 <h1 className="mb-2 text-2xl sm:text-3xl">
                 My Work Sells People&apos;s Homes. Period.
                 </h1>
@@ -23,6 +24,13 @@ export default function ISell() {
                         I don&apos;t work in real estate, but over the years—now more than forty of them—I&apos;ve lost
                         count of how many clients have said the exact same thing to me: &quot;Scott—you sold our house.&quot;
                     </p>
+                </div>
+            </section>
+            </div>
+
+            <div className="wild-ab-band wild-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--2 mx-auto w-full px-4 py-4 text-white sm:px-6">
+                <div className="wild-sell-copy space-y-2 text-left text-sm leading-relaxed">
                     <h2 className="wild-sell-break-heading">&quot;You Sold Our House.&quot;</h2>
                     <p className="text-base">
                         Last summer, I was standing in the front yard of a client&apos;s property after they had sold their old home, and called me in to fix up their new one. The homeowner looked at me and he was absolutely glowing. I didn&apos;t ask him, and he didn&apos;t tell me, but I knew just by the look on his face that they had gotten a great price for their old home.
@@ -39,6 +47,13 @@ export default function ISell() {
                     <p className="text-base">
                     They both nodded vociferously and the wife said, “Oh my God—at least!”
                     </p>
+                </div>
+            </section>
+            </div>
+
+            <div className="wild-ab-band wild-tone--a">
+            <section className="wild-subpage-section discordSection discordSection--1 mx-auto w-full px-4 py-4 text-white sm:px-6">
+                <div className="wild-sell-copy space-y-2 text-left text-sm leading-relaxed">
                     <h2 className="wild-sell-break-heading">Not Workarounds. Not Patches.</h2>
                     <p className="text-base">
                         That kind of result doesn&apos;t happen by accident. It comes from fixing problems correctly—and at a fair price. The best part of all? You, the client, get to enjoy these things as long as you own your home. For these clients, they had not only the dream back yard for their kids to grow up in, the congregating area their family could enjoy for decades, and also an investment that was going to give them maximum return on investment.
@@ -46,16 +61,31 @@ export default function ISell() {
                     <p className="text-base">
                         I&apos;ve always been drawn to not only beauty, but practicality and problem solving. I charge forward into the hardest problems—the ones people live with for years because no one can quite figure them out. The spaces that never worked. The water issues no one could stop. I&apos;ve solved home and garden problems for clients who had been searching—sometimes for decades—for real solutions. Not workarounds. Not patches. Solutions that make sense, last, and actually improve people&apos;s quality of life.
                     </p>
+                </div>
+            </section>
+            </div>
+
+            <div className="wild-ab-band wild-tone--b">
+            <section className="wild-subpage-section discordSection discordSection--2 mx-auto w-full px-4 py-4 text-white sm:px-6">
+                <div className="wild-sell-copy space-y-2 text-left text-sm leading-relaxed">
                     <h2 className="wild-sell-break-heading">Real Return on Investment.</h2>
                     <p className="text-base">
                         At the end of the day, solving problems the right way creates real return on investment—sometimes in day-to-day livability, sometimes in resale value, and often in both. Whether you need a purely practical solution to something that isn&apos;t working, or you&apos;re looking for an exquisitely beautiful piece of art, my approach is the same: fair pricing, quality building, and work that gives you the highest return on investment.
                     </p>
+                </div>
+            </section>
+            </div>
+
+            <div className="wild-ab-band wild-tone--a">
+            <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--1 mx-auto w-full px-4 py-4 text-white sm:px-6">
+                <div className="wild-sell-copy space-y-2 text-left text-sm leading-relaxed">
                     <h2 className="wild-sell-break-heading">If You&apos;d Like to Talk It Through</h2>
                     <p className="text-base">
                     If you&apos;d like to talk it through, I&apos;m happy to drive to you or hop on a video call—whether you&apos;re not far away or halfway around the world—and help figure out what will actually make the most sense for you, your family, and your home. Please feel free to call now—I&apos;m always happy to talk.
                     </p>
                 </div>
             </section>
+            </div>
         </div>
     )
 }

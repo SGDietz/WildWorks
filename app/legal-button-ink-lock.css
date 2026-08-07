@@ -1,0 +1,49 @@
+/* Legal copy stays white.  Gold controls keep the normal WildWorks dark
+   copper label and icon treatment so they remain readable. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  [class*="-button"]
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  [class*="-button"]
+) :is(span, strong, small, i, svg) {
+  color: var(--ww-button-ink) !important;
+  -webkit-text-fill-color: var(--ww-button-ink) !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  [class*="-button"]
+) svg {
+  stroke: currentColor !important;
+}

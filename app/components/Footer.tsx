@@ -4,9 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowUp, CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
+import { CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
 import BrandText from "./BrandText";
+import PhoneNumberLine from "./PhoneNumberLine";
 import { isLegalRoute, legalNavItems } from "../lib/legalRoutes";
+import { STONEWORK_AUTHENTICITY_LINE } from "../lib/wildworksCopy";
 
 const SCROLL_THRESHOLD = 80;
 
@@ -32,6 +34,9 @@ export default function Footer() {
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false);
   const lastScrollY = useRef(0);
   const mobileBrandLink = "wild-footer-mobile-link";
+  const usesAbFooter = ["/pages/The-ruins", "/pages/who-is-g"].includes(pathname);
+  const isLegalPage = isLegalRoute(pathname);
+  const isSubpage = pathname !== "/pages/Home" && !isLegalPage;
   const requiresEmail = signupChannel === "email" || signupChannel === "both";
   const requiresPhone = signupChannel === "sms" || signupChannel === "both";
 
@@ -108,7 +113,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className={`bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}`}
+      className={`bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}${isLegalPage ? " wild-footer--legal" : ""}`}
     >
       <style>{`
         body .wild-footer-mobile-strip.wild-footer-mobile-strip {
@@ -133,6 +138,14 @@ export default function Footer() {
           box-shadow:
             inset 0 1px 0 rgba(255, 238, 194, 0.5),
             0 4px 12px rgba(92, 31, 6, 0.2) !important;
+        }
+
+        body #footer#footer.wild-footer--legal :is(
+          h1, h2, h3, h4, h5, h6,
+          p, li, span, a, strong, em, b, i, small, label, time, button
+        ) {
+          color: #ffffff !important;
+          -webkit-text-fill-color: #ffffff !important;
         }
       `}</style>
       <motion.div
@@ -270,6 +283,16 @@ export default function Footer() {
           </div>
         </div>
 
+        <div
+          className={`wild-footer-contact-region${usesAbFooter ? " wild-footer-contact-region--a" : ""}`}
+        >
+        {isSubpage || isLegalPage ? (
+          <PhoneNumberLine
+            className={`wild-phone-number-line--subpage${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
+            callText="Call Today!"
+            emphasizeCallText
+          />
+        ) : null}
         <div className="wild-footer-contact-cta mt-12 sm:mt-16">
           <motion.h2
             className="wild-footer-contact-cta__title"
@@ -299,37 +322,52 @@ export default function Footer() {
           <motion.p
             className="wild-footer-contact-cta__kicker"
             variants={fadeInUp}
-            style={{ marginTop: "1.15rem", whiteSpace: "normal" }}
+            style={{ marginTop: "1.35rem", whiteSpace: "normal" }}
           >
-            Start the Conversation Now
+            <span className="wild-footer-contact-cta__kicker-line">Start the</span>{" "}
+            <span className="wild-footer-contact-cta__kicker-line">Conversation Now</span>
           </motion.p>
+        </div>
         </div>
       </motion.div>
 
       {/* Copyright bar - left and right */}
       <motion.div
-        className=""
+        className={usesAbFooter ? "wild-footer-closing-region--a" : ""}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#e8b66d] sm:px-6">
+          <div
+            className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#e8b66d] sm:px-6"
+            style={{ width: "100%", maxWidth: "none" }}
+          >
           <motion.button
             type="button"
             aria-label="Back to top"
             className="wild-footer-top-button wild-footer-top-button--closing"
+            style={{ width: "4.125rem", height: "4.125rem", flex: "0 0 4.125rem" }}
             onClick={scrollToTop}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ArrowUp aria-hidden className="h-5 w-5" />
+            <svg
+              aria-hidden
+              className="wild-footer-double-rise"
+              viewBox="0 0 80 80"
+              fill="none"
+              style={{ width: "100%", height: "100%" }}
+            >
+              <path
+                d="M23 41 40 24l17 17M23 54l17-17 17 17"
+                stroke="currentColor"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </motion.button>
-          {!isLegalRoute(pathname) ? (
-            <p className="wild-footer-stonework-note">
-              All Stonework on This Site Was Created by WildWorks, Not AI-Generated.
-            </p>
-          ) : null}
           <span
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
@@ -346,6 +384,11 @@ export default function Footer() {
             ))}
           </span>
         </div>
+        {!isLegalRoute(pathname) ? (
+          <p className="wild-footer-stonework-note">
+            {STONEWORK_AUTHENTICITY_LINE}
+          </p>
+        ) : null}
       </motion.div>
 
       {/* Mobile-only contact strip: visible when width < 450px; shows on scroll down, hides on scroll up */}
@@ -354,16 +397,6 @@ export default function Footer() {
         style={{ transform: showMobileBar ? "translateY(0)" : "translateY(100%)" }}
       >
         <div className="wild-footer-mobile-strip-inner flex items-center justify-around px-2 py-4">
-          <motion.a
-            href="/pages/Home#talk-to-iscott"
-            className={mobileBrandLink}
-            aria-label="Talk to iScott"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Sparkles aria-hidden className="h-6 w-6" />
-            <span className="sr-only">Talk to iScott</span>
-          </motion.a>
           <motion.a
             href="tel:+18776002474"
             className={mobileBrandLink}
@@ -375,16 +408,6 @@ export default function Footer() {
             <span className="sr-only">Call Now</span>
           </motion.a>
           <motion.a
-            href="sms:+18776002474"
-            className={mobileBrandLink}
-            aria-label="Text Now"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <MessageSquareText aria-hidden className="h-6 w-6" />
-            <span className="sr-only">Text Now</span>
-          </motion.a>
-          <motion.a
             href="mailto:hello@wildworks.ai"
             className={mobileBrandLink}
             aria-label="Email Now"
@@ -393,6 +416,16 @@ export default function Footer() {
           >
             <Mail aria-hidden className="h-6 w-6" />
             <span className="sr-only">Email Now</span>
+          </motion.a>
+          <motion.a
+            href="sms:+18776002474"
+            className={mobileBrandLink}
+            aria-label="Text Now"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <MessageSquareText aria-hidden className="h-6 w-6" />
+            <span className="sr-only">Text Now</span>
           </motion.a>
         </div>
       </div>
