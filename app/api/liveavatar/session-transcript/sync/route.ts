@@ -61,7 +61,7 @@ function isTranscriptRow(value: unknown): value is TranscriptRow {
 }
 
 function parseTranscriptPayload(json: unknown): {
-  sessionActive: boolean;
+  sessionActive: boolean | null;
   nextTimestamp: number | null;
   transcriptData: TranscriptRow[];
 } | null {
@@ -71,7 +71,8 @@ function parseTranscriptPayload(json: unknown): {
   const rawList = data.transcript_data;
   if (!Array.isArray(rawList)) return null;
   const transcriptData = rawList.filter(isTranscriptRow);
-  const sessionActive = Boolean(data.session_active);
+  const sessionActive =
+    typeof data.session_active === "boolean" ? data.session_active : null;
   const nextTimestamp =
     typeof data.next_timestamp === "number" && Number.isFinite(data.next_timestamp)
       ? data.next_timestamp
@@ -173,7 +174,7 @@ export async function POST(request: Request) {
       return Response.json({ error: "Unexpected transcript response shape" }, { status: 502 });
     }
 
-    await insertSupabaseRow(
+    const sessionPersistence = await insertSupabaseRow(
       "conversation_sessions",
       {
         session_id: liveAvatarSessionId,
@@ -181,10 +182,24 @@ export async function POST(request: Request) {
         anonymous_visitor_id: anonymousVisitorId,
         route,
         source: "liveavatar_proxy",
-        metadata: { reason, viewport },
+        metadata: { reason, viewport, session_active: parsed.sessionActive },
+        ...(parsed.sessionActive === false ? { ended_at: new Date().toISOString() } : {}),
       },
       { onConflict: "session_id", mergeDuplicates: true },
     );
+    if (!sessionPersistence.ok) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_session_store_failed",
+        severity: "high",
+        provider: "supabase",
+        sessionId: liveAvatarSessionId,
+        route: "/api/liveavatar/session-transcript/sync",
+        statusCode: sessionPersistence.status || 502,
+        payload: { reason, detail: sessionPersistence.detail },
+      });
+      return Response.json({ error: "Failed to store LiveAvatar session" }, { status: 502 });
+    }
 
     const { url, serviceRoleKey } = getSupabaseAdminConfig();
     const candidateRows = parsed.transcriptData.map((row) => ({

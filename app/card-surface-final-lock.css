@@ -32,9 +32,9 @@ html body#wildworks-body#wildworks-body :is(
   .wild-legal-index-card,
   .wild-legal-topbar
 ) {
-  background: var(--ww-card-flat) !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
   background-color: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background-image: var(--ww-card-finish, none) !important;
   box-shadow: none !important;
 }
 
@@ -72,9 +72,9 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   .wild-legal-index-card,
   .wild-legal-topbar
 ) {
-  background: var(--ww-card-flat) !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
   background-color: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background-image: var(--ww-card-finish, none) !important;
   box-shadow: none !important;
 }
 

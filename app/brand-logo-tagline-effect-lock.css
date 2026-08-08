@@ -1,40 +1,41 @@
-/* Shared BrandLogo lock: keep the Fine Art & Practical / Living shadow close
-   to the letters and slightly wider than the gold fill. This preserves the
-   dimensional black edge without exposing a copper/salmon gap beneath it. */
+/* Shared BrandLogo lock: Fine Art & Practical / Living deliberately use the
+   exact same full-depth gold-and-shadow treatment as WILDWORKS and its
+   scrollwork. The artwork mask preserves the ampersand as part of that line. */
 
 html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before,
 html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
+  display: block !important;
   z-index: 0 !important;
-  background: #000 !important;
-  opacity: 0.82 !important;
+  background: #321005 !important;
+  opacity: 0.78 !important;
   filter: none !important;
 }
 
 html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before {
   transform:
-    translateY(clamp(2px, 0.24vw, 3px))
-    scale(1.026) !important;
+    translateY(clamp(3px, 0.38vw, 5px))
+    scale(var(--ww-top-logo-shadow-scale)) !important;
 }
 
 html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
   z-index: 1 !important;
   background: #f7d9a5 !important;
   opacity: 1 !important;
-  filter: drop-shadow(0 0.38rem 0.42rem rgba(0, 0, 0, 0.55)) !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
   transform: scale(var(--ww-top-logo-fill-scale)) !important;
 }
 
 html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
   transform:
     translateX(-0.3%)
-    translateY(clamp(2px, 0.24vw, 3px))
-    scale(0.914) !important;
+    translateY(clamp(3px, 0.38vw, 5px))
+    scale(0.906) !important;
 }
 
 html body#wildworks-body#wildworks-body .wild-top-logo-living::after {
   z-index: 1 !important;
   background: #f7d9a5 !important;
-  opacity: 0.94 !important;
-  filter: drop-shadow(0 0.38rem 0.42rem rgba(0, 0, 0, 0.55)) !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
   transform: translateX(-0.3%) scale(0.9) !important;
 }

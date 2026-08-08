@@ -151,8 +151,8 @@ export default function Wildfire() {
           </motion.p>
           <motion.h1 className="wildfire-hero-headline" variants={fadeInUp}>
             <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete Project Build</span>
-            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">from Breaking Ground to</span>
-            <span id="ww-wildfire-first-fire" className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">The First Wood Fire.</span>
+            <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">From Breaking Ground</span>
+            <span id="ww-wildfire-first-fire" className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">To The First Wood Fire.</span>
           </motion.h1>
           <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">

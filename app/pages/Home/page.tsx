@@ -2131,12 +2131,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         /* G 2026-08-07: every Home viewport shares the approved desktop pair.
            Do not reintroduce a phone-only red/orange compensation: it made the
            same page look painfully hot on a real phone. */
-        @media (max-width: 1536px) {
+        @media (min-width: 641px) and (max-width: 1536px) {
           html:has(#top.wild-home) {
-            --ww-reference-a: #983e17 !important;
+            --ww-reference-a: #c85a24 !important;
             --ww-reference-b: #c85a24 !important;
-            --ww-reference-page: #983e17 !important;
-            --ww-reference-mobile-page: #983e17 !important;
+            --ww-reference-page: #c85a24 !important;
+            --ww-reference-mobile-page: #c85a24 !important;
             --ww-reference-card: #c85a24 !important;
             --ww-home-page-background: var(--ww-reference-page) !important;
             background: var(--ww-home-page-background) !important;
@@ -2144,7 +2144,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
           body:has(#top.wild-home) .wild-site-backdrop {
             background: var(--ww-reference-page) !important;
-            background-color: #983e17 !important;
+            background-color: #c85a24 !important;
           }
         }
 
@@ -2160,6 +2160,26 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
            homepage canvas. Keep the approved gold button material, but remove
            the broad exterior shadows that visually joined into a dark card. */
         @media (max-width: 719px) {
+          body #top#top.wild-home .wild-hero.discordSection .wild-hero-copy,
+          body #top#top.wild-home .wild-hero.discordSection
+            :is(.wild-brand-lockup, .wild-hero-headline, .wild-lede),
+          body #top#top.wild-home .wild-hero.discordSection
+            :is(.wild-hero-wordmark-text-orange, .wild-hero-headline__line, .wild-hero-lede-line) {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-inline: auto !important;
+            text-align: center !important;
+            transform-origin: center center !important;
+          }
+
+          body #top#top.wild-home .wild-hero.discordSection
+            :is(.wild-hero-wordmark-text-orange, .wild-hero-headline__line, .wild-hero-lede-line) {
+            display: block !important;
+            position: static !important;
+            left: auto !important;
+            right: auto !important;
+          }
+
           body #top#top.wild-home #project-wildfire
             :is(.wild-wildfire-photo, .wild-wildfire-inspiration-card) {
             box-shadow:

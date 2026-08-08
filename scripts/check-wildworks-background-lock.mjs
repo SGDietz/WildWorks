@@ -105,8 +105,8 @@ const referenceRequired = [
 const missingReference = referenceRequired.filter((needle) => !compactReferenceLock.includes(needle));
 const cardSurfaceRequired = [
   "--ww-card-flat: #c85a24;",
-  "background: var(--ww-card-flat) !important;",
-  "background-image: none !important;",
+  "background: var(--ww-card-finish, var(--ww-card-flat)) !important;",
+  "background-image: var(--ww-card-finish, none) !important;",
 ];
 const missingCardSurface = cardSurfaceRequired.filter((needle) => !compactCardSurfaceLock.includes(needle));
 const legalWhiteRequired = [
@@ -151,7 +151,7 @@ if (missing.length || stale.length || duplicateTokens.length || missingLayout.le
     for (const item of missingReference) console.error(`- ${item}`);
   }
   if (missingCardSurface.length) {
-    console.error("Flat card-surface lock is incomplete:");
+    console.error("Gold-standard card-surface lock is incomplete:");
     for (const item of missingCardSurface) console.error(`- ${item}`);
   }
   if (missingLegalWhite.length) {

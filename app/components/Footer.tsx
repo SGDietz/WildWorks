@@ -293,6 +293,10 @@ export default function Footer() {
             emphasizeCallText
           />
         ) : null}
+        </div>
+        <div
+          className={`wild-footer-contact-card-region${usesAbFooter ? " wild-footer-contact-card-region--a" : ""}`}
+        >
         <div className="wild-footer-contact-cta mt-12 sm:mt-16">
           <motion.h2
             className="wild-footer-contact-cta__title"
@@ -339,6 +343,9 @@ export default function Footer() {
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
+        <p className="wild-footer-stonework-note">
+          {STONEWORK_AUTHENTICITY_LINE}
+        </p>
           <div
             className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#e8b66d] sm:px-6"
             style={{ width: "100%", maxWidth: "none" }}
@@ -384,11 +391,6 @@ export default function Footer() {
             ))}
           </span>
         </div>
-        {!isLegalRoute(pathname) ? (
-          <p className="wild-footer-stonework-note">
-            {STONEWORK_AUTHENTICITY_LINE}
-          </p>
-        ) : null}
       </motion.div>
 
       {/* Mobile-only contact strip: visible when width < 450px; shows on scroll down, hides on scroll up */}

@@ -83,8 +83,8 @@ html body .wild-home.wild-home.wild-home.wild-legal-home.wild-legal-home :is(
   .wild-footer-contact-cta,
   .wild-signup-panel
 ) {
-  background: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
+  background-image: var(--ww-card-finish, none) !important;
 }
 
 /* These panels had decorative wash layers of their own.  Removing only their
@@ -251,8 +251,8 @@ html body#wildworks-body#wildworks-body:has(#top.wild-home) #top#top#top#top#top
   .wild-legal-topbar
 ),
 html body#wildworks-body#wildworks-body:has(#top.wild-home) footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-footer-contact-cta {
-  background: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
+  background-image: var(--ww-card-finish, none) !important;
 }
 
 /* Home injects a late canvas rule at several breakpoints.  Match its entire
@@ -277,11 +277,11 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   .wild-signup-panel
 ),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-footer-contact-cta {
-  background: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
+  background-image: var(--ww-card-finish, none) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer .wild-signup-panel {
-  background: var(--ww-card-flat) !important;
-  background-image: none !important;
+  background: var(--ww-card-finish, var(--ww-card-flat)) !important;
+  background-image: var(--ww-card-finish, none) !important;
 }

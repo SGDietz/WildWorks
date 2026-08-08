@@ -1,16 +1,98 @@
-/* G 2026-08-06: raise only the Real World Problems hero line one type step. */
+/* G 2026-08-07: keep the three Home-hero lede lines in a deliberate taper.
+   Art is the widest, Problems finishes inside it, and Planet Earth remains
+   shorter; all three retain their shared left edge at every viewport. */
 html body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-copy .wild-hero-lede-line--problems {
-  font-size: clamp(1.42rem, 2.06vw, 1.9rem) !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem) !important;
+  transform: scaleX(0.88) !important;
+  transform-origin: left center !important;
 }
 
-@media (max-width: 719px) {
+html body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line--italic {
+  font-size: clamp(1.6rem, 1.7vw, 1.75rem) !important;
+  transform: scaleX(0.96) !important;
+  transform-origin: left center !important;
+}
+
+/* Desktop: keep Real World Problems safely out of the photograph rather than
+   merely one few pixels shorter than the Art line. */
+@media (min-width: 1025px) {
   html body#wildworks-body#wildworks-body
     #top#top#top#top#top#top#top#top#top#top.wild-home
     .wild-hero.discordSection
     .wild-hero-copy .wild-hero-lede-line--problems {
-    font-size: clamp(1.06rem, 4.4vw, 1.28rem) !important;
+    /* Desktop taper: Art is widest, Problems deliberately lands in the
+       middle, and Planet Earth is shortest. */
+    font-size: clamp(1.125rem, 1.25vw, 1.32rem) !important;
+    transform: scaleX(0.95) !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--italic {
+    font-size: 1.65rem !important;
+    transform: scaleX(0.9) !important;
+  }
+}
+
+@media (min-width: 1500px) {
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--problems {
+    font-size: 1.32rem !important;
+    transform: scaleX(0.95) !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--italic {
+    font-size: 1.75rem !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--problems {
+    font-size: 1.25rem !important;
+    transform: scaleX(0.86) !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--italic {
+    font-size: 1.6rem !important;
+    transform: scaleX(0.96) !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--problems {
+    font-size: 1.16rem !important;
+    transform: scaleX(0.84) !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--italic {
+    font-size: 1.48rem !important;
+    transform: scaleX(0.94) !important;
   }
 }

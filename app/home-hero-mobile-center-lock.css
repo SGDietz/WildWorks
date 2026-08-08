@@ -1,0 +1,31 @@
+/* G 2026-08-07: phone-only centered Home promise. Tablet and desktop retain
+   the established left-side composition over the stair photograph. */
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    text-align: center !important;
+    justify-items: center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection .wild-hero-copy
+    :is(.wild-brand-lockup, .wild-hero-headline, .wild-lede) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+    justify-self: center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection .wild-hero-copy
+    :is(.wild-hero-wordmark-text-orange, .wild-hero-headline__line, .wild-hero-lede-line) {
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: center !important;
+    justify-self: center !important;
+  }
+}

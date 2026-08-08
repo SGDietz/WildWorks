@@ -119,7 +119,7 @@ export default function TheRuins() {
             </section>
             </div>
 
-            <div className="ruins-color-band ruins-tone--a">
+            <div className="ruins-color-band ruins-tone--b">
             <section className="wild-subpage-section wild-subpage-contact discordSection discordSection--2 px-4 py-2 text-white mx-auto w-full sm:px-6">
                 <div className="wild-ruins-rail">
                 <h2 className="text-2xl mb-2">Want a Ruin of Your Own?</h2>

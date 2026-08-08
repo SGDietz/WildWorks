@@ -1,0 +1,180 @@
+/* G 2026-08-07: enlarge the complete Home hero promise as one composition.
+   Preserve the deliberate Art > Problems > Earth width taper and keep the
+   desktop/tablet lockup on the stair side of the photograph. */
+
+@media (min-width: 1025px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-wordmark-text-orange {
+    font-size: clamp(5.8rem, 6vw, 6.35rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--makes-home {
+    font-size: clamp(3.45rem, 3.5vw, 3.8rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--irresistible {
+    font-size: clamp(6.5rem, 6.5vw, 7rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line:nth-child(1) {
+    font-size: clamp(1.8rem, 1.8vw, 1.95rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--problems {
+    font-size: clamp(1.45rem, 1.55vw, 1.58rem) !important;
+    transform: scaleX(0.95) !important;
+    transform-origin: left center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--italic {
+    font-size: clamp(calc(1.9rem + 2px), calc(2vw + 2px), calc(2rem + 2px)) !important;
+    transform: scaleX(0.845) !important;
+    transform-origin: left center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta {
+    min-width: 13.75rem !important;
+    min-height: 4rem !important;
+    height: 4rem !important;
+    font-size: 1.35rem !important;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-wordmark-text-orange {
+    font-size: 4.75rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--makes-home {
+    font-size: 2.75rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--irresistible {
+    font-size: 5rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line:nth-child(1) {
+    font-size: 1.5rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--problems {
+    font-size: 1.47rem !important;
+    transform: scaleX(0.86) !important;
+    transform-origin: left center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--italic {
+    font-size: calc(1.82rem + 2px) !important;
+    transform: scaleX(0.84) !important;
+    transform-origin: left center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta {
+    min-width: 11.875rem !important;
+    min-height: 4rem !important;
+    height: 4rem !important;
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-wordmark-text-orange {
+    font-size: 4.4rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--makes-home {
+    font-size: 1.95rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-headline__line--irresistible {
+    font-size: 2.72rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line:nth-child(1) {
+    font-size: 1.25rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--problems {
+    font-size: 1.28rem !important;
+    transform: scaleX(0.8) !important;
+    transform-origin: center center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy
+    .wild-hero-lede-line--italic {
+    font-size: calc(1.66rem + 2px) !important;
+    transform: scaleX(0.82) !important;
+    transform-origin: center center !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
+    width: min(74%, 250px) !important;
+    max-width: 250px !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta {
+    min-height: 3.375rem !important;
+    height: 3.375rem !important;
+    font-size: 1.125rem !important;
+  }
+}

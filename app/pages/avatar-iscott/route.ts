@@ -434,6 +434,7 @@ const wildWorksSessionEndedScript = `
   <script id="wildworks-avatar-session-ended">
     (() => {
       const endTextPattern = /session ended/i;
+      let endNotified = false;
 
       const restartSession = () => {
         window.location.href = "/pages/avatar-iscott?wake=" + Date.now();
@@ -466,6 +467,10 @@ const wildWorksSessionEndedScript = `
 
         document.body.classList.add("wildworks-session-ended-active");
         buildEndedPanel();
+        if (!endNotified) {
+          endNotified = true;
+          window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended"));
+        }
       };
 
       syncEndedState();
@@ -629,6 +634,7 @@ const wildWorksCaptureBridgeScript = `
         if (document.visibilityState === "hidden") syncTranscript("page_hidden", true);
       });
       window.addEventListener("pagehide", () => syncTranscript("pagehide", true));
+      window.addEventListener("wildworks:avatar-session-ended", () => syncTranscript("session_ended", true));
     })();
   </script>
 `;

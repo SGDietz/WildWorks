@@ -1,0 +1,38 @@
+/* G 2026-08-07: exact gold-standard restoration.
+   Field = #983e17 deep copper. Color 2 is the solid card copper. */
+html:has(#top.wild-home:not(.wild-legal-home)),
+html:has(.wild-subpage--wildfire),
+html:has(.wild-subpage--ruins),
+html:has(.wild-subpage--bio) {
+  --ww-card-flat: #c85a24 !important;
+  --ww-card-finish: #c85a24 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip) {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+}
+
+/* The Home hero becomes a contained card on phones only. Desktop and tablet
+   keep their photographic overlay, rather than receiving an orange rectangle
+   across the center of the image. */
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    background: #c85a24 !important;
+    background-color: #c85a24 !important;
+    background-image: none !important;
+  }
+}
+
+/* Upload Photos or Videos is the button G prefers.  Give every gold action
+   button that exact finish, so their lower copper is no longer inconsistent. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.money-cta, .money-cta--primary, .money-cta--wide) {
+  background:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 38%, #d37d3d 62%, #be5824 80%, #a94419 100%) !important;
+}
