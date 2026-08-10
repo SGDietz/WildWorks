@@ -1,0 +1,40 @@
+/* H106u: one Home action-control material; gold light above, card copper at
+   center, and a darker lower falloff. This supersedes H106t's Upload-only fill. */
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  --ww-home-card-button-sheen: linear-gradient(180deg,
+    rgba(255, 243, 210, 0.88) 0%, rgba(247, 217, 165, 0.58) 8%,
+    rgba(232, 173, 89, 0.38) 18%, rgba(163, 107, 54, 0.55) 30%,
+    #8B5A2B 42%, #8B5A2B 58%, #7a4e25 72%, #6e4520 86%, #5a3819 100%);
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(a.money-cta, button.money-cta, .wild-iscott-upload__button, .wild-card-cta,
+      .wild-sell-feature-cta, .wild-utility-button, .wild-signup-choice-button,
+      .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
+      .wild-footer-mobile-link, .wildfire-phase-bar button,
+      .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button) {
+  border: 1px solid rgba(255, 226, 174, 0.58) !important;
+  background: var(--ww-home-card-button-sheen) !important;
+  background-color: #8B5A2B !important;
+  background-image: var(--ww-home-card-button-sheen) !important;
+  box-shadow: 0 12px 30px rgba(16, 6, 1, 0.48), 0 0 14px rgba(224, 168, 90, 0.16), inset 0 1px 0 rgba(255, 247, 218, 0.62), inset 0 -1px 0 rgba(40, 18, 6, 0.55), inset 0 12px 20px rgba(255, 239, 194, 0.14), inset 0 -14px 22px rgba(40, 18, 6, 0.22) !important;
+  color: #f7e2b8 !important;
+  -webkit-text-fill-color: #f7e2b8 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.58) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(a.money-cta, button.money-cta, .wild-iscott-upload__button, .wild-card-cta,
+      .wild-sell-feature-cta, .wild-utility-button, .wild-signup-choice-button,
+      .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
+      .wild-footer-mobile-link, .wildfire-phase-bar button,
+      .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button) :is(span, strong, small, svg) {
+  color: #f7e2b8 !important;
+  -webkit-text-fill-color: #f7e2b8 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.58) !important;
+  stroke: currentColor !important;
+}

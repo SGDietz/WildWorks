@@ -1,0 +1,159 @@
+/* Mobile subpages use the exact same approved desktop pair as Home. */
+@media (max-width: 719px) {
+  /* Ruins opening stack: the header/logo and hero were transparent, so each
+     exposed a different vertical point of the page gradient. Make the entire
+     opening through the first narrative band one continuous Color A field. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    :is(
+      .wild-site-header,
+      .wild-top-logo-band,
+      .wild-subpage--ruins
+    ),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    :is(
+      .wild-site-header,
+      .wild-top-logo-band,
+      .wild-subpage--bio
+    ) {
+    background: #983e17 !important;
+    background-color: #983e17 !important;
+    background-image: none !important;
+  }
+
+  /* The full-screen navigation is also a page surface. Match Home instead of
+     reviving the obsolete copper card wash whenever the menu is opened. */
+  html body#wildworks-body#wildworks-body#wildworks-body:has(:is(
+      #top.wild-home:not(.wild-legal-home),
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) .wild-mobile-menu.wild-mobile-menu {
+    background: #983e17 !important;
+    background-color: #983e17 !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body:has(:is(
+      #top.wild-home:not(.wild-legal-home),
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) .wild-mobile-menu.wild-mobile-menu > div {
+    border-color: rgba(247, 217, 165, 0.32) !important;
+  }
+
+  html:root:has(:is(
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) {
+    --ww-subpage-mobile-a: #983e17 !important;
+    --ww-subpage-mobile-b: #983e17 !important;
+    --ww-subpage-mobile-field: #983e17 !important;
+    --ww-subpage-mobile-card: #c85a24 !important;
+    --ww-ab-a: var(--ww-subpage-mobile-a) !important;
+    --ww-ab-b: var(--ww-subpage-mobile-b) !important;
+    --ww-color-a: var(--ww-subpage-mobile-a) !important;
+    --ww-color-b: var(--ww-subpage-mobile-b) !important;
+  }
+
+  html:has(body#wildworks-body:has(:is(
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    ))),
+  html body#wildworks-body#wildworks-body#wildworks-body:has(:is(
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )),
+  html body#wildworks-body#wildworks-body#wildworks-body:has(:is(
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) #wild-site-backdrop.wild-site-backdrop {
+    background: var(--ww-subpage-mobile-field) !important;
+    background-color: #983e17 !important;
+    background-image: var(--ww-subpage-mobile-field) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+  }
+
+  /* Ruins and Bio retain the deliberate A/B layout seen on desktop. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--a.ruins-tone--a,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    .wild-subpage--bio .wild-ab-band.wild-tone--a.wild-tone--a {
+    background: var(--ww-subpage-mobile-a) !important;
+    background-color: var(--ww-subpage-mobile-a) !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--b.ruins-tone--b,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    .wild-subpage--bio .wild-ab-band.wild-tone--b.wild-tone--b {
+    background: var(--ww-subpage-mobile-b) !important;
+    background-color: var(--ww-subpage-mobile-b) !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body:has(:is(
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) :is(.wild-subpage--ruins, .wild-subpage--bio) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* Use Home's exact feature-card material for the shared conversation card. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(:is(
+      .wild-subpage--wildfire,
+      .wild-subpage--ruins,
+      .wild-subpage--bio
+    )) footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-contact-cta.wild-footer-contact-cta {
+    border-color: #8f3612 !important;
+    background: var(--ww-subpage-mobile-card) !important;
+    background-color: var(--ww-subpage-mobile-b) !important;
+    background-image: var(--ww-subpage-mobile-card) !important;
+  }
+
+  /* Continue each page's final band through its existing shared footer. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer#footer#footer#footer#footer :is(
+      .wild-footer-main,
+      .wild-footer-contact-region--a,
+      .wild-signup-system,
+      .wild-footer-closing-region--a
+    ),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+    footer#footer#footer#footer#footer#footer {
+    background: var(--ww-subpage-mobile-b) !important;
+    background-color: var(--ww-subpage-mobile-b) !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer#footer#footer .wild-footer-contact-region--a {
+    background: var(--ww-subpage-mobile-b) !important;
+    background-color: var(--ww-subpage-mobile-b) !important;
+    background-image: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer#footer#footer :is(
+      .wild-footer-main,
+      .wild-signup-system,
+      .wild-footer-closing-region--a
+    ),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+    footer#footer#footer#footer#footer#footer {
+    background: var(--ww-subpage-mobile-a) !important;
+    background-color: var(--ww-subpage-mobile-a) !important;
+    background-image: none !important;
+  }
+}

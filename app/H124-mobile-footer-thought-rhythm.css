@@ -1,0 +1,29 @@
+/* H124: Add one restrained half-rem breath between the closing footer
+   thoughts on phones. The back-to-top button itself remains unchanged. */
+@media (max-width: 640px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-phone-number-line--footer-closing {
+    margin-top: 1.6rem !important;
+    margin-bottom: 1.6rem !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-stonework-note {
+    margin-top: 3.13rem !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-closing.wild-footer-closing
+    > span {
+    margin-top: 2.35rem !important;
+  }
+}

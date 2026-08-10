@@ -1,0 +1,138 @@
+/* H116: Deliberate final-footer rhythm on every route and viewport.
+   Phone invitation first, the large stacked-chevron back-to-top control
+   second, then the authenticity statement. */
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-phone-number-line--footer-closing {
+  margin-top: clamp(1.25rem, 2.5vw, 2.25rem) !important;
+  margin-bottom: 0 !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-phone-number-line--footer-closing
+  .wild-phone-number-line__call-today {
+  font-size: clamp(3.2rem, 6.05vw, 5.85rem) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-stonework-note {
+  width: min(100% - 2rem, 90rem) !important;
+  max-width: none !important;
+  /* Visually center the striped back-to-top button between Call Today and
+     the Stonework statement by matching the rendered glyph-to-button gaps. */
+  margin: clamp(2.86rem, calc(4.75vw - 0.09rem), 3.63rem) auto 0 !important;
+  padding: 0 1rem !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+  white-space: normal !important;
+}
+
+@media (min-width: 720px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-stonework-note {
+    font-size: clamp(1.1rem, 2.4vw, 2.15rem) !important;
+    text-wrap: nowrap !important;
+    white-space: nowrap !important;
+  }
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-closing.wild-footer-closing {
+  gap: 0 !important;
+  margin-top: clamp(1rem, 2vw, 1.7rem) !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button.wild-footer-top-button--closing {
+  width: 4.125rem !important;
+  height: 4.125rem !important;
+  min-width: 4.125rem !important;
+  min-height: 4.125rem !important;
+  flex: 0 0 4.125rem !important;
+  /* Match the visual section gap above the phone number: signup card to
+     number and Call Today to back-to-top now breathe by the same amount. */
+  margin: clamp(2rem, calc(1.702rem + 1.22vw), 2.8rem) auto 0 !important;
+  padding: 0 !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-closing.wild-footer-closing
+  > span {
+  margin-top: clamp(1.85rem, 3.2vw, 2.75rem) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-legal-row.wild-footer-legal-row {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button--closing
+  .wild-footer-double-rise {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-double-rise__stripes {
+  stroke-width: 4.5px !important;
+  transform: scale(3) !important;
+  transform-box: view-box !important;
+  transform-origin: center !important;
+}
+
+@media (max-width: 560px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-phone-number-line--footer-closing {
+    margin-top: 1.1rem !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-stonework-note {
+    font-size: clamp(1.375rem, 5.65vw, 1.75rem) !important;
+    margin-top: 3.13rem !important;
+    margin-bottom: 0 !important;
+    padding-inline: 0.55rem !important;
+  }
+}

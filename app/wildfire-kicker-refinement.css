@@ -1,0 +1,26 @@
+/* G 2026-08-07: Project Wildfire uses the same restrained large-letter
+   depth as the rest of the public site. Remove the legacy double filter,
+   reduce the title by two points, and keep only a crisp lower edge. */
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+  .wild-subpage--wildfire .wildfire-hero-copy .wild-kicker.wild-kicker {
+  font-size: clamp(1.1rem, calc(3.55vw - 2px), 2.72rem) !important;
+  filter: none !important;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.8),
+    0 2px 1px rgba(0, 0, 0, 0.34) !important;
+}
+
+/* The build story reads as three deliberate, balanced lines. The record
+   beneath it is one equally weighted three-line statement, not a descending
+   type staircase. */
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+  .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline .wildfire-hero-headline__line--c3 {
+  font-size: clamp(1.8rem, 4.1vw, 3.35rem) !important;
+  line-height: 1.05 !important;
+}
+
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+  .wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary .wildfire-hero-summary__line {
+  font-size: clamp(1.9rem, 2.45vw, 2.45rem) !important;
+  line-height: 1.22 !important;
+}

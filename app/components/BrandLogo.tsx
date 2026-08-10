@@ -23,11 +23,12 @@ export default function BrandLogo() {
     >
       <span
         role="img"
-        aria-label="WildWorks, Fine Art and Practical Living"
+        aria-label="WildWorks, Fine Art and Practical Landscaping"
         className="wild-top-logo"
+        style={{ marginTop: "-0.25rem", marginBottom: "-0.25rem" }}
       >
         <Image
-          src="/wildworks-live-logo-transparent-living-v13.png"
+          src="/wildworks-live-logo-transparent-number2-v5.png"
           alt=""
           aria-hidden="true"
           width={1058}
@@ -36,6 +37,7 @@ export default function BrandLogo() {
           sizes="(max-width: 500px) 94vw, (max-width: 1216px) 75vw, 57rem"
           className="wild-top-logo-source"
         />
+        <span className="wild-top-logo-landscaping-effect" aria-hidden="true" />
       </span>
     </motion.div>
   );

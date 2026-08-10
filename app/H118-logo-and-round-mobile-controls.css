@@ -1,0 +1,84 @@
+/* H118: Finish the canonical landscaping lockup and remove the remaining
+   optical flatness from the mobile navigation/contact circles. */
+
+/* The full-lockup shadow is already perfect on WILDWORKS and the scrollwork.
+   This dedicated lower-line layer puts the same dark depth closer to the thin
+   Landscaping letters, closing the copper-colored gap without touching the
+   approved upper wordmark. */
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo
+  .wild-top-logo-landscaping-effect {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  background: #321005 !important;
+  opacity: 0.9 !important;
+  clip-path: inset(70% 25% 7% 25%) !important;
+  -webkit-mask: url("/wildworks-live-logo-transparent-number2-v5.png") center / contain no-repeat !important;
+  mask: url("/wildworks-live-logo-transparent-number2-v5.png") center / contain no-repeat !important;
+  transform: translateY(clamp(1px, 0.12vw, 2px)) scale(1.016) !important;
+  transform-origin: center !important;
+  filter:
+    drop-shadow(1px 0 0 #321005)
+    drop-shadow(-1px 0 0 #321005)
+    drop-shadow(0 1px 0 #321005) !important;
+  pointer-events: none !important;
+}
+
+/* Restore an intentional breath between the final Landscaping line and the
+   hero photograph. Earlier negative margins had nearly erased this gap. */
+html body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo {
+  margin-bottom: 0 !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-band.wild-top-logo-band {
+  margin-bottom: clamp(0.7rem, 1.5vw, 1.05rem) !important;
+}
+
+@media (max-width: 500px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 9999px !important;
+    overflow: hidden !important;
+    background:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.82) 0%, rgba(255, 226, 166, 0.32) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #efc77f 0%, #d7974b 50%, #a95625 76%, #743014 100%) !important;
+    background-color: #d7974b !important;
+    box-shadow:
+      0 10px 26px rgba(20, 7, 1, 0.4),
+      0 0 18px rgba(224, 168, 90, 0.16),
+      inset 0 1px 0 rgba(255, 248, 221, 0.82),
+      inset 0 -1px 0 rgba(72, 28, 6, 0.5) !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-footer-mobile-strip
+    .wild-footer-mobile-link.wild-footer-mobile-link {
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    min-height: 54px !important;
+    flex: 0 0 54px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 9999px !important;
+    overflow: hidden !important;
+    background:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.78) 0%, rgba(255, 226, 166, 0.3) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #edc17a 0%, #d28b42 52%, #9c481c 78%, #6f2a10 100%) !important;
+    background-color: #d28b42 !important;
+    box-shadow:
+      0 7px 18px rgba(20, 7, 1, 0.34),
+      0 0 13px rgba(224, 168, 90, 0.13),
+      inset 0 1px 0 rgba(255, 248, 221, 0.8),
+      inset 0 -1px 0 rgba(72, 28, 6, 0.48) !important;
+  }
+}

@@ -1,0 +1,104 @@
+/* H112: Home-only Color 3 surface swap.
+   On the primary field, Color 3 is the mid brick-red accent.
+   Inside a card, the former third color becomes the primary field color. */
+
+#top#top#top#top#top#top#top#top#top#top#top.wild-home {
+  --ww-home-heading-color-3: #c94a32 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-headline__line--irresistible *,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    .wild-hero .wild-hero-lede-line:nth-child(3) *,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #signature-work .wild-signature-title__three,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
+    .ww-c3
+  ) {
+  color: var(--ww-home-heading-color-3) !important;
+  -webkit-text-fill-color: var(--ww-home-heading-color-3) !important;
+}
+
+/* "Start with iScott" is one uninterrupted Color 2 heading. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales
+  #talk-to-iscott
+  .wild-start-title
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* This statement card intentionally uses only Color 1 and Color 2. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement__line--one,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement__line--one * {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(.wild-home-statement__line--two, .wild-home-statement__line--two *, .wild-home-statement__line--four) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* The masked lockup contains both the WildWorks wordmark and its scrolls. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement__brand-lockup::after {
+  background: #f7d9a5 !important;
+  background-color: #f7d9a5 !important;
+  background-image: none !important;
+}
+
+/* "Period." is the third-color phrase in the image feature card. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work
+  .wild-story-card--featureSell
+  .wild-sell-feature-title__period {
+  color: var(--ww-home-heading-color-3) !important;
+  -webkit-text-fill-color: var(--ww-home-heading-color-3) !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* At phone width the hero copy moves from the photograph onto a card, but
+   Color 3 stays the same mid brick-red used throughout Home. */
+@media (max-width: 719px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    :is(
+      .wild-hero .wild-hero-headline__line--irresistible,
+      .wild-hero .wild-hero-headline__line--irresistible *,
+      .wild-hero .wild-hero-lede-line:nth-child(3),
+      .wild-hero .wild-hero-lede-line:nth-child(3) *
+    ) {
+    color: var(--ww-home-heading-color-3) !important;
+    -webkit-text-fill-color: var(--ww-home-heading-color-3) !important;
+    background: none !important;
+    background-image: none !important;
+  }
+}

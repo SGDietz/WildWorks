@@ -16,7 +16,7 @@ const wildWorksButtonCss = `
       --ww-avatar-honey: #e0a85a;
       --ww-avatar-parchment: #f3cf92;
       --ww-avatar-cream: #f7d9a5;
-      --ww-avatar-button-ink: #88421f;
+      --ww-avatar-button-ink: #7d2f20;
     }
 
     html,
@@ -49,14 +49,37 @@ const wildWorksButtonCss = `
       font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
       font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
       font-weight: 800 !important;
-      font-style: italic !important;
+      font-style: normal !important;
       letter-spacing: -0.025em !important;
       line-height: 0.95 !important;
       text-align: center !important;
       white-space: nowrap !important;
       opacity: 1 !important;
       pointer-events: none !important;
-      text-shadow: 0 1px 0 rgba(255, 239, 201, 0.22), 0 2px 18px rgba(73, 23, 4, 0.42) !important;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.72), 0 0.38rem 0.58rem rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* On a phone, use the frame's height to give the loading name a clean
+       two-line lockup without changing its approved color or depth. */
+    @media (max-width: 560px) {
+      body::before {
+        content: "Loading\\A iScott" !important;
+        line-height: 0.9 !important;
+        white-space: pre-line !important;
+      }
+    }
+
+    html.wildworks-avatar-loading body::before {
+      z-index: 2147483646 !important;
+      background:
+        radial-gradient(ellipse 94% 62% at 50% 0%, rgba(255, 231, 175, 0.32), transparent 66%),
+        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200, 121, 54, 0.28), transparent 72%),
+        linear-gradient(155deg, #cf7140 0%, #bd5929 52%, #a54219 100%) !important;
+      pointer-events: auto !important;
+    }
+
+    html.wildworks-avatar-loading body > :not(script):not(style) {
+      pointer-events: none !important;
     }
 
     body > :not(script):not(style) {
@@ -96,7 +119,7 @@ const wildWorksButtonCss = `
       border-radius: 8px !important;
       background:
         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #71350f 100%) !important;
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #913f16 100%) !important;
       padding: 0.85rem 1rem !important;
       color: var(--ww-avatar-button-ink) !important;
       font-family: Georgia, "Times New Roman", serif !important;
@@ -106,7 +129,6 @@ const wildWorksButtonCss = `
       letter-spacing: 0 !important;
       text-decoration: none !important;
       text-shadow: none !important;
-      text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
       box-shadow:
         0 16px 42px rgba(20, 7, 1, 0.42),
         0 0 24px rgba(224, 168, 90, 0.18),
@@ -117,7 +139,8 @@ const wildWorksButtonCss = `
     }
 
     .fixed.bottom-28:has(.btn-wood) {
-      bottom: clamp(8.15rem, 18vh, 8.75rem) !important;
+      /* Sit in the clear space directly above Scott's wrists and hands. */
+      bottom: clamp(6.7rem, 14vh, 7.3rem) !important;
     }
 
     .btn-wood::before {
@@ -258,7 +281,101 @@ const wildWorksButtonCss = `
     #wildworks-avatar-restart {
       margin-top: 1.25rem !important;
     }
+
+    /* Avatar-route card surfaces only: the Home card material. */
+    :is(.bg-gray-800\/90, .bg-gray-900, .wildworks-session-ended-card) {
+      background: #8B5A2B !important;
+      background-image: none !important;
+    }
   </style>
+`;
+
+const wildWorksLoadingBootstrapScript = `
+  <script id="wildworks-avatar-loading-bootstrap">
+    (() => {
+      if (new URLSearchParams(window.location.search).has("wake")) {
+        document.documentElement.classList.add("wildworks-avatar-loading");
+      }
+    })();
+  </script>
+`;
+
+const wildWorksLoadingGateScript = `
+  <script id="wildworks-avatar-loading-gate">
+    (() => {
+      const loadingClass = "wildworks-avatar-loading";
+      const startPattern = /^(?:talk to iscott|go live|start|restart iscott)$/i;
+      const releasePattern = /session ended|avatar app unavailable|try again|failed to|error occurred/i;
+      const seenVideos = new WeakSet();
+      let loadingStartedAt = document.documentElement.classList.contains(loadingClass)
+        ? Date.now()
+        : 0;
+
+      const endLoading = () => {
+        document.documentElement.classList.remove(loadingClass);
+        loadingStartedAt = 0;
+      };
+
+      const beginLoading = () => {
+        loadingStartedAt = Date.now();
+        document.documentElement.classList.add(loadingClass);
+        watchVideos();
+      };
+
+      const releaseAfterRealFrame = (video) => {
+        if (!document.documentElement.classList.contains(loadingClass)) return;
+        if (!video || video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) return;
+
+        if (typeof video.requestVideoFrameCallback === "function") {
+          video.requestVideoFrameCallback(() => endLoading());
+          return;
+        }
+
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+              endLoading();
+            }
+          });
+        });
+      };
+
+      function watchVideos() {
+        document.querySelectorAll("video").forEach((video) => {
+          if (!seenVideos.has(video)) {
+            seenVideos.add(video);
+            video.addEventListener("playing", () => releaseAfterRealFrame(video));
+            video.addEventListener("loadeddata", () => {
+              if (!video.paused) releaseAfterRealFrame(video);
+            });
+          }
+          if (!video.paused) releaseAfterRealFrame(video);
+        });
+      }
+
+      document.addEventListener(
+        "click",
+        (event) => {
+          const button = event.target instanceof Element ? event.target.closest("button") : null;
+          const label = (button?.textContent || "").trim();
+          if (button && !button.disabled && startPattern.test(label)) beginLoading();
+        },
+        true,
+      );
+
+      const syncLoadingState = () => {
+        watchVideos();
+        if (!loadingStartedAt || Date.now() - loadingStartedAt < 1500) return;
+        const visibleText = document.body?.innerText || "";
+        if (releasePattern.test(visibleText)) endLoading();
+      };
+
+      if (document.documentElement.classList.contains(loadingClass)) beginLoading();
+      window.addEventListener("load", syncLoadingState);
+      const observer = new MutationObserver(syncLoadingState);
+      observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+    })();
+  </script>
 `;
 
 const wildWorksAutoWakeScript = `
@@ -324,6 +441,7 @@ const wildWorksSessionEndedScript = `
   <script id="wildworks-avatar-session-ended">
     (() => {
       const endTextPattern = /session ended/i;
+      let endNotified = false;
 
       const restartSession = () => {
         window.location.href = "/pages/avatar-iscott?wake=" + Date.now();
@@ -356,6 +474,10 @@ const wildWorksSessionEndedScript = `
 
         document.body.classList.add("wildworks-session-ended-active");
         buildEndedPanel();
+        if (!endNotified) {
+          endNotified = true;
+          window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended"));
+        }
       };
 
       syncEndedState();
@@ -519,6 +641,7 @@ const wildWorksCaptureBridgeScript = `
         if (document.visibilityState === "hidden") syncTranscript("page_hidden", true);
       });
       window.addEventListener("pagehide", () => syncTranscript("pagehide", true));
+      window.addEventListener("wildworks:avatar-session-ended", () => syncTranscript("session_ended", true));
     })();
   </script>
 `;
@@ -665,16 +788,17 @@ export async function GET(request: Request) {
     .replaceAll("/_next/", LOCAL_AVATAR_ASSET_PREFIX)
     .replaceAll("/favicon.ico", `${REMOTE_AVATAR_ORIGIN}/favicon.ico`)
     .replaceAll("/startscreen.png", "/Avatar1-live-startscreen.png")
-    .replace("</head>", `${wildWorksButtonCss}</head>`)
+    .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
     .replace(
       "</body>",
-      `${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
   return new Response(html, {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/html; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
     },
   });
 }

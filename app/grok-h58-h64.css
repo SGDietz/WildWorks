@@ -1,0 +1,633 @@
+/* Grok handoff integration H58-H65, installed by Codex 2026-08-05.
+   Order is deliberate: the vibrant universal canvas comes first; Bio and
+   Ruins then apply their page-specific A/B treatments; logo spacing is last. */
+
+/* H58: Ruins feature card layout only. No color declarations in this block. */
+html body #top#top#top.wild-home #signature-work .wild-story-card--feature,
+html body .wild-home #signature-work .wild-story-card--feature {
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 901px) {
+  html body #top#top#top.wild-home #signature-work .wild-story-card--feature,
+  html body .wild-home #signature-work .wild-story-card--feature {
+    padding: 0 !important;
+  }
+
+  html body #top#top#top.wild-home #signature-work
+    .wild-story-card--feature .wild-story-media-link,
+  html body .wild-home #signature-work
+    .wild-story-card--feature .wild-story-media-link {
+    box-sizing: border-box !important;
+    padding-top: clamp(1.15rem, 2vw, 1.65rem) !important;
+    padding-right: clamp(1.15rem, 2vw, 1.65rem) !important;
+    padding-bottom: clamp(1.15rem, 2vw, 1.65rem) !important;
+    padding-left: clamp(0.55rem, 1.1vw, 0.9rem) !important;
+    margin: 0 !important;
+  }
+
+  html body #top#top#top.wild-home #signature-work
+    .wild-story-card--feature .wild-story-copy,
+  html body .wild-home #signature-work
+    .wild-story-card--feature .wild-story-copy {
+    padding-top: clamp(1.15rem, 2vw, 1.65rem) !important;
+    padding-right: clamp(1.25rem, 2.4vw, 2rem) !important;
+    padding-bottom: clamp(0.65rem, 1.2vw, 1rem) !important;
+    padding-left: clamp(1.35rem, 2.6vw, 2.2rem) !important;
+  }
+
+  html body #top#top#top.wild-home #signature-work
+    .wild-story-card--feature .wild-story-actions,
+  html body .wild-home #signature-work
+    .wild-story-card--feature .wild-story-actions {
+    align-self: center !important;
+    margin: 0 !important;
+    padding: clamp(0.85rem, 1.25vw, 1.1rem)
+      clamp(0.75rem, 1.4vw, 1rem) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body .wild-home #signature-work
+    .wild-story-card--feature .wild-story-media-link {
+    box-sizing: border-box !important;
+    padding: clamp(0.85rem, 3vw, 1.2rem) !important;
+  }
+
+  html body .wild-home #signature-work
+    .wild-story-card--feature .wild-story-actions {
+    padding-top: clamp(0.85rem, 2.5vw, 1.1rem) !important;
+    padding-bottom: clamp(0.85rem, 2.5vw, 1.1rem) !important;
+  }
+}
+
+/* H59: one vibrant copper canvas at every viewport, with no muddy horizontal
+   laptop wash. Route-specific bands below remain intentionally independent. */
+:root {
+  --ww-page-base-copper: #c45a28 !important;
+  --ww-center-column-glimmer: none !important;
+  --ww-center-gold-fade: linear-gradient(
+    180deg,
+    #d46a32 0%,
+    #c76830 38%,
+    #be5e2a 72%,
+    #b75b28 100%
+  ) !important;
+  --ww-page-background:
+    var(--ww-center-gold-fade),
+    var(--ww-page-base-copper) !important;
+  --ww-soft-field: var(--ww-page-background) !important;
+  --ww-soft-field-warm: var(--ww-page-background) !important;
+  --ww-visitor-copper-field: var(--ww-page-background) !important;
+  --ww-home-page-background: var(--ww-page-background) !important;
+}
+
+html,
+html body,
+html body .wild-site-backdrop,
+body:has(.wild-home),
+body:has(.wild-subpage) {
+  background: var(--ww-page-background) !important;
+  background-color: #c45a28 !important;
+  background-image: var(--ww-page-background) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+html body .wild-site-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+html body :is(.wild-home, .wild-subpage),
+html body :is(.wild-home, .wild-subpage) > :is(section, main),
+html body .wild-home.wild-legal-home .wild-legal-section,
+html body .wild-subpage .wild-subpage-section,
+html body footer.discordSection,
+html body #top.wild-home,
+html body #top.wild-subpage {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+@media (min-width: 720px) and (max-width: 1680px),
+  (max-width: 719px),
+  (min-width: 1681px) {
+  :root {
+    --ww-page-base-copper: #c45a28 !important;
+    --ww-center-column-glimmer: none !important;
+    --ww-center-gold-fade: linear-gradient(
+      180deg,
+      #d46a32 0%,
+      #c76830 38%,
+      #be5e2a 72%,
+      #b75b28 100%
+    ) !important;
+    --ww-page-background:
+      var(--ww-center-gold-fade),
+      var(--ww-page-base-copper) !important;
+    --ww-home-page-background: var(--ww-page-background) !important;
+  }
+}
+
+/* H60: all six Home hero lines share one scale root. The lower three remain
+   deliberately smaller and cannot drift independently at laptop zoom. */
+html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+  --ww-hero-type-unit: clamp(0.92rem, 1.15vw, 1.18rem);
+  font-size: var(--ww-hero-type-unit) !important;
+  display: grid !important;
+  align-content: end !important;
+  gap: 0.55em !important;
+  width: min(48vw, 43rem) !important;
+  max-width: min(48vw, 43rem) !important;
+}
+
+@media (min-width: 720px) and (max-width: 1440px) {
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    --ww-hero-type-unit: clamp(0.88rem, 1.05vw, 1.08rem);
+    width: min(52vw, 40rem) !important;
+    max-width: min(52vw, 40rem) !important;
+  }
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-wordmark-text-orange {
+  font-size: 4.55em !important;
+  line-height: 0.82 !important;
+  max-width: 100% !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy h1.wild-hero-headline--solid {
+  font-size: 1em !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  line-height: 0.9 !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
+  display: block !important;
+  font-size: 3.15em !important;
+  line-height: 0.94 !important;
+  white-space: nowrap !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+  display: block !important;
+  font-size: 4.35em !important;
+  line-height: 0.8 !important;
+  margin-top: 0.06em !important;
+  white-space: nowrap !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy .wild-lede {
+  display: grid !important;
+  gap: 0.12em !important;
+  margin-top: 0.35em !important;
+  margin-bottom: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  font-size: 1.42em !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  letter-spacing: 0 !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line {
+  display: block !important;
+  font-size: 1em !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line:nth-child(2) {
+  font-size: 0.96em !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
+  font-size: 1.02em !important;
+  font-style: italic !important;
+}
+
+html body #top#top#top.wild-home .wild-hero.discordSection
+  .wild-hero-copy > .wild-cta-row {
+  margin-top: 0.55em !important;
+}
+
+@media (max-width: 719px) {
+  html body #top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    --ww-hero-type-unit: clamp(0.78rem, 3.4vw, 0.95rem);
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-wordmark-text-orange {
+    font-size: 3.6em !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
+    font-size: 2.45em !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+    font-size: 3.4em !important;
+  }
+
+  html body #top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy .wild-lede {
+    font-size: 1.28em !important;
+  }
+}
+
+/* H61: keep the stonework statement under the photo and at the footer;
+   remove the dark inset band from the photo itself. */
+html body #top#top#top.wild-home #wildworks-proof .wild-image-frame::after,
+html body #top#top.wild-home #wildworks-proof
+  .wild-home-proof-figure .wild-image-frame::after,
+html body .wild-home #wildworks-proof .wild-image-frame::after {
+  content: none !important;
+  display: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  opacity: 0 !important;
+}
+
+html body #top#top#top.wild-home #wildworks-proof .wild-image-frame,
+html body .wild-home #wildworks-proof
+  .wild-home-proof-figure .wild-image-frame {
+  box-shadow: none !important;
+}
+
+html body #top#top.wild-home #wildworks-proof
+  .wild-home-hero-stonework-note {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+html body #footer#footer .wild-footer-stonework-note {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  margin: clamp(1.3rem, 2.2vw, 1.75rem) auto
+    clamp(1.5rem, 2.6vw, 2rem) !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-family: var(--font-serif), Georgia, serif !important;
+  font-size: clamp(2.1rem, 3.8vw, 2.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.018em !important;
+  text-align: center !important;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72) !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 1440px) {
+  html body #footer#footer .wild-footer-stonework-note {
+    max-width: min(100%, 68rem) !important;
+    padding-inline: 1rem !important;
+    text-wrap: balance !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html body #footer#footer .wild-footer-stonework-note {
+    font-size: clamp(1.85rem, 7.5vw, 2.1rem) !important;
+  }
+}
+
+/* H62 corrected: Bio follows G's marked A/B/A/B/A map using only the approved
+   page and card materials. No independent orange gradient may become a third
+   background. */
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio) {
+  --ww-color-a: var(--ww-page-background) !important;
+  --ww-color-b: var(--ww-gold-fill) !important;
+  --ww-bio-break-gap: clamp(1.15rem, 2.2vw, 1.75rem);
+}
+
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio),
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  .wild-site-backdrop {
+  background: var(--ww-page-background) !important;
+  background-color: #c45a28 !important;
+  background-image: var(--ww-center-gold-fade) !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-ab-band.wild-tone--a.wild-tone--a {
+  background: var(--ww-color-a) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-gold-fade) !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-ab-band.wild-tone--b.wild-tone--b {
+  background: var(--ww-color-b) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-color-b) !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(100% - 2rem, 56rem) !important;
+  max-width: 56rem !important;
+  margin-inline: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: var(--ww-bio-break-gap) !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: calc(var(--ww-bio-break-gap) * 0.38) !important;
+  width: min(72%, 28rem) !important;
+  height: 1px !important;
+  transform: translateX(-50%) !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(232, 182, 109, 0.22) 12%,
+    rgba(247, 217, 165, 0.72) 50%,
+    rgba(232, 182, 109, 0.22) 88%,
+    transparent 100%
+  ) !important;
+  box-shadow: 0 1px 0 rgba(57, 20, 3, 0.18) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+html body .wild-subpage--bio .wild-ab-band--intro.wild-tone--a {
+  margin-top: 0 !important;
+  padding-top: clamp(0.85rem, 1.5vw, 1.25rem) !important;
+  border-top: 0 !important;
+}
+
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
+  background: var(--ww-color-a) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-gold-fade) !important;
+  margin-top: 0 !important;
+}
+
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-contact-region--a.wild-footer-contact-region--a,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-contact-cta.wild-footer-contact-cta {
+  background: var(--ww-color-b) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-color-b) !important;
+}
+
+html body .wild-subpage--bio .wild-ab-band--intro .wild-subpage-section {
+  padding-top: clamp(1rem, 1.8vw, 1.45rem) !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-ab-band.wild-tone--b.wild-tone--b {
+  margin-top: 0 !important;
+  padding-top: clamp(1.35rem, 2.4vw, 2rem) !important;
+  padding-bottom: clamp(1.5rem, 2.8vw, 2.4rem) !important;
+}
+
+html body .wild-subpage--bio .wild-ab-band .wild-subpage-section {
+  background: transparent !important;
+  background-image: none !important;
+  width: min(100%, 76rem) !important;
+  max-width: 76rem !important;
+  margin-inline: auto !important;
+}
+
+html body .wild-subpage--bio.wild-subpage--bio {
+  background: transparent !important;
+  background-image: none !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin-inline: 0 !important;
+}
+
+@media (max-width: 719px) {
+  html body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+    width: min(100% - 1.5rem, 56rem) !important;
+    padding-bottom: clamp(1.25rem, 5vw, 1.75rem) !important;
+  }
+
+  html body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero::after {
+    width: min(78%, 18rem) !important;
+    bottom: clamp(0.45rem, 2vw, 0.7rem) !important;
+  }
+}
+
+/* H63 corrected: Ruins uses the same two approved materials as Bio. */
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--ruins) .wild-site-backdrop {
+  --ww-color-a: var(--ww-page-background) !important;
+  --ww-color-b: var(--ww-gold-fill) !important;
+  background: var(--ww-color-a) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-gold-fade) !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--a.ruins-tone--a {
+  background: var(--ww-color-a) !important;
+  background-color: var(--ww-page-base-copper) !important;
+  background-image: var(--ww-center-gold-fade) !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--b.ruins-tone--b,
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  :is(.ruins-color-band--two.ruins-color-band--two,
+  .ruins-color-band--three.ruins-color-band--three,
+  .ruins-color-band--frame.ruins-color-band--frame) {
+  background: var(--ww-color-b) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-color-b) !important;
+  box-shadow: none !important;
+}
+
+html body .wild-subpage--ruins .ruins-color-band
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins,
+html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero {
+  background: transparent !important;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-contact-region--a.wild-footer-contact-region--a,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-contact-cta.wild-footer-contact-cta {
+  background: var(--ww-color-b) !important;
+  background-color: #b34e1f !important;
+  background-image: var(--ww-color-b) !important;
+  margin-top: 0 !important;
+}
+
+/* H64: tighten the air under Living and protect the complete wordmark from
+   horizontal clipping, including the small upper-right flourish. */
+html body .wild-top-logo-band,
+html body:has(.wild-subpage) .wild-top-logo-band,
+html body:has(#top.wild-home) .wild-top-logo-band,
+html body:has(.wild-subpage--ruins) .wild-top-logo-band,
+html body:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins,
+  .wild-subpage--bio)) .wild-top-logo-band {
+  overflow: visible !important;
+  margin-bottom: -0.85rem !important;
+  padding-bottom: 0.15rem !important;
+  padding-top: 0 !important;
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem) !important;
+}
+
+/* H65: carry the logo/scroll dimensional shadow onto the six Project
+   Wildfire sequence lines. This intentionally overrides H57's filter:none. */
+html body #top#top#top#top.wild-home #project-wildfire
+  :is(
+    .wild-wildfire-sequence-callout__line,
+    .wild-wildfire-sequence-callout__line--patio,
+    .wild-wildfire-sequence-callout__line--lounge,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line
+  ),
+html body .wild-home #project-wildfire
+  :is(
+    .wild-wildfire-sequence-callout__line,
+    .wild-wildfire-build-note__line
+  ),
+html body .wild-home #project-wildfire
+  .wild-wildfire-build-note > .wild-wildfire-build-note__line {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter:
+    drop-shadow(0 0.12rem 0.08rem rgba(50, 16, 5, 0.55))
+    drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32))
+    drop-shadow(0 0.55rem 0.9rem rgba(8, 3, 1, 0.28)) !important;
+  text-shadow:
+    0 1px 0 rgba(255, 247, 213, 0.28),
+    0 0.08rem 0.12rem rgba(50, 16, 5, 0.65),
+    0 0.18rem 0.35rem rgba(7, 2, 0, 0.85),
+    0 0.42rem 0.95rem rgba(7, 2, 0, 0.55) !important;
+}
+
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--patio,
+html body .wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--patio,
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(1),
+html body .wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(1) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--lounge,
+html body .wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--lounge,
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(2),
+html body .wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(2) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--going,
+html body .wild-home #project-wildfire
+  .wild-wildfire-sequence-callout__line--going,
+html body #top#top#top#top.wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(3),
+html body .wild-home #project-wildfire
+  .wild-wildfire-build-note__line:nth-child(3) {
+  color: #d2934a !important;
+  -webkit-text-fill-color: #d2934a !important;
+}
+
+html body .wild-top-logo,
+html body:has(#top.wild-home) .wild-top-logo {
+  overflow: visible !important;
+  --ww-top-logo-fill-scale: 1 !important;
+  --ww-top-logo-shadow-scale: 1.006 !important;
+  width: min(76vw, 58rem) !important;
+  max-width: 100% !important;
+  transform: none !important;
+}
+
+html body .wild-top-logo::before,
+html body .wild-top-logo::after {
+  overflow: visible !important;
+  clip-path: inset(0 0 28% 0) !important;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-position: center center !important;
+  mask-position: center center !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+}
+
+html body:has(.wild-subpage--ruins) .wild-top-logo-band,
+html body:has(.wild-subpage--bio) .wild-top-logo-band,
+html body:has(.wild-subpage--wildfire) .wild-top-logo-band {
+  margin-bottom: -1.1rem !important;
+  padding-bottom: 0.1rem !important;
+}
+
+html body .wild-subpage--ruins .wild-subpage-hero,
+html body .wild-subpage--bio .wild-subpage-hero {
+  margin-top: 0.15rem !important;
+  padding-top: 0 !important;
+}

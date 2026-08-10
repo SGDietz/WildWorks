@@ -1,0 +1,16 @@
+/* G 2026-08-06: desktop and tablet hero copy belongs at the top-left of the
+   photograph, on the stair side. The phone layout remains its own readable
+   stacked treatment. */
+@media (min-width: 720px) {
+  html body #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy {
+    position: absolute !important;
+    top: clamp(1.6rem, 4.2vw, 4rem) !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: clamp(1.5rem, 6.6vw, 5rem) !important;
+    align-content: start !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,97 @@
+/* Absolute final lock for G's hand-marked Bio and Ruins A/B map.
+   Full-width bands are flat solids. Cards and buttons retain their materials. */
+
+html body:has(.wild-subpage--ruins),
+html body:has(.wild-subpage--bio) {
+  --ww-solid-a: #983e17 !important;
+  --ww-solid-b: #c85a24 !important;
+  --ww-ab-a: #983e17 !important;
+  --ww-ab-b: #c85a24 !important;
+  --ww-color-a: #983e17 !important;
+  --ww-color-b: #c85a24 !important;
+}
+
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins),
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio),
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins) .wild-site-backdrop,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio) .wild-site-backdrop {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--a.ruins-tone--a,
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-ab-band.wild-tone--a.wild-tone--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  .ruins-color-band.ruins-tone--b.ruins-tone--b,
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  .wild-ab-band.wild-tone--b.wild-tone--b {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+html body :is(.wild-subpage--ruins, .wild-subpage--bio)
+  :is(.ruins-color-band, .wild-ab-band)
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-contact-region--a.wild-footer-contact-region--a,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
+html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+}
+
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-contact-region--a.wild-footer-contact-region--a {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-main.wild-footer-main,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
+html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+}
+
+/* The Dream Project panel is a card on the B field, not another page band. */
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--bio)) footer#footer
+  .wild-footer-contact-cta.wild-footer-contact-cta {
+  background: var(--ww-signature-card-gradient) !important;
+}

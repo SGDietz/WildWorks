@@ -1,0 +1,15 @@
+/* G 2026-08-06: short legal pages should flow straight into the shared
+   contact block. Do not manufacture a screen-height empty field below the
+   final legal card. Long legal pages retain their natural reading height. */
+html body .wild-home.wild-legal-home .wild-legal-section {
+  min-height: 0 !important;
+  padding-bottom: clamp(1.25rem, 2vw, 2rem) !important;
+}
+
+html body footer#footer.wild-footer--legal {
+  margin-top: 0 !important;
+}
+
+html body footer#footer.wild-footer--legal .wild-footer-main {
+  padding-top: clamp(1.25rem, 2vw, 2rem) !important;
+}

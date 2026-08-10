@@ -1,0 +1,45 @@
+/* Ruins and Bio only: Playfair Display for large text, Manrope for small text. */
+html body .wild-subpage--ruins :is(h1, h2, h3, h4),
+html body .wild-subpage--bio :is(h1, h2, h3, h4),
+html body .wild-subpage--bio .wild-bio-reinvention-heading,
+html body .wild-subpage--ruins .wild-ruins-rail :is(h1, h2, h3),
+html body .wild-subpage--bio .wild-subpage-section :is(h1, h2, h3),
+html body .wild-subpage--ruins .wild-subpage-section :is(h1, h2, h3) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body .wild-subpage--ruins :is(p, li, td, th, label, figcaption, blockquote, dd, dt),
+html body .wild-subpage--bio :is(p, li, td, th, label, figcaption, blockquote, dd, dt),
+html body .wild-subpage--ruins .wild-subpage-section,
+html body .wild-subpage--bio .wild-subpage-section,
+html body .wild-subpage--ruins .wild-ruins-rail,
+html body .wild-subpage--bio .wild-bio-mindset-line {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+/* Beat the older Ruins rail rule that pins narrative copy to the site serif. */
+html body .wild-subpage--ruins.wild-subpage--ruins
+  .wild-ruins-rail.wild-ruins-rail
+  :is(p, li, td, th, label, figcaption, blockquote, dd, dt),
+html body .wild-subpage--ruins.wild-subpage--ruins
+  .wild-subpage-section.wild-subpage-section
+  :is(p, li, td, th, label, figcaption, blockquote, dd, dt) {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+html body .wild-subpage--ruins :is(h1, h2, h3, h4) :is(span, em, strong, i, b),
+html body .wild-subpage--bio :is(h1, h2, h3, h4) :is(span, em, strong, i, b) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body .wild-subpage--ruins [style*="fontFamily"],
+html body .wild-subpage--ruins [style*="font-family"],
+html body .wild-subpage--bio [style*="fontFamily"],
+html body .wild-subpage--bio [style*="font-family"] {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+html body .wild-subpage--ruins [style*="fontFamily"] :is(h1, h2, h3),
+html body .wild-subpage--ruins .wild-subpage-section :is(h1, h2, h3) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}

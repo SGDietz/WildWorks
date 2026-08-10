@@ -1,0 +1,43 @@
+/* H115: Canonical WildWorks landscaping lockup.
+   The original number-2 artwork is the proportion authority: WILDWORKS,
+   scrollwork, "Fine Art & Practical", and "Landscaping" remain one exact
+   composition. Only the current site color/effect layers are applied. */
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo.wild-top-logo::before,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo.wild-top-logo::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  clip-path: none !important;
+  -webkit-mask: url("/wildworks-live-logo-transparent-number2-v5.png") center / contain no-repeat !important;
+  mask: url("/wildworks-live-logo-transparent-number2-v5.png") center / contain no-repeat !important;
+  pointer-events: none !important;
+  transform-origin: center !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo.wild-top-logo::before {
+  z-index: 0 !important;
+  background: #321005 !important;
+  background-image: none !important;
+  opacity: 0.78 !important;
+  filter: none !important;
+  transform: translateY(clamp(3px, 0.38vw, 5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo.wild-top-logo::after {
+  z-index: 1 !important;
+  background: #f7d9a5 !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  transform: scale(var(--ww-top-logo-fill-scale)) !important;
+}

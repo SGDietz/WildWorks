@@ -1,0 +1,1536 @@
+/* Grok H82-H96, reconciled into one final cascade.
+   H91 is the approved tight letter effect. Legal white remains locked by the
+   stylesheet imported immediately after this one. */
+
+:root {
+  --ww-letter-effect-filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
+  --ww-letter-effect-text-shadow: 0 clamp(3px, 0.38vw, 5px) 0 rgba(50, 16, 5, 0.78);
+}
+
+html body .ww-letter-effect-175522,
+html body :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-build-note__line,
+  .wild-iscott-title,
+  .wild-iscott-title__segment,
+  .wild-wildfire-title .wild-line-title__line,
+  .wild-wildfire-flame-title__text,
+  .wild-home-statement__line,
+  .wild-home-statement__phrase,
+  .wild-tree-title .wild-line-title__line,
+  .wild-story-card--feature h3,
+  .wild-story-card--feature p,
+  .wild-story-card--feature li,
+  .wild-story-card--feature .wild-line-title__line,
+  #services .wild-card h3,
+  #services .wild-card p,
+  #services .wild-card li,
+  #services .wild-card .wild-line-title__line,
+  .wildfire-hero-copy .wild-kicker,
+  .wildfire-hero-headline__line,
+  .wildfire-hero-summary__line,
+  .wild-home-hero-stonework-note,
+  .wild-footer-stonework-note,
+  .wild-nav-link,
+  .wild-mobile-nav-link,
+  .wild-subpage--ruins h1,
+  .wild-subpage--ruins h2,
+  .wild-subpage--bio h1,
+  .wild-subpage--bio h2.wild-bio-reinvention-heading,
+  .wild-bio-reinvention-heading,
+  .wild-hero-wordmark-text-orange,
+  .wild-hero-headline,
+  .wild-hero-headline__line,
+  .wild-lede,
+  .wild-hero-lede-line,
+  .wild-hero-lede-accent,
+  .wild-iscott-body,
+  .wild-iscott-steps-inline,
+  .wild-iscott-steps-inline li,
+  #wildworks-proof .wild-body,
+  #wildworks-proof .wild-copy-stack p,
+  .wild-footer-contact-cta__title,
+  .wild-footer-contact-cta__kicker,
+  .wild-signup-title,
+  .wildfire-gallery-status,
+  .wildfire-gallery-status span,
+  .wild-footer-closing,
+  .wild-footer-closing p,
+  .wild-footer-closing span,
+  .wild-footer-closing a,
+  .wild-footer-legal-links,
+  .wild-footer-legal-link
+),
+html body #top#top#top#top#top.wild-home
+  .wild-home-statement
+  .wild-home-statement__line--one,
+html body #top#top#top#top#top.wild-home
+  .wild-home-statement
+  .wild-home-statement__line--one :is(span, .wild-home-statement__phrase),
+html body #top#top#top.wild-home #talk-to-iscott.wild-iscott-panel :is(
+  .money-panel-kicker,
+  .wild-start-title,
+  .wild-start-title__start,
+  .wild-start-title__with,
+  .wild-start-title__name,
+  .wild-iscott-disclosure,
+  .wild-iscott-disclosure a
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* The existing Home art direction uses unusually specific selectors. These
+   locks make the final H91 recipe win without changing any colors. */
+html body #top#top#top.wild-home .wild-hero.discordSection :is(
+  .wild-hero-wordmark-text-orange,
+  .wild-hero-headline,
+  .wild-hero-headline__line,
+  .wild-lede,
+  .wild-hero-lede-line,
+  .wild-hero-lede-accent
+),
+html body #top#top#top.wild-home #iscott-sales :is(
+  .wild-iscott-body,
+  .wild-iscott-steps-inline,
+  .wild-iscott-steps-inline li,
+  .money-step-list,
+  .money-step-list li
+),
+html body #top#top#top.wild-home #wildworks-proof :is(
+  .wild-body,
+  .wild-copy-stack p,
+  p.wild-body
+),
+html body #top#top#top.wild-home #signature-work
+  .wild-story-card--feature :is(h3, p, li, span, .wild-line-title__line),
+html body #top#top#top.wild-home #services .wild-card :is(
+  h3,
+  p,
+  li,
+  span,
+  strong,
+  em,
+  .wild-line-title__line
+),
+html body #footer#footer :is(
+  .wild-footer-contact-cta__title,
+  .wild-footer-contact-cta__kicker,
+  .wild-signup-title
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* Preserve icons and the Talk to iScott button chrome. */
+html body #services .wild-card .wild-card-icon,
+html body #services .wild-card .wild-card-icon svg,
+html body .wildfire-gallery-status svg,
+html body .wildfire-gallery-status .h-5,
+html body #talk-to-iscott .money-cta,
+html body #talk-to-iscott .money-cta * {
+  filter: none !important;
+}
+
+/* H94: enlarge the visible signup field label, not the typed value. */
+html body #footer#footer .wild-signup-field,
+html body .wild-signup-system .wild-signup-field {
+  font-size: 1.505rem !important;
+  line-height: 1.25 !important;
+}
+
+html body #footer#footer .wild-signup-field input,
+html body .wild-signup-system .wild-signup-field input {
+  font-size: 1rem !important;
+}
+
+/* H95: four visual type steps larger, while preserving header fit. */
+html body header.wild-site-header a.wild-nav-link,
+html body .wild-site-header a.wild-nav-link {
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.04em !important;
+}
+
+@media (min-width: 1024px) {
+  html body header.wild-site-header a.wild-nav-link,
+  html body .wild-site-header a.wild-nav-link {
+    font-size: 1.375rem !important;
+  }
+}
+
+html body .wild-mobile-menu a.wild-mobile-nav-link,
+html body a.wild-mobile-nav-link {
+  font-size: 1.625rem !important;
+  line-height: 1.25 !important;
+}
+
+/* H97: unbox the framed Home kickers and give the words clean hierarchy. */
+html body #top#top#top.wild-home :is(
+  .wild-kicker--framed,
+  .wild-kicker-frame,
+  .wild-kicker .wild-kicker-frame
+),
+html body #top#top#top.wild-home #services .wild-kicker,
+html body #top#top#top.wild-home #ai-websites .wild-kicker,
+html body #top#top#top.wild-home #what-is-wildworks .wild-kicker--framed,
+html body #top#top#top.wild-home #iscott-sales .wild-kicker {
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto clamp(0.85rem, 1.6vw, 1.25rem) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: clamp(0.78rem, 1.35vw, 0.95rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.22em !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top.wild-home #ai-websites .wild-kicker--framed {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* H90: restore only the approved Living crop; never touch the wordmark or scrolls. */
+html body .wild-top-logo-living::before,
+html body .wild-top-logo-living::after,
+html body:has(#top.wild-home) .wild-top-logo-living::before,
+html body:has(#top.wild-home) .wild-top-logo-living::after,
+html body:has(.wild-subpage) .wild-top-logo-living::before,
+html body:has(.wild-subpage) .wild-top-logo-living::after {
+  clip-path: inset(67% 32% 17% 32%) !important;
+  transform-origin: 50% 75% !important;
+}
+
+/* H88 wins over the general recipe: no shadow at all on this title. */
+html body #top#top#top.wild-home #signature-work :is(
+  .wild-signature-title,
+  .wild-signature-title__line,
+  .wild-signature-title__one,
+  .wild-signature-title__two,
+  .wild-signature-title__three
+),
+html body .wild-home #signature-work .wild-signature-title,
+html body .wild-home #signature-work .wild-signature-title * {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* H99 is the newer visual direction: all approved effect targets mirror the
+   WILDWORKS/scroll depth. The logo artwork itself remains untouched. */
+html body #top#top#top#top#top.wild-home .wild-home-statement :is(
+  .wild-home-statement__title,
+  .wild-home-statement__line,
+  .wild-home-statement__phrase
+) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  background: none !important;
+  opacity: 1 !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body :is(
+  .wild-signature-title,
+  .wild-signature-title__line,
+  .wild-signature-title__one,
+  .wild-signature-title__two,
+  .wild-signature-title__three,
+  .wildfire-gallery-status,
+  .wildfire-gallery-status span,
+  .wild-footer-closing,
+  .wild-footer-closing p,
+  .wild-footer-closing span,
+  .wild-footer-closing a,
+  .wild-footer-legal-link,
+  .wild-kicker--framed,
+  .wild-kicker-frame
+),
+html body #talk-to-iscott :is(
+  .money-panel-kicker,
+  .wild-start-title,
+  .wild-start-title span,
+  .wild-iscott-disclosure,
+  .wild-iscott-disclosure a
+) {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H100: center the revised A Ruin title while retaining the intentional
+   mobile/desktop line grouping already defined in globals.css. */
+html body #top#top#top.wild-home #signature-work .wild-section-heading,
+html body .wild-home #signature-work .wild-section-heading {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+html body #top#top#top.wild-home #signature-work .wild-signature-title,
+html body .wild-home #signature-work .wild-signature-title {
+  width: 100% !important;
+  max-width: min(100%, 28ch) !important;
+  margin-inline: auto !important;
+  text-align: center !important;
+}
+
+html body #top#top#top.wild-home #signature-work .wild-signature-title__line,
+html body .wild-home #signature-work .wild-signature-title__line,
+html body .wild-home #signature-work .wild-signature-title :is(
+  .wild-signature-title__one,
+  .wild-signature-title__two,
+  .wild-signature-title__three
+) {
+  text-align: center !important;
+}
+
+html body #top#top#top#top#top.wild-home #signature-work :is(
+  .wild-signature-title,
+  .wild-signature-title__line,
+  .wild-signature-title__one,
+  .wild-signature-title__two,
+  .wild-signature-title__three
+) {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* G 2026-08-05: the footer close is exactly two lines on phones and portrait
+   tablets, then one line on iPad landscape, laptop, and desktop. */
+html body #footer#footer#footer .wild-footer-contact-cta__kicker-line {
+  display: inline;
+}
+
+@media (max-width: 834px) {
+  html body #footer#footer#footer .wild-footer-contact-cta__kicker {
+    font-size: clamp(1.55rem, 4.1vw, 2.1rem) !important;
+    white-space: normal !important;
+  }
+
+  html body #footer#footer#footer .wild-footer-contact-cta__kicker-line {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 835px) {
+  html body #footer#footer#footer .wild-footer-contact-cta__kicker {
+    font-size: clamp(2rem, 3.45vw, 2.5rem) !important;
+    letter-spacing: 0.015em !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 350px) {
+  html body #footer#footer#footer .wild-footer-contact-cta__kicker {
+    font-size: 1.15rem !important;
+  }
+}
+
+/* H101 reviewed: use one logo-depth layer on display text and the tighter
+   companion recipe on smaller copy. Nested elements must never stack their
+   own drop-shadow on top of a filtered parent. */
+:root {
+  --ww-letter-effect-filter-small: drop-shadow(0 1px 2px rgba(74, 31, 9, 0.36));
+  --ww-letter-effect-text-shadow-small: 0 1px 0 rgba(50, 16, 5, 0.8);
+}
+
+html body #top#top#top#top#top#top#top.wild-home :is(
+  p,
+  li,
+  label,
+  figcaption,
+  blockquote,
+  dd,
+  dt,
+  small,
+  .wild-kicker,
+  .wildfire-gallery-status
+),
+html body #footer#footer#footer#footer :is(
+  p,
+  li,
+  label,
+  small,
+  .wild-footer-legal-link,
+  .wild-signup-field
+) {
+  filter: var(--ww-letter-effect-filter-small) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow-small) !important;
+}
+
+/* One display-depth layer lives on the heading itself. */
+html body #top#top#top#top#top#top#top.wild-home
+  :is(h1, h2, h3, h4):not(.wild-hero-headline):not(.wild-home-statement__title):not(.wild-signature-title),
+html body #footer#footer#footer#footer :is(
+  .wild-footer-contact-cta__title,
+  .wild-footer-contact-cta__kicker,
+  .wild-signup-title
+) {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* Descendants inherit the text treatment but never add a second filter. */
+html body #top#top#top#top#top#top#top.wild-home
+  :is(h1, h2, h3, h4, p, li, label, figcaption, blockquote, dd, dt, .wildfire-gallery-status)
+  :is(span, em, strong, a),
+html body #footer#footer#footer#footer
+  :is(.wild-footer-contact-cta__title, .wild-footer-contact-cta__kicker, .wild-signup-title, p, li, label)
+  :is(span, em, strong, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* The statement and Ruin title contain line wrappers. Put the single effect
+   on each visible line, not on every nested wrapper. */
+html body #top#top#top#top#top#top#top.wild-home :is(
+  .wild-home-statement__title,
+  .wild-signature-title
+) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top.wild-home :is(
+  .wild-home-statement__line,
+  .wild-signature-title__line
+) {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-home-statement__line .wild-home-statement__phrase,
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-signature-title__line :is(span, em, strong) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* The Home hero has independently styled lines, so the h1 is only a layout
+   wrapper. Makes Your Home keeps the logo depth; smaller lede copy is tight. */
+html body #top#top#top#top#top#top#top.wild-home .wild-hero-headline {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-hero-headline__line--makes-home {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top.wild-home .wild-lede {
+  filter: var(--ww-letter-effect-filter-small) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow-small) !important;
+}
+
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-lede :is(span, em, strong, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* Button lettering is intentionally clean and must not inherit a page-text
+   shadow recipe. */
+html body#wildworks-body :is(.money-cta, .wild-signup-choice, .wild-signup-submit),
+html body#wildworks-body :is(.money-cta, .wild-signup-choice, .wild-signup-submit) * {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* G 2026-08-05: Legendary must stay clean. The nested italic was receiving
+   the depth effect twice (once on the line and again on the word), which made
+   the edge read as a black cloud on mobile. The hero h1 itself is also clear
+   above, so no ancestor can reintroduce the halo. */
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible,
+html body #top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible em {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* Final specificity lock: earlier Grok layers used repeated IDs, so the
+   intended single-render targets need to decisively win that cascade. */
+html body #top#top#top#top#top#top#top#top.wild-home :is(
+  .wild-home-statement__line,
+  .wild-signature-title__line,
+  .wild-hero-headline__line--makes-home
+) {
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement__line .wild-home-statement__phrase,
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  .wild-signature-title__line :is(span, em, strong) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #footer#footer#footer#footer#footer :is(
+  .wild-footer-closing,
+  .wild-footer-legal-links
+) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible,
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid
+  .wild-hero-headline__line--irresistible em {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* G 2026-08-05: on phones, the complete Home hero message is one card—from
+   WildWorks through the Call Now button. The photograph remains outside the
+   card, and the overlay treatment at 720px+ remains untouched. */
+@media (max-width: 719px) {
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy {
+    box-sizing: border-box !important;
+    width: calc(100% - 1.5rem) !important;
+    max-width: calc(100% - 1.5rem) !important;
+    margin: 0.75rem auto 1.5rem !important;
+    padding: 1.45rem 1.15rem 1.35rem !important;
+    overflow: visible !important;
+    border: 1px solid #8f3612 !important;
+    border-radius: 0.9rem !important;
+    background: var(--ww-reference-card) !important;
+    background-color: var(--ww-reference-b) !important;
+    background-image: var(--ww-reference-card) !important;
+    box-shadow:
+      0 12px 28px rgba(91, 35, 8, 0.22),
+      inset 0 1px 0 rgba(255, 222, 163, 0.18) !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy::before,
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-brand-lockup {
+    margin-top: 0 !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row > span {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* G 2026-08-05: WILDWORKS and the scrolls keep their approved full-depth
+   effect. Menu labels plus Fine Art & Practical Living use exactly half the
+   vertical offset so their shadow plate sits closer to the letters. */
+:root {
+  --ww-letter-effect-filter-half-distance:
+    drop-shadow(0 0.19rem 0.58rem rgba(74, 31, 9, 0.32));
+  --ww-letter-effect-text-shadow-half-distance:
+    0 clamp(1.5px, 0.19vw, 2.5px) 0 rgba(50, 16, 5, 0.78);
+}
+
+html body#wildworks-body#wildworks-body :is(
+  a.wild-nav-link,
+  a.wild-mobile-nav-link
+) {
+  filter: var(--ww-letter-effect-filter-half-distance) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow-half-distance) !important;
+}
+
+/* The source artwork has four separate occupied bands: wordmark, scrolls,
+   Fine Art & Practical, and Living. Keep the first two on the original logo
+   layer and render the two tagline bands independently. */
+html body#wildworks-body#wildworks-body .wild-top-logo::before,
+html body#wildworks-body#wildworks-body .wild-top-logo::after {
+  clip-path: inset(0 0 47% 0) !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .wild-top-logo-tagline,
+  .wild-top-logo-tagline::before,
+  .wild-top-logo-tagline::after
+) {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before,
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before,
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
+  content: "";
+  -webkit-mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  mask: url("/wildworks-live-logo-transparent-living-v13.png") center / contain no-repeat;
+  clip-path: inset(53% 20% 33% 20%);
+  transform-origin: center;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before {
+  z-index: 0;
+  background: #321005;
+  opacity: 0.78;
+  transform:
+    translateY(clamp(1.5px, 0.19vw, 2.5px))
+    scale(var(--ww-top-logo-shadow-scale));
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
+  z-index: 1;
+  background: #f7d9a5;
+  filter: var(--ww-letter-effect-filter-half-distance);
+  transform: scale(var(--ww-top-logo-fill-scale));
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
+  transform:
+    translateX(-0.3%)
+    translateY(clamp(1.5px, 0.19vw, 2.5px))
+    scale(0.906) !important;
+}
+
+html body#wildworks-body#wildworks-body .wild-top-logo-living::after {
+  filter: var(--ww-letter-effect-filter-half-distance) !important;
+}
+
+/* G 2026-08-05: Home hero is two intentional three-line stair-steps. Each
+   group uses the permanent Color 1 / Color 2 / Color 3 key in order. */
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-wordmark-text-orange {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 4.65em !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: 2.65em !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-size: 4.95em !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-size: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1),
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1) * {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+  font-size: 1em !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) * {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  font-size: 0.8em !important;
+}
+
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3),
+html body #top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) * {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  font-size: 1.18em !important;
+}
+
+/* G 2026-08-06: Home iScott introduction. Keep the dimensional lettering,
+   but render it once and closer to the glyphs so it reads as carved depth,
+   not a detached dark duplicate. The eyebrow is four points larger and
+   returns to the left edge of the copy column. */
+:root {
+  --ww-iscott-letter-effect-filter:
+    drop-shadow(0 0.24rem 0.46rem rgba(74, 31, 9, 0.3));
+  --ww-iscott-letter-effect-text-shadow:
+    0 clamp(2px, 0.24vw, 3.25px) 0 rgba(50, 16, 5, 0.76);
+}
+
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-copy-stack > .wild-kicker {
+  width: fit-content !important;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+  font-size: clamp(1.11rem, 2vw, 1.28rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.16em !important;
+  text-align: left !important;
+  filter: var(--ww-iscott-letter-effect-filter) !important;
+  text-shadow: var(--ww-iscott-letter-effect-text-shadow) !important;
+}
+
+/* Clear the historical ancestor effects before applying one effect to each
+   visible text run. This prevents the double-shadow that pushed the depth too
+   far away from iScott is the Front Door and the numbered copy. */
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales :is(
+    .wild-iscott-title,
+    .wild-iscott-title__row,
+    .wild-iscott-steps-inline,
+    .money-step-list,
+    .wild-iscott-steps-inline > div,
+    .money-step-content
+  ) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-title--front-door .wild-iscott-title__segment,
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-copy-stack > .wild-iscott-body,
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-steps-inline > div > span,
+html body #top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-steps-inline .money-step-content > p {
+  filter: var(--ww-iscott-letter-effect-filter) !important;
+  text-shadow: var(--ww-iscott-letter-effect-text-shadow) !important;
+}
+
+@media (max-width: 719px) {
+  html body #top#top#top#top#top#top#top#top#top.wild-home
+    #iscott-sales .wild-copy-stack > .wild-kicker {
+    max-width: 100% !important;
+    font-size: clamp(1.08rem, 4.2vw, 1.14rem) !important;
+    letter-spacing: 0.1em !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* G 2026-08-06: the Home concierge card uses one restrained, logo-like
+   depth pass on every piece of non-button copy. Clear the historical stacked
+   effects first, then apply the close treatment once per visible text block. */
+:root {
+  --ww-concierge-effect-filter:
+    drop-shadow(0 0.13rem 0.34rem rgba(74, 31, 9, 0.28));
+  --ww-concierge-effect-text-shadow:
+    0 clamp(1px, 0.12vw, 1.6px) 0 rgba(50, 16, 5, 0.68);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #talk-to-iscott.wild-iscott-panel :is(
+    .money-panel-kicker,
+    .wild-start-title,
+    .wild-start-title > span,
+    .wild-iscott-disclosure,
+    .wild-iscott-disclosure a
+  ) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #talk-to-iscott#talk-to-iscott.wild-iscott-panel :is(
+    .money-panel-kicker,
+    .wild-start-title,
+    .wild-iscott-disclosure
+  ) {
+  filter: var(--ww-concierge-effect-filter) !important;
+  text-shadow: var(--ww-concierge-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #talk-to-iscott.wild-iscott-panel .wild-start-title > span,
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #talk-to-iscott.wild-iscott-panel .wild-iscott-disclosure a {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* Two type steps smaller on every menu surface. Preserve the already-approved
+   close dark depth effect; only the type scale changes here. */
+html body header.wild-site-header a.wild-nav-link,
+html body .wild-site-header a.wild-nav-link {
+  font-size: 1rem !important;
+}
+
+@media (min-width: 1024px) {
+  html body header.wild-site-header a.wild-nav-link,
+  html body .wild-site-header a.wild-nav-link {
+    font-size: 1.125rem !important;
+  }
+}
+
+html body .wild-mobile-menu a.wild-mobile-nav-link,
+html body a.wild-mobile-nav-link {
+  font-size: 1.375rem !important;
+}
+
+/* Permanent button exception: dimensional text effects belong to display and
+   narrative type, never controls. Keep the polished button material and ink,
+   but remove filter/text-shadow from every actual or styled button and all of
+   its label/icon descendants. */
+html body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  .wild-iscott-upload__button
+),
+html body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-legal-index-cta,
+  a.wild-footer-mobile-link,
+  a.wild-brand-social-link,
+  a.wild-logo-download-button,
+  .wild-iscott-upload__button
+) * {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* G 2026-08-06: preserve Project Wildfire exactly. Tighten only the depth on
+   It Started with a Fireplace by clearing the inherited wrapper pass and
+   rendering one close effect on its visible line. */
+:root {
+  --ww-wildfire-subtitle-effect-filter:
+    drop-shadow(0 0.13rem 0.34rem rgba(74, 31, 9, 0.28));
+  --ww-wildfire-subtitle-effect-text-shadow:
+    0 clamp(1px, 0.12vw, 1.6px) 0 rgba(50, 16, 5, 0.68);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire .wild-wildfire-title {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire .wild-wildfire-title .wild-line-title__line {
+  filter: var(--ww-wildfire-subtitle-effect-filter) !important;
+  text-shadow: var(--ww-wildfire-subtitle-effect-text-shadow) !important;
+}
+
+/* G 2026-08-06: the Project Wildfire story hierarchy needs proportional
+   depth. Then Came the Patio remains the approved reference. Every smaller
+   line moves progressively closer to its glyphs so the shadow never looks
+   like a second displaced line of type. */
+:root {
+  --ww-wildfire-lounge-effect-filter:
+    drop-shadow(
+      0
+      clamp(1.7px, 0.24vw, 3.8px)
+      clamp(3.3px, 0.4vw, 6px)
+      rgba(74, 31, 9, 0.29)
+    );
+  --ww-wildfire-lounge-effect-text-shadow:
+    0 clamp(1.2px, 0.18vw, 2.6px) 0 rgba(50, 16, 5, 0.72);
+  --ww-wildfire-going-effect-filter:
+    drop-shadow(
+      0
+      clamp(1.2px, 0.16vw, 2.55px)
+      clamp(2.6px, 0.32vw, 5px)
+      rgba(74, 31, 9, 0.27)
+    );
+  --ww-wildfire-going-effect-text-shadow:
+    0 clamp(0.8px, 0.12vw, 1.8px) 0 rgba(50, 16, 5, 0.68);
+  --ww-wildfire-build-effect-filter:
+    drop-shadow(
+      0
+      clamp(0.7px, 0.09vw, 1.45px)
+      clamp(2px, 0.22vw, 3.5px)
+      rgba(74, 31, 9, 0.24)
+    );
+  --ww-wildfire-build-effect-text-shadow:
+    0 clamp(0.55px, 0.075vw, 1.15px) 0 rgba(50, 16, 5, 0.62);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
+  filter: var(--ww-wildfire-lounge-effect-filter) !important;
+  text-shadow: var(--ww-wildfire-lounge-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire .wild-wildfire-sequence-callout__line--going {
+  filter: var(--ww-wildfire-going-effect-filter) !important;
+  text-shadow: var(--ww-wildfire-going-effect-text-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire .wild-wildfire-build-note__line {
+  filter: var(--ww-wildfire-build-effect-filter) !important;
+  text-shadow: var(--ww-wildfire-build-effect-text-shadow) !important;
+}
+
+/* G 2026-08-06: restore the permanent Color 1 / 2 / 3 hierarchy that the
+   broad H99 letter-effect rule accidentally flattened. The effect remains
+   identical to the WildWorks lockup; only the approved solid fill changes.
+   Gold-standard reference:
+     Design...                         = Color 1
+     A Contractor... / Where Fine...  = Color 2
+     Tree / Life Natural / Stone Patio = Color 1 / 2 / 3 */
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement .wild-home-statement__line--one,
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement .wild-home-statement__line--one .wild-home-statement__phrase {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement .wild-home-statement__line--two,
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement .wild-home-statement__line--two .wild-home-statement__phrase,
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-home-statement .wild-home-statement__line--four {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #wildworks-proof .wild-tree-title .wild-line-title__line--one {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #wildworks-proof .wild-tree-title .wild-line-title__line--two {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #wildworks-proof .wild-tree-title .wild-line-title__line--three {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+/* G 2026-08-06: small Tree of Life copy and the final stonework statement
+   receive the same carved depth as the display lettering, scaled tightly to
+   the smaller glyphs so the effect never reads as a detached duplicate. */
+:root {
+  --ww-small-letter-effect-filter:
+    drop-shadow(
+      0
+      clamp(0.45px, 0.055vw, 0.8px)
+      clamp(1.1px, 0.13vw, 1.9px)
+      rgba(74, 31, 9, 0.22)
+    );
+  --ww-small-letter-effect-text-shadow:
+    0 clamp(0.4px, 0.045vw, 0.68px) 0 rgba(50, 16, 5, 0.58);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #wildworks-proof .wild-copy-stack .wild-body,
+html body #footer#footer#footer#footer#footer .wild-footer-stonework-note {
+  filter: var(--ww-small-letter-effect-filter) !important;
+  text-shadow: var(--ww-small-letter-effect-text-shadow) !important;
+}
+
+html body #footer#footer#footer#footer#footer .wild-footer-stonework-note {
+  width: min(100% - 2rem, 72rem) !important;
+  margin: 0.45rem auto 0 !important;
+  padding: 0 1rem 0.35rem !important;
+  text-align: center !important;
+}
+
+/* G 2026-08-06: Home Ruins feature card. Keep The in Color 1, restore Ruins
+   to Color 2, and use close BLACK depth. Body-size lettering receives a much
+   lighter/tighter recipe than the display title. */
+:root {
+  --ww-ruins-card-title-filter:
+    drop-shadow(
+      0
+      clamp(0.75px, 0.08vw, 1.15px)
+      clamp(1.5px, 0.17vw, 2.4px)
+      rgba(0, 0, 0, 0.24)
+    );
+  --ww-ruins-card-title-shadow:
+    0 clamp(1.2px, 0.13vw, 1.8px) 0 rgba(0, 0, 0, 0.7);
+  --ww-ruins-card-copy-filter:
+    drop-shadow(
+      0
+      clamp(0.35px, 0.04vw, 0.58px)
+      clamp(0.8px, 0.1vw, 1.35px)
+      rgba(0, 0, 0, 0.2)
+    );
+  --ww-ruins-card-copy-shadow:
+    0 clamp(0.38px, 0.045vw, 0.62px) 0 rgba(0, 0, 0, 0.58);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy h3 {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line {
+  filter: var(--ww-ruins-card-title-filter) !important;
+  text-shadow: var(--ww-ruins-card-title-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line--one,
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line--one :is(span, strong, em) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line--two,
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line--two :is(span, strong, em) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy
+  .wild-line-title__line :is(span, strong, em) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy p {
+  filter: var(--ww-ruins-card-copy-filter) !important;
+  text-shadow: var(--ww-ruins-card-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature .wild-story-copy p
+  :is(span, strong, em, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* G 2026-08-06: Services reset. The tiny eyebrow becomes a real section
+   label; all six cards share the same approved material at full opacity; the
+   display and body effects are scaled tightly and use black only. */
+:root {
+  --ww-services-title-filter:
+    drop-shadow(
+      0
+      clamp(0.6px, 0.07vw, 1px)
+      clamp(1.25px, 0.15vw, 2.1px)
+      rgba(0, 0, 0, 0.22)
+    );
+  --ww-services-title-shadow:
+    0 clamp(0.9px, 0.105vw, 1.5px) 0 rgba(0, 0, 0, 0.68);
+  --ww-services-copy-filter:
+    drop-shadow(
+      0
+      clamp(0.3px, 0.035vw, 0.5px)
+      clamp(0.7px, 0.085vw, 1.2px)
+      rgba(0, 0, 0, 0.18)
+    );
+  --ww-services-copy-shadow:
+    0 clamp(0.32px, 0.04vw, 0.56px) 0 rgba(0, 0, 0, 0.54);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services > .wild-section-heading > .wild-kicker {
+  font-size: clamp(1.75rem, 2.5vw, 2.2rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.16em !important;
+  filter: var(--ww-services-copy-filter) !important;
+  text-shadow: var(--ww-services-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card {
+  opacity: 1 !important;
+  background: var(--ww-reference-card) !important;
+  background-color: var(--ww-reference-b) !important;
+  background-image: var(--ww-reference-card) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card h3 {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card h3 .wild-line-title__line {
+  filter: var(--ww-services-title-filter) !important;
+  text-shadow: var(--ww-services-title-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card h3 .wild-line-title__line
+  :is(span, strong, em) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card :is(p, li) {
+  filter: var(--ww-services-copy-filter) !important;
+  text-shadow: var(--ww-services-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #services#services .wild-card :is(p, li)
+  :is(span, strong, em, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* G 2026-08-06: rebuild the Ai-native website section after the narrow-copy
+   regression. Five intentional desktop lines become natural flowing copy on
+   smaller screens. Remove the one-pixel avatar remnant from layout, restore
+   the capability cards to Color 1 / 2 / 3, and keep every effect proportional
+   and black. */
+:root {
+  --ww-ai-site-title-filter:
+    drop-shadow(
+      0
+      clamp(0.7px, 0.08vw, 1.15px)
+      clamp(1.45px, 0.17vw, 2.4px)
+      rgba(0, 0, 0, 0.23)
+    );
+  --ww-ai-site-title-shadow:
+    0 clamp(1.05px, 0.12vw, 1.7px) 0 rgba(0, 0, 0, 0.68);
+  --ww-ai-site-copy-filter:
+    drop-shadow(
+      0
+      clamp(0.3px, 0.035vw, 0.5px)
+      clamp(0.7px, 0.085vw, 1.2px)
+      rgba(0, 0, 0, 0.18)
+    );
+  --ww-ai-site-copy-shadow:
+    0 clamp(0.32px, 0.04vw, 0.56px) 0 rgba(0, 0, 0, 0.54);
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-heading > .wild-kicker {
+  font-size: clamp(1.4rem, 2vw, 1.75rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.16em !important;
+  filter: var(--ww-ai-site-copy-filter) !important;
+  text-shadow: var(--ww-ai-site-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title {
+  margin-bottom: 0 !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title
+  .wild-line-title__line {
+  filter: var(--ww-ai-site-title-filter) !important;
+  text-shadow: var(--ww-ai-site-title-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-heading > .wild-body.wild-site-offer-copy {
+  display: grid !important;
+  width: min(100%, 72rem) !important;
+  max-width: 72rem !important;
+  gap: 0.12rem !important;
+  margin: clamp(1.35rem, 2vw, 1.8rem) auto 0 !important;
+  line-height: 1.38 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+  filter: var(--ww-ai-site-copy-filter) !important;
+  text-shadow: var(--ww-ai-site-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-copy__line {
+  display: block !important;
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-shell {
+  row-gap: clamp(0.45rem, 0.8vw, 0.7rem) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-heading {
+  margin-bottom: clamp(0.35rem, 0.65vw, 0.6rem) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-grid {
+  /* These cards belong to the copy above them, not a separate visual beat. */
+  margin-top: clamp(0.2rem, 0.45vw, 0.4rem) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card {
+  opacity: 1 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card h3 {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card h3 .wild-line-title__line {
+  filter: var(--ww-ai-site-title-filter) !important;
+  text-shadow: var(--ww-ai-site-title-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card h3 .wild-line-title__line
+  :is(span, strong, em) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card p {
+  filter: var(--ww-ai-site-copy-filter) !important;
+  text-shadow: var(--ww-ai-site-copy-shadow) !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card p
+  :is(span, strong, em, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card:nth-child(1)
+  :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card:nth-child(2)
+  :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites#ai-websites .wild-site-offer-card:nth-child(3)
+  :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+@media (max-width: 1099px) {
+  html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+    #ai-websites#ai-websites .wild-site-offer-heading > .wild-body.wild-site-offer-copy {
+    display: block !important;
+    width: min(100%, 46rem) !important;
+    max-width: 46rem !important;
+    text-wrap: pretty !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+    #ai-websites#ai-websites .wild-site-offer-copy__line {
+    display: inline !important;
+  }
+
+  html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
+    #ai-websites#ai-websites .wild-site-offer-copy__line:not(:last-child)::after {
+    content: " " !important;
+  }
+}
+
+/* G 2026-08-06: footer typography uses the same close black dimensional
+   treatment as the approved wordmark. Large phrases get a compact effect;
+   supporting copy gets only a light edge. Controls and form-entry text stay
+   completely clean. */
+:root {
+  --ww-footer-title-filter:
+    drop-shadow(
+      0
+      clamp(0.55px, 0.06vw, 0.9px)
+      clamp(1.15px, 0.12vw, 1.8px)
+      rgba(0, 0, 0, 0.22)
+    );
+  --ww-footer-title-shadow:
+    0 clamp(0.8px, 0.085vw, 1.25px) 0 rgba(0, 0, 0, 0.66);
+  --ww-footer-copy-filter:
+    drop-shadow(
+      0
+      clamp(0.22px, 0.025vw, 0.36px)
+      clamp(0.5px, 0.055vw, 0.8px)
+      rgba(0, 0, 0, 0.16)
+    );
+  --ww-footer-copy-shadow:
+    0 clamp(0.24px, 0.028vw, 0.4px) 0 rgba(0, 0, 0, 0.48);
+}
+
+html body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer:not(.wild-footer--legal) :is(
+  .wild-footer-contact-cta__title,
+  .wild-footer-contact-cta__kicker,
+  .wild-signup-title,
+  .wild-footer-stonework-note
+) {
+  filter: var(--ww-footer-title-filter) !important;
+  text-shadow: var(--ww-footer-title-shadow) !important;
+}
+
+html body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer:not(.wild-footer--legal) :is(
+  .wild-signup-field > span,
+  .wild-signup-consent > span,
+  .wild-signup-fine-print,
+  .wild-signup-status,
+  .wild-footer-closing > span,
+  .wild-footer-legal-links
+) {
+  filter: var(--ww-footer-copy-filter) !important;
+  text-shadow: var(--ww-footer-copy-shadow) !important;
+}
+
+html body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer:not(.wild-footer--legal) :is(
+    .wild-signup-field > span,
+    .wild-signup-consent > span,
+    .wild-signup-fine-print,
+    .wild-footer-legal-links
+  ) :is(span, strong, em, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* Buttons, button-like links, and typed/placeholder form text never receive
+   the dimensional type effect. */
+html body#wildworks-body#wildworks-body footer#footer#footer#footer#footer :is(
+  button,
+  button *,
+  .money-cta,
+  .money-cta *,
+  .wild-footer-mobile-link,
+  .wild-footer-mobile-link *,
+  input,
+  input::placeholder
+) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* G 2026-08-06: Wildfire, Ruins, and Bio share one close black type-depth
+   system. Display type stays dimensional without a separated duplicate;
+   every supporting word receives only a light edge. Colors and page bands
+   are deliberately untouched. */
+:root {
+  --ww-subpage-title-filter:
+    drop-shadow(
+      0
+      clamp(0.55px, 0.06vw, 0.9px)
+      clamp(1.15px, 0.12vw, 1.8px)
+      rgba(0, 0, 0, 0.22)
+    );
+  --ww-subpage-title-shadow:
+    0 clamp(0.8px, 0.085vw, 1.25px) 0 rgba(0, 0, 0, 0.66);
+  --ww-subpage-copy-filter:
+    drop-shadow(
+      0
+      clamp(0.22px, 0.025vw, 0.36px)
+      clamp(0.5px, 0.055vw, 0.8px)
+      rgba(0, 0, 0, 0.16)
+    );
+  --ww-subpage-copy-shadow:
+    0 clamp(0.24px, 0.028vw, 0.4px) 0 rgba(0, 0, 0, 0.48);
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .wild-subpage--wildfire.wild-subpage--wildfire,
+  .wild-subpage--ruins.wild-subpage--ruins,
+  .wild-subpage--bio.wild-subpage--bio
+) :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .wild-kicker
+),
+html body#wildworks-body#wildworks-body:has(:is(
+  .wild-subpage--wildfire,
+  .wild-subpage--ruins,
+  .wild-subpage--bio
+)) header :is(.wild-nav-link, .wild-mobile-nav-link) {
+  filter: var(--ww-subpage-title-filter) !important;
+  text-shadow: var(--ww-subpage-title-shadow) !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .wild-subpage--wildfire.wild-subpage--wildfire,
+  .wild-subpage--ruins.wild-subpage--ruins,
+  .wild-subpage--bio.wild-subpage--bio
+) :is(
+  p:not(.wild-kicker),
+  li,
+  label,
+  figcaption,
+  blockquote,
+  dd,
+  dt,
+  small,
+  time,
+  a:not(.money-cta),
+  .wildfire-gallery-status,
+  .wildfire-lightbox-bar > span
+) {
+  filter: var(--ww-subpage-copy-filter) !important;
+  text-shadow: var(--ww-subpage-copy-shadow) !important;
+}
+
+/* A single effect belongs to the text-bearing parent. Nested wrappers inherit
+   its close shadow without stacking another blur or offset. */
+html body#wildworks-body#wildworks-body :is(
+  .wild-subpage--wildfire.wild-subpage--wildfire,
+  .wild-subpage--ruins.wild-subpage--ruins,
+  .wild-subpage--bio.wild-subpage--bio
+) :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  label,
+  figcaption,
+  blockquote,
+  dd,
+  dt,
+  .wild-kicker,
+  .wildfire-gallery-status
+) :is(span, strong, em, i, b, a) {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* Interactive controls and form-entry text remain crisp and effect-free. */
+html body#wildworks-body#wildworks-body :is(
+  .wild-subpage--wildfire.wild-subpage--wildfire,
+  .wild-subpage--ruins.wild-subpage--ruins,
+  .wild-subpage--bio.wild-subpage--bio
+) :is(
+  button,
+  button *,
+  [role="button"],
+  [role="button"] *,
+  .money-cta,
+  .money-cta *,
+  input,
+  textarea,
+  select,
+  option
+) {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body :is(
+  .wild-subpage--wildfire.wild-subpage--wildfire,
+  .wild-subpage--ruins.wild-subpage--ruins,
+  .wild-subpage--bio.wild-subpage--bio
+) :is(input, textarea)::placeholder {
+  filter: none !important;
+  text-shadow: none !important;
+}

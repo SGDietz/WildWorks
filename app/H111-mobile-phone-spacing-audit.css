@@ -1,0 +1,72 @@
+/* G 2026-08-09: phone-width audit of every written-number transition. Keep
+   each callout connected to the content around it instead of floating in a
+   large empty band. Tablet and desktop spacing remains unchanged. */
+@media (max-width: 640px) {
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-hero {
+    margin-top: 1.35rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-hero + #iscott-sales {
+    padding-top: 0.6rem !important;
+  }
+
+  /* The statement carried a 36px bottom margin into the Tree phone line. */
+  html body#wildworks-body #top.wild-home
+    .wild-home-statement:has(+ .wild-phone-number-line--home-tree) {
+    margin-bottom: 1.9rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-tree {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-tree + #wildworks-proof {
+    padding-top: 0.625rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-services {
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-services + #services {
+    padding-top: 0.5rem !important;
+  }
+
+  /* This was the visible outlier: a 66–79px phone margin followed by the
+     footer's own 24px margin and 32px top padding. */
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-footer {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home .wild-phone-number-line--home-footer)
+    footer#footer {
+    margin-top: 0.5rem !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home .wild-phone-number-line--home-footer)
+    footer#footer > .wild-footer-main {
+    padding-top: 0.75rem !important;
+  }
+
+  html body#wildworks-body footer#footer
+    .wild-phone-number-line--footer-closing {
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  html body#wildworks-body footer#footer
+    .wild-phone-number-line--footer-closing + .wild-footer-closing {
+    padding-top: 0.25rem !important;
+  }
+}

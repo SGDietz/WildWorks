@@ -1,0 +1,33 @@
+/* G 2026-08-05: enlarge the three record-description lines directly below
+   "The First Wood Fire" without changing their copy, breaks, or colors. */
+html body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy p.wildfire-hero-summary {
+  font-size: clamp(1.8rem, 2.35vw, 2.5rem) !important;
+  line-height: 1.12 !important;
+}
+
+html body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy p.wildfire-hero-summary
+  .wildfire-hero-summary__line {
+  font-size: 1em !important;
+}
+
+@media (min-width: 720px) and (max-width: 900px) {
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy p.wildfire-hero-summary {
+    font-size: clamp(1.5rem, 3vw, 1.75rem) !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy p.wildfire-hero-summary {
+    gap: 0.16em !important;
+    font-size: clamp(1.5rem, 6.7vw, 1.78rem) !important;
+    line-height: 1.1 !important;
+  }
+}

@@ -1,0 +1,24 @@
+/*
+ * Home hero desktop sizing
+ *
+ * Preserve the complete 3:2 photograph while preventing it from becoming an
+ * edge-to-edge, full-page wall on wide screens. Portrait tablet and mobile
+ * retain their existing layouts.
+ */
+@media (min-width: 1101px) {
+  html body#wildworks-body#wildworks-body .wild-home .wild-hero {
+    width: min(calc(100% - clamp(3rem, 8vw, 9rem)), 75rem) !important;
+    max-width: 75rem !important;
+    aspect-ratio: 3 / 2 !important;
+    margin-inline: auto !important;
+  }
+}
+
+/* Short laptop and landscape-tablet screens need a lower hero so the page
+ * immediately communicates that more content follows below it. */
+@media (min-width: 1101px) and (max-height: 900px) {
+  html body#wildworks-body#wildworks-body .wild-home .wild-hero {
+    width: min(calc(100% - 4rem), 60rem) !important;
+    max-width: 60rem !important;
+  }
+}

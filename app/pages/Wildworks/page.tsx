@@ -21,7 +21,7 @@ const legalPages = [
   {
     title: "Communications",
     href: "/pages/communications",
-    body: "How WildWorks may use email marketing, SMS/text, phone, WhatsApp, social platforms, iScott follow-up, opt-outs, and transactional messages.",
+    body: "How WildWorks may use email marketing, SMS/text, phone, social platforms, iScott follow-up, opt-outs, and transactional messages.",
   },
   {
     title: "Accessibility",
@@ -59,6 +59,12 @@ export default function WildworksLegalIndex() {
             >
               Practical website terms, privacy language, communications rules, accessibility information,
               disclaimers, and iScott disclosure for <BrandText>WildWorks.Live</BrandText>.
+            </p>
+            <p
+              className="wild-legal-copy mx-auto max-w-3xl text-base leading-7"
+              style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+            >
+              <BrandText>WildWorks.ai</BrandText> is a Wyoming-registered trade name of DietzX LLC.
             </p>
           </div>
 

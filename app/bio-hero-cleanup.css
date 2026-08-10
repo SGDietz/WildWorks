@@ -1,0 +1,10 @@
+/* Remove the obsolete decorative gold divider below the Bio photograph. */
+html body .wild-subpage--bio.wild-subpage--bio
+  .wild-subpage-hero.wild-subpage-hero::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}

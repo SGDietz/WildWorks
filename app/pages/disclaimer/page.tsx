@@ -86,7 +86,7 @@ export default function DisclaimerPage() {
           title: "No Emergency Channel",
           children: (
             <p>
-              This website, iScott, email, SMS/text, social media, WhatsApp, and voicemail are not emergency
+              This website, iScott, email, SMS/text, social media, and voicemail are not emergency
               channels. For immediate danger, fire, injury, utility strike, collapse, unsafe structure,
               flooding, gas smell, or similar emergencies, contact emergency services or the appropriate
               local authority.
@@ -97,8 +97,8 @@ export default function DisclaimerPage() {
           title: "Contact",
           children: (
             <p>
-              Questions about this disclaimer can be sent to Wildworks@pm.me or raised by calling WildWorks at
-              1-877-600-2474.
+              Questions about this disclaimer can be sent to hello@wildworks.ai or raised by calling WildWorks at
+              1+443-797-2166.
             </p>
           ),
         },

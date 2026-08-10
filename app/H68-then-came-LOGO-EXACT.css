@@ -1,0 +1,22 @@
+/* Match the six Home Wildfire sequence lines to the logo's exact depth. */
+html body #top#top#top#top.wild-home #project-wildfire
+  :is(
+    .wild-wildfire-sequence-callout__line,
+    .wild-wildfire-sequence-callout__line--patio,
+    .wild-wildfire-sequence-callout__line--lounge,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line
+  ),
+html body .wild-home #project-wildfire
+  :is(
+    .wild-wildfire-sequence-callout__line,
+    .wild-wildfire-build-note__line
+  ),
+html body .wild-home #project-wildfire
+  .wild-wildfire-build-note > .wild-wildfire-build-note__line {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  text-shadow: 0 clamp(3px, 0.38vw, 5px) 0 rgba(50, 16, 5, 0.78) !important;
+}

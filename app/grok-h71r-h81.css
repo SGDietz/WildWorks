@@ -1,0 +1,234 @@
+/* Grok H71r-H81 final local handoff cascade, installed 2026-08-05.
+   H72 is intentionally excluded: its solid page override conflicts with G's
+   approved layered copper background in gold-reference-sitewide.css. */
+
+/* H71r: make the selected Playfair + Manrope typography visible. */
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins :is(h1, h2, h3, h4),
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio :is(h1, h2, h3, h4),
+html body .wild-subpage--bio .wild-bio-reinvention-heading.wild-bio-reinvention-heading,
+html body .wild-subpage--ruins .wild-ruins-rail.wild-ruins-rail :is(h1, h2, h3, h4),
+html body .wild-subpage--ruins .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, h4),
+html body .wild-subpage--bio .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, h4) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body .wild-subpage--ruins :is(h1, h2, h3, h4) :is(span, em, strong, i, b, a),
+html body .wild-subpage--bio :is(h1, h2, h3, h4) :is(span, em, strong, i, b, a) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins :is(p, li, td, th, label, figcaption, blockquote, dd, dt, small),
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio :is(p, li, td, th, label, figcaption, blockquote, dd, dt, small),
+html body .wild-subpage--ruins .wild-ruins-rail.wild-ruins-rail :is(p, li),
+html body .wild-subpage--bio .wild-bio-mindset-line {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section.wild-subpage-section,
+html body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-section,
+html body .wild-subpage--ruins .wild-ruins-rail {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+/* H73: frozen 175522 letter recipe and the six Then Came lines. */
+:root {
+  --ww-letter-effect-filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32));
+  --ww-letter-effect-text-shadow: 0 clamp(3px, 0.38vw, 5px) 0 rgba(50, 16, 5, 0.78);
+}
+
+html body .ww-letter-effect-175522,
+html body #top#top#top#top.wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-sequence-callout__line--patio,
+  .wild-wildfire-sequence-callout__line--lounge,
+  .wild-wildfire-sequence-callout__line--going,
+  .wild-wildfire-build-note__line
+),
+html body .wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-build-note__line
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H74: iScott title, Project Wildfire title, and statement title lines. */
+html body #top#top#top.wild-home #iscott-sales :is(
+  .wild-iscott-title,
+  .wild-iscott-title__row,
+  .wild-iscott-title__segment
+),
+html body #top#top#top.wild-home #project-wildfire :is(
+  .wild-wildfire-title,
+  .wild-wildfire-title .wild-line-title__line,
+  .wild-wildfire-flame-title__text
+),
+html body #top#top#top.wild-home .wild-home-statement :is(
+  .wild-home-statement__line,
+  .wild-home-statement__phrase,
+  .wild-home-statement__title
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H75: statement tagline, Tree of Life title, and Ruins feature heading. */
+html body #top#top#top.wild-home .wild-home-statement .wild-home-statement__line--four,
+html body #top#top#top.wild-home #wildworks-proof .wild-tree-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two,
+  .wild-line-title__line--three
+),
+html body #top#top#top.wild-home #signature-work :is(
+  .wild-signature-title,
+  .wild-signature-title__line,
+  .wild-signature-title__one,
+  .wild-signature-title__two,
+  .wild-signature-title__three
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H76: The Ruins, Known For, and Website Like This titles. */
+html body #top#top#top.wild-home #signature-work .wild-story-card--feature :is(h3, .wild-line-title__line),
+html body .wild-subpage--ruins h1,
+html body #top#top#top.wild-home #services > .wild-section-heading > .wild-section-title :is(.wild-line-title__line),
+html body #top#top#top.wild-home #ai-websites .wild-site-offer-heading > .wild-section-title :is(.wild-line-title__line) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H77: replace old Wildfire hero effects with the frozen recipe. */
+html body .wild-subpage--wildfire .wildfire-hero-copy :is(
+  .wild-kicker,
+  .wildfire-hero-headline__line,
+  .wildfire-hero-summary__line
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H78: sitewide stonework line. */
+html body :is(.wild-home-hero-stonework-note, .wild-footer-stonework-note) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H79: desktop and mobile navigation labels. */
+html body :is(a.wild-nav-link, a.wild-mobile-nav-link) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H80: Ruins headings only; body copy is intentionally untouched. */
+html body .wild-subpage--ruins.wild-subpage--ruins :is(h1, h2),
+html body .wild-subpage--ruins .wild-ruins-rail :is(h1, h2) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* H81: only the two large Bio headings. */
+html body .wild-subpage--bio.wild-subpage--bio :is(
+  h1,
+  h2.wild-bio-reinvention-heading,
+  .wild-bio-reinvention-heading
+) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* Final specificity lock: older approved rules use repeated IDs, so these
+   requested letter effects need to beat those rules without touching color,
+   sizing, spacing, backgrounds, cards, or body copy. */
+html body #top#top#top#top.wild-home .wild-home-statement :is(
+  .wild-home-statement__line--one,
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four
+),
+html body #top#top#top#top.wild-subpage--wildfire .wildfire-hero-copy :is(
+  .wild-kicker,
+  .wildfire-hero-headline__line,
+  .wildfire-hero-headline__line--c1,
+  .wildfire-hero-headline__line--c2,
+  .wildfire-hero-headline__line--c3,
+  .wildfire-hero-summary__line,
+  .wildfire-hero-summary__line--c1,
+  .wildfire-hero-summary__line--c2,
+  .wildfire-hero-summary__line--c3
+),
+html body #top#top#top#top.wild-subpage--ruins :is(h1, h2),
+html body #top#top#top#top.wild-subpage--bio :is(
+  h1,
+  h2.wild-bio-reinvention-heading,
+  .wild-bio-reinvention-heading
+),
+html body #footer#footer#footer .wild-footer-stonework-note {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+/* Subpages do not carry #top; repeat their root class to outrank the
+   route-local <style> blocks that are emitted later in the document. */
+html body .wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy :is(
+    .wild-kicker,
+    .wildfire-hero-headline__line,
+    .wildfire-hero-headline__line--c1,
+    .wildfire-hero-headline__line--c2,
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line,
+    .wildfire-hero-summary__line--c1,
+    .wildfire-hero-summary__line--c2,
+    .wildfire-hero-summary__line--c3
+  ),
+html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins
+  :is(h1, h2),
+html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
+  :is(h1, h2.wild-bio-reinvention-heading, .wild-bio-reinvention-heading) {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}
+
+html body #ww-wildfire-first-fire#ww-wildfire-first-fire,
+html body #ww-bio-primary-heading#ww-bio-primary-heading {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: var(--ww-letter-effect-filter) !important;
+  text-shadow: var(--ww-letter-effect-text-shadow) !important;
+}

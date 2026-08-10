@@ -4,8 +4,9 @@ import LegalPage from "../../components/LegalPage";
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage
+      pageKey="privacy-policy"
       title="Privacy Policy"
-      description="How WildWorks collects, uses, shares, protects, and responds to information submitted through this website, iScott, email, text, phone, WhatsApp, social media, and project conversations."
+      description="How WildWorks collects, uses, shares, protects, and responds to information submitted through this website, iScott, email, text, phone, social media, and project conversations."
       sections={[
         {
           title: "Business Identity",
@@ -32,7 +33,7 @@ export default function PrivacyPolicyPage() {
                 other technical information used to operate, secure, and improve the website.
               </p>
               <p>
-                If you use iScott, contact forms, email, phone, SMS/text, WhatsApp, X, social media, or
+                If you use iScott, contact forms, email, phone, SMS/text, X, social media, or
                 another platform, WildWorks may receive and store the information you provide through those
                 tools or platforms.
               </p>
@@ -137,7 +138,7 @@ export default function PrivacyPolicyPage() {
           children: (
             <>
               <p>
-                Email, SMS/text, phone, WhatsApp, and social-media communication practices are explained in
+                Email, SMS/text, phone, and social-media communication practices are explained in
                 the{" "}
                 <Link className="underline decoration-[#e8b66d] underline-offset-4" href="/pages/communications">
                   Communications Policy
@@ -176,7 +177,7 @@ export default function PrivacyPolicyPage() {
             <>
               <p>
                 You may ask WildWorks to update, delete, or stop using contact information by emailing
-                Wildworks@pm.me. WildWorks may need to keep certain information for project records, legal
+                hello@wildworks.ai. WildWorks may need to keep certain information for project records, legal
                 compliance, dispute resolution, fraud prevention, security, or other legitimate business
                 reasons.
               </p>
@@ -201,8 +202,8 @@ export default function PrivacyPolicyPage() {
           title: "Contact",
           children: (
             <p>
-              Privacy questions can be sent to Wildworks@pm.me or raised by calling WildWorks at
-              1-877-600-2474.
+              Privacy questions can be sent to hello@wildworks.ai or raised by calling WildWorks at
+              1+443-797-2166.
             </p>
           ),
         },

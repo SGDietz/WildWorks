@@ -1,0 +1,99 @@
+/* G 2026-08-09: make the approved Color 1 / 2 / 3 hero lettering read over
+   the busy stone photograph without changing its colors or adding a card. */
+@media (min-width: 720px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-hero.discordSection {
+    /* These variables feed the existing sitewide letter construction, but
+       only inside this photograph. The extra outside edge keeps narrow parts
+       of the type intact when they cross railings, siding, and stone. */
+    --ww-home-wordmark-text-effect:
+      -1px -1px 0 rgba(22, 6, 1, 0.92),
+      1px -1px 0 rgba(22, 6, 1, 0.92),
+      -1px 1px 0 rgba(22, 6, 1, 0.96),
+      1px 1px 0 rgba(22, 6, 1, 0.96),
+      0 0.075em 0 #000,
+      0 0.12em 0.08em rgba(0, 0, 0, 0.92),
+      0 0.24em 0.28em rgba(0, 0, 0, 0.76);
+    --ww-home-copy-text-effect:
+      -0.75px -0.75px 0 rgba(22, 6, 1, 0.96),
+      0.75px -0.75px 0 rgba(22, 6, 1, 0.96),
+      -0.75px 0.75px 0 rgba(22, 6, 1, 0.98),
+      0.75px 0.75px 0 rgba(22, 6, 1, 0.98),
+      0 0.075em 0 #000,
+      0 0.12em 0.08em rgba(0, 0, 0, 0.94),
+      0 0.22em 0.24em rgba(0, 0, 0, 0.78);
+    isolation: isolate !important;
+  }
+
+  /* A feathered photo vignette—not a panel—darkens only the copy side and
+     disappears before the right-hand architecture. */
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-media::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 66% 92% at 23% 42%,
+        rgba(17, 5, 1, 0.46) 0%,
+        rgba(17, 5, 1, 0.32) 48%,
+        rgba(17, 5, 1, 0.11) 74%,
+        rgba(17, 5, 1, 0) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(14, 4, 1, 0.34) 0%,
+        rgba(14, 4, 1, 0.22) 38%,
+        rgba(14, 4, 1, 0.07) 62%,
+        rgba(14, 4, 1, 0) 82%
+      );
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy {
+    z-index: 3 !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy
+    :is(
+      .wild-hero-wordmark-text-orange,
+      .wild-hero-headline__line,
+      .wild-hero-headline__line em,
+      .wild-hero-lede-line,
+      .wild-hero-lede-line *
+    ) {
+    paint-order: stroke fill;
+    -webkit-text-stroke: 0.55px rgba(31, 8, 2, 0.92) !important;
+  }
+
+  /* Color 3 needs a touch more edge because it is deliberately the darkest
+     face color in the approved hierarchy. */
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy
+    :is(
+      .wild-hero-headline__line--irresistible,
+      .wild-hero-headline__line--irresistible em,
+      .wild-hero-lede-line:nth-child(3),
+      .wild-hero-lede-line:nth-child(3) *
+    ) {
+    -webkit-text-stroke-width: 0.8px !important;
+  }
+}

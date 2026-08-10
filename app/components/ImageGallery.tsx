@@ -7,8 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Images,
-  Phone,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -47,6 +45,9 @@ const galleryItems: GalleryItem[] = Array.from({ length: TOTAL_IMAGES }, (_, i) 
     src: `/wildfire/${String(index).padStart(2, "0")}.jpg`,
   };
 });
+
+const buildPhotoAlt = (index: number) =>
+  `Project Wildfire construction field photo ${String(index).padStart(2, "0")} of ${TOTAL_IMAGES}, documenting the outdoor fireplace, patio, lounge, and upper deck build`;
 
 export default function ImageGallery() {
   const [activePhase, setActivePhase] = useState<PhaseId>("p1");
@@ -127,30 +128,6 @@ export default function ImageGallery() {
 
   return (
     <section id="wildfire-build-journal" className="wildfire-journal discordSection discordSection--2">
-      <div className="wildfire-journal-head">
-        <p className="wild-kicker wild-kicker--framed">Build Journal</p>
-        <h2>
-          <span className="ww-c1">Every Stone,</span>{" "}
-          <span className="ww-c2">Every Decision,</span>{" "}
-          <span className="ww-c2 wildfire-journal-stage">Every Stage.</span>
-        </h2>
-        <p>
-          Here is a Chronological Look at Project Wildfire So You Can Walk Through
-          the Build the Way It Actually Happened. In Kind of Real Time. Any Questions,
-          Feel Free to Talk to iScott or Reach Out to Scott.
-        </p>
-        <div className="wildfire-journal-actions">
-          <a href="/pages/Home#talk-to-iscott" className="money-cta money-cta--primary">
-            <Sparkles aria-hidden className="h-5 w-5" />
-            <span>Talk to iScott</span>
-          </a>
-          <a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="money-cta">
-            <Phone aria-hidden className="h-5 w-5" />
-            <span>Call Now</span>
-          </a>
-        </div>
-      </div>
-
       <div className="wildfire-phase-bar" aria-label="Filter build photos by phase">
         {phases.map((phase) => (
           <button
@@ -182,7 +159,7 @@ export default function ImageGallery() {
           >
             <Image
               src={item.src}
-              alt={`Project Wildfire build step ${item.index}`}
+              alt={buildPhotoAlt(item.index)}
               fill
               className="object-contain"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -215,7 +192,7 @@ export default function ImageGallery() {
           className="wildfire-lightbox discordSection discordSection--lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={`Project Wildfire build step ${activeLightboxItem.index}`}
+          aria-label={buildPhotoAlt(activeLightboxItem.index)}
         >
           <div className="wildfire-lightbox-bar">
             <span>
@@ -237,7 +214,7 @@ export default function ImageGallery() {
           <div className="wildfire-lightbox-image">
             <Image
               src={activeLightboxItem.src}
-              alt={`Project Wildfire build step ${activeLightboxItem.index}`}
+              alt={buildPhotoAlt(activeLightboxItem.index)}
               fill
               className="object-contain"
               sizes="100vw"

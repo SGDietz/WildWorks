@@ -1,0 +1,36 @@
+/* Extend G's Ruins/Bio font selections into the shared footer, which is a
+   sibling of the route root rather than its descendant. */
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  footer#footer#footer
+  :is(
+    .wild-signup-title,
+    .wild-footer-contact-cta__title,
+    .wild-footer-stonework-note
+  ) {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif !important;
+}
+
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  footer#footer#footer
+  :is(
+    .wild-signup-form,
+    .wild-signup-field,
+    .wild-signup-consent,
+    .wild-signup-fine-print,
+    .wild-signup-status,
+    .wild-footer-contact-cta__kicker,
+    .wild-footer-closing,
+    .wild-footer-legal-links
+  ) {
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
+}
+
+/* Keep controls and consent copy off the phone edges and reduce long-line
+   fatigue on intermediate mobile widths. */
+html body:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  footer#footer#footer .wild-signup-panel.wild-signup-panel {
+  box-sizing: border-box !important;
+  width: min(calc(100% - 2rem), 30rem) !important;
+  max-width: 30rem !important;
+  margin-inline: auto !important;
+}

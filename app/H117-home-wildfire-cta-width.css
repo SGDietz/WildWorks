@@ -1,0 +1,13 @@
+/* G 2026-08-09: keep the Home Project Wildfire CTA substantial on phones,
+   but stop it from reading as an edge-to-edge bar. Preserve its height,
+   approved button material, type, and interaction states. */
+@media (max-width: 640px) {
+  html body #top#top#top#top.wild-home
+    #project-wildfire
+    .wild-cta-row--center
+    .money-cta {
+    width: min(82%, 22rem) !important;
+    max-width: 22rem !important;
+    margin-inline: auto !important;
+  }
+}

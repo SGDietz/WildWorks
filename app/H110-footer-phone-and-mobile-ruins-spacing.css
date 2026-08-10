@@ -1,0 +1,28 @@
+/* G 2026-08-09: the universal final phone invitation belongs immediately
+   below the stonework-authenticity line on every device and route. */
+html body#wildworks-body footer#footer .wild-phone-number-line--footer-closing {
+  margin-top: clamp(0.35rem, 0.9vw, 0.7rem) !important;
+  margin-bottom: clamp(0.85rem, 1.6vw, 1.25rem) !important;
+}
+
+/* Tighten only the phone Ruins feature card: reduce the combined photograph-
+   to-title space from about 40px to about 24px without squeezing its copy. */
+@media (max-width: 719px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    #signature-work
+    .wild-story-card--feature
+    .wild-story-media-link {
+    padding-bottom: 0.65rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    #signature-work
+    .wild-story-card--feature
+    .wild-story-copy {
+    padding-top: 0.85rem !important;
+  }
+}

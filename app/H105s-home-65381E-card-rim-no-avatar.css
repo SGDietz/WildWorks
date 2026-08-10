@@ -1,0 +1,42 @@
+/* Single Home-only #4A2A14 rim system: cards and image frames. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(.wild-hero, .money-panel, .wild-card, .wild-answer-card, .wild-stat,
+      .wild-project-card, .wild-story-card, .wild-process-step, .wild-site-offer-card,
+      .wild-ai-card, .wild-ai-capability-card, .wild-ai-panel, .wild-identity-card,
+      .wild-home-statement, .wild-final-cta-inner, .wild-wildfire-inspiration-card,
+      .wild-travel-panel, .wildfire-photo-card, .wild-inspiration-thumbnail,
+      .wild-wildfire-photo, .wild-story-feature-sell-bg, .wild-story-feature-sell-image,
+      .wild-story-media, .wild-project-media, .wild-photo-frame, .wild-image-frame,
+      .wild-ai-human-frame, .wild-gallery-item, .wild-gallery-card,
+      .wild-live-avatar-frame, .wild-site-avatar-frame),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(.wild-story-card img, .wild-project-card img, .wild-wildfire-inspiration-card img,
+      .wild-wildfire-inspiration-image, .wildfire-photo-card img,
+      .wild-inspiration-thumbnail img, .wild-wildfire-photo img,
+      .wild-story-feature-sell-image img, .wild-story-media img, .wild-project-media img,
+      .wild-image-frame img, .wild-ai-human-frame img, .wild-gallery-item img,
+      .wild-gallery-card img) {
+  border: 0.5px solid #4A2A14 !important;
+  outline: none !important;
+}
+
+/* Outer avatar frame only; no avatar/person image or embedded interior rim. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(.wild-live-avatar-frame, .wild-site-avatar-frame) :is(img, video, iframe) {
+  border: 0 !important;
+  outline: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer
+  :is(.wild-footer-contact-cta, .wild-signup-panel, .wild-identity-card) {
+  border: 0.5px solid #4A2A14 !important;
+  outline: none !important;
+}

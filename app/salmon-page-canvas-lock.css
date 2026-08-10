@@ -1,0 +1,116 @@
+/* G 2026-08-07: the permanent two-color public palette.
+   Reference field = #983e17 deep copper; cards = #c85a24 solid copper.
+   Every public narrative surface must use one of those two exact colors—no
+   responsive gradient, lighter salmon, plum, or brown band may reappear. */
+html:has(#top.wild-home:not(.wild-legal-home)),
+html:has(.wild-subpage--wildfire),
+html:has(.wild-subpage--ruins),
+html:has(.wild-subpage--bio) {
+  /* Page field first; cards retain the distinct warmer copper. */
+  --ww-public-salmon-canvas: #983e17 !important;
+  --ww-page-base-copper: var(--ww-public-salmon-canvas) !important;
+  --ww-center-column-glimmer: none !important;
+  --ww-center-gold-fade: var(--ww-public-salmon-canvas) !important;
+  --ww-page-background: var(--ww-public-salmon-canvas) !important;
+  --ww-home-page-background: var(--ww-public-salmon-canvas) !important;
+  --ww-reference-a: var(--ww-public-salmon-canvas) !important;
+  --ww-reference-page: var(--ww-public-salmon-canvas) !important;
+  --ww-reference-mobile-page: var(--ww-public-salmon-canvas) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) #wild-site-backdrop.wild-site-backdrop {
+  background: var(--ww-public-salmon-canvas) !important;
+  background-color: var(--ww-public-salmon-canvas) !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+/* Narrative A bands use the normal page field. */
+html body#wildworks-body:has(.wild-subpage--ruins)
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+html body#wildworks-body:has(.wild-subpage--bio)
+  .wild-subpage--bio .wild-ab-band.wild-tone--a {
+  background: var(--ww-public-salmon-canvas) !important;
+  background-color: var(--ww-public-salmon-canvas) !important;
+  background-image: none !important;
+}
+
+/* Narrative B bands use the exact solid Color 2 card copper. */
+html body#wildworks-body:has(.wild-subpage--ruins)
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+html body#wildworks-body:has(.wild-subpage--bio)
+  .wild-subpage--bio .wild-ab-band.wild-tone--b {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+}
+
+@media (max-width: 1024px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio),
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wild-site-backdrop.wild-site-backdrop,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) #wild-site-backdrop.wild-site-backdrop,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) #wild-site-backdrop.wild-site-backdrop,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) #wild-site-backdrop.wild-site-backdrop {
+    background: var(--ww-public-salmon-canvas) !important;
+    background-color: var(--ww-public-salmon-canvas) !important;
+    background-image: none !important;
+  }
+}
+
+/* This must outrank the legacy twenty-ID backdrop lock. Keep this selector
+   intentionally stronger than that old rule so no breakpoint can restore the
+   dirt-brown paint behind the page. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) #wild-site-backdrop.wild-site-backdrop,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) #wild-site-backdrop.wild-site-backdrop {
+  background: var(--ww-public-salmon-canvas) !important;
+  background-color: var(--ww-public-salmon-canvas) !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio .wild-ab-band.wild-tone--a {
+  background: var(--ww-public-salmon-canvas) !important;
+  background-color: var(--ww-public-salmon-canvas) !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio .wild-ab-band.wild-tone--b {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+}
+
+/* Closing/footer bands are page field, while the contact panel and the small
+   mobile action rail are card field. This prevents the old three-orange stack
+   from returning at the end of a page. */
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) footer,
+html body#wildworks-body:has(.wild-subpage--wildfire) footer,
+html body#wildworks-body:has(.wild-subpage--ruins) footer,
+html body#wildworks-body:has(.wild-subpage--bio) footer {
+  background: var(--ww-public-salmon-canvas) !important;
+  background-color: var(--ww-public-salmon-canvas) !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body:has(.wild-subpage--wildfire) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body:has(.wild-subpage--ruins) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
+html body#wildworks-body:has(.wild-subpage--bio) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip) {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+}

@@ -1,0 +1,79 @@
+/* G's marked A/B map, using the named colors exactly:
+   A = #983e17 (deeper copper), B = #c85a24 (cleaner copper). */
+
+/* Keep the named band colors identical at every viewport. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  .wild-subpage--bio .wild-ab-band.wild-tone--a.wild-tone--a,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--a.ruins-tone--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  .wild-subpage--bio .wild-ab-band.wild-tone--b.wild-tone--b,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  .wild-subpage--ruins .ruins-color-band.ruins-tone--b.ruins-tone--b {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Bio: A through Who is Scott; B through Life and Dream Project; A from
+   signup through the closing line. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer .wild-footer-main.wild-footer-main {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer
+  .wild-footer-contact-region--a.wild-footer-contact-region--a {
+  background: #c85a24 !important;
+  background-color: #c85a24 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer
+  .wild-signup-system.wild-signup-system,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
+  footer#footer#footer#footer#footer
+  .wild-footer-closing-region--a.wild-footer-closing-region--a {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}
+
+/* Ruins: A through The Ruins; B from What I Saw through Why This Works; A
+   from Want a Ruin of Your Own through every closing/footer region. */
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer,
+html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
+  footer#footer#footer#footer#footer
+  :is(
+    .wild-footer-main.wild-footer-main,
+    .wild-footer-contact-region--a.wild-footer-contact-region--a,
+    .wild-signup-system.wild-signup-system,
+    .wild-footer-closing-region--a.wild-footer-closing-region--a
+  ) {
+  background: #983e17 !important;
+  background-color: #983e17 !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+}

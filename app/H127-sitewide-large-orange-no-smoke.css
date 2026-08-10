@@ -1,0 +1,135 @@
+/* G 2026-08-10: promote the approved Home treatment across the public site.
+   Every semantic large Color-3 display line uses Wildfire's exact solid
+   #c87936 face, with no gradient clipping and no smoke/haze filter. */
+html body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top:is(
+    .wild-home:not(.wild-legal-home),
+    .wild-subpage
+  )
+  :is(
+    .wild-hero-headline__line--irresistible,
+    .wild-hero-lede-line--italic,
+    .wild-iscott-title__segment--three,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ),
+html body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top:is(
+    .wild-home:not(.wild-legal-home),
+    .wild-subpage
+  )
+  :is(
+    .wild-hero-headline__line--irresistible,
+    .wild-hero-lede-line--italic,
+    .wild-iscott-title__segment--three,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ) * {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top:is(
+    .wild-home:not(.wild-legal-home),
+    .wild-subpage
+  )
+  :is(
+    .wild-hero-headline__line--irresistible,
+    .wild-hero-lede-line--italic,
+    .wild-iscott-title__segment--three,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ) {
+  filter: none !important;
+}
+
+/* Match the large Wildfire hero payoff to the crisp, smoke-free letter depth
+   already approved on the orange summary line immediately beneath it. */
+html body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-subpage--wildfire
+  .wildfire-hero-copy h1.wildfire-hero-headline
+  .wildfire-hero-headline__line--c3 {
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+  filter: none !important;
+}
+
+/* Non-Home public pages use a classed content root rather than #top. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage.wild-subpage
+  :is(
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage.wild-subpage
+  :is(
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ) * {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage.wild-subpage
+  :is(
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-summary__line--c3,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wild-sell-feature-title__period,
+    :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
+  ) {
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy h1.wildfire-hero-headline
+  .wildfire-hero-headline__line--c3 {
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire.wild-subpage--wildfire.wild-subpage--wildfire
+  .wildfire-hero-copy h1.wildfire-hero-headline
+  .wildfire-hero-headline__line--c3 {
+  text-shadow: var(--ww-home-copy-text-effect) !important;
+  filter: none !important;
+}

@@ -1,0 +1,51 @@
+/* H106r: preserve the H106 Talk CTA chrome and states, changing only the
+   Home action-control fill and its label/icon ink. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ) {
+  background: #76562B !important;
+  background-color: #76562B !important;
+  background-image: none !important;
+  color: #f0d4a0 !important;
+  -webkit-text-fill-color: #f0d4a0 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ) :is(span, strong, small, svg) {
+  color: #f0d4a0 !important;
+  -webkit-text-fill-color: #f0d4a0 !important;
+  stroke: currentColor !important;
+}

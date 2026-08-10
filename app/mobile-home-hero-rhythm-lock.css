@@ -1,0 +1,174 @@
+/* G 2026-08-06: final phone-only Home hero hierarchy.
+   Keep the approved copy and depth treatment, but give the three headline
+   lines distinct scale and indentation so they read as a designed lockup. */
+@media (max-width: 719px) {
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    .wild-top-logo-band {
+    padding-inline: 0.2rem !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    .wild-top-logo {
+    width: 90vw !important;
+    max-width: 90vw !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection
+    .wild-hero-wordmark-text-orange {
+    position: relative !important;
+    left: -0.08em !important;
+    font-size: 4.65em !important;
+    line-height: 0.82 !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
+    width: fit-content !important;
+    margin-left: 0 !important;
+    font-size: 1.95em !important;
+    line-height: 0.96 !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+    position: relative !important;
+    left: 0 !important;
+    width: fit-content !important;
+    margin-top: 0.13em !important;
+    margin-left: 0.15em !important;
+    color: #c87936 !important;
+    -webkit-text-fill-color: #c87936 !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    font-size: clamp(2.4rem, 9vw, 3.1rem) !important;
+    line-height: 0.86 !important;
+    transform: none !important;
+    transform-origin: left top !important;
+    margin-bottom: 0 !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
+    color: #c87936 !important;
+    -webkit-text-fill-color: #c87936 !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    font-size: inherit !important;
+  }
+
+  html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top.wild-home .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--italic {
+    color: #c87936 !important;
+    -webkit-text-fill-color: #c87936 !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line:nth-child(2) {
+    font-size: clamp(0.96rem, 4vw, 1.16rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row {
+    width: min(68%, 230px) !important;
+    max-width: 230px !important;
+    margin-inline: auto !important;
+    justify-self: center !important;
+    gap: 0.7rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row :is(a, span, span > a) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row .money-cta {
+    position: relative !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    padding: 0.55rem 1rem !important;
+    font-size: 16px !important;
+    line-height: 1.1 !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row .money-cta > span {
+    position: static !important;
+    inset-inline: auto !important;
+    width: auto !important;
+    text-align: left !important;
+    pointer-events: none !important;
+  }
+
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-copy > .wild-cta-row .money-cta svg {
+    position: static !important;
+    left: auto !important;
+    flex: 0 0 auto !important;
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+  }
+
+  /* Keep Project Wildfire emphatic without trusting the nominal viewport edge.
+     Mobile Chrome reserves part of that width and may enlarge display type;
+     the extra breathing room prevents the final letters from being clipped. */
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home
+    #project-wildfire .wild-wildfire-flame-title {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    font-size: clamp(2.05rem, 11.5vw, 5.15rem) !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+  }
+
+  /* G 2026-08-06: on mobile Home only, promote every rendered Color 3
+     text role to Color 1. Keep each element's existing black depth effect. */
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home :is(
+      .wild-hero-headline__line--irresistible,
+      .wild-hero-headline__line--irresistible em,
+      .wild-hero-lede-line--italic,
+      #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+      #signature-work .wild-signature-title__three
+    ) {
+    color: #f7d9a5 !important;
+    -webkit-text-fill-color: #f7d9a5 !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
+    #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
+    .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
+    font-size: 3.1rem !important;
+  }
+}

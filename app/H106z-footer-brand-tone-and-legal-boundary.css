@@ -1,0 +1,80 @@
+/* Shared footer hierarchy: quieter than the page headlines, but still the
+   exact permanent WildWorks Color 1 / 2 / 3 system. Buttons are handled by
+   the scoped custom properties on Footer.tsx so page buttons do not change. */
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-contact-cta__title {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-contact-cta__kicker,
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-contact-cta__kicker * {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  :is(.wild-signup-title, .wild-signup-field > span) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-phone-number-line > a {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-phone-number-line__call-today {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-stonework-note {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* Signup consent and unsubscribe language are legal disclosures. On legal
+   routes they remain pure white along with the actual policy text. */
+html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+  footer#footer#footer#footer#footer#footer#footer
+  :is(.wild-signup-consent, .wild-signup-consent *, .wild-signup-fine-print, .wild-signup-fine-print *) {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* Shared signup controls: Color 1 closes both rims; Color 2 carries the
+   placeholder on every public and legal route. */
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-signup-field input {
+  border-color: #f7d9a5 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-signup-field input::placeholder {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  opacity: 1 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-signup-consent input[type="checkbox"] {
+  border-color: #f7d9a5 !important;
+  accent-color: #e8b66d !important;
+}

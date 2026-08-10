@@ -1,0 +1,32 @@
+/* H123: Balance the visible band below every phone-width number divider.
+   The Home hero already has its approved two-line Call Today spacing. */
+@media (max-width: 640px) {
+  /* Match the statement-to-number breath below the Tree divider. */
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-tree {
+    margin-bottom: 2.125rem !important;
+  }
+
+  /* Give the Services heading the same deliberate separation seen above the
+     number after the Ruins action card. */
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-services {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Keep the last Home number from running directly into the shared footer. */
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-footer {
+    margin-bottom: 2rem !important;
+  }
+
+  /* The closing phone invitation is shared by every route, including legal
+     pages, so its lower breath must match its upper breath everywhere. */
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-phone-number-line--footer-closing {
+    margin-bottom: 1.1rem !important;
+  }
+}

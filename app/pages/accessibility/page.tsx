@@ -53,8 +53,8 @@ export default function AccessibilityPage() {
           title: "Feedback",
           children: (
             <p>
-              If you have trouble using any part of this website, contact Wildworks@pm.me or call WildWorks at
-              1-877-600-2474. Please describe the page, the issue, your browser or device, and the assistive
+              If you have trouble using any part of this website, contact hello@wildworks.ai or call WildWorks at
+              1+443-797-2166. Please describe the page, the issue, your browser or device, and the assistive
               technology involved if applicable.
             </p>
           ),
@@ -64,7 +64,7 @@ export default function AccessibilityPage() {
           children: (
             <p>
               If a website feature does not work for you, WildWorks will make a reasonable effort to provide
-              the same information or service through email, phone, text, WhatsApp, or another practical
+              the same information or service through email, phone, text, or another practical
               channel.
             </p>
           ),
