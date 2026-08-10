@@ -1,0 +1,532 @@
+/* H120: Home-page heading palette and the permanent Color 1 / 2 / 3 key.
+   Preserve the existing typefaces, weight, letter effects, and layout. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-wordmark-text-orange,
+    .wild-hero .wild-hero-wordmark-text-orange *,
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-headline__line--irresistible *,
+    .wild-hero .wild-hero-lede-line:nth-child(2),
+    .wild-hero .wild-hero-lede-line:nth-child(2) *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* Ai-Native Websites invitation: Color 1 / Color 2 / Color 3. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #ai-websites .wild-site-offer-heading > .wild-kicker,
+    #ai-websites .wild-site-offer-heading > .wild-kicker *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--one,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--one *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two *
+  ) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+/* Project Wildfire: six display lines alternate Color 1 / Color 2. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #project-wildfire .wild-wildfire-sequence-callout__line--patio,
+    #project-wildfire .wild-wildfire-sequence-callout__line--patio *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going *,
+    #project-wildfire .wild-wildfire-build-note__line--middle,
+    #project-wildfire .wild-wildfire-build-note__line--middle *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #project-wildfire .wild-wildfire-sequence-callout__line--lounge,
+    #project-wildfire .wild-wildfire-sequence-callout__line--lounge *,
+    #project-wildfire .wild-wildfire-build-note__line--lead,
+    #project-wildfire .wild-wildfire-build-note__line--lead *,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #project-wildfire .wild-wildfire-build-note__line--close *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* Services introduction: phone Color 1, then Color 1 / Color 2 / Color 3. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-phone-number-line--home-services a,
+    .wild-phone-number-line--home-services a *,
+    #services > .wild-section-heading > .wild-kicker,
+    #services > .wild-section-heading > .wild-kicker *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--one,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--one *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two *
+  ) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+/* Tree of Life and Ruins display titles: Color 1 / Color 2 / Color 3. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #wildworks-proof .wild-tree-title .wild-line-title__line--one,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--one *,
+    #signature-work .wild-signature-title__one,
+    #signature-work .wild-signature-title__one *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #wildworks-proof .wild-tree-title .wild-line-title__line--two,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--two *,
+    #signature-work .wild-signature-title__two,
+    #signature-work .wild-signature-title__two *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three *,
+    #signature-work .wild-signature-title__three,
+    #signature-work .wild-signature-title__three *
+  ) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--makes-home,
+    .wild-hero .wild-hero-headline__line--makes-home *,
+    .wild-hero .wild-hero-lede-line:nth-child(1),
+    .wild-hero .wild-hero-lede-line:nth-child(1) *,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    .wild-hero .wild-hero-lede-line:nth-child(3) *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* One type step larger than the approved size at every responsive tier. */
+@media (min-width: 1366px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: 2.25rem !important;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1365px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: calc(1.82rem + 4px) !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: calc(1.66rem + 4px) !important;
+  }
+}
+
+/* iScott introduction: Color 2 / Color 1 / Color 2. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #iscott-sales > .wild-split .wild-copy-stack > .wild-kicker,
+    #iscott-sales > .wild-split .wild-copy-stack > .wild-kicker *,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #iscott-sales .wild-iscott-title__segment--three *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    #iscott-sales .wild-iscott-title__row,
+    #iscott-sales .wild-iscott-title__row *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* Top-third three-color trial: restore the original 1 / 2 / 3 rhythm while
+   using the exact live card fill for Color 3 on the primary field. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-wordmark-text-orange,
+    .wild-hero .wild-hero-wordmark-text-orange *,
+    .wild-hero .wild-hero-lede-line:nth-child(1),
+    .wild-hero .wild-hero-lede-line:nth-child(1) *,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color *,
+    #iscott-sales .wild-iscott-title__segment--one,
+    #iscott-sales .wild-iscott-title__segment--one *,
+    #iscott-sales .ww-c1,
+    #iscott-sales .ww-c1 *,
+    #iscott-sales #talk-to-iscott > .money-panel-kicker,
+    #iscott-sales #talk-to-iscott > .money-panel-kicker *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--patio,
+    #project-wildfire .wild-wildfire-sequence-callout__line--patio *,
+    #project-wildfire .wild-wildfire-build-note__line--lead,
+    #project-wildfire .wild-wildfire-build-note__line--lead *,
+    #project-wildfire .ww-c1,
+    #project-wildfire .ww-c1 *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--makes-home,
+    .wild-hero .wild-hero-headline__line--makes-home *,
+    .wild-hero .wild-hero-lede-line:nth-child(2),
+    .wild-hero .wild-hero-lede-line:nth-child(2) *,
+    #iscott-sales .wild-iscott-title__segment--two,
+    #iscott-sales .wild-iscott-title__segment--two *,
+    #iscott-sales .ww-c2,
+    #iscott-sales .ww-c2 *,
+    #iscott-sales #talk-to-iscott .wild-start-title__start,
+    #iscott-sales #talk-to-iscott .wild-start-title__start *,
+    #iscott-sales #talk-to-iscott .wild-start-title__with,
+    #iscott-sales #talk-to-iscott .wild-start-title__with *,
+    #iscott-sales #talk-to-iscott .wild-start-title__name,
+    #iscott-sales #talk-to-iscott .wild-start-title__name *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--lounge,
+    #project-wildfire .wild-wildfire-sequence-callout__line--lounge *,
+    #project-wildfire .wild-wildfire-build-note__line--middle,
+    #project-wildfire .wild-wildfire-build-note__line--middle *,
+    #project-wildfire .ww-c2,
+    #project-wildfire .ww-c2 *
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-headline__line--irresistible *,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    .wild-hero .wild-hero-lede-line:nth-child(3) *,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three *,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #iscott-sales .wild-iscott-title__segment--three *,
+    #iscott-sales .ww-c3,
+    #iscott-sales .ww-c3 *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going *,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #project-wildfire .wild-wildfire-build-note__line--close *,
+    #project-wildfire .ww-c3,
+    #project-wildfire .ww-c3 *
+  ) {
+  color: #b65a1e !important;
+  -webkit-text-fill-color: #b65a1e !important;
+}
+
+/* Front Door only: keep the exact card-orange fill, restore its previous
+   three-layer depth recipe, and add the faintest useful black haze. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-title__segment--three {
+  color: #b65a1e !important;
+  -webkit-text-fill-color: #b65a1e !important;
+  -webkit-text-stroke: 0 transparent !important;
+  text-stroke: 0 transparent !important;
+  text-shadow:
+    0 0.021em 0 #000,
+    0 0.032em 0.009em rgba(0, 0, 0, 0.78),
+    0 0.047em 0.023em rgba(0, 0, 0, 0.4) !important;
+  filter: drop-shadow(0 0.015em 0.14em rgba(0, 0, 0, 0.35)) !important;
+}
+
+/* Color 3 is now the exact live solid-card orange wherever the explicit
+   Color 3 token or semantic utility is used. */
+:root {
+  --ww-color-3: #b65a1e !important;
+  --ww-title-3: #b65a1e !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home {
+  --ww-home-heading-color-3: #b65a1e !important;
+}
+
+html body#wildworks-body#wildworks-body :is(.ww-c3, .wildfire-hero-headline__line--c3) {
+  color: #b65a1e !important;
+  -webkit-text-fill-color: #b65a1e !important;
+}
+
+/* Hero scale adjustment: Legendary down two established 4px type steps;
+   Anywhere on Planet Earth up one established 4px type step. */
+@media (min-width: 1366px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-headline__line--irresistible {
+    font-size: 6rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1365px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-headline__line--irresistible {
+    font-size: 4.5rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: calc(1.82rem + 8px) !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-headline__line--irresistible {
+    font-size: 2.6rem !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    font-size: calc(1.66rem + 8px) !important;
+  }
+}
+
+@media (max-width: 479px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero .wild-hero-headline__line--irresistible {
+    font-size: 2.22rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero .wild-hero-lede-line:nth-child(3) {
+    transform: scaleX(0.82) !important;
+    transform-origin: left center !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* iScott heading trial: close the kicker/title gap slightly and lock the
+   three visible rows to Color 1 / Color 2 / Color 3. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales > .wild-split .wild-copy-stack > .wild-kicker {
+  margin-bottom: 0.65rem !important;
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales > .wild-split .wild-copy-stack > .wild-kicker * {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-title__row,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales .wild-iscott-title__row * {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales#iscott-sales :is(
+    .wild-iscott-title__segment--one,
+    .wild-iscott-title__segment--two
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* The third sequence line uses the requested 35% black outer haze without
+   replacing its existing three-layer text depth. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire#project-wildfire
+  .wild-wildfire-sequence-callout__line--going {
+  filter: drop-shadow(0 0.015em 0.14em rgba(0, 0, 0, 0.35)) !important;
+}
+
+/* The second Color 3 line keeps its original three-layer letter depth and adds
+   only the same requested 35% black outer haze. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire#project-wildfire
+  .wild-wildfire-build-note__line--close {
+  filter: drop-shadow(0 0.015em 0.14em rgba(0, 0, 0, 0.35)) !important;
+}
+
+/* Homepage-wide Color 3 restoration: every semantic Color 3 line uses the
+   exact live card orange, retains its existing letter-depth recipe, and adds
+   one consistent 35% black outer haze. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-headline__line--irresistible *,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    .wild-hero .wild-hero-lede-line:nth-child(3) *,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two *,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two *,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #iscott-sales .wild-iscott-title__segment--three *,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going *,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #project-wildfire .wild-wildfire-build-note__line--close *,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three *,
+    #signature-work .wild-signature-title__three,
+    #signature-work .wild-signature-title__three *,
+    .ww-c3,
+    .ww-c3 *,
+    .wildfire-hero-headline__line--c3,
+    .wildfire-hero-headline__line--c3 *
+  ) {
+  color: #b65a1e !important;
+  -webkit-text-fill-color: #b65a1e !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #iscott-sales > .wild-split .wild-copy-stack .wild-iscott-kicker__color--three,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #signature-work .wild-signature-title__three,
+    .ww-c3,
+    .wildfire-hero-headline__line--c3
+  ) {
+  filter: drop-shadow(0 0.015em 0.14em rgba(0, 0, 0, 0.35)) !important;
+}

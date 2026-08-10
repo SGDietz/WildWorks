@@ -1,0 +1,16 @@
+/* H122: Keep the Home phone invitation concise and visually separate on phones. */
+@media (max-width: 640px) {
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    margin-top: 0.7rem !important;
+    margin-bottom: 1.35rem !important;
+    font-size: clamp(1.55rem, 6vw, 1.9rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-hero + #iscott-sales {
+    padding-top: 1rem !important;
+  }
+}

@@ -1,0 +1,10 @@
+/* Home Upload only: preserve H106s chrome and interaction; replace only its
+   interior material with the requested light-to-dark brand-copper gradient. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  button.wild-iscott-upload__button {
+  background: linear-gradient(180deg, #8B5A2B 0%, #76562B 48%, #65381E 100%) !important;
+  background-color: #76562B !important;
+  background-image: linear-gradient(180deg, #8B5A2B 0%, #76562B 48%, #65381E 100%) !important;
+}

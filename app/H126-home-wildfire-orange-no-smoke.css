@@ -1,0 +1,64 @@
+/* G 2026-08-10: Home's large orange display lines use the exact solid orange
+   from Wildfire's "Patio, Outdoor Lounge, and an Upper Viewing Deck" line.
+   Preserve each heading's crisp letter-depth shadow, but remove the outer
+   haze/smoke filter and any gradient or clipped-background treatment. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-headline__line--irresistible *,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    .wild-hero .wild-hero-lede-line:nth-child(3) *,
+    #iscott-sales .wild-iscott-title__segment--three,
+    #iscott-sales .wild-iscott-title__segment--three *,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going *,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #project-wildfire .wild-wildfire-build-note__line--close *,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three *,
+    #signature-work .wild-signature-title__three,
+    #signature-work .wild-signature-title__three *,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two *,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two *
+  ) {
+  color: #c87936 !important;
+  -webkit-text-fill-color: #c87936 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero .wild-hero-headline__line--irresistible,
+    .wild-hero .wild-hero-lede-line:nth-child(3),
+    #iscott-sales .wild-iscott-title__segment--three,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-build-note__line--close,
+    #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+    #signature-work .wild-signature-title__three,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two
+  ) {
+  filter: none !important;
+}
+
+/* These two Project Wildfire lines had their haze locked with a repeated-ID
+   selector, so match that scope explicitly to ensure the smoke is gone. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire#project-wildfire
+  :is(
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close
+  ) {
+  filter: none !important;
+}

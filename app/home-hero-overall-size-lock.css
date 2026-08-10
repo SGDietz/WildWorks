@@ -44,7 +44,9 @@
     #top#top#top#top#top#top#top#top#top#top.wild-home
     .wild-hero.discordSection .wild-hero-copy
     .wild-hero-lede-line--italic {
-    font-size: clamp(calc(1.9rem + 2px), calc(2vw + 2px), calc(2rem + 2px)) !important;
+    font-size: clamp(calc(2rem + 2px), calc(2.1vw + 2px), calc(2.1rem + 2px)) !important;
+    font-weight: 900 !important;
+    -webkit-text-stroke: 0.01em currentColor !important;
     transform: scaleX(0.845) !important;
     transform-origin: left center !important;
   }

@@ -1,0 +1,128 @@
+/* H106: Home action controls use the existing Talk to iScott CTA material.
+   This is deliberately control-only; H105s card/photo rims remain separate. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ) {
+  border-color: rgba(255, 230, 180, 0.45) !important;
+  background: var(--ww-button-gradient-primary) !important;
+  background-color: #e8ad59 !important;
+  background-image: var(--ww-button-gradient-primary) !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  box-shadow:
+    0 12px 34px rgba(16, 6, 1, 0.42),
+    inset 0 1px 0 rgba(255, 244, 210, 0.45) !important;
+  filter: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ) :is(span, strong, small, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  stroke: currentColor !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ):hover {
+  filter: saturate(1.08) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ):active {
+  transform: translateY(1px) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wildfire-phase-bar button,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button
+  ):focus-visible {
+  outline: 3px solid rgba(255, 239, 194, 0.94) !important;
+  outline-offset: 4px !important;
+}

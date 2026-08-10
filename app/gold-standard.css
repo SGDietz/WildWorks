@@ -297,11 +297,8 @@ html body #top#top.wild-home #wildworks-proof
    clear the gradient on CTA links nested inside a card. */
 :root {
   --ww-button-ink: #7d2f20;
-  --ww-button-gradient:
-    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 38%, #d37d3d 62%, #be5824 80%, #a94419 100%);
-  --ww-button-gradient-primary:
-    linear-gradient(180deg, #f7d9a5 0%, #f7d9a5 22%, #e0a85a 44%, #cf7038 64%, #be5824 82%, #a94419 100%);
+  --ww-button-gradient: var(--ww-approved-button-material);
+  --ww-button-gradient-primary: var(--ww-approved-button-material);
 }
 
 html body .money-cta.money-cta,

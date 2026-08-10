@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef, type FormEvent } from "react";
+import { useState, useEffect, useRef, type CSSProperties, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
 import BrandText from "./BrandText";
@@ -26,6 +26,21 @@ const stagger = {
 const viewportReplay = { once: true, amount: 0.2 };
 type SignupChannel = "email" | "sms" | "both";
 
+// The shared footer is intentionally one step quieter than the primary page
+// actions. Keeping the override on the footer scopes the material to every
+// route without changing the buttons G already approved elsewhere.
+const footerButtonTone = {
+  "--ww-approved-button-material":
+    "radial-gradient(circle at 50% -42%, rgba(255, 239, 198, 0.48), transparent 52%), linear-gradient(180deg, #f0ca86 0%, #d89a4d 42%, #aa602d 74%, #7c3114 100%)",
+  "--ww-button-gradient": "var(--ww-approved-button-material)",
+  "--ww-button-gradient-primary": "var(--ww-approved-button-material)",
+  "--ww-home-talk-exact-gold": "var(--ww-approved-button-material)",
+  "--ww-home-original-spirit-button": "var(--ww-approved-button-material)",
+  "--ww-original-spirit-button": "var(--ww-approved-button-material)",
+  "--ww-footer-button-sample": "var(--ww-approved-button-material)",
+  "--ww-legal-original-spirit-button": "var(--ww-approved-button-material)",
+} as CSSProperties;
+
 export default function Footer() {
   const pathname = usePathname();
   const [showMobileBar, setShowMobileBar] = useState(false);
@@ -36,7 +51,6 @@ export default function Footer() {
   const mobileBrandLink = "wild-footer-mobile-link";
   const usesAbFooter = ["/pages/The-ruins", "/pages/who-is-g"].includes(pathname);
   const isLegalPage = isLegalRoute(pathname);
-  const isSubpage = pathname !== "/pages/Home" && !isLegalPage;
   const requiresEmail = signupChannel === "email" || signupChannel === "both";
   const requiresPhone = signupChannel === "sms" || signupChannel === "both";
 
@@ -114,6 +128,7 @@ export default function Footer() {
     <footer
       id="footer"
       className={`bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}${isLegalPage ? " wild-footer--legal" : ""}`}
+      style={footerButtonTone}
     >
       <style>{`
         body .wild-footer-mobile-strip.wild-footer-mobile-strip {
@@ -138,14 +153,6 @@ export default function Footer() {
           box-shadow:
             inset 0 1px 0 rgba(255, 238, 194, 0.5),
             0 4px 12px rgba(92, 31, 6, 0.2) !important;
-        }
-
-        body #footer#footer.wild-footer--legal :is(
-          h1, h2, h3, h4, h5, h6,
-          p, li, span, a, strong, em, b, i, small, label, time, button
-        ) {
-          color: #ffffff !important;
-          -webkit-text-fill-color: #ffffff !important;
         }
       `}</style>
       <motion.div
@@ -284,17 +291,6 @@ export default function Footer() {
         </div>
 
         <div
-          className={`wild-footer-contact-region${usesAbFooter ? " wild-footer-contact-region--a" : ""}`}
-        >
-        {isSubpage || isLegalPage ? (
-          <PhoneNumberLine
-            className={`wild-phone-number-line--subpage${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
-            callText="Call Today!"
-            emphasizeCallText
-          />
-        ) : null}
-        </div>
-        <div
           className={`wild-footer-contact-card-region${usesAbFooter ? " wild-footer-contact-card-region--a" : ""}`}
         >
         <div className="wild-footer-contact-cta mt-12 sm:mt-16">
@@ -337,15 +333,17 @@ export default function Footer() {
 
       {/* Copyright bar - left and right */}
       <motion.div
-        className={usesAbFooter ? "wild-footer-closing-region--a" : ""}
+        className={`wild-footer-final-region${usesAbFooter ? " wild-footer-closing-region--a" : ""}`}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
-        <p className="wild-footer-stonework-note">
-          {STONEWORK_AUTHENTICITY_LINE}
-        </p>
+        <PhoneNumberLine
+          className={`wild-phone-number-line--footer-closing${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
+          callText="Call Today!"
+          emphasizeCallText
+        />
           <div
             className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#e8b66d] sm:px-6"
             style={{ width: "100%", maxWidth: "none" }}
@@ -367,6 +365,7 @@ export default function Footer() {
               style={{ width: "100%", height: "100%" }}
             >
               <path
+                className="wild-footer-double-rise__stripes"
                 d="M23 41 40 24l17 17M23 54l17-17 17 17"
                 stroke="currentColor"
                 strokeWidth="4.5"
@@ -375,6 +374,9 @@ export default function Footer() {
               />
             </svg>
           </motion.button>
+          <p className="wild-footer-stonework-note">
+            {STONEWORK_AUTHENTICITY_LINE}
+          </p>
           <span
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
@@ -382,7 +384,7 @@ export default function Footer() {
           </span>
         </div>
 
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2  px-4 py-2 text-center text-sm text-[#e8b66d] sm:flex-row sm:px-6 sm:text-left">
+          <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#e8b66d] sm:flex-row sm:px-6 sm:text-left">
           <span className="wild-footer-legal-links flex flex-wrap justify-center gap-x-3 gap-y-2 sm:text-sm">
             {legalNavItems.map((item) => (
               <Link key={item.href} href={item.href} className="wild-footer-legal-link">

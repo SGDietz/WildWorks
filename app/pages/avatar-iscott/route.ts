@@ -119,7 +119,7 @@ const wildWorksButtonCss = `
       border-radius: 8px !important;
       background:
         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #71350f 100%) !important;
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #913f16 100%) !important;
       padding: 0.85rem 1rem !important;
       color: var(--ww-avatar-button-ink) !important;
       font-family: Georgia, "Times New Roman", serif !important;
@@ -139,7 +139,8 @@ const wildWorksButtonCss = `
     }
 
     .fixed.bottom-28:has(.btn-wood) {
-      bottom: clamp(8.15rem, 18vh, 8.75rem) !important;
+      /* Sit in the clear space directly above Scott's wrists and hands. */
+      bottom: clamp(6.7rem, 14vh, 7.3rem) !important;
     }
 
     .btn-wood::before {
@@ -279,6 +280,12 @@ const wildWorksButtonCss = `
 
     #wildworks-avatar-restart {
       margin-top: 1.25rem !important;
+    }
+
+    /* Avatar-route card surfaces only: the Home card material. */
+    :is(.bg-gray-800\/90, .bg-gray-900, .wildworks-session-ended-card) {
+      background: #8B5A2B !important;
+      background-image: none !important;
     }
   </style>
 `;

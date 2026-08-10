@@ -30,17 +30,18 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
-          className="wild-mobile-menu-button wild-mobile-menu-trigger fixed left-4 top-3 z-40 flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-90"
+          className="wild-mobile-menu-button wild-mobile-menu-trigger fixed left-4 top-3 z-40 flex h-12 w-12 items-center justify-center rounded-xl"
           aria-label="Open menu"
+          aria-haspopup="true"
           aria-expanded={mobileMenuOpen}
           aria-controls="wild-mobile-navigation"
         >
           <svg
             viewBox="0 0 24 24"
-            className="h-6 w-6"
+            className="h-7 w-7"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2.75"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden
@@ -53,36 +54,32 @@ export default function Header() {
       {/* Legal pages keep their purpose-built desktop legal navigation. */}
       {!legalRoute && (
         <div className="mx-auto hidden flex-col items-center pb-0 pt-3 min-[501px]:flex sm:gap-0 sm:pt-5">
-          <nav className="w-[60%] pt-1 sm:mx-auto sm:px-6 sm:pb-1 sm:pt-2">
-            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3">
+          <nav id="wild-primary-navigation" aria-label="Primary navigation" className="w-full max-w-2xl px-4 pt-1 sm:mx-auto sm:px-6 sm:pb-1 sm:pt-2">
+            <ul className="flex flex-wrap items-center justify-center gap-2" role="list">
               {navTabs.map((tab) => {
                 const isActive =
                   tab.href === "/pages/Home"
                     ? pathname === "/" || pathname === "/pages/Home"
                     : pathname.startsWith(tab.href);
                 return (
-                  <motion.div
-                    key={tab.href}
-                    className="inline-flex"
-                    whileHover={{ scale: 1.08, y: -3 }}
-                    whileTap={{ scale: 0.98, y: 0 }}
-                  >
+                  <li key={tab.href} className="inline-flex">
                     <Link
                       href={tab.href}
-                      className={`wild-nav-link inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded px-1 py-1 text-xs font-normal
-                      uppercase tracking-wide transition-colors sm:px-2 sm:py-1 sm:text-sm ${
+                      aria-current={isActive ? "page" : undefined}
+                      className={`wild-nav-link inline-flex min-h-[44px] min-w-[44px] flex-shrink-0 items-center justify-center rounded-lg px-3 py-2 text-xs font-normal
+                      uppercase tracking-wide sm:text-sm ${
                         isActive
-                          ? "wild-nav-link--active border"
+                          ? "wild-nav-link--active"
                           : ""
                       }`}
                       style={{ fontFamily: "var(--font-serif), serif" }}
                     >
                       {tab.label}
                     </Link>
-                  </motion.div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </nav>
         </div>
       )}
@@ -107,15 +104,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="wild-mobile-menu-button flex h-10 w-10 items-center justify-center rounded transition-opacity hover:opacity-80"
+              className="wild-mobile-menu-button flex h-12 w-12 items-center justify-center rounded-xl"
               aria-label="Close menu"
+              aria-controls="wild-mobile-navigation"
             >
               <svg
                 viewBox="0 0 24 24"
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={2}
+                strokeWidth={2.75}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden

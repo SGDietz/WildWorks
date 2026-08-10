@@ -1,0 +1,93 @@
+/* H113: Mobile menu control in the exact spirit of the fixed contact circles.
+   It uses the same approved gold material, rim, depth, and copper icon, while
+   remaining slightly larger than the fixed contact controls so the primary
+   navigation control reads first. */
+@media (max-width: 500px) {
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(246, 211, 154, 0.36) !important;
+    border-radius: 9999px !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden !important;
+    outline: none !important;
+    background:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.82) 0%, rgba(255, 226, 166, 0.32) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #efc77f 0%, #d7974b 50%, #a95625 76%, #743014 100%) !important;
+    background-color: #d7974b !important;
+    background-image:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.82) 0%, rgba(255, 226, 166, 0.32) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #efc77f 0%, #d7974b 50%, #a95625 76%, #743014 100%) !important;
+    color: #7d2f20 !important;
+    -webkit-text-fill-color: #7d2f20 !important;
+    opacity: 1 !important;
+    filter: none !important;
+    text-shadow: none !important;
+    box-shadow:
+      0 16px 42px rgba(20, 7, 1, 0.42),
+      0 0 24px rgba(224, 168, 90, 0.18),
+      inset 0 1px 0 rgba(255, 247, 218, 0.78),
+      inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    header.wild-site-header,
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    header.wild-site-header
+    > div {
+    overflow: visible !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-trigger.wild-mobile-menu-trigger {
+    top: 14px !important;
+  }
+
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button
+    :is(svg, svg *) {
+    color: #7d2f20 !important;
+    stroke: #7d2f20 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button:hover {
+    background:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.82) 0%, rgba(255, 226, 166, 0.32) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #efc77f 0%, #d7974b 50%, #a95625 76%, #743014 100%) !important;
+    background-color: #d7974b !important;
+    background-image:
+      radial-gradient(circle at 34% 22%, rgba(255, 244, 207, 0.82) 0%, rgba(255, 226, 166, 0.32) 24%, transparent 43%),
+      radial-gradient(circle at 50% 52%, #efc77f 0%, #d7974b 50%, #a95625 76%, #743014 100%) !important;
+    color: #7d2f20 !important;
+    -webkit-text-fill-color: #7d2f20 !important;
+    opacity: 1 !important;
+    filter: brightness(1.04) saturate(1.02) !important;
+    transform: scale(1.03) !important;
+  }
+
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button:active {
+    transform: scale(0.97) !important;
+  }
+
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-button:focus-visible {
+    outline: 3px solid #e8b66d !important;
+    outline-offset: 3px !important;
+  }
+}

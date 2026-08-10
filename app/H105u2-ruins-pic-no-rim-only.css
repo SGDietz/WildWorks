@@ -1,0 +1,9 @@
+/* The one requested exception to H105s: the Ruins feature image and its media wrapper only. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #signature-work .wild-story-card--feature :is(.wild-story-media, .wild-story-media > div, img[src*="ww-art-ruins.jpeg"]) {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

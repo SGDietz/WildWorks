@@ -1,0 +1,155 @@
+/* H129: G retired the all-white legal-page exception on 2026-08-10.
+   Legal documents and their shared footer now use the exact public-site
+   Color 1 / Color 2 / dark-copper-control hierarchy. Copy and behavior stay
+   untouched; this file changes only visible text and control treatment. */
+
+/* Color 2: document headings, document emphasis, and the same emphasized
+   footer thoughts used on Home and the public project pages. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-legal-home h1,
+    .wild-legal-home h2,
+    .wild-legal-home h3,
+    .wild-legal-home h4,
+    .wild-legal-home h5,
+    .wild-legal-home h6,
+    .wild-legal-home .wild-legal-title,
+    .wild-legal-home .wild-legal-card-title,
+    .wild-legal-home .wild-legal-copy a,
+    .wild-legal-home .wild-legal-copy strong,
+    #footer .wild-signup-title,
+    #footer .wild-signup-field > span,
+    #footer .wild-footer-contact-cta__kicker,
+    #footer .wild-footer-contact-cta__kicker *,
+    #footer .wild-phone-number-line__call-today,
+    #footer .wild-footer-stonework-note
+  ) {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+}
+
+/* Color 1: legal copy, consent/fine print, copyright, legal navigation, and
+   all remaining shared-footer prose. This closes every former white hole. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-legal-home,
+    .wild-legal-home p,
+    .wild-legal-home li,
+    .wild-legal-home .wild-legal-copy,
+    .wild-legal-home .wild-legal-copy span,
+    .wild-legal-home .wild-legal-deck,
+    .wild-legal-home .wild-legal-note,
+    .wild-legal-home .wild-legal-meta-row span,
+    .wild-legal-home .wild-legal-topbar a,
+    #footer .wild-footer-contact-cta__title,
+    #footer .wild-signup-consent,
+    #footer .wild-signup-consent *,
+    #footer .wild-signup-fine-print,
+    #footer .wild-signup-fine-print *,
+    #footer .wild-phone-number-line > a,
+    #footer .wild-footer-closing > span,
+    #footer .wild-footer-closing > span *,
+    #footer .wild-footer-legal-links,
+    #footer .wild-footer-legal-links *
+  ) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+/* Gold controls use the identical readable dark-copper ink, icon stroke,
+   typeface, and label size used by the shared footer on non-legal routes. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #footer .money-cta,
+    #footer .wild-signup-choice-button,
+    #footer .wild-signup-submit,
+    #footer .wild-footer-top-button,
+    #footer .wild-footer-icon-button,
+    #footer .wild-footer-mobile-link,
+    .wild-legal-home .wild-legal-index-cta
+  ),
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #footer .money-cta,
+    #footer .wild-signup-choice-button,
+    #footer .wild-signup-submit,
+    #footer .wild-footer-top-button,
+    #footer .wild-footer-icon-button,
+    #footer .wild-footer-mobile-link,
+    .wild-legal-home .wild-legal-index-cta
+  ) * {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer :is(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-icon-button,
+    .wild-footer-mobile-link
+  ) {
+  border-color: rgba(246, 211, 154, 0.36) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 1.12rem !important;
+  font-weight: 750 !important;
+  line-height: 1 !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer :is(
+    .money-cta,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-icon-button,
+    .wild-footer-mobile-link
+  ) svg {
+  color: #7d2f20 !important;
+  stroke: currentColor !important;
+}
+
+/* Form entry and placeholder text follow the same Color 1 / Color 2 split. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer :is(input, textarea, select) {
+  color: #f7d9a5 !important;
+  -webkit-text-fill-color: #f7d9a5 !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer :is(input, textarea, select)::placeholder {
+  color: #e8b66d !important;
+  -webkit-text-fill-color: #e8b66d !important;
+  opacity: 1 !important;
+}
+
+/* The small legal-route footer print uses the same readable sizes as Home. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer :is(.wild-signup-consent > span, .wild-signup-fine-print, .wild-signup-fine-print a) {
+  font-size: 0.905rem !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer .wild-footer-legal-link {
+  font-size: 0.945rem !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #footer#footer#footer .wild-footer-closing > span {
+  font-size: 1rem !important;
+}

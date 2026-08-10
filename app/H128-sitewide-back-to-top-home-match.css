@@ -1,0 +1,102 @@
+/* H128: install Grok's approved Home back-to-top control sitewide.
+   Chief correction: include legal routes too, because G asked for every
+   control on the site, and preserve a visible keyboard focus indicator. */
+
+html:root {
+  --ww-h128-back-to-top-material:
+    radial-gradient(circle at 50% -42%, rgba(255, 239, 198, 0.48), transparent 52%),
+    linear-gradient(180deg, #f0ca86 0%, #d89a4d 42%, #aa602d 74%, #7c3114 100%);
+  --ww-h128-back-to-top-ink: #7d2f20;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button.wild-footer-top-button--closing.wild-footer-top-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 4.125rem !important;
+  height: 4.125rem !important;
+  min-width: 4.125rem !important;
+  min-height: 4.125rem !important;
+  max-width: 4.125rem !important;
+  max-height: 4.125rem !important;
+  flex: 0 0 4.125rem !important;
+  margin: 0.75rem auto 0 !important;
+  padding: 13.6px 16px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  border-radius: 8px !important;
+  background: var(--ww-h128-back-to-top-material) !important;
+  background-color: #e8ad59 !important;
+  background-image: var(--ww-h128-back-to-top-material) !important;
+  color: var(--ww-h128-back-to-top-ink) !important;
+  -webkit-text-fill-color: var(--ww-h128-back-to-top-ink) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button--closing
+  .wild-footer-double-rise {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  color: var(--ww-h128-back-to-top-ink) !important;
+  -webkit-text-fill-color: var(--ww-h128-back-to-top-ink) !important;
+  stroke: var(--ww-h128-back-to-top-ink) !important;
+  fill: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button--closing
+  .wild-footer-double-rise__stripes {
+  color: var(--ww-h128-back-to-top-ink) !important;
+  -webkit-text-fill-color: var(--ww-h128-back-to-top-ink) !important;
+  stroke: var(--ww-h128-back-to-top-ink) !important;
+  stroke-width: 4.5px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  fill: none !important;
+  transform: scale(3) !important;
+  transform-box: view-box !important;
+  transform-origin: center !important;
+  filter: none !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button.wild-footer-top-button--closing:hover {
+  border-color: rgba(255, 241, 212, 0.96) !important;
+  color: var(--ww-h128-back-to-top-ink) !important;
+  -webkit-text-fill-color: var(--ww-h128-back-to-top-ink) !important;
+  filter: saturate(1.08) brightness(1.02) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-footer-final-region
+  .wild-footer-top-button.wild-footer-top-button--closing:focus-visible {
+  border-color: rgba(255, 241, 212, 0.96) !important;
+  outline: 2px solid #f7d9a5 !important;
+  outline-offset: 3px !important;
+}

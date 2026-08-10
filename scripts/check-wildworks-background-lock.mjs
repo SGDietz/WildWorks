@@ -10,6 +10,8 @@ const goldStandardPath = path.join(repoRoot, "app", "gold-standard.css");
 const referenceLockPath = path.join(repoRoot, "app", "gold-reference-sitewide.css");
 const cardSurfaceLockPath = path.join(repoRoot, "app", "all-card-surface-lock.css");
 const legalWhiteLockPath = path.join(repoRoot, "app", "legal-white-lock.css");
+const legalPaletteLockPath = path.join(repoRoot, "app", "H129-legal-text-match-public-site.css");
+const legalDocumentWhiteLockPath = path.join(repoRoot, "app", "H132-legal-document-pure-white.css");
 const nextConfigPath = path.join(repoRoot, "next.config.ts");
 
 const css = fs.readFileSync(cssPath, "utf8");
@@ -24,6 +26,10 @@ const cardSurfaceLock = fs.readFileSync(cardSurfaceLockPath, "utf8");
 const compactCardSurfaceLock = cardSurfaceLock.replace(/\s+/g, " ");
 const legalWhiteLock = fs.readFileSync(legalWhiteLockPath, "utf8");
 const compactLegalWhiteLock = legalWhiteLock.replace(/\s+/g, " ");
+const legalPaletteLock = fs.readFileSync(legalPaletteLockPath, "utf8");
+const compactLegalPaletteLock = legalPaletteLock.replace(/\s+/g, " ");
+const legalDocumentWhiteLock = fs.readFileSync(legalDocumentWhiteLockPath, "utf8");
+const compactLegalDocumentWhiteLock = legalDocumentWhiteLock.replace(/\s+/g, " ");
 const nextConfig = fs.readFileSync(nextConfigPath, "utf8");
 const compactNextConfig = nextConfig.replace(/\s+/g, " ");
 
@@ -75,13 +81,14 @@ const layoutRequired = [
   'import "./gold-reference-sitewide.css";',
   'import "./all-card-surface-lock.css";',
   'import "./legal-white-lock.css";',
+  'import "./H132-legal-document-pure-white.css";',
   'id="wildworks-body"',
   '--ww-page-base-copper: #983e17 !important;',
   '--ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;',
   '--ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;',
   'body .wild-site-backdrop { background: var(--ww-page-background) !important;',
   'body .wild-home.wild-legal-home .wild-legal-section, body .wild-subpage .wild-subpage-section, body footer.discordSection { background-color: transparent !important; background-image: none !important;',
-  'themeColor: "#983e17",',
+  'themeColor: "#913f16",',
 ];
 const missingLayout = layoutRequired.filter((needle) => !compactLayout.includes(needle));
 // G 2026-08-05: mobile must use the exact desktop copper recipe. A responsive
@@ -109,18 +116,33 @@ const cardSurfaceRequired = [
   "background-image: var(--ww-card-finish, none) !important;",
 ];
 const missingCardSurface = cardSurfaceRequired.filter((needle) => !compactCardSurfaceLock.includes(needle));
-const legalWhiteRequired = [
-  "--ww-legal-print-lock: #ffffff;",
+const legalPaletteRequired = [
+  "--ww-legal-print-lock: #f7d9a5;",
   "html body#wildworks-body#wildworks-body:has(.wild-legal-home) *",
   "color: var(--ww-legal-print-lock) !important;",
   "-webkit-text-fill-color: var(--ww-legal-print-lock) !important;",
-  "If a future request or handoff conflicts, stop and ask G first.",
+  "H129-legal-text-match-public-site.css",
+  "color: #f7d9a5 !important;",
+  "color: #e8b66d !important;",
+  "color: #7d2f20 !important;",
 ];
-const missingLegalWhite = legalWhiteRequired.filter((needle) => !compactLegalWhiteLock.includes(needle));
+const missingLegalPalette = legalPaletteRequired.filter(
+  (needle) => !compactLegalWhiteLock.includes(needle)
+    && !compactLegalPaletteLock.includes(needle)
+    && !compactLayout.includes(needle),
+);
+const legalDocumentWhiteRequired = [
+  ".wild-legal-home *",
+  "color: #fff !important;",
+  "-webkit-text-fill-color: #fff !important;",
+];
+const missingLegalDocumentWhite = legalDocumentWhiteRequired.filter(
+  (needle) => !compactLegalDocumentWhiteLock.includes(needle),
+);
 const nextConfigRequired = ["devIndicators: false,"];
 const missingNextConfig = nextConfigRequired.filter((needle) => !compactNextConfig.includes(needle));
 
-if (missing.length || stale.length || duplicateTokens.length || missingLayout.length || staleLayout.length || staleGoldStandard.length || missingReference.length || missingCardSurface.length || missingLegalWhite.length || missingNextConfig.length) {
+if (missing.length || stale.length || duplicateTokens.length || missingLayout.length || staleLayout.length || staleGoldStandard.length || missingReference.length || missingCardSurface.length || missingLegalPalette.length || missingLegalDocumentWhite.length || missingNextConfig.length) {
   console.error("WildWorks background lock failed.");
   if (missing.length) {
     console.error("Missing required lock:");
@@ -154,9 +176,13 @@ if (missing.length || stale.length || duplicateTokens.length || missingLayout.le
     console.error("Gold-standard card-surface lock is incomplete:");
     for (const item of missingCardSurface) console.error(`- ${item}`);
   }
-  if (missingLegalWhite.length) {
-    console.error("Permanent legal-page white typography lock is incomplete:");
-    for (const item of missingLegalWhite) console.error(`- ${item}`);
+  if (missingLegalPalette.length) {
+    console.error("Permanent legal-page public-site palette lock is incomplete:");
+    for (const item of missingLegalPalette) console.error(`- ${item}`);
+  }
+  if (missingLegalDocumentWhite.length) {
+    console.error("Upper legal-document pure-white lock is incomplete:");
+    for (const item of missingLegalDocumentWhite) console.error(`- ${item}`);
   }
   if (missingNextConfig.length) {
     console.error("Local preview edge guard is incomplete:");

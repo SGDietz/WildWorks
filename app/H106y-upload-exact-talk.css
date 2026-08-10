@@ -1,0 +1,63 @@
+/* Upload only: inherit the active Talk primary material without an extra skin. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales button.wild-iscott-upload__button.money-cta.money-cta--primary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  border-radius: 8px;
+  background: var(--ww-home-talk-exact-gold) !important;
+  background-color: #e8ad59 !important;
+  background-image: var(--ww-home-talk-exact-gold) !important;
+  padding: 0.85rem 1rem;
+  color: #7D2F20 !important;
+  -webkit-text-fill-color: #7D2F20 !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-shadow: none !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  filter: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales button.wild-iscott-upload__button.money-cta.money-cta--primary :is(span, strong, small, svg) {
+  color: #7D2F20 !important;
+  -webkit-text-fill-color: #7D2F20 !important;
+  text-shadow: none !important;
+  stroke: currentColor !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales button.wild-iscott-upload__button.money-cta.money-cta--primary::before,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales button.wild-iscott-upload__button.money-cta.money-cta--primary::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales button.wild-iscott-upload__button.money-cta.money-cta--primary:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08) brightness(1.02) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 232, 190, 0.38) !important;
+}

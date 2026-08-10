@@ -431,7 +431,7 @@ function IScottUploadAction({
     <div className={`wild-iscott-upload wild-iscott-upload--${placement}`}>
       <button
         type="button"
-        className="wild-iscott-upload__button"
+        className="money-cta money-cta--primary wild-iscott-upload__button"
         data-testid={`iscott-media-upload-${placement}`}
         onClick={onClick}
       >
@@ -906,10 +906,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     <div id="top" className="wild-home">
       <style>{`
         html:has(#top.wild-home) {
-          /* G 2026-08-06: one Home canvas at every width and browser zoom.
-             This points directly to the Aug 4 reference palette; the deleted
-             legacy gradient was the recurring dirt-brown source. */
-          --ww-home-page-background: var(--ww-reference-page) !important;
+          /* Home-only canvas: the approved all-view red at every viewport.
+             Shared route variables stay untouched, so subpages retain their palette. */
+          --ww-home-page-background: #76562B !important;
           background: var(--ww-home-page-background) !important;
           background-attachment: fixed !important;
           background-repeat: no-repeat !important;
@@ -929,9 +928,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         #top.wild-home {
           --ww-box-gradient: var(--ww-reference-card);
-          /* The site-wide desktop copper-brown field lives on the fixed body
-             canvas so it stays dimensional instead of stretching down Home. */
-          --ww-home-night-backdrop: var(--ww-page-background);
+          --ww-home-night-backdrop: var(--ww-home-page-background);
           background: transparent !important;
         }
 
@@ -2061,9 +2058,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           stroke-width: 2.35 !important;
         }
 
-        /* Footer actions match the approved Upload Photos or Videos control:
-           luminous gold material with dark, readable ink. */
-        #top.wild-home #footer :is(
+        /* Home footer conversion controls use the current restrained palette. */
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(
             .wild-signup-choice-button,
             .wild-signup-choice-button span,
             .wild-signup-choice-button svg,
@@ -2071,26 +2067,61 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             .wild-signup-submit span,
             .wild-signup-submit svg
           ) {
-          color: var(--ww-dark-text) !important;
-          -webkit-text-fill-color: var(--ww-dark-text) !important;
-          text-shadow: 0 1px 0 rgba(255, 238, 196, 0.58) !important;
+          color: var(--ww-button-ink) !important;
+          -webkit-text-fill-color: var(--ww-button-ink) !important;
+          text-shadow: none !important;
         }
 
-        #top.wild-home #footer :is(.wild-signup-choice-button, .wild-signup-submit) {
-          border-color: rgba(255, 226, 174, 0.72) !important;
-          background: var(--ww-button-gradient) !important;
-          background-image: var(--ww-button-gradient) !important;
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(.wild-signup-choice-button, .wild-signup-submit) {
+          border-color: rgba(139, 90, 43, 0.94) !important;
+          background: linear-gradient(180deg, #8B5A2B 0%, #76562B 100%) !important;
+          background-image: linear-gradient(180deg, #8B5A2B 0%, #76562B 100%) !important;
           font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif !important;
           font-weight: 760 !important;
           letter-spacing: 0.015em !important;
           box-shadow:
-            0 16px 42px rgba(20, 7, 1, 0.42),
-            0 0 24px rgba(224, 168, 90, 0.18),
-            inset 0 1px 0 rgba(255, 247, 218, 0.78),
-            inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+            0 0.55rem 1.35rem rgba(118, 86, 43, 0.28),
+            0 0 0.8rem rgba(139, 90, 43, 0.16),
+            inset 0 1px 0 rgba(139, 90, 43, 0.44),
+            inset 0 -1px 0 rgba(118, 86, 43, 0.72) !important;
         }
 
-        #top.wild-home #footer .wild-signup-submit {
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(.wild-footer-contact-cta__actions .money-cta, .wild-footer-top-button--closing) {
+          border-color: rgba(139, 90, 43, 0.94) !important;
+          background: linear-gradient(180deg, #8B5A2B 0%, #76562B 100%) !important;
+          background-image: linear-gradient(180deg, #8B5A2B 0%, #76562B 100%) !important;
+          color: var(--ww-button-ink) !important;
+          -webkit-text-fill-color: var(--ww-button-ink) !important;
+          box-shadow: 0 0.55rem 1.35rem rgba(118, 86, 43, 0.28), 0 0 0.8rem rgba(139, 90, 43, 0.16), inset 0 1px 0 rgba(139, 90, 43, 0.44), inset 0 -1px 0 rgba(118, 86, 43, 0.72) !important;
+        }
+
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(.wild-footer-contact-cta__actions .money-cta, .wild-footer-top-button--closing) :is(span, svg) {
+          color: var(--ww-button-ink) !important;
+          -webkit-text-fill-color: var(--ww-button-ink) !important;
+          stroke: currentColor !important;
+        }
+
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer .wild-signup-choice {
+          border-color: rgba(139, 90, 43, 0.72) !important;
+          background: rgba(118, 86, 43, 0.42) !important;
+          background-image: none !important;
+          box-shadow: inset 0 1px 0 rgba(139, 90, 43, 0.3) !important;
+        }
+
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer .wild-signup-field input {
+          border-color: rgba(139, 90, 43, 0.88) !important;
+          background: linear-gradient(180deg, rgba(139, 90, 43, 0.82), rgba(118, 86, 43, 0.88)) !important;
+          background-image: linear-gradient(180deg, rgba(139, 90, 43, 0.82), rgba(118, 86, 43, 0.88)) !important;
+          box-shadow: inset 0 1px 0 rgba(139, 90, 43, 0.36) !important;
+        }
+
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(.wild-signup-field input:focus, .wild-signup-consent input[type="checkbox"]) {
+          border-color: #8B5A2B !important;
+          accent-color: #8B5A2B !important;
+          box-shadow: 0 0 0 0.2rem rgba(139, 90, 43, 0.24) !important;
+        }
+
+        html:has(#top.wild-home:not(.wild-legal-home)) #footer .wild-signup-submit {
           min-height: 64px !important;
           font-size: clamp(1.18rem, 1.8vw, 1.5rem) !important;
         }
@@ -2098,6 +2129,17 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         body #top#top.wild-home .wild-hero.discordSection
           .wild-hero-lede-line:nth-child(2) {
           margin-top: 0.16em !important;
+        }
+
+        @media (min-width: 1366px) {
+          body #top#top.wild-home .wild-hero.discordSection .wild-hero-copy
+            .wild-hero-lede-line:nth-child(3).wild-hero-lede-line--italic {
+            /* Final desktop-only rule: exact sizing avoids ambiguity with the
+               older shared desktop baseline while tablet and phone stay put. */
+            font-size: 3.08rem !important;
+            font-weight: 900 !important;
+            font-synthesis: weight !important;
+          }
         }
 
         /* Project Wildfire lightbox: bright copper-orange display field on
@@ -2126,26 +2168,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           box-shadow:
             inset 0 1px 0 rgba(255, 229, 176, 0.2),
               0 18px 42px rgba(91, 35, 8, 0.24) !important;
-        }
-
-        /* G 2026-08-07: every Home viewport shares the approved desktop pair.
-           Do not reintroduce a phone-only red/orange compensation: it made the
-           same page look painfully hot on a real phone. */
-        @media (min-width: 641px) and (max-width: 1536px) {
-          html:has(#top.wild-home) {
-            --ww-reference-a: #c85a24 !important;
-            --ww-reference-b: #c85a24 !important;
-            --ww-reference-page: #c85a24 !important;
-            --ww-reference-mobile-page: #c85a24 !important;
-            --ww-reference-card: #c85a24 !important;
-            --ww-home-page-background: var(--ww-reference-page) !important;
-            background: var(--ww-home-page-background) !important;
-          }
-
-          body:has(#top.wild-home) .wild-site-backdrop {
-            background: var(--ww-reference-page) !important;
-            background-color: #c85a24 !important;
-          }
         }
 
         @media (min-width: 720px) and (max-width: 1365px) {
@@ -2302,7 +2324,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             </span>
           </motion.p>
           <motion.div className="wild-cta-row" variants={fadeInUp}>
-            <a href="#talk-to-iscott" className="money-cta money-cta--primary" onClick={handleIScottCtaClick}>
+            <a href="#talk-to-iscott" className="money-cta money-cta--primary wild-iscott-action-button" onClick={handleIScottCtaClick}>
               <Sparkles aria-hidden className="h-5 w-5" />
               <span>Talk to iScott</span>
             </a>
@@ -2369,7 +2391,10 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         </motion.div>
       </motion.section>
 
-      <PhoneNumberLine className="wild-phone-number-line--home-hero" />
+      <PhoneNumberLine
+        className="wild-phone-number-line--home-hero"
+        callText="Call Today!"
+      />
 
       <motion.section
         id="iscott-sales"
@@ -2411,8 +2436,92 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             color: #f7d9a5 !important;
             -webkit-text-fill-color: #f7d9a5 !important;
             background: none !important;
-            text-shadow: 0 1px 3px rgba(92, 39, 8, 0.42) !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.42) !important;
           }
+
+          /* Home-only: preserve every text fill, but make all text effects black-only. */
+          html:has(#top.wild-home:not(.wild-legal-home)) #top.wild-home,
+          html:has(#top.wild-home:not(.wild-legal-home)) #top.wild-home *,
+          html:has(#top.wild-home:not(.wild-legal-home)) #footer,
+          html:has(#top.wild-home:not(.wild-legal-home)) #footer * {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.72) !important;
+            -webkit-text-stroke-color: #000000 !important;
+            text-stroke-color: #000000 !important;
+          }
+
+          /* Home phone contact tray: use the established card surface, not orange. */
+          html:has(#top.wild-home:not(.wild-legal-home)) .wild-footer-mobile-strip {
+            background: #8B5A2B !important;
+            background-color: #8B5A2B !important;
+            background-image: none !important;
+          }
+
+          html:has(#top.wild-home:not(.wild-legal-home)) .wild-footer-mobile-strip-inner {
+            background: none !important;
+            background-image: none !important;
+          }
+
+          /* Final Home action system: flat brand material with black control ink. */
+          html:has(#top.wild-home:not(.wild-legal-home)) :is(
+            #top.wild-home :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button),
+            #footer :is(.money-cta, .wild-signup-choice-button, .wild-signup-submit, .wild-footer-top-button, .wild-footer-mobile-link)
+          ) {
+            border-color: #65381E !important;
+            background: #8B5A2B !important;
+            background-color: #8B5A2B !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+          }
+
+          html:has(#top.wild-home:not(.wild-legal-home)) :is(
+            #top.wild-home :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button),
+            #footer :is(.money-cta, .wild-signup-choice-button, .wild-signup-submit, .wild-footer-top-button, .wild-footer-mobile-link)
+          ) :is(span, strong, svg) {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            stroke: #000000 !important;
+            filter: none !important;
+          }
+
+          html:has(#top.wild-home:not(.wild-legal-home)) #footer .wild-signup-field input {
+            border-color: #65381E !important;
+            background: #8B5A2B !important;
+            background-color: #8B5A2B !important;
+            background-image: none !important;
+            box-shadow: none !important;
+          }
+
+          html:has(#top.wild-home:not(.wild-legal-home)) #footer :is(.wild-signup-field input:focus, .wild-signup-consent input[type="checkbox"]) {
+            border-color: #65381E !important;
+            accent-color: #8B5A2B !important;
+            box-shadow: none !important;
+          }
+
+          /* Beat legacy repeated-ID control skins without changing non-controls. */
+          html:has(#top.wild-home:not(.wild-legal-home))
+            body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+            #top#top#top#top#top#top.wild-home
+            :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button) {
+            border-color: #65381E !important;
+            background: #8B5A2B !important;
+            background-color: #8B5A2B !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+          }
+
+          html:has(#top.wild-home:not(.wild-legal-home))
+            body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+            #top#top#top#top#top#top.wild-home
+            :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button) :is(span, strong, svg) {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            stroke: #000000 !important;
+          }
+
         `}</style>
         <input
           ref={iScottMediaInputRef}
@@ -2426,7 +2535,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         <div className="wild-split wild-split--lead">
           <div className="wild-copy-stack">
             <motion.p className="wild-kicker" variants={fadeInLeft} style={noWhiteKickerStyle}>
-              Built to Expedite Your Needs
+              <span className="wild-iscott-kicker__color wild-iscott-kicker__color--one">Built</span>{" "}
+              <span className="wild-iscott-kicker__color wild-iscott-kicker__color--one">to Expedite</span>{" "}
+              <span className="wild-iscott-kicker__color wild-iscott-kicker__color--one">Your Needs</span>
             </motion.p>
             <motion.h2
               className="wild-section-title wild-iscott-title wild-iscott-title--front-door"
@@ -3314,7 +3425,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                     <div className="wild-story-actions" aria-label="The Ruins actions">
                       <a
                         href="#talk-to-iscott"
-                        className="money-cta money-cta--primary wild-story-action"
+                        className="money-cta money-cta--primary wild-story-action wild-iscott-action-button"
                         onClick={handleIScottCtaClick}
                       >
                         <Sparkles aria-hidden className="wild-story-action-icon" />
@@ -3565,6 +3676,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         className="wild-phone-number-line--home-footer"
         callText="Call Today!"
         emphasizeCallText
+        showCallToday={false}
       />
     </div>
   );

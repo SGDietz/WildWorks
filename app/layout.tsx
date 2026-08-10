@@ -59,6 +59,46 @@ import "./gold-standard-palette-and-buttons.css";
 import "./home-hero-overall-size-lock.css";
 import "./wildfire-final-emphasis-lock.css";
 import "./solid-card-and-mobile-hero-lock.css";
+import "./homepage-two-color-preview.css";
+import "./H105s-home-65381E-card-rim-no-avatar.css";
+import "./H106-home-buttons-match-talk-iscott.css";
+import "./H106r-home-buttons-brand-bg-fill.css";
+import "./H106s-home-buttons-brand-gold-sheen.css";
+import "./H106t-upload-brand-gradient.css";
+import "./H106u-home-buttons-card-color-sheen.css";
+import "./H105u2-ruins-pic-no-rim-only.css";
+import "./H106v-copy-talk-exact-brand-colors.css";
+import "./H106w-talk-structure-brand-card-major.css";
+import "./H106x-home-heading-color-key.css";
+import "./H106x-exact-iscott-gold-all-buttons.css";
+import "./H106y-upload-exact-talk.css";
+import "./H106z-footer-brand-tone-and-legal-boundary.css";
+import "./H107-home-hero-photo-contrast.css";
+import "./H108-footer-legal-links-color-one.css";
+import "./H109-mobile-tree-title-spacing.css";
+import "./H110-footer-phone-and-mobile-ruins-spacing.css";
+import "./H111-mobile-phone-spacing-audit.css";
+import "./H112-home-color-three-surface-swap.css";
+import "./H113-standard-brand-mobile-menu.css";
+import "./H114-four-sided-desktop-nav-tabs.css";
+import "./H115-canonical-landscaping-logo.css";
+import "./H116-footer-closing-order-and-stripes.css";
+import "./H117-home-wildfire-cta-width.css";
+import "./H118-logo-and-round-mobile-controls.css";
+import "./H119-home-top-third-harvest-wheat.css";
+import "./H120-home-two-color-sequence.css";
+import "./H121-home-mobile-hero-overlay.css";
+import "./H122-home-mobile-call-today-spacing.css";
+import "./H123-mobile-phone-divider-balance.css";
+import "./H124-mobile-footer-thought-rhythm.css";
+import "./H125-home-mobile-landscape-hero.css";
+import "./H126-home-wildfire-orange-no-smoke.css";
+import "./H127-sitewide-large-orange-no-smoke.css";
+import "./H128-sitewide-back-to-top-home-match.css";
+import "./H129-legal-text-match-public-site.css";
+import "./H130-home-mobile-hero-type-step-up.css";
+import "./H131-home-iscott-button-and-bottom-edge.css";
+import "./H132-legal-document-pure-white.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
 import Footer from "./components/Footer";
@@ -228,7 +268,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#983e17",
+  themeColor: "#913f16",
 };
 
 export default function RootLayout({

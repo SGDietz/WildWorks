@@ -9,7 +9,7 @@ export default function YouTubeVideoBlock() {
         <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
           <iframe
             src={YOUTUBE_EMBED_URL}
-            title="WildWorks — Fine Art & Practical Living"
+            title="WildWorks — Fine Art & Practical Landscaping"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="absolute inset-0 h-full w-full"

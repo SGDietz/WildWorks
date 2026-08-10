@@ -71,9 +71,10 @@
     radial-gradient(ellipse at 80% 30%, rgba(183, 130, 58, 0.075), transparent 8.5rem),
     linear-gradient(105deg, rgba(68, 36, 12, 0.76) 0%, rgba(74, 40, 14, 0.72) 52%, rgba(55, 27, 9, 0.78) 100%),
     linear-gradient(180deg, rgba(46, 21, 7, 0.78) 0%, rgba(31, 12, 4, 0.84) 100%);
-  --ww-button-gradient:
+  --ww-approved-button-material:
     radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #71350f 100%);
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #913f16 100%);
+  --ww-button-gradient: var(--ww-approved-button-material);
   /* WildWorks universal page-canvas lock. Copper/orange is the dominant
      impression; the darker values supply edge depth without turning brown.
      This single recipe is shared by every route and every viewport. */
@@ -508,7 +509,7 @@ body {
   /* LOCKED per G 2026-06-23: multi-line title colors. Line 1 = color 1, line 2 = color 2, line 3 = color 3. */
   --ww-title-1: #f7d9a5;
   --ww-title-2: #e8b66d;
-  --ww-title-3: #d2934a;
+  --ww-title-3: #c87936;
   --ww-display-line-gradient: linear-gradient(
     180deg,
     #fff6d6 0%,
@@ -6522,7 +6523,7 @@ body .wild-home #ai-websites .wild-site-offer-copy {
   display: none;
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta) {
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -6553,7 +6554,7 @@ body .wild-home #ai-websites .wild-site-offer-copy {
   transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button::after {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta)::after {
   content: "";
   position: absolute;
   inset: 1px;
@@ -6564,7 +6565,7 @@ body .wild-home #ai-websites .wild-site-offer-copy {
   transition: transform 420ms ease;
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button:hover {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta):hover {
   filter: saturate(1.06) brightness(1.04);
   transform: translateY(-2px);
   box-shadow:
@@ -6574,15 +6575,15 @@ body .wild-home #ai-websites .wild-site-offer-copy {
     inset 0 -1px 0 rgba(72, 28, 6, 0.46);
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button:hover::after {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta):hover::after {
   transform: translateX(78%);
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button:active {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta):active {
   transform: translateY(1px);
 }
 
-.wild-home #iscott-sales .wild-iscott-upload__button:focus-visible {
+.wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta):focus-visible {
   outline: 3px solid rgba(255, 239, 194, 0.94);
   outline-offset: 4px;
 }
@@ -6617,15 +6618,15 @@ body .wild-home #ai-websites .wild-site-offer-copy {
     margin: clamp(0.85rem, 3vw, 1.2rem) auto 0;
   }
 
-  .wild-home #iscott-sales .wild-iscott-upload__button {
+  .wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta) {
     min-height: 60px;
     font-size: clamp(1.08rem, 4.3vw, 1.32rem);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wild-home #iscott-sales .wild-iscott-upload__button,
-  .wild-home #iscott-sales .wild-iscott-upload__button::after {
+  .wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta),
+  .wild-home #iscott-sales .wild-iscott-upload__button:not(.money-cta)::after {
     transition: none;
   }
 }
@@ -10089,6 +10090,14 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:n
   font-size: clamp(1.9rem, 2.71vw, 2.48rem) !important;
 }
 
+/* Desktop-only: raise the final hero supporting line about two type steps
+   without changing the approved tablet or phone hierarchy. */
+@media (min-width: 1101px) {
+  body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
+    font-size: clamp(2.2rem, 3.05vw, 2.8rem) !important;
+  }
+}
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-unforgettable {
   color: #d2934a !important;
   -webkit-text-fill-color: #d2934a !important;
@@ -12486,12 +12495,8 @@ html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subp
    button bases with the approved copper family. */
 :root {
   --ww-button-ink: #7d2f20;
-  --ww-button-gradient:
-    radial-gradient(circle at 50% -36%, rgba(255, 248, 220, 0.95), transparent 52%),
-    linear-gradient(180deg, #fff6d6 0%, #ffe7af 18%, #f0c070 40%, #e0a85a 58%, #d08840 76%, #be5e2a 100%);
-  --ww-button-gradient-primary:
-    radial-gradient(circle at 50% -36%, rgba(255, 250, 230, 0.96), transparent 50%),
-    linear-gradient(180deg, #fff8dc 0%, #f7d9a5 20%, #e8b66d 46%, #d08840 72%, #c45b2c 100%);
+  --ww-button-gradient: var(--ww-approved-button-material);
+  --ww-button-gradient-primary: var(--ww-approved-button-material);
 }
 
 html body :is(.money-cta, .money-cta--primary, .money-cta--wide, a.money-cta, button.money-cta),

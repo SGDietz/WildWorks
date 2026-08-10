@@ -1,0 +1,52 @@
+/* H106w: actual current Talk CTA structure with the approved card-major body. */
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  --ww-talk-brand-card-major:
+    radial-gradient(circle at 50% -36%, rgba(255, 250, 230, 0.96), transparent 50%),
+    linear-gradient(180deg, #C48A52 0%, #C48A52 20%, #8B5A2B 46%, #76562B 72%, #4A2A14 100%);
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(a.money-cta, button.money-cta, .wild-iscott-upload__button, .wild-card-cta,
+      .wild-sell-feature-cta, .wild-utility-button, .wild-signup-choice-button,
+      .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
+      .wild-footer-mobile-link, .wildfire-phase-bar button,
+      .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button) {
+  border: 1px solid rgba(255, 230, 180, 0.45) !important;
+  background: var(--ww-talk-brand-card-major) !important;
+  background-color: #8B5A2B !important;
+  background-image: var(--ww-talk-brand-card-major) !important;
+  color: #7D2F20 !important;
+  -webkit-text-fill-color: #7D2F20 !important;
+  text-shadow: none !important;
+  box-shadow: 0 12px 34px rgba(16, 6, 1, 0.42), inset 0 1px 0 rgba(255, 244, 210, 0.45) !important;
+  filter: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(a.money-cta, button.money-cta, .wild-iscott-upload__button, .wild-card-cta,
+      .wild-sell-feature-cta, .wild-utility-button, .wild-signup-choice-button,
+      .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
+      .wild-footer-mobile-link, .wildfire-phase-bar button,
+      .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button) :is(span, strong, small, svg) {
+  color: #7D2F20 !important;
+  -webkit-text-fill-color: #7D2F20 !important;
+  text-shadow: none !important;
+  stroke: currentColor !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
+  :is(a.money-cta, button.money-cta, .wild-iscott-upload__button, .wild-card-cta,
+      .wild-sell-feature-cta, .wild-utility-button, .wild-signup-choice-button,
+      .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
+      .wild-footer-mobile-link, .wildfire-phase-bar button,
+      .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button):hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42) !important;
+}
