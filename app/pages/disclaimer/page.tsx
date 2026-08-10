@@ -98,7 +98,7 @@ export default function DisclaimerPage() {
           children: (
             <p>
               Questions about this disclaimer can be sent to hello@wildworks.ai or raised by calling WildWorks at
-              1-877-600-2474.
+              1+443-797-2166.
             </p>
           ),
         },

@@ -24,7 +24,8 @@ html
   max-width: 4.125rem !important;
   max-height: 4.125rem !important;
   flex: 0 0 4.125rem !important;
-  margin: 0.75rem auto 0 !important;
+  /* Match the section-sized gap above the phone number on every route. */
+  margin: clamp(2rem, calc(1.702rem + 1.22vw), 2.8rem) auto 0 !important;
   padding: 13.6px 16px !important;
   overflow: hidden !important;
   border: 1px solid rgba(246, 211, 154, 0.36) !important;

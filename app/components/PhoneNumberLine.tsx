@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 type PhoneNumberLineProps = {
   className?: string;
   callText?: string;
+  desktopCallText?: string;
   emphasizeCallText?: boolean;
   showCallToday?: boolean;
 };
@@ -17,25 +18,43 @@ const iScottDepthEffect = {
 export default function PhoneNumberLine({
   className = "",
   callText = "Call WildWorks Today!",
+  desktopCallText,
   emphasizeCallText = false,
   showCallToday = true,
 }: PhoneNumberLineProps) {
   return (
     <div className={`wild-phone-number-line ${className}`.trim()}>
       <a
-        href="tel:+18776002474"
-        aria-label="Call WildWorks at 1-877-600-2474"
+        href="tel:+14437972166"
+        aria-label="Call WildWorks at 1+443-797-2166"
         style={iScottDepthEffect}
       >
-        1+877-600-2474
+        1+443-797-2166
       </a>
       {showCallToday ? (
-        <span
-          className={`wild-phone-number-line__call-today${emphasizeCallText ? " wild-phone-number-line__call-today--emphasis" : ""}`}
-          style={iScottDepthEffect}
-        >
-          {callText}
-        </span>
+        desktopCallText ? (
+          <>
+            <span
+              className={`wild-phone-number-line__call-today wild-phone-number-line__call-today--desktop${emphasizeCallText ? " wild-phone-number-line__call-today--emphasis" : ""}`}
+              style={iScottDepthEffect}
+            >
+              {desktopCallText}
+            </span>
+            <span
+              className={`wild-phone-number-line__call-today wild-phone-number-line__call-today--mobile${emphasizeCallText ? " wild-phone-number-line__call-today--emphasis" : ""}`}
+              style={iScottDepthEffect}
+            >
+              {callText}
+            </span>
+          </>
+        ) : (
+          <span
+            className={`wild-phone-number-line__call-today${emphasizeCallText ? " wild-phone-number-line__call-today--emphasis" : ""}`}
+            style={iScottDepthEffect}
+          >
+            {callText}
+          </span>
+        )
       ) : null}
     </div>
   );

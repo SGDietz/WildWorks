@@ -601,12 +601,12 @@ function renderSignatureStoryLine(
   line: string,
   onIScottClick: (event: MouseEvent<HTMLAnchorElement>) => void,
 ) {
-  if (line.trim() === "1-877-600-2474") {
+  if (line.trim() === "1+443-797-2166") {
     return (
       <a
         className="wild-story-contact-link wild-story-contact-link--phone"
-        href="tel:+18776002474"
-        aria-label="Call WildWorks at 1-877-600-2474"
+        href="tel:+14437972166"
+        aria-label="Call WildWorks at 1+443-797-2166"
         style={storyInlineActionStyle}
       >
         <Phone aria-hidden className="wild-story-contact-icon" />
@@ -645,7 +645,7 @@ function renderSignatureStoryLine(
 function signatureStoryLineClassName(line: string) {
   const normalizedLine = line.trim();
 
-  if (normalizedLine === "1-877-600-2474") {
+  if (normalizedLine === "1+443-797-2166") {
     return "wild-story-contact-line wild-story-contact-line--phone";
   }
 
@@ -754,7 +754,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     }
     setCallNumberVisible(true);
     try {
-      void navigator.clipboard?.writeText("1-877-600-2474").catch(() => undefined);
+      void navigator.clipboard?.writeText("1+443-797-2166").catch(() => undefined);
     } catch {}
     setPhoneCopied(true);
     window.setTimeout(() => {
@@ -2339,7 +2339,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               onMouseLeave={hideCallNumber}
             >
               <a
-                href="tel:+18776002474"
+                href="tel:+14437972166"
                 className="money-cta"
                 onClick={handleCallNow}
                 onFocus={showCallNumber}
@@ -2352,7 +2352,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               {callNumberVisible || phoneCopied ? (
                 <motion.a
                   id="hero-call-number-reveal"
-                  href="tel:+18776002474"
+                  href="tel:+14437972166"
                   onClick={handleCallNow}
                   aria-label="Call Now"
                   initial={{ opacity: 0 }}
@@ -2394,6 +2394,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       <PhoneNumberLine
         className="wild-phone-number-line--home-hero"
         callText="Call Today!"
+        desktopCallText="Call WildWorks Today!"
       />
 
       <motion.section
@@ -3432,7 +3433,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                         <span>Talk to iScott</span>
                       </a>
                       <a
-                        href="tel:+18776002474"
+                        href="tel:+14437972166"
                         className="money-cta money-cta--primary wild-story-action"
                         aria-label="Call Now"
                       >

@@ -37,6 +37,12 @@ body .wild-phone-number-line > a:focus-visible {
   text-decoration: none;
 }
 
+/* The final footer number uses the exact same face as the approved Home-page
+   phone numbers. Keep its existing size, weight, spacing, color, and position. */
+html body#wildworks-body footer#footer .wild-phone-number-line--footer-closing > a {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
 body .wild-phone-number-line__call-today {
   display: block;
   margin-top: clamp(0.32rem, 0.8vw, 0.62rem);
@@ -48,6 +54,10 @@ body .wild-phone-number-line__call-today {
   line-height: 0.98;
   letter-spacing: 0.025em;
   text-shadow: var(--ww-home-wordmark-text-effect);
+}
+
+body .wild-phone-number-line__call-today--mobile {
+  display: none;
 }
 
 body .wild-phone-number-line__call-today--emphasis {
@@ -108,19 +118,13 @@ html body#wildworks-body footer#footer:has(.wild-phone-number-line--subpage) .wi
     font-size: clamp(3.1rem, 4.5vw, 4.25rem);
   }
 
-  /* Legal pages use the same centered phone treatment, sized to their
-     narrower contact rail rather than the full browser width. */
+  /* Legal pages keep their narrower centered rail and spacing, while the
+     number itself now uses the exact same sitewide size as Home. */
   html body#wildworks-body:has(.wild-legal-home)
     footer#footer
     .wild-phone-number-line--legal {
     width: min(100% - 2rem, 64rem);
     margin-bottom: clamp(4rem, 5vw, 5rem);
-  }
-
-  html body#wildworks-body:has(.wild-legal-home)
-    footer#footer
-    .wild-phone-number-line--legal > a {
-    font-size: clamp(3.4rem, 4.9vw, 5.3rem);
   }
 }
 
@@ -245,6 +249,14 @@ body #top.wild-home #signature-work .wild-story-card--feature .wild-story-action
    decisively larger and heavier at every phone width without letting it touch
    either edge. */
 @media (max-width: 640px) {
+  body .wild-phone-number-line__call-today--desktop {
+    display: none;
+  }
+
+  body .wild-phone-number-line__call-today--mobile {
+    display: block;
+  }
+
   body .wild-phone-number-line > a {
     font-size: clamp(2.45rem, 9.2vw, 3.45rem);
     font-weight: 800;

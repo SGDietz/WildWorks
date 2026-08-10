@@ -8,7 +8,7 @@ import { CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lu
 import BrandText from "./BrandText";
 import PhoneNumberLine from "./PhoneNumberLine";
 import { isLegalRoute, legalNavItems } from "../lib/legalRoutes";
-import { STONEWORK_AUTHENTICITY_LINE } from "../lib/wildworksCopy";
+import { FOOTER_STONEWORK_LINE } from "../lib/wildworksCopy";
 
 const SCROLL_THRESHOLD = 80;
 
@@ -306,11 +306,11 @@ export default function Footer() {
               <Sparkles aria-hidden className="h-5 w-5" />
               <span>Talk to iScott</span>
             </motion.a>
-            <motion.a href="tel:+18776002474" aria-label="Call WildWorks at 1-877-600-2474" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443-797-2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Phone aria-hidden className="h-5 w-5" />
               <span>Call Now</span>
             </motion.a>
-            <motion.a href="sms:+18776002474" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="sms:+14437972166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <MessageSquareText aria-hidden className="h-5 w-5" />
               <span>Text Now</span>
             </motion.a>
@@ -375,7 +375,7 @@ export default function Footer() {
             </svg>
           </motion.button>
           <p className="wild-footer-stonework-note">
-            {STONEWORK_AUTHENTICITY_LINE}
+            {FOOTER_STONEWORK_LINE}
           </p>
           <span
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
@@ -402,7 +402,7 @@ export default function Footer() {
       >
         <div className="wild-footer-mobile-strip-inner flex items-center justify-around px-2 py-4">
           <motion.a
-            href="tel:+18776002474"
+            href="tel:+14437972166"
             className={mobileBrandLink}
             aria-label="Call Now"
             whileHover={{ scale: 1.1 }}
@@ -422,7 +422,7 @@ export default function Footer() {
             <span className="sr-only">Email Now</span>
           </motion.a>
           <motion.a
-            href="sms:+18776002474"
+            href="sms:+14437972166"
             className={mobileBrandLink}
             aria-label="Text Now"
             whileHover={{ scale: 1.1 }}
