@@ -37,6 +37,7 @@ import AspectRatioImage from "../../components/AspectRatioImage";
 import BrandText from "../../components/BrandText";
 import ImageLightbox from "../../components/ImageLightbox";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
+import LargeIScottCta from "../../components/LargeIScottCta";
 import { getAnonymousVisitorId, getClientSessionId } from "../../lib/clientTelemetry";
 import { STONEWORK_AUTHENTICITY_LINE } from "../../lib/wildworksCopy";
 
@@ -660,6 +661,26 @@ function signatureStoryLineClassName(line: string) {
   return undefined;
 }
 
+function TalkToIScottButton({
+  onClick,
+  className = "",
+}: {
+  onClick: (event: MouseEvent<HTMLAnchorElement>) => void;
+  className?: string;
+}) {
+  return (
+    <a
+      href="#talk-to-iscott"
+      className={`money-cta money-cta--primary wild-iscott-action-button${className ? ` ${className}` : ""}`}
+      onClick={onClick}
+      aria-label="Talk to iScott"
+    >
+      <Sparkles aria-hidden className="h-5 w-5" />
+      <span>Talk to iScott</span>
+    </a>
+  );
+}
+
 function ProjectImage({
   src,
   alt,
@@ -850,6 +871,24 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     },
     [wakeIScottAvatar],
   );
+
+  useEffect(() => {
+    const startIScottFromHash = () => {
+      if (window.location.hash !== "#talk-to-iscott") {
+        return;
+      }
+
+      wakeIScottAvatar();
+      document.getElementById("talk-to-iscott")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    };
+
+    startIScottFromHash();
+    window.addEventListener("hashchange", startIScottFromHash);
+    return () => window.removeEventListener("hashchange", startIScottFromHash);
+  }, [wakeIScottAvatar]);
 
   const closeWildfireLightbox = useCallback(() => {
     setWildfireLightboxIndex(null);
@@ -2397,6 +2436,11 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         desktopCallText="Call WildWorks Today!"
       />
 
+      <LargeIScottCta
+        className="wild-home-phone-iscott-test--hero-compact"
+        onClick={handleIScottCtaClick}
+      />
+
       <motion.section
         id="iscott-sales"
         className="wild-section wild-section--intro discordSection discordSection--1"
@@ -3046,12 +3090,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             </span>
           </motion.div>
 
-          <motion.div className="wild-cta-row wild-cta-row--center" variants={fadeInUp} style={{ marginTop: "-1.5rem" }}>
+          <div className="wild-cta-row wild-cta-row--center" style={{ marginTop: "-1.5rem" }}>
+            <TalkToIScottButton onClick={handleIScottCtaClick} />
             <Link href="/pages/Wildfire" className="money-cta money-cta--primary">
               <Flame aria-hidden className="h-5 w-5" />
               <span>Check Out Project Wildfire</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
@@ -3131,6 +3176,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         className="wild-phone-number-line--home-tree"
         showCallToday={false}
       />
+
+      <LargeIScottCta onClick={handleIScottCtaClick} />
 
       <motion.section
         id="wildworks-proof"
@@ -3461,6 +3508,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
+      <LargeIScottCta onClick={handleIScottCtaClick} />
+
       <motion.section
         id="services"
         className="wild-section discordSection discordSection--2"
@@ -3679,6 +3728,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         emphasizeCallText
         showCallToday={false}
       />
+
+      <LargeIScottCta onClick={handleIScottCtaClick} />
     </div>
   );
 }

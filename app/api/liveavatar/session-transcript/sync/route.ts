@@ -8,6 +8,11 @@ import { checkRateLimit } from "../../../../../src/lib/rateLimit";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../../src/lib/supabaseAdmin";
 import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
 import { insertSupabaseRow } from "../../../../../src/lib/telemetryServer";
+import {
+  getIScottLeadState,
+  processIScottTranscriptRows,
+  type IScottLeadState,
+} from "../../../../../src/lib/iscottLeadCapture";
 import { API_KEY, API_URL } from "../../secrets";
 
 const SAFE_SESSION_TOKEN = /^[A-Za-z0-9._-]{20,4000}$/;
@@ -284,6 +289,35 @@ export async function POST(request: Request) {
       }
     }
 
+    let leadState: IScottLeadState | null = null;
+    let leadCaptureError: string | null = null;
+    try {
+      leadState = rows.length > 0
+        ? await processIScottTranscriptRows({
+            sessionId: liveAvatarSessionId,
+            anonymousVisitorId,
+            route,
+            rows: rows.map((row) => ({
+              role: row.role,
+              message: row.message,
+              laAbsoluteTimestamp: row.la_absolute_timestamp,
+            })),
+          })
+        : await getIScottLeadState(liveAvatarSessionId);
+    } catch (error) {
+      leadCaptureError = error instanceof Error ? error.message : String(error);
+      await logServerTelemetryEvent({
+        request,
+        eventType: "iscott_lead_capture_failed",
+        severity: "high",
+        provider: "supabase",
+        sessionId: liveAvatarSessionId,
+        route: "/api/liveavatar/session-transcript/sync",
+        statusCode: 502,
+        payload: { reason, detail: leadCaptureError },
+      });
+    }
+
     await logServerTelemetryEvent({
       request,
       eventType: "liveavatar_transcript_synced",
@@ -300,6 +334,8 @@ export async function POST(request: Request) {
         deduped: candidateRows.length - rows.length,
         userRows: rows.filter((row) => row.role === "user").length,
         assistantRows: rows.filter((row) => row.role === "assistant").length,
+        leadStatus: leadState?.status ?? null,
+        leadCaptureError,
         reason,
       },
     });
@@ -311,6 +347,8 @@ export async function POST(request: Request) {
       received: parsed.transcriptData.length,
       stored: rows.length,
       deduped: candidateRows.length - rows.length,
+      lead: leadState,
+      leadCaptureError,
     });
   } catch (error) {
     console.error("Error syncing LiveAvatar transcript:", error);

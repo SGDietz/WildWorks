@@ -19,7 +19,7 @@ export { isVoiceEmailOutboxRowDue, voiceEmailRetryDelayMs } from "./voiceEmailOu
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type JsonObject = Record<string, unknown>;
-type VoiceEmailEventType = "voice_lead" | "voicemail";
+type VoiceEmailEventType = "voice_lead" | "voicemail" | "iscott_lead";
 type VoiceEmailStatus = "pending" | "sending" | "sent" | "failed";
 
 export type VoiceEmailOutboxRow = {
@@ -84,6 +84,30 @@ export type VoicemailEmailArgs = VoiceNotificationBase & {
   recordingReference?: string | null;
 };
 
+export type IScottLeadMediaEmailItem = {
+  name: string;
+  mimeType: string;
+  sizeBytes: number;
+  signedUrl: string | null;
+};
+
+export type IScottLeadEmailArgs = {
+  eventId: string;
+  sessionId: string;
+  fullName?: string | null;
+  location?: string | null;
+  projectNeed?: string | null;
+  contactMethod?: "email" | "phone" | null;
+  email?: string | null;
+  phone?: string | null;
+  receivedAt?: Date | string;
+  transcript?: string | null;
+  leadDashboardUrl?: string | null;
+  transcriptDashboardUrl?: string | null;
+  media?: IScottLeadMediaEmailItem[];
+  metadata?: JsonObject;
+};
+
 export type VoiceEmailNotificationResult = {
   ok: boolean;
   status: number;
@@ -125,8 +149,10 @@ function cleanEmail(value: unknown): string | null {
 
 function notificationRecipient(): string | null {
   return cleanEmail(
-    process.env.WILDWORKS_VOICE_NOTIFY_EMAIL ||
-      process.env.WILDWORKS_SIGNUP_NOTIFY_EMAIL,
+    process.env.WILDWORKS_LEAD_NOTIFY_EMAIL ||
+      process.env.WILDWORKS_VOICE_NOTIFY_EMAIL ||
+      process.env.WILDWORKS_SIGNUP_NOTIFY_EMAIL ||
+      "Scott@WildWorks.ai",
   );
 }
 
@@ -148,6 +174,25 @@ function escapeHtml(value: string): string {
     '"': "&quot;",
     "'": "&#39;",
   })[character] ?? character);
+}
+
+function cleanMultiline(value: unknown, maxChars: number): string | null {
+  if (typeof value !== "string") return null;
+  const cleaned = value.replace(/\r\n?/g, "\n").trim();
+  return cleaned ? truncateUtf8String(cleaned, maxChars) : null;
+}
+
+function safeHttpsUrl(value: unknown): string | null {
+  const candidate = cleanId(value, 2_000);
+  if (!candidate) return null;
+  try {
+    const url = new URL(candidate);
+    return url.protocol === "https:" && !url.username && !url.password
+      ? url.toString()
+      : null;
+  } catch {
+    return null;
+  }
 }
 
 function detailLine(label: string, value: string | null): { text: string; html: string } | null {
@@ -690,5 +735,103 @@ export async function notifyVoicemailByEmail(
     subject: "New WildWorks voicemail",
     ...body,
     metadata: args.metadata,
+  });
+}
+
+export async function notifyIScottLeadByEmail(
+  args: IScottLeadEmailArgs,
+): Promise<VoiceEmailNotificationResult> {
+  const eventId = cleanId(args.eventId, 190);
+  const sessionId = cleanId(args.sessionId);
+  const receivedAt = isoTimestamp(args.receivedAt);
+  if (!eventId || !sessionId || (args.receivedAt !== undefined && !receivedAt)) {
+    return outboxFailure({ ok: false, status: 0, detail: "invalid_iscott_lead_email", rows: [] });
+  }
+
+  const fullName = cleanText(args.fullName, 180) ?? "Name not provided";
+  const location = cleanText(args.location, 240);
+  const projectNeed = cleanText(args.projectNeed, 2_000);
+  const email = cleanEmail(args.email);
+  const phone = cleanText(args.phone, 80);
+  const contactMethod = args.contactMethod === "phone" ? "Phone call" : "Email";
+  const transcript = cleanMultiline(args.transcript, 70_000) ?? "No transcript was available.";
+  const leadDashboardUrl = safeHttpsUrl(args.leadDashboardUrl);
+  const transcriptDashboardUrl = safeHttpsUrl(args.transcriptDashboardUrl);
+  const media = (args.media ?? []).slice(0, 30).map((item) => ({
+    name: cleanText(item.name, 240) ?? "Uploaded file",
+    mimeType: cleanText(item.mimeType, 120) ?? "application/octet-stream",
+    sizeBytes: Number.isFinite(item.sizeBytes) ? Math.max(0, Math.floor(item.sizeBytes)) : 0,
+    signedUrl: safeHttpsUrl(item.signedUrl),
+  }));
+
+  const subjectLocation = location ? ` — ${location}` : "";
+  const subject = truncateUtf8String(`New iScott lead — ${fullName}${subjectLocation}`, 220);
+  const detailsText = [
+    "New confirmed iScott lead",
+    `Name: ${fullName}`,
+    location ? `Location: ${location}` : null,
+    projectNeed ? `Project: ${projectNeed}` : null,
+    `Preferred contact: ${contactMethod}`,
+    email ? `Email: ${email}` : null,
+    phone ? `Phone: ${phone}` : null,
+    receivedAt ? `Confirmed: ${receivedAt}` : null,
+    `Session: ${sessionId}`,
+    leadDashboardUrl ? `Complete lead: ${leadDashboardUrl}` : null,
+    transcriptDashboardUrl ? `Transcript in Supabase: ${transcriptDashboardUrl}` : null,
+  ].filter((line): line is string => Boolean(line));
+  const mediaText = media.length
+    ? `\n\nUPLOADED PHOTOS AND VIDEOS\n${media.map((item, index) =>
+        `${index + 1}. ${item.name} (${item.mimeType}, ${item.sizeBytes} bytes)${item.signedUrl ? `\n   ${item.signedUrl}` : ""}`,
+      ).join("\n")}`
+    : "\n\nUPLOADED PHOTOS AND VIDEOS\nNone.";
+  const text = `${detailsText.join("\n")}\n\nFULL TRANSCRIPT\n${transcript}${mediaText}`;
+
+  const detailRows = [
+    ["Name", fullName],
+    ["Location", location],
+    ["Project", projectNeed],
+    ["Preferred contact", contactMethod],
+    ["Email", email],
+    ["Phone", phone],
+    ["Confirmed", receivedAt],
+    ["Session", sessionId],
+  ].filter((row): row is [string, string] => Boolean(row[1]));
+  const linksHtml = [
+    leadDashboardUrl
+      ? `<a href="${escapeHtml(leadDashboardUrl)}" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:7px;background:#9a461c;color:#fff7df;text-decoration:none;font-weight:700">Open Complete Lead in Supabase</a>`
+      : "",
+    transcriptDashboardUrl
+      ? `<a href="${escapeHtml(transcriptDashboardUrl)}" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:7px;background:#6d3012;color:#fff7df;text-decoration:none;font-weight:700">Open Transcript</a>`
+      : "",
+  ].join("");
+  const mediaHtml = media.length
+    ? media.map((item) => {
+        const link = item.signedUrl
+          ? `<a href="${escapeHtml(item.signedUrl)}" style="color:#8d3e18;font-weight:700">Open file</a>`
+          : "Stored privately in Supabase";
+        const preview = item.signedUrl && item.mimeType.startsWith("image/")
+          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid #e2c18b"></a></div>`
+          : "";
+        return `<li style="margin:0 0 16px"><strong>${escapeHtml(item.name)}</strong><br><span style="color:#6d5a49">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
+      }).join("")
+    : "<li>None.</li>";
+  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Full Transcript</h2><div style="white-space:pre-wrap;background:#f4e2c2;border-radius:8px;padding:16px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.55">${escapeHtml(transcript)}</div><h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Uploaded Photos and Videos</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
+
+  return deliverVoiceEmail({
+    eventType: "iscott_lead",
+    idempotencyKey: `iscott-lead:${eventId}`,
+    sessionId,
+    subject,
+    text,
+    html,
+    metadata: {
+      ...args.metadata,
+      fullName,
+      location,
+      contactMethod: args.contactMethod ?? null,
+      email,
+      phone,
+      mediaCount: media.length,
+    },
   });
 }

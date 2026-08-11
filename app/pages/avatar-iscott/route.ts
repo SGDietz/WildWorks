@@ -181,6 +181,117 @@ const wildWorksButtonCss = `
       filter: saturate(0.8) !important;
     }
 
+    #wildworks-lead-confirmation {
+      position: fixed !important;
+      top: 55% !important;
+      left: 50% !important;
+      z-index: 2147483645 !important;
+      display: none !important;
+      width: min(82vw, 19rem) !important;
+      transform: translate(-50%, -50%) !important;
+      color: #4a1d0d !important;
+      font-family: Georgia, "Times New Roman", serif !important;
+      text-align: center !important;
+    }
+
+    #wildworks-lead-confirmation.wildworks-lead-visible {
+      display: block !important;
+      animation: wildworks-lead-rise 360ms cubic-bezier(0.22, 1, 0.36, 1) both !important;
+    }
+
+    .wildworks-lead-card {
+      border: 1px solid rgba(255, 242, 207, 0.84) !important;
+      border-radius: 10px !important;
+      background:
+        radial-gradient(circle at 50% -26%, rgba(255, 252, 228, 0.98), transparent 52%),
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 43%, #bc702e 76%, #8b3d16 100%) !important;
+      padding: 0.72rem 0.78rem 0.8rem !important;
+      box-shadow:
+        0 18px 44px rgba(20, 7, 1, 0.5),
+        inset 0 1px 0 rgba(255, 250, 224, 0.92),
+        inset 0 -1px 0 rgba(74, 25, 5, 0.5) !important;
+    }
+
+    .wildworks-lead-kicker {
+      margin: 0 0 0.26rem !important;
+      color: #7d2f20 !important;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+      font-size: 0.62rem !important;
+      font-weight: 850 !important;
+      letter-spacing: 0.14em !important;
+      line-height: 1.1 !important;
+      text-transform: uppercase !important;
+    }
+
+    .wildworks-lead-title {
+      margin: 0 0 0.42rem !important;
+      color: #5a210e !important;
+      font-size: clamp(1.05rem, 5.1vw, 1.34rem) !important;
+      font-weight: 800 !important;
+      line-height: 1.05 !important;
+      text-shadow: 0 1px 0 rgba(255, 235, 187, 0.62) !important;
+    }
+
+    #wildworks-lead-value {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      min-height: 2.32rem !important;
+      border: 1px solid rgba(94, 35, 10, 0.5) !important;
+      border-radius: 6px !important;
+      outline: none !important;
+      background: rgba(255, 248, 221, 0.92) !important;
+      padding: 0.48rem 0.58rem !important;
+      color: #42170a !important;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important;
+      font-size: clamp(0.82rem, 3.8vw, 1.02rem) !important;
+      font-weight: 800 !important;
+      line-height: 1.1 !important;
+      text-align: center !important;
+      box-shadow: inset 0 2px 5px rgba(74, 25, 5, 0.12) !important;
+    }
+
+    .wildworks-lead-actions {
+      display: flex !important;
+      justify-content: center !important;
+      gap: 0.42rem !important;
+      margin-top: 0.5rem !important;
+    }
+
+    .wildworks-lead-action {
+      min-height: 2.25rem !important;
+      border: 1px solid rgba(255, 242, 207, 0.62) !important;
+      border-radius: 6px !important;
+      padding: 0.42rem 0.68rem !important;
+      color: #fff4d8 !important;
+      background: linear-gradient(180deg, #8f431b 0%, #59230d 100%) !important;
+      font-family: Georgia, "Times New Roman", serif !important;
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      line-height: 1 !important;
+      box-shadow: inset 0 1px 0 rgba(255, 230, 181, 0.25) !important;
+    }
+
+    .wildworks-lead-action-secondary {
+      color: #5b210d !important;
+      background: rgba(255, 243, 208, 0.72) !important;
+      border-color: rgba(92, 32, 8, 0.38) !important;
+    }
+
+    #wildworks-lead-status {
+      min-height: 1em !important;
+      margin: 0.44rem 0 0 !important;
+      color: #511d0d !important;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+      font-size: 0.66rem !important;
+      font-weight: 750 !important;
+      line-height: 1.25 !important;
+    }
+
+    @keyframes wildworks-lead-rise {
+      from { opacity: 0; transform: translate(-50%, calc(-50% + 0.75rem)) scale(0.97); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
     body.wildworks-session-ended-active {
       background:
         radial-gradient(ellipse 88% 76% at 50% 28%, rgba(246, 211, 154, 0.14) 0%, rgba(183, 130, 58, 0.07) 44%, transparent 78%),
@@ -603,6 +714,9 @@ const wildWorksCaptureBridgeScript = `
           if (data && typeof data.nextTimestamp === "number") {
             state.nextTimestamp = data.nextTimestamp;
           }
+          if (data && data.lead) {
+            window.dispatchEvent(new CustomEvent("wildworks:lead-state", { detail: data.lead }));
+          }
         } finally {
           state.syncing = false;
         }
@@ -617,7 +731,7 @@ const wildWorksCaptureBridgeScript = `
         logEvent("avatar_proxy_session_observed", { liveAvatarSessionId: state.liveAvatarSessionId });
 
         if (!state.intervalId) {
-          state.intervalId = window.setInterval(() => syncTranscript("interval"), 30000);
+          state.intervalId = window.setInterval(() => syncTranscript("interval"), 5000);
         }
       };
 
@@ -642,6 +756,173 @@ const wildWorksCaptureBridgeScript = `
       });
       window.addEventListener("pagehide", () => syncTranscript("pagehide", true));
       window.addEventListener("wildworks:avatar-session-ended", () => syncTranscript("session_ended", true));
+    })();
+  </script>
+`;
+
+const wildWorksLeadConfirmationScript = `
+  <script id="wildworks-avatar-lead-confirmation">
+    (() => {
+      let activeKey = null;
+      let typingTimer = null;
+      let audioContext = null;
+
+      const findFinishButtons = () => Array.from(document.querySelectorAll("button")).filter((button) =>
+        /^(?:finish|finish conversation|finish session|end conversation)$/i.test((button.textContent || "").trim()),
+      );
+
+      const setFinishButtonsVisible = (visible) => {
+        findFinishButtons().forEach((button) => {
+          if (!visible) {
+            if (!button.dataset.wildworksPreviousDisplay) {
+              button.dataset.wildworksPreviousDisplay = button.style.display || "__empty__";
+            }
+            button.style.setProperty("display", "none", "important");
+          } else if (button.dataset.wildworksPreviousDisplay) {
+            const previous = button.dataset.wildworksPreviousDisplay;
+            button.style.removeProperty("display");
+            if (previous !== "__empty__") button.style.display = previous;
+            delete button.dataset.wildworksPreviousDisplay;
+          }
+        });
+      };
+
+      const ensurePanel = () => {
+        let panel = document.getElementById("wildworks-lead-confirmation");
+        if (panel) return panel;
+        panel = document.createElement("section");
+        panel.id = "wildworks-lead-confirmation";
+        panel.setAttribute("aria-live", "polite");
+        panel.innerHTML = [
+          '<div class="wildworks-lead-card">',
+          '  <p class="wildworks-lead-kicker">Confirm Your Information</p>',
+          '  <h2 class="wildworks-lead-title" id="wildworks-lead-title">Email for Scott</h2>',
+          '  <input id="wildworks-lead-value" autocomplete="email" inputmode="email" aria-label="Contact information to confirm">',
+          '  <div class="wildworks-lead-actions">',
+          '    <button class="wildworks-lead-action" id="wildworks-lead-confirm" type="button">Yes, That’s Right</button>',
+          '    <button class="wildworks-lead-action wildworks-lead-action-secondary" id="wildworks-lead-edit" type="button">Fix It</button>',
+          '  </div>',
+          '  <p id="wildworks-lead-status"></p>',
+          '</div>',
+        ].join("");
+        document.body.appendChild(panel);
+        return panel;
+      };
+
+      const tick = () => {
+        try {
+          audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          oscillator.type = "square";
+          oscillator.frequency.value = 720;
+          gain.gain.setValueAtTime(0.018, audioContext.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.018);
+          oscillator.connect(gain);
+          gain.connect(audioContext.destination);
+          oscillator.start();
+          oscillator.stop(audioContext.currentTime + 0.02);
+        } catch {}
+      };
+
+      const typeValue = (input, value) => {
+        if (typingTimer) window.clearInterval(typingTimer);
+        input.value = "";
+        let index = 0;
+        typingTimer = window.setInterval(() => {
+          input.value += value.charAt(index);
+          tick();
+          index += 1;
+          if (index >= value.length) {
+            window.clearInterval(typingTimer);
+            typingTimer = null;
+          }
+        }, 72);
+      };
+
+      const showLead = (lead) => {
+        if (!lead || lead.status !== "ready_for_confirmation") return;
+        const method = lead.contactMethod === "phone" ? "phone" : lead.contactMethod === "email" ? "email" : lead.email ? "email" : lead.phone ? "phone" : null;
+        const value = method === "email" ? lead.email : method === "phone" ? lead.phone : null;
+        if (!method || !value) return;
+        const key = lead.sessionId + ":" + method + ":" + value;
+        if (key === activeKey) return;
+        activeKey = key;
+
+        const panel = ensurePanel();
+        const title = panel.querySelector("#wildworks-lead-title");
+        const input = panel.querySelector("#wildworks-lead-value");
+        const confirm = panel.querySelector("#wildworks-lead-confirm");
+        const edit = panel.querySelector("#wildworks-lead-edit");
+        const status = panel.querySelector("#wildworks-lead-status");
+        if (!title || !input || !confirm || !edit || !status) return;
+
+        title.textContent = method === "email" ? "Email for Scott" : "Phone Number for Scott";
+        input.type = method === "email" ? "email" : "tel";
+        input.autocomplete = method === "email" ? "email" : "tel";
+        input.inputMode = method === "email" ? "email" : "tel";
+        input.readOnly = false;
+        status.textContent = "Please make sure iScott heard it exactly right.";
+        delete panel.dataset.wildworksComplete;
+        confirm.disabled = false;
+        edit.disabled = false;
+        confirm.style.removeProperty("display");
+        edit.style.removeProperty("display");
+        panel.classList.add("wildworks-lead-visible");
+        setFinishButtonsVisible(false);
+        typeValue(input, value);
+
+        edit.onclick = () => {
+          if (typingTimer) window.clearInterval(typingTimer);
+          typingTimer = null;
+          input.focus();
+          input.select();
+          status.textContent = "Correct it here, then confirm.";
+        };
+
+        confirm.onclick = async () => {
+          const contactValue = input.value.trim();
+          if (!contactValue) {
+            status.textContent = "Please enter the contact information first.";
+            input.focus();
+            return;
+          }
+          confirm.disabled = true;
+          edit.disabled = true;
+          status.textContent = "Saving everything for Scott…";
+          try {
+            const response = await fetch("/api/iscott/lead/confirm", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ sessionId: lead.sessionId, contactMethod: method, contactValue }),
+            });
+            const data = await response.json().catch(() => null);
+            if (!response.ok || !data?.ok) throw new Error(data?.error || "The handoff could not be completed.");
+            title.textContent = data.delivered ? "Sent to Scott" : "Saved for Scott";
+            status.textContent = data.delivered
+              ? "Scott@WildWorks.ai has the complete lead, transcript, and uploads."
+              : "The complete lead is safely queued for Scott@WildWorks.ai.";
+            input.readOnly = true;
+            confirm.style.display = "none";
+            edit.style.display = "none";
+            panel.dataset.wildworksComplete = "true";
+            setFinishButtonsVisible(true);
+          } catch (error) {
+            status.textContent = error instanceof Error ? error.message : "The handoff could not be completed.";
+            confirm.disabled = false;
+            edit.disabled = false;
+          }
+        };
+      };
+
+      window.addEventListener("wildworks:lead-state", (event) => showLead(event.detail));
+      const observer = new MutationObserver(() => {
+        const panel = document.getElementById("wildworks-lead-confirmation");
+        if (panel?.classList.contains("wildworks-lead-visible") && panel.dataset.wildworksComplete !== "true") {
+          setFinishButtonsVisible(false);
+        }
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
 `;
@@ -791,7 +1072,7 @@ export async function GET(request: Request) {
     .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
     .replace(
       "</body>",
-      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
   return new Response(html, {

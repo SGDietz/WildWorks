@@ -7,8 +7,12 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
 import BrandText from "./BrandText";
 import PhoneNumberLine from "./PhoneNumberLine";
+import LargeIScottCta from "./LargeIScottCta";
 import { isLegalRoute, legalNavItems } from "../lib/legalRoutes";
-import { FOOTER_STONEWORK_LINE } from "../lib/wildworksCopy";
+import {
+  FOOTER_STONEWORK_LINE_END,
+  FOOTER_STONEWORK_LINE_START,
+} from "../lib/wildworksCopy";
 
 const SCROLL_THRESHOLD = 80;
 
@@ -339,6 +343,10 @@ export default function Footer() {
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
+        <LargeIScottCta
+          className="wild-home-phone-iscott-test--footer-closing"
+          href="/pages/Home#talk-to-iscott"
+        />
         <PhoneNumberLine
           className={`wild-phone-number-line--footer-closing${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
           callText="Call Today!"
@@ -375,12 +383,15 @@ export default function Footer() {
             </svg>
           </motion.button>
           <p className="wild-footer-stonework-note">
-            {FOOTER_STONEWORK_LINE}
+            <span>{FOOTER_STONEWORK_LINE_START}</span>{" "}
+            <span className="wild-footer-stonework-note__second-line">
+              {FOOTER_STONEWORK_LINE_END}
+            </span>
           </p>
           <span
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
-            &copy; 2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
+            &copy;2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
           </span>
         </div>
 

@@ -165,20 +165,52 @@ export async function POST(request: Request) {
       },
     );
 
+    const mediaRowResponse = metadataResponse.ok
+      ? await fetch(`${url}/rest/v1/iscott_media?on_conflict=upload_id`, {
+          method: "POST",
+          headers: {
+            ...supabaseHeaders(serviceRoleKey),
+            Prefer: "resolution=merge-duplicates,return=minimal",
+          },
+          body: JSON.stringify([{
+            session_id: liveAvatarSessionId || null,
+            anonymous_visitor_id: anonymousVisitorId,
+            client_session_id: clientSessionId,
+            upload_id: uploadId,
+            bucket: INTAKE_MEDIA_BUCKET,
+            object_path: objectPath,
+            original_name: originalName,
+            mime_type: media.type || "application/octet-stream",
+            size_bytes: media.size,
+            source_route: route,
+            viewport,
+            metadata,
+          }]),
+        })
+      : null;
+
+    const mediaRecordSaved = Boolean(mediaRowResponse?.ok);
+
     await logServerTelemetryEvent({
       request,
-      eventType: metadataResponse.ok ? "iscott_media_saved" : "iscott_media_metadata_failed",
-      severity: metadataResponse.ok ? "low" : "high",
+      eventType: metadataResponse.ok && mediaRecordSaved ? "iscott_media_saved" : "iscott_media_metadata_failed",
+      severity: metadataResponse.ok && mediaRecordSaved ? "low" : "high",
       provider: "supabase",
       sessionId: liveAvatarSessionId || clientSessionId,
       anonymousVisitorId,
       route,
-      statusCode: metadataResponse.ok ? 201 : metadataResponse.status,
-      userVisibleState: metadataResponse.ok ? "saved" : "file_saved_metadata_failed",
-      payload: metadata,
+      statusCode: metadataResponse.ok && mediaRecordSaved
+        ? 201
+        : mediaRowResponse?.status ?? metadataResponse.status,
+      userVisibleState: metadataResponse.ok && mediaRecordSaved ? "saved" : "file_saved_metadata_failed",
+      payload: {
+        ...metadata,
+        storageMetadataSaved: metadataResponse.ok,
+        mediaRecordSaved,
+      },
     });
 
-    if (!metadataResponse.ok) {
+    if (!metadataResponse.ok || !mediaRecordSaved) {
       return Response.json(
         { error: "The media file was saved, but its intake record could not be completed." },
         { status: 502 },

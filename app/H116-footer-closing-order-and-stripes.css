@@ -36,6 +36,39 @@ html
   white-space: normal !important;
 }
 
+.wild-footer-stonework-note__second-line {
+  display: inline;
+}
+
+@media (max-width: 719px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-stonework-note {
+    font-size: clamp(1.08rem, 4.5vw, 1.25rem) !important;
+  }
+
+  .wild-footer-stonework-note > span {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .wild-footer-stonework-note__second-line {
+    display: block !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-legal-links {
+    row-gap: 0.15rem !important;
+  }
+}
+
 @media (min-width: 720px) {
   html
     body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -130,7 +163,7 @@ html
     footer#footer#footer#footer#footer#footer#footer#footer
     .wild-footer-final-region
     .wild-footer-stonework-note {
-    font-size: clamp(1.375rem, 5.65vw, 1.75rem) !important;
+    font-size: clamp(1.08rem, 4.5vw, 1.25rem) !important;
     margin-top: 3.13rem !important;
     margin-bottom: 0 !important;
     padding-inline: 0.55rem !important;

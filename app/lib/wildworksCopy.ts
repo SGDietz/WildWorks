@@ -1,5 +1,9 @@
 export const STONEWORK_AUTHENTICITY_LINE =
   "All stonework on this site is real, built by WildWorks.";
 
+export const FOOTER_STONEWORK_LINE_START =
+  "All Stonework on this Site is Designed,";
+export const FOOTER_STONEWORK_LINE_END =
+  "Engineered, and Built by WildWorks.";
 export const FOOTER_STONEWORK_LINE =
-  "All Stonework on this Site is Designed, Engineered, and Built by WildWorks.";
+  `${FOOTER_STONEWORK_LINE_START} ${FOOTER_STONEWORK_LINE_END}`;
