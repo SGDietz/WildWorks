@@ -54,10 +54,10 @@ html:has(#top.wild-home:not(.wild-legal-home))
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top.wild-home footer#footer .wild-signup-choice {
-  border-color: rgba(139, 90, 43, 0.72) !important;
-  background: rgba(118, 86, 43, 0.42) !important;
+  border: 0 !important;
+  background: transparent !important;
   background-image: none !important;
-  box-shadow: inset 0 1px 0 rgba(139, 90, 43, 0.3) !important;
+  box-shadow: none !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))

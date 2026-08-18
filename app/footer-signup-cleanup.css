@@ -24,9 +24,11 @@ body footer#footer .wild-signup-form {
 }
 
 body footer#footer .wild-signup-choice {
-  padding: 0.26rem !important;
-  border: 1px solid rgba(247, 217, 165, 0.46) !important;
-  border-radius: 0.68rem !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  width: min(100%, 19.9rem) !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }

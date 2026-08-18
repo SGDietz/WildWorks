@@ -217,7 +217,7 @@ export default function Footer() {
                 {requiresEmail ? (
                   <label className="wild-signup-field">
                     <span>
-                      Email Address <strong>*</strong>
+                      Email Address
                     </span>
                     <input
                       type="email"

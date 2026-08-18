@@ -657,7 +657,7 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
    signup, and contact surfaces that render outside the #top wrapper to it. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
-  :is(.wild-footer-mobile-strip, .wild-footer-contact-cta, .wild-signup-panel, .wild-signup-panel input, .wild-signup-choice, .wild-image-frame) {
+  :is(.wild-footer-mobile-strip, .wild-footer-contact-cta, .wild-signup-panel, .wild-signup-panel input, .wild-image-frame) {
   background: #9f4719 !important;
   background-color: #9f4719 !important;
   background-image: none !important;
@@ -775,7 +775,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     .wild-card-icon,
     .wild-signup-panel,
     .wild-signup-panel input,
-    .wild-signup-choice,
     .wild-image-frame,
     .wild-footer-contact-cta,
     .wild-footer-mobile-strip
