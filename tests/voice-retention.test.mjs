@@ -203,11 +203,12 @@ test("migration encodes bounded holds, retention windows, dead-lettering, and se
   assert.match(sql, /grant execute on function public\.run_voice_data_retention[\s\S]*to service_role/);
 });
 
-test("Vercel schedules both workers at Hobby-safe daily frequency", () => {
+test("Vercel schedules automatic retention, five-minute email retries, and the daily digest", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
   assert.deepEqual(config.crons, [
     { path: "/api/internal/voice-retention", schedule: "0 5 * * *" },
-    { path: "/api/internal/voice-email-drain", schedule: "0 7 * * *" },
+    { path: "/api/internal/voice-email-drain", schedule: "*/5 * * * *" },
+    { path: "/api/internal/telemetry-digest", schedule: "30 12 * * *" },
   ]);
 });
 

@@ -1,0 +1,355 @@
+/* G 2026-08-13: restrained Home-only lift of the five existing colors.
+   Each role keeps its original hue and hierarchy. Only lightness/chroma move
+   a few points; existing gradients, smoke, imagery, and button chrome remain. */
+
+html:has(#top.wild-home:not(.wild-legal-home)),
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top#top.wild-home {
+  --ww-home-hdr-primary: #9f4719;
+  --ww-home-hdr-secondary: #c56222;
+  --ww-home-hdr-text-1: #fce0ad;
+  --ww-home-hdr-text-2: #f1bf75;
+  --ww-home-hdr-text-3: #d5823a;
+
+  --ww-public-salmon-canvas: var(--ww-home-hdr-primary) !important;
+  --ww-page-base-copper: var(--ww-home-hdr-primary) !important;
+  --ww-page-background: var(--ww-home-hdr-primary) !important;
+  --ww-home-page-background: var(--ww-home-hdr-primary) !important;
+  --ww-reference-a: var(--ww-home-hdr-primary) !important;
+  --ww-reference-page: var(--ww-home-hdr-primary) !important;
+  --ww-reference-mobile-page: var(--ww-home-hdr-primary) !important;
+  --ww-page-flat: var(--ww-home-hdr-primary) !important;
+  --ww-color-a: var(--ww-home-hdr-primary) !important;
+  --ww-ab-a: var(--ww-home-hdr-primary) !important;
+  --ww-solid-a: var(--ww-home-hdr-primary) !important;
+
+  --ww-reference-b: var(--ww-home-hdr-secondary) !important;
+  --ww-reference-card: var(--ww-home-hdr-secondary) !important;
+  --ww-card-flat: var(--ww-home-hdr-secondary) !important;
+  --ww-card-finish: var(--ww-home-hdr-secondary) !important;
+  --ww-color-b: var(--ww-home-hdr-secondary) !important;
+  --ww-ab-b: var(--ww-home-hdr-secondary) !important;
+  --ww-solid-b: var(--ww-home-hdr-secondary) !important;
+
+  --ww-color-1: var(--ww-home-hdr-text-1) !important;
+  --ww-title-1: var(--ww-home-hdr-text-1) !important;
+  --ww-home-heading-color-1: var(--ww-home-hdr-text-1) !important;
+  --ww-color-2: var(--ww-home-hdr-text-2) !important;
+  --ww-title-2: var(--ww-home-hdr-text-2) !important;
+  --ww-home-heading-color-2: var(--ww-home-hdr-text-2) !important;
+  --ww-color-3: var(--ww-home-hdr-text-3) !important;
+  --ww-title-3: var(--ww-home-hdr-text-3) !important;
+  --ww-home-heading-color-3: var(--ww-home-hdr-text-3) !important;
+}
+
+/* The old cascade contains high-specificity flat-color locks. This route-only
+   lock is intentionally stronger and is imported last. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(.wild-site-backdrop, header.wild-site-header, footer.discordSection),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero,
+    .wild-section,
+    .wild-phone-number-line,
+    .wild-home-projects
+  ) {
+  background-color: var(--ww-home-hdr-primary) !important;
+  color: var(--ww-home-hdr-text-1) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .money-panel,
+    .wild-card,
+    .wild-card-icon,
+    .wild-answer-card,
+    .wild-stat,
+    .wild-project-card,
+    .wild-story-card,
+    .wild-process-step,
+    .wild-site-offer-card,
+    .wild-ai-card,
+    .wild-ai-capability-card,
+    .wild-ai-panel,
+    .wild-identity-card,
+    .wild-iscott-panel,
+    .wild-home-statement,
+    .wild-live-avatar-loading__card,
+    .wild-live-avatar-loading,
+    .wild-live-avatar-frame,
+    .wild-site-avatar-frame,
+    .wild-final-cta-inner,
+    .wild-wildfire-inspiration-card,
+    .wild-signup-panel,
+    .wild-travel-panel,
+    .wildfire-photo-card,
+    .wild-inspiration-thumbnail,
+    .wild-wildfire-photo
+  ),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  :is(.wild-footer-contact-cta, .wild-signup-panel) {
+  background-color: var(--ww-home-hdr-secondary) !important;
+  color: var(--ww-home-hdr-text-1) !important;
+}
+
+/* Keep the permanent 1 / 2 / 3 sequence, but lift each face to the new
+   luminous set. The existing black depth/smoke remains the contrast control. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-wordmark-text-orange,
+    .wild-hero-lede-line--beautiful,
+    .wild-kicker,
+    .wild-iscott-kicker__color--one,
+    .money-panel-kicker,
+    .wild-wildfire-sequence-callout__line--patio,
+    .wild-wildfire-build-note__line--lead,
+    .wild-home-statement__line--one,
+    .wild-line-title__line--one,
+    .wild-signature-title__one,
+    .wild-home-projects__title-wildworks,
+    .ww-c1
+  ),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-wordmark-text-orange,
+    .wild-hero-lede-line--beautiful,
+    .wild-kicker,
+    .wild-iscott-kicker__color--one,
+    .money-panel-kicker,
+    .wild-wildfire-sequence-callout__line--patio,
+    .wild-wildfire-build-note__line--lead,
+    .wild-home-statement__line--one,
+    .wild-line-title__line--one,
+    .wild-signature-title__one,
+    .wild-home-projects__title-wildworks,
+    .ww-c1
+  ) * {
+  color: var(--ww-home-hdr-text-1) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-1) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-headline__line--makes-home,
+    .wild-hero-lede-line--problems,
+    .wild-phone-number-line__call-today,
+    .wild-iscott-title__row,
+    .wild-iscott-title__segment--one,
+    .wild-iscott-title__segment--two,
+    .wild-start-title__start,
+    .wild-start-title__with,
+    .wild-wildfire-sequence-callout__line--lounge,
+    .wild-wildfire-build-note__line--middle,
+    .wild-home-statement__line--two,
+    .wild-home-statement__line--four,
+    .wild-signature-title__two,
+    .wild-home-projects__title-projects,
+    .ww-c2
+  ),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-headline__line--makes-home,
+    .wild-hero-lede-line--problems,
+    .wild-phone-number-line__call-today,
+    .wild-iscott-title__row,
+    .wild-iscott-title__segment--one,
+    .wild-iscott-title__segment--two,
+    .wild-start-title__start,
+    .wild-start-title__with,
+    .wild-wildfire-sequence-callout__line--lounge,
+    .wild-wildfire-build-note__line--middle,
+    .wild-home-statement__line--two,
+    .wild-home-statement__line--four,
+    .wild-signature-title__two,
+    .wild-home-projects__title-projects,
+    .ww-c2
+  ) * {
+  color: var(--ww-home-hdr-text-2) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-headline__line--irresistible,
+    .wild-hero-lede-line--italic,
+    .wild-iscott-title__segment--three,
+    .wild-start-title__name,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wild-sell-feature-title__period,
+    .ww-c3
+  ),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  :is(
+    .wild-hero-headline__line--irresistible,
+    .wild-hero-lede-line--italic,
+    .wild-iscott-title__segment--three,
+    .wild-start-title__name,
+    .wild-wildfire-sequence-callout__line--going,
+    .wild-wildfire-build-note__line--close,
+    .wild-line-title__line--three,
+    .wild-signature-title__three,
+    .wild-sell-feature-title__period,
+    .ww-c3
+  ) * {
+  color: var(--ww-home-hdr-text-3) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3) !important;
+}
+
+/* The mobile contact strip belongs visually to the Home page field. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-footer-mobile-strip.wild-footer-mobile-strip {
+  background-color: var(--ww-home-hdr-primary) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  scrollbar-color: var(--ww-home-hdr-secondary) var(--ww-home-hdr-primary) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-track,
+html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-track {
+  background-color: var(--ww-home-hdr-primary) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
+html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb {
+  background-color: var(--ww-home-hdr-secondary) !important;
+  border-color: #a74322 !important;
+}
+
+/* Historical palette files intentionally carry up to sixty ID points of
+   specificity. This impossible :not() argument contributes specificity while
+   remaining route-local and without changing the markup. */
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override)
+  body#wildworks-body,
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override)
+  body#wildworks-body
+  :is(
+    .wild-site-backdrop,
+    .wild-top-logo-band,
+    header.wild-site-header,
+    #top.wild-home,
+    #top.wild-home .wild-hero,
+    #top.wild-home .wild-section,
+    #top.wild-home .wild-phone-number-line,
+    #top.wild-home .wild-home-projects,
+    footer.discordSection,
+    .wild-footer-contact-region
+  ) {
+  background-color: var(--ww-home-hdr-primary) !important;
+  color: var(--ww-home-hdr-text-1) !important;
+}
+
+/* Finish the Color 1 lift on body copy that older inline Home rules painted
+   with the previous cream. Button ink remains untouched. */
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type)
+  body#wildworks-body
+  #top.wild-home
+  :is(
+    .ww-c1,
+    .ww-c1 *,
+    .wild-kicker,
+    .wild-kicker *,
+    .wild-body,
+    .money-step-content,
+    .money-step-content p,
+    .money-step-list > div > span,
+    .wild-iscott-disclosure,
+    .wild-iscott-disclosure a,
+    .wild-home-hero-stonework-note,
+    .wild-wildfire-flame-title__text,
+    .wild-card-body,
+    .wild-story-copy,
+    .wild-site-offer-copy,
+    .wild-site-offer-copy__line,
+    .wild-phone-number-line a
+  ) {
+  color: var(--ww-home-hdr-text-1) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-1) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type)
+  body#wildworks-body
+  #top.wild-home
+  :is(
+    #wildworks-proof .wild-line-title__line--two,
+    #signature-work .wild-line-title__line--two
+  ) {
+  color: var(--ww-home-hdr-text-2) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type)
+  body#wildworks-body
+  #top.wild-home
+  :is(
+    #services > .wild-section-heading .wild-line-title__line--two,
+    #ai-websites .wild-site-offer-heading .wild-line-title__line--two
+  ) {
+  color: var(--ww-home-hdr-text-3) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override)
+  body#wildworks-body
+  :is(
+    #top.wild-home .money-panel,
+    #top.wild-home .wild-card,
+    #top.wild-home .wild-card-icon,
+    #top.wild-home .wild-answer-card,
+    #top.wild-home .wild-stat,
+    #top.wild-home .wild-project-card,
+    #top.wild-home .wild-story-card,
+    #top.wild-home .wild-process-step,
+    #top.wild-home .wild-site-offer-card,
+    #top.wild-home .wild-ai-card,
+    #top.wild-home .wild-ai-capability-card,
+    #top.wild-home .wild-ai-panel,
+    #top.wild-home .wild-identity-card,
+    #top.wild-home .wild-iscott-panel,
+    #top.wild-home .wild-home-statement,
+    #top.wild-home .wild-live-avatar-loading__card,
+    #top.wild-home .wild-live-avatar-loading,
+    #top.wild-home .wild-live-avatar-frame,
+    #top.wild-home .wild-site-avatar-frame,
+    #top.wild-home .wild-final-cta-inner,
+    #top.wild-home .wild-wildfire-inspiration-card,
+    #top.wild-home .wild-signup-panel,
+    #top.wild-home .wild-travel-panel,
+    #top.wild-home .wildfire-photo-card,
+    #top.wild-home .wild-inspiration-thumbnail,
+    #top.wild-home .wild-wildfire-photo,
+    #top.wild-home .wild-image-frame,
+    footer .wild-footer-contact-cta,
+    footer .wild-signup-panel
+  ) {
+  background-color: var(--ww-home-hdr-secondary) !important;
+  color: var(--ww-home-hdr-text-1) !important;
+}

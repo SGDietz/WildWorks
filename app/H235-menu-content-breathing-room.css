@@ -1,0 +1,15 @@
+/* H235: a restrained menu-to-content seam on the four crowded main subpages.
+   Home, legal routes, the menu itself, and the removed logo band stay intact. */
+
+:root {
+  --ww-menu-content-gap: clamp(1.75rem, 2.5vw, 2.25rem);
+}
+
+html body#wildworks-body .wild-main-shell:has(> :is(
+  .wild-subpage--wildfire,
+  .wild-subpage--ruins,
+  .wild-subpage--projects,
+  .wild-subpage--bio
+)) {
+  padding-block-start: var(--ww-menu-content-gap) !important;
+}

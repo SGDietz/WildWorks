@@ -1,12 +1,22 @@
 import { assertAllowedOrigin, truncateUtf8String } from "../../../src/lib/apiRouteSecurity";
 import { checkRateLimit } from "../../../src/lib/rateLimit";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../src/lib/supabaseAdmin";
+import { wildWorksSenderConfigurationError } from "../../../src/lib/wildworksEmailIdentity.mjs";
+import {
+  consentColumns,
+  hasStorableContact,
+  optInColumns,
+  parseMarketingConsent,
+  signupDeliveryPlan,
+  signupResultMessage,
+  signupSmsBody,
+} from "../../../src/lib/marketingConsent.mjs";
 import { Resend } from "resend";
 import twilio from "twilio";
 
 type SignupChannel = "email" | "sms" | "both";
 
-const SIGNUP_CONSENT_VERSION = "2026-08-01";
+const SIGNUP_CONSENT_VERSION = "2026-08-18";
 const CHANNELS = new Set<SignupChannel>(["email", "sms", "both"]);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -34,7 +44,11 @@ function requestedChannels(channel: SignupChannel) {
 }
 
 function emailProviderReady(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
+  // Twilio toll-free verification: every address in the opt-in flow must be on a
+  // WildWorks domain. wildWorksSenderConfigurationError() already enforces that
+  // for the voice mail path; the signup path now uses the same gate.
+  return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL)
+    && wildWorksSenderConfigurationError() === null;
 }
 
 function smsProviderReady(): boolean {
@@ -106,12 +120,14 @@ export async function POST(request: Request) {
 
     if (honeypot) return Response.json({ ok: true, message: "You’re signed up." });
     if (!CHANNELS.has(channel)) {
-      return Response.json({ error: "Choose Email, SMS, or Both before joining the list." }, { status: 400 });
+      return Response.json({ error: "Choose Email or SMS before joining the list." }, { status: 400 });
     }
-    if (body?.consent !== true) {
-      return Response.json({ error: "Please confirm that you agree to receive the updates you selected." }, { status: 400 });
-    }
-
+    // Requirements 3 and 4: marketing and non-marketing consent are separate and
+    // both are optional. A visitor with neither box ticked is still saved; they
+    // simply receive nothing until they opt in, and the ledger records them as
+    // NOT opted in on either channel.
+    const consent = parseMarketingConsent(body);
+    const plan = signupDeliveryPlan({ channel, consent });
     const wants = requestedChannels(channel);
     const email = normalizeEmail(body?.email);
     const phone = normalizeUsPhone(body?.phone);
@@ -126,18 +142,20 @@ export async function POST(request: Request) {
       return Response.json({ error: "The signup record is not configured yet. Please contact WildWorks directly below." }, { status: 503 });
     }
 
+    if (!hasStorableContact({ email, phone })) {
+      return Response.json({ error: "Enter an email address or a mobile number so WildWorks can reach you." }, { status: 400 });
+    }
+
     const id = crypto.randomUUID();
     const record = {
       id,
       email,
       phone_e164: phone,
-      email_opt_in: wants.email,
-      sms_opt_in: wants.sms,
-      consent_version: SIGNUP_CONSENT_VERSION,
-      consented_at: new Date().toISOString(),
+      ...optInColumns(plan),
+      ...consentColumns(consent, SIGNUP_CONSENT_VERSION),
       source_path: sourcePath,
-      email_delivery_status: wants.email ? "pending" : "not_requested",
-      sms_delivery_status: wants.sms ? "pending" : "not_requested",
+      email_delivery_status: plan.emailStatus,
+      sms_delivery_status: plan.smsStatus,
     };
     const insertResult = await insertSignup(record);
     if (!insertResult.ok) {
@@ -147,11 +165,11 @@ export async function POST(request: Request) {
 
     let resendMessageId: string | null = null;
     let twilioMessageId: string | null = null;
-    let emailStatus = wants.email ? "pending" : "not_requested";
-    let smsStatus = wants.sms ? "pending" : "not_requested";
+    let emailStatus = plan.emailStatus;
+    let smsStatus = plan.smsStatus;
     const deliveryErrors: string[] = [];
 
-    if (wants.email && email && emailProviderReady()) {
+    if (plan.sendEmail && email && emailProviderReady()) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY!);
         const emailResult = await resend.emails.send({
@@ -181,12 +199,12 @@ export async function POST(request: Request) {
       }
     }
 
-    if (wants.sms && phone && smsProviderReady()) {
+    if (plan.sendSms && phone && smsProviderReady()) {
       try {
         const client = twilio(process.env.TWILIO_ACCOUNT_SID!, process.env.TWILIO_AUTH_TOKEN!);
         const message = await client.messages.create({
           to: phone,
-          body: "WildWorks: You’re subscribed to project follow-up, scheduling, reminders, design ideas, offers, and service updates. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to cancel.",
+          body: signupSmsBody(consent)!,
           ...(process.env.TWILIO_MESSAGING_SERVICE_SID
             ? { messagingServiceSid: process.env.TWILIO_MESSAGING_SERVICE_SID }
             : { from: process.env.TWILIO_FROM_NUMBER! }),
@@ -214,11 +232,7 @@ export async function POST(request: Request) {
       ok: true,
       message: hasPendingDelivery || hasFailedDelivery
         ? "You're on the WildWorks list. We saved the contact information and choices you provided."
-        : wants.email && wants.sms
-          ? "You’re signed up. Check your inbox and phone for confirmation."
-          : wants.sms
-            ? "You’re signed up. Check your phone for confirmation."
-            : "You’re signed up. Check your inbox for confirmation.",
+        : signupResultMessage({ plan, consent }),
     }, { status: hasPendingDelivery || hasFailedDelivery ? 202 : 200 });
   } catch {
     return Response.json({ error: "We could not complete your signup. Please try again or contact WildWorks directly below." }, { status: 500 });

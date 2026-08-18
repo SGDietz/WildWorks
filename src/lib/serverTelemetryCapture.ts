@@ -1,5 +1,6 @@
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { getRequestTelemetryContext, insertConversationTelemetryFallback, insertSupabaseRow, safeJsonPayload, storeRawTelemetryBackup } from "./telemetryServer";
+import { classifyTraffic, trafficColumns } from "./trafficClassification";
 
 function cleanString(value: unknown, maxChars = 1000): string | null {
   if (typeof value !== "string") return null;
@@ -24,6 +25,10 @@ export async function logServerTelemetryEvent(args: {
   const anonymousVisitorId = cleanString(args.anonymousVisitorId, 160);
   const fallbackSessionId = sessionId || anonymousVisitorId || "server_app_event";
   const route = cleanString(args.route, 220) ?? cleanString(new URL(args.request.url).pathname, 220);
+  const traffic = await classifyTraffic({
+    anonymousVisitorId,
+    userAgent: server.userAgent,
+  });
   const row = {
     session_id: sessionId,
     anonymous_visitor_id: anonymousVisitorId,
@@ -34,6 +39,7 @@ export async function logServerTelemetryEvent(args: {
     status_code: typeof args.statusCode === "number" && Number.isInteger(args.statusCode) && args.statusCode >= 100 && args.statusCode <= 599 ? args.statusCode : null,
     user_visible_state: cleanString(args.userVisibleState, 240),
     payload: { ...safeJsonPayload(args.payload), server },
+    ...trafficColumns(traffic),
   };
 
   const rawBackupOk = await storeRawTelemetryBackup({ category: "server_app_event", sessionId: fallbackSessionId, anonymousVisitorId, value: row });

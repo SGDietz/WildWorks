@@ -1,0 +1,83 @@
+/* H149: Home large phone-line Talk to iScott buttons only.
+   Match the approved compact control everywhere on Home; exclude the small
+   image-overlay CTA and every non-Home route. */
+html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+  :is(#top.wild-home, footer#footer)
+  .wild-home-phone-iscott-test {
+  width: min(calc(100vw - 5.5rem), 48rem) !important;
+}
+
+html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+  :is(#top.wild-home, footer#footer)
+  .wild-home-phone-iscott-test
+  .wild-home-phone-iscott-test__button {
+  min-height: var(--ww-home-phone-talk-min-height, clamp(5.4rem, 7.75vw, 7.75rem)) !important;
+  padding: var(--ww-home-phone-talk-padding, clamp(0.7rem, 1.25vw, 1.1rem) clamp(1.25rem, 3vw, 3rem)) !important;
+  gap: var(--ww-home-phone-talk-gap, clamp(0.65rem, 1.2vw, 1rem)) !important;
+  font-size: var(--ww-home-phone-talk-font-size, clamp(2.6rem, 5.15vw, 5.5rem)) !important;
+  scale: var(--ww-home-phone-talk-scale, 0.64) !important;
+  transform-origin: center center !important;
+  color: var(--ww-reference-b, #c85a24) !important;
+  -webkit-text-fill-color: var(--ww-reference-b, #c85a24) !important;
+}
+
+html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+  :is(#top.wild-home, footer#footer)
+  .wild-home-phone-iscott-test
+  .wild-home-phone-iscott-test__button
+  > svg {
+  width: var(--ww-home-phone-talk-icon-size, clamp(2.7rem, 4.7vw, 5rem)) !important;
+  height: var(--ww-home-phone-talk-icon-size, clamp(2.7rem, 4.7vw, 5rem)) !important;
+  color: var(--ww-reference-b, #c85a24) !important;
+  stroke: currentColor !important;
+}
+
+@media (max-width: 640px) {
+  html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+    :is(#top.wild-home, footer#footer)
+    .wild-home-phone-iscott-test {
+    width: min(calc(100vw - 5.625rem), 30rem) !important;
+  }
+
+  html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+    :is(#top.wild-home, footer#footer)
+    .wild-home-phone-iscott-test
+    .wild-home-phone-iscott-test__button {
+    min-height: var(--ww-home-phone-talk-min-height, 4.1rem) !important;
+    padding: var(--ww-home-phone-talk-padding, 0.5rem) !important;
+    gap: var(--ww-home-phone-talk-gap, 0.45rem) !important;
+    font-size: var(--ww-home-phone-talk-font-size, clamp(1.8rem, 8.2vw, 2.65rem)) !important;
+  }
+
+  html body#wildworks-body:not(#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149#h149):has(#top.wild-home)
+    :is(#top.wild-home, footer#footer)
+    .wild-home-phone-iscott-test
+    .wild-home-phone-iscott-test__button
+    > svg {
+    width: var(--ww-home-phone-talk-icon-size, clamp(1.8rem, 7.5vw, 2.45rem)) !important;
+    height: var(--ww-home-phone-talk-icon-size, clamp(1.8rem, 7.5vw, 2.45rem)) !important;
+  }
+}
+
+/* H150: The Ruins action order and sizing only. Keep Explore first and Call
+   second at equal dimensions. */
+html body#wildworks-body:has(#top.wild-home)
+  #signature-work
+  .wild-story-actions--ruins {
+  grid-template-columns: repeat(2, minmax(0, 13.25rem)) !important;
+}
+
+html body#wildworks-body:has(#top.wild-home)
+  #signature-work
+  .wild-story-actions--ruins
+  .wild-story-action {
+  width: 100% !important;
+}
+
+@media (max-width: 900px) {
+  html body#wildworks-body:has(#top.wild-home)
+    #signature-work
+    .wild-story-actions--ruins {
+    grid-template-columns: minmax(0, min(22rem, calc(100vw - 3rem))) !important;
+  }
+}

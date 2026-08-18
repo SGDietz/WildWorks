@@ -1,0 +1,11 @@
+/* H188: G 2026-08-13 — only the center video's play-button ring changes.
+   Keep its fill, triangle, controls, thumb rings, sizing, and spacing intact. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-branded-video
+  .wild-branded-video__center-control {
+  --ww-h175-video-ring: #54280f;
+  border-color: #54280f !important;
+}

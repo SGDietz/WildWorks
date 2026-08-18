@@ -1,0 +1,39 @@
+/* H171: Home Projects section treatment.
+   G 2026-08-13 (Screenshot 2026-08-13 123242.png):
+   The whole cropped block — above the title, between the photos,
+   and around See More WildWorks Projects — uses the card color.
+   Mosaic, title colors, photos, and the gold button stay put.
+   H168 last-import still paints .wild-home-projects as the page field. */
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #projects.wild-home-projects.wild-home-projects {
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__grid {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+@media (max-width: 600px) {
+  html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card)
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+    #projects.wild-home-projects.wild-home-projects {
+    padding: 0 !important;
+  }
+}

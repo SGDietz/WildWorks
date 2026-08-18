@@ -1,0 +1,66 @@
+/* H222: Ruins restoration using the canonical H221 semantic tokens only.
+   Material depth comes from transparent light/shade, never alternate colors. */
+:root {
+  --ww-ruins-primary-material:
+    radial-gradient(ellipse 48% 125% at 50% 46%, rgb(255 224 173 / 8%), transparent 72%),
+    linear-gradient(90deg, rgb(49 16 5 / 10%) 0%, transparent 24%, transparent 76%, rgb(49 16 5 / 10%) 100%),
+    var(--ww-primary);
+  --ww-ruins-card-material:
+    radial-gradient(ellipse 92% 62% at 50% 0%, rgb(252 224 173 / 10%), transparent 64%),
+    linear-gradient(180deg, transparent 0%, rgb(69 24 7 / 12%) 100%),
+    var(--ww-card);
+}
+
+/* Restore one continuous Primary world behind the Ruins story and footer. */
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #wild-site-backdrop.wild-site-backdrop,
+    .wild-site-header,
+    .wild-top-logo-band,
+    .wild-subpage--ruins,
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--a,
+    footer#footer,
+    footer#footer .wild-footer-main,
+    footer#footer .wild-footer-contact-region--a,
+    footer#footer .wild-footer-final-region,
+    footer#footer .wild-footer-closing-region--a
+  ) {
+  background: var(--ww-ruins-primary-material) !important;
+  background-color: var(--ww-primary) !important;
+  background-image: var(--ww-ruins-primary-material) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  box-shadow: none !important;
+}
+
+/* The established orange narrative panels and true footer cards use Card. */
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-subpage--ruins .ruins-color-band.ruins-tone--b,
+    footer#footer .wild-footer-contact-cta.wild-footer-contact-cta,
+    footer#footer .wild-signup-system,
+    footer#footer .wild-signup-status
+  ) {
+  background: var(--ww-ruins-card-material) !important;
+  background-color: var(--ww-card) !important;
+  background-image: var(--ww-ruins-card-material) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: scroll !important;
+}
+
+/* Rails reveal their semantic parent material; no wrapper restarts or seams. */
+html:has(.wild-subpage--ruins)
+  body#wildworks-body
+  .wild-subpage--ruins
+  .ruins-color-band
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}

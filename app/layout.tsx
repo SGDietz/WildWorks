@@ -6,6 +6,7 @@ import {
   Great_Vibes,
   Playfair_Display,
   Manrope,
+  Caladea,
 } from "next/font/google";
 import "./globals.css";
 import "./gold-standard.css";
@@ -100,10 +101,172 @@ import "./H130-home-mobile-hero-type-step-up.css";
 import "./H131-home-iscott-button-and-bottom-edge.css";
 import "./H132-legal-document-pure-white.css";
 import "./H133-home-tree-iscott-cta-test.css";
+import "./H129-bio-background-spirit.css";
+import "./H142-iscott-buttons-card-orange-mobile-balance.css";
+import "./H143-mobile-footer-iscott-phone-group.css";
+import "./H148-home-hero-iscott-20-percent.css";
+import "./H152-home-craftsmanship-video.css";
+import "./H153-projects-gallery.css";
+import "./H156-hero-iscott-button-beauty.css";
+import "./H157-sitewide-rectangular-action-buttons.css";
+import "./H158-mobile-home-voice-feedback.css";
+import "./H159-branded-video-controls.css";
+import "./H159-home-mobile-hero-contact-final.css";
+import "./H160-sitewide-solid-lightboxes.css";
+import "./H161-home-phone-hero-type-and-contact-rhythm.css";
+import "./H162-home-phone-wildfire-talk-match.css";
+import "./H163-home-phone-projects-rhythm.css";
+import "./H164-projects-organic-mosaic.css";
+import "./H165-project-lightbox-minimal-controls.css";
+import "./H166-mobile-footer-contact-buttons.css";
+import "./H167-home-hero-text-smoke.css";
+import "./H168-home-hdr-bright-palette.css";
+import "./H169-start-with-iscott-color-two.css";
+import "./H170-field-talk-ink-halfway-primary.css";
+import "./H171-home-projects-section-card.css";
+import "./H172-home-primary-center-light.css";
+import "./H174-home-projects-primary-and-tagline.css";
+import "./H175-video-circle-rings-soften.css";
+import "./H176-home-video-outer-corners.css";
+import "./H177-field-talk-ink-toward-card.css";
+import "./H178a-hero-talk-button-box-20-percent.css";
+import "./H179-projects-title-tagline-123.css";
+import "./H183-wildfire-home-contact-and-mobile-projects.css";
+import "./H184-sitewide-footer-home-hero-contact.css";
+import "./H185-mobile-menu-edge-and-footer-number-face.css";
+import "./H186-sitewide-footer-contact-rhythm.css";
+import "./H187-projects-tagline-one-tone.css";
+import "./H188-video-center-play-ring-brown.css";
+import "./H189-projects-tagline-color-two.css";
+import "./H190-home-face-and-wildfire-contact-gaps.css";
+import "./H191-wildfire-kicker-playfair-largest.css";
+import "./H192-effect-closer-projects-bio-rhythm.css";
+import "./H193-wildfire-subtitle-color-two.css";
+import "./H194-projects-title-plus-four.css";
+import "./H195-home-video-phone-card.css";
+import "./H196-services-heading-123.css";
+import "./H197-ai-websites-heading-123.css";
+import "./H198-home-video-card-and-controls.css";
+import "./H199-sitewide-footer-effects-and-legal-colors.css";
+import "./H200-home-mobile-hero-contact-separation.css";
+import "./H201-home-mobile-statement-spacing.css";
+import "./H202-ipad-phone-face-sitewide.css";
+import "./H203-ipad-portrait-number-scale.css";
+import "./H206-talk-buttons-brightness-only.css";
+import "./H207-services-title-black-effect.css";
+import "./H208-footer-talk-brightness-only.css";
+import "./H209-footer-rows-letter-effect.css";
+import "./H210-wildfire-hero-no-contact-kicker-caps.css";
+import "./H211-wildfire-gallery-home-contact.css";
+import "./H212-projects-page-one-field.css";
+import "./H213-home-first-talk-crisp-ink.css";
+import "./H214-ruins-primary-field-and-contact.css";
+import "./H215-projects-gallery-home-contact.css";
+import "./H214-H215-shared-home-contact.css";
+import "./H216-bio-home-contact.css";
+import "./H217-lightbox-swipe.css";
+import "./H218-home-video-card-padding.css";
+import "./H219-home-projects-capabilities-copy.css";
+import "./H220-sitewide-primary-center-light.css";
+import "./H221-sitewide-five-color-authority.css";
+import "./H222-ruins-realistic-palette-restoration.css";
+import "./H223-home-projects-bio-palette.css";
+import "./H226-bio-mobile-card-repair.css";
+import "./H227-lightbox-polish.css";
+import "./H228-held-lightbox-image.css";
+import "./H229-projects-signup-panel.css";
+import "./H230-ruins-card-copy-density.css";
+import "./H231-home-glow-canvas-lock.css";
+import "./H233-mobile-ipad-navigation-and-subpage-top.css";
+import "./H234-mobile-ipad-legal-footer-color-scope.css";
+import "./H235-menu-content-breathing-room.css";
+import "./H236-route-swipe-refinement.css";
+  import "./H238-main-page-headings-and-wildfire-overlay.css";
+  import "./H242-home-ipad-portrait-projects-heading.css";
+  import "./H239-wildfire-bio-hero-layout.css";
+import "./H241-large-iscott-crisp-surface.css";
+import "./H242-home-wildfire-paired-talk-brightness.css";
+import "./H243-ruins-desktop-hero-scale.css";
+import "./H244-legal-return-cta-spacing.css";
+import "./H250-large-iscott-return-finish.css";
+import "./H251-home-large-iscott-return-ink.css";
+import "./H245-footer-dream-project-row-height.css";
+import "./H246-home-wildfire-finished-mosaic.css";
+import "./H247-ruins-phone-hero-geometry.css";
+import "./H248-bio-phone-hero-geometry.css";
+import "./H249-projects-phone-heading-lift.css";
+import "./H250-home-reference-hero-frames.css";
+import "./H252-mobile-contact-strip-integrity.css";
+import "./H253-home-mobile-hero-viewer.css";
+import "./H254-home-display-depth-remaining.css";
+import "./H255-legal-footer-card-fit-and-title-depth.css";
+import "./H256-iscott-mobile-legal-band.css";
+import "./H257-wildfire-six-line-equal-depth.css";
+import "./H258-services-heading-depth.css";
+import "./H259-ai-websites-heading-depth.css";
+import "./H260-footer-phone-match-stonework.css";
+import "./H261-footer-phone-match-stonework-all-pages.css";
+import "./H262-logo-uniform-five-pages.css";
+import "./H263-start-iscott-middle-depth.css";
+import "./H264-logo-tagline-same-shadow.css";
+import "./H265-menu-bar-nice-shadow.css";
+import "./H266-fireplace-subtitle-lighter.css";
+import "./H267-six-line-lighten.css";
+import "./H268-ruins-title-smidge-heavier.css";
+import "./H269-projects-heading-balance.css";
+import "./H270-services-heading-norm.css";
+import "./H271-ai-websites-back-off.css";
+import "./H272-phone-call-back-off.css";
+import "./H273-talk-iscott-glow-dampen.css";
+import "./H274-talk-iscott-glow-all-pages.css";
+import "./H275-legal-return-button-inside.css";
+import "./H276-iscott-large-titles-smidge-lighter.css";
+import "./H279-logo-one-shadow-all-pages.css";
+import "./H280-logo-scroll-shadow-everywhere.css";
+import "./H281-front-door-shadow-lighter.css";
+import "./H282-project-wildfire-title-heavier.css";
+import "./H283-going-and-woodfire-lighter.css";
+import "./H284-statement-text-lighter.css";
+import "./H285-tree-of-life-title-heavier.css";
+import "./H286-ruins-title-heavier-again.css";
+import "./H287-projects-heading-rebalance.css";
+import "./H288-services-norm-must-win.css";
+// H289/H290 were a later unapproved shadow pass. Keep the files as rollback
+// evidence, but do not load them over G's previously approved treatments.
+import "./footer-iscott-panel-match.css";
+import "./ruins-footer-seamless.css";
+import "./letters-beautiful.css";
+import "./shadow-sweep.css";
+import "./approved-visual-locks.css";
+import "./H292-wildfire-pair-match-reference.css";
+import "./H293-home-batch1-small-copy.css";
+import "./H294-project-wildfire-nudge.css";
+import "./H295-hero-lede-correction.css";
+import "./H296-variable-group-overrides.css";
+import "./H297-hero-copy-and-headlines.css";
+import "./H298-remaining-body-copy.css";
+import "./H299-home-visual-intensity-correction.css";
+import "./H300-home-reopened-nine.css";
+import "./H301-home-fourstop-reissue.css";
+import "./H302-projects-copy-and-below.css";
+import "./H303-footer-contact-copy.css";
+import "./H304-service-cards-and-headings.css";
+import "./W01-wildfire-hero-text.css";
+import "./R01-ruins-page-text.css";
+import "./P01-projects-page-text.css";
+import "./B01-bio-page-text.css";
+import "./H305-services-heading.css";
+import "./H307-statement-card-minus25.css";
+import "./H306-breakpoint-corrections.css";
+import "./A01-phone-avatar-size.css";
+import "./L01-lightbox-scroll-lock.css";
+import "./keeper-palette.css";
+import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
 import Footer from "./components/Footer";
 import TelemetryBoot from "./components/TelemetryBoot";
+import MainPageSwipeNavigation from "./components/MainPageSwipeNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -139,6 +302,12 @@ const manrope = Manrope({
   subsets: ["latin"],
 });
 
+const caladea = Caladea({
+  weight: ["400", "700"],
+  variable: "--font-caladea",
+  subsets: ["latin"],
+});
+
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wildworks.live").replace(/\/$/, "");
 const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 
@@ -147,9 +316,9 @@ const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 // copper/orange field on one device while leaving desktop correct.
 const universalCopperCanvasCss = `
   :root {
-    --ww-page-base-copper: #983e17 !important;
-    --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
-    --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+    --ww-page-base-copper: var(--ww-primary) !important;
+    --ww-center-column-glimmer: var(--ww-approved-center-light) !important;
+    --ww-center-gold-fade: var(--ww-center-column-glimmer) !important;
     --ww-page-background: var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
     --ww-home-page-background: var(--ww-page-background) !important;
     --ww-soft-field: var(--ww-page-background) !important;
@@ -160,7 +329,7 @@ const universalCopperCanvasCss = `
   body,
   body .wild-site-backdrop {
     background: var(--ww-page-background) !important;
-    background-color: #983e17 !important;
+    background-color: var(--ww-primary) !important;
     background-image: var(--ww-page-background) !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -186,9 +355,9 @@ const universalCopperCanvasCss = `
 
   @media (min-width: 720px) and (max-width: 1680px) {
     :root {
-      --ww-page-base-copper: #983e17 !important;
-      --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
-      --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+      --ww-page-base-copper: var(--ww-primary) !important;
+      --ww-center-column-glimmer: var(--ww-approved-center-light) !important;
+      --ww-center-gold-fade: var(--ww-center-column-glimmer) !important;
       --ww-page-background: var(--ww-center-gold-fade), var(--ww-page-base-copper) !important;
     }
 
@@ -196,7 +365,7 @@ const universalCopperCanvasCss = `
     body,
     body .wild-site-backdrop {
       background: var(--ww-page-background) !important;
-      background-color: #983e17 !important;
+      background-color: var(--ww-primary) !important;
     }
   }
 
@@ -269,7 +438,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#913f16",
+  themeColor: "#9f4719",
 };
 
 export default function RootLayout({
@@ -338,7 +507,7 @@ export default function RootLayout({
       </head>
       <body
         id="wildworks-body"
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${manrope.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${manrope.variable} ${caladea.variable} antialiased`}
       >
         <style data-wildworks-copper-canvas>{universalCopperCanvasCss}</style>
         <div className="relative min-h-screen overflow-hidden">
@@ -347,7 +516,8 @@ export default function RootLayout({
             <Header />
             <BrandLogo />
             <TelemetryBoot />
-            <main className="flex-1">{children}</main>
+            <MainPageSwipeNavigation />
+            <main className="wild-main-shell flex-1">{children}</main>
             <Footer />
           </div>
         </div>

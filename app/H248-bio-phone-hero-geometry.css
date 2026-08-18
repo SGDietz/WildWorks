@@ -1,0 +1,17 @@
+/* H248: phone-only Bio geometry. Keep the established iPad and desktop rails. */
+@media (max-width: 599px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-top: -1rem !important;
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html body#wildworks-body .wild-subpage--bio.wild-subpage--bio
+    .wild-ab-band--intro > .wild-subpage-section {
+    padding-top: 0.25rem !important;
+  }
+}

@@ -10,6 +10,7 @@ const routes: Array<{
   { path: "/pages/Home", changeFrequency: "weekly", priority: 1 },
   { path: "/pages/Wildfire", changeFrequency: "monthly", priority: 0.9 },
   { path: "/pages/The-ruins", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/pages/Projects", changeFrequency: "monthly", priority: 0.9 },
   { path: "/pages/who-is-g", changeFrequency: "monthly", priority: 0.8 },
   { path: "/pages/Wildworks", changeFrequency: "yearly", priority: 0.4 },
   { path: "/pages/privacy-policy", changeFrequency: "yearly", priority: 0.3 },

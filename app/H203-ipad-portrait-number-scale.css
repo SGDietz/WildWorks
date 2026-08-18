@@ -1,0 +1,28 @@
+/* H203: preserve the approved landscape number-to-button scale in portrait. */
+@media (min-width: 641px) and (max-width: 1024px) and (orientation: portrait) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-phone-number-line
+    > a {
+    font-size: clamp(4.9rem, 9.7vw, 5.35rem) !important;
+    letter-spacing: clamp(0.06em, 0.4vw, 0.12em) !important;
+  }
+
+  /* The video card is narrower than the page rail at 768px. Keep the same
+     type scale while tightening only its tracking enough to prevent spill. */
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-phone-number-line--home-video
+    > a {
+    letter-spacing: 0.045em !important;
+  }
+
+  /* Wildfire's cloned hero callout also sits on an inset rail. */
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire
+    .wild-phone-number-line--home-hero
+    > a {
+    letter-spacing: 0.04em !important;
+  }
+}

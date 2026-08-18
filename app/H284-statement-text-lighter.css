@@ -1,0 +1,18 @@
+/* H284: Home statement — WILDWORKS + scrolls stay. Other lines a little lighter.
+   G 2026-08-17 13:05. Do not touch .wild-home-statement__brand-lockup. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-statement__title :is(
+  .wild-home-statement__line--one,
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four,
+  .wild-home-statement__phrase
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-statement__title :is(
+  .wild-home-statement__line--one,
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four,
+  .wild-home-statement__phrase
+) * {
+  filter: none !important;
+  text-shadow: 0 0.5px 0 rgba(35, 9, 2, 0.52), 0 1.1px 0 rgba(25, 6, 1, 0.3) !important;
+}

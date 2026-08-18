@@ -1,0 +1,40 @@
+/* H191: make PROJECT WILDFIRE the page's largest display lettering using
+   the same Playfair family as Call WildWorks Today. */
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  > .wild-kicker.wild-kicker {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif !important;
+  font-size: var(--ww-wildfire-kicker-size, clamp(3.6rem, 7.2vw, 8.25rem)) !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  line-height: 0.92 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 719px) {
+  html:root
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+      .wild-subpage--wildfire
+    )
+    .wild-subpage--wildfire
+    .wildfire-hero-copy
+    > .wild-kicker.wild-kicker {
+    width: min(100%, 10ch) !important;
+    max-width: 10ch !important;
+    margin-inline: 0 !important;
+    font-size: var(--ww-wildfire-kicker-size-mobile, clamp(2.85rem, 14vw, 3.9rem)) !important;
+    line-height: 0.9 !important;
+    white-space: normal !important;
+    text-wrap: balance !important;
+  }
+}

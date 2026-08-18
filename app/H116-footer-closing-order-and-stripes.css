@@ -25,15 +25,31 @@ html
   footer#footer#footer#footer#footer#footer#footer#footer
   .wild-footer-final-region
   .wild-footer-stonework-note {
-  width: min(100% - 2rem, 90rem) !important;
-  max-width: none !important;
+  position: static !important;
+  left: auto !important;
+  width: calc(100% + 2rem) !important;
+  max-width: calc(100% + 2rem) !important;
   /* Visually center the striped back-to-top button between Call Today and
      the Stonework statement by matching the rendered glyph-to-button gaps. */
-  margin: clamp(2.86rem, calc(4.75vw - 0.09rem), 3.63rem) auto 0 !important;
+  margin: clamp(2.86rem, calc(4.75vw - 0.09rem), 3.63rem) -1rem 0 !important;
   padding: 0 1rem !important;
   text-align: center !important;
   text-wrap: balance !important;
   white-space: normal !important;
+  transform: none !important;
+}
+
+@media (min-width: 640px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-stonework-note {
+    width: calc(100% + 3rem) !important;
+    max-width: calc(100% + 3rem) !important;
+    margin-right: -1.5rem !important;
+    margin-left: -1.5rem !important;
+  }
 }
 
 .wild-footer-stonework-note__second-line {

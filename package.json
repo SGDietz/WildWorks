@@ -4,12 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run check:bg && npm run check:x-links && npm run check:phone-links && next build",
+    "build": "npm run check:palette && npm run check:bg && npm run check:x-links && npm run check:phone-links && npm run check:legal-white-zone && next build",
     "start": "next start",
     "lint": "eslint",
     "check:bg": "node scripts/check-wildworks-background-lock.mjs",
+    "check:palette": "node scripts/check-wildworks-palette-authority.mjs",
+    "check:palette:served": "node scripts/check-wildworks-served-palette.mjs",
     "check:x-links": "node scripts/check-wildworks-x-links.mjs",
-    "check:phone-links": "node scripts/check-wildworks-phone-links.mjs"
+    "check:phone-links": "node scripts/check-wildworks-phone-links.mjs",
+    "check:legal-white-zone": "node scripts/check-legal-white-zone.mjs",
+    "check:iscott-lead": "node scripts/check-iscott-lead-parser.mjs",
+    "check:iscott-mic": "node scripts/check-iscott-mic-safety.mjs",
+    "check:iscott-capture-reveal": "node scripts/check-iscott-capture-reveal.mjs",
+    "check:iscott-spoken-email": "node scripts/check-iscott-spoken-email.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -20,7 +27,9 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-swipeable": "^7.0.2",
     "resend": "^6.18.1",
+    "sharp": "^0.35.3",
     "three": "^0.183.2",
     "twilio": "^6.0.2"
   },

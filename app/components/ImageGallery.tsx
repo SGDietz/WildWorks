@@ -1,112 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState, type SyntheticEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   ChevronLeft,
   ChevronRight,
-  Images,
   X,
 } from "lucide-react";
+import { useLightboxSwipe } from "../lib/useLightboxSwipe";
+import { wildfireConstructionImages, wildfireViewerImages } from "../lib/wildfireImages";
+import { useNeighborPreload } from "../lib/useNeighborPreload";
+import HeldLightboxImage, { type LightboxDirection } from "./HeldLightboxImage";
 
-const TOTAL_IMAGES = 93;
-const BATCH_SIZE = 20;
-
-const phases = [
-  { id: "p1", label: "01-20" },
-  { id: "p2", label: "21-40" },
-  { id: "p3", label: "41-60" },
-  { id: "p4", label: "61-80" },
-  { id: "p5", label: "81-93" },
+const PREVIEW_IMAGE_INDICES = [0, 20, 40, 60, 80] as const;
+const previewItems = PREVIEW_IMAGE_INDICES.map((index) => wildfireConstructionImages[index]);
+const previewLayoutClasses = [
+  "wild-wildfire-photo--hero",
+  "wild-wildfire-photo--deck",
+  "wild-wildfire-photo--garden",
+  "wild-wildfire-photo--patio",
+  "wild-wildfire-photo--detail",
 ] as const;
 
-type PhaseId = (typeof phases)[number]["id"];
-
-type GalleryItem = {
-  index: number;
-  phase: PhaseId;
-  src: string;
-};
-
-const phaseForIndex = (index: number): GalleryItem["phase"] => {
-  if (index <= 20) return "p1";
-  if (index <= 40) return "p2";
-  if (index <= 60) return "p3";
-  if (index <= 80) return "p4";
-  return "p5";
-};
-
-const galleryItems: GalleryItem[] = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
-  const index = i + 1;
-  return {
-    index,
-    phase: phaseForIndex(index),
-    src: `/wildfire/${String(index).padStart(2, "0")}.jpg`,
-  };
-});
-
-const buildPhotoAlt = (index: number) =>
-  `Project Wildfire construction field photo ${String(index).padStart(2, "0")} of ${TOTAL_IMAGES}, documenting the outdoor fireplace, patio, lounge, and upper deck build`;
-
 export default function ImageGallery() {
-  const [activePhase, setActivePhase] = useState<PhaseId>("p1");
-  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [aspectRatios, setAspectRatios] = useState<Record<string, string>>({});
-
-  const filteredItems = useMemo(
-    () => galleryItems.filter((item) => item.phase === activePhase),
-    [activePhase]
-  );
-
-  const visibleItems = filteredItems.slice(0, visibleCount);
-  const canLoadMore = visibleCount < filteredItems.length;
-  const activePhaseLabel =
-    phases.find((phase) => phase.id === activePhase)?.label ?? phases[0].label;
-  // Lightbox walks the FULL 93-photo archive (not just the current 20-photo phase),
-  // so "Build Step X of 93" + arrow nav stay truthful. (Herm TASK_019)
+  const [lightboxDirection, setLightboxDirection] = useState<LightboxDirection>("next");
+  useNeighborPreload(wildfireViewerImages, lightboxIndex);
+  // The page exposes five intentionally spaced construction entry points. The
+  // viewer keeps every construction image, then reveals the five finished
+  // fireplace/patio images at the end (one-based positions 94 through 98).
   const activeLightboxItem =
-    lightboxIndex === null ? null : galleryItems[lightboxIndex] ?? null;
+    lightboxIndex === null ? null : wildfireViewerImages[lightboxIndex] ?? null;
 
-  const handlePhaseChange = useCallback((phase: PhaseId) => {
-    setActivePhase(phase);
-    setVisibleCount(BATCH_SIZE);
-    setLightboxIndex(null);
-  }, []);
-
-  const handleLoad = useCallback(
-    (e: SyntheticEvent<HTMLImageElement>, src: string) => {
-      const img = e.currentTarget;
-      const w = img.naturalWidth;
-      const h = img.naturalHeight;
-      if (w && h) {
-        setAspectRatios((prev) => ({ ...prev, [src]: `${w} / ${h}` }));
-      }
-    },
-    []
-  );
-
-  const openLightbox = useCallback((item: GalleryItem) => {
-    const index = galleryItems.findIndex((candidate) => candidate.src === item.src);
-    if (index >= 0) setLightboxIndex(index);
+  const openLightbox = useCallback((oneBasedIndex: number) => {
+    setLightboxIndex(oneBasedIndex - 1);
   }, []);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
   const showPrevious = useCallback(() => {
+    setLightboxDirection("previous");
     setLightboxIndex((current) => {
       if (current === null) return current;
-      return (current - 1 + galleryItems.length) % galleryItems.length;
+      return (current - 1 + wildfireViewerImages.length) % wildfireViewerImages.length;
     });
   }, []);
 
   const showNext = useCallback(() => {
+    setLightboxDirection("next");
     setLightboxIndex((current) => {
       if (current === null) return current;
-      return (current + 1) % galleryItems.length;
+      return (current + 1) % wildfireViewerImages.length;
     });
   }, []);
+  const swipe = useLightboxSwipe(showPrevious, showNext, { handoff: "crossfade" });
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -127,78 +75,41 @@ export default function ImageGallery() {
   }, [closeLightbox, lightboxIndex, showNext, showPrevious]);
 
   return (
-    <section id="wildfire-build-journal" className="wildfire-journal discordSection discordSection--2">
-      <div className="wildfire-phase-bar" aria-label="Filter build photos by phase">
-        {phases.map((phase) => (
-          <button
-            key={phase.id}
-            type="button"
-            onClick={() => handlePhaseChange(phase.id)}
-            className={activePhase === phase.id ? "is-active" : ""}
-          >
-            <span>{phase.label}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="wildfire-gallery-status" aria-live="polite">
-        <Images aria-hidden className="h-5 w-5" />
-        <span>
-          Showing {activePhaseLabel} · {visibleItems.length} of {TOTAL_IMAGES} Field Photos
-        </span>
-      </div>
-
-      <div className="wildfire-photo-grid">
-        {visibleItems.map((item) => (
-          <button
+    <section id="wildfire-build-journal" className="wildfire-journal wildfire-preview-gallery discordSection discordSection--2">
+      <div className="wildfire-preview-mosaic wild-wildfire-spread">
+        {previewItems.map((item, index) => (
+          <figure
             key={item.src}
-            type="button"
-            className="wildfire-photo-card"
-            onClick={() => openLightbox(item)}
-            style={{ aspectRatio: aspectRatios[item.src] ?? "16 / 9" }}
+            className={`wild-wildfire-photo ${previewLayoutClasses[index]}`}
           >
-            <Image
-              src={item.src}
-              alt={buildPhotoAlt(item.index)}
-              fill
-              className="object-contain"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              quality={72}
-              onLoad={(e) => handleLoad(e, item.src)}
-            />
-          </button>
+            <button
+              type="button"
+              className="wild-wildfire-photo-button"
+              onClick={() => openLightbox(item.index)}
+              aria-label={`Open the complete Project Wildfire build sequence at ${item.alt}`}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                className="object-cover"
+                sizes={index === 0 ? "(max-width: 899px) 100vw, 58vw" : "(max-width: 899px) 100vw, 34vw"}
+                quality={72}
+              />
+            </button>
+          </figure>
         ))}
       </div>
-
-      {canLoadMore ? (
-        <div className="wildfire-load-more">
-          <button
-            type="button"
-            className="money-cta"
-            onClick={() =>
-              setVisibleCount((current) =>
-                Math.min(current + BATCH_SIZE, filteredItems.length)
-              )
-            }
-          >
-            <Images aria-hidden className="h-5 w-5" />
-            <span>Load the Next Steps</span>
-          </button>
-        </div>
-      ) : null}
 
       {activeLightboxItem && typeof document !== "undefined" ? createPortal(
         <div
-          className="wildfire-lightbox discordSection discordSection--lightbox"
+          className="wildfire-lightbox wild-projects-lightbox discordSection discordSection--lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={buildPhotoAlt(activeLightboxItem.index)}
+          aria-label={activeLightboxItem.alt}
+          {...swipe}
         >
           <div className="wildfire-lightbox-bar">
-            <span>
-              Build Step {String(activeLightboxItem.index).padStart(2, "0")} of{" "}
-              {TOTAL_IMAGES}
-            </span>
             <button type="button" onClick={closeLightbox} aria-label="Close image">
               <X aria-hidden className="h-6 w-6" />
             </button>
@@ -211,16 +122,14 @@ export default function ImageGallery() {
           >
             <ChevronLeft aria-hidden className="h-9 w-9" />
           </button>
-          <div className="wildfire-lightbox-image">
-            <Image
-              src={activeLightboxItem.src}
-              alt={buildPhotoAlt(activeLightboxItem.index)}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              quality={86}
-            />
-          </div>
+          <HeldLightboxImage
+            image={{
+              src: activeLightboxItem.src,
+              alt: activeLightboxItem.alt,
+            }}
+            direction={lightboxDirection}
+            priority
+          />
           <button
             type="button"
             className="wildfire-lightbox-nav wildfire-lightbox-nav--right"

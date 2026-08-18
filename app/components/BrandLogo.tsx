@@ -4,10 +4,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { isLegalRoute } from "../lib/legalRoutes";
+import { mainNavigationTabs, normalizeMainNavigationPath } from "../lib/mainNavigation";
 
-// Shared WildWorks wordmark band, shown at the top of every page (home + subpages).
+// Every main navigation route shares the same wordmark. Legal and secondary
+// routes retain their existing route-specific behavior.
 export default function BrandLogo() {
   const pathname = usePathname();
+  const normalizedPath = normalizeMainNavigationPath(pathname);
+  const mainRoute = mainNavigationTabs.some((tab) => tab.href === normalizedPath);
 
   if (isLegalRoute(pathname)) {
     return null;
@@ -15,7 +19,7 @@ export default function BrandLogo() {
 
   return (
     <motion.div
-      className="wild-top-logo-band"
+      className={`wild-top-logo-band${mainRoute ? "" : " wild-top-logo-band--subpage"}`}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

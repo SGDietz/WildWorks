@@ -1,0 +1,35 @@
+/* H186: G 2026-08-13 — treat the closing Talk / phone / call line as one
+   deliberate unit on desktop and tablets. Older footer rules added a second
+   top margin to the phone block, visually marooning Talk above the number. */
+
+@media (min-width: 641px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-phone-iscott-group {
+    gap: clamp(1rem, 1.4vw, 1.25rem) !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-phone-iscott-group
+    > .wild-phone-number-line--footer-closing {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* H116's legacy selector repeats the body and footer IDs and otherwise
+     restores a second top margin. Match that authority only for this block. */
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-phone-iscott-group
+    > .wild-phone-number-line--footer-closing {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}

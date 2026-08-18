@@ -1,0 +1,11 @@
+/* H243: The Ruins hero is intentionally full-scale on desktop/laptop only.
+   iPad and phone retain their approved geometry below this breakpoint. */
+@media (min-width: 900px) {
+  html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero {
+    width: calc(100% - 2rem) !important;
+    max-width: none !important;
+    margin-top: 0 !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+}

@@ -1,0 +1,106 @@
+/* H198: G 2026-08-13 — only the Home craftsmanship card and its player.
+   Give the card more presence, optically center the widely tracked number,
+   and simplify every player accent to Color 1 except the center play body's
+   deliberately dark-brown fill and ring. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card {
+  width: min(calc(100% - 2rem), 80rem) !important;
+  padding: clamp(1.4rem, 2.6vw, 2.15rem) clamp(1.25rem, 2.45vw, 2rem)
+    clamp(1.65rem, 2.8vw, 2.35rem) !important;
+}
+
+/* The element box was mathematically centered, but the final letter-space
+   after the last digit made the glyph run read slightly right-heavy. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-phone-number-line--home-video
+  > a {
+  position: relative !important;
+  left: -0.4rem !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video {
+  --ww-video-color-1: var(--ww-home-hdr-text-1, #fce0ad) !important;
+  color: var(--ww-video-color-1) !important;
+  -webkit-text-fill-color: var(--ww-video-color-1) !important;
+}
+
+/* Center control: dark brown body and ring; Color 1 triangle. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video__center-control {
+  border-color: #54280f !important;
+  background: rgba(31, 9, 2, 0.82) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video__center-control
+  svg {
+  color: var(--ww-video-color-1) !important;
+  fill: var(--ww-video-color-1) !important;
+  stroke: var(--ww-video-color-1) !important;
+}
+
+/* Progress and volume circles: Color 1 all the way through, without the
+   mismatched reddish/brown ring or halo. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video__range {
+  --ww-h175-video-ring: var(--ww-video-color-1) !important;
+  accent-color: var(--ww-video-color-1) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video__range::-webkit-slider-thumb {
+  border-color: var(--ww-video-color-1) !important;
+  background: var(--ww-video-color-1) !important;
+  box-shadow: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video__range::-moz-range-thumb {
+  border-color: var(--ww-video-color-1) !important;
+  background: var(--ww-video-color-1) !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 640px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-home-craftsmanship-card {
+    width: calc(100% - 0.5rem) !important;
+    padding: 0.95rem 0.7rem 1.3rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-home-craftsmanship-card
+    .wild-phone-number-line--home-video
+    > a {
+    left: -0.18rem !important;
+  }
+}

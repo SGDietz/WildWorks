@@ -1,0 +1,187 @@
+/* H190: use the Home Cambria face across display copy and equalize the
+   Wildfire gaps above the number and below Talk to iScott. */
+html body#wildworks-body {
+  --ww-home-face: var(--ww-body-copy-font);
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line
+  > a,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line
+  .wild-phone-number-line__call-today,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line
+  :is(span, em, strong) {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  .wild-footer-phone-iscott-group
+  > .wild-phone-number-line--footer-closing
+  > a,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  .wild-footer-phone-iscott-group
+  > .wild-phone-number-line--footer-closing
+  .wild-phone-number-line__call-today {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li,
+    .wild-body,
+    .wildfire-hero-headline,
+    .wildfire-hero-headline__line,
+    .wildfire-hero-summary,
+    .wildfire-hero-summary__line
+  ):not(.wild-kicker) {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage:not(.wild-subpage--ruins):not(.wild-subpage--bio)
+  :is(h1, h2, h3, h4, .wild-body, p, li) {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--ruins
+  :is(h1, h2, h3, h4),
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--bio
+  :is(h1, h2, h3, h4),
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--bio
+  .wild-bio-reinvention-heading,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--ruins
+  :is(h1, h2, h3, h4)
+  :is(span, em, strong, i, b, a),
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--bio
+  :is(h1, h2, h3, h4)
+  :is(span, em, strong, i, b, a) {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    :is(.wild-subpage--ruins, .wild-subpage--bio)
+  )
+  footer#footer#footer
+  :is(
+    .wild-signup-title,
+    .wild-footer-contact-cta__title,
+    .wild-footer-stonework-note
+  ) {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__title,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__tagline {
+  font-family: var(--ww-body-copy-font) !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  h1.wildfire-hero-headline {
+  margin-bottom: 0 !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone
+  .wild-phone-number-line--home-hero {
+  margin-top: clamp(0.55rem, 1vw, 0.85rem) !important;
+  transform: none !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  p.wildfire-hero-summary {
+  margin-top: clamp(0.55rem, 1vw, 0.85rem) !important;
+}
+
+@media (min-width: 720px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-home-contact-clone
+    .wild-phone-number-line--home-hero,
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-hero-copy
+    p.wildfire-hero-summary {
+    margin-top: clamp(1.15rem, 1.7vw, 1.5rem) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-home-contact-clone
+    .wild-phone-number-line--home-hero {
+    margin-top: clamp(0.55rem, 1vw, 0.85rem) !important;
+    transform: none !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-hero-copy
+    p.wildfire-hero-summary {
+    margin-top: clamp(0.55rem, 1vw, 0.85rem) !important;
+  }
+}

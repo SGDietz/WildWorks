@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useLightboxSwipe } from "../lib/useLightboxSwipe";
 
 const GALLERY_IMAGES = [
   { src: "/LewFrenchInspiration-2.png", alt: "Lew French inspiration" },
@@ -23,23 +24,6 @@ export default function InspirationGallery() {
   const [isFading, setIsFading] = useState(false);
   const [aspectRatios, setAspectRatios] = useState<Record<string, string>>({});
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    if (!isExpanded) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsExpanded(false);
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isExpanded]);
 
   const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>, src: string) => {
     const img = e.currentTarget;
@@ -69,6 +53,38 @@ export default function InspirationGallery() {
       timeoutRef.current = null;
     }, FADE_DURATION_MS);
   }, [isFading]);
+  const goExpandedPrev = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = null;
+    setIsFading(false);
+    setCurrentIndex((i) => (i === 0 ? GALLERY_IMAGES.length - 1 : i - 1));
+  }, []);
+  const goExpandedNext = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = null;
+    setIsFading(false);
+    setCurrentIndex((i) => (i === GALLERY_IMAGES.length - 1 ? 0 : i + 1));
+  }, []);
+  const swipe = useLightboxSwipe(goExpandedPrev, goExpandedNext);
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsExpanded(false);
+      if (event.key === "ArrowLeft") goPrev();
+      if (event.key === "ArrowRight") goNext();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [goNext, goPrev, isExpanded]);
 
   const goToIndex = useCallback(
     (index: number) => {
@@ -104,6 +120,7 @@ export default function InspirationGallery() {
         {/* Main image viewer - arrows and expand show on hover; container aspect ratio matches current image */}
         <div
           className="wild-inspiration-viewer group relative mx-auto w-full max-w-4xl overflow-hidden"
+          data-disable-route-swipe
           style={{ aspectRatio: aspectRatios[current.src] ?? DEFAULT_ASPECT }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -201,6 +218,7 @@ export default function InspirationGallery() {
           role="dialog"
           aria-modal="true"
           aria-label="Image fullscreen"
+          {...swipe}
         >
           <button
             type="button"

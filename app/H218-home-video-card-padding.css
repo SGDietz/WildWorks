@@ -1,0 +1,23 @@
+/* H218: G 2026-08-14 (Screenshot 2026-08-14 091855.png)
+   Home craftsmanship orange card only. Preserve the video, number, and Talk
+   styling while increasing the current computed interior spacing by exactly
+   50% on all four sides at every responsive size. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card {
+  padding:
+    calc(clamp(2.1rem, 3.9vw, 3.225rem) + 0.75rem)
+    calc(clamp(1.875rem, 3.675vw, 3rem) + 0.75rem)
+    calc(clamp(2.475rem, 4.2vw, 3.525rem) + 0.75rem) !important;
+}
+
+@media (max-width: 640px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-home-craftsmanship-card {
+    padding: 2.175rem 1.8rem 2.7rem !important;
+  }
+}

@@ -1,0 +1,75 @@
+/* R01: Ruins page text. Page-scoped, minimal.
+
+   Gated three times by .wild-subpage--ruins, so it cannot reach Home, Wildfire,
+   Projects, Bio, or any legal route.
+
+   Reference is The Ideal's four-stop warm ladder, x = 0, blur = 0, no scaling.
+
+   MEASURED on the live CSS:
+     .wild-subpage-section     0 1px 1px #2d0f036b   <- 1px BLUR, alpha .42
+                               the h1 and five h2 headings and all body copy on
+                               this page inherit from here, which is why the whole
+                               page reads soft
+     .wild-subpage-hero        no text-shadow rule found
+     .wild-ruins-rail          var(--ww-letter-effect-text-shadow) - a one-stop
+                               warm value, not the four-stop ladder
+
+   EXCLUDED, deliberately:
+     .wild-ruins-home-contact             contact/phone row
+     .wild-phone-number-line--home-footer phone
+     buttons, legal, header, and every Home and Wildfire selector
+     .ruins-color-band / --intro          colour band container, not text */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: BODY */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+
+/* Ruins page h1. Was inheriting the blurred .wild-subpage-section value. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero h1,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero h1 span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h1,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h1 span {
+  filter: none !important;
+  text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+}
+
+/* The five h2 section headings, plus any h3. Sub-heading weight, a step under
+   the h1 so the page keeps its hierarchy. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h2,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h2 span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h3,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section h3 span {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}
+
+/* Ruins body copy and the six rail blocks. The rail was on a one-stop warm
+   variable; both now carry the same four-stop body ladder as Home small copy. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-ruins-rail,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-ruins-rail p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) .wild-subpage--ruins.wild-subpage--ruins .wild-ruins-rail span {
+  filter: none !important;
+  text-shadow: 0 0.37px 0 rgba(35,9,2,0.833), 0 0.94px 0 rgba(30,8,2,0.767), 0 1.64px 0 rgba(25,6,1,0.697), 0 2.34px 0 rgba(25,6,1,0.577);
+}

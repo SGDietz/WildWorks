@@ -1,0 +1,46 @@
+/* H163: Tighten only the Home Projects composition on phones. The first
+   photograph keeps its full, uncropped presentation in a slot matching the
+   source image's true aspect ratio. */
+
+@media (max-width: 600px) {
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__title {
+    margin-bottom: 1.125rem;
+  }
+
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid {
+    grid-template-rows: auto repeat(3, clamp(8.5rem, 38vw, 11rem));
+  }
+
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(1) {
+    grid-row: 1;
+    aspect-ratio: 1911 / 962;
+  }
+
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(2),
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(3) {
+    grid-row: 2;
+  }
+
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(4),
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(5) {
+    grid-row: 3;
+  }
+
+  #top.wild-home #projects.wild-home-projects
+    > .wild-home-projects__grid
+    > .wild-home-projects__item:nth-child(6) {
+    grid-row: 4;
+  }
+}

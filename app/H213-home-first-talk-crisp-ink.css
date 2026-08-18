@@ -1,0 +1,11 @@
+/* H213: Home first large Talk button only. Keep the approved material, ink,
+   size, and brightness; tighten the letter/icon depth so it reads cleanly. */
+
+html body#wildworks-body #top.wild-home
+  .wild-home-phone-iscott-test--hero-compact {
+  --ww-hero-talk-text-shadow: var(--ww-home-wordmark-text-effect);
+  --ww-hero-talk-icon-filter:
+    drop-shadow(0 0.75px 0 rgba(0, 0, 0, 0.68))
+    drop-shadow(0 1.55px 0.3px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 2.45px 0.8px rgba(0, 0, 0, 0.2));
+}

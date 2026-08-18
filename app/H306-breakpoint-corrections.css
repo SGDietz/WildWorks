@@ -1,0 +1,85 @@
+/* H306: breakpoint-only corrections from G's five-view crawl.
+
+   Five standard viewports, G-locked: 1920x1080, 1366x768, 1180x820, 820x1180,
+   412x915.
+
+   Every rule here is inside a media query. **Desktop 1920, laptop 1366 and iPad
+   LANDSCAPE 1180 are not touched at any point in this file** - the views G
+   confirmed as correct keep their current values exactly.
+
+   Shape unchanged: four warm stops, x = 0, blur = 0, no sideways spread, no
+   scaling. Shared variables are NOT modified anywhere.
+
+   G's confirmed observations, implemented literally:
+     PHONE   Built to Expedite Your Needs  GOOD  -> no selector written
+     PHONE   iScott is the                 far too heavy -> reduced
+     PHONE   Front Door                    GOOD  -> no selector written
+     PHONE   phone number + Call Today     far too heavy on phone,
+                                           good on desktop -> reduced at phone only
+     IPAD-P  Design at the Limits          too heavy -> reduced
+     IPAD-P  A Contractor that Faithfully  too heavy -> reduced
+     IPAD-P  Where Fine Art Meets the Wild too heavy -> reduced
+     IPAD-P  wordmark + scrollwork         GOOD, LOCKED -> no selector written */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: BODY, DISPLAY, SUB */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+/* ============================ PHONE, 412x915 ============================ */
+@media (max-width: 500px) {
+  /* "iScott is the" - desktop keeps its approved 2.6/5.2; on phone the same
+     ladder reads far too heavy at the smaller rendered size. Reduced here only.
+     "Front Door" (__segment--three) is GOOD on phone and has no rule. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-iscott-title .wild-iscott-title__segment--one,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-iscott-title .wild-iscott-title__segment--two {
+    filter: none !important;
+    text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+  }
+
+  /* Phone number and "Call WildWorks Today!" beneath the hero. G confirms
+     these are GOOD on desktop and far too heavy on phone, so this is the only
+     place in any of my files that touches phone text, and it is phone-viewport
+     only. Desktop, laptop and both iPad views keep the approved treatment. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-phone-number-line--home-hero a,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-phone-number-line--home-hero .wild-phone-number-line__call-today {
+    filter: none !important;
+    text-shadow: 0 0.37px 0 rgba(35,9,2,0.833), 0 0.94px 0 rgba(30,8,2,0.767), 0 1.64px 0 rgba(25,6,1,0.697), 0 2.34px 0 rgba(25,6,1,0.577);
+  }
+}
+
+/* ======================= iPad PORTRAIT, 820x1180 ======================= */
+@media (min-width: 768px) and (max-width: 900px) {
+  /* "Design at the Limits of Human Imagination.", "A Contractor that
+     Faithfully Brings Those Designs to Life." and "Where Fine Art Meets the
+     Wild" - too heavy at iPad portrait only. Reduced here; every other viewport
+     keeps H300's values.
+     The WildWorks wordmark and scrollwork in this card are GOOD and LOCKED -
+     .wild-home-statement__brand-lockup appears nowhere in this file. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-home-statement__line--one,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-home-statement__line--one .wild-home-statement__phrase,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-home-statement__line--two,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-home-statement__line--two .wild-home-statement__phrase,
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-home-statement__line--four {
+    filter: none !important;
+    text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+  }
+}

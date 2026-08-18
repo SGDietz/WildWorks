@@ -1,0 +1,93 @@
+/* H299: visual-intensity correction for Home small copy and hero text.
+
+   WHY THIS EXISTS. My earlier pass was audited numerically - every value landed
+   exactly as written - and that was the wrong acceptance standard. Measured
+   against THE IDEAL by eye, the small copy is almost invisible on the live page.
+
+   THE IDEAL, measured off live CSS:
+     "What Could Be Cooler Than Having a Ruin of Your Own?"
+     0 1.15px 0 rgba(35,9,2,.86), 0 2.55px 0 rgba(25,6,1,.58)   on ~60px type
+
+   Two mistakes, both mine:
+
+   1. I scaled offsets DOWN proportionally with type size. At 16-18px copy a
+      0.8px first stop lands sub-pixel and antialiases away to almost nothing.
+      Small text needs a near-constant absolute floor, not a proportional one -
+      which is exactly what G's own norm says: "Smaller lines and taglines go
+      flat fast. Give them MORE drop than the big title." I did the opposite.
+
+   2. I dropped the ALPHAS as well as the offsets - .7/.44 against The Ideal's
+      .86/.58. Compounding a smaller offset with a weaker colour is what made it
+      read as no effect at all.
+
+   This file raises offsets to a visible floor and brings alphas up to Ideal
+   range. Geometry is unchanged: x = 0, blur = 0, two hard stops, no scaling.
+
+   DELIBERATELY NOT RAISED - already visually strong, per G:
+     the three headline lines and headline--solid at 1.6/3.3 on large type,
+     Project Wildfire, Tree of Life title, The Ruins, Design at the Limits,
+     A Contractor, Where Fine Art, Wild by design, Patio, Kept Going.
+   LOCKED and untouched: The Ideal, all phone text and digits, Start with iScott,
+     iScott is the, Front Door, Fireplace, Lounge, WildWorks Projects.
+   No button, control, wording, layout, colour, font or size is touched. */
+
+/* GROUP 1 - all small body copy, was 0.8/1.7 @ .7/.44 -> 1.3/2.7 @ .88/.6.
+   Tree of Life narrative (Irish couple through "impossible to find anywhere
+   else"), the six service-card bodies, the four numbered iScott steps, and the
+   iScott intro paragraph. These are the elements G is calling nonexistent.
+   +62% first stop, +59% second, and the alpha now matches Ideal range. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #wildworks-proof .wild-copy-stack > .wild-body,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #wildworks-proof .wild-copy-stack > .wild-body *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #services .wild-card .wild-card-body,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #services .wild-card .wild-card-body p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #services .wild-card .wild-card-body li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home #services .wild-card .wild-card-body span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-steps-inline li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-steps-inline .money-step-content,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-body--color-one,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-body--color-one * {
+  filter: none !important;
+  text-shadow: 0 1.3px 0 rgba(35, 9, 2, 0.88), 0 2.7px 0 rgba(25, 6, 1, 0.6) !important;
+}
+
+/* GROUP 2 - "All stonework on the site is real, built by WildWorks".
+   Was 0.7/1.5 @ .66/.4 -> 1.15/2.4 @ .85/.56. Caption type, so it stays a step
+   under body copy, but it was the faintest thing on the page. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-home-image-stonework-note,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-home-hero-stonework-note.wild-home-image-stonework-note {
+  filter: none !important;
+  text-shadow: 0 1.15px 0 rgba(35, 9, 2, 0.85), 0 2.4px 0 rgba(25, 6, 1, 0.56) !important;
+}
+
+/* GROUP 3 - hero supporting copy, was 1.0/2.1 @ .82/.54 -> 1.4/2.9 @ .9/.62.
+   It sits on a photograph, which eats a light shadow faster than flat colour. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero .wild-hero-copy > p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero .wild-hero-copy > span {
+  filter: none !important;
+  text-shadow: 0 1.4px 0 rgba(35, 9, 2, 0.9), 0 2.9px 0 rgba(25, 6, 1, 0.62) !important;
+}
+
+/* GROUP 4 - "By Creating Beautiful Things", 1.2/2.5 -> 1.7/3.5. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero .wild-hero-lede-line--beautiful {
+  filter: none !important;
+  text-shadow: 0 1.7px 0 rgba(35, 9, 2, 0.9), 0 3.5px 0 rgba(25, 6, 1, 0.64) !important;
+}
+
+/* "And Solving Your Real World Problems", 1.0/2.1 -> 1.5/3.1. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero .wild-hero-lede-line--problems {
+  filter: none !important;
+  text-shadow: 0 1.5px 0 rgba(35, 9, 2, 0.88), 0 3.1px 0 rgba(25, 6, 1, 0.62) !important;
+}
+
+/* "Anywhere on Planet Earth", 1.1/2.3 -> 1.6/3.3. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero .wild-hero-lede-line--italic {
+  filter: none !important;
+  text-shadow: 0 1.6px 0 rgba(35, 9, 2, 0.89), 0 3.3px 0 rgba(25, 6, 1, 0.63) !important;
+}
+
+/* Hero orange wordmark, 1.1/2.3 -> 1.6/3.3. Display type on a photograph. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero-wordmark-text-orange {
+  filter: none !important;
+  text-shadow: 0 1.6px 0 rgba(35, 9, 2, 0.89), 0 3.3px 0 rgba(25, 6, 1, 0.63) !important;
+}
+

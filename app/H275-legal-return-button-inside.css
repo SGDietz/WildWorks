@@ -1,0 +1,45 @@
+/* H275: Legal "Return to WildWorks" — words and icon stay inside the button.
+   Match the other gold buttons. All legal pages.
+   G 2026-08-17 10:46. Do not change Talk to iScott. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) .wild-home-phone-iscott-test--legal-return > a.wild-home-phone-iscott-test__button {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  width: min(100%, 28rem) !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 3.5rem !important;
+  height: auto !important;
+  padding: 0.75rem 1.35rem !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.01em !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) .wild-home-phone-iscott-test--legal-return > a.wild-home-phone-iscott-test__button > svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  flex-shrink: 0 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home) .wild-home-phone-iscott-test--legal-return > a.wild-home-phone-iscott-test__button > span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 600px) {
+  html body#wildworks-body:has(.wild-legal-home) .wild-home-phone-iscott-test--legal-return > a.wild-home-phone-iscott-test__button {
+    width: min(100%, 18.75rem) !important;
+    min-height: 3.15rem !important;
+    padding: 0.65rem 1rem !important;
+    font-size: 1.05rem !important;
+  }
+}

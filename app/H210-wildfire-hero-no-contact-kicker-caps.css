@@ -1,0 +1,117 @@
+/* H210: G 2026-08-13 (Screenshot 2026-08-13 213101.png)
+   Wildfire hero only.
+   1. Remove phone / Call WildWorks Today / Talk to iScott from this section.
+   2. Normal stack: pictures, PROJECT WILDFIRE, A Complete Project Build.
+   3. All caps stay. P and W keep the current H191 size. Other letters -4pt.
+   4. Air under PROJECT WILDFIRE equals air above it (mosaic to title).
+   No color. No headline rewrite. No Home. */
+
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-hero-copy {
+  --ww-h210-title-air: clamp(2.75rem, 5vw, 5.5rem);
+  padding-top: var(--ww-h210-title-air) !important;
+}
+
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  > .wild-kicker.wild-kicker {
+  --ww-wildfire-kicker-size: calc(clamp(3.6rem, 7.2vw, 8.25rem) - 4pt);
+  display: block !important;
+  margin-top: 0 !important;
+  margin-bottom: var(--ww-h210-title-air) !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif !important;
+  font-size: calc(clamp(3.6rem, 7.2vw, 8.25rem) - 4pt) !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  line-height: 0.92 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  > .wild-kicker.wild-kicker
+  .wildfire-hero-kicker__cap {
+  font-size: clamp(3.6rem, 7.2vw, 8.25rem) !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: uppercase !important;
+  vertical-align: baseline !important;
+}
+
+html:root
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+    .wild-subpage--wildfire
+  )
+  .wild-subpage--wildfire
+  .wildfire-hero-copy
+  h1.wildfire-hero-headline {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 719px) {
+  html:root
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+      .wild-subpage--wildfire
+    )
+    .wild-subpage--wildfire
+    .wildfire-hero-copy {
+    --ww-h210-title-air: clamp(2.15rem, 9vw, 2.75rem);
+  }
+
+  html:root
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+      .wild-subpage--wildfire
+    )
+    .wild-subpage--wildfire
+    .wildfire-hero-copy
+    > .wild-kicker.wild-kicker {
+    --ww-wildfire-kicker-size-mobile: calc(clamp(2.85rem, 14vw, 3.9rem) - 4pt);
+    width: min(100%, 10ch) !important;
+    max-width: 10ch !important;
+    margin-inline: 0 !important;
+    font-size: calc(clamp(2.85rem, 14vw, 3.9rem) - 4pt) !important;
+    line-height: 0.9 !important;
+    white-space: normal !important;
+    text-wrap: balance !important;
+  }
+
+  html:root
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(
+      .wild-subpage--wildfire
+    )
+    .wild-subpage--wildfire
+    .wildfire-hero-copy
+    > .wild-kicker.wild-kicker
+    .wildfire-hero-kicker__cap {
+    font-size: clamp(2.85rem, 14vw, 3.9rem) !important;
+  }
+}

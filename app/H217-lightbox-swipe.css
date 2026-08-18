@@ -1,0 +1,9 @@
+/* H217: horizontal swipe in multi-image lightboxes without changing their look.
+   Vertical gestures remain available for normal page/device behavior. */
+html body :is(
+  .wildfire-lightbox,
+  .wild-image-lightbox,
+  .wild-branded-lightbox
+).discordSection--lightbox {
+  touch-action: pan-y pinch-zoom;
+}

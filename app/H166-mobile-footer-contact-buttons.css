@@ -1,0 +1,20 @@
+/* H166: Home footer contact card on phones only.
+   Raise all four labels by two steps (1.12rem -> 1.25rem -> 1.4rem),
+   and give the first Talk to iScott control the missing vertical presence. */
+
+@media (max-width: 640px) {
+  body:has(#top.wild-home)
+    #footer
+    .wild-footer-contact-cta__actions {
+    --ww-action-button-label-size: 1.4rem;
+  }
+
+  body:has(#top.wild-home)
+    #footer
+    .wild-footer-contact-cta__actions
+    a.money-cta[href*="wake-iscott=1"] {
+    --ww-mobile-talk-font-size: 1.4rem;
+    --ww-mobile-talk-min-height: 3.5rem;
+    --ww-mobile-talk-padding: 0.65rem 1rem;
+  }
+}

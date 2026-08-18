@@ -1,0 +1,63 @@
+/* H305: Home Services heading only. Two selectors.
+
+   From G's phone screenshot:
+     SERVICES kicker      too light  -> strengthen
+     "What WildWorks"     CORRECT    -> UNCHANGED, no selector written for it
+     "is Known for:"      too heavy  -> reduce to match line one's proportional depth
+
+   Markup, confirmed in source (page.tsx:3765-3766):
+     .wild-line-title__line--one   "What <span class=wild-services-title__wildworks>WildWorks</span>"
+     .wild-line-title__line--two   "is Known for:"
+
+   H304 raised BOTH lines together via .wild-section-title, which is why line two
+   came out heavy. This file splits them: line one is left entirely alone at the
+   value G approved, and only line two is reduced.
+
+   x = 0, blur = 0, no sideways spread, four warm stops, no scaling. */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: BODY, CARDHEAD */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+
+/* SERVICES kicker - strengthened. H304 had it at .6/1.35/2.3/3.2; raised to
+   the full heading ladder .8/1.9/3.3/4.7, which G already accepted on the
+   "What WildWorks" line, so the kicker now reads at the same authority. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top.wild-home #services > .wild-section-heading .wild-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top.wild-home #services > .wild-section-heading .wild-kicker span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top.wild-home #services > .wild-section-heading .wild-kicker .wild-kicker-frame {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}
+
+/* "is Known for:" - reduced from .8/1.9/3.3/4.7 to .6/1.4/2.4/3.4.
+   Line two renders smaller than line one, so at an identical absolute ladder it
+   reads heavier than "What WildWorks". This is the proportional match, not a
+   flat copy of line one's numbers.
+
+   NOT TOUCHED: .wild-line-title__line--one and
+   .wild-services-title__wildworks - "What WildWorks" is correct per G and no
+   selector in this file reaches it. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top.wild-home #services > .wild-section-heading .wild-section-title .wild-line-title__line--two {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}

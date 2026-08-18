@@ -1,0 +1,60 @@
+/* B01: Bio page text (route /pages/who-is-g). Page-scoped, minimal.
+
+   Gated three times by .wild-subpage--bio.
+
+   MEASURED: Bio inherits the SAME blurred rule R01 corrects on Ruins -
+   .wild-subpage-section at 0 1px 1px #2d0f036b, a 1px blur at alpha .42. The h1,
+   the h2s and all body copy hang off it, which is why the page reads soft.
+
+   EXCLUDED: .wild-bio-home-contact (contact/phone row),
+   .wild-phone-number-line--home-footer (phone), buttons, legal, header,
+   .wild-ab-band / .wild-tone--a / --b (colour bands, not text).
+
+   x=0, blur=0, four warm stops, no scaling. */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: BODY */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+/* Bio page h1. Was inheriting the blurred .wild-subpage-section rule. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero h1,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero h1 span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-section h1 {
+  filter: none !important;
+  text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+}
+
+/* Bio section headings, including the reinvention heading. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-section h2,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-section h2 span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-bio-reinvention-heading {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}
+
+/* Bio body copy and the mindset lines. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-section p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-subpage-section li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) .wild-subpage--bio.wild-subpage--bio .wild-bio-mindset-line {
+  filter: none !important;
+  text-shadow: 0 0.37px 0 rgba(35,9,2,0.833), 0 0.94px 0 rgba(30,8,2,0.767), 0 1.64px 0 rgba(25,6,1,0.697), 0 2.34px 0 rgba(25,6,1,0.577);
+}

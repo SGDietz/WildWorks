@@ -1,0 +1,13 @@
+/* H244: one large, six-legal-route-only return action before the established
+   Dream Project section. The shared large CTA keeps its proven visual size. */
+html body#wildworks-body #footer .wild-home-phone-iscott-test--legal-return {
+  margin-top: clamp(2.75rem, 5vw, 5rem) !important;
+  margin-bottom: clamp(1.5rem, 2.75vw, 3rem) !important;
+}
+
+@media (max-width: 640px) {
+  html body#wildworks-body #footer .wild-home-phone-iscott-test--legal-return {
+    margin-top: 2.75rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+}

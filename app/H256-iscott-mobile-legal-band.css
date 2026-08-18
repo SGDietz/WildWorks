@@ -1,0 +1,15 @@
+/* Phone/iPad: the Home bottom agreement stays the legal surface.
+   Do not hide it. The in-avatar brown band is suppressed while talking. */
+@media (max-width: 820px) {
+  html body#wildworks-body #top.wild-home #talk-to-iscott > .wild-iscott-disclosure {
+    display: block !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  html body#wildworks-body #top.wild-home .wild-site-avatar-overlay-cta {
+    min-height: 56px !important;
+    padding: 0.95rem 1.2rem !important;
+    font-size: 1.18rem !important;
+  }
+}

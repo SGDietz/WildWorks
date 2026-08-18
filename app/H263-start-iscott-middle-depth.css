@@ -1,0 +1,13 @@
+﻿/* H263: Start with iScott - shadow is too much. Middle ground.
+   G 2026-08-17. Keep letter colors. Home Talk-to-iScott title only. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title :is(
+  .wild-start-title__start,
+  .wild-start-title__with,
+  .wild-start-title__name
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title * {
+  filter: none !important;
+  text-shadow: var(--ww-home-display-depth-medium) !important;
+}

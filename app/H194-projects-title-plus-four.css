@@ -1,0 +1,22 @@
+/* H194: G 2026-08-13 (Screenshot 2026-08-13 191009.png)
+   "WildWorks projects, those two words, make them 4 font sizes larger."
+   Title only. Tagline, mosaic, colors stay. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__title {
+  font-size: calc(clamp(2.35rem, 5vw, 4.8rem) + 4pt) !important;
+}
+
+@media (max-width: 600px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home
+    #projects.wild-home-projects
+    > .wild-home-projects__title {
+    font-size: calc(clamp(2.2rem, 11vw, 3rem) + 2pt + 4pt) !important;
+  }
+}
+

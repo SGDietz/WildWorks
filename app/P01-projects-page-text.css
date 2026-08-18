@@ -1,0 +1,55 @@
+/* P01: Projects page text. Page-scoped, minimal.
+
+   Gated three times by .wild-subpage--projects - Home, Wildfire, Ruins, Bio and
+   legal routes are structurally unreachable.
+
+   MEASURED:
+     .wild-projects-page-title  0 3px #2f0c03b3, 0 11px 24px #2f0c0347
+                                <- 24px BLUR, black-brown
+     .wild-projects-page-intro  inherits the same blurred stack
+
+   EXCLUDED: .wild-projects-home-contact (contact/phone row),
+   .wild-phone-number-line--home-footer (phone), buttons, legal, header,
+   the lightbox, and every other route.
+
+   x=0, blur=0, four warm stops, no scaling. */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: BODY */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+/* "WildWorks Projects" page title. Measured live: 0 3px #2f0c03b3,
+   0 11px 24px #2f0c0347 - a 24px BLURRED black-brown stack, the heaviest blur
+   left anywhere in the site. Replaced with the warm four-stop ladder. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-title span {
+  filter: none !important;
+  text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+}
+
+/* Projects page intro copy - body ladder, matching Home small copy. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-intro,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-intro p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-intro span {
+  filter: none !important;
+  text-shadow: 0 0.37px 0 rgba(35,9,2,0.833), 0 0.94px 0 rgba(30,8,2,0.767), 0 1.64px 0 rgba(25,6,1,0.697), 0 2.34px 0 rgba(25,6,1,0.577);
+}

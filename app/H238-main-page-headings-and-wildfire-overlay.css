@@ -1,0 +1,117 @@
+/* H238: the two project routes lead with their page title, followed
+   immediately by media. Overlay labels remain component-owned and absent. */
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading {
+  display: block;
+  width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 92rem);
+  margin: calc(clamp(-1.5rem, -1.6vw, -0.9rem) - 0.5rem) auto
+    calc(clamp(1.75rem, 2.8vw, 2.5rem) - 0.12em);
+  color: var(--ww-text-2) !important;
+  -webkit-text-fill-color: var(--ww-text-2) !important;
+  font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
+  font-size: clamp(5rem, 14vw, 9.2rem);
+  font-weight: 700;
+  /* The display face has ascenders outside a unit line box.  Keep that paint
+     inside the heading without moving the following hero image. */
+  line-height: 1.12;
+  text-align: center;
+  text-shadow: 0 3px 0 rgba(47, 12, 3, 0.7), 0 11px 24px rgba(47, 12, 3, 0.28);
+}
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__wildfire {
+  display: inline-block;
+  transform: translateY(0.065em);
+}
+
+/* Tablet/laptop range: keep phone and large-desktop geometry untouched. The
+   display-face refinements stay touch-only, while the Projects spacing belongs
+   to this responsive layout range regardless of input hardware. */
+@media (min-width: 600px) and (max-width: 1199px) {
+  /* The Projects logo-to-title seam is too loose at this layout range. Keep
+     the title's existing size and the gallery's start position; only reclaim
+     12px from this title's own leading margin. */
+  html body#wildworks-body .wild-subpage--projects > .wild-projects-page-title {
+    margin-top: calc(clamp(0.65rem, 1.2vw, 1rem) - 0.75rem);
+  }
+}
+
+/* Physical touch tablets retain the existing Wildfire display-face polish. */
+@media (min-width: 600px) and (max-width: 1199px) and (hover: none) and (pointer: coarse) {
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero > .wildfire-page-heading {
+    line-height: 1.17;
+    /* Offset the two-line line-box growth so the hero retains H238's
+       established position. */
+    margin-bottom: calc(clamp(1.75rem, 2.8vw, 2.5rem) - 0.22em);
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__wildfire {
+    letter-spacing: 0.012em;
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero-copy .wildfire-hero-summary__line--c3 {
+    transform: translateX(-0.75rem);
+  }
+}
+
+html body#wildworks-body .wild-subpage--projects > .wild-projects-page-title {
+  margin-top: clamp(0.65rem, 1.2vw, 1rem);
+  margin-bottom: clamp(0.75rem, 1.6vw, 1.15rem);
+  font-size: clamp(3rem, 8.25vw, 5rem);
+}
+
+/* Phone only: let the Projects title read as a proper page heading while
+   keeping it visually paired with the Landscaping line in the logo above.
+   Tablet and desktop retain their existing measured H238 geometry. */
+@media (max-width: 599px) {
+  html body#wildworks-body .wild-subpage--projects > .wild-projects-page-title {
+    /* Apply the same 12px reclaim proven at the tablet/laptop range. */
+    margin-top: calc(0.35rem - 0.75rem);
+    font-size: clamp(3.35rem, 14vw, 4.25rem);
+  }
+
+  /* Phone reading order: the shared site logo remains first, followed by the
+     Project Wildfire title and its one finished hero. Keep this local seam
+     compact; tablet and desktop retain their established source order. */
+  html body#wildworks-body .wild-subpage--wildfire .wildfire-hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero > .wildfire-hero-single {
+    order: 2;
+    /* The dedicated phone hero is a full-bleed presentation, not a framed
+       gallery tile. */
+    padding-inline: 0;
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wild-wildfire-photo--single-hero {
+    border-radius: 0;
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero > .wildfire-page-heading {
+    order: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  html body#wildworks-body .wild-subpage--wildfire
+    .wildfire-hero > .wildfire-hero-copy {
+    order: 3;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  html body#wildworks-body
+    .wild-subpage--projects.wild-subpage--projects
+    > .wild-projects-page-title {
+    font-size: clamp(5.5rem, 9vw, 6.625rem);
+    line-height: 0.94;
+  }
+}

@@ -29,3 +29,19 @@ export function voiceEmailRetryDelayMs(attemptCount: number): number {
   const attempt = Math.max(1, Math.floor(attemptCount));
   return Math.min(6 * 60 * 60 * 1000, 30_000 * 2 ** Math.min(9, attempt - 1));
 }
+
+export function voiceEmailConfigurationFailurePatch(
+  attemptCount: number,
+  detail: string,
+  nowMs = Date.now(),
+) {
+  return {
+    status: "failed" as const,
+    last_error: detail,
+    lease_token: null,
+    lease_expires_at: null,
+    next_attempt_at: new Date(
+      nowMs + voiceEmailRetryDelayMs(attemptCount),
+    ).toISOString(),
+  };
+}

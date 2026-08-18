@@ -1,0 +1,14 @@
+/* H269: WildWorks Projects a little lighter. Wild by design a little heavier.
+   G 2026-08-17 10:41. These two lines only. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title * {
+  filter: none !important;
+  text-shadow: 0 0.75px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline * {
+  filter: none !important;
+  text-shadow: 0 1px 0 rgba(35, 9, 2, 0.8), 0 2.2px 0 rgba(25, 6, 1, 0.52) !important;
+}

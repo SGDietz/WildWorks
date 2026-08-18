@@ -6,6 +6,7 @@ import { safeJsonPayload } from "./telemetryServer";
 import {
   isVoiceEmailOutboxRowDue,
   VOICE_EMAIL_OUTBOX_STALE_MS,
+  voiceEmailConfigurationFailurePatch,
   voiceEmailRetryDelayMs,
 } from "./voiceEmailOutboxPolicy";
 import {
@@ -13,13 +14,20 @@ import {
   voicemailEmailIdempotencyKey,
 } from "./voiceNotificationIds";
 import { voiceBackendSignal } from "./voiceFetchTimeouts";
+import { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
 
 export { isVoiceEmailOutboxRowDue, voiceEmailRetryDelayMs } from "./voiceEmailOutboxPolicy";
+export { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type JsonObject = Record<string, unknown>;
-type VoiceEmailEventType = "voice_lead" | "voicemail" | "iscott_lead";
+type VoiceEmailEventType =
+  | "voice_lead"
+  | "voicemail"
+  | "iscott_lead"
+  | "telemetry_message"
+  | "telemetry_digest";
 type VoiceEmailStatus = "pending" | "sending" | "sent" | "failed";
 
 export type VoiceEmailOutboxRow = {
@@ -108,6 +116,34 @@ export type IScottLeadEmailArgs = {
   metadata?: JsonObject;
 };
 
+export type PublicMessageEmailArgs = {
+  sessionId: string;
+  anonymousVisitorId?: string | null;
+  message: string;
+  route?: string | null;
+  receivedAt?: Date | string;
+  location?: string | null;
+  device?: string | null;
+  metadata?: JsonObject;
+  testOnly?: boolean;
+  testId?: string | null;
+};
+
+export type TelemetryDigestEmailArgs = {
+  digestDate: string;
+  periodStart: Date | string;
+  periodEnd: Date | string;
+  publicSessions: number;
+  humanSignals: number;
+  publicMessages: number;
+  submittedLeads: number;
+  failedNotifications: number;
+  botSessions: number;
+  testSessions: number;
+  ownerSessions: number;
+  topRoutes?: Array<{ route: string; count: number }>;
+};
+
 export type VoiceEmailNotificationResult = {
   ok: boolean;
   status: number;
@@ -156,14 +192,36 @@ function notificationRecipient(): string | null {
   );
 }
 
-function resendConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
-}
-
 function isoTimestamp(value: Date | string | undefined): string | null {
   if (value === undefined) return null;
   const date = value instanceof Date ? value : new Date(value);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+export function easternDateStamp(value: Date | string | undefined): string | null {
+  const date = value instanceof Date ? value : new Date(value ?? Date.now());
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const part = (type: Intl.DateTimeFormatPartTypes) => parts.find((item) => item.type === type)?.value;
+  const year = part("year");
+  const month = part("month");
+  const day = part("day");
+  return year && month && day ? `${year}${month}${day}` : null;
+}
+
+export function apparentInterest(message: string): "Landscaping" | "Website" | "Landscaping and Website" | "WildWorks Project" {
+  const normalized = message.toLowerCase();
+  const landscaping = /\b(landscap(?:e|es|ed|ing)|garden(?:s|ing)?|yard|backyard|patio|stonework|hardscap(?:e|ing)|plant(?:s|ing)?|drainage|grading|water feature)\b/.test(normalized);
+  const website = /\b(website|web site|web design|brand(?:ing)?|logo)\b/.test(normalized);
+  if (landscaping && website) return "Landscaping and Website";
+  if (landscaping) return "Landscaping";
+  if (website) return "Website";
+  return "WildWorks Project";
 }
 
 function escapeHtml(value: string): string {
@@ -361,6 +419,15 @@ async function enqueueVoiceEmail(
     // delivery paths for the same call. Whichever queues first wins.
     return { result: existing, deduplicated: true };
   }
+  const sameLogicalTelemetryEvent =
+    row.event_type === content.eventType &&
+    (content.eventType === "telemetry_digest" || content.eventType === "telemetry_message");
+  if (sameLogicalTelemetryEvent) {
+    // These keys deliberately identify one logical event (one date or one
+    // session's first public message). Recomputing the body must never send it
+    // twice or turn a successful prior delivery into a conflict.
+    return { result: existing, deduplicated: true };
+  }
   if (
     row.event_type !== content.eventType ||
     row.session_id !== (content.sessionId ?? null) ||
@@ -440,13 +507,22 @@ async function sendClaimedOutboxRow(
   leaseToken: string,
 ): Promise<VoiceEmailNotificationResult> {
   const recipient = cleanEmail(row.recipient);
-  if (!recipient || !resendConfigured()) {
+  const configurationError = wildWorksSenderConfigurationError();
+  if (!recipient || configurationError) {
+    const detail = !recipient
+      ? "voice_email_recipient_not_configured"
+      : configurationError!;
+    const failed = await patchOutboxRow(
+      row.id,
+      voiceEmailConfigurationFailurePatch(row.attempt_count, detail),
+      { status: "sending", leaseToken },
+    );
     return {
       ok: false,
-      status: 503,
-      detail: !recipient ? "voice_email_recipient_not_configured" : "resend_not_configured",
+      status: failed.ok ? 503 : failed.status,
+      detail: failed.ok ? detail : "voice_email_failure_update_failed",
       outboxId: row.id,
-      outboxStatus: "sending",
+      outboxStatus: failed.ok ? "failed" : "sending",
       providerMessageId: null,
       queued: true,
       delivered: false,
@@ -555,13 +631,27 @@ async function deliverVoiceEmail(
   }
 
   const recipient = notificationRecipient();
-  if (!recipient || !resendConfigured()) {
+  const configurationError = wildWorksSenderConfigurationError();
+  if (!recipient || configurationError) {
+    const detail = !recipient
+      ? "voice_email_recipient_not_configured"
+      : configurationError!;
+    const failed = row.status === "pending" || row.status === "failed"
+      ? await patchOutboxRow(
+          row.id,
+          voiceEmailConfigurationFailurePatch(row.attempt_count, detail),
+          { status: row.status, updatedAt: row.updated_at },
+        )
+      : null;
+    const configurationFailureRecorded = Boolean(failed?.ok && failed.rows[0]);
     return {
       ok: true,
       status: 202,
-      detail: !recipient ? "voice_email_recipient_not_configured" : "resend_not_configured",
+      detail: failed === null || configurationFailureRecorded
+        ? detail
+        : "voice_email_failure_update_failed",
       outboxId: row.id,
-      outboxStatus: row.status,
+      outboxStatus: configurationFailureRecorded ? "failed" : row.status,
       providerMessageId: row.provider_message_id,
       queued: true,
       delivered: false,
@@ -609,11 +699,14 @@ export async function drainVoiceEmailOutbox(
   options: { limit?: number } = {},
 ): Promise<VoiceEmailDrainResult> {
   const recipient = notificationRecipient();
-  if (!recipient || !resendConfigured()) {
+  const configurationError = wildWorksSenderConfigurationError();
+  if (!recipient || configurationError) {
     return {
       ok: false,
       status: 503,
-      detail: !recipient ? "voice_email_recipient_not_configured" : "resend_not_configured",
+      detail: !recipient
+        ? "voice_email_recipient_not_configured"
+        : configurationError!,
       examined: 0,
       claimed: 0,
       delivered: 0,
@@ -833,5 +926,87 @@ export async function notifyIScottLeadByEmail(
       phone,
       mediaCount: media.length,
     },
+  });
+}
+
+export async function notifyFirstPublicMessageByEmail(
+  args: PublicMessageEmailArgs,
+): Promise<VoiceEmailNotificationResult> {
+  const sessionId = cleanId(args.sessionId);
+  const message = cleanMultiline(args.message, 4_000);
+  const receivedAt = isoTimestamp(args.receivedAt);
+  if (!sessionId || !message || (args.receivedAt !== undefined && !receivedAt)) {
+    return outboxFailure({ ok: false, status: 0, detail: "invalid_public_message_email", rows: [] });
+  }
+  const route = cleanText(args.route, 180);
+  const location = cleanText(args.location, 240);
+  const device = cleanText(args.device, 240);
+  const visitor = cleanId(args.anonymousVisitorId, 160);
+  const testId = args.testOnly ? cleanId(args.testId, 120) : null;
+  if (args.testOnly && !testId) {
+    return outboxFailure({ ok: false, status: 0, detail: "invalid_public_message_email_test", rows: [] });
+  }
+  const interest = apparentInterest(message);
+  const easternDate = easternDateStamp(args.receivedAt);
+  if (!easternDate) {
+    return outboxFailure({ ok: false, status: 0, detail: "invalid_public_message_email_date", rows: [] });
+  }
+  const details = [
+    testId ? "TEST ONLY — controlled notification smoke; not visitor traffic." : null,
+    "First meaningful public iScott message",
+    `Apparent interest: ${interest}`,
+    receivedAt ? `Received: ${receivedAt}` : null,
+    route ? `Route: ${route}` : null,
+    location ? `Approximate location: ${location}` : null,
+    device ? `Device: ${device}` : null,
+    `Session: ${sessionId}`,
+    visitor ? `Anonymous visitor: ${visitor}` : null,
+    "",
+    message,
+  ].filter((line): line is string => line !== null).join("\n");
+  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#35180a;background:#f6ead5"><div style="max-width:720px;margin:auto;padding:24px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:24px">${testId ? '<p style="margin:0 0 12px;color:#a44b20;font-weight:800">TEST ONLY — controlled notification smoke; not visitor traffic.</p>' : ""}<h1 style="font-family:Georgia,serif;color:#6f2f12">VIP iScott Message</h1><p><strong>Apparent interest:</strong> ${escapeHtml(interest)}</p><p><strong>Session:</strong> ${escapeHtml(sessionId)}</p>${receivedAt ? `<p><strong>Received:</strong> ${escapeHtml(receivedAt)}</p>` : ""}${route ? `<p><strong>Route:</strong> ${escapeHtml(route)}</p>` : ""}${location ? `<p><strong>Approximate location:</strong> ${escapeHtml(location)}</p>` : ""}${device ? `<p><strong>Device:</strong> ${escapeHtml(device)}</p>` : ""}<div style="white-space:pre-wrap;background:#f4e2c2;border-radius:8px;padding:16px">${escapeHtml(message)}</div></div></div></body></html>`;
+  return deliverVoiceEmail({
+    eventType: "telemetry_message",
+    idempotencyKey: testId ? `telemetry-message:test:${testId}` : `telemetry-message:first:${sessionId}`,
+    sessionId,
+    subject: `${testId ? "TEST " : ""}VIP iScott ${easternDate} — ${interest}`,
+    text: details,
+    html,
+    metadata: { ...args.metadata, anonymousVisitorId: visitor, route, location, device, testOnly: Boolean(testId) },
+  });
+}
+
+export async function notifyTelemetryDigestByEmail(
+  args: TelemetryDigestEmailArgs,
+): Promise<VoiceEmailNotificationResult> {
+  const digestDate = cleanText(args.digestDate, 20);
+  const periodStart = isoTimestamp(args.periodStart);
+  const periodEnd = isoTimestamp(args.periodEnd);
+  if (!digestDate || !periodStart || !periodEnd) {
+    return outboxFailure({ ok: false, status: 0, detail: "invalid_telemetry_digest_email", rows: [] });
+  }
+  const topRoutes = (args.topRoutes ?? []).slice(0, 8);
+  const lines = [
+    `WildWorks visitor digest for ${digestDate}`,
+    `Period: ${periodStart} through ${periodEnd}`,
+    "",
+    `Public browser profiles with human signals: ${args.humanSignals}`,
+    `Public iScott messages: ${args.publicMessages}`,
+    `Submitted leads: ${args.submittedLeads}`,
+    `Failed notifications: ${args.failedNotifications}`,
+    `Unverified public browser profiles (background traffic included): ${args.publicSessions}`,
+    `Owner sessions excluded: ${args.ownerSessions}`,
+    `Test sessions excluded: ${args.testSessions}`,
+    `Bot sessions excluded: ${args.botSessions}`,
+    ...(topRoutes.length ? ["", "Top public routes:", ...topRoutes.map((item) => `- ${item.route}: ${item.count}`)] : []),
+  ];
+  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#35180a;background:#f6ead5"><div style="max-width:720px;margin:auto;padding:24px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:24px"><h1 style="font-family:Georgia,serif;color:#6f2f12">WildWorks Visitor Digest</h1><pre style="white-space:pre-wrap;font-family:Arial,sans-serif">${escapeHtml(lines.join("\n"))}</pre></div></div></body></html>`;
+  return deliverVoiceEmail({
+    eventType: "telemetry_digest",
+    idempotencyKey: `telemetry-digest:${digestDate}`,
+    subject: `WildWorks visitor digest — ${digestDate}`,
+    text: lines.join("\n"),
+    html,
+    metadata: safeJsonPayload(args),
   });
 }

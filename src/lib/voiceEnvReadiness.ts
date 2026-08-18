@@ -1,3 +1,5 @@
+import { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ACCOUNT_SID_PATTERN = /^AC[0-9a-fA-F]{32}$/;
 const PRODUCTION_WSS_URL =
@@ -20,7 +22,6 @@ function secretReady(env: NodeJS.ProcessEnv, name: string, minimum = 32): boolea
 export function voiceRuntimeEnvironmentReady(
   env: NodeJS.ProcessEnv = process.env,
 ): boolean {
-  const fromEmail = value(env, "RESEND_FROM_EMAIL");
   const notifyEmail = value(env, "WILDWORKS_VOICE_NOTIFY_EMAIL");
   const publicBase = value(env, "TWILIO_VOICE_PUBLIC_BASE_URL").replace(/\/$/, "");
   const voice = value(env, "TWILIO_CONVERSATION_RELAY_VOICE");
@@ -34,7 +35,7 @@ export function voiceRuntimeEnvironmentReady(
     voice.length <= 200 &&
     !/[\u0000-\u001f\u007f]/.test(voice) &&
     secretReady(env, "RESEND_API_KEY", 16) &&
-    EMAIL_PATTERN.test(fromEmail) &&
+    wildWorksSenderConfigurationError(env) === null &&
     EMAIL_PATTERN.test(notifyEmail) &&
     secretReady(env, "WILDWORKS_VOICE_EVENT_SECRET") &&
     secretReady(env, "WILDWORKS_VOICE_PLAYBACK_SECRET") &&

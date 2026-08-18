@@ -1,0 +1,19 @@
+/* H252: H118 enlarged the three phone contact circles to 54px while the
+   strip's inherited 60px content box left only 3px above and below them.
+   Give the complete circles room for their approved rim/shadow and restore
+   the strip's solid copper field. */
+@media (max-width: 450px) {
+  html body#wildworks-body#wildworks-body .wild-footer-mobile-strip.wild-footer-mobile-strip {
+    background: #ae431b !important;
+    background-color: #ae431b !important;
+    background-image: linear-gradient(180deg, #cb622d 0%, #ae431b 100%) !important;
+    opacity: 1 !important;
+  }
+
+  html body#wildworks-body#wildworks-body .wild-footer-mobile-strip-inner {
+    height: 72px !important;
+    min-height: 72px !important;
+    overflow: visible !important;
+    padding-block: 9px !important;
+  }
+}

@@ -1,0 +1,18 @@
+/* H232: legal/disclaimer copy is white from document top through the footer contact card. */
+:root {
+  --ww-legal-zone-white: #fff;
+}
+
+/*
+ * This has 80 ID points: higher than the 60-point legacy legal rule it
+ * deliberately supersedes. It remains limited to a legal-page root.
+ */
+html:has(.wild-legal-home):not(#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone)
+  body#wildworks-body#wildworks-body#wildworks-body
+  .wild-legal-home,
+html:has(.wild-legal-home):not(#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone#ww-legal-zone)
+  body#wildworks-body#wildworks-body#wildworks-body
+  .wild-legal-home * {
+  color: var(--ww-legal-zone-white) !important;
+  -webkit-text-fill-color: var(--ww-legal-zone-white) !important;
+}

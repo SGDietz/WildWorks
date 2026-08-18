@@ -5,18 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { isLegalRoute } from "../lib/legalRoutes";
-
-const showInspirationSubpage = false;
-const showISellSubpage = false;
-
-const navTabs = [
-  { label: "HOME", href: "/pages/Home" },
-  { label: "WILDFIRE", href: "/pages/Wildfire" },
-  ...(showInspirationSubpage ? [{ label: "INSPIRATION", href: "/pages/Inspiration" }] : []),
-  { label: "RUINS", href: "/pages/The-ruins" },
-  ...(showISellSubpage ? [{ label: "I SELL", href: "/pages/I-sell" }] : []),
-  { label: "BIO", href: "/pages/who-is-g" },
-];
+import { mainNavigationTabs } from "../lib/mainNavigation";
 
 export default function Header() {
   const pathname = usePathname();
@@ -56,7 +45,7 @@ export default function Header() {
         <div className="mx-auto hidden flex-col items-center pb-0 pt-3 min-[501px]:flex sm:gap-0 sm:pt-5">
           <nav id="wild-primary-navigation" aria-label="Primary navigation" className="w-full max-w-2xl px-4 pt-1 sm:mx-auto sm:px-6 sm:pb-1 sm:pt-2">
             <ul className="flex flex-wrap items-center justify-center gap-2" role="list">
-              {navTabs.map((tab) => {
+              {mainNavigationTabs.map((tab) => {
                 const isActive =
                   tab.href === "/pages/Home"
                     ? pathname === "/" || pathname === "/pages/Home"
@@ -126,7 +115,7 @@ export default function Header() {
           {/* HOME label (light grey, centered) */}
           {/* Vertical nav links: white, uppercase, centered, generous spacing */}
           <nav className="flex flex-1 flex-col items-center justify-start gap-8 py-10">
-            {navTabs.map((tab) => (
+            {mainNavigationTabs.map((tab) => (
               <motion.div
                 key={tab.href}
                 whileHover={{ scale: 1.08, y: -3 }}

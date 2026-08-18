@@ -1,0 +1,314 @@
+/* H178a: G 2026-08-13 — only the Home hero Talk to iScott button beneath
+   "Call WildWorks Today!". Enlarge the visible box 20% in both dimensions,
+   while counter-scaling its icon and wording so their rendered sizes stay
+   unchanged. All other Talk buttons are explicitly out of scope. */
+
+html body#wildworks-body #top.wild-home
+  .wild-home-phone-iscott-test--hero-compact {
+  --ww-home-phone-talk-scale: 1 !important;
+  --ww-home-phone-talk-min-height: 6.5rem;
+  --ww-home-phone-talk-padding: 1rem 3rem;
+  --ww-home-phone-talk-gap: 1rem;
+  --ww-home-phone-talk-font-size: 3.25rem;
+  --ww-home-phone-talk-icon-size: 3.25rem;
+  --ww-hero-talk-icon-stroke: 2.5;
+  --ww-h177-field-talk-ink: #7d2f20;
+}
+
+/* H250/H251 follow the shared owner, but this Home route sheet is emitted
+   after layout CSS. Keep the final source-order correction local to the same
+   shared large CTA family. */
+html:not(#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html:not(#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish#ww-h178-return-finish)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button > svg { stroke: #7d2f20 !important; }
+
+/* Match the legacy footer ink lock's ID weight, but only for the final large
+   Home Talk control. */
+html:has(#top.wild-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button,
+html:has(#top.wild-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html:has(#top.wild-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: currentColor !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button {
+  width: min(100%, 38rem) !important;
+  min-width: 0 !important;
+  min-height: 6.5rem !important;
+  padding: 1rem 3rem !important;
+  border-radius: 14px !important;
+  font-size: 3.25rem !important;
+  font-weight: 750 !important;
+  letter-spacing: normal !important;
+  line-height: 1 !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > span {
+  scale: none !important;
+  translate: none !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: var(
+    --ww-hero-talk-text-shadow,
+    0 clamp(0.95px, 0.048em, 1.3px) 0 rgba(0, 0, 0, 0.5),
+    0 clamp(1.45px, 0.074em, 2px) clamp(0.25px, 0.014em, 0.42px) rgba(0, 0, 0, 0.5),
+    0 clamp(2px, 0.1em, 2.7px) clamp(0.8px, 0.045em, 1.25px) rgba(0, 0, 0, 0.39)
+  ) !important;
+}
+
+@media (max-width: 640px) {
+  html body#wildworks-body #top.wild-home
+    .wild-home-phone-iscott-test--hero-compact {
+    --ww-home-phone-talk-min-height: 5rem;
+    --ww-home-phone-talk-padding: 0.75rem 1.25rem;
+    --ww-home-phone-talk-gap: 0.65rem;
+    --ww-home-phone-talk-font-size: 2.125rem;
+    --ww-home-phone-talk-icon-size: 2.25rem;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top.wild-home
+    .wild-home-phone-iscott-test--hero-compact
+    > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button {
+    min-height: 5rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-home-phone-iscott-test--hero-compact
+    > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+    > svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+}
+
+html:not(#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test > a.wild-home-phone-iscott-test__button > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html:not(#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test > a.wild-home-phone-iscott-test__button > svg { stroke: #7d2f20 !important; }
+
+/* Final Home-only winner: match the legal Return CTA ink without altering
+   its shared dimensions, placement, gold material, or any smaller control. */
+html:not(#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html:not(#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink#ww-home-large-return-ink)
+  body#wildworks-body #top.wild-home .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button > svg { stroke: #7d2f20 !important; }
+
+/* The closing control lives outside #top and inherits the footer's heavily
+   locked Copper Flame ink. Match that lock without widening scope beyond this
+   one large Home field control. */
+html:has(#top.wild-home):not(#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer)
+  body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button,
+html:has(#top.wild-home):not(#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer)
+  body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html:has(#top.wild-home):not(#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer#ww-h178a-footer)
+  body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: currentColor !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > svg {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  stroke-width: 2.5px !important;
+  color: #7d2f20 !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5px !important;
+  color: #7d2f20 !important;
+  stroke: currentColor !important;
+  scale: none !important;
+  translate: none !important;
+  filter: var(
+    --ww-hero-talk-icon-filter,
+    drop-shadow(0 1.3px 0 rgba(0, 0, 0, 0.35))
+      drop-shadow(0 2px 0.42px rgba(0, 0, 0, 0.35))
+      drop-shadow(0 2.7px 1.25px rgba(0, 0, 0, 0.273))
+  ) !important;
+}
+
+/* G-approved replication: every large field Talk control on Home only.
+   These are the six large phone-group controls; small/card/overlay controls
+   and every non-Home route remain outside this selector. */
+html body#wildworks-body:has(#top.wild-home)
+  :is(#top.wild-home, footer#footer)
+  .wild-home-phone-iscott-test {
+  --ww-home-phone-talk-scale: 1 !important;
+  --ww-home-phone-talk-min-height: 6.5rem;
+  --ww-home-phone-talk-padding: 1rem 3rem;
+  --ww-home-phone-talk-gap: 1rem;
+  --ww-home-phone-talk-font-size: 3.25rem;
+  --ww-home-phone-talk-icon-size: 3.25rem;
+  --ww-hero-talk-icon-stroke: 2.5;
+  --ww-h177-field-talk-ink: #7d2f20;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button {
+  width: min(100%, 38rem) !important;
+  min-width: 0 !important;
+  min-height: 6.5rem !important;
+  padding: 1rem 3rem !important;
+  border-radius: 14px !important;
+  font-size: 3.25rem !important;
+  font-weight: 750 !important;
+  letter-spacing: normal !important;
+  line-height: 1 !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  footer#footer#footer#footer#footer#footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > span {
+  scale: none !important;
+  translate: none !important;
+  text-shadow: var(
+    --ww-hero-talk-text-shadow,
+    0 clamp(0.95px, 0.048em, 1.3px) 0 rgba(0, 0, 0, 0.5),
+    0 clamp(1.45px, 0.074em, 2px) clamp(0.25px, 0.014em, 0.42px) rgba(0, 0, 0, 0.5),
+    0 clamp(2px, 0.1em, 2.7px) clamp(0.8px, 0.045em, 1.25px) rgba(0, 0, 0, 0.39)
+  ) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > svg {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  stroke-width: 2.5px !important;
+  color: #7d2f20 !important;
+  stroke: currentColor !important;
+  scale: none !important;
+  translate: none !important;
+  filter: var(
+    --ww-hero-talk-icon-filter,
+    drop-shadow(0 1.3px 0 rgba(0, 0, 0, 0.35))
+      drop-shadow(0 2px 0.42px rgba(0, 0, 0, 0.35))
+      drop-shadow(0 2.7px 1.25px rgba(0, 0, 0, 0.273))
+  ) !important;
+}
+
+@media (max-width: 640px) {
+  html body#wildworks-body:has(#top.wild-home)
+    :is(#top.wild-home, footer#footer)
+    .wild-home-phone-iscott-test {
+    --ww-home-phone-talk-min-height: 5rem;
+    --ww-home-phone-talk-padding: 0.75rem 1.25rem;
+    --ww-home-phone-talk-gap: 0.65rem;
+    --ww-home-phone-talk-font-size: 2.125rem;
+    --ww-home-phone-talk-icon-size: 2.25rem;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+    :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+    .wild-home-phone-iscott-test
+    > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button {
+    min-height: 5rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+    :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+    .wild-home-phone-iscott-test
+    > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+    > svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+}

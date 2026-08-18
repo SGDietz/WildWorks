@@ -1,0 +1,30 @@
+/* H255: Legal-only footer corrections. Keep the shared large CTA's approved
+   desktop treatment intact while allowing its long legal return label to use
+   the available phone width inside the bordered button. */
+@media (max-width: 640px) {
+  html body#wildworks-body #footer .wild-home-phone-iscott-test--legal-return
+    > .wild-home-phone-iscott-test__button {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(0.5rem, 2.5vw, 0.75rem) !important;
+    padding-inline: clamp(0.75rem, 4vw, 1rem) !important;
+  }
+
+  html body#wildworks-body #footer .wild-home-phone-iscott-test--legal-return
+    > .wild-home-phone-iscott-test__button
+    > span {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: normal;
+    text-wrap: balance;
+  }
+}
+
+/* Legal Dream Project only: the general display-depth variable adds a long
+   vertical falloff here. Retain a compact, intentional shadow without
+   changing Home or non-legal footer effects. */
+html:has(.wild-legal-home) body#wildworks-body#wildworks-body
+  footer#footer#footer#footer#footer.wild-footer--legal
+  .wild-footer-contact-cta__title {
+  filter: none !important;
+  text-shadow: 0 2px 5px rgba(42, 12, 2, 0.82) !important;
+}

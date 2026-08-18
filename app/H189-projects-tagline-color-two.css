@@ -1,0 +1,15 @@
+/* H189: Home Projects tagline is Color 2, not Color 3. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__tagline,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__tagline
+  * {
+  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+}

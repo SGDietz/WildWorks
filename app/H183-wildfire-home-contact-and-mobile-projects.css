@@ -1,0 +1,180 @@
+/* H183: Two tightly scoped requests from G, 2026-08-13.
+   1. Clone the complete approved first-Home contact block into the Project
+      Wildfire hero between "To The First Wood Fire." and its summary.
+   2. On Home phones only, keep "Wild by design" on one line and raise the
+      Projects title by two points. */
+
+.wild-subpage--wildfire .wildfire-home-contact-clone {
+  width: 100%;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone__scope {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-phone-number-line--home-hero {
+  width: 100%;
+  margin-top: clamp(1.3rem, 3.2vw, 2.75rem) !important;
+  margin-bottom: clamp(1rem, 1.5vw, 1.5rem) !important;
+  padding-inline: 1.5rem;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-phone-number-line--home-hero
+  .wild-phone-number-line__call-today--desktop {
+  font-size: clamp(3rem, 5.2vw, 5.25rem) !important;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact {
+  width: 100% !important;
+  margin-inline: auto !important;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button {
+  display: flex !important;
+  width: min(100%, 38rem) !important;
+  min-width: 0 !important;
+  min-height: 6.5rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  padding: 1rem 3rem !important;
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  border-radius: 14px !important;
+  font-size: 3.25rem !important;
+  font-weight: 750 !important;
+  letter-spacing: normal !important;
+  line-height: 1 !important;
+  color: #b95b21 !important;
+  -webkit-text-fill-color: #b95b21 !important;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  color: #b95b21 !important;
+  -webkit-text-fill-color: #b95b21 !important;
+  text-shadow:
+    0 1.3px 0 rgba(0, 0, 0, 0.5),
+    0 2px 0.42px rgba(0, 0, 0, 0.5),
+    0 2.7px 1.25px rgba(0, 0, 0, 0.39) !important;
+}
+
+.wild-subpage--wildfire .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5px !important;
+  color: #b95b21 !important;
+  filter:
+    drop-shadow(0 1.3px 0 rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2px 0.42px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2.7px 1.25px rgba(0, 0, 0, 0.273)) !important;
+}
+
+html:has(.wild-subpage--wildfire):not(#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button {
+  border-radius: 14px !important;
+  color: #b95b21 !important;
+  -webkit-text-fill-color: #b95b21 !important;
+}
+
+html:has(.wild-subpage--wildfire):not(#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock#wildfire-home-contact-clone-lock)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-home-contact-clone
+  .wild-home-phone-iscott-test--hero-compact
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  text-shadow:
+    0 1.3px 0 rgba(0, 0, 0, 0.5),
+    0 2px 0.42px rgba(0, 0, 0, 0.5),
+    0 2.7px 1.25px rgba(0, 0, 0, 0.39) !important;
+}
+
+@media (max-width: 600px) {
+  .wild-subpage--wildfire .wildfire-home-contact-clone
+    .wild-phone-number-line--home-hero {
+    margin-top: 0.65rem !important;
+    margin-bottom: 0.65rem !important;
+    transform: translateY(0.5rem);
+  }
+
+  .wild-subpage--wildfire .wildfire-home-contact-clone
+    .wild-phone-number-line--home-hero
+    > a {
+    font-size: clamp(2.6rem, 9.65vw, 3.65rem) !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-home-contact-clone
+    .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    margin-top: 0.35rem !important;
+    font-size: calc(clamp(1.55rem, 6vw, 1.9rem) + 1rem + 1pt) !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-home-contact-clone
+    .wild-home-phone-iscott-test--hero-compact
+    > a.wild-home-phone-iscott-test__button {
+    width: min(100%, 18.75rem) !important;
+    min-height: 5rem !important;
+    gap: 0.65rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  .wild-subpage--wildfire .wildfire-home-contact-clone
+    .wild-home-phone-iscott-test--hero-compact
+    > a.wild-home-phone-iscott-test__button
+    > svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  html:has(.wild-subpage--wildfire):not(#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock#wildfire-home-contact-mobile-lock)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-home-contact-clone
+    .wild-home-phone-iscott-test--hero-compact
+    > a.wild-home-phone-iscott-test__button {
+    min-height: 5rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    #projects.wild-home-projects
+    > .wild-home-projects__title {
+    font-size: calc(clamp(2.2rem, 11vw, 3rem) + 2pt) !important;
+  }
+
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home
+    #projects.wild-home-projects
+    > .wild-home-projects__tagline {
+    width: max-content !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    font-size: clamp(2.2rem, 11vw, 2.75rem) !important;
+  }
+}

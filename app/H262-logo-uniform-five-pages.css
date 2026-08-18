@@ -1,0 +1,17 @@
+﻿/* H262: One logo treatment on Home + Wildfire + Ruins + Projects + Bio.
+   G 2026-08-17: WILDWORKS and the scrolls are perfect - keep that shadow.
+   Fine Art & Practical / Landscaping shadow sits too far from the letters -
+   pull it closer. Then lock both on all five pages. Do not change colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:before {
+  opacity: 0.98 !important;
+  filter: none !important;
+  clip-path: inset(0 0 32%) !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  background: #321005 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect {
+  filter: none !important;
+  transform: translateY(clamp(0.45px, 0.07vw, 0.95px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+}

@@ -1,0 +1,35 @@
+/* H246: Home-only finished Project Wildfire mosaic.
+   The desktop art direction remains in globals.css at 900px and up.  Below
+   that threshold, keep the same five finished images in their existing
+   lightbox order, but present them as G's contained editorial composition:
+   one wide featured photograph, then four equal, tappable tiles. */
+@media (max-width: 899px) {
+  html body#wildworks-body #top#top.wild-home #project-wildfire .wild-wildfire-spread {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: clamp(12rem, 52vw, 22rem) repeat(2, clamp(10.5rem, 28vw, 16rem)) !important;
+    grid-auto-flow: row !important;
+    gap: clamp(0.55rem, 1.6vw, 0.85rem) !important;
+    width: min(calc(100% - 2rem), 46rem) !important;
+    max-width: 46rem !important;
+    margin-inline: auto !important;
+  }
+
+  html body#wildworks-body #top#top.wild-home #project-wildfire .wild-wildfire-photo {
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+
+  html body#wildworks-body #top#top.wild-home #project-wildfire .wild-wildfire-photo--hero {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    min-height: 0 !important;
+  }
+
+  html body#wildworks-body #top#top.wild-home #project-wildfire
+    :is(.wild-wildfire-photo--deck, .wild-wildfire-photo--garden, .wild-wildfire-photo--patio, .wild-wildfire-photo--detail) {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 0 !important;
+  }
+}

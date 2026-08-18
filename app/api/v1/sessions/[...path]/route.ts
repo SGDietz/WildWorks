@@ -5,6 +5,10 @@ import {
   RequestBodyTooLargeError,
 } from "../../../../../src/lib/apiRouteSecurity";
 import { checkRateLimit } from "../../../../../src/lib/rateLimit";
+import {
+  armLiveAvatarIdleSession,
+  clearLiveAvatarIdleSession,
+} from "../../../../../src/lib/liveAvatarIdleSessions";
 
 export const dynamic = "force-dynamic";
 
@@ -58,6 +62,13 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
       cache: "no-store",
       duplex: "half",
     } as RequestInit & { duplex: "half" });
+
+    const action = path.join("/");
+    if (response.ok && action === "start") {
+      armLiveAvatarIdleSession(token, API_URL);
+    } else if (action === "stop") {
+      clearLiveAvatarIdleSession(token);
+    }
 
     const contentType = response.headers.get("content-type") ?? "application/json";
     return new Response(response.body, {

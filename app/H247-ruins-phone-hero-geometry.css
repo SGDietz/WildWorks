@@ -1,0 +1,10 @@
+/* H247: phone-only Ruins hero geometry.  Keep the iPad and desktop rules intact. */
+@media (max-width: 599px) {
+  html body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-top: -1.15rem !important;
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: 0 !important;
+  }
+}

@@ -1,0 +1,19 @@
+﻿/* H259: Ai-Native Websites heading only.
+   G 2026-08-17: heavier shadow on all three lines. Nice, not too much.
+   Uses the locked Patio display depth. Do not change letter colors. Home only. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-kicker *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two
+) * {
+  filter: none !important;
+  text-shadow: var(--ww-home-display-depth-strong) !important;
+}

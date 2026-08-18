@@ -1,0 +1,360 @@
+/* H153: image-only Projects surfaces. No copy or card changes. */
+.wild-home-projects {
+  width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 78rem);
+  margin: clamp(4.25rem, 7vw, 6rem) auto clamp(4rem, 7vw, 6rem);
+  padding: 0;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.wild-home-projects__title {
+  margin: 0 0 clamp(1.75rem, 3.4vw, 3rem);
+  text-align: center;
+  font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-shadow: 0 3px 0 rgba(47, 12, 3, 0.7), 0 11px 24px rgba(47, 12, 3, 0.28);
+}
+
+html:has(#top#top#top#top#top#top#top#top#top#top.wild-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  #projects.wild-home-projects .wild-home-projects__title
+  .wild-home-projects__title-wildworks {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+html:has(#top#top#top#top#top#top#top#top#top#top.wild-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  #projects.wild-home-projects .wild-home-projects__title
+  .wild-home-projects__title-projects {
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+body#wildworks-body #top#top.wild-home #projects.wild-home-projects,
+body#wildworks-body #top#top.wild-home #projects.wild-home-projects > .wild-home-projects__grid,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body
+  #top#top.wild-home > #projects.wild-home-projects {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.wild-home-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(3, clamp(10.5rem, 13vw, 13.4rem));
+  grid-auto-flow: dense;
+  gap: clamp(0.7rem, 1.2vw, 1rem);
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.wild-home-projects__item {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(247, 217, 165, 0.22);
+  border-radius: 9px;
+  box-shadow: 0 22px 62px rgba(40, 12, 2, 0.34);
+}
+
+.wild-home-projects__item:nth-child(1) {
+  grid-column: 1 / span 7;
+  grid-row: 1 / span 2;
+  /* Keep the first Butler Stone patio / seatwall / boulder project as a
+     direct photograph on the Home field, not a framed card. */
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.wild-home-projects__item:nth-child(2),
+.wild-home-projects__item:nth-child(3) {
+  grid-column: 8 / span 5;
+}
+
+.wild-home-projects__item:nth-child(2) {
+  grid-row: 1;
+}
+
+.wild-home-projects__item:nth-child(3) {
+  grid-row: 2;
+}
+
+.wild-home-projects__item:nth-child(4) {
+  grid-column: 1 / span 4;
+  grid-row: 3;
+}
+
+.wild-home-projects__item:nth-child(5) {
+  grid-column: 5 / span 4;
+  grid-row: 3;
+}
+
+.wild-home-projects__item:nth-child(6) {
+  grid-column: 9 / span 4;
+  grid-row: 3;
+}
+
+.wild-home-projects__link {
+  padding: 0;
+  border: 0;
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+  background: transparent;
+}
+
+.wild-home-projects__link:focus-visible {
+  outline: 2px solid #fce0ad;
+  outline-offset: -5px;
+}
+
+.wild-home-projects__image {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.34s ease, filter 0.34s ease;
+}
+
+.wild-home-projects__item:hover .wild-home-projects__image,
+.wild-home-projects__item:focus-within .wild-home-projects__image {
+  transform: scale(1.035);
+  filter: saturate(1.05);
+}
+
+.wild-home-projects__more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.8rem, 3.4vw, 3rem);
+}
+
+.wild-home-projects__more .money-cta {
+  width: auto;
+}
+
+/* The Home project viewer uses the normal primary page color, not the
+   lighter card orange used by the Wildfire presentation. */
+html body#wildworks-body .wild-projects-lightbox.wild-projects-lightbox,
+html body#wildworks-body .wild-projects-lightbox .wildfire-lightbox-bar,
+html body#wildworks-body .wild-projects-lightbox .wildfire-lightbox-image {
+  margin-bottom: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #9f4719 !important;
+  background-color: #9f4719 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.wild-projects-gallery {
+  width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 92rem);
+  margin: 0 auto;
+  padding: clamp(1rem, 2.5vw, 2.2rem) 0 clamp(2rem, 5vw, 4.6rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: clamp(20rem, 30vw, 32rem);
+  gap: clamp(0.7rem, 1.2vw, 1rem);
+}
+
+.wild-projects-gallery__item {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(247, 217, 165, 0.22);
+  border-radius: 9px;
+  box-shadow: 0 18px 48px rgba(40, 12, 2, 0.3);
+}
+
+.wild-projects-gallery__item > div {
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.wild-projects-gallery__item img {
+  transition: transform 0.34s ease, filter 0.34s ease;
+}
+
+.wild-projects-gallery__item:hover img,
+.wild-projects-gallery__item:focus-within img {
+  transform: scale(1.025);
+  filter: saturate(1.04);
+}
+
+@media (max-width: 600px) {
+  .wild-home-projects {
+    margin-block: 4.5rem 5rem;
+  }
+
+  .wild-home-projects__title {
+    margin-bottom: 1.7rem;
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    line-height: 1.04;
+  }
+
+  .wild-home-projects__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, clamp(8.5rem, 38vw, 11rem));
+  }
+
+  .wild-home-projects__item:nth-child(n) {
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .wild-home-projects__item:nth-child(1) {
+    grid-column: 1 / -1;
+    grid-row: 1 / span 2;
+  }
+
+  .wild-home-projects__item:nth-child(2) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .wild-home-projects__item:nth-child(3) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .wild-home-projects__item:nth-child(4) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .wild-home-projects__item:nth-child(5) {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  .wild-home-projects__item:nth-child(6) {
+    grid-column: 1 / -1;
+    grid-row: 5;
+  }
+
+  .wild-projects-gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: clamp(18rem, 78vw, 29rem);
+    padding-top: 0.65rem;
+  }
+}
+/* H154: Home hero line-only copy fit. This final import keeps the shorter
+   "By Creating Beautiful Things" visually level with the line beneath it. */
+html body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line--beautiful {
+  width: max-content !important;
+  max-width: 100% !important;
+  font-size: clamp(1.7rem, 1.9vw, 1.95rem) !important;
+  transform: scaleX(1.06) !important;
+  transform-origin: left center !important;
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line--beautiful {
+    font-size: 1.68rem !important;
+    transform: scaleX(1.02) !important;
+  }
+}
+
+@media (max-width: 719px) {
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--beautiful {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: calc(clamp(1.24rem, 5.9vw, 1.62rem) - 2pt) !important;
+    transform: none !important;
+    transform-origin: center center !important;
+    text-align: center !important;
+  }
+}
+
+/* H155: only the compact Talk to iScott control directly beneath the Home
+   hero phone line. Preserve its approved dimensions and gold surface. */
+html body#wildworks-body#wildworks-body:not(#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155):has(#top.wild-home)
+  #top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  .wild-home-phone-iscott-test__button {
+  color: #b04c1e !important;
+  -webkit-text-fill-color: #b04c1e !important;
+}
+
+html body#wildworks-body#wildworks-body:not(#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155):has(#top.wild-home)
+  #top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  .wild-home-phone-iscott-test__button > span {
+  color: #b04c1e !important;
+  -webkit-text-fill-color: #b04c1e !important;
+}
+
+html body#wildworks-body#wildworks-body:not(#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155#h155):has(#top.wild-home)
+  #top.wild-home
+  .wild-home-phone-iscott-test--hero-compact
+  .wild-home-phone-iscott-test__button > svg {
+  color: #b04c1e !important;
+  stroke: #b04c1e !important;
+}
+
+/* H156: remove only the pale bottom seam from the button over iScott. */
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-live-avatar-frame
+  .wild-site-avatar-overlay-cta {
+  --ww-talk-border-bottom-color: transparent;
+}
+
+/* Keep the absolutely centered avatar CTA centered when the shared button
+   hover system adds its two-pixel lift. */
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-live-avatar-frame
+  .wild-site-avatar-overlay-cta:hover,
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-live-avatar-frame
+  .wild-site-avatar-overlay-cta:focus-visible {
+  transform: translateX(-50%) translateY(-2px) !important;
+}
+
+/* H157: Home hero button interiors only. Keep the approved 220 x 64 boxes. */
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-copy > .wild-cta-row
+  .money-cta > span {
+  font-size: 1.2em !important;
+  line-height: 1 !important;
+}
+
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-hero.discordSection
+  .wild-hero-copy > .wild-cta-row
+  .money-cta > svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}

@@ -1,0 +1,35 @@
+/* Home-only text effects: hero ledes, Tree of Life copy, and service-card body copy. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #top#top.wild-home .wild-hero .wild-hero-lede-line--beautiful {
+  filter: none !important;
+  text-shadow: 0 1.2px 0 rgba(35, 9, 2, 0.85), 0 2.5px 0 rgba(25, 6, 1, 0.58) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #top#top.wild-home .wild-hero .wild-hero-lede-line--problems {
+  filter: none !important;
+  text-shadow: 0 1px 0 rgba(35, 9, 2, 0.82), 0 2.1px 0 rgba(25, 6, 1, 0.54) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #top#top.wild-home .wild-hero .wild-hero-lede-line--italic {
+  filter: none !important;
+  text-shadow: 0 1.1px 0 rgba(35, 9, 2, 0.84), 0 2.3px 0 rgba(25, 6, 1, 0.56) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-copy-stack > .wild-body,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-copy-stack > .wild-body * {
+  filter: none !important;
+  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-image-stonework-note,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-hero-stonework-note.wild-home-image-stonework-note {
+  filter: none !important;
+  text-shadow: 0 0.7px 0 rgba(35, 9, 2, 0.66), 0 1.5px 0 rgba(25, 6, 1, 0.4) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services .wild-card .wild-card-body,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services .wild-card .wild-card-body p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services .wild-card .wild-card-body li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services .wild-card .wild-card-body span {
+  filter: none !important;
+  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}

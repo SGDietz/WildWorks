@@ -36,8 +36,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   #talk-to-iscott
   .wild-start-title
   :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 /* This statement card intentionally uses only Color 1 and Color 2. */
@@ -49,16 +49,16 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement__line--one * {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   :is(.wild-home-statement__line--two, .wild-home-statement__line--two *, .wild-home-statement__line--four) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 /* The masked lockup contains both the WildWorks wordmark and its scrolls. */
@@ -66,8 +66,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement__brand-lockup::after {
-  background: #f7d9a5 !important;
-  background-color: #f7d9a5 !important;
+  background: #fce0ad !important;
+  background-color: #fce0ad !important;
   background-image: none !important;
 }
 

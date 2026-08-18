@@ -1,0 +1,42 @@
+/* H202: render every written WildWorks phone line in the approved Home face.
+   Caladea is bundled by next/font so iPadOS does not fall back from Cambria
+   to the ornamental Playfair face. */
+html body#wildworks-body {
+  --ww-phone-face: Cambria, "Cambria Math", var(--font-caladea),
+    "Iowan Old Style", Palatino, Georgia, "Times New Roman", serif;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line
+  > a,
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-phone-number-line
+  :is(
+    .wild-phone-number-line__call-today,
+    .wild-phone-number-line__call-today--desktop,
+    .wild-phone-number-line__call-today--mobile,
+    .wild-phone-number-line__call-today--emphasis,
+    span,
+    em,
+    strong
+  ) {
+  font-family: var(--ww-phone-face) !important;
+}
+
+/* Caladea's numerals are slightly wider than the earlier mobile fallback.
+   Keep the video-card line inside its inset rail without affecting the other
+   full-width phone callouts. */
+@media (max-width: 640px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-phone-number-line--home-video
+    > a {
+    font-size: clamp(2.25rem, 10.7vw, 2.65rem) !important;
+    letter-spacing: 0.03em !important;
+  }
+}

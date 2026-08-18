@@ -12,8 +12,8 @@ body footer#footer .wild-signup-panel {
 
 body footer#footer .wild-signup-title {
   margin: 0 0 clamp(0.7rem, 1.3vw, 0.95rem) !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: clamp(1.65rem, 3.1vw, 2.15rem) !important;
   line-height: 1.03 !important;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.76), 0 5px 10px rgba(0, 0, 0, 0.2) !important;
@@ -38,8 +38,8 @@ body footer#footer .wild-signup-choice-button {
 
 body footer#footer .wild-signup-field {
   gap: 0.28rem !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: 1rem !important;
   line-height: 1.15 !important;
 }
@@ -52,8 +52,8 @@ body footer#footer .wild-signup-field input {
 
 body footer#footer .wild-signup-consent,
 body footer#footer .wild-signup-fine-print {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: clamp(0.78rem, 1.45vw, 0.88rem) !important;
   font-weight: 600 !important;
   line-height: 1.4 !important;

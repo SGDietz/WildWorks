@@ -1,0 +1,93 @@
+/* H233: all five main navigation routes retain the shared logo. Secondary
+   subpages stay collapsed; touch layouts remain gesture-safe. */
+
+.wild-top-logo-band--subpage {
+  display: none !important;
+}
+
+body .wild-subpage--projects {
+  display: flex;
+  flex-direction: column;
+}
+
+body .wild-subpage--projects > .wild-projects-gallery {
+  order: 2;
+  padding-top: 0;
+}
+
+body .wild-subpage--projects > .wild-projects-page-title {
+  order: 1;
+  display: block;
+  width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 92rem);
+  margin: clamp(1.2rem, 2.5vw, 2rem) auto clamp(0.55rem, 1.5vw, 1rem);
+  color: var(--ww-text-1, #fce0ad);
+  font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
+  font-size: clamp(3.25rem, 9vw, 5.4rem);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 3px 0 rgba(47, 12, 3, 0.7), 0 11px 24px rgba(47, 12, 3, 0.28);
+}
+
+body .wild-subpage--projects > .wild-projects-page-intro {
+  order: 3;
+  margin-top: clamp(1.1rem, 2vw, 1.7rem);
+  margin-bottom: clamp(1.1rem, 2vw, 1.6rem);
+}
+
+body .wild-subpage--projects > .wild-projects-home-contact {
+  order: 4;
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  html body#wildworks-body
+    .wild-subpage--ruins.wild-subpage--ruins
+    .wild-subpage-hero {
+    width: min(100% - 1.5rem, 44rem) !important;
+    max-width: 44rem !important;
+  }
+}
+
+@media (max-width: 1366px) and (any-pointer: coarse) {
+  /* Pointer Events receive horizontal intent while native vertical scroll and
+     pinch zoom remain browser-owned. */
+  .wild-main-shell {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Remove the old logo-balancing air while retaining the primary nav. */
+  body:has(.wild-subpage) .wild-site-header div.flex-col {
+    padding-top: clamp(0.35rem, 1vw, 0.75rem) !important;
+  }
+
+  body:has(.wild-subpage) .wild-site-header nav {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  body .wild-subpage--bio,
+  body .wild-subpage--ruins,
+  body .wild-subpage--wildfire,
+  body .wild-subpage--projects {
+    padding-top: 0 !important;
+  }
+
+  body :is(.wild-subpage--bio, .wild-subpage--ruins) .wild-subpage-hero {
+    margin-top: 0 !important;
+  }
+
+}
+
+@media (max-width: 500px) and (hover: none) and (pointer: coarse) {
+  /* The in-flow phone header already reserves the hamburger height. Keep only
+     a small edge gap so the first image clears its shadow without restoring
+     logo-sized air. */
+  html body :is(
+    .wild-subpage--bio,
+    .wild-subpage--ruins,
+    .wild-subpage--wildfire,
+    .wild-subpage--projects
+  ) {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.35rem) !important;
+  }
+}

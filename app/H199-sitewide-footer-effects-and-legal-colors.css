@@ -1,0 +1,85 @@
+/* H199: G 2026-08-13 — finish the shared footer without disturbing the
+   approved card or the legal-document copy. Legal phone copy is true white;
+   the sparkle uses the same approved copper as its Talk label. The three
+   closing text rows share one restrained, close-set letter effect sitewide. */
+
+html:not(#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock)
+  body#wildworks-body
+  footer#footer
+  :is(
+    .wild-footer-stonework-note,
+    .wild-footer-copyright,
+    .wild-footer-legal-link
+  ) {
+  filter: drop-shadow(0 0.7px 1.1px rgba(42, 12, 2, 0.28)) !important;
+  text-shadow: 0 0.65px 0 rgba(50, 16, 5, 0.62) !important;
+}
+
+/* Keep nested brand/text runs from receiving a second copy of the effect. */
+html:not(#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock#ww-h199-lock)
+  body#wildworks-body
+  footer#footer
+  :is(.wild-footer-stonework-note, .wild-footer-copyright, .wild-footer-legal-link)
+  * {
+  filter: none !important;
+  text-shadow: inherit !important;
+}
+
+/* Legal footer advertisement: use Home's Color 1 baseline. */
+html:not(#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal#ww-h199-legal)
+  body#wildworks-body:has(.wild-legal-home)
+  footer#footer
+  .wild-phone-number-line--legal
+  > :is(a, .wild-phone-number-line__call-today) {
+  color: var(--ww-legal-footer-call-color, var(--ww-color-1, #fce0ad)) !important;
+  -webkit-text-fill-color: var(--ww-legal-footer-call-color, var(--ww-color-1, #fce0ad)) !important;
+}
+
+/* Closing copyright and navigation use Home Color 1. The more specific
+   Color 2 rules below restore Home's call line and stonework credit. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  :is(
+    .wild-footer-stonework-note,
+    .wild-footer-stonework-note *,
+    .wild-footer-copyright,
+    .wild-footer-copyright *,
+    .wild-footer-legal-link,
+    .wild-footer-legal-link *
+  ) {
+  color: var(--ww-color-1, #fce0ad) !important;
+  -webkit-text-fill-color: var(--ww-color-1, #fce0ad) !important;
+}
+
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  :is(
+    .wild-phone-number-line--legal .wild-phone-number-line__call-today,
+    .wild-footer-stonework-note,
+    .wild-footer-stonework-note *
+  ) {
+  color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #f1bf75)) !important;
+  -webkit-text-fill-color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #f1bf75)) !important;
+}
+
+/* The legal color lock reaches inside Lucide's paths. Restore every stroke to
+   the approved footer-button copper so the icon and label read as one unit. */
+html:not(#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon)
+  body#wildworks-body:has(.wild-legal-home)
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > .wild-home-phone-iscott-test__button
+  > svg,
+html:not(#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon#ww-h199-icon)
+  body#wildworks-body:has(.wild-legal-home)
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > .wild-home-phone-iscott-test__button
+  > svg
+  * {
+  color: #b95b21 !important;
+  stroke: #b95b21 !important;
+  fill: none !important;
+}

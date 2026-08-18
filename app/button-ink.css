@@ -94,7 +94,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   a.wild-brand-social-link,
   a.wild-logo-download-button,
   [class*="-button"]
-) {
+):not(.wild-projects-lightbox *) {
   color: var(--ww-button-ink) !important;
   -webkit-text-fill-color: var(--ww-button-ink) !important;
   text-shadow: none !important;
@@ -110,7 +110,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   a.wild-brand-social-link,
   a.wild-logo-download-button,
   [class*="-button"]
-) :is(span, strong, small, i, svg) {
+):not(.wild-projects-lightbox *) :is(span, strong, small, i, svg) {
   color: var(--ww-button-ink) !important;
   -webkit-text-fill-color: var(--ww-button-ink) !important;
   filter: none !important;

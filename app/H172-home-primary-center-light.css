@@ -1,0 +1,90 @@
+/* H172: Home primary field gets a center lightness, like the aiASAP lamp.
+   G 2026-08-13 (Screenshot 2026-08-13 123652.png):
+   "see the lightness in the middle of the page? I love that effect.
+    Make the home page ... that lightness in the middle of the
+    background color. The primary color. Only. Only the primary color."
+
+   Stops only lift #9f4719 through the middle. Not card #c56222. Not gold.
+   Every outside edge returns to the exact primary instead of darkening it.
+   Cards stay flat secondary. Field sections go transparent so one
+   viewport-fixed lamp shows through. */
+
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  --ww-h172-primary: var(--ww-home-hdr-primary, #9f4719);
+  --ww-h172-primary-lit: #bc5720;
+  --ww-h172-primary-edge: var(--ww-h172-primary);
+  --ww-h172-primary-lamp: linear-gradient(
+    90deg,
+    var(--ww-h172-primary) 0%,
+    var(--ww-h172-primary) 4%,
+    #aa4d1c 16%,
+    #b4521e 28%,
+    #b95620 38%,
+    var(--ww-h172-primary-lit) 44%,
+    var(--ww-h172-primary-lit) 56%,
+    #b95620 62%,
+    #b4521e 72%,
+    #aa4d1c 84%,
+    var(--ww-h172-primary) 96%,
+    var(--ww-h172-primary) 100%
+  );
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body,
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-site-backdrop,
+    .wild-top-logo-band,
+    header.wild-site-header,
+    #top.wild-home,
+    footer.discordSection,
+    .wild-footer-contact-region
+  ) {
+  background: var(--ww-h172-primary-lamp) !important;
+  background-color: var(--ww-h172-primary) !important;
+  background-image: var(--ww-h172-primary-lamp) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top.wild-home
+  :is(.wild-hero, .wild-section, .wild-phone-number-line) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp#ww-h172-primary-lamp)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .money-panel,
+    .wild-card,
+    .wild-card-icon,
+    .wild-answer-card,
+    .wild-stat,
+    .wild-project-card,
+    .wild-story-card,
+    .wild-process-step,
+    .wild-site-offer-card,
+    .wild-ai-card,
+    .wild-ai-capability-card,
+    .wild-ai-panel,
+    .wild-identity-card,
+    .wild-iscott-panel,
+    .wild-home-statement,
+    .wild-live-avatar-frame,
+    .wild-site-avatar-frame,
+    .wild-signup-panel,
+    .wild-wildfire-photo
+  ) {
+  background: var(--ww-home-hdr-secondary, #c56222) !important;
+  background-color: var(--ww-home-hdr-secondary, #c56222) !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}

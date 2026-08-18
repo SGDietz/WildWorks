@@ -1,0 +1,18 @@
+/* Final, phone-only correction for the first Home contact bridge. */
+@media (max-width: 640px) {
+  html body#wildworks-body #top.wild-home .wild-phone-number-line--home-hero {
+    margin-top: 0.65rem !important;
+    margin-bottom: 0.65rem !important;
+    transform: translateY(0.5rem);
+  }
+
+  html body#wildworks-body #top.wild-home .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    margin-top: 0.35rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home .wild-home-phone-iscott-test--hero-compact {
+    --ww-home-phone-talk-scale: 0.7744;
+    margin-top: 0.15rem !important;
+  }
+}

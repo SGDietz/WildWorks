@@ -1,0 +1,74 @@
+/* G 2026-08-17 live walk: "Make the letters beautiful." Nice solid straight-
+   down shadows restored where the lightening passes stripped them. Values are
+   G-dictated per section; selectors mirror the H-overlays they supersede. */
+
+/* 1) Six-line Wildfire stack — "all of these need a nice amount of shadow." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-sequence-callout__line--patio,
+  .wild-wildfire-sequence-callout__line--lounge,
+  .wild-wildfire-sequence-callout__line--going,
+  .wild-wildfire-build-note__line,
+  .wild-wildfire-build-note__line--lead,
+  .wild-wildfire-build-note__line--middle,
+  .wild-wildfire-build-note__line--close
+):not(#_) {
+  filter: none !important;
+  text-shadow: 0 1.1px 0 rgba(35, 9, 2, 0.82), 0 2.4px 0 rgba(25, 6, 1, 0.55) !important;
+}
+
+/* 2) Home statement lines — "all of this text should have nice shadow."
+   WILDWORKS + scrolls lockup untouched. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-statement__title :is(
+  .wild-home-statement__line--one,
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four,
+  .wild-home-statement__phrase
+):not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-home-statement__title :is(
+  .wild-home-statement__line--one,
+  .wild-home-statement__line--two,
+  .wild-home-statement__line--four,
+  .wild-home-statement__phrase
+) *:not(#_) {
+  filter: none !important;
+  text-shadow: 0 1px 0 rgba(35, 9, 2, 0.75), 0 2.2px 0 rgba(25, 6, 1, 0.48) !important;
+}
+
+/* 3) Tree of Life title — "put some nice shadow on these." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-tree-title:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-tree-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two,
+  .wild-line-title__line--three
+):not(#_) {
+  filter: none !important;
+  text-shadow: 0 1.4px 0 rgba(35, 9, 2, 0.85), 0 3px 0 rgba(25, 6, 1, 0.55) !important;
+}
+
+/* 4) WildWorks Projects — "a good bit"; Wild by design — "more." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title *:not(#_) {
+  filter: none !important;
+  text-shadow: 0 1.3px 0 rgba(35, 9, 2, 0.82), 0 2.8px 0 rgba(25, 6, 1, 0.5) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline *:not(#_) {
+  filter: none !important;
+  text-shadow: 0 1.7px 0 rgba(35, 9, 2, 0.9), 0 3.6px 0 rgba(25, 6, 1, 0.6) !important;
+}
+
+/* 5) Start with iScott (mid-page) — match Front Door's shadow amount. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title *:not(#_) {
+  filter: none !important;
+  text-shadow: 0 0.5px 0 rgba(35, 9, 2, 0.52), 0 1.1px 0 rgba(25, 6, 1, 0.3) !important;
+}
+
+/* 6) Wildfire-section Talk to iScott button — same brightness as its
+   Check Out Project Wildfire neighbor (undo the dampen on this one). */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-iscott-action-button.wild-iscott-action-button:not(#_) {
+  filter: none !important;
+}

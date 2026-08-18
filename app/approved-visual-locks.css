@@ -1,0 +1,36 @@
+/* G-approved visual locks. These selectors may only change when G explicitly
+   reopens the named element. Keep this file after ordinary shadow passes. */
+
+/* iScott is the — explicitly approved. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--one,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--two {
+  filter: none !important;
+  text-shadow: 0 2.6px 0 rgba(35, 9, 2, 0.96), 0 5.2px 0 rgba(25, 6, 1, 0.74) !important;
+}
+
+/* Front Door — explicitly approved. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--three {
+  filter: none !important;
+  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.68), 0 1.7px 0 rgba(25, 6, 1, 0.42) !important;
+}
+
+/* Start with iScott in the mid-page WildWorks Concierge box — standard
+   straight-down depth, no blur or sideways spread. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title *:not(#_) {
+  filter: none !important;
+  text-shadow: 0 2px 0 rgba(35, 9, 2, 0.92), 0 4.1px 0 rgba(25, 6, 1, 0.68) !important;
+}
+
+/* Through the First Wood Fire — approved lighter treatment. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--close {
+  filter: none !important;
+  text-shadow: 0 0.4px 0 rgba(35, 9, 2, 0.48), 0 0.9px 0 rgba(25, 6, 1, 0.28) !important;
+}
+
+/* Then Came the Lounge and We Photographed Every Step — approved as-is. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--lead {
+  filter: none !important;
+  text-shadow: 0 1.1px 0 rgba(35, 9, 2, 0.82), 0 2.4px 0 rgba(25, 6, 1, 0.55) !important;
+}

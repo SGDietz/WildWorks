@@ -168,10 +168,10 @@
     body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     #top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: var(--ww-mobile-hero-cta-columns, repeat(2, minmax(0, 1fr))) !important;
     align-items: stretch !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    width: var(--ww-mobile-hero-cta-row-width, 100%) !important;
+    max-width: var(--ww-mobile-hero-cta-row-max-width, 100%) !important;
     margin: 0.42rem 0 0 !important;
     gap: 0.34rem !important;
   }
@@ -193,8 +193,8 @@
     #top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta {
     display: inline-flex !important;
     justify-content: center !important;
-    min-height: clamp(2.2rem, 9.5vw, 2.55rem) !important;
-    height: clamp(2.2rem, 9.5vw, 2.55rem) !important;
+    min-height: var(--ww-mobile-hero-cta-height, clamp(2.2rem, 9.5vw, 2.55rem)) !important;
+    height: var(--ww-mobile-hero-cta-height, clamp(2.2rem, 9.5vw, 2.55rem)) !important;
     padding: 0.3rem 0.32rem !important;
     gap: 0.28rem !important;
     font-size: clamp(0.72rem, 3vw, 0.92rem) !important;

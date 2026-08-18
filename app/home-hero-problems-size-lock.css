@@ -4,6 +4,17 @@
 html body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
+  .wild-hero-copy .wild-hero-lede-line--beautiful {
+  width: max-content !important;
+  max-width: 100% !important;
+  font-size: clamp(1.48rem, 1.8vw, 1.78rem) !important;
+  transform: scaleX(1.05) !important;
+  transform-origin: left center !important;
+}
+
+html body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top.wild-home
+  .wild-hero.discordSection
   .wild-hero-copy .wild-hero-lede-line--problems {
   width: max-content !important;
   max-width: 100% !important;
@@ -24,6 +35,14 @@ html body#wildworks-body#wildworks-body
 /* Desktop: keep Real World Problems safely out of the photograph rather than
    merely one few pixels shorter than the Art line. */
 @media (min-width: 1025px) {
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--beautiful {
+    font-size: clamp(1.7rem, 1.9vw, 1.95rem) !important;
+    transform: scaleX(1.06) !important;
+  }
+
   html body#wildworks-body#wildworks-body
     #top#top#top#top#top#top#top#top#top#top.wild-home
     .wild-hero.discordSection
@@ -65,6 +84,14 @@ html body#wildworks-body#wildworks-body
   html body#wildworks-body#wildworks-body
     #top#top#top#top#top#top#top#top#top#top.wild-home
     .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--beautiful {
+    font-size: 1.68rem !important;
+    transform: scaleX(1.02) !important;
+  }
+
+  html body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
     .wild-hero-copy .wild-hero-lede-line--problems {
     font-size: 1.25rem !important;
     transform: scaleX(0.86) !important;
@@ -80,6 +107,14 @@ html body#wildworks-body#wildworks-body
 }
 
 @media (max-width: 719px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top#top#top#top#top#top#top#top#top#top.wild-home
+    .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--beautiful {
+    font-size: clamp(1.32rem, 6vw, 1.68rem) !important;
+    transform: scaleX(0.96) !important;
+  }
+
   html body#wildworks-body#wildworks-body#wildworks-body
     #top#top#top#top#top#top#top#top#top#top.wild-home
     .wild-hero.discordSection

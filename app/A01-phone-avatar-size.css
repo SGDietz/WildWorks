@@ -1,0 +1,101 @@
+/* A01 v2: iScott concierge card sizing. Two different strategies by viewport.
+
+   PHONE  <= 500px : enlarge the AVATAR ONLY inside the existing card width, +25%.
+   NON-PHONE       : enlarge the WHOLE CARD as one balanced unit, +15%.
+
+   Deliberately different mechanisms, because G asked for different outcomes.
+
+   ================= PART 1 - PHONE, 412x915 acceptance view =================
+
+   DIAGNOSED CURRENT WINNER (live CSS, Home):
+     html body .wild-home .wild-live-avatar-frame {
+       width: 100% !important;    <- overridden
+       width: 18rem !important;   <- WINNER
+     }
+   No height / aspect-ratio on the frame, `min-height: 0 !important` removes any
+   floor, card is auto-height. The card therefore grows vertically on its own,
+   which is why no card height is set - forcing one is the likeliest way to cause
+   crowding rather than prevent it.
+
+   G's annotated screenshot measured (ratios, scale-invariant):
+     card width 428px  |  portrait 286px = 66.8% of card
+     outline    372px  = 86.9% of card   (+30.1%)
+
+   G's final split: PHONE keeps the annotated plan at ~25%; the 12-15% cap
+   applies ONLY to the whole-card enlargement on desktop and iPad.
+
+     frame width    18rem  ->  22.5rem       (18 x 1.25)
+     as % of card   66.8%  ->  83.5%
+     side padding   16.6%  ->  8.25% each side
+     card width     UNCHANGED
+     card height    auto - grows only as needed
+
+   CONTAINMENT: written `min(22.5rem, 83.5%)`. The percentage resolves against
+   the card, so the portrait can never exceed 83.5% of it and always keeps
+   >= 8.25% padding each side. On a narrower phone, G's secondary 287x511, or a
+   large accessibility text scale that inflates rem, the percentage wins and the
+   portrait shrinks rather than clipping. Structural, not a lucky measurement.
+
+   ============ PART 2 - DESKTOP + iPad, whole card as one unit ============
+
+   Scaling every property individually (width, height, portrait, title,
+   disclosure, padding, gap, button) would be dozens of declarations and would
+   drift out of proportion the first time anything upstream changed. `zoom`
+   scales the card and everything inside it as a single balanced unit, in one
+   declaration, and unlike `transform: scale()` it REFLOWS - so adjacent content
+   is pushed cleanly instead of being overlapped.
+
+     card, portrait, title, kicker, disclosure, internal spacing and the
+     embedded Talk to iScott button all scale together at 1.15.
+
+   G capped THIS (desktop/iPad only) at 15% with a 12-15% band, and explicitly
+   never 25% here. 1.15 is the top of that band. If adjacent layout needs more
+   room, 1.12 is the single edit and nothing else in this file changes.
+
+   Applies at desktop 1920, laptop 1366, iPad landscape 1180 and iPad portrait
+   820. NOT applied at phone.
+
+   HONEST FLAG for Chief: a card that is 15% larger necessarily occupies more
+   space, so content beside and below it reflows. That is inherent to "enlarge
+   the card", not a side effect of the method - no technique can grow the card
+   and leave neighbours where they were. Nothing overlaps, because zoom reflows.
+
+   PRESERVED throughout: card colour, borders, the Start with iScott title text,
+   the WILDWORKS CONCIERGE kicker, the legal disclosure and its readability, the
+   Talk to iScott button and its placement on the portrait, the avatar provider,
+   stream dimensions, paid-session behaviour, controls, and contact capture.
+   No avatar session was started to produce this. */
+
+/* ---------------- PHONE: avatar only, +25%, card width unchanged ---------- */
+@media (max-width: 500px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home #talk-to-iscott .wild-live-avatar-frame {
+    width: min(22.5rem, 83.5%) !important;
+    max-width: min(22.5rem, 83.5%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Keep clean separation from the title above as the portrait grows. */
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home #talk-to-iscott .wild-live-avatar-frame {
+    margin-top: 0.75rem !important;
+  }
+
+  /* Card grows only as needed; height stays auto. */
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home #talk-to-iscott.money-panel.wild-iscott-panel {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* ------------- DESKTOP + iPad: whole card as one unit, +15% -------------- */
+@media (min-width: 501px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home #talk-to-iscott.money-panel.wild-iscott-panel {
+    zoom: 1.15 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}

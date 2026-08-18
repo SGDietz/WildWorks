@@ -1,0 +1,9 @@
+/* H282: Project Wildfire title — a little heavier shadow.
+   G 2026-08-17 13:03. This title only. Leave the fireplace subtitle. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-flame-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-flame-title__text,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-flame-title * {
+  filter: none !important;
+  text-shadow: 0 1.05px 0 rgba(35, 9, 2, 0.82), 0 2.35px 0 rgba(25, 6, 1, 0.54) !important;
+}

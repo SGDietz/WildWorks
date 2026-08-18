@@ -1,0 +1,47 @@
+/* H175: Soften the three dark video-control rings toward card.
+   G 2026-08-13 (Screenshot 2026-08-13 132545.png):
+   "The circles are a little hard of a color. They need to be softened.
+    Just the ring, the dark rings around all three of the circles in
+    this video. Make them a little bit more towards the card color."
+
+   The three circles:
+     1. center play
+     2. progress thumb
+     3. volume thumb
+   Current thumb ring is #5b1f0d. Mix 55% that / 45% card #c56222
+   â†’ #8b3d16. Do not change fills, icons, tracks, or the player frame. */
+
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  --ww-h175-video-ring: color-mix(
+    in srgb,
+    #5b1f0d 55%,
+    var(--ww-home-hdr-secondary, #c56222) 45%
+  );
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring#ww-h175-ring)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top.wild-home
+  .wild-branded-video
+  .wild-branded-video__center-control {
+  border: 2px solid #8b3d16 !important;
+  border: 2px solid var(--ww-h175-video-ring, #8b3d16) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top.wild-home
+  .wild-branded-video
+  .wild-branded-video__range::-webkit-slider-thumb {
+  border-color: #8b3d16 !important;
+  border-color: var(--ww-h175-video-ring, #8b3d16) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top.wild-home
+  .wild-branded-video
+  .wild-branded-video__range::-moz-range-thumb {
+  border-color: #8b3d16 !important;
+  border-color: var(--ww-h175-video-ring, #8b3d16) !important;
+}

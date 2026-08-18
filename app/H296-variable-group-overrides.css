@@ -1,0 +1,11 @@
+/* Per-element Home effects; shared variables remain untouched. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-hero-wordmark-text-orange {
+  filter: none !important;
+  text-shadow: 0 1.1px 0 rgba(35, 9, 2, 0.84), 0 2.3px 0 rgba(25, 6, 1, 0.56) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-steps-inline li,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top.wild-home .wild-iscott-steps-inline .money-step-content {
+  filter: none !important;
+  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}

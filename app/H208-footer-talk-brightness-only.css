@@ -1,0 +1,35 @@
+/* H208: G 2026-08-13 (Screenshot 2026-08-13 212101.png)
+   Only these two Talk to iScott controls:
+   1. giant footer Talk
+   2. Dream Project four-pack Talk
+   Dampen brightness only. No material swap. No ink. No size.
+   Call / Text / Email / Email / SMS / Both stay.
+
+   Chief audit: retained Grok's exact scope but softened the proposed 0.78
+   brightness to 0.86 so this remains a small correction, not a repaint. */
+
+html
+  body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button,
+html
+  body#wildworks-body
+  footer#footer
+  .wild-footer-contact-cta__actions
+  a.money-cta[href*="wake-iscott=1"] {
+  --ww-talk-control-brightness: 0.86;
+}
+
+html
+  body#wildworks-body
+  footer#footer
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button:is(:hover, :focus-visible),
+html
+  body#wildworks-body
+  footer#footer
+  .wild-footer-contact-cta__actions
+  a.money-cta[href*="wake-iscott=1"]:is(:hover, :focus-visible) {
+  --ww-talk-control-brightness-hover: 0.90;
+}

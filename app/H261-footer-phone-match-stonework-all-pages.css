@@ -1,0 +1,11 @@
+﻿/* H261: Same All Stonework letter effect on footer phone + Call WildWorks
+   on Home and every subpage. G 2026-08-17. H260 was Home-only because it
+   required #top.wild-home; subpages have no such wrapper. Do not change colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-phone-number-line--footer-closing > a,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-phone-number-line--footer-closing > a *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-phone-number-line--footer-closing .wild-phone-number-line__call-today,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-phone-number-line--footer-closing .wild-phone-number-line__call-today * {
+  filter: none !important;
+  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #000000d1 !important;
+}

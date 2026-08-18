@@ -1,4 +1,6 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
+import LargeIScottCta from "../../components/LargeIScottCta";
+import PhoneNumberLine from "../../components/PhoneNumberLine";
 
 export default function TheRuins() {
     return (
@@ -32,13 +34,19 @@ export default function TheRuins() {
                         So when my client asked that question, my mind didn&apos;t stay in &quot;landscaping mode,&quot; it went straight to: <i>What could have happened here?</i>
                     </p>
                     <p>
-                        We&apos;d already done a couple projects with these clients in the years prior, so I knew something important: they
-                         were open to &quot;cool and wild,&quot; as long as it made sense and was executed well.
-                         That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
+                        We&apos;d already done a couple projects with these clients in the years prior, so I knew something important: they were open to &quot;cool and wild,&quot; as long as it made sense and was executed well. That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
                     </p>
                 </div>
                 </div>
             </section>
+            </div>
+
+            <div className="wild-ruins-home-contact">
+              <PhoneNumberLine
+                className="wild-phone-number-line--home-footer"
+                showCallToday={false}
+              />
+              <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
             </div>
 
             <div className="ruins-color-band ruins-tone--b">
@@ -52,8 +60,6 @@ export default function TheRuins() {
                     <p>
                         A stone munitions structure—a small powder store connected to harbor defense—stood on this ground back in that era.
                         Then a stray cannonball during the War of 1812 found it and—boom! What remained were the wall pieces that we see today.
-                    </p>
-                    <p>
                     </p>
                     <p>
                         And then—more than 200 years later—the present-day owners didn&apos;t &quot;clean it up,&quot; they preserved
@@ -102,6 +108,14 @@ export default function TheRuins() {
             </section>
             </div>
 
+            <div className="wild-ruins-home-contact">
+              <PhoneNumberLine
+                className="wild-phone-number-line--home-footer"
+                showCallToday={false}
+              />
+              <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
+            </div>
+
             <div className="ruins-color-band ruins-tone--b">
             <section className="wild-subpage-section discordSection discordSection--1 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2">
                 <div className="wild-ruins-rail">
@@ -125,8 +139,7 @@ export default function TheRuins() {
                 <h2 className="text-2xl mb-2">Want a Ruin of Your Own?</h2>
                 <div className="space-y-2 leading-relaxed">
                     <p>
-                    That would serve in the real world as a Party Zone, a Quiet Morning Spot, a Zen Area, or a Fire-and-Whiskey Corner,{" "}
-                    <i>whatever would be most useful to you</i>, whatever we can imagine your own personal Ruins might be, let&apos;s talk, and throw around ideas.                     </p>
+                    That would serve in the real world as a Party Zone, a Quiet Morning Spot, a Zen Area, or a Fire-and-Whiskey Corner, whatever would be most useful to you, whatever we can imagine your own personal Ruins might be, let&apos;s talk, and throw around ideas.</p>
                     <p>I&apos;ll happily come over to your house, or jump on a video call with you, wherever you are in the world, to discuss ideas.</p>
                     <p>The “Ruin” concept can go a hundred directions, and it can be purpose-built to suit your life&apos;s needs. Your Ruin could be:</p>
                     <ul className="list-disc list-outside space-y-2 leading-relaxed mb-2 pl-6">
@@ -140,11 +153,11 @@ export default function TheRuins() {
                             <strong>Collapsed stone garden walls</strong> from an old stone building that become natural boulder seating, like the structure simply fell into place over time.
                         </li> */}
                         <li className="leading-[2]">
-                            A <strong>Gristmill Ruin</strong> beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
+                            A Gristmill Ruin beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
                         </li>
                         <li className="leading-[2]">
                             Something along the lines of a &quot;Crumbling Roman-Style Bathhouse&quot; that could feel like it has been there for centuries. Low, arched stone walls remain from what once formed the bathhouse rooms. Some walls stand waist-high, others rise taller, broken irregularly as if the centuries simply took their toll. In the ground lie half-sunken bathing basins, their stone edges softened by time. Clear water flows gently through them, as if an old natural spring still feeds the baths. Small channels
-                            guide the water from one basin to the next, echoing the way Roman baths once circulated water through different pools. <br/>
+                            guide the water from one basin to the next, echoing the way Roman baths once circulated water through different pools.
                             Everything appears aged, imperfect, and naturally deteriorated—yet beneath the historic look is a fully modern, purpose built system.
                             The “ancient” baths can operate as a hot tub, a plunge or lap pool, or even part of a larger swimming pool design.
                         </li>
@@ -165,6 +178,14 @@ export default function TheRuins() {
                 </div>
                 </div>
             </section>
+            </div>
+
+            <div className="wild-ruins-home-contact">
+              <PhoneNumberLine
+                className="wild-phone-number-line--home-footer"
+                showCallToday={false}
+              />
+              <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
             </div>
         </div>
     );

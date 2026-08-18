@@ -1,0 +1,132 @@
+/* H165: Home Projects lightbox only.
+   Keep swipe and keyboard navigation, remove the visible counter, and make
+   the three image controls quiet, stationary, and comfortably tappable. */
+
+html body#wildworks-body .wild-projects-lightbox.wild-projects-lightbox {
+  grid-template-rows: 1fr !important;
+  padding: 0 !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-bar {
+  position: absolute !important;
+  top: calc(env(safe-area-inset-top, 0px) + 0.7rem) !important;
+  right: calc(env(safe-area-inset-right, 0px) + 0.7rem) !important;
+  z-index: 103 !important;
+  width: 44px !important;
+  height: 44px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  pointer-events: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-image {
+  grid-row: 1 !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(247, 217, 165, 0.34) !important;
+  border-radius: 999px !important;
+  background: rgba(43, 16, 5, 0.2) !important;
+  background-color: rgba(43, 16, 5, 0.2) !important;
+  background-image: none !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  box-shadow: 0 4px 14px rgba(28, 8, 1, 0.18) !important;
+  opacity: 0.82 !important;
+  filter: none !important;
+  backdrop-filter: blur(7px) !important;
+  -webkit-backdrop-filter: blur(7px) !important;
+  transition:
+    opacity 140ms ease,
+    border-color 140ms ease,
+    background-color 140ms ease !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-bar button {
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-nav {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-nav--left {
+  left: calc(env(safe-area-inset-left, 0px) + clamp(0.35rem, 1.1vw, 0.85rem)) !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-nav--right {
+  right: calc(env(safe-area-inset-right, 0px) + clamp(0.35rem, 1.1vw, 0.85rem)) !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button)
+  svg {
+  width: 18px !important;
+  height: 18px !important;
+  color: currentColor !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button):is(:hover, :focus-visible, :active) {
+  border-color: rgba(247, 217, 165, 0.58) !important;
+  background: rgba(43, 16, 5, 0.34) !important;
+  background-color: rgba(43, 16, 5, 0.34) !important;
+  background-image: none !important;
+  box-shadow: 0 4px 14px rgba(28, 8, 1, 0.22) !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-nav:is(:hover, :focus-visible, :active) {
+  transform: translateY(-50%) !important;
+}
+
+html body#wildworks-body
+  .wild-projects-lightbox.wild-projects-lightbox
+  .wildfire-lightbox-bar button:is(:hover, :focus-visible, :active) {
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body#wildworks-body
+    .wild-projects-lightbox.wild-projects-lightbox
+    :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
+    transition: none !important;
+  }
+}

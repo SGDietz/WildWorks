@@ -1,0 +1,22 @@
+/* H272: Phone + Call WildWorks Today — a little too heavy. Back off a bit.
+   G 2026-08-17 10:43. Those two lines only. All pages. Do not change colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  .wild-phone-number-line--home-hero,
+  .wild-phone-number-line--footer-closing
+) > a,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  .wild-phone-number-line--home-hero,
+  .wild-phone-number-line--footer-closing
+) > a *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  .wild-phone-number-line--home-hero,
+  .wild-phone-number-line--footer-closing
+) .wild-phone-number-line__call-today,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  .wild-phone-number-line--home-hero,
+  .wild-phone-number-line--footer-closing
+) .wild-phone-number-line__call-today * {
+  filter: none !important;
+  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.72), 0 1.85px 0 rgba(25, 6, 1, 0.46) !important;
+}

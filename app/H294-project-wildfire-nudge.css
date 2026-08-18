@@ -1,0 +1,7 @@
+/* Project Wildfire only: one small vertical-weight increase. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire#project-wildfire#project-wildfire .wild-wildfire-flame-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire#project-wildfire#project-wildfire .wild-wildfire-flame-title__text,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire#project-wildfire#project-wildfire .wild-wildfire-flame-title * {
+  filter: none !important;
+  text-shadow: 0 2.3px 0 rgba(35, 9, 2, 0.94), 0 4.7px 0 rgba(25, 6, 1, 0.71) !important;
+}

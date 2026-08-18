@@ -1,0 +1,11 @@
+/* H201: G 2026-08-13 — balance the space inside the Design-at-the-Limits
+   statement card on phones. The padding above Design now uses the exact same
+   responsive value as the padding below Where Fine Art Meets the Wild. */
+@media (max-width: 640px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home
+    .wild-home-statement.wild-home-statement {
+    padding-top: clamp(1.65rem, 6vw, 2rem) !important;
+  }
+}

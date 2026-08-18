@@ -191,8 +191,8 @@ html body #top#top#top.wild-home #iscott-sales .wild-kicker {
   outline: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: clamp(0.78rem, 1.35vw, 0.95rem) !important;
   font-weight: 700 !important;
   line-height: 1.2 !important;
@@ -242,8 +242,8 @@ html body #top#top#top#top#top.wild-home .wild-home-statement :is(
   .wild-home-statement__line,
   .wild-home-statement__phrase
 ) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   background: none !important;
   opacity: 1 !important;
   -webkit-background-clip: border-box !important;
@@ -646,7 +646,7 @@ html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before {
 
 html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
   z-index: 1;
-  background: #f7d9a5;
+  background: #fce0ad;
   filter: var(--ww-letter-effect-filter-half-distance);
   transform: scale(var(--ww-top-logo-fill-scale));
 }
@@ -666,32 +666,32 @@ html body#wildworks-body#wildworks-body .wild-top-logo-living::after {
    group uses the permanent Color 1 / Color 2 / Color 3 key in order. */
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-wordmark-text-orange {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: 4.65em !important;
 }
 
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   font-size: 2.65em !important;
 }
 
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
   font-size: 4.95em !important;
 }
 
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
   font-size: inherit !important;
 }
 
@@ -699,8 +699,8 @@ html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1),
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(1) * {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-size: 1em !important;
 }
 
@@ -708,8 +708,8 @@ html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) * {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   font-size: 0.8em !important;
 }
 
@@ -717,8 +717,8 @@ html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3),
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) * {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
   font-size: 1.18em !important;
 }
 
@@ -958,8 +958,8 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--one,
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--one .wild-home-statement__phrase {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -968,26 +968,26 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--two .wild-home-statement__phrase,
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--four {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #wildworks-proof .wild-tree-title .wild-line-title__line--one {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #wildworks-proof .wild-tree-title .wild-line-title__line--two {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #wildworks-proof .wild-tree-title .wild-line-title__line--three {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
 }
 
 /* G 2026-08-06: small Tree of Life copy and the final stonework statement
@@ -1062,8 +1062,8 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #signature-work .wild-story-card--feature .wild-story-copy
   .wild-line-title__line--one :is(span, strong, em) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -1072,8 +1072,8 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #signature-work .wild-story-card--feature .wild-story-copy
   .wild-line-title__line--two :is(span, strong, em) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -1295,22 +1295,22 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #ai-websites#ai-websites .wild-site-offer-card:nth-child(1)
   :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #ai-websites#ai-websites .wild-site-offer-card:nth-child(2)
   :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #ai-websites#ai-websites .wild-site-offer-card:nth-child(3)
   :is(h3, h3 *, p, p *, .wild-card-icon, .wild-card-icon svg) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 @media (max-width: 1099px) {

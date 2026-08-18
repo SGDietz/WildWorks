@@ -272,8 +272,8 @@ html body#wildworks-body#wildworks-body #top.wild-home
   max-width: 100% !important;
   margin: clamp(0.4rem, 1vw, 0.65rem) auto 0 !important;
   padding: 0 0.5rem !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-family: var(--font-serif), Georgia, serif !important;
   font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
   font-weight: 700 !important;

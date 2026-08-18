@@ -1,0 +1,56 @@
+/* H214, Chief-integrated: Ruins uses one primary #9f4719 field. Only canvas
+   surfaces are flattened; the signup and Dream Project cards remain cards. */
+
+html:has(.wild-subpage--ruins),
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body,
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  #wild-site-backdrop.wild-site-backdrop,
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  .wild-subpage--ruins,
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  .wild-subpage--ruins
+  .ruins-color-band,
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  .wild-subpage--ruins
+  :is(.ruins-tone--a, .ruins-tone--b),
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  footer#footer,
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body
+  footer#footer
+  :is(.wild-footer-main, .wild-footer-final-region, .wild-footer-closing-region--a) {
+  background: #9f4719 !important;
+  background-color: #9f4719 !important;
+  background-image: none !important;
+}
+
+/* Preserve the established orange secondary narrative cards. This matches
+   the pre-existing A/B lock's named B treatment while the surrounding page
+   field remains on the shared primary backdrop. */
+html:has(.wild-subpage--ruins)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-subpage--ruins
+  .ruins-color-band.ruins-tone--b {
+  background: var(--ww-card, #c56222) !important;
+  background-color: var(--ww-card, #c56222) !important;
+  background-image: none !important;
+}
+
+html:has(.wild-subpage--ruins)
+  body#wildworks-body
+  footer#footer {
+  margin-top: 0 !important;
+}
+
+html:has(.wild-subpage--ruins)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-main {
+  padding-top: 0 !important;
+}

@@ -1,0 +1,18 @@
+/* Ruins-style footer (the --a variant, used on The-ruins and who-is-g):
+   G 2026-08-17 — "it should just be the background color. Keep the glow in
+   the center, all that beautiful stuff." The footer and its contact region
+   painted their own solid slabs over the page copper, creating hard bands.
+   Solid fills go transparent so the page background + center glow show
+   through; gradient overlays and the standard cards are untouched. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer:has(.wild-footer-contact-card-region--a) {
+  background-color: transparent !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-contact-card-region--a.wild-footer-contact-card-region--a {
+  background: transparent !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
+  background: transparent !important;
+}

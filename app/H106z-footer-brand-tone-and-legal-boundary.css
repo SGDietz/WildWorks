@@ -5,8 +5,8 @@
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-footer-contact-cta__title {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
@@ -15,36 +15,36 @@ html body#wildworks-body#wildworks-body#wildworks-body
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-footer-contact-cta__kicker * {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   :is(.wild-signup-title, .wild-signup-field > span) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-phone-number-line > a {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-phone-number-line__call-today {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-footer-stonework-note {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 /* Signup consent and unsubscribe language are legal disclosures. On legal
@@ -61,20 +61,20 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-signup-field input {
-  border-color: #f7d9a5 !important;
+  border-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-signup-field input::placeholder {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   opacity: 1 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-signup-consent input[type="checkbox"] {
-  border-color: #f7d9a5 !important;
-  accent-color: #e8b66d !important;
+  border-color: #fce0ad !important;
+  accent-color: #f1bf75 !important;
 }

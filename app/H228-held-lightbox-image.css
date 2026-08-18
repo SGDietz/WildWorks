@@ -1,0 +1,38 @@
+/* H228: decoded, frame-stable image slide. The incoming photo is already
+   painted offstage before both fixed layers move as one transaction. */
+.wildfire-lightbox-image--held .wild-lightbox-image-layer {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(var(--ww-lightbox-drag-x, 0px), 0, 0);
+  transition: transform 340ms cubic-bezier(0.2, 0.78, 0.2, 1);
+  will-change: transform;
+}
+
+.wildfire-lightbox-image--held .wild-lightbox-image-layer--incoming {
+  transform: translate3d(calc(100% + var(--ww-lightbox-drag-x, 0px)), 0, 0);
+}
+
+.wildfire-lightbox-image--held.direction-previous .wild-lightbox-image-layer--incoming {
+  transform: translate3d(calc(-100% + var(--ww-lightbox-drag-x, 0px)), 0, 0);
+}
+
+.wild-lightbox-is-dragging .wildfire-lightbox-image--held .wild-lightbox-image-layer,
+.wild-lightbox-no-settle .wildfire-lightbox-image--held .wild-lightbox-image-layer {
+  transition: none !important;
+}
+
+.wildfire-lightbox-image--held.is-sliding .wild-lightbox-image-layer--displayed {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.wildfire-lightbox-image--held.is-sliding.direction-previous .wild-lightbox-image-layer--displayed {
+  transform: translate3d(100%, 0, 0);
+}
+
+.wildfire-lightbox-image--held.is-sliding .wild-lightbox-image-layer--incoming {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wildfire-lightbox-image--held .wild-lightbox-image-layer { transition: none !important; }
+}

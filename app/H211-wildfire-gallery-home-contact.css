@@ -1,0 +1,186 @@
+/* H211: G 2026-08-13 (Screenshot 2026-08-13 213229.png)
+   Wildfire only. Place the approved Home number + Talk pair after the build
+   gallery and before the Dream Project footer card. No Call Today line.
+   Spacing only: the shared components keep their approved material and ink. */
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-journal {
+  padding-bottom: 0 !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  footer#footer {
+  margin-top: 0 !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-main {
+  padding-top: 0 !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  --ww-talk-button-ink: #b95b21;
+  --ww-button-ink: #b95b21;
+  --ww-home-copy-text-effect:
+    0 1.3px 0 rgba(0, 0, 0, 0.5),
+    0 2px 0.42px rgba(0, 0, 0, 0.5),
+    0 2.7px 1.25px rgba(0, 0, 0, 0.39);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: 0;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact
+  .wild-phone-number-line--home-footer {
+  width: 100%;
+  margin-top: 0 !important;
+  margin-bottom: clamp(1rem, 1.5vw, 1.5rem) !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact
+  .wild-home-phone-iscott-test {
+  display: grid;
+  width: 100%;
+  margin: 0 auto clamp(2.2rem, 4vw, 4.5rem);
+  padding: 0;
+  place-items: center;
+}
+
+/* The Home button's approved geometry and ink are Home-context rules, so the
+   shared component needs their exact values when cloned onto Wildfire. */
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button {
+  display: flex !important;
+  width: min(100%, 38rem) !important;
+  min-width: 0 !important;
+  min-height: 6.5rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  padding: 1rem 3rem !important;
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  color: #b95b21 !important;
+  -webkit-text-fill-color: #b95b21 !important;
+  font-size: 3.25rem !important;
+  font-weight: 750 !important;
+  letter-spacing: normal !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  color: #b95b21 !important;
+  -webkit-text-fill-color: #b95b21 !important;
+  text-shadow:
+    0 1.3px 0 rgba(0, 0, 0, 0.5),
+    0 2px 0.42px rgba(0, 0, 0, 0.5),
+    0 2.7px 1.25px rgba(0, 0, 0, 0.39) !important;
+}
+
+html:has(.wild-subpage--wildfire)
+  body#wildworks-body
+  .wild-subpage--wildfire
+  .wildfire-gallery-home-contact
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  color: #b95b21 !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5px !important;
+  filter:
+    drop-shadow(0 1.3px 0 rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2px 0.42px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2.7px 1.25px rgba(0, 0, 0, 0.273)) !important;
+}
+
+@media (max-width: 600px) {
+  html:has(.wild-subpage--wildfire)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-gallery-home-contact {
+    --ww-large-talk-mobile-font-size: 2.125rem;
+    --ww-large-talk-mobile-min-height: 5rem;
+    --ww-large-talk-mobile-padding: 0.75rem 1.25rem;
+    --ww-large-talk-mobile-icon-size: 2.25rem;
+    padding-top: 1.15rem;
+  }
+
+  html:has(.wild-subpage--wildfire)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-gallery-home-contact
+    .wild-phone-number-line--home-footer {
+    margin-bottom: 0.9rem !important;
+  }
+
+  html:has(.wild-subpage--wildfire)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-gallery-home-contact
+    .wild-home-phone-iscott-test {
+    margin-bottom: 2.2rem;
+  }
+
+  html:has(.wild-subpage--wildfire)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-gallery-home-contact
+    .wild-home-phone-iscott-test
+    > a.wild-home-phone-iscott-test__button {
+    width: min(100%, 18.75rem) !important;
+    min-height: 5rem !important;
+    gap: 0.65rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html:has(.wild-subpage--wildfire)
+    body#wildworks-body
+    .wild-subpage--wildfire
+    .wildfire-gallery-home-contact
+    .wild-home-phone-iscott-test
+    > a.wild-home-phone-iscott-test__button
+    > svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+}

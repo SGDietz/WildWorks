@@ -19,7 +19,7 @@ html body#wildworks-body#wildworks-body .wild-top-logo-tagline::before {
 
 html body#wildworks-body#wildworks-body .wild-top-logo-tagline::after {
   z-index: 1 !important;
-  background: #f7d9a5 !important;
+  background: #fce0ad !important;
   opacity: 1 !important;
   filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
   transform: scale(var(--ww-top-logo-fill-scale)) !important;
@@ -34,7 +34,7 @@ html body#wildworks-body#wildworks-body .wild-top-logo-living::before {
 
 html body#wildworks-body#wildworks-body .wild-top-logo-living::after {
   z-index: 1 !important;
-  background: #f7d9a5 !important;
+  background: #fce0ad !important;
   opacity: 1 !important;
   filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
   transform: translateX(-0.3%) scale(0.9) !important;

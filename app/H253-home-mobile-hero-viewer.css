@@ -1,0 +1,18 @@
+/* H253: Home hero viewer only. Keep the close control available, but overlay
+   it rather than reserving a top row so the opened photograph is centered. */
+@media (max-width: 450px) {
+  .wild-image-lightbox.wild-home-hero-lightbox {
+    grid-template-rows: 1fr !important;
+  }
+
+  .wild-image-lightbox.wild-home-hero-lightbox .wild-image-lightbox__bar {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    z-index: 2;
+  }
+
+  .wild-image-lightbox.wild-home-hero-lightbox .wild-image-lightbox__stage {
+    grid-row: 1;
+  }
+}

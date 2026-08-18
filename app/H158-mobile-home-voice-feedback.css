@@ -1,0 +1,80 @@
+/* H158: G's 2026-08-12 phone review. Every rule is limited to the exact
+   named Home target; the footer authenticity centering is the sole all-view
+   adjustment. */
+
+@media (max-width: 640px) {
+  /* The first hero Talk control grows 20% from its measured phone box while
+     its label and icon use the neighboring Call Now scale. */
+  #top.wild-home .wild-hero .wild-hero-copy > .wild-cta-row {
+    --ww-mobile-hero-cta-columns: 8.974rem 7.48rem;
+    --ww-mobile-hero-cta-row-width: 16.794rem;
+    --ww-mobile-hero-cta-row-max-width: 16.794rem;
+  }
+
+  #top.wild-home .wild-hero .wild-hero-copy > .wild-cta-row
+    > a.wild-iscott-action-button {
+    --ww-mobile-hero-cta-height: 2.82rem;
+    --ww-mobile-talk-font-size: 0.73125rem;
+    --ww-mobile-talk-min-height: 2.82rem;
+    --ww-mobile-talk-padding: 0.24rem 0.48rem;
+    --ww-mobile-talk-icon-size: 0.859375rem;
+  }
+
+  /* Project Wildfire: retain the exact box and enlarge only its contents to
+     the neighboring Project Wildfire link's measured type/icon scale. */
+  #top.wild-home #project-wildfire .wild-cta-row
+    > a.wild-iscott-action-button {
+    --ww-mobile-talk-font-size: 1.12rem;
+    --ww-mobile-talk-icon-size: 1.25rem;
+  }
+
+  /* Shared 10% physical treatment for only the four named number/Talk pairs. */
+  #top.wild-home .wild-phone-number-line--home-tree
+    + .wild-home-phone-iscott-test,
+  #top.wild-home .wild-phone-number-line--home-services
+    + .wild-home-phone-iscott-test,
+  #top.wild-home .wild-home-phone-iscott-test--video,
+  #top.wild-home .wild-phone-number-line--home-footer
+    + .wild-home-phone-iscott-test,
+  body:has(#top.wild-home) #footer
+    .wild-home-phone-iscott-test--footer-closing {
+    --ww-home-phone-talk-scale: 0.704;
+  }
+
+  /* Design-at-Limits and Ruins: move the number visually down without moving
+     the following button's layout position or changing number typography. */
+  #top.wild-home .wild-phone-number-line--home-tree,
+  #top.wild-home .wild-phone-number-line--home-services {
+    transform: translateY(0.4rem);
+  }
+
+  /* The video follow-up is the one phone/Talk group immediately before
+     Services. Balance its internal gap and remove excess lower whitespace. */
+  #top.wild-home .wild-home-craftsmanship-video__followup {
+    margin-top: 1.6rem;
+    margin-bottom: 3.35rem;
+    transform: translateY(0.35rem);
+  }
+
+  #top.wild-home .wild-phone-number-line--home-video {
+    margin-bottom: 1.35rem !important;
+  }
+
+  /* Human Voice's following number/Talk pair: number only moves visually. */
+  #top.wild-home .wild-phone-number-line--home-footer {
+    transform: translateY(0.35rem);
+  }
+
+  /* Home footer signup-to-contact rhythm only. */
+  body:has(#top.wild-home) #footer .wild-footer-phone-iscott-group {
+    --ww-footer-phone-group-padding-top: 2rem;
+  }
+
+  /* Show the full first patio/seatwall/boulder image without side cropping. */
+  #top.wild-home #projects .wild-home-projects__item:nth-child(1)
+    .wild-home-projects__image {
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none !important;
+  }
+}

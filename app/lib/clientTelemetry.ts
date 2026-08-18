@@ -10,17 +10,17 @@ function safeRandomId(prefix: string) {
   return `${prefix}_${random}`.slice(0, 120);
 }
 
-function getStorageValue(key: string) {
+function getStorageValue(storage: Storage, key: string) {
   try {
-    return window.localStorage.getItem(key);
+    return storage.getItem(key);
   } catch {
     return null;
   }
 }
 
-function setStorageValue(key: string, value: string) {
+function setStorageValue(storage: Storage, key: string, value: string) {
   try {
-    window.localStorage.setItem(key, value);
+    storage.setItem(key, value);
   } catch {
     // Ignore storage-disabled browsers; event payload still includes in-memory IDs.
   }
@@ -31,17 +31,17 @@ let memorySessionId: string | null = null;
 
 export function getAnonymousVisitorId() {
   if (memoryVisitorId) return memoryVisitorId;
-  const existing = getStorageValue(VISITOR_KEY);
+  const existing = getStorageValue(window.localStorage, VISITOR_KEY);
   memoryVisitorId = existing || safeRandomId("wwv");
-  if (!existing) setStorageValue(VISITOR_KEY, memoryVisitorId);
+  if (!existing) setStorageValue(window.localStorage, VISITOR_KEY, memoryVisitorId);
   return memoryVisitorId;
 }
 
 export function getClientSessionId() {
   if (memorySessionId) return memorySessionId;
-  const existing = getStorageValue(SESSION_KEY);
+  const existing = getStorageValue(window.sessionStorage, SESSION_KEY);
   memorySessionId = existing || safeRandomId("wws");
-  if (!existing) setStorageValue(SESSION_KEY, memorySessionId);
+  if (!existing) setStorageValue(window.sessionStorage, SESSION_KEY, memorySessionId);
   return memorySessionId;
 }
 

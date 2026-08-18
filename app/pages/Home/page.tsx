@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -34,12 +34,17 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import AspectRatioImage from "../../components/AspectRatioImage";
+import { useNeighborPreload } from "../../lib/useNeighborPreload";
 import BrandText from "../../components/BrandText";
+import BrandedVideoPlayer from "../../components/BrandedVideoPlayer";
 import ImageLightbox from "../../components/ImageLightbox";
+import HeldLightboxImage, { type LightboxDirection } from "../../components/HeldLightboxImage";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
 import LargeIScottCta from "../../components/LargeIScottCta";
 import { getAnonymousVisitorId, getClientSessionId } from "../../lib/clientTelemetry";
 import { STONEWORK_AUTHENTICITY_LINE } from "../../lib/wildworksCopy";
+import { projectImages } from "../../lib/projectImages";
+import { useLightboxSwipe } from "../../lib/useLightboxSwipe";
 
 const softEase: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
 const softTransition = { duration: 0.72, ease: softEase };
@@ -129,20 +134,20 @@ const LIVE_AVATAR_EMBED_URL = "/pages/avatar-iscott";
 const SHOW_PROJECT_WILDFIRE_FLAMES = false;
 
 const noWhiteTextStyle = {
-  color: "#f7d9a5",
-  WebkitTextFillColor: "#f7d9a5",
+  color: "#fce0ad",
+  WebkitTextFillColor: "#fce0ad",
   backgroundImage: "none",
 };
 
 const noWhiteKickerStyle = {
-  color: "#f7d9a5",
-  WebkitTextFillColor: "#f7d9a5",
+  color: "#fce0ad",
+  WebkitTextFillColor: "#fce0ad",
   backgroundImage: "none",
 };
 
 const noWhiteBlendTextStyle = {
-  color: "#f7d9a5",
-  WebkitTextFillColor: "#f7d9a5",
+  color: "#fce0ad",
+  WebkitTextFillColor: "#fce0ad",
   backgroundImage: "none",
   WebkitBackgroundClip: "border-box",
   backgroundClip: "border-box",
@@ -159,7 +164,7 @@ const iScottSteps = [
     title: "Describe areas you'd like beautified or problem areas you may have.",
   },
   {
-    title: "Talk through location and your timing preferences.",
+    title: "Talk through location and timing preferences.",
   },
   {
     title: "Bounce ideas off iScott, and he will bounce ideas right back at you.",
@@ -233,7 +238,7 @@ const services = [
         are the Kind of Client Scott is Looking for, <em>Wherever You are in the World.</em>
       </>,
       <>
-        After Four Decades+ of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps
+        After Four Decades of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps
         Pushing Designs to New Heights and Carries Them into the Real World with the Judgement, Craft, and Experience
         They Require. <strong>Your Project Could be the Next Among the World&apos;s Wildest Builds.</strong>
       </>,
@@ -244,7 +249,7 @@ const services = [
     title: "Problem Solving",
     titleLines: ["Problem Solving"],
     body: [
-      "Some Home and Garden Problems Get Lived with for Years - Even Decades. Water, Grading, Access, Wet Walls, Cracked Foundations, and Failed Repairs Can Become Part of the Property Because Nobody has Found the Real Cause or Built a Fix that Will Actually Hold.",
+      "Some Home and Garden Problems Have been Lived with for Years - Even Decades. Water, Grading, Access, Wet Walls, Cracked Foundations, and Failed Repairs Can Become Part of the Property Because Nobody has Found the Real Cause or Built a Fix that Will Actually Hold.",
       "Scott Loves Challenges and Charges into the Problems Most Contractors Shy Away from, so Bring Him Your Hard Ones! He will Do All that is Possible to Analyze the Entire Issue Entirely, and Come Up with a Lasting, Practical Solution.",
     ],
     icon: Wrench,
@@ -253,8 +258,8 @@ const services = [
     title: "Building / Engineering",
     titleLines: ["Building / Engineering"],
     body: [
-      "WildWorks Builds are Made for the Real World: Sun, Cold, Water, Wear, Outdoors, and In. Every Material—from Stone to Steel, Wood to Tile and Concrete—is Durable, Strong, and Crafted with Engineering Integrity.",
-      "Scott Often Revisits Projects Years Later, and is Always Surprised by How Cleanly the Work has Settled: No Blemishes, No Trip Hazards, No Shortcuts Showing Through. That is What Good Judgment, Engineering, and Hands-On Craft are for: Build It Right, Build It to Last, and Time will Judge It Fairly.",
+      "WildWorks Builds are Made for the Real World: Sun, Cold, Water, Wear, Outdoors, and In. Every Material—from Stone to Steel, Wood to Concrete—is Durable, Strong, and Crafted with Engineering Integrity.",
+      "Scott Often Revisits Projects Decades Later, and is Always Surprised by How Cleanly the Work has Settled: No Blemishes, No Trip Hazards, No Shortcuts Showing Through. That is What Good Judgment, Engineering, and Hands-On Craft are for: Build It Right, Build It to Last, and Time will Judge It Fairly.",
     ],
     icon: Hammer,
   },
@@ -262,8 +267,8 @@ const services = [
     title: "Ballparks",
     titleLines: ["Ballparks"],
     body: [
-      "40+ Years of Design and Build Experience Creates Practical Wisdom Which Scott Draws Upon to Give Ballpark Numbers Early, to Help Set Clear Expectations, and the Scope of Work, Before Any Design is to Begin.",
-      "Once the Range and Scope are Real and Practical, Design Begins. You Move Forward Informed, Without Spending Time and Money Developing a Plan that Does not Fit the Budget.",
+      "40 Years of Design and Build Experience Creates Practical Wisdom Which Scott Draws Upon to Give Ballpark Numbers Early, to Help Set Clear Expectations, and the Scope of Work, Before Any Design is to Begin.",
+      "Once the Range and Scope are Agreed Upon, Design Begins. You Move Forward Informed, Without Spending Time and Money Developing a Plan that Does not Fit the Budget.",
     ],
     icon: DollarSign,
   },
@@ -293,7 +298,7 @@ const signatureWork = [
     titleLines: ["The", "Ruins"],
     body: [
       "Want the Coolest Party Zone You Have Ever Seen — in Your Own Back Yard?",
-      "If You've Got a Space, We Can Create an Area that Looks Like the Original Farmhouse the Neighborhood Was Built Around, and Turn It into a Purpose-Built Outdoor Kitchen Your Family Will Love, While Giving Your Home Incredible Resale Value.",
+      "If You've Got a Space, We Can Create an Area that Looks Like the Original Farmhouse the Neighborhood Was Built Around – or Sooo Many Other Things – and Turn It into a Purpose-Built Outdoor Kitchen Your Family Will Love. Start with iScott for Ideas. ",
       "Wherever You Are, Anywhere in the World, If You Want a Space that is Unforgettable — Something People Will Talk About for Generations — Talk to iScott or Call Now.",
     ],
     image: "/ww-art-ruins.jpeg",
@@ -364,6 +369,10 @@ const wildfireInspirationImages = [
 ];
 
 const wildfireLightboxImages = wildfireNightImages;
+const homeProjectLightboxImages = projectImages.filter(
+  (image) => image.src !== "/projects/13.jpg",
+);
+const homeProjectImages = homeProjectLightboxImages.slice(0, 6);
 
 const processSteps = [
   {
@@ -390,27 +399,6 @@ const processSteps = [
     title: "Buildout",
     titleLines: ["Buildout"],
     body: "Whether It is a Fix or an Installation, Once the Direction is Clear, the Work Can Move Through Your Contractor, a Contractor Scott Helps Source, or Scott and WildWorks Directly When the Fit is Right.",
-  },
-];
-
-const aiWebsiteCapabilities = [
-  {
-    title: "Avatar Intake",
-    titleLines: ["Avatar Intake"],
-    body: "Let the Ai Collect Context, Photos, Set Appointments, and Answer Most Questions Automatically.",
-    icon: MessageCircle,
-  },
-  {
-    title: "Ai-Native Build",
-    titleLines: ["Ai-Native Build"],
-    body: "Ai-Native Design, Copy, Media, Automations, and Lead Flow Built in and Around Your Company Brand.",
-    icon: Sparkles,
-  },
-  {
-    title: "Human Voice",
-    titleLines: ["Human Voice"],
-    body: "Human Voice. Your Site Will Be Ai-Driven and Will Feel Like the Real People that Run the Company. Nothing Generic.",
-    icon: HomeIcon,
   },
 ];
 
@@ -451,12 +439,14 @@ function IScottUploadAction({
 function IScottSection({
   variants,
   wakeKey,
+  onStart,
   pendingMedia,
   onMediaAccepted,
   onMediaError,
 }: {
   variants: Variants;
   wakeKey: number;
+  onStart: () => void;
   pendingMedia: PendingIScottMedia | null;
   onMediaAccepted: (fileName: string) => void;
   onMediaError: (message: string) => void;
@@ -474,6 +464,18 @@ function IScottSection({
             onMediaAccepted={onMediaAccepted}
             onMediaError={onMediaError}
           />
+          {wakeKey === 0 ? (
+            <button
+              type="button"
+              className="money-cta money-cta--primary wild-site-avatar-overlay-cta"
+              onClick={onStart}
+              aria-label="Talk to iScott"
+              style={{ pointerEvents: "auto", bottom: "22%" }}
+            >
+              <Sparkles aria-hidden className="h-5 w-5" />
+              <span>Talk to iScott</span>
+            </button>
+          ) : null}
         </div>
       </motion.div>
     </div>
@@ -493,8 +495,7 @@ function LiveAvatarEmbedInner({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
-  const shouldMountAvatar = inView || wakeKey > 0;
+  const shouldMountAvatar = wakeKey > 0;
   const avatarEmbedSrc =
     wakeKey > 0 ? `${LIVE_AVATAR_EMBED_URL}?wake=${wakeKey}` : LIVE_AVATAR_EMBED_URL;
 
@@ -555,7 +556,14 @@ function LiveAvatarEmbedInner({
           allowFullScreen
         />
       ) : (
-        <div className="absolute inset-0" aria-hidden />
+        <Image
+          src="/Avatar1-live-startscreen.png"
+          alt="iScott"
+          fill
+          sizes="(max-width: 640px) 100vw, 320px"
+          className="object-cover"
+          priority={false}
+        />
       )}
     </div>
   );
@@ -592,8 +600,8 @@ function LineTitle({ lines }: { lines: string[] }) {
 }
 
 const storyInlineActionStyle: CSSProperties = {
-  color: "#f7d9a5",
-  WebkitTextFillColor: "#f7d9a5",
+  color: "#fce0ad",
+  WebkitTextFillColor: "#fce0ad",
   fontWeight: 850,
   textDecoration: "none",
 };
@@ -762,6 +770,11 @@ function ZoomableFillImage({
 
 export default function Home() {
   const [wildfireLightboxIndex, setWildfireLightboxIndex] = useState<number | null>(null);
+  const [projectLightboxIndex, setProjectLightboxIndex] = useState<number | null>(null);
+  const [wildfireLightboxDirection, setWildfireLightboxDirection] = useState<LightboxDirection>("next");
+  const [projectLightboxDirection, setProjectLightboxDirection] = useState<LightboxDirection>("next");
+  useNeighborPreload(homeProjectLightboxImages, projectLightboxIndex);
+  useNeighborPreload(wildfireLightboxImages, wildfireLightboxIndex);
   const [avatarWakeKey, setAvatarWakeKey] = useState(0);
   const [pendingIScottMedia, setPendingIScottMedia] = useState<PendingIScottMedia | null>(null);
 const [iScottMediaStatus, setIScottMediaStatus] = useState("");
@@ -792,6 +805,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
   const activeWildfireImage =
     wildfireLightboxIndex === null ? null : wildfireLightboxImages[wildfireLightboxIndex] ?? null;
   const activeWildfireImagePosition = wildfireLightboxIndex === null ? 0 : wildfireLightboxIndex + 1;
+  const activeProjectImage =
+    projectLightboxIndex === null ? null : homeProjectLightboxImages[projectLightboxIndex] ?? null;
 
   const wakeIScottAvatar = useCallback(() => {
     setAvatarWakeKey((current) => current + 1);
@@ -873,21 +888,16 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
   );
 
   useEffect(() => {
-    const startIScottFromHash = () => {
-      if (window.location.hash !== "#talk-to-iscott") {
-        return;
-      }
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("wake-iscott")) return;
 
-      wakeIScottAvatar();
-      document.getElementById("talk-to-iscott")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    };
-
-    startIScottFromHash();
-    window.addEventListener("hashchange", startIScottFromHash);
-    return () => window.removeEventListener("hashchange", startIScottFromHash);
+    url.searchParams.delete("wake-iscott");
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    wakeIScottAvatar();
+    document.getElementById("talk-to-iscott")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }, [wakeIScottAvatar]);
 
   const closeWildfireLightbox = useCallback(() => {
@@ -895,12 +905,14 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
   }, []);
 
   const showPreviousWildfireImage = useCallback(() => {
+    setWildfireLightboxDirection("previous");
     setWildfireLightboxIndex((current) =>
       current === null ? current : (current - 1 + wildfireLightboxImages.length) % wildfireLightboxImages.length,
     );
   }, []);
 
   const showNextWildfireImage = useCallback(() => {
+    setWildfireLightboxDirection("next");
     setWildfireLightboxIndex((current) =>
       current === null ? current : (current + 1) % wildfireLightboxImages.length,
     );
@@ -939,6 +951,60 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     showNextWildfireImage,
     showPreviousWildfireImage,
     wildfireLightboxIndex,
+  ]);
+
+  const closeProjectLightbox = useCallback(() => {
+    setProjectLightboxIndex(null);
+  }, []);
+  const wildfireSwipe = useLightboxSwipe(
+    showPreviousWildfireImage,
+    showNextWildfireImage,
+    { handoff: "crossfade" },
+  );
+
+  const showPreviousProjectImage = useCallback(() => {
+    setProjectLightboxDirection("previous");
+    setProjectLightboxIndex((current) =>
+      current === null
+        ? current
+        : (current - 1 + homeProjectLightboxImages.length) % homeProjectLightboxImages.length,
+    );
+  }, []);
+
+  const showNextProjectImage = useCallback(() => {
+    setProjectLightboxDirection("next");
+    setProjectLightboxIndex((current) =>
+      current === null ? current : (current + 1) % homeProjectLightboxImages.length,
+    );
+  }, []);
+  const projectSwipe = useLightboxSwipe(
+    showPreviousProjectImage,
+    showNextProjectImage,
+    { handoff: "crossfade" },
+  );
+
+  useEffect(() => {
+    if (projectLightboxIndex === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeProjectLightbox();
+      if (event.key === "ArrowLeft") showPreviousProjectImage();
+      if (event.key === "ArrowRight") showNextProjectImage();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    closeProjectLightbox,
+    projectLightboxIndex,
+    showNextProjectImage,
+    showPreviousProjectImage,
   ]);
 
   return (
@@ -1070,8 +1136,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         #top.wild-home .wild-travel-body {
           max-width: 58rem;
           margin: clamp(1rem, 1.8vw, 1.5rem) 0 0;
-          color: #f7d9a5;
-          -webkit-text-fill-color: #f7d9a5;
+          color: #fce0ad;
+          -webkit-text-fill-color: #fce0ad;
           font-size: clamp(1.02rem, 1.58vw, 1.32rem);
           font-weight: 720;
           line-height: 1.48;
@@ -1114,8 +1180,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         #top.wild-home .wild-travel-proof__copy {
           margin: 0.78rem 0 0;
-          color: #f7d9a5;
-          -webkit-text-fill-color: #f7d9a5;
+          color: #fce0ad;
+          -webkit-text-fill-color: #fce0ad;
           font-size: 0.98rem;
           font-weight: 700;
           line-height: 1.48;
@@ -1132,8 +1198,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           grid-template-columns: auto minmax(0, 1fr);
           align-items: center;
           gap: 0.5rem;
-          color: #f7d9a5;
-          -webkit-text-fill-color: #f7d9a5;
+          color: #fce0ad;
+          -webkit-text-fill-color: #fce0ad;
           font-size: 0.95rem;
           font-weight: 820;
           line-height: 1.24;
@@ -1294,8 +1360,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           padding: 0 !important;
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
           background-size: 100% 100% !important;
           background-repeat: no-repeat !important;
           -webkit-background-clip: text !important;
@@ -1312,8 +1378,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           white-space: nowrap !important;
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
           background-size: 100% 100% !important;
           background-repeat: no-repeat !important;
           -webkit-background-clip: text !important;
@@ -1324,8 +1390,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof .wild-sell-feature-proof__line:last-child {
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
           -webkit-background-clip: text !important;
           background-clip: text !important;
         }
@@ -1508,16 +1574,16 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof .wild-sell-feature-proof__line,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof .wild-sell-feature-proof__line:first-child,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof .wild-sell-feature-proof__line:last-child {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1653,8 +1719,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home :is(.money-panel p:not(.money-panel-kicker), .wild-card p, .wild-answer-card p, .wild-story-card p, .wild-process-step p) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home .wild-signup-title {
@@ -1674,8 +1740,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home .wild-signup-field {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home .wild-signup-field input {
@@ -1701,7 +1767,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         /* Permanent WildWorks three-color key from the three Ruins headline lines.
-           Keep the sell title solid: Color 1 #f7d9a5 / Color 2 #e8b66d / Color 3 #d2934a. */
+           Keep the sell title solid: Color 1 #fce0ad / Color 2 #f1bf75 / Color 3 #d2934a. */
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--one,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--two,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
@@ -1713,13 +1779,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--one {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--two {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
@@ -1732,8 +1798,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
            hierarchy, and one restrained dark edge. The Ruins and Sell 1/2/3
            systems remain deliberately exempt. */
         #top.wild-home :is(.wild-body, .wild-different-copy, .wild-ai-mission, .wild-travel-body, .wild-travel-proof__copy, .wild-story-card p, .wild-card p, .wild-answer-card p, .wild-process-step p, .wild-signup-copy, .wild-footer-legal-link) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1742,15 +1808,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home :is(.wild-kicker, .money-panel-kicker, .wild-process-kicker, .wild-travel-kicker, .wild-signup-eyebrow) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background-image: none !important;
           text-shadow: 0 1px 2px rgba(57, 20, 3, 0.42) !important;
         }
 
         #top.wild-home :is(.wild-section-title, .wild-card h3, .wild-project-card h3, .wild-answer-card h3, .wild-process-step h3):not(.wild-signature-title):not(.wild-sell-feature-title) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1759,8 +1825,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home .wild-section-title:not(.wild-signature-title):not(.wild-sell-feature-title) .wild-line-title__line {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1769,8 +1835,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #wildworks-proof .wild-section-title {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1779,13 +1845,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--one {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--two {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
         }
 
         #top.wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--three {
@@ -1833,14 +1899,14 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           background:
             radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
             linear-gradient(145deg, rgba(199, 104, 48, 0.95), rgba(183, 91, 40, 0.98)) !important;
-          color: #f7d9a5 !important;
+          color: #fce0ad !important;
           box-shadow: inset 0 1px 0 rgba(255, 243, 213, 0.18) !important;
         }
 
         #top.wild-home #services .wild-card h3,
         #top.wild-home #services .wild-card h3 .wild-line-title__line {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           font-size: clamp(1.05rem, 1.3vw, 1.28rem) !important;
           font-weight: 600 !important;
           background: none !important;
@@ -1852,8 +1918,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         #top.wild-home #services .wild-card p,
         #top.wild-home #services .wild-card p :is(strong, em, i, span) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           font-size: clamp(0.88rem, 1.02vw, 0.96rem) !important;
           font-weight: 500 !important;
           line-height: 1.48 !important;
@@ -1864,16 +1930,16 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         /* The Home project stories use discrete brand colors by phrase/line,
            never a vertical blend inside individual letterforms. */
         #top.wild-home :is(.ww-c1, .wild-story-card .ww-c1) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
         #top.wild-home :is(.ww-c2, .wild-story-card .ww-c2) {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
         }
         #top.wild-home :is(.ww-c3, .wild-story-card .ww-c3) {
-          color: #c87936 !important;
-          -webkit-text-fill-color: #c87936 !important;
+          color: #d5823a !important;
+          -webkit-text-fill-color: #d5823a !important;
         }
         #top.wild-home :is(.ww-c1, .ww-c2, .ww-c3, .wild-story-card p, .wild-story-card h2, .wild-story-card h3, .wild-story-card .wild-line-title__line) {
           background: none !important;
@@ -1891,8 +1957,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         /* Services heading: G's permanent 1 / 2 / 3 color sequence. */
         #top.wild-home #services > .wild-section-heading > .wild-kicker {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1907,8 +1973,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #services > .wild-section-heading > .wild-section-title .wild-line-title__line:nth-child(1) {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
         }
 
         #top.wild-home #services > .wild-section-heading > .wild-section-title .wild-line-title__line:nth-child(2) {
@@ -1919,8 +1985,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         /* Project Wildfire heading lock: the two lines use the permanent
            WildWorks Color 1 / Color 2 hierarchy with no muddy gradient. */
         #top#top.wild-home #project-wildfire .wild-wildfire-flame-title__text {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1930,8 +1996,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top#top.wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -1985,12 +2051,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           justify-content: center;
           margin: 0 auto clamp(1rem, 1.8vw, 1.35rem);
           padding: clamp(0.52rem, 0.9vw, 0.68rem) clamp(0.88rem, 1.7vw, 1.22rem);
-          border: 1px solid #e8b66d;
+          border: 1px solid #f1bf75;
           border-radius: 7px;
           background: #d2934a !important;
           background-image: none !important;
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           -webkit-background-clip: border-box !important;
           background-clip: border-box !important;
           text-shadow: 0 1px 0 rgba(91, 39, 10, 0.56) !important;
@@ -2008,21 +2074,21 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line:nth-child(1) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
         }
 
         #top.wild-home #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line:nth-child(2) {
-          color: #e8b66d !important;
-          -webkit-text-fill-color: #e8b66d !important;
+          color: #f1bf75 !important;
+          -webkit-text-fill-color: #f1bf75 !important;
         }
 
         #top.wild-home #ai-websites .wild-site-offer-heading > .wild-body {
           width: min(100%, 52rem) !important;
           max-width: 52rem !important;
           margin-inline: auto !important;
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -2066,16 +2132,16 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         #top.wild-home #ai-websites .wild-site-offer-card .wild-card-icon {
           border-color: rgba(232, 182, 109, 0.82) !important;
           background: rgba(100, 43, 16, 0.44) !important;
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           box-shadow:
             inset 0 1px 0 rgba(247, 217, 165, 0.28),
             0 6px 18px rgba(74, 30, 8, 0.18) !important;
         }
 
         #top.wild-home #ai-websites .wild-site-offer-card :is(h3, h3 .wild-line-title__line) {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -2083,8 +2149,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #ai-websites .wild-site-offer-card p {
-          color: #f7d9a5 !important;
-          -webkit-text-fill-color: #f7d9a5 !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -2092,8 +2158,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #ai-websites .wild-site-offer-card .wild-card-icon svg {
-          color: #f7d9a5 !important;
-          stroke: #f7d9a5 !important;
+          color: #fce0ad !important;
+          stroke: #fce0ad !important;
           stroke-width: 2.35 !important;
         }
 
@@ -2292,6 +2358,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             priority
             sizes="100vw"
             className="object-cover"
+            lightboxClassName="wild-home-hero-lightbox"
+            lightboxZoomPan
           />
         </div>
         <motion.div
@@ -2307,8 +2375,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 display: "block",
                 width: "max-content",
                 maxWidth: "100%",
-                color: "#f7d9a5",
-                WebkitTextFillColor: "#f7d9a5",
+                color: "#fce0ad",
+                WebkitTextFillColor: "#fce0ad",
                 backgroundImage: "none",
                 WebkitBackgroundClip: "border-box",
                 backgroundClip: "border-box",
@@ -2329,15 +2397,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           <motion.h1 className="wild-hero-headline wild-hero-headline--solid" variants={softScaleIn}>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--makes-home"
-              style={{ color: "#e8b66d", WebkitTextFillColor: "#e8b66d" }}
+              style={{ color: "#f1bf75", WebkitTextFillColor: "#f1bf75" }}
             >
               Makes Your Home
             </span>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--irresistible"
               style={{
-                color: "#c87936",
-                WebkitTextFillColor: "#c87936",
+                color: "#d5823a",
+                WebkitTextFillColor: "#d5823a",
                 marginTop: "0.12em",
               }}
             >
@@ -2352,8 +2420,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               lineHeight: 1.36,
             }}
           >
-            <span className="wild-hero-lede-line">
-              By Creating <span className="wild-hero-lede-accent">Exquisite Works of Art</span>
+            <span className="wild-hero-lede-line wild-hero-lede-line--beautiful">
+              By Creating Beautiful Things
             </span>
             <span className="wild-hero-lede-line wild-hero-lede-line--problems">
               And Solving Your Real World Problems
@@ -2409,8 +2477,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                       "linear-gradient(180deg, rgba(78, 39, 13, 0.94), rgba(43, 20, 7, 0.94))",
                     boxShadow:
                       "0 10px 24px rgba(16, 6, 1, 0.34), inset 0 1px 0 rgba(247, 217, 165, 0.16)",
-                    color: "#f7d9a5",
-                    WebkitTextFillColor: "#f7d9a5",
+                    color: "#fce0ad",
+                    WebkitTextFillColor: "#fce0ad",
                     fontFamily:
                       '"Goudy Old Style", "Baskerville Old Face", Garamond, var(--font-serif), Georgia, serif',
                     fontSize: "clamp(1.04rem, 1.45vw, 1.26rem)",
@@ -2478,17 +2546,17 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           }
 
           #talk-to-iscott > .wild-iscott-disclosure {
-            color: #f7d9a5 !important;
-            -webkit-text-fill-color: #f7d9a5 !important;
+            color: #fce0ad !important;
+            -webkit-text-fill-color: #fce0ad !important;
             background: none !important;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.42) !important;
           }
 
           /* Home-only: preserve every text fill, but make all text effects black-only. */
           html:has(#top.wild-home:not(.wild-legal-home)) #top.wild-home,
-          html:has(#top.wild-home:not(.wild-legal-home)) #top.wild-home *,
+          html:has(#top.wild-home:not(.wild-legal-home)) #top.wild-home *:not(.wild-home-phone-iscott-test):not(.wild-home-phone-iscott-test *),
           html:has(#top.wild-home:not(.wild-legal-home)) #footer,
-          html:has(#top.wild-home:not(.wild-legal-home)) #footer * {
+          html:has(#top.wild-home:not(.wild-legal-home)) #footer *:not(.wild-home-phone-iscott-test):not(.wild-home-phone-iscott-test *) {
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.72) !important;
             -webkit-text-stroke-color: #000000 !important;
             text-stroke-color: #000000 !important;
@@ -2567,6 +2635,67 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             stroke: #000000 !important;
           }
 
+          /* G 2026-08-16: Home display lettering uses the approved Services
+             depth, now cast down-and-right instead of straight down. This is
+             intentionally text-only: controls and the iScott Front Door title
+             retain their current approved treatments. */
+          #top.wild-home {
+            --ww-home-display-depth-strong:
+              clamp(2px, 0.17vw, 3.5px) clamp(2px, 0.17vw, 3.5px) 0 rgba(35, 9, 2, 0.9),
+              clamp(3px, 0.26vw, 5px) clamp(3px, 0.26vw, 5px) clamp(0.2px, 0.02vw, 0.8px) rgba(25, 6, 1, 0.72);
+            --ww-home-display-depth-medium:
+              clamp(1.5px, 0.12vw, 2.5px) clamp(1.5px, 0.12vw, 2.5px) 0 rgba(35, 9, 2, 0.82),
+              clamp(2px, 0.18vw, 3.25px) clamp(2px, 0.18vw, 3.25px) clamp(0.15px, 0.015vw, 0.6px) rgba(25, 6, 1, 0.58);
+          }
+
+          #top.wild-home :is(
+            .wild-hero-wordmark-text-orange,
+            .wild-hero-headline,
+            .wild-hero-headline *,
+            .wild-start-title,
+            .wild-start-title *,
+            #project-wildfire .wild-wildfire-flame-title,
+            #project-wildfire .wild-wildfire-flame-title *,
+            #project-wildfire .wild-wildfire-title,
+            #project-wildfire .wild-wildfire-title *,
+            .wild-home-statement__title,
+            .wild-home-statement__title *,
+            #signature-work .wild-signature-title,
+            #signature-work .wild-signature-title *,
+            .wild-home-projects__title,
+            .wild-home-projects__title *,
+            #services > .wild-section-heading > .wild-section-title,
+            #services > .wild-section-heading > .wild-section-title *,
+            #services > .wild-section-heading > .wild-kicker,
+            #services > .wild-section-heading > .wild-kicker *,
+            #ai-websites > .wild-section-heading > .wild-section-title,
+            #ai-websites > .wild-section-heading > .wild-section-title *,
+            .wild-hero-lede-line,
+            .wild-hero-lede-line *,
+            .wild-phone-number-line > a,
+            .wild-phone-number-line__call-today
+          ) {
+            filter: none !important;
+            text-shadow: var(--ww-home-display-depth-strong) !important;
+          }
+
+          /* Tree of Life is one rank below the large section display titles. */
+          #top.wild-home #wildworks-proof .wild-tree-title,
+          #top.wild-home #wildworks-proof .wild-tree-title * {
+            filter: none !important;
+            text-shadow: var(--ww-home-display-depth-medium) !important;
+          }
+
+          /* Footer is outside #top. Include only the closing written number
+             when the current route is the non-legal Home page. */
+          html:has(#top.wild-home:not(.wild-legal-home))
+            #footer .wild-phone-number-line--footer-closing > a,
+          html:has(#top.wild-home:not(.wild-legal-home))
+            #footer .wild-phone-number-line--footer-closing .wild-phone-number-line__call-today {
+            filter: none !important;
+            text-shadow: var(--ww-home-display-depth-strong) !important;
+          }
+
         `}</style>
         <input
           ref={iScottMediaInputRef}
@@ -2603,7 +2732,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             >
               Start with iScott, Scott&apos;s digital twin. Talk to him like you
               would the real Scott. Tell him your goals, timing, dream projects,
-              and any home and garden problems you have.
+              and any home and garden problems you may have.
             </motion.p>
             <motion.p
               className="wild-body wild-iscott-body wild-iscott-body--color-one"
@@ -2611,8 +2740,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               style={noWhiteTextStyle}
             >
               Show him your space using the Upload Photos or Videos button.
-              Describe what you want, and he will organize the details for the
-              real Scott. This helps Scott have context for when your first
+              Describe what you want, and he will organize the details and hand
+              them off to the real Scott. This helps Scott have context for when your first
               conversation begins.
             </motion.p>
             <motion.div className="money-step-list wild-iscott-steps-inline" variants={stagger}>
@@ -2632,7 +2761,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               variants={fadeInRight}
               style={noWhiteTextStyle}
             >
-              iScott gathers, discusses, gathers information, and hands off. He
+              iScott gathers, discusses, gathers information, and hands off that information to Scott. He
               does not replace Scott. He briefs the real Scott so your first
               conversation starts with understanding.
             </motion.p>
@@ -2657,6 +2786,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             <IScottSection
               variants={softScaleIn}
               wakeKey={avatarWakeKey}
+              onStart={wakeIScottAvatar}
               pendingMedia={pendingIScottMedia}
               onMediaAccepted={handleIScottMediaAccepted}
               onMediaError={handleIScottMediaError}
@@ -2671,7 +2801,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               save the conversation and media to organize your inquiry and
               follow up. Do not share sensitive personal, legal, medical, or
               child information. See{" "}
-              <Link href="/pages/privacy-policy" className="underline decoration-[#e8b66d] underline-offset-4">
+              <Link href="/pages/privacy-policy" className="underline decoration-[#f1bf75] underline-offset-4">
                 Privacy Policy
               </Link>
               .
@@ -3102,15 +3232,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
       {activeWildfireImage && typeof document !== "undefined" ? createPortal(
         <div
-          className="wildfire-lightbox discordSection discordSection--lightbox"
+          className="wildfire-lightbox wild-projects-lightbox discordSection discordSection--lightbox"
           role="dialog"
           aria-modal="true"
           aria-label={activeWildfireImage.alt}
+          {...wildfireSwipe}
         >
           <div className="wildfire-lightbox-bar">
-            <span>
-              Project Wildfire {activeWildfireImagePosition} of {wildfireLightboxImages.length}
-            </span>
             <button type="button" onClick={closeWildfireLightbox} aria-label="Close enlarged image">
               <X aria-hidden className="h-5 w-5" />
             </button>
@@ -3123,21 +3251,50 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           >
             <ChevronLeft aria-hidden className="h-6 w-6" />
           </button>
-          <div className="wildfire-lightbox-image">
-            <Image
-              src={activeWildfireImage.src}
-              alt={activeWildfireImage.alt}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              quality={92}
-            />
-          </div>
+          <HeldLightboxImage image={activeWildfireImage} direction={wildfireLightboxDirection} priority />
           <button
             type="button"
             className="wildfire-lightbox-nav wildfire-lightbox-nav--right"
             onClick={showNextWildfireImage}
             aria-label="Next Project Wildfire image"
+          >
+            <ChevronRight aria-hidden className="h-6 w-6" />
+          </button>
+        </div>,
+        document.body,
+      ) : null}
+
+      {activeProjectImage && typeof document !== "undefined" ? createPortal(
+        <div
+          className="wildfire-lightbox wild-projects-lightbox discordSection discordSection--lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeProjectImage.alt}
+          {...projectSwipe}
+        >
+          <div className="wildfire-lightbox-bar">
+            <button
+              type="button"
+              onClick={closeProjectLightbox}
+              aria-label="Close enlarged project image"
+            >
+              <X aria-hidden className="h-5 w-5" />
+            </button>
+          </div>
+          <button
+            type="button"
+            className="wildfire-lightbox-nav wildfire-lightbox-nav--left"
+            onClick={showPreviousProjectImage}
+            aria-label="Previous WildWorks project image"
+          >
+            <ChevronLeft aria-hidden className="h-6 w-6" />
+          </button>
+          <HeldLightboxImage image={activeProjectImage} direction={projectLightboxDirection} priority />
+          <button
+            type="button"
+            className="wildfire-lightbox-nav wildfire-lightbox-nav--right"
+            onClick={showNextProjectImage}
+            aria-label="Next WildWorks project image"
           >
             <ChevronRight aria-hidden className="h-6 w-6" />
           </button>
@@ -3211,9 +3368,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               Grateful They Let Us Build This Work of Art.
             </motion.p>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
-              The People I Love Working with Look at a Space and Ask, “What’s the
-              Coolest Thing We Could Do Here?” They Want Something Rare,
-              Extraordinary, and Impossible to Find Anywhere Else.
+              The People I Love Working Look at a Space and Ask, “What’s the
+              Coolest Thing We Could Do Here?” They Want Something Beautiful,
+              Tasteful, and Impossible to Find Anywhere Else.
             </motion.p>
           </div>
         </div>
@@ -3379,7 +3536,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                         color: "transparent",
                         WebkitTextFillColor: "transparent",
                         backgroundImage:
-                          "linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #e8b66d 75%, #d2934a 100%)",
+                          "linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         fontSize: "clamp(1.42rem, 2.05vw, 2.15rem)",
@@ -3470,15 +3627,14 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                     ) : null}
                   </div>
                   {project.variant === "feature" ? (
-                    <div className="wild-story-actions" aria-label="The Ruins actions">
-                      <a
-                        href="#talk-to-iscott"
-                        className="money-cta money-cta--primary wild-story-action wild-iscott-action-button"
-                        onClick={handleIScottCtaClick}
+                    <div className="wild-story-actions wild-story-actions--ruins" aria-label="The Ruins actions">
+                      <Link
+                        href={project.href}
+                        className="money-cta money-cta--primary wild-story-action"
                       >
-                        <Sparkles aria-hidden className="wild-story-action-icon" />
-                        <span>Talk to iScott</span>
-                      </a>
+                        <Compass aria-hidden className="wild-story-action-icon" />
+                        <span>{project.cta}</span>
+                      </Link>
                       <a
                         href="tel:+14437972166"
                         className="money-cta money-cta--primary wild-story-action"
@@ -3487,13 +3643,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                         <Phone aria-hidden className="wild-story-action-icon" />
                         <span>Call Now</span>
                       </a>
-                      <Link
-                        href={project.href}
-                        className="money-cta money-cta--primary wild-story-action"
-                      >
-                        <Compass aria-hidden className="wild-story-action-icon" />
-                        <span>{project.cta}</span>
-                      </Link>
                     </div>
                   ) : null}
                 </>
@@ -3511,6 +3660,99 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       <LargeIScottCta onClick={handleIScottCtaClick} />
 
       <motion.section
+        id="projects"
+        className="wild-home-projects discordSection discordSection--3"
+        aria-label="WildWorks projects"
+        variants={slowStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportReplay}
+      >
+        <motion.h2 className="wild-home-projects__title" variants={fadeInUp}>
+          <span className="wild-home-projects__title-wildworks">WildWorks</span>{" "}
+          <span className="wild-home-projects__title-projects">Projects</span>
+        </motion.h2>
+        <motion.p className="wild-home-projects__tagline" variants={fadeInUp}>
+          <span>Wild by design</span>
+        </motion.p>
+        <div className="wild-home-projects__capabilities">
+          <p>
+            WildWorks is a complete design-build company for hardscapes,
+            landscapes, and one-of-a-kind property improvements. We build with
+            natural stone, concrete pavers, segmental retaining-wall block,
+            brick, masonry block, poured concrete, boulders, wood, steel, tile,
+            and other materials selected for the site, structure, and finished
+            design.
+          </p>
+          <p>
+            WildWorks designs and builds walkways and garden paths;
+            freestanding, seat, garden, and retaining walls; patios and
+            terraces; steps and staircases; columns, piers, entrances, and
+            porches; outdoor fireplaces and fire features; water features;
+            drainage and grading solutions; planting, landscape lighting,
+            repairs, restorations, and complete outdoor living spaces. Based in
+            Baltimore and available for selected projects worldwide, WildWorks
+            can build the work directly or lead the design, diagnosis, and
+            specialist team from start to finish.
+          </p>
+        </div>
+        <div className="wild-home-projects__grid">
+          {homeProjectImages.map((image, index) => (
+            <motion.figure
+              className="wild-home-projects__item"
+              key={image.src}
+              variants={cardDrift}
+              custom={index}
+            >
+              <button
+                type="button"
+                className="wild-home-projects__link"
+                onClick={() => setProjectLightboxIndex(index)}
+                aria-label={`Enlarge ${image.alt}`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 600px) 100vw, 58vw"
+                  className="wild-home-projects__image"
+                />
+              </button>
+            </motion.figure>
+          ))}
+        </div>
+        <motion.div className="wild-home-projects__more" variants={fadeInUp}>
+          <Link href="/pages/Projects" className="money-cta money-cta--primary">
+            <Images aria-hidden className="h-5 w-5" />
+            <span>See More WildWorks Projects</span>
+          </Link>
+        </motion.div>
+      </motion.section>
+
+      <div className="wild-home-craftsmanship-card">
+        <section
+          className="wild-home-craftsmanship-video"
+          aria-label="WildWorks dedication to craftsmanship video"
+        >
+          <BrandedVideoPlayer
+            src="/wildworks-craftsmanship.mp4"
+            ariaLabel="WildWorks dedication to craftsmanship video"
+          />
+        </section>
+
+        <div className="wild-home-craftsmanship-video__followup">
+          <PhoneNumberLine
+            className="wild-phone-number-line--home-video"
+            showCallToday={false}
+          />
+          <LargeIScottCta
+            className="wild-home-phone-iscott-test--video"
+            onClick={handleIScottCtaClick}
+          />
+        </div>
+      </div>
+
+      <motion.section
         id="services"
         className="wild-section discordSection discordSection--2"
         variants={slowStagger}
@@ -3523,7 +3765,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             <span className="wild-kicker-frame">Services</span>
           </motion.p>
           <motion.h2 className="wild-section-title wild-line-title" variants={softScaleIn}>
-            <LineTitle lines={["What WildWorks", "is Known for:"]} />
+            <span className="wild-line-title__line wild-line-title__line--one">What <span className="wild-services-title__wildworks">WildWorks</span></span>
+            <span className="wild-line-title__line wild-line-title__line--two">is Known for:</span>
           </motion.h2>
         </div>
 
@@ -3687,7 +3930,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 Scott himself built this site end-to-end. WildWorks is a working sample
               </span>
               <span className="wild-site-offer-copy__line">
-                of a state-of-the-art Ai-driven website: avatar conversation, Ai conversion,
+                of a state-of-the-art Ai driven website: avatar conversation, Ai conversion,
               </span>
               <span className="wild-site-offer-copy__line">
                 lead intake, appointment setting, information gathering, and full automation,
@@ -3696,29 +3939,20 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 with a tasteful look and intuitive feel. If you would like Scott to build your website,
               </span>
               <span className="wild-site-offer-copy__line">
-                talk to iScott, call, or text WildWorks. iScott will have the real Scott reach out to you.
+                talk to iScott, call, or text WildWorks.
               </span>
             </motion.p>
           </div>
 
-          <motion.div className="wild-site-offer-grid" variants={stagger}>
-            {aiWebsiteCapabilities.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.article key={item.title} className="wild-card wild-site-offer-card" variants={cardDrift} custom={index}>
-                  <div className="wild-site-offer-card__heading">
-                    <div className="wild-card-icon">
-                      <Icon aria-hidden className="h-6 w-6" />
-                    </div>
-                    <h3 className="wild-line-title">
-                      <LineTitle lines={item.titleLines} />
-                    </h3>
-                  </div>
-                  <p>{item.body}</p>
-                </motion.article>
-              );
-            })}
-          </motion.div>
+          {/* H278 (G 2026-08-17): cards removed; his written words instead. */}
+          <motion.p className="wild-body wild-site-offer-copy" variants={stagger}>
+            <span className="wild-site-offer-copy__line">
+              Let the Ai Collect Context, Set Appointments, and Sell Your Brand — for You on Auto-Pilot
+            </span>
+            <span className="wild-site-offer-copy__line">
+              <a href="tel:+14437972166">1+443-797-2166</a>
+            </span>
+          </motion.p>
         </div>
       </motion.section>
 

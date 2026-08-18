@@ -29,14 +29,14 @@ html body#wildworks-body :is(
   i,
   a:not(.money-cta)
 ) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body :is(
   .wild-subpage--ruins,
   .wild-subpage--bio
 ) .wild-subpage-section li::marker {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }

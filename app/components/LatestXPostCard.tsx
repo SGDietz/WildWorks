@@ -20,6 +20,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+import { useLightboxSwipe } from "../lib/useLightboxSwipe";
 
 export type LatestXPostMediaItem = {
   type: string;
@@ -268,6 +269,8 @@ function PhotoLightbox({
   onPrev: () => void;
   onNext: () => void;
 }) {
+  const swipe = useLightboxSwipe(onPrev, onNext);
+
   useEffect(() => {
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -296,6 +299,7 @@ function PhotoLightbox({
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"
+      {...swipe}
     >
       <div className="wild-branded-lightbox-bar flex shrink-0 items-center justify-between gap-2">
         <span className="text-sm tabular-nums opacity-80">

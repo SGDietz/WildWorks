@@ -1,0 +1,65 @@
+/* H197: same as H180. G 2026-08-13 19:17
+   Screenshot 2026-08-13 191705.png â€” still Color 1 / 1 / 3.
+   H180 was written at 14:31 and never imported. Chief jumped H179 to H183.
+   Last-import after H191 so H168 cannot keep Want a on Color 1.
+
+   AI-NATIVE WEBSITES = Color 1
+   Want a = Color 2
+   Website Like This? = Color 3
+   Heading only. Cards stay. */
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-kicker,
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-kicker
+  * {
+  color: var(--ww-home-hdr-text-1, #fce0ad) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-1, #fce0ad) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-section-title
+  :is(.wild-line-title__line--one, .wild-line-title__line:nth-child(1)),
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-section-title
+  :is(.wild-line-title__line--one, .wild-line-title__line:nth-child(1))
+  * {
+  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-section-title
+  :is(.wild-line-title__line--two, .wild-line-title__line:nth-child(2)),
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #ai-websites
+  .wild-site-offer-heading
+  > .wild-section-title
+  :is(.wild-line-title__line--two, .wild-line-title__line:nth-child(2))
+  * {
+  color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+}
+

@@ -40,6 +40,17 @@ function safeHeaderValue(value: string | null, max = 600): string | null {
   return truncateUtf8String(value.replace(/\s+/g, " ").trim(), max);
 }
 
+function safeUrlHeaderValue(value: string | null, max = 600): string | null {
+  const cleaned = safeHeaderValue(value, max);
+  if (!cleaned) return null;
+  try {
+    const parsed = new URL(cleaned);
+    return truncateUtf8String(`${parsed.origin}${parsed.pathname}`, max);
+  } catch {
+    return null;
+  }
+}
+
 export function getRequestTelemetryContext(request: Request): RequestTelemetryContext {
   const host = safeHeaderValue(request.headers.get("host"), 240);
   const proto = safeHeaderValue(firstHeader(request, ["x-forwarded-proto", "x-vercel-forwarded-proto"]), 24);
@@ -47,8 +58,8 @@ export function getRequestTelemetryContext(request: Request): RequestTelemetryCo
   return {
     host,
     deploymentUrl,
-    origin: safeHeaderValue(request.headers.get("origin"), 600),
-    referer: safeHeaderValue(request.headers.get("referer"), 900),
+    origin: safeUrlHeaderValue(request.headers.get("origin"), 600),
+    referer: safeUrlHeaderValue(request.headers.get("referer"), 900),
     userAgent: safeHeaderValue(request.headers.get("user-agent"), 900),
     ipAddress: safeHeaderValue(firstHeader(request, ["x-real-ip", "x-client-ip", "cf-connecting-ip", "x-forwarded-for"]), 240),
     forwardedFor: safeHeaderValue(request.headers.get("x-forwarded-for"), 900),

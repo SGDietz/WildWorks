@@ -1,13 +1,15 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, type CSSProperties, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
+import { Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
 import BrandText from "./BrandText";
 import PhoneNumberLine from "./PhoneNumberLine";
+import { SIGNUP_CHANNEL_OPTIONS } from "../../src/lib/marketingConsent.mjs";
 import LargeIScottCta from "./LargeIScottCta";
+import FooterIScottPanel from "./FooterIScottPanel";
 import { isLegalRoute, legalNavItems } from "../lib/legalRoutes";
 import {
   FOOTER_STONEWORK_LINE_END,
@@ -55,6 +57,7 @@ export default function Footer() {
   const mobileBrandLink = "wild-footer-mobile-link";
   const usesAbFooter = ["/pages/The-ruins", "/pages/who-is-g"].includes(pathname);
   const isLegalPage = isLegalRoute(pathname);
+  const isSixPageLegalRoute = legalNavItems.some((item) => item.href === pathname);
   const requiresEmail = signupChannel === "email" || signupChannel === "both";
   const requiresPhone = signupChannel === "sms" || signupChannel === "both";
 
@@ -62,15 +65,17 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // G 2026-08-18: only Email and SMS are offered. "both" is retired from the UI
+  // but still accepted by /api/marketing-signups so a stale tab keeps working.
   const signupOptions: Array<{
     id: SignupChannel;
     label: string;
     icon: typeof Mail;
-  }> = [
-    { id: "email", label: "Email", icon: Mail },
-    { id: "sms", label: "SMS", icon: MessageSquareText },
-    { id: "both", label: "Both", icon: CheckCircle2 },
-  ];
+  }> = SIGNUP_CHANNEL_OPTIONS.map(({ id, label }) => ({
+    id: id as SignupChannel,
+    label,
+    icon: id === "email" ? Mail : MessageSquareText,
+  }));
 
   const handleSignupSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -90,7 +95,8 @@ export default function Footer() {
           channel: signupChannel,
           email: formData.get("email"),
           phone: formData.get("phone"),
-          consent: formData.get("consent") === "on",
+          consentServiceUpdates: formData.get("consentServiceUpdates") === "on",
+          consentMarketing: formData.get("consentMarketing") === "on",
           companyWebsite: formData.get("companyWebsite"),
           sourcePath: window.location.pathname,
         }),
@@ -131,7 +137,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className={`bg-transparent text-[#f7d9a5] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}${isLegalPage ? " wild-footer--legal" : ""}`}
+      className={`bg-transparent text-[#fce0ad] max-[450px]:pb-16 mt-6 discordSection discordSection--2${pathname === "/pages/who-is-g" ? " wild-footer--bio" : ""}${isLegalPage ? " wild-footer--legal" : ""}`}
       style={footerButtonTone}
     >
       <style>{`
@@ -226,7 +232,7 @@ export default function Footer() {
                 {requiresPhone ? (
                   <label className="wild-signup-field">
                     <span>
-                      Mobile Number <strong>*</strong>
+                      Mobile Number
                     </span>
                     <input
                       type="tel"
@@ -241,15 +247,29 @@ export default function Footer() {
               </div>
 
               <label className="wild-signup-consent">
-                <input type="checkbox" name="consent" required />
+                <input type="checkbox" name="consentServiceUpdates" />
                 <span>
-                  I agree to receive the WildWorks updates I selected. If I select SMS or Both, WildWorks may
-                  send recurring text messages about project follow-up, scheduling, reminders, design ideas,
-                  offers, and service updates to the mobile number provided. Message frequency varies. Message
-                  and data rates may apply. Reply HELP for help and STOP to opt out. Consent is not a condition
-                  of purchase.
+                  Optional: send me non-marketing service messages about project follow-up, scheduling,
+                  reminders, and service updates at the contact information provided.
                 </span>
               </label>
+
+              <label className="wild-signup-consent">
+                <input type="checkbox" name="consentMarketing" />
+                <span>
+                  Optional: send me WildWorks marketing messages about design ideas, offers, and news at the
+                  contact information provided.
+                </span>
+              </label>
+
+              <p className="wild-signup-consent wild-signup-consent--disclosure">
+                <span>
+                  Both boxes are optional and neither is required to submit this form. If you tick a box and
+                  select SMS, WildWorks may send recurring text messages to the mobile number provided.
+                  Message frequency varies. Message and data rates may apply. Reply HELP for help and STOP to
+                  opt out. Consent is not a condition of purchase.
+                </span>
+              </p>
 
               <div className="wild-signup-action-row">
                 <motion.button
@@ -277,15 +297,15 @@ export default function Footer() {
               <p className="wild-signup-fine-print">
                 You can unsubscribe from emails at any time and opt out of texts by replying STOP
                 where supported. See the{" "}
-                <Link href="/pages/terms-of-service" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                <Link href="/pages/terms-of-service" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
                   Terms of Service
                 </Link>
                 ,{" "}
-                <Link href="/pages/privacy-policy" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                <Link href="/pages/privacy-policy" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
                   Privacy Policy
                 </Link>{" "}
                 and{" "}
-                <Link href="/pages/communications" className="underline decoration-[#e8b66d] underline-offset-4 hover:text-[#f7d9a5]">
+                <Link href="/pages/communications" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
                   Communications Policy
                 </Link>
                 .
@@ -297,6 +317,13 @@ export default function Footer() {
         <div
           className={`wild-footer-contact-card-region${usesAbFooter ? " wild-footer-contact-card-region--a" : ""}`}
         >
+        {isSixPageLegalRoute ? (
+          <LargeIScottCta
+            className="wild-home-phone-iscott-test--legal-return"
+            href="/pages/Home"
+            label="Return to WildWorks"
+          />
+        ) : null}
         <div className="wild-footer-contact-cta mt-12 sm:mt-16">
           <motion.h2
             className="wild-footer-contact-cta__title"
@@ -306,7 +333,7 @@ export default function Footer() {
             Let&apos;s Talk About Your Dream Project.
           </motion.h2>
           <motion.div className="wild-footer-contact-cta__actions" variants={fadeInUp}>
-            <motion.a href="/pages/Home#talk-to-iscott" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Sparkles aria-hidden className="h-5 w-5" />
               <span>Talk to iScott</span>
             </motion.a>
@@ -343,17 +370,46 @@ export default function Footer() {
         viewport={viewportReplay}
         transition={{ duration: 0.5 }}
       >
-        <LargeIScottCta
-          className="wild-home-phone-iscott-test--footer-closing"
-          href="/pages/Home#talk-to-iscott"
-        />
-        <PhoneNumberLine
-          className={`wild-phone-number-line--footer-closing${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
-          callText="Call Today!"
-          emphasizeCallText
-        />
+        <div className="wild-footer-phone-iscott-group">
+          {/* G `doit` 2026-08-17: full framed iScott panel replaces the lone
+              closing Talk button — Home first, other main pages after tweaks. */}
+          {pathname === "/pages/Home" || pathname === "/" ? (
+            <>
+              <FooterIScottPanel />
+              {/* G 2026-08-17: the big Talk button rides under the panel too —
+                  one more push toward iScott. */}
+              <LargeIScottCta
+                className="wild-home-phone-iscott-test--footer-closing"
+                href="/pages/Home?wake-iscott=1#talk-to-iscott"
+              />
+            </>
+          ) : (
+            <LargeIScottCta
+              className="wild-home-phone-iscott-test--footer-closing"
+              href="/pages/Home?wake-iscott=1#talk-to-iscott"
+            />
+          )}
+          {pathname === "/pages/Home" || pathname === "/" ? (
+            /* G 2026-08-17: under the footer panel — "OR Call WildWorks
+               Today!" first, phone number underneath. */
+            <PhoneNumberLine
+              className="wild-phone-number-line--footer-closing"
+              callText="Or Call Today!"
+              desktopCallText="Or Call WildWorks Today!"
+              emphasizeCallText
+              callTextFirst
+            />
+          ) : (
+            <PhoneNumberLine
+              className={`wild-phone-number-line--footer-closing${isLegalPage ? " wild-phone-number-line--legal" : ""}`}
+              callText="Call Today!"
+              desktopCallText="Call WildWorks Today!"
+              emphasizeCallText
+            />
+          )}
+        </div>
           <div
-            className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#e8b66d] sm:px-6"
+            className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#f1bf75] sm:px-6"
             style={{ width: "100%", maxWidth: "none" }}
           >
           <motion.button
@@ -389,13 +445,14 @@ export default function Footer() {
             </span>
           </p>
           <span
+            className="wild-footer-copyright"
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
             &copy;2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
           </span>
         </div>
 
-          <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#e8b66d] sm:flex-row sm:px-6 sm:text-left">
+          <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#f1bf75] sm:flex-row sm:px-6 sm:text-left">
           <span className="wild-footer-legal-links flex flex-wrap justify-center gap-x-3 gap-y-2 sm:text-sm">
             {legalNavItems.map((item) => (
               <Link key={item.href} href={item.href} className="wild-footer-legal-link">

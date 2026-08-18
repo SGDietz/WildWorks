@@ -1,0 +1,26 @@
+/* H288: MUST beat live H258.
+   G 2026-08-17 13:11: SERVICES has no effect. Title too heavy.
+   H258 is live. H270 was written and never installed.
+   SERVICES = normal drop. What WildWorks / is Known for = a little lighter. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services#services > .wild-section-heading > .wild-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services#services > .wild-section-heading > .wild-kicker * {
+  filter: none !important;
+  text-shadow: 0 0.75px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services#services > .wild-section-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two,
+  .wild-services-title__wildworks
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #services#services > .wild-section-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two,
+  .wild-services-title__wildworks
+) * {
+  filter: none !important;
+  text-shadow: 0 0.55px 0 rgba(35, 9, 2, 0.58), 0 1.2px 0 rgba(25, 6, 1, 0.34) !important;
+}

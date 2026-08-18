@@ -1,0 +1,17 @@
+/* H193: G 2026-08-13 (Screenshot 2026-08-13 190936.png)
+   Home #project-wildfire second line â€” "It Started with a Fireplace....."
+   â€” must be Color 2 (Lounge / #f1bf75), not Color 1.
+   Project Wildfire title stays. Color only. */
+
+/* H168 intentionally has a very strong permanent-palette lock. Match that
+   strength here, then add the exact section ID so this one approved exception
+   wins without weakening any other Color 1 heading. */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire
+  .wild-wildfire-title
+  :is(.wild-line-title__line, .wild-line-title__line *) {
+  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+}

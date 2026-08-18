@@ -1,0 +1,77 @@
+/* H239: Project Wildfire keeps one finished top hero, then its six-line copy,
+   then five quiet entry points into the 98-image build-and-finish viewer. */
+html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-single {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 2.5vw, 2rem);
+}
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wild-wildfire-photo--single-hero {
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+}
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wild-wildfire-photo--single-hero img {
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+html body#wildworks-body .wild-subpage--wildfire .wildfire-preview-gallery {
+  width: 100%;
+  margin: 0;
+  padding: 0 clamp(0.75rem, 2.5vw, 2rem) clamp(2.5rem, 5vw, 4.5rem);
+  background: transparent;
+}
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-preview-gallery .wildfire-preview-mosaic {
+  width: 100%;
+  max-width: 92rem;
+  margin-inline: auto;
+}
+
+/* Raise the three-line build heading by two visible type steps, then modestly
+   raise only the three descriptive lines while retaining their hierarchy.
+   The mobile authority remains in H106x so long lines wrap without overflow. */
+@media (min-width: 720px) {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy h1.wildfire-hero-headline
+    .wildfire-hero-headline__line {
+    font-size: clamp(3.75rem, 5.3vw, 5.3rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy p.wildfire-hero-summary
+    .wildfire-hero-summary__line--c1 {
+    font-size: clamp(2.05rem, 2.65vw, 2.62rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy p.wildfire-hero-summary
+    .wildfire-hero-summary__line--c2 {
+    font-size: clamp(1.84rem, 2.33vw, 2.32rem) !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--wildfire.wild-subpage--wildfire
+    .wildfire-hero-copy p.wildfire-hero-summary
+    .wildfire-hero-summary__line--c3 {
+    font-size: clamp(1.58rem, 1.95vw, 1.95rem) !important;
+  }
+}
+
+/* Bio's existing hero was still undersized on mouse-driven desktop/laptop
+   layouts. Touch-first phone and iPad geometry remains under its prior rules. */
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  html body#wildworks-body .wild-subpage--bio.wild-subpage--bio
+    .wild-subpage-hero {
+    width: min(100% - clamp(2rem, 4vw, 4rem), 72rem) !important;
+    max-width: 72rem !important;
+  }
+}

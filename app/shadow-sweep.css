@@ -1,0 +1,60 @@
+/* Shadow sweep — G 2026-08-17 "do all shadow effect". Chief diagnoses,
+   Claude writes. Weights: known rival authorities run up to 38 ids
+   (H27x/H28x hide rules) and the canvas lock runs 200; these carry 41. */
+
+/* S1 MENU — straight-down, crisp, no sideways smear (Chief's recipe). */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body header.wild-site-header a.wild-nav-link:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body header.wild-site-header a.wild-nav-link :not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-mobile-menu a.wild-mobile-nav-link:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15) {
+  filter: none !important;
+  text-shadow:
+    0 1px 0 rgba(50, 16, 5, 0.96),
+    0 2px 0 rgba(50, 16, 5, 0.78) !important;
+}
+
+/* S2 LOGO — one whole-image shadow. Splitting the wordmark and tagline into
+   clipped copies created a seam and copper holes under Landscaping. The face
+   and shadow share one scale; the shadow moves on Y only. */
+html body .wild-top-logo {
+  --ww-top-logo-shadow-scale: var(--ww-top-logo-fill-scale) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15)::before {
+  clip-path: none !important;
+  filter:
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 1px 0 #321005) !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px))
+    scale(var(--ww-top-logo-fill-scale)) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15) {
+  display: block !important;
+  background: #321005 !important;
+  opacity: 1 !important;
+  clip-path: inset(55% 8% 4% 8%) !important;
+  transform: translateY(calc(clamp(3px, 0.28vw, 4.5px) - 3px))
+    scale(var(--ww-top-logo-fill-scale)) !important;
+  filter:
+    drop-shadow(0 -2px 0 #321005)
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 1px 0 #321005)
+    drop-shadow(0 2px 0 #321005) !important;
+}
+
+/* S9 BAND — no dark rectangle behind the logo, ever. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo-band.wild-top-logo-band:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15) {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* S6 STATEMENT WILDWORKS — REVERTED 2026-08-17: the 1.138 scale turned out
+   to be the cream FACE layer's coverage, not the shadow; unscaling it
+   exposed the dark base on the right half. The outward-bend item stays OPEN
+   pending Chief's anatomy of the lockup layers. */
+
+/* FOOTER — "Or Call WildWorks Today!" one digit in on both ends of the
+   number (the 0.655em attempt resolved against a 16px parent = broken). */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-phone-iscott-group:has(.wild-iscott-panel--footer) .wild-phone-number-line__call-today:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15) {
+  font-size: clamp(1.6rem, 4.4vw, 4.95rem) !important;
+}

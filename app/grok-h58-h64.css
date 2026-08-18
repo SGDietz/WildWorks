@@ -291,8 +291,8 @@ html body #footer#footer .wild-footer-stonework-note {
   width: 100% !important;
   margin: clamp(1.3rem, 2.2vw, 1.75rem) auto
     clamp(1.5rem, 2.6vw, 2rem) !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   font-family: var(--font-serif), Georgia, serif !important;
   font-size: clamp(2.1rem, 3.8vw, 2.5rem) !important;
   font-weight: 800 !important;
@@ -569,8 +569,8 @@ html body #top#top#top#top.wild-home #project-wildfire
   .wild-wildfire-build-note__line:nth-child(1),
 html body .wild-home #project-wildfire
   .wild-wildfire-build-note__line:nth-child(1) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body #top#top#top#top.wild-home #project-wildfire
@@ -581,8 +581,8 @@ html body #top#top#top#top.wild-home #project-wildfire
   .wild-wildfire-build-note__line:nth-child(2),
 html body .wild-home #project-wildfire
   .wild-wildfire-build-note__line:nth-child(2) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body #top#top#top#top.wild-home #project-wildfire

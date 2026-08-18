@@ -1,0 +1,61 @@
+/* Bio background reset: primary field with one barely visible center light.
+   Bio only. Cards, text, buttons, and other routes are untouched. */
+
+html:has(.wild-subpage--bio) {
+  --ww-bio-primary: #983e17;
+  --ww-bio-page-background:
+    linear-gradient(
+      90deg,
+      #983e17 0%,
+      #9d4118 18%,
+      #a4461b 36%,
+      #ad4b1e 46%,
+      #ad4b1e 54%,
+      #a4461b 64%,
+      #9d4118 82%,
+      #983e17 100%
+    ),
+    #983e17;
+}
+
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid):has(.wild-subpage--bio) {
+  background: var(--ww-bio-page-background) !important;
+  background-color: var(--ww-bio-primary) !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: 100% 100% !important;
+  background-attachment: scroll !important;
+}
+
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid):has(.wild-subpage--bio)
+  #wild-site-backdrop.wild-site-backdrop {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid):has(.wild-subpage--bio)
+  :is(
+    header.wild-site-header,
+    .wild-top-logo-band,
+    .wild-top-logo-landscaping-effect,
+    footer#footer,
+    footer#footer .wild-footer-main,
+    footer#footer .wild-footer-contact-card-region,
+    footer#footer .wild-signup-system,
+    footer#footer .wild-footer-final-region,
+    footer#footer .wild-footer-closing-region--a
+  ),
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid)
+  .wild-subpage--bio.wild-subpage--bio,
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid)
+  .wild-subpage--bio.wild-subpage--bio
+  :is(.wild-ab-band, .wild-tone--a, .wild-tone--b),
+html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid)
+  .wild-subpage--bio.wild-subpage--bio
+  :is(.wild-ab-band, .wild-tone--a, .wild-tone--b)
+  :is(.wild-subpage-section, .discordSection) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}

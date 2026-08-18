@@ -1,0 +1,12 @@
+/* H242: G-authorized exception only for Home's Talk button paired with
+   "Check Out Project Wildfire". Other small Talk/Call/Text/Email controls
+   retain their existing treatment. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  #top.wild-home
+  #project-wildfire
+  .wild-cta-row--center
+  > a.wild-iscott-action-button {
+  --ww-talk-control-brightness: 1 !important;
+  --ww-talk-control-brightness-hover: 1 !important;
+}

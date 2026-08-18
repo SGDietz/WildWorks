@@ -33,9 +33,9 @@
   --ww-ab-b: var(--ww-reference-b) !important;
   --ww-solid-a: var(--ww-reference-a) !important;
   --ww-solid-b: var(--ww-reference-b) !important;
-  --ww-color-1: #f7d9a5 !important;
-  --ww-color-2: #e8b66d !important;
-  --ww-color-3: #c87936 !important;
+  --ww-color-1: #fce0ad !important;
+  --ww-color-2: #f1bf75 !important;
+  --ww-color-3: #d5823a !important;
 }
 
 html,

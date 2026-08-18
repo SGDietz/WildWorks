@@ -1,0 +1,49 @@
+/* H250: Keep the three subpage hero frames on the same responsive rail as the
+   established Home hero.  This owns frame geometry only: assets, image fit,
+   copy order, the Wildfire title correction, and lightbox behavior stay put. */
+@media (min-width: 600px) {
+  html body#wildworks-body#wildworks-body .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-single,
+  html body#wildworks-body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero,
+  html body#wildworks-body#wildworks-body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+    width: calc(100% - 18px) !important;
+    max-width: none !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+  }
+
+  @media (min-width: 900px) and (max-width: 1199px) {
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-single,
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero,
+    html body#wildworks-body#wildworks-body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+      max-width: 60rem !important;
+    }
+  }
+
+  /* Home's visible desktop reference is a 1200px rail, not the earlier
+     mismeasured 960px child overlay. Keep all three subpages on that rail. */
+  @media (min-width: 1200px) and (max-width: 1599px) {
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-single,
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero,
+    html body#wildworks-body#wildworks-body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+      max-width: 75rem !important;
+    }
+  }
+
+  /* The same 1200px reference persists at wide desktop widths. */
+  @media (min-width: 1600px) {
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-single,
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero,
+    html body#wildworks-body#wildworks-body .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero {
+      max-width: 75rem !important;
+    }
+  }
+}
+
+/* Ruins was the lone remaining desktop/iPad frame with an extra visible seam
+   below the shared Landscaping lockup.  This offsets only that route's frame;
+   Bio already matches the Home seam and Wildfire keeps its approved title band. */
+@media (min-width: 600px) {
+  html body#wildworks-body#wildworks-body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero {
+    margin-top: -1.75rem !important;
+  }
+}

@@ -1,0 +1,14 @@
+/* H176: Remove the square color layer outside the rounded Home video shell.
+   The branded player keeps its own rounded mask, border, shadow, and controls. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body
+  #top.wild-home
+  > section.wild-home-craftsmanship-video {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}

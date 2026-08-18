@@ -12,6 +12,10 @@ import {
   safeJsonPayload,
   storeRawTelemetryBackup,
 } from "../../../../src/lib/telemetryServer";
+import {
+  classifyTraffic,
+  trafficColumns,
+} from "../../../../src/lib/trafficClassification";
 
 type Severity = "critical" | "high" | "medium" | "low";
 type Sentiment = "negative" | "positive";
@@ -168,11 +172,19 @@ export async function POST(request: Request) {
     const route = cleanString(body?.route, MAX_ROUTE_CHARS);
     const viewport = cleanString(body?.viewport, 40);
     const device = safeJsonPayload(body?.device);
+    const rawPayload = safeJsonPayload(body?.payload);
     const payload = {
-      ...safeJsonPayload(body?.payload),
+      ...rawPayload,
+      ...(Object.hasOwn(rawPayload, "href") ? { href: route } : {}),
+      ...(Object.hasOwn(rawPayload, "referrer") ? { referrer: server.referer } : {}),
       clientDevice: device,
       server,
     };
+    const traffic = await classifyTraffic({
+      anonymousVisitorId,
+      userAgent: server.userAgent,
+    });
+    const classified = trafficColumns(traffic);
     const deviceKind =
       cleanString(body?.deviceKind, 80) ??
       valueFromRecord(device, "deviceKind", 80);
@@ -215,6 +227,7 @@ export async function POST(request: Request) {
         touch_support: touchSupport,
         connection_type: connectionType,
         payload: { eventType, ...payload },
+        ...classified,
         last_seen_at: new Date().toISOString(),
       };
       const sessionErr = await storeWithConversationFallback({
@@ -254,6 +267,7 @@ export async function POST(request: Request) {
           touch_support: touchSupport,
           connection_type: connectionType,
           payload,
+          ...classified,
           last_seen_at: new Date().toISOString(),
         };
         const deviceErr = await storeWithConversationFallback({
@@ -282,6 +296,7 @@ export async function POST(request: Request) {
         route,
         viewport,
         payload,
+        ...classified,
       };
       const err = await storeWithConversationFallback({
         table: "visitor_actions",
@@ -445,6 +460,7 @@ export async function POST(request: Request) {
       status_code: cleanStatusCode(body?.statusCode),
       user_visible_state: cleanString(body?.userVisibleState, 240),
       payload,
+      ...classified,
     };
     const err = await storeWithConversationFallback({
       table: "app_events",

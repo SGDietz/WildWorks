@@ -1,0 +1,63 @@
+/* H195: G 2026-08-13 (Screenshot 2026-08-13 191058.png)
+   One orange card around the Home craftsmanship video, the phone number,
+   and Talk to iScott. Card color = Home secondary #c56222.
+   Requires the .wild-home-craftsmanship-card wrap in page.tsx.
+   H176 stays: the player section itself stays transparent so the
+   rounded video is not boxed in a second square. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: min(calc(100% - 3rem), 72rem) !important;
+  margin: clamp(4.75rem, 7vw, 7rem) auto clamp(4rem, 6vw, 6rem) !important;
+  padding: clamp(1.15rem, 2.3vw, 1.8rem) clamp(1.05rem, 2.1vw, 1.7rem) clamp(1.35rem, 2.5vw, 2rem) !important;
+  border: 1px solid #6f2a10 !important;
+  border-radius: 8px !important;
+  background: var(--ww-home-hdr-secondary, #c56222) !important;
+  background-color: var(--ww-home-hdr-secondary, #c56222) !important;
+  background-image: none !important;
+  box-shadow:
+    0 22px 70px rgba(16, 6, 1, 0.38),
+    inset 0 1px 0 rgba(246, 211, 154, 0.08) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-home-craftsmanship-video {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-home-craftsmanship-video__followup {
+  width: 100% !important;
+  margin: clamp(1.2rem, 2.3vw, 1.8rem) 0 0 !important;
+  transform: none !important;
+}
+
+@media (max-width: 640px) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    .wild-home-craftsmanship-card {
+    width: calc(100% - 1.5rem) !important;
+    margin-top: 5.5rem !important;
+    margin-bottom: 4.5rem !important;
+    padding: 1rem 0.8rem 1.15rem !important;
+  }
+}
+

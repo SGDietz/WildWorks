@@ -1,0 +1,37 @@
+/* H250: The shared LargeIScottCta must retain the crisp legal Return finish
+   everywhere it is used. This is intentionally limited to that component;
+   smaller Talk actions, contact buttons, avatars, and geometry stay owned by
+   their existing rules. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button {
+  background-color: #e8ad59 !important;
+  background-image:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), rgba(0, 0, 0, 0) 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: #7d2f20 !important;
+}

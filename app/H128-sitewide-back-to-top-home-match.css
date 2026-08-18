@@ -98,6 +98,6 @@ html
   .wild-footer-final-region
   .wild-footer-top-button.wild-footer-top-button--closing:focus-visible {
   border-color: rgba(255, 241, 212, 0.96) !important;
-  outline: 2px solid #f7d9a5 !important;
+  outline: 2px solid #fce0ad !important;
   outline-offset: 3px !important;
 }

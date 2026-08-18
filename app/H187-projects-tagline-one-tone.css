@@ -1,0 +1,29 @@
+/* H187: G 2026-08-13 — the Home projects tagline is one centered thought:
+   one color, one line, and lowercase "design". */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__tagline {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: translateX(5px) !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+}
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body
+  #top.wild-home
+  #projects.wild-home-projects
+  > .wild-home-projects__tagline
+  * {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}

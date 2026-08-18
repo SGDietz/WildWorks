@@ -38,15 +38,26 @@ export async function POST(request: Request) {
       contactMethod,
       contactValue,
     });
+    const isTestHeld = result.detail === "test_traffic_not_sent";
     await logServerTelemetryEvent({
       request,
-      eventType: result.delivered ? "iscott_lead_email_sent" : "iscott_lead_email_queued",
-      severity: result.queued ? "low" : "high",
-      provider: "resend",
+      eventType: isTestHeld
+        ? "iscott_lead_test_held"
+        : result.delivered
+          ? "iscott_lead_email_sent"
+          : "iscott_lead_email_queued",
+      severity: result.queued || isTestHeld ? "low" : "high",
+      provider: isTestHeld ? "local" : "resend",
       sessionId,
       route: "/api/iscott/lead/confirm",
       statusCode: result.queued ? 200 : 503,
-      userVisibleState: result.delivered ? "sent" : result.queued ? "saved_for_delivery" : "delivery_failed",
+      userVisibleState: isTestHeld
+        ? "test_not_sent"
+        : result.delivered
+          ? "sent"
+          : result.queued
+            ? "saved_for_delivery"
+            : "delivery_failed",
       payload: {
         contactMethod,
         queued: result.queued,

@@ -1,0 +1,18 @@
+/* H271: Ai-Native / Want a / Website Like This — back the shadow off a little.
+   G 2026-08-17 10:42. These 3 lines only. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-kicker *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #ai-websites#ai-websites .wild-site-offer-heading > .wild-section-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two
+) * {
+  filter: none !important;
+  text-shadow: 0 0.75px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}

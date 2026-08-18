@@ -14,8 +14,8 @@ body .wild-phone-number-line {
 body .wild-phone-number-line > a {
   display: block;
   max-width: 100%;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   background: none !important;
   background-image: none !important;
   font-family: var(--font-playfair), var(--font-serif), Georgia, serif;
@@ -32,8 +32,8 @@ body .wild-phone-number-line > a {
 
 body .wild-phone-number-line > a:hover,
 body .wild-phone-number-line > a:focus-visible {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   text-decoration: none;
 }
 
@@ -46,8 +46,8 @@ html body#wildworks-body footer#footer .wild-phone-number-line--footer-closing >
 body .wild-phone-number-line__call-today {
   display: block;
   margin-top: clamp(0.32rem, 0.8vw, 0.62rem);
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   font-family: var(--font-playfair), var(--font-serif), Georgia, serif;
   font-size: clamp(2.45rem, 4.4vw, 4.55rem);
   font-weight: 700;
@@ -133,15 +133,15 @@ html body#wildworks-body footer#footer:has(.wild-phone-number-line--subpage) .wi
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
   footer#footer#footer#footer
   .wild-phone-number-line--legal > a {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
   footer#footer#footer#footer
   .wild-phone-number-line--legal .wild-phone-number-line__call-today {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 /* Legal CTA labels already use the normal warm-copper ink; carry that exact
@@ -167,8 +167,8 @@ body #top.wild-home .wild-phone-number-line--home-hero {
 }
 
 body .wild-phone-number-line--home-hero > a {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 body #top.wild-home .wild-phone-number-line--home-hero + #iscott-sales {
@@ -186,8 +186,8 @@ body #top.wild-home #signature-work + .wild-phone-number-line--home-services {
 
 /* The Ruins placement is the one warm Color 2 number-only callout. */
 body #top.wild-home .wild-phone-number-line--home-services > a {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 body #top.wild-home .wild-phone-number-line--home-services + #services {

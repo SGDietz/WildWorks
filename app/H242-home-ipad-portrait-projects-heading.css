@@ -1,0 +1,13 @@
+/* H242: G 2026-08-15.  The Home Projects heading needs three additional
+   type steps on iPad portrait only.  H194 remains the baseline authority;
+   this query deliberately leaves its landscape, desktop, and phone winners
+   unchanged, and touches neither the tagline nor the capability copy. */
+@media (min-width: 600px) and (max-width: 899px) and (orientation: portrait) {
+  html:has(#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body
+    #top.wild-home
+    #projects.wild-home-projects
+    > .wild-home-projects__title {
+    font-size: calc(clamp(2.35rem, 5vw, 4.8rem) + 4pt + 3pt) !important;
+  }
+}

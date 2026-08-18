@@ -7,8 +7,8 @@ html body#wildworks-body#wildworks-body
   .wild-home .wild-home-statement__title,
 html body#wildworks-body#wildworks-body
   footer#footer#footer .wild-footer-contact-cta__title {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body
@@ -18,8 +18,8 @@ html body#wildworks-body#wildworks-body
     .wild-footer-legal-links,
     .wild-footer-legal-link
   ) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body#wildworks-body#wildworks-body
@@ -37,8 +37,8 @@ html body#wildworks-body#wildworks-body
     .wild-signup-fine-print,
     .wild-footer-closing
   ) :is(span, strong, em) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 /* G 2026-08-05: legal pages are the permanent exception to this file.
@@ -127,8 +127,8 @@ html body#wildworks-body#wildworks-body :is(
   .wild-home-statement__line--one,
   .wild-signature-title__one
 ) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body#wildworks-body#wildworks-body :is(
@@ -138,8 +138,8 @@ html body#wildworks-body#wildworks-body :is(
   .wild-home-statement__line--four,
   .wild-signature-title__two
 ) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body#wildworks-body#wildworks-body :is(
@@ -147,6 +147,6 @@ html body#wildworks-body#wildworks-body :is(
   [class*="--c3"],
   .wild-signature-title__three
 ) {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
 }

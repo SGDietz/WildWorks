@@ -48,9 +48,9 @@ const required = [
   "background: var(--ww-page-background) !important;",
   "html, body, body .wild-site-backdrop { background: var(--ww-page-background) !important; background-color: var(--ww-page-base-copper) !important; background-repeat: no-repeat !important; background-position: center !important; background-size: cover !important; }",
   "body .wild-home.wild-legal-home .wild-legal-section, body .wild-subpage .wild-subpage-section, body footer.discordSection { background-color: transparent !important; background-image: none !important; }",
-  "body .wild-home #signature-work .wild-signature-title__one { display: block; color: #f7d9a5 !important; -webkit-text-fill-color: #f7d9a5 !important; }",
-  "body .wild-home #signature-work .wild-signature-title__two { display: block; color: #e8b66d !important; -webkit-text-fill-color: #e8b66d !important; }",
-  "body .wild-home #signature-work .wild-signature-title__three { display: block; color: #c87936 !important; -webkit-text-fill-color: #c87936 !important; }",
+  "body .wild-home #signature-work .wild-signature-title__one { display: block; color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; }",
+  "body .wild-home #signature-work .wild-signature-title__two { display: block; color: #f1bf75 !important; -webkit-text-fill-color: #f1bf75 !important; }",
+  "body .wild-home #signature-work .wild-signature-title__three { display: block; color: #d5823a !important; -webkit-text-fill-color: #d5823a !important; }",
 ];
 
 const forbidden = [
@@ -83,12 +83,12 @@ const layoutRequired = [
   'import "./legal-white-lock.css";',
   'import "./H132-legal-document-pure-white.css";',
   'id="wildworks-body"',
-  '--ww-page-base-copper: #983e17 !important;',
-  '--ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;',
-  '--ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;',
+  '--ww-page-base-copper: var(--ww-primary) !important;',
+  '--ww-center-column-glimmer: var(--ww-approved-center-light) !important;',
+  '--ww-center-gold-fade: var(--ww-center-column-glimmer) !important;',
   'body .wild-site-backdrop { background: var(--ww-page-background) !important;',
   'body .wild-home.wild-legal-home .wild-legal-section, body .wild-subpage .wild-subpage-section, body footer.discordSection { background-color: transparent !important; background-image: none !important;',
-  'themeColor: "#913f16",',
+  'themeColor: "#9f4719",',
 ];
 const missingLayout = layoutRequired.filter((needle) => !compactLayout.includes(needle));
 // G 2026-08-05: mobile must use the exact desktop copper recipe. A responsive
@@ -105,9 +105,9 @@ const staleGoldStandard = forbiddenGoldStandard.filter((needle) => compactGoldSt
 const referenceRequired = [
   "--ww-reference-a: #983e17;",
   "--ww-reference-b: #c85a24;",
-  "--ww-color-1: #f7d9a5 !important;",
-  "--ww-color-2: #e8b66d !important;",
-  "--ww-color-3: #c87936 !important;",
+  "--ww-color-1: #fce0ad !important;",
+  "--ww-color-2: #f1bf75 !important;",
+  "--ww-color-3: #d5823a !important;",
 ];
 const missingReference = referenceRequired.filter((needle) => !compactReferenceLock.includes(needle));
 const cardSurfaceRequired = [
@@ -117,13 +117,13 @@ const cardSurfaceRequired = [
 ];
 const missingCardSurface = cardSurfaceRequired.filter((needle) => !compactCardSurfaceLock.includes(needle));
 const legalPaletteRequired = [
-  "--ww-legal-print-lock: #f7d9a5;",
+  "--ww-legal-print-lock: #fce0ad;",
   "html body#wildworks-body#wildworks-body:has(.wild-legal-home) *",
   "color: var(--ww-legal-print-lock) !important;",
   "-webkit-text-fill-color: var(--ww-legal-print-lock) !important;",
   "H129-legal-text-match-public-site.css",
-  "color: #f7d9a5 !important;",
-  "color: #e8b66d !important;",
+  "color: #fce0ad !important;",
+  "color: #f1bf75 !important;",
   "color: #7d2f20 !important;",
 ];
 const missingLegalPalette = legalPaletteRequired.filter(

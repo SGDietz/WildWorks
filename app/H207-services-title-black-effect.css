@@ -1,0 +1,26 @@
+/* H207: G 2026-08-13 (Screenshot 2026-08-13 211906.png)
+   Only Home #services title lines. Copy the SERVICES kicker's black
+   construction onto "What WildWorks" / "is Known for:".
+   No color. No size. No cards. No other sections. */
+
+html
+  body#wildworks-body
+  #top.wild-home
+  #services
+  > .wild-section-heading
+  > .wild-section-title
+  .wild-line-title__line,
+html
+  body#wildworks-body
+  #top.wild-home
+  #services
+  > .wild-section-heading
+  > .wild-section-title
+  .wild-line-title__line
+  * {
+  filter: none !important;
+  text-shadow:
+    0 clamp(1px, 0.04em, 3px) 0 #000,
+    0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000,
+    0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) rgba(0, 0, 0, 0.82) !important;
+}

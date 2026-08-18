@@ -1,0 +1,21 @@
+/* H229: Projects has one contact card, not an orange shell around a second card. */
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer
+  .wild-signup-system {
+  width: min(100%, 34rem) !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer
+  .wild-signup-panel {
+  width: 100% !important;
+}

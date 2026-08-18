@@ -1,0 +1,27 @@
+/* H161: G's phone review only. Adjust the two named hero lines and the first
+   Home phone invitation without changing any tablet or desktop rendering. */
+
+@media (max-width: 640px) {
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home .wild-hero.discordSection
+    .wild-hero-copy .wild-hero-lede-line--beautiful {
+    font-size: calc(clamp(1.24rem, 5.9vw, 1.62rem) - 3pt) !important;
+  }
+
+  html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home .wild-hero.discordSection .wild-hero-lede-line:nth-child(3) {
+    font-size: calc(clamp(0.94rem, 3.9vw, 1.42rem) + 8px - 1pt) !important;
+  }
+
+  html body#wildworks-body #top.wild-home .wild-phone-number-line--home-hero {
+    margin-top: 0.9rem !important;
+  }
+
+  html body#wildworks-body #top.wild-home
+    .wild-phone-number-line--home-hero
+    .wild-phone-number-line__call-today {
+    font-size: calc(clamp(1.55rem, 6vw, 1.9rem) + 1rem + 1pt) !important;
+  }
+}

@@ -1,0 +1,37 @@
+/* H157 — Sitewide action-button shape lock.
+   Keep every normal CTA/action control rectangular with the same approved
+   8px corners. Purpose-built circular controls (mobile menu, compact mobile
+   contact icons, carousel controls, avatar controls) and linked content cards
+   intentionally remain outside this selector. */
+
+html
+  body#wildworks-body
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-home-phone-iscott-test__button,
+    button.wild-home-phone-iscott-test__button,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-contact-cta__actions a,
+    .wild-footer-contact-cta__actions button,
+    .wildfire-phase-bar button
+  ) {
+  border-radius: var(--ww-action-button-radius, 8px) !important;
+}
+
+/* The shared large iScott CTA has an older two-ID responsive rule. Match its
+   intended surfaces explicitly so the sitewide shape lock wins without
+   touching unrelated linked cards or circular controls. */
+html
+  body#wildworks-body
+  :is(#top#top, #footer#footer)
+  a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button {
+  border-radius: 8px !important;
+}

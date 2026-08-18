@@ -1,0 +1,250 @@
+/* H184: G 2026-08-13 — every route's final footer contact block clones the
+   approved first-Home contact treatment. Shared Footer.tsx already renders
+   Talk first, then phone, then Call Today; this last-import lock standardizes
+   the material, scale, ink, effects, and rhythm on public and legal routes. */
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group {
+  display: flex !important;
+  width: 100% !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(1.2rem, 2vw, 1.75rem) !important;
+  margin: 0 !important;
+  padding: clamp(2rem, 3.6vw, 3rem) 1rem 0 !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  > .wild-home-phone-iscott-test--footer-closing {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button {
+  display: flex !important;
+  width: min(100%, 38rem) !important;
+  min-width: 0 !important;
+  min-height: 6.5rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  padding: 1rem 3rem !important;
+  border: 1px solid rgba(246, 211, 154, 0.36) !important;
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+  box-shadow:
+    0 16px 42px rgba(20, 7, 1, 0.42),
+    0 0 24px rgba(224, 168, 90, 0.18),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  font-size: 3.25rem !important;
+  font-weight: 750 !important;
+  letter-spacing: normal !important;
+  line-height: 1 !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  color: #7d2f20 !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5px !important;
+  filter:
+    drop-shadow(0 1.3px 0 rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2px 0.42px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 2.7px 1.25px rgba(0, 0, 0, 0.273)) !important;
+}
+
+/* Legacy public-route and legal-route locks carry intentionally extreme
+   specificity. This equally explicit final-footer authority is confined to
+   the one shared closing control. */
+html:not(#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button {
+  border-radius: 14px !important;
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html:not(#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+}
+
+html:not(#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  text-shadow: none !important;
+}
+
+html:not(#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-phone-iscott-group
+  .wild-home-phone-iscott-test--footer-closing
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: currentColor !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  > .wild-phone-number-line--footer-closing {
+  width: 100% !important;
+  margin: 0 !important;
+  padding-inline: 1.5rem !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  > .wild-phone-number-line--footer-closing
+  > a {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif !important;
+  font-size: clamp(3.6rem, 6.85vw, 7.8rem) !important;
+  font-weight: 700 !important;
+  line-height: 0.98 !important;
+  letter-spacing: clamp(0.12em, 0.62vw, 0.3em) !important;
+  /* G 2026-08-17 (H260/H261 intent): the All Stonework letter effect on the
+     footer phone, Home AND every subpage. The old per-page variable resolved
+     to a flat small stack off Home, so the winning declaration now carries the
+     Stonework stack itself. Home is unchanged - this is the same stack Home
+     already resolved. */
+  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #000000d1 !important;
+}
+
+html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+  > .wild-phone-number-line--footer-closing
+  .wild-phone-number-line__call-today {
+  margin-top: clamp(0.32rem, 0.8vw, 0.62rem) !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
+  font-family: var(--font-playfair), var(--font-serif), Georgia, serif !important;
+  font-size: clamp(3.2rem, 6.05vw, 5.85rem) !important;
+  font-weight: 700 !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0.025em !important;
+  /* Same Stonework stack as the phone line above - one look on all pages. */
+  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #000000d1 !important;
+}
+
+@media (max-width: 640px) {
+  html body#wildworks-body footer#footer .wild-footer-phone-iscott-group {
+    gap: 0.75rem !important;
+    padding-top: 2rem !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+    .wild-home-phone-iscott-test--footer-closing
+    > a.wild-home-phone-iscott-test__button {
+    width: min(100%, 18.75rem) !important;
+    min-height: 5rem !important;
+    gap: 0.65rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html:not(#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock#ww-h184-footer-lock)
+    body#wildworks-body
+    footer#footer
+    .wild-footer-phone-iscott-group
+    .wild-home-phone-iscott-test--footer-closing
+    > a.wild-home-phone-iscott-test__button {
+    min-height: 5rem !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 12px !important;
+    font-size: 2.125rem !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+    .wild-home-phone-iscott-test--footer-closing
+    > a.wild-home-phone-iscott-test__button
+    > svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+    > .wild-phone-number-line--footer-closing
+    > a {
+    font-size: clamp(2.6rem, 9.65vw, 3.65rem) !important;
+    letter-spacing: clamp(0.04em, 0.5vw, 0.095em) !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+    > .wild-phone-number-line--footer-closing
+    .wild-phone-number-line__call-today {
+    font-size: calc(clamp(1.55rem, 6vw, 1.9rem) + 1rem + 1pt) !important;
+  }
+
+  /* G: the two wrapped legal-link rows should read as one compact unit, with
+     a deliberate breath separating that unit from the copyright line. */
+  html body#wildworks-body footer#footer .wild-footer-final-region
+    .wild-footer-closing.wild-footer-closing
+    > span {
+    margin-top: 2.35rem !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-final-region
+    .wild-footer-legal-row.wild-footer-legal-row {
+    margin-top: 0.55rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0.45rem !important;
+  }
+
+  html body#wildworks-body footer#footer .wild-footer-final-region
+    .wild-footer-legal-links {
+    row-gap: 0.05rem !important;
+  }
+
+  /* Final mobile rhythm authority: copyright gets a clear pause before the
+     legal unit, while its two wrapped rows stay visually close together. */
+  html:not(#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap#ww-h184-legal-gap)
+    body#wildworks-body
+    footer#footer
+    .wild-footer-final-region
+    .wild-footer-legal-row.wild-footer-legal-row {
+    margin-top: 0.75rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0.45rem !important;
+  }
+
+  html:not(#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines#ww-h184-legal-lines)
+    body#wildworks-body
+    footer#footer
+    .wild-footer-final-region
+    .wild-footer-legal-links {
+    row-gap: 0.1rem !important;
+  }
+}

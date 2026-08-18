@@ -1,5 +1,5 @@
-/* H119: Option 4 three-color trial for the top third of Home only.
-   Color 1 stays #f7d9a5. Color 2 stays #e8b66d and Color 3 becomes #f2cb58
+/* H119: Approved three-text-color sequence for the top third of Home only.
+   Color 1 stays #fce0ad. Color 2 stays #f1bf75 and Color 3 is #d5823a
    in the hero, iScott, and Project Wildfire. The middle/lower Home sections
    and every other route keep their existing colors. */
 
@@ -20,8 +20,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
     #project-wildfire .wild-wildfire-build-note__line--lead,
     #project-wildfire .ww-c1
   ) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -40,8 +40,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
     #project-wildfire .wild-wildfire-build-note__line--middle,
     #project-wildfire .ww-c2
   ) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -59,8 +59,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
     #project-wildfire .wild-wildfire-build-note__line--close,
     #project-wildfire .ww-c3
   ) {
-  color: #f2cb58 !important;
-  -webkit-text-fill-color: #f2cb58 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
 }
 
 @media (max-width: 719px) {
@@ -73,8 +73,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
       .wild-hero .wild-hero-lede-line:nth-child(3),
       .wild-hero .wild-hero-lede-line:nth-child(3) *
     ) {
-    color: #f2cb58 !important;
-    -webkit-text-fill-color: #f2cb58 !important;
+    color: #d5823a !important;
+    -webkit-text-fill-color: #d5823a !important;
     background: none !important;
     background-image: none !important;
   }

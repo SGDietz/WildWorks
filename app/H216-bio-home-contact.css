@@ -1,0 +1,24 @@
+/* H216: Bio contact seam only. The shared H214-H216 stylesheet owns the
+   approved phone/Talk geometry so this route cannot drift from the others. */
+
+html:has(.wild-subpage--bio) body#wildworks-body footer#footer {
+  margin-top: 0 !important;
+}
+
+html:has(.wild-subpage--bio)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-main {
+  padding-top: 0 !important;
+}
+
+html:has(.wild-subpage--bio)
+  body#wildworks-body
+  footer#footer
+  .wild-signup-system,
+html:has(.wild-subpage--bio)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-contact-cta {
+  margin-top: 0 !important;
+}

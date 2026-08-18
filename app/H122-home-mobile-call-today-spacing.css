@@ -3,9 +3,9 @@
   html body#wildworks-body #top.wild-home
     .wild-phone-number-line--home-hero
     .wild-phone-number-line__call-today {
-    margin-top: 0.7rem !important;
-    margin-bottom: 1.35rem !important;
-    font-size: clamp(1.55rem, 6vw, 1.9rem) !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.6rem !important;
+    font-size: calc(clamp(1.55rem, 6vw, 1.9rem) + 1rem) !important;
     line-height: 1.05 !important;
   }
 

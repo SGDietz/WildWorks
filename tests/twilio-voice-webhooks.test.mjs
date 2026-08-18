@@ -30,6 +30,7 @@ import {
 } from "../src/lib/voiceEventSecurity.ts";
 import {
   isVoiceEmailOutboxRowDue,
+  voiceEmailConfigurationFailurePatch,
   voiceEmailRetryDelayMs,
 } from "../src/lib/voiceEmailOutboxPolicy.ts";
 import {
@@ -126,6 +127,13 @@ test("event readiness fails closed unless the complete production voice env is p
     voiceRuntimeEnvironmentReady({
       ...complete,
       TWILIO_VOICE_PUBLIC_BASE_URL: "https://example.com",
+    }),
+    false,
+  );
+  assert.equal(
+    voiceRuntimeEnvironmentReady({
+      ...complete,
+      RESEND_FROM_EMAIL: "notifications@isolveurproblems.ai",
     }),
     false,
   );
@@ -384,6 +392,24 @@ test("outbox retry eligibility recovers expired leases with bounded backoff", ()
   assert.equal(isVoiceEmailOutboxRowDue({ status: "sending", updated_at: "2026-08-01T11:59:30.000Z", lease_expires_at: "2026-08-01T11:59:59.000Z", next_attempt_at: null }, now), true);
   assert.equal(isVoiceEmailOutboxRowDue({ status: "sending", updated_at: "2026-08-01T11:59:30.000Z", lease_expires_at: "2026-08-01T12:04:00.000Z", next_attempt_at: null }, now), false);
   assert.ok(voiceEmailRetryDelayMs(20) <= 6 * 60 * 60 * 1000);
+});
+
+test("sender configuration failures release the lease for bounded recovery", () => {
+  const now = Date.parse("2026-08-13T23:00:00.000Z");
+  assert.deepEqual(
+    voiceEmailConfigurationFailurePatch(
+      2,
+      "wildworks_sender_domain_mismatch",
+      now,
+    ),
+    {
+      status: "failed",
+      last_error: "wildworks_sender_domain_mismatch",
+      lease_token: null,
+      lease_expires_at: null,
+      next_attempt_at: "2026-08-13T23:01:00.000Z",
+    },
+  );
 });
 
 test("voicemail completion ends the call without dialing a phone", { concurrency: false }, () => {

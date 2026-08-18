@@ -1,0 +1,182 @@
+/* H221: G-approved five-color authority, sitewide.
+   Primary #9f4719; Card #c56222; Text 1 #fce0ad;
+   Text 2 #f1bf75; Text 3 #d5823a.
+
+   Color drift only: pale-gold button material, black shadows, translucent
+   borders, photographic overlays, control gradients, opacity, and hover
+   effects remain owned by their existing component rules. */
+
+:root {
+  --ww-primary: #9f4719 !important;
+  --ww-card: #c56222 !important;
+  --ww-text-1: #fce0ad !important;
+  --ww-text-2: #f1bf75 !important;
+  --ww-text-3: #d5823a !important;
+  --ww-approved-center-light: linear-gradient(90deg, var(--ww-primary) 0%, var(--ww-primary) 18%, var(--ww-card) 50%, var(--ww-primary) 82%, var(--ww-primary) 100%) !important;
+
+  --ww-home-hdr-primary: var(--ww-primary) !important;
+  --ww-home-hdr-secondary: var(--ww-card) !important;
+  --ww-home-hdr-text-1: var(--ww-text-1) !important;
+  --ww-home-hdr-text-2: var(--ww-text-2) !important;
+  --ww-home-hdr-text-3: var(--ww-text-3) !important;
+  --ww-page-base-copper: var(--ww-primary) !important;
+  --ww-public-salmon-canvas: var(--ww-primary) !important;
+  --ww-page-flat: var(--ww-primary) !important;
+  --ww-color-a: var(--ww-primary) !important;
+  --ww-ab-a: var(--ww-primary) !important;
+  --ww-solid-a: var(--ww-primary) !important;
+  --ww-reference-a: var(--ww-primary) !important;
+  --ww-reference-page: var(--ww-primary) !important;
+  --ww-reference-mobile-page: var(--ww-primary) !important;
+  --ww-card-flat: var(--ww-card) !important;
+  --ww-card-finish: var(--ww-card) !important;
+  --ww-color-b: var(--ww-card) !important;
+  --ww-ab-b: var(--ww-card) !important;
+  --ww-solid-b: var(--ww-card) !important;
+  --ww-reference-b: var(--ww-card) !important;
+  --ww-reference-card: var(--ww-card) !important;
+  --ww-color-1: var(--ww-text-1) !important;
+  --ww-title-1: var(--ww-text-1) !important;
+  --ww-home-heading-color-1: var(--ww-text-1) !important;
+  --ww-color-2: var(--ww-text-2) !important;
+  --ww-title-2: var(--ww-text-2) !important;
+  --ww-home-heading-color-2: var(--ww-text-2) !important;
+  --ww-color-3: var(--ww-text-3) !important;
+  --ww-title-3: var(--ww-text-3) !important;
+  --ww-home-heading-color-3: var(--ww-text-3) !important;
+  --ww-center-column-glimmer: var(--ww-approved-center-light) !important;
+  --ww-center-gold-fade: var(--ww-approved-center-light) !important;
+  --ww-page-background: var(--ww-approved-center-light) !important;
+  --ww-home-page-background: var(--ww-approved-center-light) !important;
+  --ww-soft-field: var(--ww-approved-center-light) !important;
+  --ww-soft-field-warm: var(--ww-approved-center-light) !important;
+}
+
+/* One shared canvas prevents route-width wrappers exposing rectangular seams. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(#wild-site-backdrop.wild-site-backdrop, .wild-site-header, footer.discordSection) {
+  background: var(--ww-approved-center-light) !important;
+  background-color: var(--ww-primary) !important;
+  background-image: var(--ww-approved-center-light) !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+html body#wildworks-body :is(.wild-home, .wild-subpage, .wild-legal-section, .wild-subpage-section),
+html body#wildworks-body footer.discordSection :is(.wild-footer-main, .wild-signup-system, .wild-footer-final-region, .wild-footer-closing-region--a) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* True panels only; media and photographic frames are deliberately excluded. */
+html body#wildworks-body :is(
+  .money-panel,
+  .wild-card,
+  .wild-answer-card,
+  .wild-stat,
+  .wild-project-card,
+  .wild-story-card:not(.wild-story-card--featureSell),
+  .wild-process-step,
+  .wild-site-offer-card,
+  .wild-ai-card,
+  .wild-ai-capability-card,
+  .wild-ai-panel,
+  .wild-identity-card,
+  .wild-iscott-panel,
+  .wild-home-statement,
+  .wild-final-cta-inner,
+  .wild-wildfire-inspiration-card,
+  .wild-signup-panel,
+  .wild-travel-panel,
+  .wild-footer-contact-cta,
+  .wild-legal-card,
+  .wild-legal-index-card,
+  .wild-legal-topbar
+) {
+  background-color: var(--ww-card) !important;
+}
+
+html body#wildworks-body :is(.ww-c1, .ww-c1 *) {
+  color: var(--ww-text-1) !important;
+  -webkit-text-fill-color: var(--ww-text-1) !important;
+}
+html body#wildworks-body :is(.ww-c2, .ww-c2 *) {
+  color: var(--ww-text-2) !important;
+  -webkit-text-fill-color: var(--ww-text-2) !important;
+}
+html body#wildworks-body :is(.ww-c3, .ww-c3 *) {
+  color: var(--ww-text-3) !important;
+  -webkit-text-fill-color: var(--ww-text-3) !important;
+}
+
+/* Legal document hierarchy: Text 1 body; Text 2 headings/emphasis. */
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-legal-home :is(p, li, dd, dt, label, small, time, address) {
+  color: var(--ww-text-1) !important;
+  -webkit-text-fill-color: var(--ww-text-1) !important;
+}
+html:has(.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-legal-home :is(h1, h2, h3, h4, a, strong, em) {
+  color: var(--ww-text-2) !important;
+  -webkit-text-fill-color: var(--ww-text-2) !important;
+}
+
+html body#wildworks-body footer#footer :is(.wild-phone-number-line__number, .wild-footer-copyright, .wild-footer-legal-link) {
+  color: var(--ww-text-1) !important;
+  -webkit-text-fill-color: var(--ww-text-1) !important;
+}
+html body#wildworks-body footer#footer :is(.wild-phone-number-line__call-today, .wild-footer-stonework-note, .wild-footer-quote, .wild-footer-attribution) {
+  color: var(--ww-text-2) !important;
+  -webkit-text-fill-color: var(--ww-text-2) !important;
+}
+
+/* Mobile Ruins: each adjacent B sequence reads as one contained narrative
+   card, with Primary gutters and separate contact/signup card boundaries. */
+@media (max-width: 719px) {
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins {
+    background: transparent !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-color-band.ruins-tone--b {
+    width: calc(100% - 2rem) !important;
+    margin: 0 auto !important;
+    padding-inline: clamp(1rem, 5vw, 1.5rem) !important;
+    background: var(--ww-card) !important;
+    background-color: var(--ww-card) !important;
+    background-image: none !important;
+    border-inline: 1px solid rgb(252 224 173 / 35%) !important;
+    border-radius: 0 !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .wild-ruins-home-contact + .ruins-tone--b {
+    margin-top: 1rem !important;
+    border-top: 1px solid rgb(252 224 173 / 35%) !important;
+    border-radius: 1.1rem 1.1rem 0 0 !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b:has(+ .wild-ruins-home-contact) {
+    margin-bottom: 1.25rem !important;
+    border-bottom: 1px solid rgb(252 224 173 / 35%) !important;
+    border-radius: 0 0 1.1rem 1.1rem !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(h2, h3, h4) {
+    color: var(--ww-text-2) !important;
+    -webkit-text-fill-color: var(--ww-text-2) !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(p, li, strong, em) {
+    color: var(--ww-text-1) !important;
+    -webkit-text-fill-color: var(--ww-text-1) !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .wild-ruins-home-contact {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+}

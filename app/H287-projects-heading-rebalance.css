@@ -1,0 +1,21 @@
+/* H287: WildWorks Projects still a little too heavy. Wild by design still a little light.
+   G 2026-08-17 13:06. Beats H269. These two lines only.
+
+   Learned from today's notes:
+   - Big cream titles need a lighter drop than they look like they need.
+   - Smaller / darker lines need more drop or they go flat.
+   - Dark orange (color-3) reads heavier — give it less shadow, not more.
+   - Never strip a kicker to nothing. Never use the 5px four-stop stack.
+   - "A little" = a small step. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__title * {
+  filter: none !important;
+  text-shadow: 0 0.5px 0 rgba(35, 9, 2, 0.55), 0 1.15px 0 rgba(25, 6, 1, 0.32) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline * {
+  filter: none !important;
+  text-shadow: 0 1.2px 0 rgba(35, 9, 2, 0.86), 0 2.6px 0 rgba(25, 6, 1, 0.58) !important;
+}

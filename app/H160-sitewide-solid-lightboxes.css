@@ -1,0 +1,60 @@
+/* H160: one uninterrupted primary field for every expanded-image view.
+   Titles and controls remain usable, but no header, stage, or image frame
+   presents as a separate box. */
+
+html body#wildworks-body
+  :is(
+    .wild-image-lightbox,
+    .wildfire-lightbox,
+    .wild-branded-lightbox
+  ).discordSection--lightbox {
+  background: #9f4719 !important;
+  background-color: #9f4719 !important;
+  background-image: none !important;
+}
+
+html body#wildworks-body
+  :is(
+    .wild-image-lightbox__bar,
+    .wildfire-lightbox-bar,
+    .wild-branded-lightbox-bar,
+    .wild-image-lightbox__stage,
+    .wildfire-lightbox-image,
+    .wild-branded-lightbox-stage
+  ) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #9f4719 !important;
+  background-color: #9f4719 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body#wildworks-body
+  :is(
+    .wild-image-lightbox__bar,
+    .wildfire-lightbox-bar,
+    .wild-branded-lightbox-bar
+  ) {
+  margin-bottom: 0 !important;
+}
+
+html body#wildworks-body
+  :is(
+    .wild-image-lightbox__stage,
+    .wildfire-lightbox-image,
+    .wild-branded-lightbox-stage
+  ) {
+  padding: 0 !important;
+}
+
+html body#wildworks-body
+  :is(
+    .wild-image-lightbox__stage,
+    .wildfire-lightbox-image,
+    .wild-branded-lightbox-stage
+  ) img {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}

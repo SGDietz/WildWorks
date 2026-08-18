@@ -1,0 +1,33 @@
+/* H169: "Start with iScott" is one Color 2 heading.
+   G 2026-08-13 (Screenshot 2026-08-13 122823.png):
+   iScott must match Start with. Number two text color.
+   H168 last-import put .wild-start-title__name back on Color 3.
+   Home-only. Do not retouch other Color 3 lines. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales
+  #talk-to-iscott
+  .wild-start-title,
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales
+  #talk-to-iscott
+  .wild-start-title
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name),
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #iscott-sales
+  #talk-to-iscott
+  .wild-start-title
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name)
+  * {
+  color: var(--ww-home-heading-color-2, var(--ww-color-2, #f1bf75)) !important;
+  -webkit-text-fill-color: var(--ww-home-heading-color-2, var(--ww-color-2, #f1bf75)) !important;
+  background: none !important;
+  background-image: none !important;
+}
+

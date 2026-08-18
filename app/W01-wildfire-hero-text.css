@@ -1,0 +1,77 @@
+/* W01: Wildfire page hero text. Page-scoped, minimal.
+
+   Every rule is gated by .wild-subpage--wildfire, twice, so nothing here can
+   reach Home or any other subpage.
+
+   Reference is The Ideal's four-stop warm ladder
+   (0 .8px / 2px / 3.5px / 5px, alphas .98/.90/.82/.68), x=0, blur=0.
+
+   MEASURED MISSES on the live Wildfire page:
+     .wildfire-hero-kicker__cap     NO text-shadow rule at all (0 declarations)
+     .wildfire-hero-headline__line  var(--ww-home-copy-text-effect) @ 20 IDs
+                                    - resolves to a BLACK stack WITH BLUR
+     .wildfire-hero-summary__line   0 .04rem .18rem #050200a6,
+                                    0 .08rem .45rem #05020059
+                                    - BLACK, blurred, rem-based
+
+   All three are the black-blurred idiom, not the warm Ideal.
+
+   EXCLUDED, deliberately:
+     .wild-wildfire-photo-button          button
+     .wildfire-gallery-home-contact       contact/phone row
+     .wild-phone-number-line--home-footer phone
+     header, legal, and every Home selector
+     .wild-body on this page - see the note in the handoff; it is contested at
+     very high specificity and needs Chief's call rather than a guess. */
+
+/* SIZE-PROPORTIONAL 85% BASIS (G, final): The Ideal is the LARGE-HEADING
+   baseline. Vertical offsets scale with type size; alphas are held constant so
+   the straight-down character is identical at every size - dropping alphas on
+   small text is what made an earlier pass read as no effect at all.
+     display/h1 100%  sub-head 85%  card-head 75%  body 55%  caption 45%
+   Body copy therefore stays materially lighter than headings, and with blur=0
+   at these offsets it cannot smudge. Tiers used here: DISPLAY, SUB */
+
+
+/* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
+   each previous value. The Ideal measures
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+   so every new/unlocked text rule in this file now carries the single uniform
+   85% treatment:
+     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+   x=0 and blur=0 preserved. The Ideal and every locked element are absent from
+   this file and therefore unchanged. */
+
+
+/* G 2026-08-17: effect a little strong everywhere - every offset and alpha
+   in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
+   present in this file and are therefore unaffected. */
+
+
+/* Wildfire hero headline lines. Were inheriting a black blurred variable;
+   now the warm four-stop at headline weight. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-headline__line,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-headline__line--c1,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-headline__line--c2,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-headline__line--c3 {
+  filter: none !important;
+  text-shadow: 0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577);
+}
+
+/* Wildfire hero summary lines. Were a two-stop BLACK rem stack with blur
+   (.18rem and .45rem); now warm, hard, zero blur at body weight. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-summary__line,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-summary__line--c1,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-summary__line--c2,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-summary__line--c3 {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}
+
+/* Wildfire hero kicker cap. Had NO text-shadow rule at all - this is its
+   first effect. Kicker weight, matching the Home kicker treatment. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wildfire-hero-kicker__cap,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy .wild-kicker .wildfire-hero-kicker__cap {
+  filter: none !important;
+  text-shadow: 0 0.58px 0 rgba(35,9,2,0.833), 0 1.44px 0 rgba(30,8,2,0.767), 0 2.53px 0 rgba(25,6,1,0.697), 0 3.61px 0 rgba(25,6,1,0.577);
+}

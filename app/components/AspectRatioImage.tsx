@@ -10,6 +10,8 @@ type AspectRatioImageProps = Omit<ImageProps, "onLoad"> & {
   onLoad?: ImageProps["onLoad"];
   enlargeable?: boolean;
   lightboxTitle?: string;
+  lightboxClassName?: string;
+  lightboxZoomPan?: boolean;
 };
 
 /**
@@ -24,6 +26,8 @@ export default function AspectRatioImage({
   onLoad,
   enlargeable = true,
   lightboxTitle,
+  lightboxClassName,
+  lightboxZoomPan = false,
   ...rest
 }: AspectRatioImageProps) {
   const [aspectRatio, setAspectRatio] = useState<string>(DEFAULT_ASPECT);
@@ -66,6 +70,8 @@ export default function AspectRatioImage({
             src={src}
             alt={alt}
             title={lightboxTitle}
+            className={lightboxClassName}
+            zoomPan={lightboxZoomPan}
             onClose={() => setIsLightboxOpen(false)}
           />
         </>

@@ -8,7 +8,7 @@
   --ww-gold-shadow:
     0 18px 42px rgba(53, 17, 4, 0.28),
     inset 0 1px 0 rgba(255, 210, 145, 0.1);
-  --ww-color-1: #f7d9a5;
+  --ww-color-1: #fce0ad;
   --ww-card-love-fill: var(--ww-gold-fill);
   --ww-box-gradient: var(--ww-gold-fill);
   --ww-chip-gradient: var(--ww-gold-fill);
@@ -119,8 +119,8 @@ html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
   .wild-stat,
   .wild-project-card
 ) :is(h1, h2, h3, h4, p, li, span, a:not(.money-cta), em, strong, .wild-line-title__line, .wild-card-body, .money-panel-kicker) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
@@ -130,8 +130,8 @@ html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
 html body #top#top#top#top.wild-home #services .wild-card :is(h3, h3 .wild-line-title__line, p, li, span, strong, em, i),
 html body #top#top#top#top.wild-home #services .wild-card-icon,
 html body #top#top#top#top.wild-home #signature-work .wild-story-card--feature :is(h3, p, span, a:not(.money-cta), .ww-c1, .ww-c2, .ww-c3) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   opacity: 1 !important;
 }
 
@@ -143,13 +143,13 @@ html body :is(.wild-home:not(.wild-legal-home), .wild-subpage) :is(
   .wild-subpage-section li
 ),
 html body :is(.wild-nav-link, .wild-mobile-nav-link) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins .ruins-tone--b.ruins-tone--b .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, p, li, strong, em, i, span, a) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   opacity: 1 !important;
 }
 
@@ -166,8 +166,8 @@ html body #top#top#top#top#top#top#top#top.wild-home .wild-home-statement.wild-h
 
 html body #top#top#top#top.wild-home .wild-home-statement__line--one,
 html body #top#top#top#top.wild-home .wild-home-statement__line--one :is(span, .wild-home-statement__phrase) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   background: none !important;
   background-image: none !important;
   opacity: 1 !important;
@@ -176,8 +176,8 @@ html body #top#top#top#top.wild-home .wild-home-statement__line--one :is(span, .
 
 html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four),
 html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four) :is(span, .wild-home-statement__phrase) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   background: none !important;
   background-image: none !important;
   opacity: 1 !important;
@@ -228,7 +228,7 @@ html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::before 
 
 html body #top#top#top#top.wild-home .wild-home-statement__brand-lockup::after {
   z-index: 1 !important;
-  background: #f7d9a5 !important;
+  background: #fce0ad !important;
   opacity: 1 !important;
   filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
   transform: scale(var(--ww-brand-lockup-scale)) !important;
@@ -248,8 +248,8 @@ html body #top#top#top#top.wild-home #ai-websites .wild-kicker--framed {
   background: radial-gradient(circle at 32% 18%, rgba(247, 217, 165, 0.22), transparent 52%), linear-gradient(145deg, rgba(200, 121, 54, 0.42), rgba(119, 64, 24, 0.32)) !important;
   background-color: transparent !important;
   box-shadow: 0 0.6rem 1.4rem rgba(77, 28, 5, 0.16), inset 0 1px 0 rgba(255, 243, 213, 0.22) !important;
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   letter-spacing: 0.24em !important;
   text-transform: uppercase !important;
   font-weight: 700 !important;
@@ -380,7 +380,7 @@ html body :is(
   border-color: rgba(247, 217, 165, 0.74) !important;
   background:
     radial-gradient(circle at 34% 20%, rgba(255, 246, 214, 0.58), transparent 58%),
-    linear-gradient(180deg, #f9dfae 0%, #e8b66d 36%, #d37d3d 62%, #be5824 82%, #a94419 100%) !important;
+    linear-gradient(180deg, #f9dfae 0%, #f1bf75 36%, #d37d3d 62%, #be5824 82%, #a94419 100%) !important;
   color: var(--ww-button-ink) !important;
   -webkit-text-fill-color: var(--ww-button-ink) !important;
 }
@@ -444,8 +444,8 @@ html body .wild-subpage--bio.wild-subpage--bio
 html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
   .wild-tone--b.wild-tone--b
   .wild-subpage-section.wild-subpage-section :is(h1, h2, h3, p, li, strong, em, i, span, a) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   opacity: 1 !important;
   text-shadow: 0 1px 1px rgba(57, 20, 3, 0.4) !important;
 }
@@ -555,8 +555,8 @@ html body #top#top#top.wild-home #iscott-sales :is(
   .wild-start-title__start,
   .wild-start-title__with
 ) {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
   background-image: none !important;
 }
 
@@ -564,8 +564,8 @@ html body #top#top#top.wild-home #iscott-sales :is(
   .wild-start-title__name,
   .wild-iscott-privacy-link
 ) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
   background-image: none !important;
 }
 
@@ -824,18 +824,18 @@ html body .wild-subpage--wildfire .wildfire-hero-summary__line {
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-summary__line--c1 {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
@@ -895,13 +895,13 @@ html body #top#top#top.wild-home #project-wildfire
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
@@ -910,13 +910,13 @@ html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--go
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-build-note__line {
-  color: #f7d9a5 !important;
-  -webkit-text-fill-color: #f7d9a5 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(2) {
-  color: #e8b66d !important;
-  -webkit-text-fill-color: #e8b66d !important;
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(3) {

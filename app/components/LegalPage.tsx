@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import BrandText from "./BrandText";
+import LegalPageSwipeNavigation from "./LegalPageSwipeNavigation";
 import { legalNavItems } from "../lib/legalRoutes";
 
 type LegalSection = {
@@ -20,6 +21,7 @@ const lastUpdated = "July 31, 2026";
 export default function LegalPage({ pageKey, title, description, sections }: LegalPageProps) {
   return (
     <main className={`wild-home wild-legal-home min-h-screen${pageKey ? ` wild-legal-page--${pageKey}` : ""}`}>
+      <LegalPageSwipeNavigation />
       <section className="wild-section wild-legal-section discordSection discordSection--2">
         <div className="wild-legal-wrap mx-auto grid max-w-5xl gap-8 px-4 py-6 sm:px-6 lg:py-10">
           <nav className="wild-legal-topbar" aria-label="Legal navigation">

@@ -1,0 +1,34 @@
+/* H215, Chief-integrated: Projects receives the approved number + Talk pair
+   after the gallery. The gallery and footer keep their existing content and
+   cards; only the leftover field spacing is collapsed. */
+
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  .wild-subpage--projects
+  .wild-projects-gallery {
+  padding-bottom: 0 !important;
+}
+
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer {
+  margin-top: 0 !important;
+}
+
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-main {
+  padding-top: 0 !important;
+}
+
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer
+  .wild-signup-system,
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer
+  .wild-footer-contact-cta {
+  margin-top: 0 !important;
+}

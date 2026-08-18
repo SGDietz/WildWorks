@@ -1,0 +1,114 @@
+/* H300: the nine elements G has just re-opened. His latest instruction
+   overrides every earlier "perfect", "fine" or "already strong" label on these
+   exact elements, including "Then Came the Lounge" and the two build-note lines
+   I had been protecting by absence.
+
+   THE IDEAL, resolved correctly this time. Earlier files anchored on
+   0 1.15px / 2.55px. That value is real but GATED behind
+   .wild-story-card--feature, and the Ideal heading is not inside a feature card,
+   so it never applied there. What actually paints The Ideal is:
+
+     --ww-home-display-depth-strong
+     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6,
+     0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+
+   A FOUR-stop warm ladder reaching 5px, alphas .98 / .90 / .82 / .68, every stop
+   x=0 and blur=0. My two-stop-to-2.55px values were roughly a third of that
+   depth, which is exactly why G reads them as nothing.
+
+   Every value below is now a four-stop ladder on that model, scaled per element.
+   Still x = 0, blur = 0, no sideways spread, no scaling.
+
+   Note on G's "never use the 5px four-stop black stack": that ban is the BLACK
+   blurred stack (--ww-home-wordmark-text-effect, #000 with blur). The Ideal is a
+   WARM four-stop with zero blur. This file follows the Ideal, not the banned one.
+
+   26 IDs, so this supersedes H291 and every earlier file without any of them
+   being edited or removed.
+
+   UNTOUCHED: The Ideal itself, every phone number and phone text, all buttons
+   and controls, iScott is the / Front Door / Start with iScott, Project Wildfire,
+   Fireplace, Tree of Life, The Ruins, WildWorks Projects, Wild by design, and
+   every subpage. No wording, layout, colour, font or size is changed anywhere -
+   this file sets text-shadow, filter, transform and opacity only. */
+
+/* 1. "Then Came the Patio." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
+  filter: none !important;
+  text-shadow: 0 .8px 0 rgba(35,9,2,.98), 0 2px 0 rgba(30,8,2,.9), 0 3.5px 0 rgba(25,6,1,.82), 0 5px 0 rgba(25,6,1,.68) !important;
+}
+
+/* 2. "Then Came the Lounge." Previously locked as perfect and protected by
+   having no rule at all. G has re-opened it, so it now gets an explicit value
+   in line with the two lines around it. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
+  filter: none !important;
+  text-shadow: 0 .75px 0 rgba(35,9,2,.97), 0 1.8px 0 rgba(30,8,2,.88), 0 3.1px 0 rgba(25,6,1,.79), 0 4.4px 0 rgba(25,6,1,.65) !important;
+}
+
+/* 3. "Then We Just Kept Going." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+  filter: none !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,.96), 0 1.7px 0 rgba(30,8,2,.87), 0 2.9px 0 rgba(25,6,1,.78), 0 4.1px 0 rgba(25,6,1,.64) !important;
+}
+
+/* 4. "We Photographed Every Step of the" / "Build, from pre-Breaking Ground".
+   Previously left alone on G's "is good". Re-opened. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--lead,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--middle {
+  filter: none !important;
+  text-shadow: 0 .6px 0 rgba(35,9,2,.95), 0 1.4px 0 rgba(30,8,2,.86), 0 2.4px 0 rgba(25,6,1,.76), 0 3.4px 0 rgba(25,6,1,.62) !important;
+}
+
+/* 5. "Through the First Wood Fire." G had asked for this one LIGHTER earlier;
+   that was against the old faint baseline. Now raised with the rest, but kept
+   the lightest of this group so its relationship to the two lines above it is
+   preserved. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--close {
+  filter: none !important;
+  text-shadow: 0 .55px 0 rgba(35,9,2,.94), 0 1.3px 0 rgba(30,8,2,.85), 0 2.2px 0 rgba(25,6,1,.75), 0 3.1px 0 rgba(25,6,1,.6) !important;
+}
+
+/* 6. "Design at the Limits of Human Imagination." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--one,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--one .wild-home-statement__phrase {
+  filter: none !important;
+  text-shadow: 0 .8px 0 rgba(35,9,2,.98), 0 2px 0 rgba(30,8,2,.9), 0 3.5px 0 rgba(25,6,1,.82), 0 5px 0 rgba(25,6,1,.68) !important;
+}
+
+/* 7. "A Contractor that Faithfully Brings Those Designs to Life." */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--two,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--two .wild-home-statement__phrase {
+  filter: none !important;
+  text-shadow: 0 .8px 0 rgba(35,9,2,.97), 0 1.9px 0 rgba(30,8,2,.89), 0 3.3px 0 rgba(25,6,1,.8), 0 4.7px 0 rgba(25,6,1,.66) !important;
+}
+
+/* 9. "Where Fine Art Meets the Wild" */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--four {
+  filter: none !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,.96), 0 1.7px 0 rgba(30,8,2,.87), 0 2.9px 0 rgba(25,6,1,.78), 0 4.1px 0 rgba(25,6,1,.64) !important;
+}
+
+/* 8. The WildWorks wordmark AND scrollwork in that card.
+
+   This one is artwork, not text: one masked PNG drawn twice, a dark copy
+   (::before) beneath a cream face (::after). "Depth" here is the dark copy, so
+   text-shadow does nothing - opacity and offset are the controls.
+
+   It also still carries the defect from Chief's item 18: the dark copy is scaled
+   1.138 against a 1.133 face. Two different scales from a centre origin IS
+   sideways spread - zero at the centreline, growing toward both ends, which is
+   the same fault that was fixed on the header. G's instruction here is explicit
+   about no sideways spread and no scale, so the dark copy is set to the face's
+   own scale variable. The cream face, the mask, the mask position and the
+   scrollwork shape are all untouched.
+
+   Result: identical width and centreline, offset straight down only, and a
+   stronger dark copy so it reads at Ideal intensity. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__brand-lockup::before {
+  opacity: 0.95 !important;
+  transform: translateY(clamp(4px, 0.45vw, 6px)) scale(var(--ww-brand-lockup-scale)) !important;
+  transform-origin: center !important;
+  filter: none !important;
+}
+

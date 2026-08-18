@@ -1,0 +1,15 @@
+/* H265: Menu bar gets a nice middle letter-shadow on all 5 pages.
+   G 2026-08-17 10:39. Same family as the other heading work. Not the heavy
+   5px stack. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body header.wild-site-header a.wild-nav-link,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body header.wild-site-header a.wild-nav-link *,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-mobile-menu a.wild-mobile-nav-link,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-mobile-menu a.wild-mobile-nav-link * {
+  filter: none !important;
+  text-shadow: 0 0.7px 0 rgba(35, 9, 2, 0.78), 0 1.6px 0 rgba(25, 6, 1, 0.52) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body header.wild-site-header a.wild-nav-link--active {
+  box-shadow: 0 1px 0 rgba(35, 9, 2, 0.34), 0 2px 5px rgba(25, 6, 1, 0.16) !important;
+}

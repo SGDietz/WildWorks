@@ -1,0 +1,20 @@
+/* H185: G 2026-08-13 — keep the mobile menu almost edge-set so it clears the
+   WildWorks wordmark, and make every closing-footer number use the exact
+   Cambria face used by the approved Home-page phone number. */
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer
+  .wild-phone-number-line--footer-closing
+  > a {
+  font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+}
+
+@media (max-width: 500px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-trigger {
+    top: 6px !important;
+    left: 6px !important;
+  }
+}

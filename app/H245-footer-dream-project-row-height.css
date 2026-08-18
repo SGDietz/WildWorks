@@ -1,0 +1,11 @@
+/* H245: Keep the four controls in the shared Dream Project footer card level.
+   This deliberately excludes every other Talk to iScott and footer control. */
+@media (max-width: 640px) {
+  footer#footer.discordSection .wild-footer-contact-cta__actions {
+    --ww-mobile-talk-min-height: 58px;
+  }
+
+  body:has(#top.wild-home) footer#footer.discordSection .wild-footer-contact-cta__actions {
+    --ww-footer-dream-action-min-height: 3.5rem;
+  }
+}

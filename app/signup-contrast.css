@@ -3,7 +3,7 @@
 html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins),
 html body:has(.wild-subpage--sell):has(.wild-subpage--sell),
 html body:has(.wild-subpage--bio):has(.wild-subpage--bio) {
-  --ww-signup-readable-copy: #f7d9a5;
+  --ww-signup-readable-copy: #fce0ad;
 }
 
 html body:has(:is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio))

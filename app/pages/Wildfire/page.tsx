@@ -6,6 +6,11 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import ImageGallery from "../../components/ImageGallery";
+import HeldLightboxImage, { type LightboxDirection } from "../../components/HeldLightboxImage";
+import LargeIScottCta from "../../components/LargeIScottCta";
+import PhoneNumberLine from "../../components/PhoneNumberLine";
+import { useLightboxSwipe } from "../../lib/useLightboxSwipe";
+import { wildfireFinishedImages } from "../../lib/wildfireImages";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 28 },
@@ -18,49 +23,28 @@ const stagger = {
   },
 };
 
-const wildfireHeroImages = [
-  {
-    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
-    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
-    className: "wild-wildfire-photo--hero",
-  },
-  {
-    src: "/ww-wildfire-night-02-celtic-patio.jpg",
-    alt: "Project Wildfire Celtic cross patio and outdoor fireplace from above",
-    className: "wild-wildfire-photo--deck",
-  },
-  {
-    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
-    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
-    className: "wild-wildfire-photo--garden",
-  },
-  {
-    src: "/ww-wildfire-night-03-deck-fireplace.jpg",
-    alt: "Project Wildfire rooftop lounge and outdoor fireplace at night",
-    className: "wild-wildfire-photo--patio",
-  },
-  {
-    src: "/ww-wildfire-night-05-celtic-detail.jpg",
-    alt: "Project Wildfire Celtic cross patio stone detail",
-    className: "wild-wildfire-photo--detail",
-  },
-];
+const wildfireHeroImageIndex = 2;
+const wildfireHeroImage = wildfireFinishedImages[wildfireHeroImageIndex];
 
 export default function Wildfire() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const activeImage = lightboxIndex === null ? null : wildfireHeroImages[lightboxIndex] ?? null;
+  const [lightboxDirection, setLightboxDirection] = useState<LightboxDirection>("next");
+  const activeImage = lightboxIndex === null ? null : wildfireFinishedImages[lightboxIndex] ?? null;
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const showPreviousImage = useCallback(() => {
+    setLightboxDirection("previous");
     setLightboxIndex((current) =>
-      current === null ? current : (current - 1 + wildfireHeroImages.length) % wildfireHeroImages.length,
+      current === null ? current : (current - 1 + wildfireFinishedImages.length) % wildfireFinishedImages.length,
     );
   }, []);
   const showNextImage = useCallback(() => {
+    setLightboxDirection("next");
     setLightboxIndex((current) =>
-      current === null ? current : (current + 1) % wildfireHeroImages.length,
+      current === null ? current : (current + 1) % wildfireFinishedImages.length,
     );
   }, []);
+  const swipe = useLightboxSwipe(showPreviousImage, showNextImage, { handoff: "crossfade" });
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -89,12 +73,12 @@ export default function Wildfire() {
             radial-gradient(circle at 84% 50rem, rgba(255, 181, 82, 0.12), transparent 36rem),
             radial-gradient(
               ellipse 180% 122% at 50% 34%,
-              #8d5520 0%,
-              #874d1e 42%,
-              #804419 74%,
-              #793f16 100%
+              color-mix(in srgb, var(--ww-primary) 92%, white) 0%,
+              color-mix(in srgb, var(--ww-primary) 96%, white) 42%,
+              color-mix(in srgb, var(--ww-primary) 96%, black) 74%,
+              color-mix(in srgb, var(--ww-primary) 92%, black) 100%
             ),
-            #793f16 !important;
+            var(--ww-primary) !important;
           background: var(--ww-wildfire-page-background) !important;
           background-attachment: fixed !important;
           background-repeat: no-repeat !important;
@@ -118,37 +102,29 @@ export default function Wildfire() {
         initial="initial"
         animate="animate"
       >
-        <div className="wildfire-hero-mosaic wild-wildfire-spread">
-          {wildfireHeroImages.map((image, index) => (
-            <figure
-              key={image.src}
-              className={`wild-wildfire-photo ${image.className}`}
+        <motion.p className="wildfire-page-heading" variants={fadeInUp}>
+          <span className="wildfire-page-heading__project"><span className="wildfire-hero-kicker__cap">P</span>roject</span>{" "}
+          <span className="wildfire-page-heading__wildfire"><span className="wildfire-hero-kicker__cap">W</span>ildfire</span>
+        </motion.p>
+        <div className="wildfire-hero-single">
+          <figure className="wild-wildfire-photo wild-wildfire-photo--single-hero">
+            <button
+              type="button"
+              className="wild-wildfire-photo-button"
+              onClick={() => setLightboxIndex(wildfireHeroImageIndex)}
+              aria-label={`Enlarge ${wildfireHeroImage.alt}`}
             >
-              <button
-                type="button"
-                className="wild-wildfire-photo-button"
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`Enlarge ${image.alt}`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  priority={index === 0}
-                  sizes={
-                    image.className === "wild-wildfire-photo--hero"
-                      ? "(max-width: 899px) 100vw, 58vw"
-                      : "(max-width: 899px) 100vw, 34vw"
-                  }
-                />
-              </button>
-            </figure>
-          ))}
+              <Image
+                src={wildfireHeroImage.src}
+                alt={wildfireHeroImage.alt}
+                fill
+                priority
+                sizes="(max-width: 899px) 100vw, 92rem"
+              />
+            </button>
+          </figure>
         </div>
         <div className="wildfire-hero-copy">
-          <motion.p className="wild-kicker" variants={fadeInUp}>
-            Project Wildfire
-          </motion.p>
           <motion.h1 className="wildfire-hero-headline" variants={fadeInUp}>
             <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c1">A Complete Project Build</span>
             <span className="wildfire-hero-headline__line wildfire-hero-headline__line--c2">From Breaking Ground</span>
@@ -156,7 +132,7 @@ export default function Wildfire() {
           </motion.h1>
           <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
-              This is Not a Before-and-After Page. It is
+              This Is Not a Before-and-After Page. It Is
             </span>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
               a Full Build Record for an Outdoor Fireplace,
@@ -170,13 +146,13 @@ export default function Wildfire() {
 
       {activeImage && typeof document !== "undefined" ? createPortal(
         <div
-          className="wildfire-lightbox discordSection discordSection--lightbox"
+          className="wildfire-lightbox wild-projects-lightbox discordSection discordSection--lightbox"
           role="dialog"
           aria-modal="true"
           aria-label={activeImage.alt}
+          {...swipe}
         >
           <div className="wildfire-lightbox-bar">
-            <span>Project Wildfire {lightboxIndex! + 1} of {wildfireHeroImages.length}</span>
             <button type="button" onClick={closeLightbox} aria-label="Close enlarged image">
               <X aria-hidden className="h-5 w-5" />
             </button>
@@ -189,16 +165,7 @@ export default function Wildfire() {
           >
             <ChevronLeft aria-hidden className="h-6 w-6" />
           </button>
-          <div className="wildfire-lightbox-image">
-            <Image
-              src={activeImage.src}
-              alt={activeImage.alt}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              quality={92}
-            />
-          </div>
+          <HeldLightboxImage image={activeImage} direction={lightboxDirection} priority />
           <button
             type="button"
             className="wildfire-lightbox-nav wildfire-lightbox-nav--right"
@@ -212,6 +179,13 @@ export default function Wildfire() {
       ) : null}
 
       <ImageGallery />
+      <div className="wildfire-gallery-home-contact">
+        <PhoneNumberLine
+          className="wild-phone-number-line--home-footer"
+          showCallToday={false}
+        />
+        <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
+      </div>
     </div>
   );
 }

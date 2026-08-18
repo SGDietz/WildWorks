@@ -25,8 +25,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
     #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two,
     #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line--two *
   ) {
-  color: #c87936 !important;
-  -webkit-text-fill-color: #c87936 !important;
+  color: #d5823a !important;
+  -webkit-text-fill-color: #d5823a !important;
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;

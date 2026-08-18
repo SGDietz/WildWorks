@@ -1,0 +1,60 @@
+/* H303 REVISED: footer copy. Supersedes the first H303 - install this hash only.
+
+   G's revision:
+     - footer contact TITLE and KICKER stay at heading strength
+     - ONLY footer closing copy and the signup choice labels are halved, to
+       .3 / .68 / 1.15 / 1.6, with their existing alphas preserved
+
+   Alphas on the halved pair are unchanged at .96 / .88 / .78 / .64 - only the
+   vertical offsets moved. x = 0, blur = 0, four warm stops, no scaling.
+
+   Selectors and exclusions are identical to the first H303. Home-only, gated by
+   :has(#top#top.wild-home:not(.wild-legal-home)).
+
+   MEASURED BEFORE VALUES, live:
+     .wild-footer-contact-cta__title   0 2px 5px #2a0c02d1   ONE stop, 5px BLUR
+     .wild-footer-contact-cta__kicker  var(--ww-footer-title-shadow)
+     .wild-footer-closing              none
+     .wild-signup-choice               none
+
+   EXCLUDED, unchanged: .wild-footer-copyright, .wild-signup-consent,
+   .wild-footer-legal-link, .wild-footer-legal-row (legal); .money-cta,
+   .wild-footer-top-button (buttons); .wild-phone-number-line--footer-closing and
+   every wild-home-phone-iscott-test-* (phones); .wild-footer-stonework-note
+   (black clamp stack at very high specificity - flagged, not touched). */
+
+
+/* Footer contact CTA title - HEADING STRENGTH, unchanged from first H303.
+   Replaces a single stop with a 5px blur, the last blurred survivor here. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__title * {
+  filter: none !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,.97), 0 1.6px 0 rgba(30,8,2,.89), 0 2.7px 0 rgba(25,6,1,.8), 0 3.9px 0 rgba(25,6,1,.66) !important;
+}
+
+/* Footer contact CTA kicker - HEADING STRENGTH per G's revision, raised from
+   the body tier the first H303 gave it. Explicit value rather than editing
+   var(--ww-footer-title-shadow), which feeds other footer elements. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__kicker-line {
+  filter: none !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,.97), 0 1.6px 0 rgba(30,8,2,.89), 0 2.7px 0 rgba(25,6,1,.8), 0 3.9px 0 rgba(25,6,1,.66) !important;
+}
+
+/* Footer closing copy - HALVED to .3 / .68 / 1.15 / 1.6, alphas preserved.
+   Was text-shadow: none, so this is its first effect and it arrives already at
+   the halved small-copy strength rather than being applied then reduced. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-closing,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-closing p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-closing span {
+  filter: none !important;
+  text-shadow: 0 .3px 0 rgba(35,9,2,.96), 0 .68px 0 rgba(30,8,2,.88), 0 1.15px 0 rgba(25,6,1,.78), 0 1.6px 0 rgba(25,6,1,.64) !important;
+}
+
+/* Signup choice LABELS - HALVED, alphas preserved. Labels, not buttons; the
+   controls in that row (.money-cta, .wild-signup-action-row) are untouched. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-signup-choice,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-signup-choice span {
+  filter: none !important;
+  text-shadow: 0 .3px 0 rgba(35,9,2,.96), 0 .68px 0 rgba(30,8,2,.88), 0 1.15px 0 rgba(25,6,1,.78), 0 1.6px 0 rgba(25,6,1,.64) !important;
+}

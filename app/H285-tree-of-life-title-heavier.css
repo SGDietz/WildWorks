@@ -1,0 +1,13 @@
+/* H285: Tree of Life Natural Stone Patio title — a little heavier.
+   G 2026-08-17 13:06. Title only. Leave the body copy. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-tree-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #wildworks-proof .wild-tree-title :is(
+  .wild-line-title__line,
+  .wild-line-title__line--one,
+  .wild-line-title__line--two,
+  .wild-line-title__line--three
+) {
+  filter: none !important;
+  text-shadow: 0 1px 0 rgba(35, 9, 2, 0.8), 0 2.2px 0 rgba(25, 6, 1, 0.52) !important;
+}

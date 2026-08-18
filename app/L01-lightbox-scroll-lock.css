@@ -1,0 +1,72 @@
+/* L01: lightbox background scroll-lock. CSS-only, no component change.
+
+   DEFECT (G, iPad landscape): with a project picture open, finger gestures on the
+   picture still scroll the underlying page, including side-to-side movement.
+
+   DIAGNOSED CAUSE - two independent gaps:
+
+   1. `document.body.style.overflow = "hidden"` IS already set on open
+      (ImageGallery.tsx:60, ImageLightbox.tsx:45) and restored on close
+      (:70 / :55). On iPadOS Safari that alone does NOT stop touch scrolling -
+      the document keeps panning. This is the well-known iOS scroll-lock gap, and
+      it is why the existing lock looks correct in code but fails on the device.
+
+   2. `H217-lightbox-swipe.css:8` sets `touch-action: pan-y pinch-zoom` on the
+      viewer. `pan-y` explicitly hands vertical panning to the browser, which
+      then chains to the page behind. Nothing sets `overscroll-behavior`, so a
+      gesture that reaches either edge scrolls the document.
+
+   FIX - scoped entirely to "while a lightbox exists in the DOM", via :has().
+   The overlay only exists while open, so the lock applies exactly then and
+   releases the instant it closes. No JS, no component edit, no timing risk, and
+   normal scrolling returns immediately on close because the selector stops
+   matching.
+
+   PRESERVED, deliberately untouched:
+     - the image element keeps `touch-action: pan-y pinch-zoom` so intended
+       zoom / pan / swipe navigation still work
+     - previous / next controls, close controls, all lightbox buttons
+     - iScott, header, footer, every route other than where a lightbox opens
+     - all shadow work; this file sets no colour, shadow, font or spacing */
+
+/* Lock the document in BOTH axes while any lightbox is open. */
+html:has(.wild-projects-lightbox),
+html:has(.wild-projects-lightbox) body {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
+}
+
+/* Contain the gesture inside the viewer so it can never chain to the page.
+   Applied to the backdrop/shell, NOT to the image, so zoom and pan survive. */
+.wild-projects-lightbox,
+.wild-projects-lightbox > :not(img):not(picture) {
+  overscroll-behavior: contain !important;
+  touch-action: none !important;
+}
+
+/* Re-enable the intended gestures on the picture itself. This must come after
+   the container rule above so it wins on the image. */
+.wild-projects-lightbox img,
+.wild-projects-lightbox picture,
+.wild-projects-lightbox [data-lightbox-image],
+.wild-projects-lightbox .wildfire-lightbox-stage {
+  touch-action: pan-y pinch-zoom !important;
+  overscroll-behavior: contain !important;
+}
+
+/* Controls stay fully interactive - nav, close, and any button in the shell. */
+.wild-projects-lightbox button,
+.wild-projects-lightbox a,
+.wild-projects-lightbox .wildfire-lightbox-nav,
+.wild-projects-lightbox .wildfire-lightbox-bar {
+  touch-action: manipulation !important;
+  pointer-events: auto !important;
+}
+
+/* No horizontal page overflow at any of the five standard viewports while the
+   viewer is open. Vertical is already handled by the lock above. */
+html:has(.wild-projects-lightbox) body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}

@@ -1,0 +1,55 @@
+/* H241: G-authorized large Talk to iScott cleanup only.
+   The selector is deliberately limited to the shared large CTA component;
+   smaller Talk, Call, Text, Email, avatar, and other controls are untouched. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button {
+  filter: none !important;
+  box-shadow:
+    0 12px 28px rgba(16, 6, 1, 0.34),
+    0 0 18px rgba(224, 168, 90, 0.14),
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.38) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > span {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+/* Match the late Home/footer large-CTA authority exactly, then remove only
+   its inherited label and icon depth. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > span {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  :is(#top#top#top#top#top#top.wild-home, footer#footer#footer#footer#footer#footer#footer)
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button
+  > svg {
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  color: #7d2f20 !important;
+  stroke: #7d2f20 !important;
+  stroke-width: 2.1px !important;
+  filter: none !important;
+}

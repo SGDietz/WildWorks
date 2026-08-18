@@ -1,0 +1,45 @@
+/* H251: the Home-only legacy ink winner is unusually specific. Match its
+   scope rather than broadening the correction beyond the shared large CTA. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top.wild-home
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top.wild-home
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: #7d2f20 !important;
+}
+
+/* The old Home hero rule compounds artificial specificity. Keep the same
+   narrow Home + shared-large-component scope while exceeding that one winner. */
+html:not(#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink)
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > :is(span, svg) {
+  color: #7d2f20 !important;
+  -webkit-text-fill-color: #7d2f20 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+  filter: none !important;
+}
+
+html:not(#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink#ww-h251-return-ink)
+  body#wildworks-body
+  #top.wild-home
+  .wild-home-phone-iscott-test
+  > a.wild-home-phone-iscott-test__button
+  > svg {
+  stroke: #7d2f20 !important;
+}

@@ -1,0 +1,98 @@
+/* H231: copy the approved Home H172 glow to every route. H238 extends this
+   same 200-ID canonical prefix: body/chrome get the Home 12-stop; named
+   non-card wrappers/bands expose it. Ruins alone adds a transparent-center
+   edge shade. Cards, H226 Bio inner section, buttons, and controls are not
+   selected. */
+:root {
+  --ww-canonical-home-glow: linear-gradient(
+    90deg,
+    var(--ww-home-hdr-primary, #9f4719) 0%,
+    var(--ww-home-hdr-primary, #9f4719) 4%,
+    #aa4d1c 16%,
+    #b4521e 28%,
+    #b95620 38%,
+    #bc5720 44%,
+    #bc5720 56%,
+    #b95620 62%,
+    #b4521e 72%,
+    #aa4d1c 84%,
+    var(--ww-home-hdr-primary, #9f4719) 96%,
+    var(--ww-home-hdr-primary, #9f4719) 100%
+  );
+  --ww-canonical-route-glow: var(--ww-canonical-home-glow);
+}
+
+html:has(.wild-subpage--ruins) {
+  --ww-canonical-route-glow:
+    linear-gradient(
+      90deg,
+      rgb(49 16 5 / 13%) 0%,
+      transparent 24%,
+      transparent 76%,
+      rgb(49 16 5 / 13%) 100%
+    ),
+    var(--ww-canonical-home-glow);
+}
+
+html:has(.wild-subpage--wildfire):not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow) {
+  --ww-wildfire-page-background: var(--ww-canonical-home-glow);
+}
+
+/*
+ * 200 ID points make this one literal H172 glow declaration the cascade
+ * winner for every route's shared canvas, without altering cards or copy.
+ */
+html:not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow)
+  body#wildworks-body#wildworks-body#wildworks-body,
+html:not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow)
+  body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #wild-site-backdrop.wild-site-backdrop,
+    .wild-top-logo-band,
+    header.wild-site-header,
+    footer.discordSection,
+    footer#footer
+  ) {
+  background-color: var(--ww-home-hdr-primary, #9f4719) !important;
+  background-image: var(--ww-canonical-route-glow) !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+html:not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow)
+  body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #top.wild-home,
+    #top.wild-home.wild-legal-home,
+    .wild-home.wild-legal-home,
+    main.wild-home.wild-legal-home,
+    .wild-subpage,
+    .wild-subpage--wildfire,
+    .wild-subpage--ruins,
+    .wild-subpage--projects,
+    .wild-subpage--bio,
+    .wild-subpage--sell,
+    .wild-subpage-hero,
+    .wild-legal-section,
+    .wild-legal-wrap,
+    .wild-legal-hero,
+    .wild-bio-home-contact,
+    .wild-home-projects,
+    #project-wildfire,
+    .ruins-color-band.ruins-tone--a,
+    .ruins-color-band.ruins-tone--b,
+    .wild-ab-band.wild-tone--a,
+    .wild-ab-band.wild-tone--b,
+    .wild-footer-main,
+    .wild-footer-final-region,
+    .wild-footer-closing-region--a,
+    .wild-footer-contact-region,
+    .wild-footer-contact-region--a,
+    .wild-footer-mobile-strip,
+    .wild-signup-system
+  ) {
+  background-color: transparent !important;
+  background-image: none !important;
+}

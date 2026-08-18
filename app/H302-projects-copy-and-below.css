@@ -1,0 +1,56 @@
+/* H302: the Projects descriptive paragraphs G spotted, plus the remaining
+   uncovered non-button text below that section.
+
+   All values are the same four-stop warm ladder as The Ideal
+   (--ww-home-display-depth-strong: 0 .8px / 2px / 3.5px / 5px, alphas
+   .98/.90/.82/.68), scaled to each element. x = 0, blur = 0, no sideways
+   spread, no scaling.
+
+   28 IDs, so it supersedes everything earlier without any file being edited.
+
+   AUDIT RESULT for this pass - three elements had NO text-shadow rule at all,
+   which is why they read weaker than the four-stop system around them:
+     .wild-home-projects__capabilities  (0 declarations)  <- G's report
+     .wild-ai-card-title                (0 declarations)
+     .wild-ai-site-copy                 (0 declarations)
+
+   UNTOUCHED, verified: The Ideal, every phone number and phone text, all
+   buttons and controls, the whole approved iScott section including Start with
+   iScott and WILDWORKS CONCIERGE, the header, WildWorks Projects title, Wild by
+   design, and every subpage. Wording, layout, colour, font and size unchanged -
+   this file sets text-shadow and filter only. */
+
+/* G's report: the descriptive paragraphs in WildWorks Projects - Wild by
+   Design. Confirmed: .wild-home-projects__capabilities has ZERO text-shadow
+   declarations in the live CSS, and the paragraphs inside it are bare <p> with
+   no class of their own, so nothing in H301 could reach them. Body-copy ladder,
+   matching the Tree of Life narrative and the service-card copy.
+   The section TITLE and the "Wild by design" tagline are deliberately excluded -
+   both are approved and keep their current values. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #projects.wild-home-projects .wild-home-projects__capabilities p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #projects.wild-home-projects .wild-home-projects__capabilities span,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #projects.wild-home-projects .wild-home-projects__capabilities li {
+  filter: none !important;
+  text-shadow: 0 .6px 0 rgba(35,9,2,.96), 0 1.35px 0 rgba(30,8,2,.88), 0 2.3px 0 rgba(25,6,1,.78), 0 3.2px 0 rgba(25,6,1,.64) !important;
+}
+
+/* Below Projects: the AI-Native Websites offer copy. Same body ladder. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #ai-websites .wild-site-offer-copy,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #ai-websites .wild-site-offer-copy__line,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #ai-websites .wild-site-offer-copy p,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #ai-websites .wild-site-offer-copy span {
+  filter: none !important;
+  text-shadow: 0 .6px 0 rgba(35,9,2,.96), 0 1.35px 0 rgba(30,8,2,.88), 0 2.3px 0 rgba(25,6,1,.78), 0 3.2px 0 rgba(25,6,1,.64) !important;
+}
+
+/* The AI card title and the AI-Native Websites section heading. Both had no
+   effect of their own. Card-heading tier, a step under the full Ideal.
+   The framed kicker in this section already carries an effect and G has not
+   flagged it, so it is left alone. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home .wild-ai-card-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top.wild-home #ai-websites .wild-site-offer-heading .wild-section-title {
+  filter: none !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,.97), 0 1.6px 0 rgba(30,8,2,.89), 0 2.7px 0 rgba(25,6,1,.8), 0 3.9px 0 rgba(25,6,1,.66) !important;
+}
+
+

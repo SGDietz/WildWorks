@@ -1,0 +1,86 @@
+/* H220: Carry Home's primary-color center lightness across the site.
+   This only paints page-field surfaces behind existing components. Cards,
+   images, type, and layout remain independently styled. */
+:root {
+  --ww-h220-primary: #9f4719;
+  --ww-h220-card: #c56222;
+  --ww-h220-primary-lamp: linear-gradient(
+    90deg,
+    var(--ww-h220-primary) 0%,
+    var(--ww-h220-primary) 18%,
+    var(--ww-h220-card) 50%,
+    var(--ww-h220-primary) 82%,
+    var(--ww-h220-primary) 100%
+  );
+}
+
+/* Match the legacy canvas locks' high specificity so every route receives
+   one viewport-fixed primary field.  Deliberately exclude card selectors. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #wild-site-backdrop.wild-site-backdrop,
+    .wild-site-header,
+    .wild-top-logo-band,
+    .wild-home,
+    .wild-subpage,
+    .wild-legal-section,
+    .wild-subpage-section,
+    footer.discordSection
+  ) {
+  background: var(--ww-h220-primary-lamp) !important;
+  background-color: var(--ww-h220-primary) !important;
+  background-image: var(--ww-h220-primary-lamp) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+/* Ruins, Projects, and Wildfire use max-width field wrappers. Repainting the
+   fixed lamp inside each wrapper exposed their rectangular boundaries. Keep
+   the one viewport backdrop and let these non-card field surfaces reveal it. */
+html:has(:is(.wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--wildfire))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    #ww-h220-field-neutralizer,
+    .wild-site-header,
+    .wild-top-logo-band,
+    .wild-subpage,
+    .wild-subpage-section,
+    footer.discordSection
+  ) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+/* Bio's legacy A/B lock and the later Ruins primary-field pass both painted
+   the shared footer as a solid brown field. Restore Home's centered lamp on
+   the footer canvas only; signup/contact cards keep their own surfaces. */
+html:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer {
+  background: var(--ww-h220-primary-lamp) !important;
+  background-color: var(--ww-h220-primary) !important;
+  background-image: var(--ww-h220-primary-lamp) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+html:has(:is(.wild-subpage--ruins, .wild-subpage--bio))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer#footer
+  :is(
+    .wild-footer-main,
+    .wild-signup-system,
+    .wild-footer-contact-region--a,
+    .wild-footer-final-region,
+    .wild-footer-closing-region--a
+  ) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}

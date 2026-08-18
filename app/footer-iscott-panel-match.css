@@ -1,0 +1,97 @@
+/* Footer iScott panel = EXACT computed-style copy of the mid-page
+   #talk-to-iscott panel (G 2026-08-17: identical, colors/placements/size).
+   Values below are transplanted from getComputedStyle of the live mid-page
+   panel at desktop width. Selectors carry footer#footer#footer + the 16-ID
+   body stack because the footer stonework rules (19 ids) out-rank plain
+   class mirrors — these run 20 ids. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer {
+  max-width: 27rem !important;   /* mid card: 432px */
+  padding: 1.05rem !important;   /* mid card: 16.8px */
+  /* mid card keeps the base .money-panel 1px border — do not remove it */
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .money-panel-kicker,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .money-panel-kicker * {
+  width: 100% !important;
+  margin-inline: auto !important;
+  margin-bottom: 0.12rem !important;
+  text-align: center !important;
+  /* Mid kicker font is Cambria serif — footer was inheriting Geist sans. */
+  font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+  font-size: 1.405rem !important;      /* mid: 22.48px */
+  line-height: 1.25 !important;
+  letter-spacing: 0.2em !important;    /* mid: 4.496px */
+  color: #fce0ad !important;           /* mid kicker is SOLID cream */
+  -webkit-text-fill-color: #fce0ad !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: none !important;
+  text-shadow:
+    0 0.048em 0 #000,
+    0 0.074em 0.014em #000,
+    0 0.1em 0.045em rgba(0, 0, 0, 0.78) !important;  /* mid stonework stack, exact em recipe */
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title.wild-start-title.wild-start-title:not(#_):not(#_) {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 0.05rem auto 0.2rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2.1rem, 7vw, 3.225rem) !important;  /* mid: 51.6px */
+  line-height: 0.98 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+
+/* H276's approved shadow — measured on the live mid-page title. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title.wild-start-title.wild-start-title:not(#_):not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title.wild-start-title.wild-start-title:not(#_):not(#_) * {
+  filter: none !important;
+  /* G: match Front Door's shadow amount (both Start-with-iScott titles). */
+  text-shadow: 0 0.5px 0 rgba(35, 9, 2, 0.52), 0 1.1px 0 rgba(25, 6, 1, 0.3) !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__start:not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__with:not(#_) {
+  /* Measured live: the whole mid-page title is uniform gold #f1bf75. */
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__name {
+  color: #f1bf75 !important;
+  -webkit-text-fill-color: #f1bf75 !important;
+}
+
+/* Image frame: mid is 288px wide, footer was 320px. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-live-avatar-frame {
+  max-width: 18rem !important;
+}
+
+/* G: space under the big Talk button — reads as its own section. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-phone-iscott-group:has(.wild-iscott-panel--footer) .wild-home-phone-iscott-test--footer-closing {
+  margin-bottom: 2.5rem !important;
+}
+
+/* G: "Or Call WildWorks Today!" one digit in on both ends of the phone
+   number — measured: 0.655em of the number's size. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-phone-iscott-group:has(.wild-iscott-panel--footer) .wild-phone-number-line__call-today {
+  font-size: 0.655em !important;
+}
+
+/* Disclosure: mid is 14px, footer was 12px. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-iscott-disclosure {
+  font-size: 0.875rem !important;
+  color: #fce0ad !important;
+}

@@ -11,7 +11,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
       .wild-signup-submit, .wild-footer-top-button, .wild-footer-top-button--closing,
       .wild-footer-mobile-link, .wildfire-phase-bar button,
       .wild-footer-contact-cta__actions a, .wild-footer-contact-cta__actions button) {
-  min-height: 48px !important;
+  min-height: var(--ww-footer-dream-action-min-height, 48px) !important;
   border: 1px solid rgba(246, 211, 154, 0.36) !important;
   border-radius: 8px !important;
   background: var(--ww-home-talk-exact-gold) !important;
@@ -21,7 +21,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
   color: #7D2F20 !important;
   -webkit-text-fill-color: #7D2F20 !important;
   font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 1.12rem !important;
+  font-size: var(--ww-action-button-label-size, 1.12rem) !important;
   font-weight: 750 !important;
   line-height: 1 !important;
   letter-spacing: 0 !important;
@@ -77,7 +77,7 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     .wild-signup-submit
   ) {
   background: var(--ww-footer-button-sample) !important;
-  background-color: #e8b66d !important;
+  background-color: #f1bf75 !important;
   background-image: var(--ww-footer-button-sample) !important;
   box-shadow:
     0 10px 24px rgba(62, 21, 4, 0.24),

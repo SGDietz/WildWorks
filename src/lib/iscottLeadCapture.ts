@@ -1,9 +1,55 @@
+import { visitorChoseContactMethod } from "./iscottLeadCaptureUi";
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { notifyIScottLeadByEmail } from "./voiceEmailNotifications";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import {
+  collectBargeInEvents,
+  collectOperatorPromptEchoEvents,
+  detectsAcceptedFollowUp,
+  detectsContactReadBackCorrect,
+  detectsContextualContactSendConfirmation,
+  detectsFollowUpAcceptance,
+  detectsSimpleAffirmation,
+  extractContactPreference,
+  extractEmail,
+  extractLocation,
+  extractOperatorSiteNote,
+  extractProjectNeed,
+  extractSpokenFullName,
+  formatLeadContactDisplay,
+  formatLeadTranscript,
+  formatSpokenEmailForReadback,
+  formatSpokenPhoneForReadback,
+  iscottEmailReadbackPrompt,
+  mergeLeadTranscriptHistory,
+  isOperatorPromptEcho,
+  isOperatorSalesLanguage,
+  isProfanityEscalation,
+  isSpecificFeedback,
+  preferProjectNeed,
+  spokenPreferenceSignal,
+  sessionLooksLikeOperatorQa,
+  shouldParseLeadFacts,
+  visitorProjectNeedFromRows,
+} from "./iscottLeadParsing";
+import { classifyTraffic, trafficColumns } from "./trafficClassification";
+import {
+  ISCOTT_TEST_HELD_STATUS,
+  canDispatchIScottLeadNotification,
+} from "./iscottTrafficResolve";
 
-const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
+export {
+  detectsAcceptedFollowUp,
+  detectsContextualContactSendConfirmation,
+  detectsSimpleAffirmation,
+  extractProjectNeed,
+  preferProjectNeed,
+} from "./iscottLeadParsing";
+
 const PHONE_PATTERN = /(?:\+?\d{1,3}[\s().-]*)?(?:\d[\s().-]*){9,15}\d/g;
+// Prevent a new parser rule from replaying a lead captured before the rule
+// existed. Older leads remain available to the explicit confirmation route.
+const CONTEXTUAL_CONFIRMATION_INTRODUCED_AT = Date.parse("2026-08-16T17:30:00.000Z");
 
 export type IScottTranscriptRow = {
   role: "user" | "assistant";
@@ -24,6 +70,13 @@ export type IScottLeadState = {
   contactConfirmedAt: string | null;
   submittedAt: string | null;
   notificationStatus: string | null;
+  notificationOutboxId: string | null;
+  mediaCount: number;
+  displayValue: string | null;
+  maskedValue: string | null;
+  ariaLabel: string | null;
+  spokenReadback: string | null;
+  spokenReadbackPrompt: string | null;
 };
 
 type LeadRow = {
@@ -42,6 +95,9 @@ type LeadRow = {
   submitted_at: string | null;
   notification_outbox_id: string | null;
   notification_status: string | null;
+  traffic_class?: "owner" | "test" | "public" | "bot";
+  traffic_reason?: string;
+  traffic_confidence?: number;
   transcript_text: string | null;
   transcript_snapshot: unknown[];
   media_snapshot: unknown[];
@@ -117,25 +173,6 @@ async function rest<T>(
   }
 }
 
-function normalizeSpokenEmail(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/\b(?:at sign|at)\b/g, "@")
-    .replace(/\b(?:dot|period)\b/g, ".")
-    .replace(/\bunderscore\b/g, "_")
-    .replace(/\b(?:dash|hyphen)\b/g, "-")
-    .replace(/\s*@\s*/g, "@")
-    .replace(/\s*\.\s*/g, ".")
-    .replace(/\s*_\s*/g, "_")
-    .replace(/\s*-\s*/g, "-");
-}
-
-function extractEmail(text: string): string | null {
-  const direct = text.match(EMAIL_PATTERN)?.[0];
-  const spoken = normalizeSpokenEmail(text).match(EMAIL_PATTERN)?.[0];
-  return (direct ?? spoken)?.toLowerCase().slice(0, 254) ?? null;
-}
-
 function normalizePhone(value: string): string | null {
   const hasPlus = value.trim().startsWith("+");
   const digits = value.replace(/\D/g, "");
@@ -170,75 +207,52 @@ function extractPhone(text: string): string | null {
   return null;
 }
 
-function titleWords(value: string): string {
-  return value.replace(/\b[\p{L}]/gu, (letter) => letter.toUpperCase());
-}
-
 function extractFullName(text: string): string | null {
-  const match = text.match(
-    /\b(?:my name is|my name's|call me)\s+([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})/iu,
-  );
-  if (!match?.[1]) return null;
-  const candidate = match[1]
-    .split(/\b(?:and|but|from|in)\b/i)[0]
-    .replace(/[.,!?;:]+$/g, "")
-    .trim();
-  if (candidate.length < 2 || candidate.length > 90) return null;
-  return titleWords(candidate);
+  return extractSpokenFullName(text);
 }
 
-function extractLocation(text: string): string | null {
-  const match = text.match(
-    /\b(?:i(?:'m| am)|we(?:'re| are)|located|based)\s+in\s+([^.!?]{2,120})/i,
-  );
-  if (!match?.[1]) return null;
-  const matchIndex = match.index ?? 0;
-  const prefix = text.slice(Math.max(0, matchIndex - 28), matchIndex).toLowerCase();
-  if (/when\s+i\s+(?:say|tell)|if\s+i\s+say/.test(prefix)) return null;
-  const candidate = match[1]
-    .split(/,\s*(?:you|you're|you are|we|we're|i)\b/i)[0]
-    .split(/\b(?:where(?:'s| is)|and then|but)\b/i)[0]
-    .replace(/^(?:the\s+)?/i, "")
-    .replace(/[,:;\s]+$/g, "")
-    .trim();
-  if (candidate.length < 2 || candidate.length > 120) return null;
-  if (/\b(?:you're|you are|scott|home territory|great)\b/i.test(candidate)) return null;
-  return titleWords(candidate);
-}
+function userTurnTexts(rows: IScottTranscriptRow[]): string[] {
+  const turns: string[] = [];
+  let fragments: string[] = [];
+  const flush = () => {
+    const text = fragments.join(" ").replace(/\s+/g, " ").trim();
+    if (text) turns.push(text);
+    fragments = [];
+  };
 
-function extractProjectNeed(text: string): string | null {
-  const match = text.match(
-    /\b(?:i|we)\s+(?:want|wanted|need|needed|would like|am looking|are looking)\s+(?:to\s+)?([^.!?]{3,260})/i,
-  );
-  if (!match?.[1]) return null;
-  const candidate = match[1].replace(/\s+/g, " ").trim();
-  if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
-  return candidate.charAt(0).toUpperCase() + candidate.slice(1);
+  for (const row of rows) {
+    if (row.role === "user" && row.message.trim()) {
+      fragments.push(row.message.trim());
+    } else {
+      flush();
+    }
+  }
+  flush();
+  return turns;
 }
 
 function extractContactMethod(text: string): "email" | "phone" | null {
-  const lower = text.toLowerCase();
-  const emailIndex = lower.search(/\b(?:prefer|by|use|via)?\s*e-?mail\b/);
-  const phoneIndex = lower.search(/\b(?:prefer|by|use|via)?\s*(?:phone|call|telephone)\b/);
-  if (emailIndex < 0 && phoneIndex < 0) return null;
-  if (emailIndex >= 0 && phoneIndex < 0) return "email";
-  if (phoneIndex >= 0 && emailIndex < 0) return "phone";
-  if (/\b(?:prefer|choose|want)\s+(?:an?\s+)?e-?mail\b/i.test(text)) return "email";
-  if (/\b(?:prefer|choose|want)\s+(?:a\s+)?(?:phone\s+)?call\b/i.test(text)) return "phone";
-  return null;
+  return visitorChoseContactMethod(text);
 }
 
 function detectsDeclinedFollowUp(text: string): boolean {
   return /\b(?:do not|don't)\s+(?:contact|call|email)|\bno\s+follow[- ]?up\b|\bnot interested\b/i.test(text);
 }
 
-function detectsAcceptedFollowUp(text: string): boolean {
-  return /\b(?:yes|sure|okay|ok|please)\b.{0,35}\b(?:pass|send|share|contact|reach|follow)\b|\b(?:contact|reach|follow up with)\s+me\b/i.test(text);
+function isOperatorCorrection(text: string): boolean {
+  return /\b(?:what you should say|you should say|then you say|as soon as i say|make sure|we need to|we got to|you(?:'ve)? got to|needs? to be corrected|don't say|do not say|take down this|it(?:'s| is) got to go away|there should(?:n't| not)? be any click|the max|stop everything and do that)\b/i.test(text)
+    || isOperatorSalesLanguage(text);
 }
 
-function isOperatorCorrection(text: string): boolean {
-  return /\b(?:what you should say|you should say|make sure|we need to|we got to|needs? to be corrected|don't say|do not say|the max|stop everything and do that)\b/i.test(text);
-}
+export const iscottLeadCaptureTestUtils = {
+  detectsAcceptedFollowUp,
+  detectsSimpleAffirmation,
+  extractProjectNeed,
+  extractFullName,
+  isOperatorCorrection,
+  preferProjectNeed,
+  userTurnTexts,
+};
 
 function sourceEventKey(
   sessionId: string,
@@ -260,7 +274,31 @@ function preferLonger(current: string | null, next: string | null): string | nul
   return current;
 }
 
+function leadTranscriptFields(
+  rows: IScottTranscriptRow[],
+  existing: LeadRow | null,
+): { transcript_text: string | null; transcript_snapshot: unknown[] } {
+  const history = mergeLeadTranscriptHistory(
+    Array.isArray(existing?.transcript_snapshot) ? existing.transcript_snapshot as Array<{
+      role?: string;
+      message?: string;
+      timestamp?: number | null;
+    }> : [],
+    rows,
+  );
+  if (history.length === 0) {
+    return {
+      transcript_text: existing?.transcript_text ?? null,
+      transcript_snapshot: existing?.transcript_snapshot ?? [],
+    };
+  }
+  return formatLeadTranscript(history);
+}
+
 function toState(row: LeadRow): IScottLeadState {
+  const method = row.contact_method === "phone" || row.contact_method === "email" ? row.contact_method : null;
+  const raw = method === "phone" ? row.phone : method === "email" ? row.email : null;
+  const display = method && raw ? formatLeadContactDisplay(method, raw) : null;
   return {
     sessionId: row.session_id,
     status: row.status,
@@ -274,7 +312,19 @@ function toState(row: LeadRow): IScottLeadState {
     contactConfirmedAt: row.contact_confirmed_at,
     submittedAt: row.submitted_at,
     notificationStatus: row.notification_status,
+    notificationOutboxId: row.notification_outbox_id,
+    mediaCount: Array.isArray(row.media_snapshot) ? row.media_snapshot.length : 0,
+    displayValue: display?.checkable ?? raw,
+    maskedValue: display?.visible ?? null,
+    ariaLabel: display?.ariaLabel ?? null,
+    spokenReadback: method === "email" && raw ? formatSpokenEmailForReadback(raw) || null
+      : method === "phone" && raw ? formatSpokenPhoneForReadback(raw) || null : null,
+    spokenReadbackPrompt: method === "email" && raw ? iscottEmailReadbackPrompt(raw) : null,
   };
+}
+
+export function leadStateForDisplay(row: LeadRow): IScottLeadState {
+  return toState(row);
 }
 
 async function readLead(sessionId: string): Promise<LeadRow | null> {
@@ -308,57 +358,110 @@ async function insertExtractionEvents(
   const preferences: Record<string, unknown>[] = [];
   for (const row of rows) {
     if (row.role !== "user") continue;
-    const email = extractEmail(row.message);
-    const phone = extractPhone(row.message);
-    const fullName = extractFullName(row.message);
-    const location = extractLocation(row.message);
-    const projectNeed = extractProjectNeed(row.message);
-    const contactMethod = extractContactMethod(row.message);
-    if (email || phone || fullName || location || projectNeed || contactMethod || isOperatorCorrection(row.message)) {
-      payloads.push({
-        source_event_key: sourceEventKey(sessionId, row, "transcript"),
-        session_id: sessionId,
-        transcript: row.message,
-        extracted_email: email,
-        extracted_phone: phone,
-        extracted_name: fullName,
-        follow_up_intent: detectsDeclinedFollowUp(row.message)
-          ? "declined"
-          : detectsAcceptedFollowUp(row.message)
-            ? "interested"
-            : "neutral",
-        metadata: {
-          la_absolute_timestamp: row.laAbsoluteTimestamp,
-          location,
-          project_need: projectNeed,
-          contact_method: contactMethod,
-          source: "iscott_lead_capture",
-        },
-      });
+    const operator = isOperatorCorrection(row.message);
+    const specific = isSpecificFeedback(row.message);
+    const profane = isProfanityEscalation(row.message);
+    const preference = spokenPreferenceSignal(row.message);
+    if (shouldParseLeadFacts(row.message) || operator) {
+      const email = extractEmail(row.message);
+      const phone = extractPhone(row.message);
+      const fullName = extractFullName(row.message);
+      const location = extractLocation(row.message);
+      const projectNeed = extractProjectNeed(row.message);
+      const contactMethod = extractContactMethod(row.message);
+      if (email || phone || fullName || location || projectNeed || contactMethod || operator) {
+        payloads.push({
+          source_event_key: sourceEventKey(sessionId, row, "transcript"),
+          session_id: sessionId,
+          transcript: row.message,
+          extracted_email: email,
+          extracted_phone: phone,
+          extracted_name: fullName,
+          follow_up_intent: detectsDeclinedFollowUp(row.message)
+            ? "declined"
+            : detectsAcceptedFollowUp(row.message)
+              ? "interested"
+              : "neutral",
+          metadata: {
+            la_absolute_timestamp: row.laAbsoluteTimestamp,
+            location,
+            project_need: projectNeed,
+            contact_method: contactMethod,
+            source: "iscott_lead_capture",
+          },
+        });
+      }
     }
-    if (isOperatorCorrection(row.message)) {
+    if (operator || specific || profane) {
       feedback.push({
         source_event_key: sourceEventKey(sessionId, row, "feedback"),
         session_id: sessionId,
         anonymous_visitor_id: anonymousVisitorId ?? null,
         sentiment: "negative",
-        severity: "medium",
+        severity: profane ? "high" : "medium",
         phrase: truncateUtf8String(row.message, 1_000),
-        mode: "iscott-coaching",
+        mode: operator ? "iscott-coaching" : "iscott-visitor-correction",
         route: route ?? null,
-        payload: { la_absolute_timestamp: row.laAbsoluteTimestamp },
+        payload: {
+          la_absolute_timestamp: row.laAbsoluteTimestamp,
+          kind: profane ? "profanity_escalation" : specific ? "explicit_correction" : "operator_correction",
+        },
       });
+    }
+    if (operator || preference) {
       preferences.push({
         source_event_key: sourceEventKey(sessionId, row, "preference"),
         session_id: sessionId,
         anonymous_visitor_id: anonymousVisitorId ?? null,
-        category: "iscott_coaching",
+        category: operator ? "iscott_coaching" : "iscott_spoken_preference",
         signal: truncateUtf8String(row.message, 700),
         source_text: truncateUtf8String(row.message, 1_000),
         confidence: 0.95,
         payload: { la_absolute_timestamp: row.laAbsoluteTimestamp },
       });
     }
+  }
+  const siteNote = extractOperatorSiteNote(
+    rows.filter((row) => row.role === "user").map((row) => row.message),
+  );
+  if (siteNote) {
+    feedback.push({
+      source_event_key: sourceEventKey(sessionId, {
+        role: "user",
+        message: siteNote,
+        laAbsoluteTimestamp: null,
+      }, "feedback"),
+      session_id: sessionId,
+      anonymous_visitor_id: anonymousVisitorId ?? null,
+      sentiment: "neutral",
+      severity: "low",
+      phrase: truncateUtf8String(siteNote, 1_000),
+      mode: "iscott-operator-site-note",
+      route: route ?? null,
+      payload: { kind: "site_quality" },
+    });
+  }
+  for (const echo of collectOperatorPromptEchoEvents(sessionId, rows, anonymousVisitorId)) {
+    preferences.push({
+      ...echo,
+      source_event_key: sourceEventKey(sessionId, {
+        role: "assistant",
+        message: String(echo.source_text ?? ""),
+        laAbsoluteTimestamp: (echo.payload as { la_absolute_timestamp?: number | null } | undefined)
+          ?.la_absolute_timestamp ?? null,
+      }, "preference"),
+    });
+  }
+  for (const barge of collectBargeInEvents(sessionId, rows, anonymousVisitorId)) {
+    preferences.push({
+      ...barge,
+      source_event_key: sourceEventKey(sessionId, {
+        role: "user",
+        message: String(barge.signal ?? "barge-in"),
+        laAbsoluteTimestamp: (barge.payload as { user_timestamp?: number | null } | undefined)
+          ?.user_timestamp ?? null,
+      }, "preference"),
+    });
   }
   const results = await Promise.all([
     payloads.length
@@ -395,8 +498,16 @@ export async function processIScottTranscriptRows(args: {
   route?: string | null;
   rows: IScottTranscriptRow[];
 }): Promise<IScottLeadState | null> {
-  const userRows = args.rows.filter((row) => row.role === "user" && row.message.trim());
   const existing = await readLead(args.sessionId);
+  const rows = mergeLeadTranscriptHistory(
+    Array.isArray(existing?.transcript_snapshot) ? existing.transcript_snapshot as Array<{
+      role?: string;
+      message?: string;
+      timestamp?: number | null;
+    }> : [],
+    args.rows,
+  );
+  const userRows = rows.filter((row) => row.role === "user" && row.message.trim());
   let fullName = existing?.full_name ?? null;
   let location = existing?.location ?? null;
   let projectNeed = existing?.project_need ?? null;
@@ -404,20 +515,65 @@ export async function processIScottTranscriptRows(args: {
   let phone = existing?.phone ?? null;
   let contactMethod = existing?.contact_method ?? null;
   let consentStatus = existing?.consent_status ?? "unknown";
+  let contactConfirmedAt = existing?.contact_confirmed_at ?? null;
+  const captureTime = new Date().toISOString();
 
-  for (const row of userRows) {
-    fullName = preferLonger(fullName, extractFullName(row.message));
-    location = extractLocation(row.message) ?? location;
-    projectNeed = projectNeed ?? extractProjectNeed(row.message);
-    email = extractEmail(row.message) ?? email;
-    phone = extractPhone(row.message) ?? phone;
-    contactMethod = extractContactMethod(row.message) ?? contactMethod;
-    if (detectsDeclinedFollowUp(row.message)) consentStatus = "declined";
-    else if (detectsAcceptedFollowUp(row.message)) consentStatus = "accepted";
+  for (const text of userTurnTexts(rows)) {
+    const methodOnly = extractContactMethod(text);
+    if (!shouldParseLeadFacts(text) && !isOperatorCorrection(text)) {
+      if (methodOnly) contactMethod = methodOnly;
+      continue;
+    }
+    fullName = preferLonger(fullName, extractFullName(text));
+    location = extractLocation(text) ?? location;
+    projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
+
+    const previousEmail = email;
+    const previousPhone = phone;
+    const nextEmail = extractEmail(text);
+    const nextPhone = extractPhone(text);
+    email = nextEmail ?? email;
+    phone = nextPhone ?? phone;
+    contactMethod = methodOnly ?? contactMethod;
+
+    const contactChanged =
+      (nextEmail && previousEmail && nextEmail !== previousEmail) ||
+      (nextPhone && previousPhone && nextPhone !== previousPhone);
+    if (contactChanged && existing?.status !== "confirmed" && existing?.status !== "submitted") {
+      contactConfirmedAt = null;
+      consentStatus = "unknown";
+    }
+
+    const hasCurrentContact = Boolean(
+      contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone,
+    );
+    if (detectsDeclinedFollowUp(text)) {
+      consentStatus = "declined";
+      continue;
+    }
+    if (isOperatorCorrection(text) || !hasCurrentContact) continue;
   }
+  const capturedNeed = visitorProjectNeedFromRows(userTurnTexts(rows));
+  if (projectNeed && (isOperatorSalesLanguage(projectNeed) || /salesman|super positive/i.test(projectNeed))) {
+    projectNeed = null;
+  }
+  projectNeed = capturedNeed.projectNeed ?? projectNeed;
   if (!contactMethod) {
     if (email && !phone) contactMethod = "email";
     else if (phone && !email) contactMethod = "phone";
+  }
+
+  const currentContact = contactMethod === "email" ? email : contactMethod === "phone" ? phone : null;
+  const isPostRolloutLead = !existing || Date.parse(existing.created_at) >= CONTEXTUAL_CONFIRMATION_INTRODUCED_AT;
+  if (
+    consentStatus !== "declined" &&
+    contactMethod &&
+    currentContact &&
+    isPostRolloutLead &&
+    detectsContextualContactSendConfirmation(rows, contactMethod, currentContact)
+  ) {
+    contactConfirmedAt = contactConfirmedAt ?? captureTime;
+    consentStatus = "accepted";
   }
 
   const hasContact = Boolean(contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone);
@@ -428,7 +584,32 @@ export async function processIScottTranscriptRows(args: {
       : "capturing";
   if (existing?.status === "confirmed" || existing?.status === "submitted") status = existing.status;
 
-  const now = new Date().toISOString();
+  const now = captureTime;
+  const userTexts = userTurnTexts(rows);
+  let contactPreference: "sms" | "voice" | "email" | null = null;
+  for (const text of userTexts) {
+    contactPreference = extractContactPreference(text) ?? contactPreference;
+  }
+  const alreadyHeld =
+    existing?.traffic_class === "owner" ||
+    existing?.traffic_class === "test" ||
+    existing?.notification_status === ISCOTT_TEST_HELD_STATUS ||
+    existing?.metadata?.operator_qa === true;
+  const operatorQa = alreadyHeld || sessionLooksLikeOperatorQa(userTexts);
+  const traffic = operatorQa
+    ? {
+        trafficClass: (existing?.traffic_class === "test" ? "test" : "owner") as "owner" | "test",
+        reason: existing?.traffic_reason === "codex_test_identifier" || existing?.traffic_reason === "owner_test_identifier"
+          ? existing.traffic_reason
+          : "operator_qa_session",
+        confidence: 1,
+      }
+    : await classifyTraffic({
+        anonymousVisitorId:
+          args.anonymousVisitorId ??
+          existing?.anonymous_visitor_id ??
+          (/^(?:codex-|ww-test-|ww-owner-)/.test(args.sessionId) ? args.sessionId : null),
+      });
   const row = await writeLead({
     session_id: args.sessionId,
     anonymous_visitor_id: args.anonymousVisitorId ?? existing?.anonymous_visitor_id ?? null,
@@ -441,29 +622,50 @@ export async function processIScottTranscriptRows(args: {
     contact_method: contactMethod,
     email,
     phone,
-    contact_confirmed_at: existing?.contact_confirmed_at ?? null,
+    contact_confirmed_at: contactConfirmedAt,
     submitted_at: existing?.submitted_at ?? null,
     notification_outbox_id: existing?.notification_outbox_id ?? null,
     notification_status: existing?.notification_status ?? null,
-    transcript_text: existing?.transcript_text ?? null,
-    transcript_snapshot: existing?.transcript_snapshot ?? [],
+    ...trafficColumns(traffic),
+    ...leadTranscriptFields(args.rows, existing),
     media_snapshot: existing?.media_snapshot ?? [],
     metadata: {
       ...(existing?.metadata ?? {}),
       last_capture_at: now,
       latest_user_timestamp: userRows.at(-1)?.laAbsoluteTimestamp ?? null,
+      follow_up_accepted: detectsFollowUpAcceptance(rows),
+      contact_readback_correct: userTexts.some((text) => detectsContactReadBackCorrect(text)),
+      contact_preference: contactPreference,
+      operator_prompt_echo: rows.some((row) => row.role === "assistant" && isOperatorPromptEcho(row.message)),
+      sales_language: rows.some((row) => isOperatorSalesLanguage(row.message)),
+      operator_service_script: capturedNeed.operatorServiceScript,
+      operator_site_note: extractOperatorSiteNote(userTexts),
+      operator_qa: operatorQa,
+      frustration_escalation: userTexts.some((text) => isProfanityEscalation(text)),
     },
     created_at: existing?.created_at ?? now,
     updated_at: now,
   });
 
-  await insertExtractionEvents(args.sessionId, userRows, args.anonymousVisitorId, args.route);
+  await insertExtractionEvents(args.sessionId, rows, args.anonymousVisitorId, args.route);
+
   return toState(row);
 }
 
 export async function getIScottLeadState(sessionId: string): Promise<IScottLeadState | null> {
   const row = await readLead(sessionId);
   return row ? toState(row) : null;
+}
+
+// Failed app_events inserts fall back into conversation_messages as role "user"
+// (see insertConversationTelemetryFallback). Those JSON blobs are system noise,
+// never visitor speech, and must never reach Scott's lead package or iScott's
+// context. Filtered by source above; this is the belt-and-braces content guard.
+function isTelemetryNoise(message: unknown): boolean {
+  if (typeof message !== "string") return true;
+  const trimmed = message.trimStart();
+  if (!trimmed.startsWith("{")) return false;
+  return /"table"\s*:/.test(trimmed) || /"tableInsertStatus"\s*:/.test(trimmed);
 }
 
 async function readTranscript(sessionId: string): Promise<{
@@ -475,14 +677,16 @@ async function readTranscript(sessionId: string): Promise<{
     message: string;
     la_absolute_timestamp: number | null;
   }>(
-    `conversation_messages?session_id=eq.${encodeURIComponent(sessionId)}&select=role,message,la_absolute_timestamp&order=la_absolute_timestamp.asc&limit=700`,
+    `conversation_messages?session_id=eq.${encodeURIComponent(sessionId)}&select=role,message,la_absolute_timestamp&source=not.in.(app_event,telemetry_fallback)&order=la_absolute_timestamp.asc&limit=700`,
   );
   if (!result.ok) throw new Error(`conversation transcript read failed (${result.status})`);
-  const snapshot = result.rows.map((row) => ({
-    role: row.role,
-    message: row.message,
-    timestamp: row.la_absolute_timestamp,
-  }));
+  const snapshot = result.rows
+    .filter((row) => !isTelemetryNoise(row.message))
+    .map((row) => ({
+      role: row.role,
+      message: row.message,
+      timestamp: row.la_absolute_timestamp,
+    }));
   const text = snapshot.map((row) => `${row.role === "assistant" ? "iSCOTT" : "VISITOR"}: ${row.message}`).join("\n\n");
   return { text, snapshot };
 }
@@ -562,6 +766,14 @@ export async function confirmAndSubmitIScottLead(args: {
       ? existing.email === email
       : existing.phone === phone
   );
+  if (existing.notification_status === ISCOTT_TEST_HELD_STATUS && sameConfirmedContact) {
+    return {
+      lead: toState(existing),
+      queued: true,
+      delivered: false,
+      detail: "test_traffic_not_sent",
+    };
+  }
   if (existing.status === "submitted" && existing.notification_outbox_id && sameConfirmedContact) {
     const outbox = await rest<LeadOutboxRow>(
       `voice_email_outbox?id=eq.${encodeURIComponent(existing.notification_outbox_id)}&select=id,status&limit=1`,
@@ -581,6 +793,49 @@ export async function confirmAndSubmitIScottLead(args: {
   }
 
   const now = existing.contact_confirmed_at ?? new Date().toISOString();
+  const transcript = await readTranscript(args.sessionId);
+  const operatorQa =
+    existing.metadata?.operator_qa === true ||
+    existing.traffic_class === "owner" ||
+    existing.traffic_class === "test" ||
+    existing.notification_status === ISCOTT_TEST_HELD_STATUS ||
+    sessionLooksLikeOperatorQa(
+      transcript.snapshot
+        .filter((row) => row.role === "user")
+        .map((row) => row.message),
+    );
+  const mayNotify = canDispatchIScottLeadNotification({
+    trafficClass: existing.traffic_class ?? null,
+    visitorId: existing.anonymous_visitor_id ?? null,
+    sessionId: args.sessionId,
+    operatorQa,
+  });
+  if (!mayNotify) {
+    const held = await writeLead({
+      ...existing,
+      status: "confirmed",
+      consent_status: "accepted",
+      contact_method: args.contactMethod,
+      email,
+      phone,
+      contact_confirmed_at: now,
+      submitted_at: null,
+      notification_outbox_id: null,
+      notification_status: ISCOTT_TEST_HELD_STATUS,
+      metadata: {
+        ...(existing.metadata ?? {}),
+        operator_qa: true,
+      },
+      updated_at: now,
+    });
+    return {
+      lead: toState(held),
+      queued: true,
+      delivered: false,
+      detail: "test_traffic_not_sent",
+    };
+  }
+
   let confirmed = await writeLead({
     ...existing,
     status: "confirmed",
@@ -592,10 +847,7 @@ export async function confirmAndSubmitIScottLead(args: {
     updated_at: now,
   });
 
-  const [transcript, media] = await Promise.all([
-    readTranscript(args.sessionId),
-    readMedia(confirmed),
-  ]);
+  const media = await readMedia(confirmed);
   const signedMedia = await Promise.all(media.map(async (item) => ({
     name: item.original_name ?? "Uploaded file",
     mimeType: item.mime_type,

@@ -1,0 +1,17 @@
+/* H162: only the Project Wildfire Talk control named in G's phone review.
+   Equal grid tracks make its body exactly as tall as its neighboring project
+   link while the lower link retains its existing dimensions and typography. */
+
+@media (max-width: 640px) {
+  #top.wild-home #project-wildfire .wild-cta-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-auto-rows: 1fr !important;
+  }
+
+  #top.wild-home #project-wildfire .wild-cta-row
+    > a.wild-iscott-action-button {
+    --ww-mobile-talk-font-size: calc(1.12rem + 1pt);
+    --ww-mobile-talk-padding: 0.85rem 1rem;
+  }
+}

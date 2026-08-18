@@ -1,0 +1,21 @@
+/* H276: Large iScott titles a little heavy. Lighten just a smidge.
+   iScott is the Front Door + Start with iScott only.
+   Leave kickers and body copy. G 2026-08-17 10:47. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home .wild-iscott-title--front-door,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home .wild-iscott-title--front-door :is(
+  .wild-iscott-title__row,
+  .wild-iscott-title__segment,
+  .wild-iscott-title__segment--one,
+  .wild-iscott-title__segment--two
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title :is(
+  .wild-start-title__start,
+  .wild-start-title__with,
+  .wild-start-title__name
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #talk-to-iscott#talk-to-iscott .wild-start-title * {
+  filter: none !important;
+  text-shadow: 0 0.65px 0 rgba(35, 9, 2, 0.64), 0 1.45px 0 rgba(25, 6, 1, 0.38) !important;
+}

@@ -1,0 +1,15 @@
+/* H281: iScott is the Front Door — a little lighter shadow.
+   G 2026-08-17 13:02. This title only. Leave kickers and body. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-iscott-title--front-door,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-iscott-title--front-door :is(
+  .wild-iscott-title__row,
+  .wild-iscott-title__segment,
+  .wild-iscott-title__segment--one,
+  .wild-iscott-title__segment--two,
+  .wild-iscott-title__segment--three
+),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home .wild-iscott-title--front-door * {
+  filter: none !important;
+  text-shadow: 0 0.5px 0 rgba(35, 9, 2, 0.52), 0 1.1px 0 rgba(25, 6, 1, 0.3) !important;
+}

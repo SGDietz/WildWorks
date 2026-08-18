@@ -1,0 +1,45 @@
+/* H174: G removed the Home Projects card treatment entirely.
+   Let the section fade into the Home field and place the requested tagline
+   between the title and photographs. */
+
+html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card#ww-h171-projects-card)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #projects.wild-home-projects.wild-home-projects {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#top.wild-home #projects.wild-home-projects > .wild-home-projects__title {
+  margin-bottom: clamp(0.55rem, 1vw, 0.85rem);
+}
+
+#top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline {
+  margin: 0 0 clamp(1.55rem, 2.7vw, 2.4rem);
+  color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
+  font-size: calc(clamp(2.4rem, 4.2vw, 3.3rem) + 1rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.035em;
+  text-align: center;
+  text-shadow: 0 2px 0 rgba(47, 12, 3, 0.5);
+}
+
+@media (max-width: 600px) {
+  #top.wild-home #projects.wild-home-projects > .wild-home-projects__title {
+    margin-bottom: 0.45rem;
+  }
+
+  #top.wild-home #projects.wild-home-projects > .wild-home-projects__tagline {
+    margin-bottom: 1.25rem;
+    font-size: calc(clamp(2.2rem, 11vw, 2.7rem) + 1rem);
+  }
+}

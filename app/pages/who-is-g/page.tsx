@@ -1,5 +1,7 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
 import BrandText from "../../components/BrandText";
+import LargeIScottCta from "../../components/LargeIScottCta";
+import PhoneNumberLine from "../../components/PhoneNumberLine";
 
 export default function WhoIsG() {
   return (
@@ -11,7 +13,7 @@ export default function WhoIsG() {
           alt="WildWorks natural stone steps and landscape with the artist standing beside the work"
           className="object-cover object-center scale-[1.04]"
           priority
-          sizes="(max-width: 64rem) 100vw, 64rem"
+          sizes="(max-width: 72rem) 100vw, 72rem"
         />
         <div className="absolute inset-0  pointer-events-none" aria-hidden />
       </section>
@@ -24,7 +26,7 @@ export default function WhoIsG() {
             From 6 months old, Scott G. Dietz was raised in Bel Air, Maryland, just north of Baltimore City. His roots run deep in the area—both of his parents were born and raised in Baltimore City.
           </p>
           <p className="text-base">
-            As a kid, Scott was impossible to control—undisciplined, restless, and constantly pushing boundaries. As he grew and matured, that same force became something powerful: explosive creative energy focused on creativity and building.
+            As a kid, Scott was impossible to control—undisciplined, restless, and constantly pushing boundaries. As he grew and matured, that same force turned into explosive creative energy.
           </p>
           <p className="text-base">
             For more than 40 years, Scott has channeled that energy into the craft of stone. He is a fine artist, master stonemason, and relentless problem solver known for charging directly into the most complex and unconventional problems people face. His work blends creativity, craftsmanship, and engineering into rock art—stone landscapes designed to feel timeless, powerful, and naturally rooted in the land.
@@ -51,7 +53,7 @@ export default function WhoIsG() {
             <span className="wild-bio-mindset-line">Life Begins at Middle Age</span>
           </p>
           <p className="text-base">
-            Scott is the first to admit he has failed at more things than most people would even attempt to begin (or hasn&apos;t succeeded yet, depending on your outlook). But failure has never been the end of the story. When something doesn&apos;t work, he pivots, restarts, and fires up his creative engines once again.
+            Scott is the first to admit he has failed at more things than most people would even attempt to try (or hasn&apos;t succeeded yet, depending on your outlook). But failure has never been the end of the story. When something doesn&apos;t work, he pivots, restarts, and fires up his creative engines once again.
           </p>
           <p className="text-base">
             <BrandText>
@@ -82,6 +84,14 @@ export default function WhoIsG() {
         </div>
 
       </section>
+      </div>
+
+      <div className="wild-bio-home-contact">
+        <PhoneNumberLine
+          className="wild-phone-number-line--home-footer"
+          showCallToday={false}
+        />
+        <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
       </div>
 
     </div>

@@ -1,0 +1,19 @@
+/* H280: Scrolls are the lock. Same shadow on WILDWORKS, scrolls,
+   Fine Art & Practical, and Landscaping. All 5 page headers.
+   G 2026-08-17 13:02. One ::before on the whole PNG. Hide extra
+   tagline layers. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:before {
+  opacity: 0.98 !important;
+  filter: none !important;
+  clip-path: none !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  background: #321005 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo :is(
+  .wild-top-logo-landscaping-effect,
+  .wild-top-logo-tagline:before
+) {
+  display: none !important;
+}
