@@ -11,6 +11,7 @@ import { SIGNUP_CHANNEL_OPTIONS } from "../../src/lib/marketingConsent.mjs";
 import LargeIScottCta from "./LargeIScottCta";
 import FooterIScottPanel from "./FooterIScottPanel";
 import { isLegalRoute, legalNavItems } from "../lib/legalRoutes";
+import { mainNavigationTabs, normalizeMainNavigationPath } from "../lib/mainNavigation";
 import {
   FOOTER_STONEWORK_LINE_END,
   FOOTER_STONEWORK_LINE_START,
@@ -58,6 +59,12 @@ export default function Footer() {
   const usesAbFooter = ["/pages/The-ruins", "/pages/who-is-g"].includes(pathname);
   const isLegalPage = isLegalRoute(pathname);
   const isSixPageLegalRoute = legalNavItems.some((item) => item.href === pathname);
+  // G 2026-08-18: the closing iScott block goes on all five main pages, not
+  // just Home. Driven off mainNavigationTabs so the nav, the swipe order and
+  // this block can never drift apart. normalize maps "/" onto /pages/Home.
+  const isMainNavigationPage = mainNavigationTabs.some(
+    (tab) => tab.href === normalizeMainNavigationPath(pathname),
+  );
   const requiresEmail = signupChannel === "email" || signupChannel === "both";
   const requiresPhone = signupChannel === "sms" || signupChannel === "both";
 
@@ -372,8 +379,9 @@ export default function Footer() {
       >
         <div className="wild-footer-phone-iscott-group">
           {/* G `doit` 2026-08-17: full framed iScott panel replaces the lone
-              closing Talk button — Home first, other main pages after tweaks. */}
-          {pathname === "/pages/Home" || pathname === "/" ? (
+              closing Talk button — Home first, other main pages after tweaks.
+              G 2026-08-18: "exactly like that" on all five — the tweaks landed. */}
+          {isMainNavigationPage ? (
             <>
               <FooterIScottPanel />
               {/* G 2026-08-17: the big Talk button rides under the panel too —
@@ -389,7 +397,7 @@ export default function Footer() {
               href="/pages/Home?wake-iscott=1#talk-to-iscott"
             />
           )}
-          {pathname === "/pages/Home" || pathname === "/" ? (
+          {isMainNavigationPage ? (
             /* G 2026-08-17: under the footer panel — "OR Call WildWorks
                Today!" first, phone number underneath. */
             <PhoneNumberLine

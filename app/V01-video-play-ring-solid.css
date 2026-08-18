@@ -1,0 +1,33 @@
+/* V01: G 2026-08-17 — the center play control on the Home craftsmanship
+   video reads as two colors: a reddish-brown outer ring around a darker
+   brown body. G: keep the cream triangle and the brown circular button,
+   drop the ring so the whole circle is one solid brown.
+
+   Winning authority (measured in the served build, not guessed):
+     H175-video-circle-rings-soften.css paints the ring with a 104-ID rule
+       border: 2px solid var(--ww-h175-video-ring, #8b3d16) !important;
+     H188 (3 IDs) sets --ww-h175-video-ring: #54280f on this element, so the
+       104-ID shorthand resolves to #54280f. The border-color declarations in
+       H188/H198 (3 IDs each) never win; the token does.
+
+   So the correct edit is the token this element feeds to H175, not another
+   border override and not more selector weight. transparent (never a color,
+   never border-width: 0) because:
+     - background-clip is border-box, so the button's own
+       background (#1f0902d1) paints straight through the 2px border area:
+       one uniform disc, no seam.
+     - border-width stays 2px, so the box, the padding box, the svg at
+       width/height 100%, and the clamp() sizing are all bit-identical.
+     - a solid color equal to the background would double-composite the
+       translucent fill and paint the ring DARKER than the body.
+   Focus is unaffected: the visible focus ring is H159's outline, not this
+   border. Scoped to the Home craftsmanship card's center control only. */
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video
+  .wild-branded-video__center-control {
+  --ww-h175-video-ring: transparent !important;
+}

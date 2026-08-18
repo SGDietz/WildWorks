@@ -382,6 +382,23 @@ async function patchOutboxRow(
   );
 }
 
+// A lead row records notification_status once, on the confirm path, and is left at
+// "queued" when Resend does not accept the mail inline. Without this write-back a
+// lead delivered on a later attempt stays "queued" forever: the watchdog keeps
+// counting it as stuck and iScott keeps refusing to say the email went out.
+// Best effort by design - the mail is already delivered, so a failure here must
+// never fail the drain.
+async function reconcileLeadNotificationStatus(outboxId: string): Promise<void> {
+  await supabaseRest(
+    `iscott_leads?notification_outbox_id=eq.${encodeURIComponent(outboxId)}&notification_status=in.(queued,failed)`,
+    {
+      method: "PATCH",
+      body: { notification_status: "sent" },
+      prefer: "return=minimal",
+    },
+  );
+}
+
 async function enqueueVoiceEmail(
   content: VoiceEmailContent,
 ): Promise<{ result: RestResult<VoiceEmailOutboxRow>; deduplicated: boolean }> {
@@ -572,6 +589,7 @@ async function sendClaimedOutboxRow(
         deduplicated: false,
       };
     }
+    await reconcileLeadNotificationStatus(row.id);
     return {
       ok: true,
       status: 200,

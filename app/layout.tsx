@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
@@ -147,6 +147,7 @@ import "./H195-home-video-phone-card.css";
 import "./H196-services-heading-123.css";
 import "./H197-ai-websites-heading-123.css";
 import "./H198-home-video-card-and-controls.css";
+import "./V01-video-play-ring-solid.css";
 import "./H199-sitewide-footer-effects-and-legal-colors.css";
 import "./H200-home-mobile-hero-contact-separation.css";
 import "./H201-home-mobile-statement-spacing.css";
@@ -261,6 +262,13 @@ import "./H306-breakpoint-corrections.css";
 import "./A01-phone-avatar-size.css";
 import "./L01-lightbox-scroll-lock.css";
 import "./keeper-palette.css";
+import "./S01-shadow-scale-tune.css";
+import "./S02-desktop-shadow-pass.css";
+import "./S03-mobile-shadow-pass.css";
+import "./H308-talk-iscott-brightness-equal.css";
+import "./H310-wildfire-title-glyph-fix.css";
+import "./H311-wildfire-gallery-rolodex-note.css";
+import "./H312-wildfire-title-playfair.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";

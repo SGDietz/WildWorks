@@ -10,7 +10,7 @@ import HeldLightboxImage, { type LightboxDirection } from "../../components/Held
 import LargeIScottCta from "../../components/LargeIScottCta";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
 import { useLightboxSwipe } from "../../lib/useLightboxSwipe";
-import { wildfireFinishedImages } from "../../lib/wildfireImages";
+import { wildfireFinishedImages, wildfireViewerImages } from "../../lib/wildfireImages";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 28 },
@@ -179,6 +179,14 @@ export default function Wildfire() {
       ) : null}
 
       <ImageGallery />
+      {/* G 2026-08-18: the grid does not look clickable, so say what it does.
+          It sits OUTSIDE the contact block on purpose - G wants it reading as
+          part of the pictures above it, not as a label on the phone number
+          below. 98 = the 93 construction photos plus the 5 finished ones, i.e.
+          wildfireViewerImages.length - the number the lightbox actually walks. */}
+      <p className="wildfire-gallery-rolodex-note">
+        Click on any picture to flip through the {wildfireViewerImages.length} pic carousel.
+      </p>
       <div className="wildfire-gallery-home-contact">
         <PhoneNumberLine
           className="wild-phone-number-line--home-footer"

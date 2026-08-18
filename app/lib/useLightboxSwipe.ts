@@ -19,18 +19,49 @@ export function useLightboxSwipe(
     callbacks.current = { onPrevious, onNext };
   }, [onNext, onPrevious]);
 
+  // touchmove fires faster than the display refreshes, and every write of
+  // --ww-lightbox-drag-x invalidates style for everything that reads it, on the
+  // main thread. Writing several times per frame is wasted work the browser has
+  // to finish before it can paint - which is what made the drag feel jumpy.
+  // Coalesce to exactly one write per animation frame; the newest position wins.
+  const dragFrameRef = useRef<number | null>(null);
+  const pendingDragRef = useRef<{ host: HTMLElement; x: number } | null>(null);
+
+  const cancelPendingDrag = useCallback(() => {
+    if (dragFrameRef.current !== null) {
+      window.cancelAnimationFrame(dragFrameRef.current);
+      dragFrameRef.current = null;
+    }
+    pendingDragRef.current = null;
+  }, []);
+
+  const queueDrag = useCallback((host: HTMLElement, x: number) => {
+    pendingDragRef.current = { host, x };
+    if (dragFrameRef.current !== null) return;
+    dragFrameRef.current = window.requestAnimationFrame(() => {
+      dragFrameRef.current = null;
+      const pending = pendingDragRef.current;
+      pendingDragRef.current = null;
+      if (pending) pending.host.style.setProperty("--ww-lightbox-drag-x", `${pending.x}px`);
+    });
+  }, []);
+
   const resetDrag = useCallback((host: HTMLElement, animate: boolean) => {
+    // Drop any queued frame first, or a stale drag position could land after
+    // the reset and snap the image back open.
+    cancelPendingDrag();
     host.classList.remove("wild-lightbox-is-dragging");
     if (!animate) host.classList.add("wild-lightbox-no-settle");
     host.style.setProperty("--ww-lightbox-drag-x", "0px");
     if (!animate) {
       window.requestAnimationFrame(() => host.classList.remove("wild-lightbox-no-settle"));
     }
-  }, []);
+  }, [cancelPendingDrag]);
 
   useEffect(() => () => {
+    cancelPendingDrag();
     if (gestureHostRef.current) resetDrag(gestureHostRef.current, false);
-  }, [resetDrag]);
+  }, [cancelPendingDrag, resetDrag]);
 
   const hostFor = (data: SwipeEventData) => data.event.currentTarget as HTMLElement;
 
@@ -48,7 +79,7 @@ export function useLightboxSwipe(
       host.classList.add("wild-lightbox-is-dragging");
       const limit = window.innerWidth * 0.92;
       const x = Math.max(-limit, Math.min(limit, data.deltaX));
-      host.style.setProperty("--ww-lightbox-drag-x", `${x}px`);
+      queueDrag(host, x);
     },
     onSwiped: (data) => {
       const host = gestureHostRef.current ?? hostFor(data);
@@ -65,6 +96,9 @@ export function useLightboxSwipe(
         return;
       }
 
+      // The gesture succeeded: drop any queued drag write so a stale offset
+      // cannot land after the slide has already started.
+      cancelPendingDrag();
       if (data.dir === "Left") callbacks.current.onNext();
       else callbacks.current.onPrevious();
     },

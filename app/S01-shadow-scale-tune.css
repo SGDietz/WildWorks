@@ -1,0 +1,65 @@
+/* S01 shadow tune - Claude 2026-08-18 (v5, per-line judgment).
+   Mobile only. Desktop / laptop / tablet never see these rules, so the
+   large-screen rendering G approved cannot move.
+   Target: reach/size = 0.115, the band of the four lines G accepted.
+   Lines already <= 0.125 are left EXACTLY as they were. */
+
+@media (max-width: 719px) {
+  /* Then Came the Patio. - UNCHANGED (already in band) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--patio {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.6px 0px, rgba(30, 8, 2, 0.9) 0px 1.5px 0px, rgba(25, 6, 1, 0.82) 0px 2.625px 0px, rgba(25, 6, 1, 0.68) 0px 3.75px 0px !important;
+  }
+
+  /* Then Came the Lounge. - UNCHANGED (already in band) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--lounge {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.563px 0px, rgba(30, 8, 2, 0.88) 0px 1.35px 0px, rgba(25, 6, 1, 0.79) 0px 2.325px 0px, rgba(25, 6, 1, 0.65) 0px 3.3px 0px !important;
+  }
+
+  /* Then We Just Kept Going. - UNCHANGED (already in band) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--going {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.525px 0px, rgba(30, 8, 2, 0.87) 0px 1.275px 0px, rgba(25, 6, 1, 0.78) 0px 2.175px 0px, rgba(25, 6, 1, 0.64) 0px 3.075px 0px !important;
+  }
+
+  /* We Photographed Every Step of the - ratio 0.144 -> 0.115 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-build-note__line.wild-wildfire-build-note__line--lead {
+    text-shadow: rgba(35, 9, 2, 0.95) 0px 0.359px 0px, rgba(30, 8, 2, 0.86) 0px 0.838px 0px, rgba(25, 6, 1, 0.76) 0px 1.437px 0px, rgba(25, 6, 1, 0.62) 0px 2.035px 0px !important;
+  }
+
+  /* Build, from pre-Breaking Ground - ratio 0.129 -> 0.115 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-build-note__line.wild-wildfire-build-note__line--middle {
+    text-shadow: rgba(35, 9, 2, 0.95) 0px 0.402px 0px, rgba(30, 8, 2, 0.86) 0px 0.938px 0px, rgba(25, 6, 1, 0.76) 0px 1.607px 0px, rgba(25, 6, 1, 0.62) 0px 2.277px 0px !important;
+  }
+
+  /* Through the First Wood Fire. - UNCHANGED (already in band) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-build-note__line.wild-wildfire-build-note__line--close {
+    text-shadow: rgba(35, 9, 2, 0.94) 0px 0.413px 0px, rgba(30, 8, 2, 0.85) 0px 0.975px 0px, rgba(25, 6, 1, 0.75) 0px 1.65px 0px, rgba(25, 6, 1, 0.6) 0px 2.325px 0px !important;
+  }
+
+  /* wrapper - ratio 0.149 -> 0.115 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--one {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.462px 0px, rgba(30, 8, 2, 0.9) 0px 1.155px 0px, rgba(25, 6, 1, 0.82) 0px 2.021px 0px, rgba(25, 6, 1, 0.68) 0px 2.887px 0px !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--one .wild-home-statement__phrase {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.462px 0px, rgba(30, 8, 2, 0.9) 0px 1.155px 0px, rgba(25, 6, 1, 0.82) 0px 2.021px 0px, rgba(25, 6, 1, 0.68) 0px 2.887px 0px !important;
+  }
+
+  /* wrapper - ratio 0.140 -> 0.115 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--two {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.491px 0px, rgba(30, 8, 2, 0.89) 0px 1.167px 0px, rgba(25, 6, 1, 0.8) 0px 2.027px 0px, rgba(25, 6, 1, 0.66) 0px 2.887px 0px !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--two .wild-home-statement__phrase {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.491px 0px, rgba(30, 8, 2, 0.89) 0px 1.167px 0px, rgba(25, 6, 1, 0.8) 0px 2.027px 0px, rgba(25, 6, 1, 0.66) 0px 2.887px 0px !important;
+  }
+
+  /* Where Fine Art Meets the Wild - ratio 0.146 -> 0.115 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--four {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.414px 0px, rgba(30, 8, 2, 0.87) 0px 1.006px 0px, rgba(25, 6, 1, 0.78) 0px 1.716px 0px, rgba(25, 6, 1, 0.64) 0px 2.426px 0px !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line.wild-home-statement__line--four .wild-home-statement__phrase {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.414px 0px, rgba(30, 8, 2, 0.87) 0px 1.006px 0px, rgba(25, 6, 1, 0.78) 0px 1.716px 0px, rgba(25, 6, 1, 0.64) 0px 2.426px 0px !important;
+  }
+
+}

@@ -1,0 +1,171 @@
+/* S03 - G's mobile pass, 2026-08-18, dictated line by line off his phone.
+   Mobile only. Desktop / laptop / iPad never see these rules. */
+
+@media (max-width: 719px) {
+  /* phone under the hero - "so heavy, go lighter" */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-hero) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.56px 0px, rgba(30, 8, 2, 0.9) 0px 1.4px 0px, rgba(25, 6, 1, 0.82) 0px 2.45px 0px, rgba(25, 6, 1, 0.68) 0px 3.5px 0px !important;
+  }
+
+  /* "Call Today" under the hero - lighter */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-hero .wild-phone-number-line__call-today) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.56px 0px, rgba(30, 8, 2, 0.9) 0px 1.4px 0px, rgba(25, 6, 1, 0.82) 0px 2.45px 0px, rgba(25, 6, 1, 0.68) 0px 3.5px 0px !important;
+  }
+
+  /* "iScott is the" - too heavy */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-iscott-title__segment--one, .wild-iscott-title__segment--two) {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 1.95px 0px, rgba(25, 6, 1, 0.74) 0px 3.9px 0px !important;
+  }
+
+  /* "Front Door" - too LIGHT, needs a little heavier */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-iscott-title__segment--three) {
+    text-shadow: rgb(0, 0, 0) 0px 1.491px 0px, rgba(0, 0, 0, 0.78) 0px 2.272px 0.639px, rgba(0, 0, 0, 0.4) 0px 3.337px 1.633px !important;
+  }
+
+  /* "Start with iScott" in the avatar card - a little too heavy */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(#iscott-sales .wild-start-title__start, #iscott-sales .wild-start-title__with, #iscott-sales .wild-start-title__name) {
+    text-shadow: rgba(35, 9, 2, 0.92) 0px 1.6px 0px, rgba(25, 6, 1, 0.68) 0px 3.28px 0px !important;
+  }
+
+  /* "Project Wildfire" - too heavy, back it off */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-wildfire-flame-title__text) {
+    text-shadow: rgba(35, 9, 2, 0.94) 0px 1.725px 0px, rgba(25, 6, 1, 0.71) 0px 3.525px 0px !important;
+  }
+
+  /* "Then Came the Patio / Lounge / Kept Going" - all too heavy [Then Came the Patio.] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--patio) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.45px 0px, rgba(30, 8, 2, 0.9) 0px 1.125px 0px, rgba(25, 6, 1, 0.82) 0px 1.969px 0px, rgba(25, 6, 1, 0.68) 0px 2.813px 0px !important;
+  }
+
+  /* "Then Came the Patio / Lounge / Kept Going" - all too heavy [Then Came the Lounge.] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--lounge) {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.422px 0px, rgba(30, 8, 2, 0.88) 0px 1.013px 0px, rgba(25, 6, 1, 0.79) 0px 1.744px 0px, rgba(25, 6, 1, 0.65) 0px 2.475px 0px !important;
+  }
+
+  /* "Then Came the Patio / Lounge / Kept Going" - all too heavy [Then We Just Kept Going.] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--going) {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.394px 0px, rgba(30, 8, 2, 0.87) 0px 0.956px 0px, rgba(25, 6, 1, 0.78) 0px 1.631px 0px, rgba(25, 6, 1, 0.64) 0px 2.306px 0px !important;
+  }
+
+  /* "Through the First Wood Fire" - a little heavy (the other two build-note lines are OK) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-wildfire-build-note__line--close) {
+    text-shadow: rgba(35, 9, 2, 0.94) 0px 0.33px 0px, rgba(30, 8, 2, 0.85) 0px 0.78px 0px, rgba(25, 6, 1, 0.75) 0px 1.32px 0px, rgba(25, 6, 1, 0.6) 0px 1.86px 0px !important;
+  }
+
+  /* "Design at the Limits / A Contractor / Brings Those" - all a little too heavy [wrapper] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-home-statement__line.wild-home-statement__line--one, .wild-home-statement__line.wild-home-statement__line--one .wild-home-statement__phrase) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.393px 0px, rgba(30, 8, 2, 0.9) 0px 0.982px 0px, rgba(25, 6, 1, 0.82) 0px 1.718px 0px, rgba(25, 6, 1, 0.68) 0px 2.454px 0px !important;
+  }
+
+  /* "Design at the Limits / A Contractor / Brings Those" - all a little too heavy [wrapper] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-home-statement__line.wild-home-statement__line--two, .wild-home-statement__line.wild-home-statement__line--two .wild-home-statement__phrase) {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.417px 0px, rgba(30, 8, 2, 0.89) 0px 0.992px 0px, rgba(25, 6, 1, 0.8) 0px 1.723px 0px, rgba(25, 6, 1, 0.66) 0px 2.454px 0px !important;
+  }
+
+  /* "Design at the Limits / A Contractor / Brings Those" - all a little too heavy [Where Fine Art Meets the] */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-home-statement__line.wild-home-statement__line--four, .wild-home-statement__line.wild-home-statement__line--four .wild-home-statement__phrase) {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.352px 0px, rgba(30, 8, 2, 0.87) 0px 0.855px 0px, rgba(25, 6, 1, 0.78) 0px 1.459px 0px, rgba(25, 6, 1, 0.64) 0px 2.062px 0px !important;
+  }
+
+  /* phone under the WildWorks card - too heavy */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-tree) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.56px 0px, rgba(30, 8, 2, 0.9) 0px 1.4px 0px, rgba(25, 6, 1, 0.82) 0px 2.45px 0px, rgba(25, 6, 1, 0.68) 0px 3.5px 0px !important;
+  }
+
+  /* "The Tree of Life Natural Stone Patio" - back it off */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-tree-title .wild-line-title__line) {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.525px 0px, rgba(30, 8, 2, 0.89) 0px 1.19px 0px, rgba(25, 6, 1, 0.81) 0px 2.03px 0px, rgba(25, 6, 1, 0.67) 0px 2.94px 0px !important;
+  }
+
+  /* "What Could Be Cooler...Of Your Own?" - way too heavy, G: about 50% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-signature-title__one, .wild-signature-title__two, .wild-signature-title__three) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.4px 0px, rgba(30, 8, 2, 0.9) 0px 1px 0px, rgba(25, 6, 1, 0.82) 0px 1.75px 0px, rgba(25, 6, 1, 0.68) 0px 2.5px 0px !important;
+  }
+
+  /* "The Ruins" - G: 60% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-story-card--feature .wild-line-title__line) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.48px 0px, rgba(30, 8, 2, 0.9) 0px 1.11px 0px, rgba(25, 6, 1, 0.82) 0px 1.92px 0px, rgba(25, 6, 1, 0.68) 0px 2.76px 0px !important;
+  }
+
+  /* phone under the ruins card - G: 60% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-services) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.48px 0px, rgba(30, 8, 2, 0.9) 0px 1.2px 0px, rgba(25, 6, 1, 0.82) 0px 2.1px 0px, rgba(25, 6, 1, 0.68) 0px 3px 0px !important;
+  }
+
+  /* "WildWorks Projects" - G: 60% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-home-projects__title-wildworks, .wild-home-projects__title-projects) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.48px 0px, rgba(30, 8, 2, 0.9) 0px 1.11px 0px, rgba(25, 6, 1, 0.82) 0px 1.92px 0px, rgba(25, 6, 1, 0.68) 0px 2.76px 0px !important;
+  }
+
+  /* phone in the video card - G: 60% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-video) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.48px 0px, rgba(30, 8, 2, 0.9) 0px 1.2px 0px, rgba(25, 6, 1, 0.82) 0px 2.1px 0px, rgba(25, 6, 1, 0.68) 0px 3px 0px !important;
+  }
+
+  /* "Services" - a little too heavy */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-kicker-frame) {
+    text-shadow: rgba(35, 9, 2, 0.96) 0px 0.48px 0px, rgba(30, 8, 2, 0.88) 0px 1.08px 0px, rgba(25, 6, 1, 0.78) 0px 1.84px 0px, rgba(25, 6, 1, 0.64) 0px 2.56px 0px !important;
+  }
+
+  /* "What WildWorks" - G: 70% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(#services .wild-services-title__wildworks, #services .wild-line-title__line--one) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.56px 0px, rgba(30, 8, 2, 0.9) 0px 1.33px 0px, rgba(25, 6, 1, 0.82) 0px 2.31px 0px, rgba(25, 6, 1, 0.68) 0px 3.29px 0px !important;
+  }
+
+  /* "is Known for" - way too heavy, G: 50% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(#services .wild-line-title__line--two) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.4px 0px, rgba(30, 8, 2, 0.9) 0px 0.95px 0px, rgba(25, 6, 1, 0.82) 0px 1.65px 0px, rgba(25, 6, 1, 0.68) 0px 2.35px 0px !important;
+  }
+
+  /* "Want a / Website Like This?" - almost nothing, needs a nice shadow */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(#ai-websites .wild-line-title__line--one, #ai-websites .wild-line-title__line--two) {
+    text-shadow: rgba(35, 9, 2, 0.7) 0px 1.525px 0px, rgba(25, 6, 1, 0.44) 0px 3.456px 0px !important;
+  }
+
+  /* phone under Ai-Native Websites - G: 75% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--home-footer) {
+    text-shadow: rgba(35, 9, 2, 0.98) 0px 0.6px 0px, rgba(30, 8, 2, 0.9) 0px 1.5px 0px, rgba(25, 6, 1, 0.82) 0px 2.625px 0px, rgba(25, 6, 1, 0.68) 0px 3.75px 0px !important;
+  }
+
+  /* "Let's Talk About Your Dream Project" - lighten */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-footer-contact-cta__title) {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.525px 0px, rgba(30, 8, 2, 0.89) 0px 1.2px 0px, rgba(25, 6, 1, 0.8) 0px 2.025px 0px, rgba(25, 6, 1, 0.66) 0px 2.925px 0px !important;
+  }
+
+  /* "Start the Conversation Now" - lighten */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-footer-contact-cta__kicker-line) {
+    text-shadow: rgba(35, 9, 2, 0.97) 0px 0.525px 0px, rgba(30, 8, 2, 0.89) 0px 1.2px 0px, rgba(25, 6, 1, 0.8) 0px 2.025px 0px, rgba(25, 6, 1, 0.66) 0px 2.925px 0px !important;
+  }
+
+  /* "Start with iScott" in the BOTTOM avatar - G: there is nothing on it */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(footer .wild-start-title__start, footer .wild-start-title__with, footer .wild-start-title__name) {
+    text-shadow: rgba(35, 9, 2, 0.52) 0px 1.298px 0px, rgba(25, 6, 1, 0.3) 0px 2.856px 0px !important;
+  }
+
+  /* phone under "Or Call Today" - way too heavy, G: 60% */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-phone-number-line--footer-closing) {
+    text-shadow: rgb(0, 0, 0) 0px 0.998px 0px, rgb(0, 0, 0) 0px 1.622px 0.3px, rgba(0, 0, 0, 0.82) 0px 2.371px 0.874px !important;
+  }
+
+  /* G: "make Or Call Today significantly bigger" */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-phone-number-line--footer-closing .wild-phone-number-line__call-today {
+    font-size: clamp(2.1rem, 9.2vw, 2.9rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  /* G: "give some separation between Talk to iScott and Or Call Today".
+     The gap is the PARENT grid row-gap, not a margin on the line - a margin-top
+     on the child computes to 0. The live authority is
+     footer#footer .wild-footer-final-region .wild-footer-phone-iscott-group
+     { row-gap: .6rem !important } inside a 640px query, so the ancestor chain
+     must be matched, not merely out-weighted. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-final-region .wild-footer-phone-iscott-group {
+    row-gap: 2.1rem !important;
+  }
+
+  /* row-gap kept losing to a 640px authority even at higher specificity, so the
+     separation is also applied as padding on the line itself - uncontested. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-phone-number-line--footer-closing {
+    padding-top: 1.6rem !important;
+  }
+}

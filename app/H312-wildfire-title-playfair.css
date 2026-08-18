@@ -1,0 +1,30 @@
+/* H312: G 2026-08-18 — "all fonts should be uniform across all devices" and
+   "I don't like a square dot for an i."
+
+   Both come from the same root cause. H238 asks the Wildfire page title for
+   "Playfair Display", but a 16x #wildworks-body !important rule forces
+   font-family: var(--ww-body-copy-font), so the title never gets the display
+   face. It fell back to Cambria on Windows and Android's Noto Serif on G's
+   phone — different letterforms per device, square tittles, and the fi ligature
+   he photographed.
+
+   Playfair Display is already downloaded by next/font in layout.tsx as
+   --font-playfair, so this ships no new bytes; it only lets the face that is
+   already loading actually reach the title. A webfont renders the SAME on every
+   device, which is exactly the uniformity G asked for, and its i/j tittles are
+   round, not square.
+
+   Specificity: the rival is 16 ids + !important, so this uses 24 + !important.
+   Verified at runtime that it actually wins - not assumed. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__project,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__wildfire,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-hero-kicker__cap {
+  font-family: var(--font-playfair), "Playfair Display", "Libre Baskerville",
+    Georgia, serif !important;
+}

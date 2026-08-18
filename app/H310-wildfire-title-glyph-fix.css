@@ -1,0 +1,33 @@
+/* H310: the "Project Wildfire" page title — two glyph collisions G photographed
+   from his phone on 2026-08-18 (13:18, Telegram):
+     1. "the i dot is in the middle of the F in wildfire" — the f and i are set
+        so tight that the i's tittle lands over the f's hook. On his Android the
+        serif fallback goes further and substitutes a real fi ligature, so the i
+        loses its dot altogether.
+     2. "the dot above the j in project is half there, half not there" — the o
+        crowds the j, so the j's tittle collides with the o's bowl and reads as
+        half eaten.
+
+   ROOT CAUSE, for the record: H238 asks this title for "Playfair Display", but
+   a 16-ID !important rule forces font-family: var(--ww-body-copy-font), so the
+   title never gets the display face. It renders Cambria on Windows and Android's
+   serif on G's phone — different letterforms per device, which is why the tittles
+   collide there and not in the design. Letting Playfair through would fix this at
+   the root AND make the title identical on every device, but it changes the
+   title's letterforms, so that is G's call, not a side effect of this fix.
+
+   THIS FILE is the minimal fix he asked for and nothing else: separate the pairs
+   and switch optional ligatures off. Non-zero letter-spacing also suppresses the
+   fi ligature in Blink, so the two declarations back each other up on whatever
+   font a device falls back to. 0.02em measured at 412x915: title stays two lines
+   ("Project" / "Wildfire"), no overflow, hero image position unchanged. */
+
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading,
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__project,
+html body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__wildfire {
+  font-variant-ligatures: none !important;
+  letter-spacing: 0.02em !important;
+}

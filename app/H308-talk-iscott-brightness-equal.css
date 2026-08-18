@@ -1,0 +1,68 @@
+/* H308: Talk to iScott brightness — G's pinpointed buttons ONLY, equal to the
+   Call Now / Text Now / Email Now buttons beside/below them (unfiltered).
+   History (all G, 2026-08-18, by voice/photo via the Telegram bridge):
+   - ~12:55 "brighten the two Talk to iScott buttons" (Home closing big button
+     + Home Dream Project card button).
+   - ~13:00 "GUARDRAILS: nothing except exactly what I ask. Only those two, on
+     the home page." (rev 2 scoped to Home.)
+   - 13:05 photo: Home wildfire-section Talk to iScott joins (rev 3).
+   - ~13:10 "top one not done": the tall closing button LOOKED dark because the
+     shared gradient stretches on it; light zone extended, that button only
+     (rev 4).
+   - 13:06 photo of /pages/Wildfire + ~13:15 voice: "crawl the entire site,
+     all pages, legal and sub pages — THAT button (the Dream Project card's
+     Talk to iScott) needs to be as bright as the buttons below it." (rev 6:
+     the card button rule goes SITE-WIDE; everything else stays scoped.)
+   - 14:25 (Claude, desktop) G: the card's Talk to iScott now reads BRIGHTER
+     than Call Now / Email Now beside it; it must match them, every page,
+     legal included. brightness(1) exposed this button's lighter gradient
+     (#ffe7af/#e8ad59 vs the neighbours' #f0ca86/#d89a4d) plus a 0.92 sheen
+     against their 0.48. Measured rendered face: talk 165.6 lum vs neighbours
+     148.1 / 147.8 / 146.3 (mean 147.4). 165.6 x 0.89 = 147.4, so rule 1 goes
+     to brightness(0.89) - a measured match, not a repaint. Text Now was never
+     off; it only looked bright beside the glow. (rev 7)
+   Supersedes H273/H274's 0.78 dampen for ONLY the selectors below. Never
+   touches: avatar overlay CTAs, "Return to WildWorks" on legal, or any other
+   talk button — those keep their approved state. */
+
+/* 1. SITE-WIDE: the Dream Project contact card's Talk to iScott (the one
+      directly above Call Now / Text Now / Email Now in the footer card). */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer .wild-footer-contact-cta__actions a.money-cta.money-cta--primary[href*="wake-iscott=1"]:not(.wild-site-avatar-overlay-cta) {
+  --ww-talk-control-brightness: 0.89 !important;
+  --ww-talk-control-brightness-hover: 0.89 !important;
+  filter: brightness(0.89) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer .wild-footer-contact-cta__actions a.money-cta.money-cta--primary[href*="wake-iscott=1"]:not(.wild-site-avatar-overlay-cta):is(:hover, :focus-visible) {
+  filter: brightness(0.89) !important;
+}
+
+/* 2. HOME ONLY: the closing big Talk to iScott (last phone/iScott block in the
+      page body) and the wildfire-section Talk to iScott. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) :is(
+  #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button,
+  section#project-wildfire a.money-cta.money-cta--primary.wild-iscott-action-button
+):not(.wild-site-avatar-overlay-cta) {
+  --ww-talk-control-brightness: 1 !important;
+  --ww-talk-control-brightness-hover: 1 !important;
+  filter: brightness(1) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) :is(
+  #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button,
+  section#project-wildfire a.money-cta.money-cta--primary.wild-iscott-action-button
+):not(.wild-site-avatar-overlay-cta):is(:hover, :focus-visible) {
+  filter: brightness(1) !important;
+}
+
+/* 3. HOME ONLY: the tall closing button's gradient shows mostly its dark half
+      at that height — extend the light-gold zone so it LOOKS as bright as the
+      short card buttons. Same colors, redistributed. (rev 4) */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home)
+  #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button {
+  background-image:
+    radial-gradient(circle at 50% -30%, rgba(255, 247, 213, 0.95), transparent 62%),
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 66%, #b96d2d 92%, #9f4719 100%) !important;
+}
