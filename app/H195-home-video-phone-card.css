@@ -1,6 +1,6 @@
 /* H195: G 2026-08-13 (Screenshot 2026-08-13 191058.png)
    One orange card around the Home craftsmanship video, the phone number,
-   and Talk to iScott. Card color = Home secondary #c56222.
+   and Talk to iScott. Card color = Home secondary #e96819.
    Requires the .wild-home-craftsmanship-card wrap in page.tsx.
    H176 stays: the player section itself stays transparent so the
    rounded video is not boxed in a second square. */
@@ -16,8 +16,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   padding: clamp(1.15rem, 2.3vw, 1.8rem) clamp(1.05rem, 2.1vw, 1.7rem) clamp(1.35rem, 2.5vw, 2rem) !important;
   border: 1px solid #6f2a10 !important;
   border-radius: 8px !important;
-  background: var(--ww-home-hdr-secondary, #c56222) !important;
-  background-color: var(--ww-home-hdr-secondary, #c56222) !important;
+  background: var(--ww-home-hdr-secondary, #e96819) !important;
+  background-color: var(--ww-home-hdr-secondary, #e96819) !important;
   background-image: none !important;
   box-shadow:
     0 22px 70px rgba(16, 6, 1, 0.38),

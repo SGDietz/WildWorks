@@ -2,8 +2,8 @@
    This only paints page-field surfaces behind existing components. Cards,
    images, type, and layout remain independently styled. */
 :root {
-  --ww-h220-primary: #9f4719;
-  --ww-h220-card: #c56222;
+  --ww-h220-primary: #c44d0b;
+  --ww-h220-card: #e96819;
   --ww-h220-primary-lamp: linear-gradient(
     90deg,
     var(--ww-h220-primary) 0%,

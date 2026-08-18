@@ -25,8 +25,8 @@ html:has(.wild-legal-home)
     #footer .wild-phone-number-line__call-today,
     #footer .wild-footer-stonework-note
   ) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* Color 1: legal copy, consent/fine print, copyright, legal navigation, and
@@ -130,8 +130,8 @@ html:has(.wild-legal-home)
 html:has(.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #footer#footer#footer :is(input, textarea, select)::placeholder {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   opacity: 1 !important;
 }
 

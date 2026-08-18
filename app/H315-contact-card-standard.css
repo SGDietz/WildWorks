@@ -1,0 +1,36 @@
+/* H315: G 2026-08-18 - "Let's Talk About Your Dream Project... it's different
+   than the other ones... one word Project on the second line... there's not
+   enough effect here. Make this area standard for all the areas, that card
+   everywhere on the site, every single page including the legal pages."
+
+   WHY IT WAS DIFFERENT (measured at 1920, identical 689px card width):
+     Home / legal : font-family computes to the string "var(--font-serif), serif"
+                    - the whole value is QUOTED, so it is one bogus family name
+                    and the browser silently falls back to its default serif.
+                    That fallback measures 687px, so it just fits.
+     Ruins / Bio  : real Cambria stack, which measures 712px -> wraps "Project."
+                    onto a second line.
+     All three also carried DIFFERENT title shadows: Home a 4-stop ladder, Ruins
+     a lighter 3-stop, legal a single blurred 2px/5px.
+
+   So the card was never standard - it was three treatments held apart by a typo
+   and an A/B footer split.
+
+   THE STANDARD, applied to every page including legal:
+     - one real font stack (the Cambria family Ruins and Bio already use), so no
+       page depends on whatever serif a device happens to ship;
+     - a size that fits on ONE line. Cambria needs 712px at 45.6px against a
+       689px box, so the ceiling drops to 43px - a small trim, and the only way
+       to honour "all on one line" without a device-dependent font;
+     - Home's 4-stop ladder as the shared shadow, the most developed of the three.
+       That is also the "not enough effect" fix for Ruins and the legal pages. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-footer-contact-cta__title {
+  font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.5rem, 2.35vw, 43px) !important;
+  text-shadow:
+    0 0.7px 0 rgba(35, 9, 2, 0.97),
+    0 1.6px 0 rgba(30, 8, 2, 0.89),
+    0 2.7px 0 rgba(25, 6, 1, 0.8),
+    0 3.9px 0 rgba(25, 6, 1, 0.66) !important;
+}

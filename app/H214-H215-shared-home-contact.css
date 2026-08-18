@@ -55,7 +55,7 @@ body#wildworks-body
   border-radius: 14px !important;
   background:
     radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
   box-shadow:
     0 16px 42px rgba(20, 7, 1, 0.42),
     0 0 24px rgba(224, 168, 90, 0.18),

@@ -304,15 +304,15 @@ export default function Footer() {
               <p className="wild-signup-fine-print">
                 You can unsubscribe from emails at any time and opt out of texts by replying STOP
                 where supported. See the{" "}
-                <Link href="/pages/terms-of-service" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
+                <Link href="/pages/terms-of-service" className="underline decoration-[#edc775] underline-offset-4 hover:text-[#fce0ad]">
                   Terms of Service
                 </Link>
                 ,{" "}
-                <Link href="/pages/privacy-policy" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
+                <Link href="/pages/privacy-policy" className="underline decoration-[#edc775] underline-offset-4 hover:text-[#fce0ad]">
                   Privacy Policy
                 </Link>{" "}
                 and{" "}
-                <Link href="/pages/communications" className="underline decoration-[#f1bf75] underline-offset-4 hover:text-[#fce0ad]">
+                <Link href="/pages/communications" className="underline decoration-[#edc775] underline-offset-4 hover:text-[#fce0ad]">
                   Communications Policy
                 </Link>
                 .
@@ -417,7 +417,7 @@ export default function Footer() {
           )}
         </div>
           <div
-            className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#f1bf75] sm:px-6"
+            className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#edc775] sm:px-6"
             style={{ width: "100%", maxWidth: "none" }}
           >
           <motion.button
@@ -460,7 +460,7 @@ export default function Footer() {
           </span>
         </div>
 
-          <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#f1bf75] sm:flex-row sm:px-6 sm:text-left">
+          <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#edc775] sm:flex-row sm:px-6 sm:text-left">
           <span className="wild-footer-legal-links flex flex-wrap justify-center gap-x-3 gap-y-2 sm:text-sm">
             {legalNavItems.map((item) => (
               <Link key={item.href} href={item.href} className="wild-footer-legal-link">

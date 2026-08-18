@@ -3,21 +3,21 @@
    Narrative A/B bands stay solid; actual cards retain the luminous blend. */
 
 :root {
-  --ww-reference-a: #983e17;
-  --ww-reference-b: #c85a24;
+  --ww-reference-a: #c44d0b;
+  --ww-reference-b: #e96819;
   --ww-reference-page:
     radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%),
-    linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%);
+    linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%);
   --ww-reference-card:
     radial-gradient(ellipse 95% 55% at 50% 0%, rgba(231, 136, 72, 0.14), transparent 62%),
-    linear-gradient(180deg, #c0612b 0%, #c85a24 52%, #a9451a 100%);
+    linear-gradient(180deg, #c0612b 0%, #e96819 52%, #a9451a 100%);
   /* Never invent a separate phone canvas. Mobile inherits the same approved
      page material, and Home can apply its verified device compensation by
      overriding this shared reference alongside --ww-reference-page. */
   --ww-reference-mobile-page: var(--ww-reference-page);
   --ww-page-base-copper: var(--ww-reference-a) !important;
   --ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%) !important;
-  --ww-center-gold-fade: linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) !important;
+  --ww-center-gold-fade: linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%) !important;
   --ww-page-background: var(--ww-reference-page) !important;
   --ww-home-page-background: var(--ww-reference-page) !important;
   --ww-soft-field: var(--ww-reference-page) !important;
@@ -34,8 +34,8 @@
   --ww-solid-a: var(--ww-reference-a) !important;
   --ww-solid-b: var(--ww-reference-b) !important;
   --ww-color-1: #fce0ad !important;
-  --ww-color-2: #f1bf75 !important;
-  --ww-color-3: #d5823a !important;
+  --ww-color-2: #edc775 !important;
+  --ww-color-3: #f08c28 !important;
 }
 
 html,

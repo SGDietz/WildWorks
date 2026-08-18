@@ -269,6 +269,18 @@ import "./H308-talk-iscott-brightness-equal.css";
 import "./H310-wildfire-title-glyph-fix.css";
 import "./H311-wildfire-gallery-rolodex-note.css";
 import "./H312-wildfire-title-playfair.css";
+import "./H313-logo-shadow-gap-fill.css";
+import "./H314-closing-phone-match-ruins.css";
+import "./H315-contact-card-standard.css";
+import "./H316-ruins-type-and-effect.css";
+import "./H317-home-shadow-percentages.css";
+import "./H318-talk-buttons-uniform-dampen.css";
+import "./H319-home-batch2.css";
+import "./H320-wildfire-batch.css";
+import "./H321-projects-batch.css";
+import "./H322-bio-batch.css";
+import "./H323-text-colour-two.css";
+import "./H324-flat-canvas.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
@@ -446,7 +458,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#9f4719",
+  themeColor: "#c44d0b",
 };
 
 export default function RootLayout({
@@ -506,7 +518,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    // G 2026-08-18: "when you hit refresh, a black rectangle comes up, you should
+    // never see that." The copper canvas lives in CSS, so on a cold refresh the
+    // browser paints its own canvas for the first frame or two before any
+    // stylesheet arrives - and that frame is what he was seeing. An inline style
+    // on <html> is in the markup itself, so the very first paint is already
+    // brand copper. Belt and braces with the inline <style> further down, which
+    // cannot apply until <body> starts parsing.
+    <html lang="en" style={{ backgroundColor: "#c44d0b" }}>
       <head>
         <script
           type="application/ld+json"

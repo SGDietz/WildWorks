@@ -2,14 +2,14 @@
    G 2026-08-13 (Screenshot 2026-08-13 123014.png):
    Only the big Talk to iScott buttons against the page field.
    Not the avatar-box control. Text + icon only, halfway from
-   current ink #7d2f20 toward primary #9f4719.
+   current ink #7d2f20 toward primary #c44d0b.
    Midpoint: #8e3b1d. Button gold face stays put. */
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
   --ww-h170-field-talk-ink: color-mix(
     in srgb,
     #7d2f20 50%,
-    var(--ww-home-hdr-primary, #9f4719) 50%
+    var(--ww-home-hdr-primary, #c44d0b) 50%
   );
 }
 

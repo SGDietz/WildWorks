@@ -4,20 +4,43 @@
    edge shade. Cards, H226 Bio inner section, buttons, and controls are not
    selected. */
 :root {
+  /* G 2026-08-18: "it should definitely not mix from something to a muddy brown
+     in the middle of the color itself. Just pick one average color."
+     This was a 12-stop 90deg gradient: #c44d0b at both edges but #aa4d1c ->
+     #b4521e -> #b95620 -> #bc5720 through the middle. That centre band is the
+     muddy brown he kept seeing, and it sat on <body> at 408 ids so nothing
+     downstream could override it. Every stop is now the primary, so the canvas
+     is one flat colour edge to edge. The token and all 12 stops are kept so
+     every rule that references this variable still resolves. */
+  /* CENTRE GLOW - restored 2026-08-18 on G's word: "don't forget the light glow
+     in the center, that is so incredibly important."
+
+     I had flattened this earlier today. When G said the page "mixes to a muddy
+     brown in the middle", this gradient WAS that middle - on the old dark
+     primary its centre stops read as mud rather than as light, so the
+     complaint and the glow were the same object.
+
+     Rebuilt rather than reverted: each stop's offset from the OLD primary was
+     measured and re-applied to the new one, so the glow keeps its exact shape
+     and rise while sitting on G's locked #c44d0b.
+         +11,+6,+3   at 16 and 84
+         +21,+11,+5  at 28 and 72
+         +26,+15,+7  at 38 and 62
+         +29,+16,+7  across the 44-56 centre  */
   --ww-canonical-home-glow: linear-gradient(
     90deg,
-    var(--ww-home-hdr-primary, #9f4719) 0%,
-    var(--ww-home-hdr-primary, #9f4719) 4%,
-    #aa4d1c 16%,
-    #b4521e 28%,
-    #b95620 38%,
-    #bc5720 44%,
-    #bc5720 56%,
-    #b95620 62%,
-    #b4521e 72%,
-    #aa4d1c 84%,
-    var(--ww-home-hdr-primary, #9f4719) 96%,
-    var(--ww-home-hdr-primary, #9f4719) 100%
+    var(--ww-home-hdr-primary, #c44d0b) 0%,
+    var(--ww-home-hdr-primary, #c44d0b) 4%,
+    #cf530e 16%,
+    #d95810 28%,
+    #de5c12 38%,
+    #e15d12 44%,
+    #e15d12 56%,
+    #de5c12 62%,
+    #d95810 72%,
+    #cf530e 84%,
+    var(--ww-home-hdr-primary, #c44d0b) 96%,
+    var(--ww-home-hdr-primary, #c44d0b) 100%
   );
   --ww-canonical-route-glow: var(--ww-canonical-home-glow);
 }
@@ -53,7 +76,7 @@ html:not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#w
     footer.discordSection,
     footer#footer
   ) {
-  background-color: var(--ww-home-hdr-primary, #9f4719) !important;
+  background-color: var(--ww-home-hdr-primary, #c44d0b) !important;
   background-image: var(--ww-canonical-route-glow) !important;
   background-position: center center !important;
   background-size: cover !important;

@@ -1,0 +1,29 @@
+/* H318: G 2026-08-18 - "all the talk to iScotts are a little bright, they need
+   to be dampened. The big talk to iScott button."
+
+   AUDIT of Home before this file - 11 Talk to iScott controls at FIVE different
+   brightnesses:
+       y=936    0.78   hero pair
+       y=1584   none   big closing button
+       y=2335   none   avatar overlay CTA
+       y=4252   0.9    wildfire section
+       y=5379   none   big button
+       y=7591   none   big button
+       y=10026  none   big button
+       y=12484  0.9    big button (H308 rule 2 reached only this one)
+       y=12862  0.84   contact card
+       y=14562  none   big button
+   Five of the big buttons had no dampening at all, which is what G keeps seeing.
+   H308 rule 2 only ever matched the LAST one on the page, so the other four
+   stayed at full brightness.
+
+   This puts every big Talk button on 0.90, the value already proven on the two
+   that were correct. Deliberately NOT touched: the avatar overlay CTAs, which
+   sit on top of iScott's picture and have their own approved treatment, and the
+   hero pair at 0.78 which G has not complained about. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-phone-iscott-test__button:not(.wild-site-avatar-overlay-cta) {
+  --ww-talk-control-brightness: 0.90 !important;
+  --ww-talk-control-brightness-hover: 0.90 !important;
+  filter: brightness(0.90) !important;
+}

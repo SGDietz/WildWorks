@@ -46,8 +46,8 @@ html body#wildworks-body footer#footer .wild-phone-number-line--footer-closing >
 body .wild-phone-number-line__call-today {
   display: block;
   margin-top: clamp(0.32rem, 0.8vw, 0.62rem);
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   font-family: var(--font-playfair), var(--font-serif), Georgia, serif;
   font-size: clamp(2.45rem, 4.4vw, 4.55rem);
   font-weight: 700;
@@ -140,8 +140,8 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
   footer#footer#footer#footer
   .wild-phone-number-line--legal .wild-phone-number-line__call-today {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* Legal CTA labels already use the normal warm-copper ink; carry that exact
@@ -186,8 +186,8 @@ body #top.wild-home #signature-work + .wild-phone-number-line--home-services {
 
 /* The Ruins placement is the one warm Color 2 number-only callout. */
 body #top.wild-home .wild-phone-number-line--home-services > a {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 body #top.wild-home .wild-phone-number-line--home-services + #services {

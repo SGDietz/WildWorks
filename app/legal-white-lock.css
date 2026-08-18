@@ -11,8 +11,8 @@
 html:has(.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer.wild-footer--legal {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -64,8 +64,8 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
 /* G 2026-08-08: legal pages use the same two primary surfaces as the site.
    This changes only the materials behind the permanent white-print rule. */
 html:has(.wild-legal-home) {
-  --ww-legal-primary-field: #9f4719 !important;
-  --ww-legal-primary-card: #c56222 !important;
+  --ww-legal-primary-field: #c44d0b !important;
+  --ww-legal-primary-card: #e96819 !important;
   --ww-card-flat: var(--ww-legal-primary-card) !important;
   --ww-card-finish: var(--ww-legal-primary-card) !important;
   --ww-card-rim: var(--ww-legal-primary-card) !important;
@@ -166,7 +166,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   ) {
   border-color: #fff4d2 !important;
   background: var(--ww-legal-original-spirit-button) !important;
-  background-color: #f1bf75 !important;
+  background-color: #edc775 !important;
   background-image: var(--ww-legal-original-spirit-button) !important;
   box-shadow:
     0 0.65rem 1.45rem rgba(0, 0, 0, 0.4),
@@ -177,13 +177,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 /* G 2026-08-08 final legal palette. Every legal route now mirrors Home:
    Russet Flame primary, Copper Flame secondary, white rims, permanent white print. */
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) {
-  --ww-legal-primary-field: #9f4719 !important;
-  --ww-legal-primary-card: #c56222 !important;
-  --ww-card-flat: #c56222 !important;
-  --ww-card-finish: #c56222 !important;
+  --ww-legal-primary-field: #c44d0b !important;
+  --ww-legal-primary-card: #e96819 !important;
+  --ww-card-flat: #e96819 !important;
+  --ww-card-finish: #e96819 !important;
   --ww-card-rim: #fff !important;
   --ww-legal-original-spirit-button: var(--ww-approved-button-material);
-  scrollbar-color: #c56222 #9f4719 !important;
+  scrollbar-color: #e96819 #c44d0b !important;
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
@@ -202,8 +202,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
     .wild-footer-closing-region,
     .wild-mobile-menu
   ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -221,8 +221,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
     .wild-footer-mobile-strip,
     .wild-mobile-menu > div
   ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -270,22 +270,22 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
     input[type="submit"]
   ) {
   background: var(--ww-legal-original-spirit-button) !important;
-  background-color: #c56222 !important;
+  background-color: #e96819 !important;
   background-image: var(--ww-legal-original-spirit-button) !important;
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-track,
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) body::-webkit-scrollbar-track,
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-corner {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-thumb,
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) body::-webkit-scrollbar-thumb {
   border-color: #fff !important;
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
 }
 
 /* Legal-print authority, superseded on 2026-08-10: the base legal copy now
@@ -331,7 +331,7 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
     .wild-legal-home select,
     .wild-legal-home button
   )::placeholder {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   opacity: 1 !important;
 }

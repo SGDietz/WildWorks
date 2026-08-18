@@ -64,14 +64,14 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__start:not(#_),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__with:not(#_) {
-  /* Measured live: the whole mid-page title is uniform gold #f1bf75. */
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  /* Measured live: the whole mid-page title is uniform gold #edc775. */
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title__name {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* Image frame: mid is 288px wide, footer was 320px. */

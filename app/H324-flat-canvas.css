@@ -1,0 +1,19 @@
+/* H324: G 2026-08-18 - "it should definitely not mix from something to a muddy
+   brown in the middle of the color itself. Just pick one average color."
+
+   The page background was never one colour. <body> carried
+   linear-gradient(90deg, ...) with several stops, so the field shifted across
+   the width and read muddy through the middle - that banding, not the hex, is
+   what he was seeing. This makes the canvas a single flat colour.
+
+   Primary is #c44d0b, taken from the cleanest, most saturated patches of his
+   keeper photo (the left-hand samples, which the room light had not washed out).
+
+   Backgrounds only. Buttons, the gold material, the video chrome and every glow
+   gradient are untouched. */
+
+
+
+/* 2026-08-18: the flat-canvas override is retired. G asked for the centre glow
+   back, and this file's `background-image: none` was the thing suppressing it.
+   The canvas colour now comes from the palette tokens and the glow from H231. */

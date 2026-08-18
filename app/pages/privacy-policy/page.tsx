@@ -140,7 +140,7 @@ export default function PrivacyPolicyPage() {
               <p>
                 Email, SMS/text, phone, and social-media communication practices are explained in
                 the{" "}
-                <Link className="underline decoration-[#f1bf75] underline-offset-4" href="/pages/communications">
+                <Link className="underline decoration-[#edc775] underline-offset-4" href="/pages/communications">
                   Communications Policy
                 </Link>
                 . You can unsubscribe from marketing emails through the unsubscribe method in the email or by

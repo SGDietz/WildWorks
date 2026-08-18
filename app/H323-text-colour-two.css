@@ -1,0 +1,27 @@
+/* H323: the two colour items G had already named, now that the palette tokens
+   are located. He asked for "text colour number two" and I had parked both
+   because I could not find --ww-text-2 in globals.css. It is defined in the
+   page-level palette files, not globals:
+
+     --ww-primary #c44d0b   primary background
+     --ww-card    #e96819   secondary background
+     --ww-text-1  #fce0ad
+     --ww-text-2  #edc775
+     --ww-text-3  #f08c28
+
+   J2 - Ruins small text ("Federal Hill, Baltimore City, Maryland" and the body
+   copy) to text colour 2.
+   M2 - Bio "Who is Scott Dietz?" to text colour 2.
+
+   Colour only. No size, no shadow, no layout - the glow set earlier today is
+   untouched, which is G's guardrail. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(p, li, blockquote) {
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--bio h1 {
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+}

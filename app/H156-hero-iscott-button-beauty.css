@@ -27,11 +27,11 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   border-bottom-color: rgba(120, 55, 18, 0.45) !important;
   background:
     radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), rgba(0, 0, 0, 0) 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
   background-color: #e8ad59 !important;
   background-image:
     radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), rgba(0, 0, 0, 0) 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
   color: #7d2f20 !important;
   -webkit-text-fill-color: #7d2f20 !important;
   font-size: clamp(1.35rem, 2.6vw, 1.75rem) !important;

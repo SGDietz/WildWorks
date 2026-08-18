@@ -3,20 +3,20 @@
 
 html body:has(.wild-subpage--ruins),
 html body:has(.wild-subpage--bio) {
-  --ww-solid-a: #983e17 !important;
-  --ww-solid-b: #c85a24 !important;
-  --ww-ab-a: #983e17 !important;
-  --ww-ab-b: #c85a24 !important;
-  --ww-color-a: #983e17 !important;
-  --ww-color-b: #c85a24 !important;
+  --ww-solid-a: #c44d0b !important;
+  --ww-solid-b: #e96819 !important;
+  --ww-ab-a: #c44d0b !important;
+  --ww-ab-b: #e96819 !important;
+  --ww-color-a: #c44d0b !important;
+  --ww-color-b: #e96819 !important;
 }
 
 html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins),
 html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio),
 html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins) .wild-site-backdrop,
 html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio) .wild-site-backdrop {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -24,8 +24,8 @@ html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subp
   .ruins-color-band.ruins-tone--a.ruins-tone--a,
 html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
   .wild-ab-band.wild-tone--a.wild-tone--a {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
   border: 0 !important;
@@ -35,8 +35,8 @@ html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subp
   .ruins-color-band.ruins-tone--b.ruins-tone--b,
 html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio.wild-subpage--bio
   .wild-ab-band.wild-tone--b.wild-tone--b {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   box-shadow: none !important;
   border: 0 !important;
@@ -60,8 +60,8 @@ html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage-
   footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
 html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage--ruins)
   footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   margin-top: 0 !important;
   box-shadow: none !important;
@@ -69,8 +69,8 @@ html body:has(.wild-subpage--ruins):has(.wild-subpage--ruins):has(.wild-subpage-
 
 html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
   footer#footer#footer#footer#footer .wild-footer-contact-region--a.wild-footer-contact-region--a {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   margin-top: 0 !important;
 }
@@ -83,8 +83,8 @@ html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio
   footer#footer#footer#footer#footer .wild-signup-system.wild-signup-system,
 html body:has(.wild-subpage--bio):has(.wild-subpage--bio):has(.wild-subpage--bio)
   footer#footer#footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   margin-top: 0 !important;
   box-shadow: none !important;

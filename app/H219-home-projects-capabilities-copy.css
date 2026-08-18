@@ -55,8 +55,8 @@ body .discordSection.discordSection .wild-home-projects__capabilities-title {
 .wild-subpage--projects > .wild-projects-page-intro {
   width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 70rem);
   margin: clamp(2rem, 4vw, 3.5rem) auto clamp(1.3rem, 2.2vw, 2rem);
-  color: var(--ww-color-2, #f1bf75) !important;
-  -webkit-text-fill-color: var(--ww-color-2, #f1bf75) !important;
+  color: var(--ww-color-2, #edc775) !important;
+  -webkit-text-fill-color: var(--ww-color-2, #edc775) !important;
   font-family: var(--font-manrope), Arial, sans-serif;
   font-size: clamp(1.6rem, 1.4rem + 0.5vw, 2rem);
   font-weight: 650;

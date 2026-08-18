@@ -1,13 +1,13 @@
 /* G's marked A/B map, using the named colors exactly:
-   A = #983e17 (deeper copper), B = #c85a24 (cleaner copper). */
+   A = #c44d0b (deeper copper), B = #e96819 (cleaner copper). */
 
 /* Keep the named band colors identical at every viewport. */
 html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   .wild-subpage--bio .wild-ab-band.wild-tone--a.wild-tone--a,
 html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   .wild-subpage--ruins .ruins-color-band.ruins-tone--a.ruins-tone--a {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -16,8 +16,8 @@ html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   .wild-subpage--bio .wild-ab-band.wild-tone--b.wild-tone--b,
 html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   .wild-subpage--ruins .ruins-color-band.ruins-tone--b.ruins-tone--b {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -26,8 +26,8 @@ html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
    signup through the closing line. */
 html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   footer#footer#footer#footer#footer {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   margin-top: 0 !important;
 }
@@ -42,8 +42,8 @@ html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
 html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   footer#footer#footer#footer#footer
   .wild-footer-contact-region--a.wild-footer-contact-region--a {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   margin-top: 0 !important;
 }
@@ -54,8 +54,8 @@ html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
 html body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   footer#footer#footer#footer#footer
   .wild-footer-closing-region--a.wild-footer-closing-region--a {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   margin-top: 0 !important;
 }
@@ -72,8 +72,8 @@ html body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
     .wild-signup-system.wild-signup-system,
     .wild-footer-closing-region--a.wild-footer-closing-region--a
   ) {
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   margin-top: 0 !important;
 }

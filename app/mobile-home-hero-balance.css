@@ -1,11 +1,11 @@
 /* Mobile Home balance lock: use the exact approved desktop pair. */
 @media (max-width: 719px) {
   html:root:has(#top.wild-home) {
-    --ww-reference-a: #983e17 !important;
-    --ww-reference-b: #c85a24 !important;
-    --ww-reference-page: #983e17 !important;
-    --ww-reference-mobile-page: #983e17 !important;
-    --ww-reference-card: #c85a24 !important;
+    --ww-reference-a: #c44d0b !important;
+    --ww-reference-b: #e96819 !important;
+    --ww-reference-page: #c44d0b !important;
+    --ww-reference-mobile-page: #c44d0b !important;
+    --ww-reference-card: #e96819 !important;
     --ww-home-page-background: var(--ww-reference-page) !important;
   }
 
@@ -13,7 +13,7 @@
   html body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home)
     #wild-site-backdrop.wild-site-backdrop {
     background: var(--ww-reference-page) !important;
-    background-color: #983e17 !important;
+    background-color: #c44d0b !important;
     background-image: var(--ww-reference-page) !important;
   }
 
@@ -21,7 +21,7 @@
     #top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
     border-color: rgba(82, 27, 7, 0.5) !important;
     background: var(--ww-reference-card) !important;
-    background-color: #c85a24 !important;
+    background-color: #e96819 !important;
     background-image: var(--ww-reference-card) !important;
     box-shadow:
       0 7px 18px rgba(55, 17, 4, 0.16),

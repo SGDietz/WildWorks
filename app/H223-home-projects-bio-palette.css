@@ -3,11 +3,11 @@
    without Chief install. Grok does not install.
 
    Approved tokens only:
-     --ww-primary  #9f4719
-     --ww-card     #c56222
+     --ww-primary  #c44d0b
+     --ww-card     #e96819
      --ww-text-1   #fce0ad
-     --ww-text-2   #f1bf75
-     --ww-text-3   #d5823a
+     --ww-text-2   #edc775
+     --ww-text-3   #f08c28
 
    Color inputs only. Stop positions, opacity, blend, shadow, texture,
    geometry, layout, and interactions stay. No wrapper lamp. No Ruins,
@@ -36,7 +36,7 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h223-home#ww-h223-home#ww
   background-image: none !important;
 }
 
-/* Beat Home page.tsx inline #c85a24 on true Home cards only. */
+/* Beat Home page.tsx inline #e96819 on true Home cards only. */
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home#ww-h223-home)
   body#wildworks-body
   #top#top.wild-home
@@ -142,7 +142,7 @@ html:has(.wild-subpage--projects)
 
 /* ------------------------------------------------------------------ */
 /* BIO — A/B stay. A reveals the H221 lamp. B stays Card.              */
-/* Beat H192 solid #9f4719 and H129 / ab-two-color #983e17 / #c85a24.  */
+/* Beat H192 solid #c44d0b and H129 / ab-two-color #c44d0b / #e96819.  */
 /* ------------------------------------------------------------------ */
 
 html:has(.wild-subpage--bio):not(#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio#ww-h223-bio)

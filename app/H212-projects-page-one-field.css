@@ -1,11 +1,11 @@
 /* H212: Projects only. Remove the darker footer band so the page reads as
-   one normal #9f4719 field. The signup and Dream Project cards stay cards. */
+   one normal #c44d0b field. The signup and Dream Project cards stay cards. */
 
 html:has(.wild-subpage--projects)
   body#wildworks-body
   footer#footer {
   margin-top: 0 !important;
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }

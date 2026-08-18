@@ -1,19 +1,19 @@
 /* G 2026-08-07: exact gold-standard restoration.
-   Field = #9f4719 deep copper. Color 2 is the solid card copper. */
+   Field = #c44d0b deep copper. Color 2 is the solid card copper. */
 html:has(#top.wild-home:not(.wild-legal-home)),
 html:has(.wild-subpage--wildfire),
 html:has(.wild-subpage--ruins),
 html:has(.wild-subpage--bio) {
-  --ww-card-flat: #c56222 !important;
-  --ww-card-finish: #c56222 !important;
+  --ww-card-flat: #e96819 !important;
+  --ww-card-finish: #e96819 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio) :is(.wild-footer-contact-cta, .wild-footer-contact-region, .wild-footer-mobile-strip) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -23,8 +23,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 @media (max-width: 719px) {
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
     #top.wild-home .wild-hero.discordSection .wild-hero-copy {
-    background: #c56222 !important;
-    background-color: #c56222 !important;
+    background: #e96819 !important;
+    background-color: #e96819 !important;
     background-image: none !important;
   }
 }
@@ -41,8 +41,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    primary surfaces.  Photos retain their photography; their surrounding
    cards, rims, menus, and actions carry the palette. */
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio)) {
-  --ww-subpage-primary-field: #9f4719 !important;
-  --ww-subpage-primary-card: #c56222 !important;
+  --ww-subpage-primary-field: #c44d0b !important;
+  --ww-subpage-primary-card: #e96819 !important;
   --ww-card-flat: var(--ww-subpage-primary-card) !important;
   --ww-card-finish: var(--ww-subpage-primary-card) !important;
   --ww-card-rim: var(--ww-subpage-primary-card) !important;
@@ -250,7 +250,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   ) {
   border-color: #6f2a10 !important;
   background: var(--ww-original-spirit-button) !important;
-  background-color: #f1bf75 !important;
+  background-color: #edc775 !important;
   background-image: var(--ww-original-spirit-button) !important;
   color: #3c2a16 !important;
   -webkit-text-fill-color: #3c2a16 !important;
@@ -267,8 +267,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body),
 html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body,
 html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #wild-site-backdrop {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -279,8 +279,8 @@ html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildw
 /* Match the shared canvas lock's doubled body-ID specificity so this Home
    exception reaches the visible backdrop, not merely the root layer. */
 html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #wild-site-backdrop {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -353,10 +353,10 @@ html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildwo
    Russet Flame is every primary field, Copper Flame every secondary surface,
    and white is the neutral rim across Wildfire, Ruins, and Bio. */
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio)) {
-  --ww-subpage-primary-field: #9f4719 !important;
-  --ww-subpage-primary-card: #c56222 !important;
+  --ww-subpage-primary-field: #c44d0b !important;
+  --ww-subpage-primary-card: #e96819 !important;
   --ww-original-spirit-button: var(--ww-approved-button-material);
-  scrollbar-color: #c56222 #9f4719 !important;
+  scrollbar-color: #e96819 #c44d0b !important;
 }
 
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
@@ -378,8 +378,8 @@ html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
     .wild-tone--a,
     .wild-mobile-menu
   ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -403,8 +403,8 @@ body#wildworks-body :is(
   footer#footer,
   .wild-mobile-menu
 ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -432,8 +432,8 @@ body#wildworks-body footer#footer :is(
   .wild-footer-contact-cta,
   .wild-footer-mobile-strip
 ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -455,8 +455,8 @@ html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
     .wild-mobile-menu > div,
     .wild-nav-link--active
   ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -516,29 +516,29 @@ html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
     input[type="submit"]
   ) {
   background: var(--ww-original-spirit-button) !important;
-  background-color: #c56222 !important;
+  background-color: #e96819 !important;
   background-image: var(--ww-original-spirit-button) !important;
 }
 
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))::-webkit-scrollbar-track,
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio)) body::-webkit-scrollbar-track,
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))::-webkit-scrollbar-corner {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
 }
 
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))::-webkit-scrollbar-thumb,
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio)) body::-webkit-scrollbar-thumb {
   border-color: #6f2a10 !important;
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
 }
 
 html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -548,8 +548,8 @@ html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
   margin-bottom: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -569,8 +569,8 @@ html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
   footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
   .wild-signup-panel.wild-signup-panel {
   border-color: #6f2a10 !important;
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -640,8 +640,8 @@ html:has(:is(
   box-sizing: border-box !important;
   border: 2px solid #6f2a10 !important;
   border-radius: 0.55rem !important;
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   box-shadow:
     inset 0 -1px 0 #6f2a10,
@@ -655,8 +655,8 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   .wild-subpage--bio .wild-ab-band.wild-tone--a,
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   .wild-subpage--ruins .ruins-color-band.ruins-tone--a {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -664,8 +664,8 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--bio)
   .wild-subpage--bio .wild-ab-band.wild-tone--b,
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   .wild-subpage--ruins .ruins-color-band.ruins-tone--b {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -686,8 +686,8 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   footer#footer,
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   footer#footer > .wild-footer-main {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -697,8 +697,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   .wild-subpage--bio .wild-ab-band.wild-tone--b > .wild-subpage-section,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--ruins)
   .wild-subpage--ruins .ruins-color-band.ruins-tone--b > .wild-subpage-section {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 

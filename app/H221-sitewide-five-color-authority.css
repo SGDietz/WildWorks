@@ -1,17 +1,17 @@
 /* H221: G-approved five-color authority, sitewide.
-   Primary #9f4719; Card #c56222; Text 1 #fce0ad;
-   Text 2 #f1bf75; Text 3 #d5823a.
+   Primary #c44d0b; Card #e96819; Text 1 #fce0ad;
+   Text 2 #edc775; Text 3 #f08c28.
 
    Color drift only: pale-gold button material, black shadows, translucent
    borders, photographic overlays, control gradients, opacity, and hover
    effects remain owned by their existing component rules. */
 
 :root {
-  --ww-primary: #9f4719 !important;
-  --ww-card: #c56222 !important;
+  --ww-primary: #c44d0b !important;
+  --ww-card: #e96819 !important;
   --ww-text-1: #fce0ad !important;
-  --ww-text-2: #f1bf75 !important;
-  --ww-text-3: #d5823a !important;
+  --ww-text-2: #edc775 !important;
+  --ww-text-3: #f08c28 !important;
   --ww-approved-center-light: linear-gradient(90deg, var(--ww-primary) 0%, var(--ww-primary) 18%, var(--ww-card) 50%, var(--ww-primary) 82%, var(--ww-primary) 100%) !important;
 
   --ww-home-hdr-primary: var(--ww-primary) !important;

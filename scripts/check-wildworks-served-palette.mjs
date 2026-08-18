@@ -13,11 +13,11 @@ const routes = [
   "/pages/communications",
 ];
 const requiredServedCss = [
-  "--ww-primary:#9f4719",
-  "--ww-card:#c56222",
+  "--ww-primary:#c44d0b",
+  "--ww-card:#e96819",
   "--ww-text-1:#fce0ad",
-  "--ww-text-2:#f1bf75",
-  "--ww-text-3:#d5823a",
+  "--ww-text-2:#edc775",
+  "--ww-text-3:#f08c28",
   "ww-ruins-primary-material",
 ];
 

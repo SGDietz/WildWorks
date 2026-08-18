@@ -8,8 +8,8 @@ html body#wildworks-body
     .wildfire-lightbox,
     .wild-branded-lightbox
   ).discordSection--lightbox {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -24,8 +24,8 @@ html body#wildworks-body
   ) {
   border: 0 !important;
   border-radius: 0 !important;
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }

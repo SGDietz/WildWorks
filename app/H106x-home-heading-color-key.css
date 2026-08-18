@@ -3,8 +3,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home {
   --ww-home-heading-color-1: #fce0ad;
-  --ww-home-heading-color-2: #f1bf75;
-  --ww-home-heading-color-3: #d5823a;
+  --ww-home-heading-color-2: #edc775;
+  --ww-home-heading-color-3: #f08c28;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -121,8 +121,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-footer-mobile-strip.wild-footer-mobile-strip {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -130,7 +130,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
 /* Every Home scroll surface uses the current field and card colors.  This
    intentionally replaces the former orange/red scroll rail and thumb. */
 html:has(#top.wild-home:not(.wild-legal-home)) {
-  scrollbar-color: #9f4719 #9f4719 !important;
+  scrollbar-color: #c44d0b #c44d0b !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar,
@@ -138,21 +138,21 @@ html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar {
   width: 12px !important;
   height: 12px !important;
-  background-color: #9f4719 !important;
+  background-color: #c44d0b !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-track,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-track,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-track {
-  background: #9f4719 !important;
+  background: #c44d0b !important;
   background-image: none !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   border: 1px solid #6f2a10 !important;
   box-shadow: none !important;
@@ -161,14 +161,14 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb {
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover {
-  background: #9f4719 !important;
+  background: #c44d0b !important;
   background-image: none !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
-  background: #9f4719 !important;
+  background: #c44d0b !important;
 }
 
 /* On phones, the menu must read as a control rather than disappear into the
@@ -179,8 +179,8 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
   html:has(#top.wild-home:not(.wild-legal-home))
     body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     .wild-mobile-menu.wild-mobile-menu {
-    background: #9f4719 !important;
-    background-color: #9f4719 !important;
+    background: #c44d0b !important;
+    background-color: #c44d0b !important;
     background-image: none !important;
   }
 
@@ -264,7 +264,7 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
     background: #000 !important;
     background-color: #000 !important;
     background-image: none !important;
-    border-color: #9f4719 !important;
+    border-color: #c44d0b !important;
     color: #fce0ad !important;
     -webkit-text-fill-color: #fce0ad !important;
     box-shadow: none !important;
@@ -360,10 +360,10 @@ html:has(#top.wild-home:not(.wild-legal-home))
     button[type="submit"],
     input[type="submit"]
   ) {
-  border-color: #9f4719 !important;
-  background: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
-  background-image: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
+  border-color: #c44d0b !important;
+  background: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
+  background-image: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
   box-shadow:
     0 0.55rem 1.35rem rgba(0, 0, 0, 0.38),
     inset 0 1px 0 rgba(139, 90, 43, 0.44),
@@ -396,8 +396,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-wildfire-photo-button {
-  border-color: #9f4719 !important;
-  box-shadow: 0 0 0 1px #9f4719 !important;
+  border-color: #c44d0b !important;
+  box-shadow: 0 0 0 1px #c44d0b !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -411,10 +411,10 @@ html:has(#top.wild-home:not(.wild-legal-home))
     .wild-footer-contact-cta__actions a,
     .wild-footer-contact-cta__actions button
   ) {
-  border-color: #9f4719 !important;
-  background: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
-  background-image: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
+  border-color: #c44d0b !important;
+  background: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
+  background-image: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
   box-shadow:
     0 0.55rem 1.35rem rgba(0, 0, 0, 0.38),
     inset 0 1px 0 rgba(139, 90, 43, 0.44),
@@ -464,10 +464,10 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     button[type="submit"],
     input[type="submit"]
   ) {
-  border: 1px solid #9f4719 !important;
-  background: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
-  background-image: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
+  border: 1px solid #c44d0b !important;
+  background: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
+  background-image: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.58) !important;
@@ -589,16 +589,16 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   .wildfire-lightbox.wildfire-lightbox:not(.wild-projects-lightbox) {
   background:
     radial-gradient(ellipse 118% 82% at 50% 18%, rgba(255, 244, 210, 0.12) 0%, transparent 64%),
-    linear-gradient(90deg, #9f4719 0%, #9f4719 50%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
+    linear-gradient(90deg, #c44d0b 0%, #c44d0b 50%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
 }
 
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox) .wildfire-lightbox-bar.wildfire-lightbox-bar {
   border-color: #6f2a10 !important;
-  background: linear-gradient(180deg, #9f4719 0%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
+  background: linear-gradient(180deg, #c44d0b 0%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
   box-shadow:
     0 0.65rem 1.45rem rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 245, 0.46) !important;
@@ -610,8 +610,8 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   border-color: #6f2a10 !important;
   background:
     radial-gradient(ellipse 96% 60% at 50% 18%, rgba(255, 244, 210, 0.1), transparent 68%),
-    linear-gradient(90deg, #9f4719 0%, #9f4719 50%, #9f4719 100%) !important;
-  background-color: #9f4719 !important;
+    linear-gradient(90deg, #c44d0b 0%, #c44d0b 50%, #c44d0b 100%) !important;
+  background-color: #c44d0b !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 245, 0.24),
     0 1.1rem 2.5rem rgba(0, 0, 0, 0.3) !important;
@@ -623,7 +623,7 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
   border: 1px solid #6f2a10 !important;
   background: var(--ww-home-original-spirit-button) !important;
-  background-color: #f1bf75 !important;
+  background-color: #edc775 !important;
   background-image: var(--ww-home-original-spirit-button) !important;
   color: #3c2a16 !important;
   -webkit-text-fill-color: #3c2a16 !important;
@@ -648,8 +648,8 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(#top.wild-home, #top.wild-home .wild-hero, #top.wild-home .wild-section, #top.wild-home footer) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -658,8 +658,8 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(.wild-footer-mobile-strip, .wild-footer-contact-cta, .wild-signup-panel, .wild-signup-panel input, .wild-image-frame) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -668,8 +668,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(footer, .wild-footer-contact-region) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -677,8 +677,8 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top.wild-home
   :is(.wild-hero-copy, .money-panel, .wild-live-avatar-frame, .wild-wildfire-photo, .wild-home-statement, .wild-story-card, .wild-card, .wild-card-icon, .wild-signup-panel, .wild-signup-panel input, .wild-footer-contact-cta) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -688,8 +688,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top.wild-home
   :is(.wild-hero-copy, .money-panel, .wild-live-avatar-frame, .wild-wildfire-photo, .wild-home-statement, .wild-story-card, .wild-card, .wild-card-icon, .wild-signup-panel, .wild-signup-panel input, .wild-footer-contact-cta) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -705,8 +705,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     #services .wild-card,
     #services .wild-card-icon
   ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -722,8 +722,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     #top.wild-home #iscott-sales,
     #top.wild-home #project-wildfire
   ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -732,8 +732,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(#top.wild-home .wild-hero) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -750,15 +750,15 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     footer,
     .wild-footer-contact-region
   ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -779,13 +779,13 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     .wild-footer-contact-cta,
     .wild-footer-mobile-strip
   ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
-  scrollbar-color: #c56222 #9f4719 !important;
+  scrollbar-color: #e96819 #c44d0b !important;
   --ww-home-original-spirit-button: var(--ww-approved-button-material);
 }
 
@@ -798,8 +798,8 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-track,
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -809,8 +809,8 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   border-color: #6f2a10 !important;
 }
@@ -839,8 +839,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     .wild-signup-panel input,
     .wild-footer-contact-cta
   ) {
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -890,8 +890,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox.wildfire-lightbox:not(.wild-projects-lightbox) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -899,8 +899,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox) :is(.wildfire-lightbox-bar, .wildfire-lightbox-image) {
   border-color: #6f2a10 !important;
-  background: #c56222 !important;
-  background-color: #c56222 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
@@ -922,8 +922,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-site-backdrop {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -961,8 +961,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox.wildfire-lightbox:not(.wild-projects-lightbox) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -973,8 +973,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   margin-bottom: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -1285,15 +1285,15 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
     .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
     :is(.wildfire-hero-headline__line--c2, .wildfire-hero-summary__line--c2) {
-    color: #f1bf75 !important;
-    -webkit-text-fill-color: #f1bf75 !important;
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
   }
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
     .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
     :is(.wildfire-hero-headline__line--c3, .wildfire-hero-summary__line--c3) {
-    color: #d5823a !important;
-    -webkit-text-fill-color: #d5823a !important;
+    color: #f08c28 !important;
+    -webkit-text-fill-color: #f08c28 !important;
   }
 }
 
@@ -1321,15 +1321,15 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 @media (max-width: 719px) {
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     .wild-mobile-menu-button.wild-mobile-menu-trigger {
-    border: 2px solid #f1bf75 !important;
+    border: 2px solid #edc775 !important;
     border-radius: 9999px !important;
-    outline: 2px solid #f1bf75 !important;
+    outline: 2px solid #edc775 !important;
     outline-offset: -2px !important;
     background: var(--ww-approved-button-material) !important;
     background-color: #e8ad59 !important;
     background-image: var(--ww-approved-button-material) !important;
-    color: #f1bf75 !important;
-    -webkit-text-fill-color: #f1bf75 !important;
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
     box-shadow:
       0 0 0 1px #4b1908,
       0 7px 18px rgba(30, 8, 2, 0.52),
@@ -1338,8 +1338,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     .wild-mobile-menu-button.wild-mobile-menu-trigger :is(svg, svg *) {
-    color: #f1bf75 !important;
-    stroke: #f1bf75 !important;
+    color: #edc775 !important;
+    stroke: #edc775 !important;
   }
 }
 /* iScott front-door heading: three complete solid lines, no blend or fade. */
@@ -1382,8 +1382,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   #iscott-sales#iscott-sales#iscott-sales#iscott-sales
   .wild-iscott-title__row
   :is(.wild-iscott-title__segment--one, .wild-iscott-title__segment--two) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   background: none !important;
   background-image: none !important;
 }
@@ -1392,8 +1392,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   #top#top#top#top#top#top#top#top#top#top.wild-home
   #iscott-sales#iscott-sales#iscott-sales#iscott-sales
   .wild-iscott-title__segment--three {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
   background: none !important;
   background-image: none !important;
 }
@@ -1409,8 +1409,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   #iscott-sales
   .wild-iscott-title__row
   * {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
@@ -1428,8 +1428,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   #iscott-sales
   .wild-iscott-title__segment--three
   * {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;

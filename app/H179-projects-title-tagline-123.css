@@ -37,8 +37,8 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h179-projects-type#ww-h17
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   #projects.wild-home-projects
   .wild-home-projects__tagline-wild {
-  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  color: var(--ww-home-hdr-text-2, #edc775) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #edc775) !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type#ww-h179-projects-type)
@@ -46,8 +46,8 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h179-projects-type#ww-h17
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   #projects.wild-home-projects
   .wild-home-projects__tagline-by {
-  color: var(--ww-home-hdr-text-3, #d5823a) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  color: var(--ww-home-hdr-text-3, #f08c28) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #f08c28) !important;
 }
 
 @media (max-width: 600px) {

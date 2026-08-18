@@ -1360,8 +1360,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           padding: 0 !important;
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
           background-size: 100% 100% !important;
           background-repeat: no-repeat !important;
           -webkit-background-clip: text !important;
@@ -1378,8 +1378,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           white-space: nowrap !important;
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
           background-size: 100% 100% !important;
           background-repeat: no-repeat !important;
           -webkit-background-clip: text !important;
@@ -1390,8 +1390,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-proof .wild-sell-feature-proof__line:last-child {
           color: transparent !important;
           -webkit-text-fill-color: transparent !important;
-          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
-          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%) !important;
+          background: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
+          background-image: linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%) !important;
           -webkit-background-clip: text !important;
           background-clip: text !important;
         }
@@ -1767,7 +1767,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         /* Permanent WildWorks three-color key from the three Ruins headline lines.
-           Keep the sell title solid: Color 1 #fce0ad / Color 2 #f1bf75 / Color 3 #d2934a. */
+           Keep the sell title solid: Color 1 #fce0ad / Color 2 #edc775 / Color 3 #d2934a. */
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--one,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--two,
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
@@ -1784,8 +1784,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line.wild-sell-feature-title__line--two {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
         }
 
         #top.wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
@@ -1850,8 +1850,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--two {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
         }
 
         #top.wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--three {
@@ -1934,12 +1934,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           -webkit-text-fill-color: #fce0ad !important;
         }
         #top.wild-home :is(.ww-c2, .wild-story-card .ww-c2) {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
         }
         #top.wild-home :is(.ww-c3, .wild-story-card .ww-c3) {
-          color: #d5823a !important;
-          -webkit-text-fill-color: #d5823a !important;
+          color: #f08c28 !important;
+          -webkit-text-fill-color: #f08c28 !important;
         }
         #top.wild-home :is(.ww-c1, .ww-c2, .ww-c3, .wild-story-card p, .wild-story-card h2, .wild-story-card h3, .wild-story-card .wild-line-title__line) {
           background: none !important;
@@ -1973,8 +1973,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #services > .wild-section-heading > .wild-section-title .wild-line-title__line:nth-child(1) {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
         }
 
         #top.wild-home #services > .wild-section-heading > .wild-section-title .wild-line-title__line:nth-child(2) {
@@ -1996,8 +1996,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top#top.wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
           background: none !important;
           background-image: none !important;
           -webkit-background-clip: border-box !important;
@@ -2051,7 +2051,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           justify-content: center;
           margin: 0 auto clamp(1rem, 1.8vw, 1.35rem);
           padding: clamp(0.52rem, 0.9vw, 0.68rem) clamp(0.88rem, 1.7vw, 1.22rem);
-          border: 1px solid #f1bf75;
+          border: 1px solid #edc775;
           border-radius: 7px;
           background: #d2934a !important;
           background-image: none !important;
@@ -2079,8 +2079,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         }
 
         #top.wild-home #ai-websites .wild-site-offer-heading > .wild-section-title .wild-line-title__line:nth-child(2) {
-          color: #f1bf75 !important;
-          -webkit-text-fill-color: #f1bf75 !important;
+          color: #edc775 !important;
+          -webkit-text-fill-color: #edc775 !important;
         }
 
         #top.wild-home #ai-websites .wild-site-offer-heading > .wild-body {
@@ -2397,15 +2397,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           <motion.h1 className="wild-hero-headline wild-hero-headline--solid" variants={softScaleIn}>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--makes-home"
-              style={{ color: "#f1bf75", WebkitTextFillColor: "#f1bf75" }}
+              style={{ color: "#edc775", WebkitTextFillColor: "#edc775" }}
             >
               Makes Your Home
             </span>
             <span
               className="wild-hero-headline__line wild-hero-headline__line--irresistible"
               style={{
-                color: "#d5823a",
-                WebkitTextFillColor: "#d5823a",
+                color: "#f08c28",
+                WebkitTextFillColor: "#f08c28",
                 marginTop: "0.12em",
               }}
             >
@@ -2537,9 +2537,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           ),
           body footer.discordSection .wild-footer-contact-cta {
             border: 1px solid #8f3612 !important;
-            background: #c85a24 !important;
+            background: #e96819 !important;
             background-image: none !important;
-            background-color: #c85a24 !important;
+            background-color: #e96819 !important;
             box-shadow:
               0 18px 42px rgba(53, 17, 4, 0.28),
               inset 0 1px 0 rgba(255, 210, 145, 0.1) !important;
@@ -2801,7 +2801,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               save the conversation and media to organize your inquiry and
               follow up. Do not share sensitive personal, legal, medical, or
               child information. See{" "}
-              <Link href="/pages/privacy-policy" className="underline decoration-[#f1bf75] underline-offset-4">
+              <Link href="/pages/privacy-policy" className="underline decoration-[#edc775] underline-offset-4">
                 Privacy Policy
               </Link>
               .
@@ -3536,7 +3536,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                         color: "transparent",
                         WebkitTextFillColor: "transparent",
                         backgroundImage:
-                          "linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #f1bf75 75%, #d2934a 100%)",
+                          "linear-gradient(180deg, #fffbed 0%, #ffe7b5 48%, #edc775 75%, #d2934a 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         fontSize: "clamp(1.42rem, 2.05vw, 2.15rem)",
@@ -3948,9 +3948,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           <motion.p className="wild-body wild-site-offer-copy" variants={stagger}>
             <span className="wild-site-offer-copy__line">
               Let the Ai Collect Context, Set Appointments, and Sell Your Brand — for You on Auto-Pilot
-            </span>
-            <span className="wild-site-offer-copy__line">
-              <a href="tel:+14437972166">1+443-797-2166</a>
             </span>
           </motion.p>
         </div>

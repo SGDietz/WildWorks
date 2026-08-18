@@ -35,7 +35,7 @@ html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
   border-radius: 14px !important;
   background:
     radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
   box-shadow:
     0 16px 42px rgba(20, 7, 1, 0.42),
     0 0 24px rgba(224, 168, 90, 0.18),
@@ -147,8 +147,8 @@ html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
   > .wild-phone-number-line--footer-closing
   .wild-phone-number-line__call-today {
   margin-top: clamp(0.32rem, 0.8vw, 0.62rem) !important;
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   font-family: var(--font-playfair), var(--font-serif), Georgia, serif !important;
   font-size: clamp(3.2rem, 6.05vw, 5.85rem) !important;
   font-weight: 700 !important;

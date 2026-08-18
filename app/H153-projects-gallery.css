@@ -37,8 +37,8 @@ html:has(#top#top#top#top#top#top#top#top#top#top.wild-home)
   #top#top#top#top#top#top#top#top#top#top.wild-home
   #projects.wild-home-projects .wild-home-projects__title
   .wild-home-projects__title-projects {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: border-box !important;
@@ -160,8 +160,8 @@ html body#wildworks-body .wild-projects-lightbox .wildfire-lightbox-image {
   margin-bottom: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
   box-shadow: none !important;
 }

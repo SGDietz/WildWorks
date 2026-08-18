@@ -7,11 +7,11 @@ html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body,
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body
   #top#top.wild-home {
-  --ww-home-hdr-primary: #9f4719;
-  --ww-home-hdr-secondary: #c56222;
+  --ww-home-hdr-primary: #c44d0b;
+  --ww-home-hdr-secondary: #e96819;
   --ww-home-hdr-text-1: #fce0ad;
-  --ww-home-hdr-text-2: #f1bf75;
-  --ww-home-hdr-text-3: #d5823a;
+  --ww-home-hdr-text-2: #edc775;
+  --ww-home-hdr-text-3: #f08c28;
 
   --ww-public-salmon-canvas: var(--ww-home-hdr-primary) !important;
   --ww-page-base-copper: var(--ww-home-hdr-primary) !important;

@@ -36,8 +36,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   #talk-to-iscott
   .wild-start-title
   :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* This statement card intentionally uses only Color 1 and Color 2. */
@@ -57,8 +57,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
   :is(.wild-home-statement__line--two, .wild-home-statement__line--two *, .wild-home-statement__line--four) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* The masked lockup contains both the WildWorks wordmark and its scrolls. */

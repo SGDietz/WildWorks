@@ -131,7 +131,7 @@ const wildWorksButtonCss = `
       /* G 2026-08-17: while the avatar loads, sit on the site's own locked
          red-copper field (gold-reference palette), never dirt brown. */
       background:
-        linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) #983e17 !important;
+        linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%) #c44d0b !important;
       color: var(--ww-avatar-parchment) !important;
     }
 
@@ -177,7 +177,7 @@ const wildWorksButtonCss = `
     html.wildworks-avatar-loading body::before {
       z-index: 2147483646 !important;
       background:
-        linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%) #983e17 !important;
+        linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%) #c44d0b !important;
       pointer-events: auto !important;
     }
 
@@ -222,7 +222,7 @@ const wildWorksButtonCss = `
       border-radius: 8px !important;
       background:
         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
       padding: 0.85rem 1rem !important;
       color: var(--ww-avatar-button-ink) !important;
       font-family: Georgia, "Times New Roman", serif !important;
@@ -396,7 +396,7 @@ const wildWorksButtonCss = `
       /* Match the site's gold btn-wood treatment. */
       background:
         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
       color: #fce0ad !important;
       cursor: pointer !important;
       font: 800 1rem/1.2 Arial, sans-serif !important;

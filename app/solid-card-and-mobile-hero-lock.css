@@ -1,16 +1,16 @@
 /* G 2026-08-07: Color 2 is one solid gold-standard copper. Cards and
    Color-2 bands must not fade from orange at the top to red at the bottom. */
 :root {
-  --ww-card-flat: #c85a24 !important;
-  --ww-card-finish: #c85a24 !important;
+  --ww-card-flat: #e96819 !important;
+  --ww-card-finish: #e96819 !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)),
 html:has(.wild-subpage--wildfire),
 html:has(.wild-subpage--ruins),
 html:has(.wild-subpage--bio) {
-  --ww-card-flat: #c85a24 !important;
-  --ww-card-finish: #c85a24 !important;
+  --ww-card-flat: #e96819 !important;
+  --ww-card-finish: #e96819 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
@@ -49,8 +49,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   .wild-footer-contact-region,
   .wild-footer-mobile-strip
 ) {
-  background: #c85a24 !important;
-  background-color: #c85a24 !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -71,8 +71,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   width: 100vw !important;
   margin-inline: calc(50% - 50vw) !important;
   padding-block: clamp(0.75rem, 1.6vw, 1.15rem) !important;
-  background: #983e17 !important;
-  background-color: #983e17 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 

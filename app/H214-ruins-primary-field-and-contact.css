@@ -1,4 +1,4 @@
-/* H214, Chief-integrated: Ruins uses one primary #9f4719 field. Only canvas
+/* H214, Chief-integrated: Ruins uses one primary #c44d0b field. Only canvas
    surfaces are flattened; the signup and Dream Project cards remain cards. */
 
 html:has(.wild-subpage--ruins),
@@ -25,8 +25,8 @@ html:has(.wild-subpage--ruins)
   body#wildworks-body#wildworks-body
   footer#footer
   :is(.wild-footer-main, .wild-footer-final-region, .wild-footer-closing-region--a) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -37,8 +37,8 @@ html:has(.wild-subpage--ruins)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-subpage--ruins
   .ruins-color-band.ruins-tone--b {
-  background: var(--ww-card, #c56222) !important;
-  background-color: var(--ww-card, #c56222) !important;
+  background: var(--ww-card, #e96819) !important;
+  background-color: var(--ww-card, #e96819) !important;
   background-image: none !important;
 }
 

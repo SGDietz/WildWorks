@@ -15,15 +15,15 @@ html body#wildworks-body#wildworks-body#wildworks-body
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-footer-contact-cta__kicker * {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   :is(.wild-signup-title, .wild-signup-field > span) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
@@ -36,15 +36,15 @@ html body#wildworks-body#wildworks-body#wildworks-body
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-phone-number-line__call-today {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-footer-stonework-note {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 /* Signup consent and unsubscribe language are legal disclosures. On legal
@@ -67,8 +67,8 @@ html body#wildworks-body#wildworks-body#wildworks-body
 html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-signup-field input::placeholder {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   opacity: 1 !important;
 }
 
@@ -76,5 +76,5 @@ html body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer
   .wild-signup-consent input[type="checkbox"] {
   border-color: #fce0ad !important;
-  accent-color: #f1bf75 !important;
+  accent-color: #edc775 !important;
 }

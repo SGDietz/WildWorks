@@ -60,8 +60,8 @@ html:has(.wild-legal-home)
     .wild-footer-stonework-note,
     .wild-footer-stonework-note *
   ) {
-  color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #f1bf75)) !important;
-  -webkit-text-fill-color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #f1bf75)) !important;
+  color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #edc775)) !important;
+  -webkit-text-fill-color: var(--ww-legal-footer-secondary-color, var(--ww-color-2, #edc775)) !important;
 }
 
 /* The legal color lock reaches inside Lucide's paths. Restore every stroke to

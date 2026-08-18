@@ -15,8 +15,8 @@
       .wild-top-logo-band,
       .wild-subpage--bio
     ) {
-    background: #983e17 !important;
-    background-color: #983e17 !important;
+    background: #c44d0b !important;
+    background-color: #c44d0b !important;
     background-image: none !important;
   }
 
@@ -28,8 +28,8 @@
       .wild-subpage--ruins,
       .wild-subpage--bio
     )) .wild-mobile-menu.wild-mobile-menu {
-    background: #983e17 !important;
-    background-color: #983e17 !important;
+    background: #c44d0b !important;
+    background-color: #c44d0b !important;
     background-image: none !important;
   }
 
@@ -47,10 +47,10 @@
       .wild-subpage--ruins,
       .wild-subpage--bio
     )) {
-    --ww-subpage-mobile-a: #983e17 !important;
-    --ww-subpage-mobile-b: #983e17 !important;
-    --ww-subpage-mobile-field: #983e17 !important;
-    --ww-subpage-mobile-card: #c85a24 !important;
+    --ww-subpage-mobile-a: #c44d0b !important;
+    --ww-subpage-mobile-b: #c44d0b !important;
+    --ww-subpage-mobile-field: #c44d0b !important;
+    --ww-subpage-mobile-card: #e96819 !important;
     --ww-ab-a: var(--ww-subpage-mobile-a) !important;
     --ww-ab-b: var(--ww-subpage-mobile-b) !important;
     --ww-color-a: var(--ww-subpage-mobile-a) !important;
@@ -73,7 +73,7 @@
       .wild-subpage--bio
     )) #wild-site-backdrop.wild-site-backdrop {
     background: var(--ww-subpage-mobile-field) !important;
-    background-color: #983e17 !important;
+    background-color: #c44d0b !important;
     background-image: var(--ww-subpage-mobile-field) !important;
     background-position: center !important;
     background-repeat: no-repeat !important;

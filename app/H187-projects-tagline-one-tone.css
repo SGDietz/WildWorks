@@ -14,8 +14,8 @@ html:has(#top.wild-home:not(.wild-legal-home))
   transform: translateX(5px) !important;
   text-align: center !important;
   white-space: nowrap !important;
-  color: var(--ww-home-hdr-text-3, #d5823a) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  color: var(--ww-home-hdr-text-3, #f08c28) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #f08c28) !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))

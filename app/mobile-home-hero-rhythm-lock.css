@@ -39,8 +39,8 @@
     width: fit-content !important;
     margin-top: 0.13em !important;
     margin-left: 0.15em !important;
-    color: #d5823a !important;
-    -webkit-text-fill-color: #d5823a !important;
+    color: #f08c28 !important;
+    -webkit-text-fill-color: #f08c28 !important;
     background: none !important;
     background-image: none !important;
     -webkit-background-clip: border-box !important;
@@ -55,8 +55,8 @@
   html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
     #top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection
     .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
-    color: #d5823a !important;
-    -webkit-text-fill-color: #d5823a !important;
+    color: #f08c28 !important;
+    -webkit-text-fill-color: #f08c28 !important;
     background: none !important;
     background-image: none !important;
     -webkit-background-clip: border-box !important;
@@ -67,8 +67,8 @@
   html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
     #top.wild-home .wild-hero.discordSection
     .wild-hero-copy .wild-hero-lede-line--italic {
-    color: #d5823a !important;
-    -webkit-text-fill-color: #d5823a !important;
+    color: #f08c28 !important;
+    -webkit-text-fill-color: #f08c28 !important;
     background: none !important;
     background-image: none !important;
     -webkit-background-clip: border-box !important;

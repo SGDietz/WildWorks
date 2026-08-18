@@ -36,12 +36,12 @@ const compactNextConfig = nextConfig.replace(/\s+/g, " ");
 // G 2026-08-05: use the exact gold-reference screenshot palette everywhere.
 // The page is red copper, the cards are luminous burnt copper, never dirt brown.
 const expectedGradient =
-  "linear-gradient(180deg, #9d421a 0%, #983e17 48%, #963e17 100%)";
+  "linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%)";
 const expectedPageBackground =
   "var(--ww-center-gold-fade), var(--ww-page-base-copper)";
 
 const required = [
-  "--ww-page-base-copper: #983e17;",
+  "--ww-page-base-copper: #c44d0b;",
   `--ww-center-gold-fade: ${expectedGradient};`,
   "--ww-center-column-glimmer: radial-gradient(ellipse 62% 115% at 50% 45%, rgba(192, 82, 31, 0.2), transparent 72%);",
   `--ww-page-background: ${expectedPageBackground};`,
@@ -49,8 +49,8 @@ const required = [
   "html, body, body .wild-site-backdrop { background: var(--ww-page-background) !important; background-color: var(--ww-page-base-copper) !important; background-repeat: no-repeat !important; background-position: center !important; background-size: cover !important; }",
   "body .wild-home.wild-legal-home .wild-legal-section, body .wild-subpage .wild-subpage-section, body footer.discordSection { background-color: transparent !important; background-image: none !important; }",
   "body .wild-home #signature-work .wild-signature-title__one { display: block; color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; }",
-  "body .wild-home #signature-work .wild-signature-title__two { display: block; color: #f1bf75 !important; -webkit-text-fill-color: #f1bf75 !important; }",
-  "body .wild-home #signature-work .wild-signature-title__three { display: block; color: #d5823a !important; -webkit-text-fill-color: #d5823a !important; }",
+  "body .wild-home #signature-work .wild-signature-title__two { display: block; color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }",
+  "body .wild-home #signature-work .wild-signature-title__three { display: block; color: #f08c28 !important; -webkit-text-fill-color: #f08c28 !important; }",
 ];
 
 const forbidden = [
@@ -88,7 +88,8 @@ const layoutRequired = [
   '--ww-center-gold-fade: var(--ww-center-column-glimmer) !important;',
   'body .wild-site-backdrop { background: var(--ww-page-background) !important;',
   'body .wild-home.wild-legal-home .wild-legal-section, body .wild-subpage .wild-subpage-section, body footer.discordSection { background-color: transparent !important; background-image: none !important;',
-  'themeColor: "#9f4719",',
+  // G 2026-08-18: canonical primary moved to the keeper-photo value.
+  'themeColor: "#c44d0b",',
 ];
 const missingLayout = layoutRequired.filter((needle) => !compactLayout.includes(needle));
 // G 2026-08-05: mobile must use the exact desktop copper recipe. A responsive
@@ -103,15 +104,15 @@ const forbiddenGoldStandard = [
 ];
 const staleGoldStandard = forbiddenGoldStandard.filter((needle) => compactGoldStandard.includes(needle));
 const referenceRequired = [
-  "--ww-reference-a: #983e17;",
-  "--ww-reference-b: #c85a24;",
+  "--ww-reference-a: #c44d0b;",
+  "--ww-reference-b: #e96819;",
   "--ww-color-1: #fce0ad !important;",
-  "--ww-color-2: #f1bf75 !important;",
-  "--ww-color-3: #d5823a !important;",
+  "--ww-color-2: #edc775 !important;",
+  "--ww-color-3: #f08c28 !important;",
 ];
 const missingReference = referenceRequired.filter((needle) => !compactReferenceLock.includes(needle));
 const cardSurfaceRequired = [
-  "--ww-card-flat: #c85a24;",
+  "--ww-card-flat: #e96819;",
   "background: var(--ww-card-finish, var(--ww-card-flat)) !important;",
   "background-image: var(--ww-card-finish, none) !important;",
 ];
@@ -123,7 +124,7 @@ const legalPaletteRequired = [
   "-webkit-text-fill-color: var(--ww-legal-print-lock) !important;",
   "H129-legal-text-match-public-site.css",
   "color: #fce0ad !important;",
-  "color: #f1bf75 !important;",
+  "color: #edc775 !important;",
   "color: #7d2f20 !important;",
 ];
 const missingLegalPalette = legalPaletteRequired.filter(

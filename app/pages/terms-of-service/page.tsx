@@ -79,7 +79,7 @@ export default function TermsOfServicePage() {
                 By submitting contact information, you authorize WildWorks to respond about your inquiry and
                 related services. WildWorks may send emails, texts, calls, reminders, offers, project updates,
                 and follow-up communications as described in the{" "}
-                <Link className="underline decoration-[#f1bf75] underline-offset-4" href="/pages/communications">
+                <Link className="underline decoration-[#edc775] underline-offset-4" href="/pages/communications">
                   Communications Policy
                 </Link>
                 .
@@ -110,7 +110,7 @@ export default function TermsOfServicePage() {
               </p>
               <p>
                 Additional details are in the{" "}
-                <Link className="underline decoration-[#f1bf75] underline-offset-4" href="/pages/ai-disclosure">
+                <Link className="underline decoration-[#edc775] underline-offset-4" href="/pages/ai-disclosure">
                   Ai Disclosure
                 </Link>
                 .
@@ -185,7 +185,7 @@ export default function TermsOfServicePage() {
               </p>
               <p>
                 More project-specific limits are in the{" "}
-                <Link className="underline decoration-[#f1bf75] underline-offset-4" href="/pages/disclaimer">
+                <Link className="underline decoration-[#edc775] underline-offset-4" href="/pages/disclaimer">
                   Disclaimer
                 </Link>
                 .

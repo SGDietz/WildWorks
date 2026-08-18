@@ -21,6 +21,11 @@
      148.1 / 147.8 / 146.3 (mean 147.4). 165.6 x 0.89 = 147.4, so rule 1 goes
      to brightness(0.89) - a measured match, not a repaint. Text Now was never
      off; it only looked bright beside the glow. (rev 7)
+   - 17:4x (Claude, desktop) G, walking Home, Wildfire and Ruins: the card's Talk
+     to iScott "is a little bright", the big closing Talk button is "a little too
+     bright, dampen it, take a little of the edge off", and the Wildfire Talk
+     buttons want the same. So rule 1 drops 0.89 -> 0.84 and the Home-only
+     buttons in rules 2/3 drop 1 -> 0.90. (rev 8)
    Supersedes H273/H274's 0.78 dampen for ONLY the selectors below. Never
    touches: avatar overlay CTAs, "Return to WildWorks" on legal, or any other
    talk button — those keep their approved state. */
@@ -29,14 +34,14 @@
       directly above Call Now / Text Now / Email Now in the footer card). */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   footer#footer .wild-footer-contact-cta__actions a.money-cta.money-cta--primary[href*="wake-iscott=1"]:not(.wild-site-avatar-overlay-cta) {
-  --ww-talk-control-brightness: 0.89 !important;
-  --ww-talk-control-brightness-hover: 0.89 !important;
-  filter: brightness(0.89) !important;
+  --ww-talk-control-brightness: 0.84 !important;
+  --ww-talk-control-brightness-hover: 0.84 !important;
+  filter: brightness(0.84) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   footer#footer .wild-footer-contact-cta__actions a.money-cta.money-cta--primary[href*="wake-iscott=1"]:not(.wild-site-avatar-overlay-cta):is(:hover, :focus-visible) {
-  filter: brightness(0.89) !important;
+  filter: brightness(0.84) !important;
 }
 
 /* 2. HOME ONLY: the closing big Talk to iScott (last phone/iScott block in the
@@ -45,16 +50,16 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button,
   section#project-wildfire a.money-cta.money-cta--primary.wild-iscott-action-button
 ):not(.wild-site-avatar-overlay-cta) {
-  --ww-talk-control-brightness: 1 !important;
-  --ww-talk-control-brightness-hover: 1 !important;
-  filter: brightness(1) !important;
+  --ww-talk-control-brightness: 0.90 !important;
+  --ww-talk-control-brightness-hover: 0.90 !important;
+  filter: brightness(0.90) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) :is(
   #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button,
   section#project-wildfire a.money-cta.money-cta--primary.wild-iscott-action-button
 ):not(.wild-site-avatar-overlay-cta):is(:hover, :focus-visible) {
-  filter: brightness(1) !important;
+  filter: brightness(0.90) !important;
 }
 
 /* 3. HOME ONLY: the tall closing button's gradient shows mostly its dark half
@@ -64,5 +69,5 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   #top.wild-home > div.wild-home-phone-iscott-test:not(:has(~ div.wild-home-phone-iscott-test)) > a.wild-home-phone-iscott-test__button {
   background-image:
     radial-gradient(circle at 50% -30%, rgba(255, 247, 213, 0.95), transparent 62%),
-    linear-gradient(180deg, #ffe7af 0%, #e8ad59 66%, #b96d2d 92%, #9f4719 100%) !important;
+    linear-gradient(180deg, #ffe7af 0%, #e8ad59 66%, #b96d2d 92%, #c44d0b 100%) !important;
 }

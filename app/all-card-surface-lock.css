@@ -1,10 +1,10 @@
 /* G 2026-08-06: use only the approved flat page copper and flat card copper.
    No card receives a blend, lighting pass, highlight, or darkening layer. */
 :root {
-  --ww-page-flat: #983e17;
+  --ww-page-flat: #c44d0b;
   /* Clean flat copper for every card.  The previous #b34f1f read muddy on
      mobile against the warmer page field. */
-  --ww-card-flat: #c85a24;
+  --ww-card-flat: #e96819;
 }
 
 /* The page field is the only other background material: solid copper, with no
@@ -13,7 +13,7 @@ html:has(body#wildworks-body),
 html body#wildworks-body#wildworks-body,
 html body#wildworks-body#wildworks-body .wild-site-backdrop,
 html body#wildworks-body#wildworks-body :is(.wild-home, .wild-subpage, .wild-legal-section, .wild-subpage-section, footer.discordSection) {
-  background: #983e17 !important;
+  background: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -258,12 +258,12 @@ html body#wildworks-body#wildworks-body:has(#top.wild-home) footer#footer#footer
 /* Home injects a late canvas rule at several breakpoints.  Match its entire
    route envelope so the final paint stays the approved flat page copper. */
 html:has(body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body) {
-  background: #983e17 !important;
+  background: #c44d0b !important;
   background-image: none !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-site-backdrop {
-  background: #983e17 !important;
+  background: #c44d0b !important;
   background-image: none !important;
 }
 

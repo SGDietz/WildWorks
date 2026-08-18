@@ -40,8 +40,8 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-a
   > .wild-section-title
   :is(.wild-line-title__line--one, .wild-line-title__line:nth-child(1))
   * {
-  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  color: var(--ww-home-hdr-text-2, #edc775) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #edc775) !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading#ww-h197-ai-heading)
@@ -59,7 +59,7 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h197-ai-heading#ww-h197-a
   > .wild-section-title
   :is(.wild-line-title__line--two, .wild-line-title__line:nth-child(2))
   * {
-  color: var(--ww-home-hdr-text-3, #d5823a) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  color: var(--ww-home-hdr-text-3, #f08c28) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #f08c28) !important;
 }
 

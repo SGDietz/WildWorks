@@ -132,7 +132,7 @@ export default function Wildfire() {
           </motion.h1>
           <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
-              This Is Not a Before-and-After Page. It Is
+              This is Not a Before-and-After Page. It is
             </span>
             <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
               a Full Build Record for an Outdoor Fireplace,
@@ -185,7 +185,7 @@ export default function Wildfire() {
           below. 98 = the 93 construction photos plus the 5 finished ones, i.e.
           wildfireViewerImages.length - the number the lightbox actually walks. */}
       <p className="wildfire-gallery-rolodex-note">
-        Click on any picture to flip through the {wildfireViewerImages.length} pic carousel.
+        Click on Any Pic to Flip Through the {wildfireViewerImages.length} Picture Carousel.
       </p>
       <div className="wildfire-gallery-home-contact">
         <PhoneNumberLine

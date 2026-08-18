@@ -1,0 +1,44 @@
+/* H316: G 2026-08-18, Ruins page walk-down.
+   "The Ruins is way too small. It should be big. Double the size of that. Not
+   huge, but it should be like the size of the phone number font." / "What I Saw,
+   building the Ruins, stone as Baltimore in it... Want a Ruin of Your Own...
+   they should all be big, much bigger, really on the size of the phone numbers."
+   / "all the small text needs more shadow, and the big text does also."
+
+   MEASURED at 1920 before this file:
+     phone number             124.8px   <- G's stated reference size
+     h1 "The Ruins"            66.4px   -> doubling lands on ~133, so 124.8 both
+                                           doubles it AND matches the phone
+     h2 What I Saw / Want a
+        Ruin of Your Own       56.8px   -> ~108, a step under the phone so the
+                                           longer heading cannot overflow
+     body / Federal Hill       20.8px   -> size unchanged; G asked for effect
+                                           here, not size
+
+   SHADOW: one em-based ladder for the whole page instead of per-element px.
+   px ladders are the reason type reads 1.5-3x too heavy on a phone - the text
+   shrinks and the shadow does not. In em it tracks the type at every size, so
+   the same declaration serves a 124.8px headline and 20.8px body copy. Ratios
+   are the approved contact-card ladder (0.7/1.6/2.7/3.9px at 43px) converted.
+
+   NOT DONE HERE: G also asked for "text colour number two" on the small text.
+   There is no --ww-text-2 defined anywhere in the CSS, and he said colours get
+   their own pass, so this file does not guess at the palette. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins h1 {
+  font-size: clamp(2.75rem, 6.5vw, 124.8px) !important;
+  line-height: 1.06 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins h2 {
+  font-size: clamp(2.25rem, 5.6vw, 108px) !important;
+  line-height: 1.1 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(h1, h2, h3, p, li, blockquote) {
+  text-shadow:
+    0 0.0163em 0 rgba(35, 9, 2, 0.97),
+    0 0.0372em 0 rgba(30, 8, 2, 0.89),
+    0 0.0628em 0 rgba(25, 6, 1, 0.8),
+    0 0.0907em 0 rgba(25, 6, 1, 0.66) !important;
+}

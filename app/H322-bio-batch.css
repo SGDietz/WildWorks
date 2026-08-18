@@ -1,0 +1,23 @@
+/* H322: G 2026-08-18, Bio page.
+
+   M1 - "A Life of Constant Reinvention. Could that be on one line?"
+   Measured 82.4px in a 1120px box and wrapping to 2 lines. 64px brings it under
+   the box on one line with margin to spare, and the clamp keeps it sane on
+   narrower screens where one line is not physically possible.
+
+   M3 - "His mindset is simple. Life begins at middle age. Keep that all the same
+   colour." It was two colours: the sentence rendered cream rgb(252,224,173) while
+   the inner .wild-bio-mindset-line span was orange rgb(213,130,58). This makes
+   the span inherit, so the whole line is one colour. Note this is NOT a palette
+   change - it is removing a second colour, which is what G asked for; the actual
+   colour pass he mentioned is still his to direct. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-bio-reinvention-heading {
+  font-size: clamp(1.75rem, 3.4vw, 64px) !important;
+  line-height: 1.12 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-bio-mindset-line {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}

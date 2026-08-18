@@ -18,8 +18,8 @@ html body#wildworks-body#wildworks-body
     .wild-footer-legal-links,
     .wild-footer-legal-link
   ) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body
@@ -138,8 +138,8 @@ html body#wildworks-body#wildworks-body :is(
   .wild-home-statement__line--four,
   .wild-signature-title__two
 ) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body#wildworks-body#wildworks-body :is(
@@ -147,6 +147,6 @@ html body#wildworks-body#wildworks-body :is(
   [class*="--c3"],
   .wild-signature-title__three
 ) {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
 }

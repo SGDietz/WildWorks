@@ -1,0 +1,48 @@
+/* H320: G 2026-08-18 Wildfire page walk-down. Ladders measured off the live page,
+   scaled by G's percentages, expressed in em so they hold on a phone. */
+
+/* E1 Project Wildfire title. G: "it needs the appropriate amount of shadow."
+   Its existing ladder measured 0.0058em - about 0.85px under 147px type, which
+   is why it reads bare. Scaling almost-nothing by a percentage still gives
+   almost nothing, so this drops in the site's standard 4-stop brand ladder,
+   the same one now on the contact card and the Ruins headings. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-page-heading {
+  text-shadow:
+    0 0.0163em 0 rgba(35, 9, 2, 0.97),
+    0 0.0372em 0 rgba(30, 8, 2, 0.89),
+    0 0.0628em 0 rgba(25, 6, 1, 0.8),
+    0 0.0907em 0 rgba(25, 6, 1, 0.66) !important;
+}
+
+/* G1 Complete Project Build / Breaking Ground / First Wood Fire +20% | measured 84.8px, x1.2 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-hero-headline__line {
+  text-shadow:
+    0 0.0144em 0 rgb(0, 0, 0),
+    0 0.024em 0.006em rgba(0, 0, 0, 0.82),
+    0 0.0336em 0.012em rgba(0, 0, 0, 0.38) !important;
+}
+
+/* G3 carousel line, a little more | measured 29.6px, x1.3 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-gallery-rolodex-note {
+  text-shadow:
+    0 0.0364em 0 rgb(0, 0, 0),
+    0 0.0546em 0.0104em rgb(0, 0, 0),
+    0 0.0725em 0.0312em rgba(0, 0, 0, 0.78) !important;
+}
+
+/* G4 phone under the carousel +25% | measured 124.8px, x1.25 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-gallery-home-contact .wild-phone-number-line--home-footer a {
+  text-shadow:
+    0 0.012em 0 rgb(0, 0, 0),
+    0 0.02em 0.005em rgba(0, 0, 0, 0.82),
+    0 0.0275em 0.011em rgba(0, 0, 0, 0.38) !important;
+}
+
+
+/* F1: G - "A Complete Project Build is too far away from the hero image here.
+   It needs to be tighter, not right on it, but just normal." The gap is entirely
+   .wildfire-hero-copy's 88px padding-top; nothing else separates them. Cut to
+   48px, which is close to half and still reads as deliberate breathing room. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-hero-copy {
+  padding-top: 48px !important;
+}

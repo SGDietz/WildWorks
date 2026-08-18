@@ -1,0 +1,31 @@
+/* H314: G 2026-08-18 — "home is still too heavy, but the ruins page is not...
+   they should all be the same."
+
+   MEASURED, both at 1920 and identical font sizes, so the values transfer 1:1:
+     "Or Call WildWorks Today!"  (79.2px)
+       Home  : 0 3px 0, 0 4.5px .9px, 0 6px 2.4px      <- roughly 3x too heavy
+       Ruins : 0 .9504px 0, 0 1.584px .396px, 0 2.2176px .792px
+     phone number (124.8px)
+       Home  : 0 3px 0, 0 4.5px .9px, 0 6px 2.4px
+       Ruins : 0 1.2px 0, 0 2px .5px, 0 2.75px 1.1px
+
+   The split came from the A/B footer: Footer.tsx gives Ruins and Bio the
+   `--a` closing region and Home the plain one, and the two carried different
+   ladders. G picked Ruins as correct, so this puts the Ruins values on the
+   closing phone line for EVERY page - not scoped to Home - which is what
+   "they should all be the same" means. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-phone-number-line--footer-closing
+  .wild-phone-number-line__call-today {
+  text-shadow:
+    0 0.9504px 0 rgb(0, 0, 0),
+    0 1.584px 0.396px rgba(0, 0, 0, 0.82),
+    0 2.2176px 0.792px rgba(0, 0, 0, 0.38) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-phone-number-line--footer-closing a {
+  text-shadow:
+    0 1.2px 0 rgb(0, 0, 0),
+    0 2px 0.5px rgba(0, 0, 0, 0.82),
+    0 2.75px 1.1px rgba(0, 0, 0, 0.38) !important;
+}

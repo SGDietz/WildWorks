@@ -47,8 +47,8 @@
     nav[aria-label="Primary navigation"]
     a.wild-nav-link.wild-nav-link:hover {
     border: 1px solid #6f2a10 !important;
-    background: #c56222 !important;
-    background-color: #c56222 !important;
+    background: #e96819 !important;
+    background-color: #e96819 !important;
     color: #fce0ad !important;
     -webkit-text-fill-color: #fce0ad !important;
   }
@@ -59,8 +59,8 @@
     nav[aria-label="Primary navigation"]
   a.wild-nav-link.wild-nav-link[aria-current="page"] {
     border: 1px solid #6f2a10 !important;
-    background: #c56222 !important;
-    background-color: #c56222 !important;
+    background: #e96819 !important;
+    background-color: #e96819 !important;
     color: #fce0ad !important;
     -webkit-text-fill-color: #fce0ad !important;
     font-weight: 400 !important;

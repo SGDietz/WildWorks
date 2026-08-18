@@ -1,0 +1,102 @@
+/* H317: G 2026-08-18 Home walk-down - the shadow-strength percentages.
+
+   Every ladder below was READ from the live page, scaled by G's number, and
+   re-expressed in em. Nothing here was hand-guessed: the generator measured each
+   element's computed text-shadow and font-size, multiplied the offsets, and
+   divided by the font size.
+
+   Why em and not px: these ladders were authored against desktop type. When the
+   same text shrinks on a phone the px shadow does not shrink with it, which is
+   exactly why the site kept reading "too heavy on mobile". In em the shadow
+   tracks the type at every breakpoint, so one declaration is correct everywhere.
+
+   B2 needs no rule of its own - "Front Door" and "iScott is the" are both
+   .wild-iscott-title__segment, so matching them is automatic once the class is
+   set, which is what G asked for ("front door needs to match iScott is the").
+*/
+
+/* B1+B2 iScott is the / Front Door -20% (same class, so they match by construction) | measured 101.6px, x0.8 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-iscott-title__segment {
+  text-shadow:
+    0 0.0205em 0 rgba(35, 9, 2, 0.96),
+    0 0.0409em 0 rgba(25, 6, 1, 0.74) !important;
+}
+
+/* B3 WildWorks Concierge - had almost nothing | measured 22.48px, x1.6 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .money-panel-kicker {
+  text-shadow:
+    0 0.0292em 0 rgb(35, 9, 2),
+    0 0.045em 0.0085em rgb(30, 8, 2),
+    0 0.0607em 0.0273em rgba(25, 6, 1, 0.78) !important;
+}
+
+/* B4 Project Wildfire, a little more | measured 132px, x1.15 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-flame-title__text {
+  text-shadow:
+    0 0.02em 0 rgba(35, 9, 2, 0.94),
+    0 0.0409em 0 rgba(25, 6, 1, 0.71) !important;
+}
+
+/* B6 Then We Just Kept Going, a little heavier | measured 63.2px, x1.15 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-sequence-callout__line--going {
+  text-shadow:
+    0 0.0108em 0 rgba(35, 9, 2, 0.96),
+    0 0.0263em 0 rgba(30, 8, 2, 0.87),
+    0 0.0449em 0 rgba(25, 6, 1, 0.78),
+    0 0.0634em 0 rgba(25, 6, 1, 0.64) !important;
+}
+
+/* B7 Photographed/Breaking Ground/First Wood Fire -15% | measured 42.4px, x0.85 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-build-note__line {
+  text-shadow:
+    0 0.0144em 0 rgba(35, 9, 2, 0.95),
+    0 0.0337em 0 rgba(30, 8, 2, 0.86),
+    0 0.0577em 0 rgba(25, 6, 1, 0.76),
+    0 0.0818em 0 rgba(25, 6, 1, 0.62) !important;
+}
+
+/* B9 Design at the Limits + Contractor lines, heavier | measured 83.2px, x1.25 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__phrase {
+  text-shadow:
+    0 0.0102em 0 rgba(35, 9, 2, 0.98),
+    0 0.0255em 0 rgba(30, 8, 2, 0.9),
+    0 0.0447em 0 rgba(25, 6, 1, 0.82),
+    0 0.0639em 0 rgba(25, 6, 1, 0.68) !important;
+}
+
+/* B9 Where Fine Art Meets the Wild +45% | measured 83.2px, x1.45 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line {
+  text-shadow:
+    0 0.0119em 0 rgba(35, 9, 2, 0.98),
+    0 0.0296em 0 rgba(30, 8, 2, 0.9),
+    0 0.0518em 0 rgba(25, 6, 1, 0.82),
+    0 0.0741em 0 rgba(25, 6, 1, 0.68) !important;
+}
+
+/* B10 WildWorks Projects, reduce a little | measured 82.1333px, x0.85 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-projects__title-wildworks {
+  text-shadow:
+    0 0.0083em 0 rgba(35, 9, 2, 0.98),
+    0 0.0191em 0 rgba(30, 8, 2, 0.9),
+    0 0.0331em 0 rgba(25, 6, 1, 0.82),
+    0 0.0476em 0 rgba(25, 6, 1, 0.68) !important;
+}
+
+/* B10 WildWorks Projects, reduce a little | measured 82.1333px, x0.85 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-projects__title-projects {
+  text-shadow:
+    0 0.0083em 0 rgba(35, 9, 2, 0.98),
+    0 0.0191em 0 rgba(30, 8, 2, 0.9),
+    0 0.0331em 0 rgba(25, 6, 1, 0.82),
+    0 0.0476em 0 rgba(25, 6, 1, 0.68) !important;
+}
+
+/* B12 Services +30% | measured 53.2px, x1.3 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-kicker-frame {
+  text-shadow:
+    0 0.0147em 0 rgba(35, 9, 2, 0.96),
+    0 0.033em 0 rgba(30, 8, 2, 0.88),
+    0 0.0562em 0 rgba(25, 6, 1, 0.78),
+    0 0.0782em 0 rgba(25, 6, 1, 0.64) !important;
+}
+

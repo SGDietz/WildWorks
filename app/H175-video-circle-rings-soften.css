@@ -8,14 +8,14 @@
      1. center play
      2. progress thumb
      3. volume thumb
-   Current thumb ring is #5b1f0d. Mix 55% that / 45% card #c56222
+   Current thumb ring is #5b1f0d. Mix 55% that / 45% card #e96819
    â†’ #8b3d16. Do not change fills, icons, tracks, or the player frame. */
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
   --ww-h175-video-ring: color-mix(
     in srgb,
     #5b1f0d 55%,
-    var(--ww-home-hdr-secondary, #c56222) 45%
+    var(--ww-home-hdr-secondary, #e96819) 45%
   );
 }
 

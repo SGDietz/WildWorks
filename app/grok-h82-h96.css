@@ -674,24 +674,24 @@ html body #top#top#top#top#top#top#top#top.wild-home
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--makes-home {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   font-size: 2.65em !important;
 }
 
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--irresistible {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
   font-size: 4.95em !important;
 }
 
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection
   .wild-hero-headline--solid .wild-hero-headline__line--irresistible em {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
   font-size: inherit !important;
 }
 
@@ -708,8 +708,8 @@ html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2),
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(2) * {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   font-size: 0.8em !important;
 }
 
@@ -717,8 +717,8 @@ html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3),
 html body #top#top#top#top#top#top#top#top.wild-home
   .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) * {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
   font-size: 1.18em !important;
 }
 
@@ -968,8 +968,8 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--two .wild-home-statement__phrase,
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   .wild-home-statement .wild-home-statement__line--four {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -980,14 +980,14 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #wildworks-proof .wild-tree-title .wild-line-title__line--two {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #wildworks-proof .wild-tree-title .wild-line-title__line--three {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
 }
 
 /* G 2026-08-06: small Tree of Life copy and the final stonework statement
@@ -1072,8 +1072,8 @@ html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home
   #signature-work .wild-story-card--feature .wild-story-copy
   .wild-line-title__line--two :is(span, strong, em) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body #top#top#top#top#top#top#top#top#top#top#top.wild-home

@@ -4,8 +4,8 @@
     orange and away from red so more toward the card color than the
     bg color, but dont go too far"
 
-   H170 mixed #7d2f20 halfway to primary #9f4719 â†’ #8e3b1d (still red).
-   This nudges that ink 32% toward card #c56222 â†’ #a0471f.
+   H170 mixed #7d2f20 halfway to primary #c44d0b â†’ #8e3b1d (still red).
+   This nudges that ink 32% toward card #e96819 â†’ #a0471f.
    Same scope: field LargeIScottCta only. Not the avatar box.
    Gold face unchanged. */
 
@@ -13,7 +13,7 @@ html:has(#top.wild-home:not(.wild-legal-home)) {
   --ww-h177-field-talk-ink: color-mix(
     in srgb,
     #8e3b1d 68%,
-    var(--ww-home-hdr-secondary, #c56222) 32%
+    var(--ww-home-hdr-secondary, #e96819) 32%
   );
 }
 

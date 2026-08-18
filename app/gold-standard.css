@@ -176,8 +176,8 @@ html body #top#top#top#top.wild-home .wild-home-statement__line--one :is(span, .
 
 html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four),
 html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four) :is(span, .wild-home-statement__phrase) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   background: none !important;
   background-image: none !important;
   opacity: 1 !important;
@@ -380,7 +380,7 @@ html body :is(
   border-color: rgba(247, 217, 165, 0.74) !important;
   background:
     radial-gradient(circle at 34% 20%, rgba(255, 246, 214, 0.58), transparent 58%),
-    linear-gradient(180deg, #f9dfae 0%, #f1bf75 36%, #d37d3d 62%, #be5824 82%, #a94419 100%) !important;
+    linear-gradient(180deg, #f9dfae 0%, #edc775 36%, #d37d3d 62%, #be5824 82%, #a94419 100%) !important;
   color: var(--ww-button-ink) !important;
   -webkit-text-fill-color: var(--ww-button-ink) !important;
 }
@@ -564,8 +564,8 @@ html body #top#top#top.wild-home #iscott-sales :is(
   .wild-start-title__name,
   .wild-iscott-privacy-link
 ) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
   background-image: none !important;
 }
 
@@ -829,13 +829,13 @@ html body .wild-subpage--wildfire .wildfire-hero-summary__line--c1 {
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
-  color: #d5823a !important;
-  -webkit-text-fill-color: #d5823a !important;
+  color: #f08c28 !important;
+  -webkit-text-fill-color: #f08c28 !important;
 }
 
 html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
@@ -900,8 +900,8 @@ html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--pa
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
@@ -915,8 +915,8 @@ html body .wild-home #project-wildfire .wild-wildfire-build-note__line {
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(2) {
-  color: #f1bf75 !important;
-  -webkit-text-fill-color: #f1bf75 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
 }
 
 html body .wild-home #project-wildfire .wild-wildfire-build-note__line:nth-child(3) {

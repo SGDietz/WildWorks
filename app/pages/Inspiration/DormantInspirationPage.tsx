@@ -423,7 +423,7 @@ export default function DormantInspirationPage() {
         <span className="inspiration-cta-title-line block h-1 w-24 bg-white/80 origin-left my-2" />
         <div>
           <p className="inspiration-cta-p text-base ">
-            Is an Original, Hand-Built Outdoor Fireplace, in No Way a Reproduction. It is a Custom Stone Structure Built in My Own Voice—Shaped By Decades of Creative Experience—While Openly Acknowledging the Influence of a Craftsman Whose Work Continues to Inspire Me.
+            is an Original, Hand-Built Outdoor Fireplace, in No Way a Reproduction. It is a Custom Stone Structure Built in My Own Voice—Shaped By Decades of Creative Experience—While Openly Acknowledging the Influence of a Craftsman Whose Work Continues to Inspire Me.
           </p>
           <p className="inspiration-cta-p text-base ">
             As Isaac Newton Wrote, &quot;If I Have Seen Further, It is By Standing on the Shoulders of Giants.&quot;

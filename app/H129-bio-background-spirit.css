@@ -2,20 +2,20 @@
    Bio only. Cards, text, buttons, and other routes are untouched. */
 
 html:has(.wild-subpage--bio) {
-  --ww-bio-primary: #983e17;
+  --ww-bio-primary: #c44d0b;
   --ww-bio-page-background:
     linear-gradient(
       90deg,
-      #983e17 0%,
+      #c44d0b 0%,
       #9d4118 18%,
       #a4461b 36%,
       #ad4b1e 46%,
       #ad4b1e 54%,
       #a4461b 64%,
       #9d4118 82%,
-      #983e17 100%
+      #c44d0b 100%
     ),
-    #983e17;
+    #c44d0b;
 }
 
 html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid):has(.wild-subpage--bio) {

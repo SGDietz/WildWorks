@@ -3,7 +3,7 @@
 
 @media (max-width: 1366px) and (pointer: coarse) {
   body #footer#footer.wild-footer--legal {
-    --ww-legal-footer-call-color: var(--ww-color-2, #f1bf75);
+    --ww-legal-footer-call-color: var(--ww-color-2, #edc775);
     --ww-legal-footer-secondary-color: var(--ww-color-1, #fce0ad);
   }
 }

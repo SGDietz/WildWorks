@@ -1,0 +1,36 @@
+/* H313: G 2026-08-18 — "there should be no gap in color between the letter and
+   the shadow... leave the shadow the size that it is, just fill the copper hole
+   with shadow."
+
+   CAUSE (traced, not guessed): the Landscaping shadow is a masked copy of the
+   logo PNG sitting behind the artwork, pushed down by translateY. H118 shipped a
+   drop-shadow chain for exactly this and said so in its own comment — "closing
+   the copper-colored gap". H262 and H264 then both set `filter: none`, and H264
+   also raised the offset to clamp(3px, .28vw, 4.5px). So the shadow moved
+   further from the letters at the same moment the thing bridging it was switched
+   off. On a 1920 screen that is a 4.5px drop with nothing spanning it, and every
+   thin serif foot shows copper through the gap.
+
+   FIX: restore the bridge only. This file sets `filter` and NOTHING else — no
+   transform, no opacity, no colour — so the shadow keeps the exact distance,
+   size and darkness G approved. Five stacked 1px upward drop-shadows extend the
+   dark shape back up 5px, just past the 4.5px offset, so the shadow reaches the
+   letter with no copper between. The layer sits at z-index 0 behind the cream
+   artwork, so the upward growth is hidden under the letters themselves and only
+   the gap fill is visible. 1px each side closes the same sliver on vertical
+   SPECIFICITY, counted by hand: the real rival is in shadow-sweep.css and it
+   reads as 16x #wildworks-body -- but it also carries 25 :not(#id) guards, and
+   every :not(#id) contributes a FULL id to specificity. That is 41, not 16,
+   which is why a 40-id version of this file lost by exactly one. This carries
+   46. Never count a selector by eyeballing the '#' you can see. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect {
+  filter:
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(0 -1px 0 #321005)
+    drop-shadow(1px 0 0 #321005)
+    drop-shadow(-1px 0 0 #321005) !important;
+}

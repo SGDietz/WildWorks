@@ -5,8 +5,8 @@
    2. Home / Wildfire / Ruins logo rhythm is approved. Do not touch it.
       Projects and Bio must use that same air: menu bar â†’ WILDWORKS, and
       Landscaping â†’ first picture.
-   3. Bio is still the old field (#983e17 from H129). Paint Bio to the
-      Home tokens: field #9f4719, text 1/2/3. */
+   3. Bio is still the old field (#c44d0b from H129). Paint Bio to the
+      Home tokens: field #c44d0b, text 1/2/3. */
 
 /* ------------------------------------------------------------------ */
 /* 1. Effect closer â€” tokens + logo shadow offset                      */
@@ -127,16 +127,16 @@ html
 
 /* ------------------------------------------------------------------ */
 /* 3. Bio field + type = Home 1 / 2 / 3                                */
-/*    Beat H129 #983e17. Do not rewrite H129.                          */
+/*    Beat H129 #c44d0b. Do not rewrite H129.                          */
 /* ------------------------------------------------------------------ */
 
 html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio) {
-  --ww-bio-primary: #9f4719;
-  --ww-home-hdr-primary: #9f4719;
-  --ww-home-hdr-secondary: #c56222;
+  --ww-bio-primary: #c44d0b;
+  --ww-home-hdr-primary: #c44d0b;
+  --ww-home-hdr-secondary: #e96819;
   --ww-home-hdr-text-1: #fce0ad;
-  --ww-home-hdr-text-2: #f1bf75;
-  --ww-home-hdr-text-3: #d5823a;
+  --ww-home-hdr-text-2: #edc775;
+  --ww-home-hdr-text-3: #f08c28;
 }
 
 html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio)
@@ -150,8 +150,8 @@ html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bi
     .wild-subpage--bio,
     footer#footer
   ) {
-  background: #9f4719 !important;
-  background-color: #9f4719 !important;
+  background: #c44d0b !important;
+  background-color: #c44d0b !important;
   background-image: none !important;
 }
 
@@ -167,8 +167,8 @@ html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bi
   body#wildworks-body
   .wild-subpage--bio
   :is(h2, h2 *, .wild-bio-reinvention-heading, .wild-bio-reinvention-heading *) {
-  color: var(--ww-home-hdr-text-2, #f1bf75) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #f1bf75) !important;
+  color: var(--ww-home-hdr-text-2, #edc775) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-2, #edc775) !important;
 }
 
 html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bio)
@@ -183,7 +183,7 @@ html:has(.wild-subpage--bio):not(#ww-h192-bio#ww-h192-bio#ww-h192-bio#ww-h192-bi
   body#wildworks-body
   .wild-subpage--bio
   .wild-bio-mindset-line {
-  color: var(--ww-home-hdr-text-3, #d5823a) !important;
-  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #d5823a) !important;
+  color: var(--ww-home-hdr-text-3, #f08c28) !important;
+  -webkit-text-fill-color: var(--ww-home-hdr-text-3, #f08c28) !important;
 }
 
