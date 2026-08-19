@@ -899,6 +899,7 @@ const wildWorksLoadingGateScript = `
   <script id="wildworks-avatar-loading-gate">
     (() => {
       const loadingClass = "wildworks-avatar-loading";
+      let coverTimer = null;
       const startPattern = /^(?:talk to iscott|go live|start|restart iscott)$/i;
       // Release also on the plain-English mic fallback: a mic-refused session
       // continues as text chat, so the cover must lift and show the page.
@@ -912,14 +913,41 @@ const wildWorksLoadingGateScript = `
         : 0;
 
       const endLoading = () => {
+        if (typeof coverTimer !== "undefined" && coverTimer) {
+          window.clearTimeout(coverTimer);
+          coverTimer = null;
+        }
         document.documentElement.classList.remove(loadingClass);
         loadingStartedAt = 0;
       };
 
+      // G 2026-08-19, asked three times: "you need to pause for like 2 full
+      // seconds ... before you say a single word."
+      //
+      // The 2s hold on /api/v1/sessions/start was already shipped and it does
+      // fire - but G never SAW a pause, because tapping Talk also threw the
+      // copper cover over the whole screen for exactly that 2s, and the cover
+      // lifted on the first real video frame, which is the same moment iScott
+      // starts talking. So the sequence he actually got was: tap -> copper
+      // cover -> he appears already speaking. Zero seconds of a visible, quiet
+      // iScott. The delay was real and completely invisible.
+      //
+      // Hold the cover back for the length of the start delay. The app's own
+      // start-screen still of iScott is already on screen, so what G gets now
+      // is: tap -> iScott's face, silent, for two full seconds -> he comes
+      // alive and speaks. If the connection is genuinely slow the cover still
+      // appears after that window, so a real stall is still covered.
+      const WILDWORKS_COVER_HOLD_MS = 2000;
+
       const beginLoading = () => {
         loadingStartedAt = Date.now();
-        document.documentElement.classList.add(loadingClass);
         watchVideos();
+        if (coverTimer) window.clearTimeout(coverTimer);
+        coverTimer = window.setTimeout(() => {
+          coverTimer = null;
+          // Only cover if the avatar still has not painted a frame.
+          if (loadingStartedAt) document.documentElement.classList.add(loadingClass);
+        }, WILDWORKS_COVER_HOLD_MS);
       };
 
       const releaseAfterRealFrame = (video) => {
