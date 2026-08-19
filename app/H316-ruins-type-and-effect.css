@@ -36,11 +36,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(h1, h2, h3, blockquote) {
-  text-shadow:
-    0 0.0163em 0 rgba(35, 9, 2, 0.97),
-    0 0.0372em 0 rgba(30, 8, 2, 0.89),
-    0 0.0628em 0 rgba(25, 6, 1, 0.8),
-    0 0.0907em 0 rgba(25, 6, 1, 0.66) !important;
+  text-shadow: rgba(35,9,2,0.97) 0 0.009070em 0, rgba(34,9,2,0.936) 0 0.018140em 0, rgba(33,8,2,0.901) 0 0.027210em 0, rgba(32,8,2,0.867) 0 0.036280em 0, rgba(31,8,2,0.832) 0 0.045350em 0, rgba(29,7,1,0.798) 0 0.054420em 0, rgba(28,7,1,0.763) 0 0.063490em 0, rgba(27,7,1,0.729) 0 0.072560em 0, rgba(26,6,1,0.694) 0 0.081630em 0, rgba(25,6,1,0.66) 0 0.090700em 0 !important;
 }
 
 /* H356 (Claude, 2026-08-19): the Ruins BODY COPY joins the uniform small-text
@@ -56,9 +52,5 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    Was  .01630 / .03720 / .06280 / .09070em  at  .97 / .89 / .80 / .66
    Now  .01435 / .03254 / .05502 / .07656em  at  .865 / .790 / .702 / .575 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(p, li) {
-  text-shadow:
-    0 0.01435em 0 rgba(35, 9, 2, 0.865),
-    0 0.03254em 0 rgba(30, 8, 2, 0.790),
-    0 0.05502em 0 rgba(25, 6, 1, 0.702),
-    0 0.07656em 0 rgba(25, 6, 1, 0.575) !important;
+  text-shadow: rgba(35,9,2,0.865) 0 0.007656em 0, rgba(34,9,2,0.833) 0 0.015312em 0, rgba(33,8,2,0.801) 0 0.022968em 0, rgba(32,8,2,0.768) 0 0.030624em 0, rgba(31,8,2,0.736) 0 0.038280em 0, rgba(29,7,1,0.704) 0 0.045936em 0, rgba(28,7,1,0.672) 0 0.053592em 0, rgba(27,7,1,0.639) 0 0.061248em 0, rgba(26,6,1,0.607) 0 0.068904em 0, rgba(25,6,1,0.575) 0 0.076560em 0 !important;
 }

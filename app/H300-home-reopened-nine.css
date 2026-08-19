@@ -35,7 +35,7 @@
 /* 1. "Then Came the Patio." */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
   filter: none !important;
-  text-shadow: 0 .8px 0 rgba(35,9,2,.98), 0 2px 0 rgba(30,8,2,.9), 0 3.5px 0 rgba(25,6,1,.82), 0 5px 0 rgba(25,6,1,.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.5000px 0, rgba(34,9,2,0.947) 0 1.0000px 0, rgba(33,8,2,0.913) 0 1.5000px 0, rgba(32,8,2,0.88) 0 2.0000px 0, rgba(31,8,2,0.847) 0 2.5000px 0, rgba(29,7,1,0.813) 0 3.0000px 0, rgba(28,7,1,0.78) 0 3.5000px 0, rgba(27,7,1,0.747) 0 4.0000px 0, rgba(26,6,1,0.713) 0 4.5000px 0, rgba(25,6,1,0.68) 0 5.0000px 0 !important;
 }
 
 /* 2. "Then Came the Lounge." Previously locked as perfect and protected by
@@ -43,13 +43,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    in line with the two lines around it. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--lounge {
   filter: none !important;
-  text-shadow: 0 .75px 0 rgba(35,9,2,.97), 0 1.8px 0 rgba(30,8,2,.88), 0 3.1px 0 rgba(25,6,1,.79), 0 4.4px 0 rgba(25,6,1,.65) !important;
+  text-shadow: rgba(35,9,2,0.97) 0 0.4400px 0, rgba(34,9,2,0.934) 0 0.8800px 0, rgba(33,8,2,0.899) 0 1.3200px 0, rgba(32,8,2,0.863) 0 1.7600px 0, rgba(31,8,2,0.828) 0 2.2000px 0, rgba(29,7,1,0.792) 0 2.6400px 0, rgba(28,7,1,0.757) 0 3.0800px 0, rgba(27,7,1,0.721) 0 3.5200px 0, rgba(26,6,1,0.686) 0 3.9600px 0, rgba(25,6,1,0.65) 0 4.4000px 0 !important;
 }
 
 /* 3. "Then We Just Kept Going." */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
   filter: none !important;
-  text-shadow: 0 .7px 0 rgba(35,9,2,.96), 0 1.7px 0 rgba(30,8,2,.87), 0 2.9px 0 rgba(25,6,1,.78), 0 4.1px 0 rgba(25,6,1,.64) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.4100px 0, rgba(34,9,2,0.924) 0 0.8200px 0, rgba(33,8,2,0.889) 0 1.2300px 0, rgba(32,8,2,0.853) 0 1.6400px 0, rgba(31,8,2,0.818) 0 2.0500px 0, rgba(29,7,1,0.782) 0 2.4600px 0, rgba(28,7,1,0.747) 0 2.8700px 0, rgba(27,7,1,0.711) 0 3.2800px 0, rgba(26,6,1,0.676) 0 3.6900px 0, rgba(25,6,1,0.64) 0 4.1000px 0 !important;
 }
 
 /* 4. "We Photographed Every Step of the" / "Build, from pre-Breaking Ground".
@@ -73,20 +73,20 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--one,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--one .wild-home-statement__phrase {
   filter: none !important;
-  text-shadow: 0 .8px 0 rgba(35,9,2,.98), 0 2px 0 rgba(30,8,2,.9), 0 3.5px 0 rgba(25,6,1,.82), 0 5px 0 rgba(25,6,1,.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.5000px 0, rgba(34,9,2,0.947) 0 1.0000px 0, rgba(33,8,2,0.913) 0 1.5000px 0, rgba(32,8,2,0.88) 0 2.0000px 0, rgba(31,8,2,0.847) 0 2.5000px 0, rgba(29,7,1,0.813) 0 3.0000px 0, rgba(28,7,1,0.78) 0 3.5000px 0, rgba(27,7,1,0.747) 0 4.0000px 0, rgba(26,6,1,0.713) 0 4.5000px 0, rgba(25,6,1,0.68) 0 5.0000px 0 !important;
 }
 
 /* 7. "A Contractor that Faithfully Brings Those Designs to Life." */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--two,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--two .wild-home-statement__phrase {
   filter: none !important;
-  text-shadow: 0 .8px 0 rgba(35,9,2,.97), 0 1.9px 0 rgba(30,8,2,.89), 0 3.3px 0 rgba(25,6,1,.8), 0 4.7px 0 rgba(25,6,1,.66) !important;
+  text-shadow: rgba(35,9,2,0.97) 0 0.4700px 0, rgba(34,9,2,0.936) 0 0.9400px 0, rgba(33,8,2,0.901) 0 1.4100px 0, rgba(32,8,2,0.867) 0 1.8800px 0, rgba(31,8,2,0.832) 0 2.3500px 0, rgba(29,7,1,0.798) 0 2.8200px 0, rgba(28,7,1,0.763) 0 3.2900px 0, rgba(27,7,1,0.729) 0 3.7600px 0, rgba(26,6,1,0.694) 0 4.2300px 0, rgba(25,6,1,0.66) 0 4.7000px 0 !important;
 }
 
 /* 9. "Where Fine Art Meets the Wild" */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top.wild-home .wild-home-statement__line--four {
   filter: none !important;
-  text-shadow: 0 .7px 0 rgba(35,9,2,.96), 0 1.7px 0 rgba(30,8,2,.87), 0 2.9px 0 rgba(25,6,1,.78), 0 4.1px 0 rgba(25,6,1,.64) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.4100px 0, rgba(34,9,2,0.924) 0 0.8200px 0, rgba(33,8,2,0.889) 0 1.2300px 0, rgba(32,8,2,0.853) 0 1.6400px 0, rgba(31,8,2,0.818) 0 2.0500px 0, rgba(29,7,1,0.782) 0 2.4600px 0, rgba(28,7,1,0.747) 0 2.8700px 0, rgba(27,7,1,0.711) 0 3.2800px 0, rgba(26,6,1,0.676) 0 3.6900px 0, rgba(25,6,1,0.64) 0 4.1000px 0 !important;
 }
 
 /* 8. The WildWorks wordmark AND scrollwork in that card.

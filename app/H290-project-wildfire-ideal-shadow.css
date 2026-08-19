@@ -5,7 +5,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-flame-title__text,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-flame-title * {
   filter: none !important;
-  text-shadow: 0 2.6px 0 rgba(35, 9, 2, 0.96), 0 5.2px 0 rgba(25, 6, 1, 0.74) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.5200px 0, rgba(34,9,2,0.936) 0 1.0400px 0, rgba(33,8,2,0.911) 0 1.5600px 0, rgba(32,8,2,0.887) 0 2.0800px 0, rgba(31,8,2,0.862) 0 2.6000px 0, rgba(29,7,1,0.838) 0 3.1200px 0, rgba(28,7,1,0.813) 0 3.6400px 0, rgba(27,7,1,0.789) 0 4.1600px 0, rgba(26,6,1,0.764) 0 4.6800px 0, rgba(25,6,1,0.74) 0 5.2000px 0 !important;
 }
 
 /* It Started with a Fireplace..... - under the title. */
@@ -13,5 +13,5 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line--one,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #project-wildfire .wild-wildfire-title .wild-line-title__line * {
   filter: none !important;
-  text-shadow: 0 2.1px 0 rgba(35, 9, 2, 0.92), 0 4.3px 0 rgba(25, 6, 1, 0.68) !important;
+  text-shadow: rgba(35,9,2,0.92) 0 0.4300px 0, rgba(34,9,2,0.893) 0 0.8600px 0, rgba(33,8,2,0.867) 0 1.2900px 0, rgba(32,8,2,0.84) 0 1.7200px 0, rgba(31,8,2,0.813) 0 2.1500px 0, rgba(29,7,1,0.787) 0 2.5800px 0, rgba(28,7,1,0.76) 0 3.0100px 0, rgba(27,7,1,0.733) 0 3.4400px 0, rgba(26,6,1,0.707) 0 3.8700px 0, rgba(25,6,1,0.68) 0 4.3000px 0 !important;
 }

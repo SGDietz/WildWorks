@@ -235,7 +235,7 @@ const services = [
       <>
         WildWorks is for People Who Want Designs at the Limits of Human Imagination, and a Contractor that Can
         Faithfully Bring Those Designs to Life. If You Want a Space Created with Exquisite Taste and Originality - You
-        are the Kind of Client Scott is Looking for, <em>Wherever You are in the World.</em>
+        are the Kind of Client Scott is Looking for <em>Wherever You are in the World.</em>
       </>,
       <>
         After Four Decades of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps

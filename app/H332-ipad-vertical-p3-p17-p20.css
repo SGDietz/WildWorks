@@ -14,26 +14,66 @@
 @media (min-width: 768px) and (max-width: 1180px) and (orientation: portrait) {
   /* P3a hero Call WildWorks Today ×0.80 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-hero .wild-phone-number-line__call-today {
-    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01333em 0, rgba(30, 8, 2, 0.9) 0 0.03333em 0, rgba(25, 6, 1, 0.82) 0 0.05833em 0, rgba(25, 6, 1, 0.68) 0 0.08333em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.98) 0 0.008333em 0,
+    rgba(34,9,2,0.947) 0 0.016666em 0,
+    rgba(33,8,2,0.913) 0 0.024999em 0,
+    rgba(32,8,2,0.88) 0 0.033332em 0,
+    rgba(31,8,2,0.847) 0 0.041665em 0,
+    rgba(29,7,1,0.813) 0 0.049998em 0,
+    rgba(28,7,1,0.78) 0 0.058331em 0,
+    rgba(27,7,1,0.747) 0 0.066664em 0,
+    rgba(26,6,1,0.713) 0 0.074997em 0,
+    rgba(25,6,1,0.68) 0 0.083330em 0 !important;
   }
 
   /* P3b hero tel number only ×0.80 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-hero a[href^="tel:"] {
-    text-shadow: rgba(35, 9, 2, 0.98) 0 0.00805em 0, rgba(30, 8, 2, 0.9) 0 0.02012em 0, rgba(25, 6, 1, 0.82) 0 0.0352em 0, rgba(25, 6, 1, 0.68) 0 0.05029em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.98) 0 0.005029em 0,
+    rgba(34,9,2,0.947) 0 0.010058em 0,
+    rgba(33,8,2,0.913) 0 0.015087em 0,
+    rgba(32,8,2,0.88) 0 0.020116em 0,
+    rgba(31,8,2,0.847) 0 0.025145em 0,
+    rgba(29,7,1,0.813) 0 0.030174em 0,
+    rgba(28,7,1,0.78) 0 0.035203em 0,
+    rgba(27,7,1,0.747) 0 0.040232em 0,
+    rgba(26,6,1,0.713) 0 0.045261em 0,
+    rgba(25,6,1,0.68) 0 0.050290em 0 !important;
   }
 
   /* P17 WildWorks + Projects together ×0.90 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__title-wildworks, html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__title-projects {
-    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01007em 0, rgba(30, 8, 2, 0.9) 0 0.0233em 0, rgba(25, 6, 1, 0.82) 0 0.0403em 0, rgba(25, 6, 1, 0.68) 0 0.05792em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.98) 0 0.005792em 0,
+    rgba(34,9,2,0.947) 0 0.011584em 0,
+    rgba(33,8,2,0.913) 0 0.017376em 0,
+    rgba(32,8,2,0.88) 0 0.023168em 0,
+    rgba(31,8,2,0.847) 0 0.028960em 0,
+    rgba(29,7,1,0.813) 0 0.034752em 0,
+    rgba(28,7,1,0.78) 0 0.040544em 0,
+    rgba(27,7,1,0.747) 0 0.046336em 0,
+    rgba(26,6,1,0.713) 0 0.052128em 0,
+    rgba(25,6,1,0.68) 0 0.057920em 0 !important;
   }
 
   /* P18 Wild by design: current × (1.10 / 0.90) */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects > p.wild-home-projects__tagline > span:not(#_):not(#_):not(#_) {
-    text-shadow: rgba(35, 9, 2, 0.9) 0 0.02983em 0, rgba(25, 6, 1, 0.6) 0 0.06319em 0 !important;
+    text-shadow: rgba(35,9,2,0.9) 0 0.006319em 0, rgba(34,9,2,0.867) 0 0.012638em 0, rgba(33,8,2,0.833) 0 0.018957em 0, rgba(32,8,2,0.8) 0 0.025276em 0, rgba(31,8,2,0.767) 0 0.031595em 0, rgba(29,7,1,0.733) 0 0.037914em 0, rgba(28,7,1,0.7) 0 0.044233em 0, rgba(27,7,1,0.667) 0 0.050552em 0, rgba(26,6,1,0.633) 0 0.056871em 0, rgba(25,6,1,0.6) 0 0.063190em 0 !important;
   }
 
   /* P20 capabilities copy ×0.80 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__capabilities p {
-    text-shadow: rgba(35, 9, 2, 0.96) 0 0.01067em 0, rgba(30, 8, 2, 0.88) 0 0.02418em 0, rgba(25, 6, 1, 0.78) 0 0.04089em 0, rgba(25, 6, 1, 0.64) 0 0.05689em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.96) 0 0.005689em 0,
+    rgba(34,9,2,0.924) 0 0.011378em 0,
+    rgba(33,8,2,0.889) 0 0.017067em 0,
+    rgba(32,8,2,0.853) 0 0.022756em 0,
+    rgba(31,8,2,0.818) 0 0.028445em 0,
+    rgba(29,7,1,0.782) 0 0.034134em 0,
+    rgba(28,7,1,0.747) 0 0.039823em 0,
+    rgba(27,7,1,0.711) 0 0.045512em 0,
+    rgba(26,6,1,0.676) 0 0.051201em 0,
+    rgba(25,6,1,0.64) 0 0.056890em 0 !important;
   }
 }

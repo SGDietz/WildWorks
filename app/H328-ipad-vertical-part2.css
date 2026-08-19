@@ -15,37 +15,23 @@
   /* P4 "iScott is the Front Door" - back that off 10%
      measured 101.6px "iScott" x0.9 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #iscott-sales .wild-iscott-title__segment:not(#_):not(#_):not(#_) {
-    text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.96) 0em 0.01845em 0em,
-      rgba(25,
-      6,
-      1,
-      0.74) 0em 0.03681em 0em !important;
+    text-shadow: rgba(35,9,2,0.96) 0 0.003681em 0, rgba(34,9,2,0.936) 0 0.007362em 0, rgba(33,8,2,0.911) 0 0.011043em 0, rgba(32,8,2,0.887) 0 0.014724em 0, rgba(31,8,2,0.862) 0 0.018405em 0, rgba(29,7,1,0.838) 0 0.022086em 0, rgba(28,7,1,0.813) 0 0.025767em 0, rgba(27,7,1,0.789) 0 0.029448em 0, rgba(26,6,1,0.764) 0 0.033129em 0, rgba(25,6,1,0.74) 0 0.036810em 0 !important;
   }
 
   /* P5 small text under the front door - "a little smudged ... blends into each other ... muddy" - 20% less
      measured 16.72px "Start with iScott, Scott's digital" x0.8 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #iscott-sales .wild-iscott-body:not(#_):not(#_):not(#_) {
     text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.96) 0em 0.01435em 0em,
-      rgba(30,
-      8,
-      2,
-      0.88) 0em 0.03254em 0em,
-      rgba(25,
-      6,
-      1,
-      0.78) 0em 0.05502em 0em,
-      rgba(25,
-      6,
-      1,
-      0.64) 0em 0.07656em 0em !important;
+    rgba(35,9,2,0.96) 0 0.007656em 0,
+    rgba(34,9,2,0.924) 0 0.015312em 0,
+    rgba(33,8,2,0.889) 0 0.022968em 0,
+    rgba(32,8,2,0.853) 0 0.030624em 0,
+    rgba(31,8,2,0.818) 0 0.038280em 0,
+    rgba(29,7,1,0.782) 0 0.045936em 0,
+    rgba(28,7,1,0.747) 0 0.053592em 0,
+    rgba(27,7,1,0.711) 0 0.061248em 0,
+    rgba(26,6,1,0.676) 0 0.068904em 0,
+    rgba(25,6,1,0.64) 0 0.076560em 0 !important;
   }
 
   /* P5b the 1/2/3/4 steps under it - same 20%
@@ -69,59 +55,39 @@
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott .wild-start-title__start:not(#_):not(#_):not(#_),
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott .wild-start-title__with:not(#_):not(#_):not(#_),
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott .wild-start-title__name:not(#_):not(#_):not(#_) {
-    text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.92) 0em 0.01873em 0em,
-      rgba(25,
-      6,
-      1,
-      0.68) 0em 0.0384em 0em !important;
+    text-shadow: rgba(35,9,2,0.92) 0 0.003840em 0, rgba(34,9,2,0.893) 0 0.007680em 0, rgba(33,8,2,0.867) 0 0.011520em 0, rgba(32,8,2,0.84) 0 0.015360em 0, rgba(31,8,2,0.813) 0 0.019200em 0, rgba(29,7,1,0.787) 0 0.023040em 0, rgba(28,7,1,0.76) 0 0.026880em 0, rgba(27,7,1,0.733) 0 0.030720em 0, rgba(26,6,1,0.707) 0 0.034560em 0, rgba(25,6,1,0.68) 0 0.038400em 0 !important;
   }
 
   /* P11 the scrolls / "Design at the Limits of Human Imagination" - shadow too big AND a visible gap; tuck it in 20%
      measured 40.8px "Design at the Limits" x0.8 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top .wild-home-statement__phrase:not(#_):not(#_):not(#_) {
     text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.98) 0em 0.00653em 0em,
-      rgba(30,
-      8,
-      2,
-      0.9) 0em 0.01632em 0em,
-      rgba(25,
-      6,
-      1,
-      0.82) 0em 0.02861em 0em,
-      rgba(25,
-      6,
-      1,
-      0.68) 0em 0.0409em 0em !important;
+    rgba(35,9,2,0.98) 0 0.004090em 0,
+    rgba(34,9,2,0.947) 0 0.008180em 0,
+    rgba(33,8,2,0.913) 0 0.012270em 0,
+    rgba(32,8,2,0.88) 0 0.016360em 0,
+    rgba(31,8,2,0.847) 0 0.020450em 0,
+    rgba(29,7,1,0.813) 0 0.024540em 0,
+    rgba(28,7,1,0.78) 0 0.028630em 0,
+    rgba(27,7,1,0.747) 0 0.032720em 0,
+    rgba(26,6,1,0.713) 0 0.036810em 0,
+    rgba(25,6,1,0.68) 0 0.040900em 0 !important;
   }
 
   /* P11b the statement line under it - same
      measured 40.8px "Design at the Limits of Human Imag" x0.8 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top .wild-home-statement__line:not(#_):not(#_):not(#_) {
     text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.98) 0em 0.00952em 0em,
-      rgba(30,
-      8,
-      2,
-      0.9) 0em 0.02368em 0em,
-      rgba(25,
-      6,
-      1,
-      0.82) 0em 0.04144em 0em,
-      rgba(25,
-      6,
-      1,
-      0.68) 0em 0.05928em 0em !important;
+    rgba(35,9,2,0.98) 0 0.005928em 0,
+    rgba(34,9,2,0.947) 0 0.011856em 0,
+    rgba(33,8,2,0.913) 0 0.017784em 0,
+    rgba(32,8,2,0.88) 0 0.023712em 0,
+    rgba(31,8,2,0.847) 0 0.029640em 0,
+    rgba(29,7,1,0.813) 0 0.035568em 0,
+    rgba(28,7,1,0.78) 0 0.041496em 0,
+    rgba(27,7,1,0.747) 0 0.047424em 0,
+    rgba(26,6,1,0.713) 0 0.053352em 0,
+    rgba(25,6,1,0.68) 0 0.059280em 0 !important;
   }
 
   /* P23 all six card titles - "all cards, back them off twenty percent"
@@ -129,22 +95,16 @@
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #services .wild-card h3:not(#_):not(#_):not(#_),
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #services .wild-card h3 span:not(#_):not(#_):not(#_) {
     text-shadow:
-      rgba(35,
-      9,
-      2,
-      0.97) 0em 0.014em 0em,
-      rgba(30,
-      8,
-      2,
-      0.89) 0em 0.032em 0em,
-      rgba(25,
-      6,
-      1,
-      0.8) 0em 0.054em 0em,
-      rgba(25,
-      6,
-      1,
-      0.66) 0em 0.078em 0em !important;
+    rgba(35,9,2,0.97) 0 0.007800em 0,
+    rgba(34,9,2,0.936) 0 0.015600em 0,
+    rgba(33,8,2,0.901) 0 0.023400em 0,
+    rgba(32,8,2,0.867) 0 0.031200em 0,
+    rgba(31,8,2,0.832) 0 0.039000em 0,
+    rgba(29,7,1,0.798) 0 0.046800em 0,
+    rgba(28,7,1,0.763) 0 0.054600em 0,
+    rgba(27,7,1,0.729) 0 0.062400em 0,
+    rgba(26,6,1,0.694) 0 0.070200em 0,
+    rgba(25,6,1,0.66) 0 0.078000em 0 !important;
   }
 
   /* P8 "Project Wildfire" - G: "much bigger, four font points bigger".

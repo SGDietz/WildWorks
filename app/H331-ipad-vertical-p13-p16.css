@@ -5,21 +5,61 @@
 @media (min-width: 768px) and (max-width: 1180px) and (orientation: portrait) {
   /* P13 Tree of Life title ×0.90 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wildworks-proof .wild-tree-title .wild-line-title__line {
-    text-shadow: rgba(35, 9, 2, 0.97) 0 0.01223em 0, rgba(30, 8, 2, 0.89) 0 0.02772em 0, rgba(25, 6, 1, 0.81) 0 0.04728em 0, rgba(25, 6, 1, 0.67) 0 0.06848em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.97) 0 0.006848em 0,
+    rgba(34,9,2,0.937) 0 0.013696em 0,
+    rgba(33,8,2,0.903) 0 0.020544em 0,
+    rgba(32,8,2,0.87) 0 0.027392em 0,
+    rgba(31,8,2,0.837) 0 0.034240em 0,
+    rgba(29,7,1,0.803) 0 0.041088em 0,
+    rgba(28,7,1,0.77) 0 0.047936em 0,
+    rgba(27,7,1,0.737) 0 0.054784em 0,
+    rgba(26,6,1,0.703) 0 0.061632em 0,
+    rgba(25,6,1,0.67) 0 0.068480em 0 !important;
   }
 
   /* P14 copy under the tree title ×0.90 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wildworks-proof p.wild-body:not(#_):not(#_):not(#_) {
-    text-shadow: rgba(35, 9, 2, 0.96) 0 0.01552em 0, rgba(30, 8, 2, 0.88) 0 0.03517em 0, rgba(25, 6, 1, 0.78) 0 0.05948em 0, rgba(25, 6, 1, 0.64) 0 0.08275em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.96) 0 0.008275em 0,
+    rgba(34,9,2,0.924) 0 0.016550em 0,
+    rgba(33,8,2,0.889) 0 0.024825em 0,
+    rgba(32,8,2,0.853) 0 0.033100em 0,
+    rgba(31,8,2,0.818) 0 0.041375em 0,
+    rgba(29,7,1,0.782) 0 0.049650em 0,
+    rgba(28,7,1,0.747) 0 0.057925em 0,
+    rgba(27,7,1,0.711) 0 0.066200em 0,
+    rgba(26,6,1,0.676) 0 0.074475em 0,
+    rgba(25,6,1,0.64) 0 0.082750em 0 !important;
   }
 
   /* P15 What Could / Be Cooler ×0.90 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #signature-work .wild-signature-title__one {
-    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01275em 0, rgba(30, 8, 2, 0.9) 0 0.03188em 0, rgba(25, 6, 1, 0.82) 0 0.05578em 0, rgba(25, 6, 1, 0.68) 0 0.07969em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.98) 0 0.007969em 0,
+    rgba(34,9,2,0.947) 0 0.015938em 0,
+    rgba(33,8,2,0.913) 0 0.023907em 0,
+    rgba(32,8,2,0.88) 0 0.031876em 0,
+    rgba(31,8,2,0.847) 0 0.039845em 0,
+    rgba(29,7,1,0.813) 0 0.047814em 0,
+    rgba(28,7,1,0.78) 0 0.055783em 0,
+    rgba(27,7,1,0.747) 0 0.063752em 0,
+    rgba(26,6,1,0.713) 0 0.071721em 0,
+    rgba(25,6,1,0.68) 0 0.079690em 0 !important;
   }
 
   /* P16 Than Having / A Ruin ×0.80 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #signature-work .wild-signature-title__two {
-    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01133em 0, rgba(30, 8, 2, 0.9) 0 0.02833em 0, rgba(25, 6, 1, 0.82) 0 0.04958em 0, rgba(25, 6, 1, 0.68) 0 0.07083em 0 !important;
+    text-shadow:
+    rgba(35,9,2,0.98) 0 0.007083em 0,
+    rgba(34,9,2,0.947) 0 0.014166em 0,
+    rgba(33,8,2,0.913) 0 0.021249em 0,
+    rgba(32,8,2,0.88) 0 0.028332em 0,
+    rgba(31,8,2,0.847) 0 0.035415em 0,
+    rgba(29,7,1,0.813) 0 0.042498em 0,
+    rgba(28,7,1,0.78) 0 0.049581em 0,
+    rgba(27,7,1,0.747) 0 0.056664em 0,
+    rgba(26,6,1,0.713) 0 0.063747em 0,
+    rgba(25,6,1,0.68) 0 0.070830em 0 !important;
   }
 }

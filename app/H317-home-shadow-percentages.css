@@ -17,9 +17,7 @@
 
 /* B1+B2 iScott is the / Front Door -20% (same class, so they match by construction) | measured 101.6px, x0.8 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-iscott-title__segment {
-  text-shadow:
-    0 0.0205em 0 rgba(35, 9, 2, 0.96),
-    0 0.0409em 0 rgba(25, 6, 1, 0.74) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.004090em 0, rgba(34,9,2,0.936) 0 0.008180em 0, rgba(33,8,2,0.911) 0 0.012270em 0, rgba(32,8,2,0.887) 0 0.016360em 0, rgba(31,8,2,0.862) 0 0.020450em 0, rgba(29,7,1,0.838) 0 0.024540em 0, rgba(28,7,1,0.813) 0 0.028630em 0, rgba(27,7,1,0.789) 0 0.032720em 0, rgba(26,6,1,0.764) 0 0.036810em 0, rgba(25,6,1,0.74) 0 0.040900em 0 !important;
 }
 
 /* B3 WildWorks Concierge - had almost nothing | measured 22.48px, x1.6 */
@@ -32,71 +30,41 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
 /* B4 Project Wildfire, a little more | measured 132px, x1.15 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-flame-title__text {
-  text-shadow:
-    0 0.02em 0 rgba(35, 9, 2, 0.94),
-    0 0.0409em 0 rgba(25, 6, 1, 0.71) !important;
+  text-shadow: rgba(35,9,2,0.94) 0 0.004090em 0, rgba(34,9,2,0.914) 0 0.008180em 0, rgba(33,8,2,0.889) 0 0.012270em 0, rgba(32,8,2,0.863) 0 0.016360em 0, rgba(31,8,2,0.838) 0 0.020450em 0, rgba(29,7,1,0.812) 0 0.024540em 0, rgba(28,7,1,0.787) 0 0.028630em 0, rgba(27,7,1,0.761) 0 0.032720em 0, rgba(26,6,1,0.736) 0 0.036810em 0, rgba(25,6,1,0.71) 0 0.040900em 0 !important;
 }
 
 /* B6 Then We Just Kept Going, a little heavier | measured 63.2px, x1.15 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-sequence-callout__line--going {
-  text-shadow:
-    0 0.0108em 0 rgba(35, 9, 2, 0.96),
-    0 0.0263em 0 rgba(30, 8, 2, 0.87),
-    0 0.0449em 0 rgba(25, 6, 1, 0.78),
-    0 0.0634em 0 rgba(25, 6, 1, 0.64) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.006340em 0, rgba(34,9,2,0.924) 0 0.012680em 0, rgba(33,8,2,0.889) 0 0.019020em 0, rgba(32,8,2,0.853) 0 0.025360em 0, rgba(31,8,2,0.818) 0 0.031700em 0, rgba(29,7,1,0.782) 0 0.038040em 0, rgba(28,7,1,0.747) 0 0.044380em 0, rgba(27,7,1,0.711) 0 0.050720em 0, rgba(26,6,1,0.676) 0 0.057060em 0, rgba(25,6,1,0.64) 0 0.063400em 0 !important;
 }
 
 /* B7 Photographed/Breaking Ground/First Wood Fire -15% | measured 42.4px, x0.85 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-wildfire-build-note__line {
-  text-shadow:
-    0 0.0144em 0 rgba(35, 9, 2, 0.95),
-    0 0.0337em 0 rgba(30, 8, 2, 0.86),
-    0 0.0577em 0 rgba(25, 6, 1, 0.76),
-    0 0.0818em 0 rgba(25, 6, 1, 0.62) !important;
+  text-shadow: rgba(35,9,2,0.95) 0 0.008180em 0, rgba(34,9,2,0.913) 0 0.016360em 0, rgba(33,8,2,0.877) 0 0.024540em 0, rgba(32,8,2,0.84) 0 0.032720em 0, rgba(31,8,2,0.803) 0 0.040900em 0, rgba(29,7,1,0.767) 0 0.049080em 0, rgba(28,7,1,0.73) 0 0.057260em 0, rgba(27,7,1,0.693) 0 0.065440em 0, rgba(26,6,1,0.657) 0 0.073620em 0, rgba(25,6,1,0.62) 0 0.081800em 0 !important;
 }
 
 /* B9 Design at the Limits + Contractor lines, heavier | measured 83.2px, x1.25 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__phrase {
-  text-shadow:
-    0 0.0102em 0 rgba(35, 9, 2, 0.98),
-    0 0.0255em 0 rgba(30, 8, 2, 0.9),
-    0 0.0447em 0 rgba(25, 6, 1, 0.82),
-    0 0.0639em 0 rgba(25, 6, 1, 0.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.006390em 0, rgba(34,9,2,0.947) 0 0.012780em 0, rgba(33,8,2,0.913) 0 0.019170em 0, rgba(32,8,2,0.88) 0 0.025560em 0, rgba(31,8,2,0.847) 0 0.031950em 0, rgba(29,7,1,0.813) 0 0.038340em 0, rgba(28,7,1,0.78) 0 0.044730em 0, rgba(27,7,1,0.747) 0 0.051120em 0, rgba(26,6,1,0.713) 0 0.057510em 0, rgba(25,6,1,0.68) 0 0.063900em 0 !important;
 }
 
 /* B9 Where Fine Art Meets the Wild +45% | measured 83.2px, x1.45 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-statement__line {
-  text-shadow:
-    0 0.0119em 0 rgba(35, 9, 2, 0.98),
-    0 0.0296em 0 rgba(30, 8, 2, 0.9),
-    0 0.0518em 0 rgba(25, 6, 1, 0.82),
-    0 0.0741em 0 rgba(25, 6, 1, 0.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.007410em 0, rgba(34,9,2,0.947) 0 0.014820em 0, rgba(33,8,2,0.913) 0 0.022230em 0, rgba(32,8,2,0.88) 0 0.029640em 0, rgba(31,8,2,0.847) 0 0.037050em 0, rgba(29,7,1,0.813) 0 0.044460em 0, rgba(28,7,1,0.78) 0 0.051870em 0, rgba(27,7,1,0.747) 0 0.059280em 0, rgba(26,6,1,0.713) 0 0.066690em 0, rgba(25,6,1,0.68) 0 0.074100em 0 !important;
 }
 
 /* B10 WildWorks Projects, reduce a little | measured 82.1333px, x0.85 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-projects__title-wildworks {
-  text-shadow:
-    0 0.0083em 0 rgba(35, 9, 2, 0.98),
-    0 0.0191em 0 rgba(30, 8, 2, 0.9),
-    0 0.0331em 0 rgba(25, 6, 1, 0.82),
-    0 0.0476em 0 rgba(25, 6, 1, 0.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.004760em 0, rgba(34,9,2,0.947) 0 0.009520em 0, rgba(33,8,2,0.913) 0 0.014280em 0, rgba(32,8,2,0.88) 0 0.019040em 0, rgba(31,8,2,0.847) 0 0.023800em 0, rgba(29,7,1,0.813) 0 0.028560em 0, rgba(28,7,1,0.78) 0 0.033320em 0, rgba(27,7,1,0.747) 0 0.038080em 0, rgba(26,6,1,0.713) 0 0.042840em 0, rgba(25,6,1,0.68) 0 0.047600em 0 !important;
 }
 
 /* B10 WildWorks Projects, reduce a little | measured 82.1333px, x0.85 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-projects__title-projects {
-  text-shadow:
-    0 0.0083em 0 rgba(35, 9, 2, 0.98),
-    0 0.0191em 0 rgba(30, 8, 2, 0.9),
-    0 0.0331em 0 rgba(25, 6, 1, 0.82),
-    0 0.0476em 0 rgba(25, 6, 1, 0.68) !important;
+  text-shadow: rgba(35,9,2,0.98) 0 0.004760em 0, rgba(34,9,2,0.947) 0 0.009520em 0, rgba(33,8,2,0.913) 0 0.014280em 0, rgba(32,8,2,0.88) 0 0.019040em 0, rgba(31,8,2,0.847) 0 0.023800em 0, rgba(29,7,1,0.813) 0 0.028560em 0, rgba(28,7,1,0.78) 0 0.033320em 0, rgba(27,7,1,0.747) 0 0.038080em 0, rgba(26,6,1,0.713) 0 0.042840em 0, rgba(25,6,1,0.68) 0 0.047600em 0 !important;
 }
 
 /* B12 Services +30% | measured 53.2px, x1.3 */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-kicker-frame {
-  text-shadow:
-    0 0.0147em 0 rgba(35, 9, 2, 0.96),
-    0 0.033em 0 rgba(30, 8, 2, 0.88),
-    0 0.0562em 0 rgba(25, 6, 1, 0.78),
-    0 0.0782em 0 rgba(25, 6, 1, 0.64) !important;
+  text-shadow: rgba(35,9,2,0.96) 0 0.007820em 0, rgba(34,9,2,0.924) 0 0.015640em 0, rgba(33,8,2,0.889) 0 0.023460em 0, rgba(32,8,2,0.853) 0 0.031280em 0, rgba(31,8,2,0.818) 0 0.039100em 0, rgba(29,7,1,0.782) 0 0.046920em 0, rgba(28,7,1,0.747) 0 0.054740em 0, rgba(27,7,1,0.711) 0 0.062560em 0, rgba(26,6,1,0.676) 0 0.070380em 0, rgba(25,6,1,0.64) 0 0.078200em 0 !important;
 }
 
