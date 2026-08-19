@@ -955,6 +955,7 @@ const wildWorksLoadingGateScript = `
 
       const beginLoading = () => {
         loadingStartedAt = Date.now();
+        try { window.__wwPaceMark && window.__wwPaceMark("tap"); } catch {}
         watchVideos();
         if (coverTimer) window.clearTimeout(coverTimer);
         coverTimer = window.setTimeout(() => {
@@ -969,7 +970,10 @@ const wildWorksLoadingGateScript = `
         if (!video || video.readyState < 2 || video.videoWidth < 1 || video.videoHeight < 1) return;
 
         if (typeof video.requestVideoFrameCallback === "function") {
-          video.requestVideoFrameCallback(() => endLoading());
+          video.requestVideoFrameCallback(() => {
+            try { window.__wwPaceMark && window.__wwPaceMark("first_video_frame"); } catch {}
+            endLoading();
+          });
           return;
         }
 
@@ -1485,11 +1489,47 @@ const wildWorksCaptureBridgeScript = `
       // session-start call for two seconds gives the video and audio time to come
       // up together, once, without stacking delays.
       const WILDWORKS_START_DELAY_MS = 2000;
+
+      // G has now reported "there was still no delay" on three separate rides.
+      // I have twice reasoned about why it should work and twice been wrong, so
+      // this stops guessing and records what actually happens. Every step of the
+      // start stamps an event; after one ride the timings are in Supabase and
+      // the answer is arithmetic instead of opinion.
+      //
+      // The specific thing being tested: whether this fetch patch is even
+      // reached. The avatar app is a bundled React app whose scripts run before
+      // these body scripts, so if any module captured a reference to fetch at
+      // import time, it calls that and never sees this wrapper. Transcript sync
+      // does NOT prove the patch fires - syncTranscript also runs on an
+      // interval, which is what misled me the first two times.
+      const wwPaceMark = (stage, extra) => {
+        try {
+          const body = JSON.stringify({
+            eventType: "iscott_start_pace",
+            sessionId: (window.__wildworksAvatarSessionId || null),
+            payload: Object.assign({
+              stage,
+              atMs: Math.round(performance.now()),
+              startDelayMs: WILDWORKS_START_DELAY_MS,
+            }, extra || {}),
+          });
+          fetch("/api/app-events/log", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body,
+            keepalive: true,
+          }).catch(() => undefined);
+        } catch {}
+      };
+      window.__wwPaceMark = wwPaceMark;
+
       window.fetch = async (input, init) => {
         try {
           const startUrl = typeof input === "string" ? input : input?.url || "";
           if (startUrl.includes("/api/v1/sessions/start")) {
+            wwPaceMark("start_intercepted");
             await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+            wwPaceMark("delay_released");
           }
         } catch {}
         const response = await originalFetch(input, init);
