@@ -160,6 +160,48 @@ assert.equal(
   "asking where the email went cannot restamp the method",
 );
 
-console.log(
-  "iScott ride 89c453ff replay OK - the destroying turns reproduce, and the credible-turn rule blocks them.",
+// ---------------------------------------------------------------------------
+// 5. project_need. Scott opens the mail to read the job. On this ride he was
+//    sent "A website and then I What type is he good with, you know, coming up
+//    with original ideas" - two half sentences welded across a transcript break.
+//
+//    Replaying the ride showed the value was CLEAN for the first five turns and
+//    broke on the sixth, which is where G started talking about the screen. That
+//    flips sessionLooksLikeOperatorQa, and the QA branch was returning the raw
+//    per-turn accumulation while handing the distilled value to
+//    operatorServiceScript. The good answer was computed and thrown away.
+// ---------------------------------------------------------------------------
+const { visitorProjectNeedFromRows } = await import(url("iscottLeadParsing"));
+
+const ride = [
+  "Yeah. Um,",
+  "Wow. Uh, so Scott, um, can build Can do landscaping and Um, build brands.",
+  "Uh, well, I need a website and then I What type is he good with, you know, coming up with original ideas?",
+  "Using all of the state-of-the-art cutting-edge AI technologies. Right? That's what Scott can do. Yeah, put Scott in touch with me. Have him reach out. I want to talk to him.",
+  "My name is Scott, and email's great.",
+  // turn 6 - where it used to break: G talking about the interface
+  "Um, yeah, by the way, there was no 2-second delay. Um, there was garbled speech when, um, when, uh, Uh, iScott came on and, um, this, your email, that's really not attractive. It's not brand colors. I mean, Uh, give it another try. It's too way too dark. And it's not over the finish button.",
+];
+
+const needEarly = visitorProjectNeedFromRows(ride.slice(0, 5)).projectNeed;
+const needAfterScreenTalk = visitorProjectNeedFromRows(ride).projectNeed;
+
+assert.ok(needEarly, "a job is captured from the first five turns");
+assert.ok(
+  needAfterScreenTalk,
+  "the job survives G talking about the screen - this returned the raw mangle before the fix",
 );
+assert.doesNotMatch(
+  needAfterScreenTalk,
+  /and then I\b/,
+  "project_need is never the raw welded fragment Scott was mailed on this ride",
+);
+assert.ok(
+  needAfterScreenTalk.split(/\s+/).length <= 8,
+  `project_need stays a job, not a transcript dump (got ${needAfterScreenTalk.split(/\s+/).length} words)`,
+);
+
+console.log(
+  "iScott ride 89c453ff replay OK - the destroying turns reproduce, the credible-turn rule blocks them,",
+);
+console.log(`  and project_need survives screen talk as ${JSON.stringify(needAfterScreenTalk)}.`);

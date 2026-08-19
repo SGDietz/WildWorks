@@ -574,9 +574,34 @@ export function visitorProjectNeedFromRows(
   for (const text of visitorTexts) {
     projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
   }
-  if (sessionLooksLikeOperatorQa(texts) || operatorTexts.length > 0) {
+  // G's ride 89c453ff, 2026-08-19. Scott was mailed
+  // "A website and then I What type is he good with, you know, coming up with
+  // original ideas" - two half sentences welded across a transcript break.
+  //
+  // Replaying the real turns showed the value was CLEAN ("Website and website
+  // makeover") for the first five, then broke on the sixth. The sixth is where G
+  // started talking about the screen - no 2-second delay, the box is too dark,
+  // it is not over the finish button. That flips sessionLooksLikeOperatorQa, and
+  // this branch was returning the raw per-turn accumulation while handing the
+  // distilled value to operatorServiceScript instead. The good answer had been
+  // computed and was being thrown away.
+  //
+  // Both branches now prefer the distilled offer. A ride where G is testing is
+  // still a ride where Scott has to read the job.
+  // NARROWED, same day, after check-iscott-lead-parser caught it: the two
+  // conditions below are NOT the same thing and must not share an answer.
+  //
+  //   operatorTexts.length > 0  = G is FEEDING iScott lines. WW-23 says that can
+  //                               never become the job. Leave it exactly as it was.
+  //   sessionLooksLikeOperatorQa = G is TESTING while a real need is buried in
+  //                               his own words. That is G's ride 89c453ff, and
+  //                               there the distilled answer must survive.
+  const operatorIsScripting = operatorTexts.length > 0;
+  if (sessionLooksLikeOperatorQa(texts) || operatorIsScripting) {
     return {
-      projectNeed,
+      projectNeed: operatorIsScripting
+        ? projectNeed
+        : distillVisitorProjectOffer(visitorTexts) ?? projectNeed,
       operatorServiceScript: distillVisitorProjectOffer(texts),
     };
   }
