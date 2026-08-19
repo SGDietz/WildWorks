@@ -2190,17 +2190,32 @@ const wildWorksLeadConfirmationScript = `
       // counting only once the panel has painted - two frames guarantees the
       // browser has put it on screen - so his two seconds are two real seconds.
       const dropPanelSoon = (ms) => {
+        let dropped = false;
+        const drop = () => {
+          if (dropped) return;
+          dropped = true;
+          dismissed = true;
+          dismissedFor = activeLead
+            ? [activeLead.contactMethod, activeLead.email, activeLead.phone].join(":")
+            : null;
+          hidePanel();
+        };
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => {
-            window.setTimeout(() => {
-              dismissed = true;
-              dismissedFor = activeLead
-                ? [activeLead.contactMethod, activeLead.email, activeLead.phone].join(":")
-                : null;
-              hidePanel();
-            }, ms);
+            window.setTimeout(drop, ms);
           });
         });
+        // BACKSTOP. The two frames above exist so the hold starts once the panel
+        // has actually painted - that is what makes G's two seconds two REAL
+        // seconds. But requestAnimationFrame DOES NOT FIRE WHILE THE TAB IS
+        // HIDDEN. If the visitor switches apps in the moment between the send
+        // and the drop, those frames never arrive, the timer is never armed, and
+        // THE BOX NEVER GOES AWAY - it is still sitting there when he comes back.
+        //
+        // So a plain timer runs in parallel, generously long, and whichever
+        // fires first wins. On screen the frames always win and nothing changes;
+        // off screen this is the only thing that closes the panel.
+        window.setTimeout(drop, ms + 1500);
       };
 
       const stopSession = async (reason) => {
