@@ -1,0 +1,22 @@
+/* H335: E14 - the bottom avatar box must match the top one.
+   G: "Same thing in the avatar on the bottom ... just do the same thing. Make
+   it the same as the avatar top."
+
+   Measured both panels side by side at 1920x1080. Everything already matched -
+   surface colour, radius, padding, box-shadow, and every piece of type: kicker,
+   Start / with / iScott, the disclosure, and the button's size, padding, radius
+   and ink. Exactly ONE painted difference remained: the footer copy carries
+   `1px solid rgb(111, 42, 16)` and the top one carries no border at all.
+
+   So the border comes off, and the two read the same.
+
+   Width and height still differ (497x867 top, 432x754 bottom) because the
+   footer column is narrower than the hero column. That is layout, not
+   treatment - forcing the footer panel to the hero's width would fight the
+   footer grid, and G asked for it to look the same, not to be re-laid-out. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .money-panel.wild-iscott-panel.wild-iscott-panel--footer:not(#_):not(#_):not(#_) {
+  border: 0 !important;
+  border-color: transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+}

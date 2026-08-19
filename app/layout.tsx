@@ -289,6 +289,7 @@ import "./H331-ipad-vertical-p13-p16.css";
 import "./H332-ipad-vertical-p3-p17-p20.css";
 import "./H333-ipad-vertical-p2-p12.css";
 import "./H334-avatar-box-dampen.css";
+import "./H335-avatar-box-bottom-matches-top.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";

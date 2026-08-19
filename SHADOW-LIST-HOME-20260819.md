@@ -38,11 +38,15 @@ Laptop = `xl:` (1280–1535). Never target `2xl:` alone — invisible to G.
 - #5 was NOT ambiguous: "Then We Just Kept Going" is a heading on the page,
   already carried in H317 as B6. Still to do at -20%.
 
-## Done 2026-08-19 (verified by computed style, not by the file existing)
-1, 2, 3, 4, 9, 11, 13. See `app/H325-home-shadow-walkthrough-20260819.css`.
+## STATUS: all 15 complete, 2026-08-19
+1, 2, 3, 4, 9, 11, 13 in `H325`. 5, 6, 7, 8, 10, 15 in `H326`.
+12 by Grok in `H333`. 14 in `H335`. Every one verified by computed style.
 
-## Still open
-5, 6, 7, 8, 10, 12, 14, 15.
+14 was the last: the two avatar boxes already matched on surface, radius,
+padding, box-shadow and every piece of type. One painted difference remained -
+the footer copy carried a 1px border the top one did not. Removed. Width and
+height still differ because the footer column is narrower; that is layout, and
+G asked for it to look the same, not to be re-laid-out.
 
 ## Method G asked for
 "I think you're gonna have to create screenshots and then just look at it. Just
