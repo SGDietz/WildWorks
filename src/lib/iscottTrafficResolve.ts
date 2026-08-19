@@ -11,7 +11,38 @@ const TEST_UA = /(HeadlessChrome|Playwright|Puppeteer|jsdom|Lighthouse)/i;
 // excluded by hand. Sessions arriving from the dev server or the mission-control
 // tailscale door were being counted as strangers, which made the traffic numbers
 // meaningless. Anything served from a private host is our own traffic.
-const INTERNAL_HOST = /(^|\/\/|@)(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\]|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)|tail[0-9a-z]+\.ts\.net|\.local(:|\/|$)/i;
+// 2026-08-19: the tailscale door was in this list, and that door is
+// mission-control.tail00dfe0.ts.net - THE PUBLIC LINK G hands to customers.
+// Anything classified by origin through it would come out "test", and a test
+// lead is HELD and never reaches Scott. It has not fired yet only because origin
+// is not passed on the lead path; it was one wiring change from silently eating
+// every real lead the site has ever taken.
+//
+// The public door is not internal. Localhost and private ranges still are.
+const INTERNAL_HOST = /(^|\/\/|@)(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\]|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)|\.local(:|\/|$)/i;
+
+// G, 2026-08-19: "I'm just gonna use my real name and real information from now
+// on to make it easy on us. If something comes in from here on out that's not
+// Scott with my phone number and my email, then yes - let's act like that's a
+// new lead, because it probably is."
+//
+// So G identifies himself by his own contact details, and everything else is
+// treated as a stranger who deserves to reach Scott. This is a far safer test
+// than guessing from an origin or a user agent, because the failure mode of
+// guessing wrong is a real customer being silently held.
+const OWNER_PHONE_DIGITS = "4437972166";
+const OWNER_EMAILS = ["sgdietz@pm.me", "scott@wildworks.ai"];
+
+export function isOwnerContact(args: {
+  email?: string | null;
+  phone?: string | null;
+}): boolean {
+  const email = clean(args.email, 320)?.toLowerCase().trim();
+  if (email && OWNER_EMAILS.includes(email)) return true;
+  const digits = clean(args.phone, 40)?.replace(/\D/g, "") ?? "";
+  if (digits && (digits === OWNER_PHONE_DIGITS || digits === "1" + OWNER_PHONE_DIGITS)) return true;
+  return false;
+}
 const BOT_UA = /(googlebot|bingbot|duckduckbot|baiduspider|yandexbot|facebookexternalhit|meta-externalagent|crawler|spider|slurp|semrushbot|ahrefsbot)/i;
 
 function clean(value: unknown, max = 240): string | null {

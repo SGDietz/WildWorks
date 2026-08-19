@@ -217,9 +217,17 @@ const wildWorksButtonCss = `
     [style*="background: black"],
     [style*="background-color: black"],
     [style*="background-color: rgb(0, 0, 0)"] {
+      /* 2026-08-19: this gradient ran on #d97b42 / #c96731 / #b95022 and the
+         radial on rgba(232,182,109). None of those are WildWorks colours. The
+         comment above wanted "the orange field" and reached for three oranges
+         nobody chose, in the same file that already calls out #e8ad59 and
+         #b96d2d as abandoned. The build's palette guard only reads app/*.css,
+         so a .ts file full of colour literals has never been checked.
+         Rebuilt on the locked five: card -> honey -> primary, with the lift in
+         text-1. */
       background:
-        radial-gradient(ellipse 82% 58% at 50% 22%, rgba(255, 231, 175, 0.34), rgba(232, 182, 109, 0.16) 44%, transparent 74%),
-        linear-gradient(155deg, #d97b42 0%, #c96731 52%, #b95022 100%) !important;
+        radial-gradient(ellipse 82% 58% at 50% 22%, rgba(252, 224, 173, 0.34), rgba(237, 199, 117, 0.16) 44%, transparent 74%),
+        linear-gradient(155deg, #e96819 0%, #f08c28 52%, #c44d0b 100%) !important;
     }
 
     video,
@@ -1563,16 +1571,69 @@ const wildWorksCaptureBridgeScript = `
       };
       window.__wwPaceMark = wwPaceMark;
 
+      // G, 2026-08-19, after four rides of asking for a pause he could never
+      // feel: "the two second delay has got to be when he's initiated. Now he
+      // loads and then sits there waiting. He should sit there until the people
+      // press the permission for the microphone, then after they press the
+      // permission for the microphone, two seconds, then he starts talking."
+      //
+      // That is the answer, and it fixes two problems at once.
+      //
+      // The old hold sat on /api/v1/sessions/start. Grok's measurement of ride
+      // 89c453ff: the start POST is SERIALISED behind that hold, so the ~9.6s of
+      // provider session-start and WebRTC negotiation could not overlap it. It
+      // cost a flat 2s of load - tap to first frame was 12.4s where it would
+      // have been ~10.4s - and bought a pause nobody could perceive, because the
+      // copper cover was over the screen for 10.4 of those seconds anyway.
+      //
+      // The microphone prompt is the right gate. It is the one moment the
+      // visitor is definitely looking at the screen and definitely knows they
+      // just did something. Hold two seconds AFTER permission is granted and
+      // they get exactly what G described: his still face, silent, two beats,
+      // then he speaks.
+      //
+      // The start call is no longer delayed at all, so those 2s come back off
+      // the load.
+      const micGate = { grantedAt: 0, released: false };
+      try {
+        const md = navigator.mediaDevices;
+        if (md && typeof md.getUserMedia === "function") {
+          const originalGUM = md.getUserMedia.bind(md);
+          md.getUserMedia = async (constraints) => {
+            const wantsAudio = !constraints || constraints.audio !== false;
+            if (wantsAudio) wwPaceMark("mic_requested");
+            const stream = await originalGUM(constraints);
+            if (wantsAudio && !micGate.released) {
+              micGate.grantedAt = Math.round(performance.now());
+              wwPaceMark("mic_granted");
+              // The visitor has just tapped Allow. Hold the stream back for two
+              // seconds before handing it to the avatar app, so nothing it does
+              // with the microphone - including starting to speak - can happen
+              // inside that window.
+              await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+              micGate.released = true;
+              wwPaceMark("mic_delay_released");
+            }
+            return stream;
+          };
+        }
+      } catch {}
+
       window.fetch = async (input, init) => {
+        const startUrl = typeof input === "string" ? input : input?.url || "";
+        const isSessionStart = startUrl.includes("/api/v1/sessions/start");
         try {
-          const startUrl = typeof input === "string" ? input : input?.url || "";
-          if (startUrl.includes("/api/v1/sessions/start")) {
-            wwPaceMark("start_intercepted");
-            await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
-            wwPaceMark("delay_released");
-          }
+          if (isSessionStart) wwPaceMark("start_intercepted");
         } catch {}
         const response = await originalFetch(input, init);
+        try {
+          // Grok, 093000: "there is no mark when the start POST returns, so I
+          // cannot split our proxy plus provider round-trip from WebRTC and
+          // first-frame decode without a ride." This is that mark. One ride now
+          // splits the ~9.6s into request time versus media time, and we stop
+          // guessing which side of the wire the wait lives on.
+          if (isSessionStart) wwPaceMark("start_returned", { ok: response.ok, status: response.status });
+        } catch {}
         try {
           const url = typeof input === "string" ? input : input?.url || "";
           if (url.includes("/api/start-session")) {
@@ -2068,6 +2129,28 @@ const wildWorksLeadConfirmationScript = `
         output.setAttribute("type", method === "email" ? "email" : "tel");
         output.setAttribute("autocomplete", method === "email" ? "email" : "tel");
         if (!value) {
+          // G's ride 89c453ff: "it just came up again... and now it hasn't gone
+          // away." Grok found the path. After a send, dismissedFor holds the old
+          // (method, email, phone) triple. A later poll can arrive with the
+          // method restamped and BOTH values empty, which changes dismissalKey,
+          // which clears "dismissed" - and this empty branch then forces the
+          // panel visible again and schedules NO hide. It sits there, blank,
+          // forever.
+          //
+          // It is the mirror of the bug from the night before: then a genuine
+          // new method could not reopen the panel, now a hollowed-out row
+          // reopens it and it never leaves.
+          //
+          // A lead that has already gone to Scott has nothing left to ask for.
+          // If the panel would reopen EMPTY on a lead that is already submitted
+          // or confirmed, hide it and leave it hidden.
+          const leadIsDone = lead.status === "submitted" || lead.status === "confirmed";
+          if (leadIsDone) {
+            dismissed = true;
+            dismissedFor = "session-ended";
+            hidePanel();
+            return;
+          }
           revealVersion += 1;
           revealingContact = false;
           if (typingTimer) window.clearInterval(typingTimer);
