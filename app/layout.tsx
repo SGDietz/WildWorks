@@ -300,6 +300,8 @@ import "./H351-five-color-return.css";
 import "./H352-remaining-small-text-colour-one.css";
 import "./H353-mobile-shadow-pass.css";
 import "./H354-wildfire-headline-playfair.css";
+import "./H355-legal-return-button.css";
+import "./H356-ruins-bio-body-join-h350.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";

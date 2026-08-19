@@ -35,10 +35,30 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   line-height: 1.1 !important;
 }
 
-html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(h1, h2, h3, p, li, blockquote) {
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(h1, h2, h3, blockquote) {
   text-shadow:
     0 0.0163em 0 rgba(35, 9, 2, 0.97),
     0 0.0372em 0 rgba(30, 8, 2, 0.89),
     0 0.0628em 0 rgba(25, 6, 1, 0.8),
     0 0.0907em 0 rgba(25, 6, 1, 0.66) !important;
+}
+
+/* H356 (Claude, 2026-08-19): the Ruins BODY COPY joins the uniform small-text
+   ladder from H350. Headings keep the heavy ladder above - G's back-off-ten-
+   percent ruling was about small text, not display type.
+
+   Done here, in place, instead of in a new file, because THIS rule is the
+   authority: it is what actually paints every paragraph on the page. Most of
+   the Ruins story is classless <p>, so a hook-based file (.wild-ruins-body)
+   would have reached 6 elements out of 21. Scoping by page and element reaches
+   all of them and cannot leak - .wild-subpage--ruins is the Ruins page only.
+
+   Was  .01630 / .03720 / .06280 / .09070em  at  .97 / .89 / .80 / .66
+   Now  .01435 / .03254 / .05502 / .07656em  at  .865 / .790 / .702 / .575 */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--ruins :is(p, li) {
+  text-shadow:
+    0 0.01435em 0 rgba(35, 9, 2, 0.865),
+    0 0.03254em 0 rgba(30, 8, 2, 0.790),
+    0 0.05502em 0 rgba(25, 6, 1, 0.702),
+    0 0.07656em 0 rgba(25, 6, 1, 0.575) !important;
 }

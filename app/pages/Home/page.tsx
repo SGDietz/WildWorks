@@ -2825,7 +2825,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               save the conversation and media to organize your inquiry and
               follow up. Do not share sensitive personal, legal, medical, or
               child information. See{" "}
-              <Link href="/pages/privacy-policy" className="underline decoration-[#edc775] underline-offset-4">
+              <Link href="/pages/privacy-policy" className="underline decoration-[#fce0ad] underline-offset-4">
                 Privacy Policy
               </Link>
               .

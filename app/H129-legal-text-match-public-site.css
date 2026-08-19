@@ -20,8 +20,6 @@ html:has(.wild-legal-home)
     .wild-legal-home .wild-legal-copy strong,
     #footer .wild-signup-title,
     #footer .wild-signup-field > span,
-    #footer .wild-footer-contact-cta__kicker,
-    #footer .wild-footer-contact-cta__kicker *,
     #footer .wild-phone-number-line__call-today,
     #footer .wild-footer-stonework-note
   ) {
@@ -30,7 +28,13 @@ html:has(.wild-legal-home)
 }
 
 /* Color 1: legal copy, consent/fine print, copyright, legal navigation, and
-   all remaining shared-footer prose. This closes every former white hole. */
+   all remaining shared-footer prose. This closes every former white hole.
+
+   2026-08-19: "Start the Conversation Now" (the contact-cta kicker) moved up
+   from the Color 2 list to here, so the six legal pages match the five content
+   pages where G already had it painted Color 1. Moved in place rather than
+   overridden - this rule is the authority on legal pages and stacking against
+   it would only have produced another inert file. */
 html:has(.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -44,6 +48,8 @@ html:has(.wild-legal-home)
     .wild-legal-home .wild-legal-meta-row span,
     .wild-legal-home .wild-legal-topbar a,
     #footer .wild-footer-contact-cta__title,
+    #footer .wild-footer-contact-cta__kicker,
+    #footer .wild-footer-contact-cta__kicker *,
     #footer .wild-signup-consent,
     #footer .wild-signup-consent *,
     #footer .wild-signup-fine-print,

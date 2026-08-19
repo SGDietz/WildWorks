@@ -16,7 +16,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   padding: 0.75rem 1.35rem !important;
   overflow: hidden !important;
   white-space: nowrap !important;
-  font-size: 1.25rem !important;
+  font-size: 1.75rem !important;  /* H355: G asked for significantly larger. 20px -> 28px. */
   font-weight: 700 !important;
   line-height: 1 !important;
   letter-spacing: 0.01em !important;

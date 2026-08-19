@@ -869,7 +869,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "talk-to-iscott|a|underline.decoration-[#edc775]|Privacy Policy": {
+  "talk-to-iscott|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -3887,7 +3887,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -5553,7 +5553,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -6144,7 +6144,7 @@
   "-|p|text-white/90.pb-2|Federal Hill, Baltimore City": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6156,7 +6156,7 @@
   "-|p|wild-ruins-body|My client asked me, \"What do": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6168,7 +6168,7 @@
   "-|p||I stood there looking at the": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6180,7 +6180,7 @@
   "-|p||Federal Hill is a high groun": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6192,7 +6192,7 @@
   "-|p||So when my client asked that": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6216,7 +6216,7 @@
   "-|p||We'd already done a couple p": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6323,7 +6323,7 @@
   "-|p||In my mind, the \"backstory\" ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6335,7 +6335,7 @@
   "-|p||A stone munitions structure—": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6347,7 +6347,7 @@
   "-|p||And then—more than 200 years": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6371,7 +6371,7 @@
   "-|p|wild-ruins-body.leading-relaxed|The finished space was built": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6383,7 +6383,7 @@
   "-|li||Bluestone patios and a walk": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6395,7 +6395,7 @@
   "-|li||Seating placed where you'd n": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6407,7 +6407,7 @@
   "-|li||A reflecting pool": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6419,7 +6419,7 @@
   "-|li||A rusting urn with overflowi": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6431,7 +6431,7 @@
   "-|li||And the Ruin fragments thems": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6455,7 +6455,7 @@
   "-|p||Much of the stone used is re": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6467,7 +6467,7 @@
   "-|p||As streets aged and construc": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6479,7 +6479,7 @@
   "-|p||A few local people had set s": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6491,7 +6491,7 @@
   "-|p||That's why the finished work": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6598,7 +6598,7 @@
   "-|p||The Ruins isn't a replica an": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6610,7 +6610,7 @@
   "-|p||My hope is that decades from": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6634,7 +6634,7 @@
   "-|p||That would serve in the real": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6646,7 +6646,7 @@
   "-|p||I'll happily come over to yo": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6658,7 +6658,7 @@
   "-|p||The “Ruin” concept can go a ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6670,7 +6670,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|The remains of the original ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6682,7 +6682,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Gristmill Ruin beside a st": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6694,7 +6694,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|Something along the lines of": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6706,7 +6706,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Ruin of any type that's ha": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6718,7 +6718,7 @@
   "-|p||And yes—done right, this kin": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -6730,7 +6730,7 @@
   "-|p||If you've got a space and wa": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.33904px 0px, rgba(30, 8, 2, 0.89) 0px 0.77376px 0px, rgba(25, 6, 1, 0.8) 0px 1.30624px 0px, rgba(25, 6, 1, 0.66) 0px 1.88656px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.29848px 0px, rgba(30, 8, 2, 0.79) 0px 0.676832px 0px, rgba(25, 6, 1, 0.7) 0px 1.14442px 0px, rgba(25, 6, 1, 0.576) 0px 1.59245px 0px",
    "fontSize": "20.8px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -7611,7 +7611,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -9382,7 +9382,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -9974,7 +9974,7 @@
   "-|p|wild-bio-body.text-base|From 6 months old, Scott G. ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -9986,7 +9986,7 @@
   "-|p|wild-bio-body.text-base|As a kid, Scott was impossib": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -9998,7 +9998,7 @@
   "-|p|wild-bio-body.text-base|For more than 40 years, Scot": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10022,7 +10022,7 @@
   "-|p|wild-bio-body.text-base|Scott doesn't see life as so": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10034,7 +10034,7 @@
   "-|p|wild-bio-body.text-base|In his mid-forties he began ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10046,7 +10046,7 @@
   "-|p|wild-bio-body.text-base|Scott is constantly studying": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10058,7 +10058,7 @@
   "-|p|wild-bio-body.text-base|His mindset is simple:": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10070,7 +10070,7 @@
   "-|span|wild-bio-mindset-line|Life Begins at Middle Age": {
    "color": "rgb(240, 140, 40)",
    "webkitTextFillColor": "rgb(240, 140, 40)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10082,7 +10082,7 @@
   "-|p|wild-bio-body.text-base|Scott is the first to admit ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10094,7 +10094,7 @@
   "-|p|wild-bio-body.text-base|WildWorks exists for one rea": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10106,7 +10106,7 @@
   "-|p|wild-bio-body.text-base|Based in Baltimore, Scott is": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10118,7 +10118,7 @@
   "-|p|wild-bio-body.text-base|His goals are simple and amb": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10130,7 +10130,7 @@
   "-|li|wild-bio-body|To become a landscape artist": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10142,7 +10142,7 @@
   "-|li|wild-bio-body|To work with as many people,": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10154,7 +10154,7 @@
   "-|p|wild-bio-body.text-base|Scott G. Dietz believes abov": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10166,7 +10166,7 @@
   "-|p|wild-bio-body.text-base|Keep creating. Keep building": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -10178,7 +10178,7 @@
   "-|p|wild-bio-body.text-base|If you would like a work of ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.14848px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.44544px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.266336px 0px, rgba(30, 8, 2, 0.79) 0px 0.603942px 0px, rgba(25, 6, 1, 0.7) 0px 1.02117px 0px, rgba(25, 6, 1, 0.576) 0px 1.42095px 0px",
    "fontSize": "18.56px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -11059,7 +11059,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -12372,7 +12372,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "talk-to-iscott|a|underline.decoration-[#edc775]|Privacy Policy": {
+  "talk-to-iscott|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -15390,7 +15390,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -17056,7 +17056,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -17647,7 +17647,7 @@
   "-|p|text-white/90.pb-2|Federal Hill, Baltimore City": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17659,7 +17659,7 @@
   "-|p|wild-ruins-body|My client asked me, \"What do": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17671,7 +17671,7 @@
   "-|p||I stood there looking at the": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17683,7 +17683,7 @@
   "-|p||Federal Hill is a high groun": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17695,7 +17695,7 @@
   "-|p||So when my client asked that": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17719,7 +17719,7 @@
   "-|p||We'd already done a couple p": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17826,7 +17826,7 @@
   "-|p||In my mind, the \"backstory\" ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17838,7 +17838,7 @@
   "-|p||A stone munitions structure—": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17850,7 +17850,7 @@
   "-|p||And then—more than 200 years": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17874,7 +17874,7 @@
   "-|p|wild-ruins-body.leading-relaxed|The finished space was built": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17886,7 +17886,7 @@
   "-|li||Bluestone patios and a walk": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17898,7 +17898,7 @@
   "-|li||Seating placed where you'd n": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17910,7 +17910,7 @@
   "-|li||A reflecting pool": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17922,7 +17922,7 @@
   "-|li||A rusting urn with overflowi": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17934,7 +17934,7 @@
   "-|li||And the Ruin fragments thems": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17958,7 +17958,7 @@
   "-|p||Much of the stone used is re": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17970,7 +17970,7 @@
   "-|p||As streets aged and construc": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17982,7 +17982,7 @@
   "-|p||A few local people had set s": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -17994,7 +17994,7 @@
   "-|p||That's why the finished work": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18101,7 +18101,7 @@
   "-|p||The Ruins isn't a replica an": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18113,7 +18113,7 @@
   "-|p||My hope is that decades from": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18137,7 +18137,7 @@
   "-|p||That would serve in the real": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18149,7 +18149,7 @@
   "-|p||I'll happily come over to yo": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18161,7 +18161,7 @@
   "-|p||The “Ruin” concept can go a ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18173,7 +18173,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|The remains of the original ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18185,7 +18185,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Gristmill Ruin beside a st": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18197,7 +18197,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|Something along the lines of": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18209,7 +18209,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Ruin of any type that's ha": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18221,7 +18221,7 @@
   "-|p||And yes—done right, this kin": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -18233,7 +18233,7 @@
   "-|p||If you've got a space and wa": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.329534px 0px, rgba(30, 8, 2, 0.89) 0px 0.752065px 0px, rgba(25, 6, 1, 0.8) 0px 1.26962px 0px, rgba(25, 6, 1, 0.66) 0px 1.83366px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.290111px 0px, rgba(30, 8, 2, 0.79) 0px 0.657855px 0px, rgba(25, 6, 1, 0.7) 0px 1.11233px 0px, rgba(25, 6, 1, 0.576) 0px 1.5478px 0px",
    "fontSize": "20.2168px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -19114,7 +19114,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -20885,7 +20885,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -21477,7 +21477,7 @@
   "-|p|wild-bio-body.text-base|From 6 months old, Scott G. ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21489,7 +21489,7 @@
   "-|p|wild-bio-body.text-base|As a kid, Scott was impossib": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21501,7 +21501,7 @@
   "-|p|wild-bio-body.text-base|For more than 40 years, Scot": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21525,7 +21525,7 @@
   "-|p|wild-bio-body.text-base|Scott doesn't see life as so": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21537,7 +21537,7 @@
   "-|p|wild-bio-body.text-base|In his mid-forties he began ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21549,7 +21549,7 @@
   "-|p|wild-bio-body.text-base|Scott is constantly studying": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21561,7 +21561,7 @@
   "-|p|wild-bio-body.text-base|His mindset is simple:": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21573,7 +21573,7 @@
   "-|span|wild-bio-mindset-line|Life Begins at Middle Age": {
    "color": "rgb(240, 140, 40)",
    "webkitTextFillColor": "rgb(240, 140, 40)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21585,7 +21585,7 @@
   "-|p|wild-bio-body.text-base|Scott is the first to admit ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21597,7 +21597,7 @@
   "-|p|wild-bio-body.text-base|WildWorks exists for one rea": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21609,7 +21609,7 @@
   "-|p|wild-bio-body.text-base|Based in Baltimore, Scott is": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21621,7 +21621,7 @@
   "-|p|wild-bio-body.text-base|His goals are simple and amb": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21633,7 +21633,7 @@
   "-|li|wild-bio-body|To become a landscape artist": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21645,7 +21645,7 @@
   "-|li|wild-bio-body|To work with as many people,": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21657,7 +21657,7 @@
   "-|p|wild-bio-body.text-base|Scott G. Dietz believes abov": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21669,7 +21669,7 @@
   "-|p|wild-bio-body.text-base|Keep creating. Keep building": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -21681,7 +21681,7 @@
   "-|p|wild-bio-body.text-base|If you would like a work of ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -22562,7 +22562,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -23875,7 +23875,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "talk-to-iscott|a|underline.decoration-[#edc775]|Privacy Policy": {
+  "talk-to-iscott|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -26893,7 +26893,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -28559,7 +28559,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -29150,7 +29150,7 @@
   "-|p|text-white/90.pb-2|Federal Hill, Baltimore City": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29162,7 +29162,7 @@
   "-|p|wild-ruins-body|My client asked me, \"What do": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29174,7 +29174,7 @@
   "-|p||I stood there looking at the": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29186,7 +29186,7 @@
   "-|p||Federal Hill is a high groun": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29198,7 +29198,7 @@
   "-|p||So when my client asked that": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29222,7 +29222,7 @@
   "-|p||We'd already done a couple p": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29329,7 +29329,7 @@
   "-|p||In my mind, the \"backstory\" ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29341,7 +29341,7 @@
   "-|p||A stone munitions structure—": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29353,7 +29353,7 @@
   "-|p||And then—more than 200 years": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29377,7 +29377,7 @@
   "-|p|wild-ruins-body.leading-relaxed|The finished space was built": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29389,7 +29389,7 @@
   "-|li||Bluestone patios and a walk": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29401,7 +29401,7 @@
   "-|li||Seating placed where you'd n": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29413,7 +29413,7 @@
   "-|li||A reflecting pool": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29425,7 +29425,7 @@
   "-|li||A rusting urn with overflowi": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29437,7 +29437,7 @@
   "-|li||And the Ruin fragments thems": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29461,7 +29461,7 @@
   "-|p||Much of the stone used is re": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29473,7 +29473,7 @@
   "-|p||As streets aged and construc": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29485,7 +29485,7 @@
   "-|p||A few local people had set s": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29497,7 +29497,7 @@
   "-|p||That's why the finished work": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29604,7 +29604,7 @@
   "-|p||The Ruins isn't a replica an": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29616,7 +29616,7 @@
   "-|p||My hope is that decades from": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29640,7 +29640,7 @@
   "-|p||That would serve in the real": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29652,7 +29652,7 @@
   "-|p||I'll happily come over to yo": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29664,7 +29664,7 @@
   "-|p||The “Ruin” concept can go a ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29676,7 +29676,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|The remains of the original ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29688,7 +29688,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Gristmill Ruin beside a st": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29700,7 +29700,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|Something along the lines of": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29712,7 +29712,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Ruin of any type that's ha": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29724,7 +29724,7 @@
   "-|p||And yes—done right, this kin": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -29736,7 +29736,7 @@
   "-|p||If you've got a space and wa": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -30617,7 +30617,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -32388,7 +32388,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -32980,7 +32980,7 @@
   "-|p|wild-bio-body.text-base|From 6 months old, Scott G. ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -32992,7 +32992,7 @@
   "-|p|wild-bio-body.text-base|As a kid, Scott was impossib": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33004,7 +33004,7 @@
   "-|p|wild-bio-body.text-base|For more than 40 years, Scot": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33028,7 +33028,7 @@
   "-|p|wild-bio-body.text-base|Scott doesn't see life as so": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33040,7 +33040,7 @@
   "-|p|wild-bio-body.text-base|In his mid-forties he began ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33052,7 +33052,7 @@
   "-|p|wild-bio-body.text-base|Scott is constantly studying": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33064,7 +33064,7 @@
   "-|p|wild-bio-body.text-base|His mindset is simple:": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33076,7 +33076,7 @@
   "-|span|wild-bio-mindset-line|Life Begins at Middle Age": {
    "color": "rgb(240, 140, 40)",
    "webkitTextFillColor": "rgb(240, 140, 40)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33088,7 +33088,7 @@
   "-|p|wild-bio-body.text-base|Scott is the first to admit ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33100,7 +33100,7 @@
   "-|p|wild-bio-body.text-base|WildWorks exists for one rea": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33112,7 +33112,7 @@
   "-|p|wild-bio-body.text-base|Based in Baltimore, Scott is": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33124,7 +33124,7 @@
   "-|p|wild-bio-body.text-base|His goals are simple and amb": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33136,7 +33136,7 @@
   "-|li|wild-bio-body|To become a landscape artist": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33148,7 +33148,7 @@
   "-|li|wild-bio-body|To work with as many people,": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33160,7 +33160,7 @@
   "-|p|wild-bio-body.text-base|Scott G. Dietz believes abov": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33172,7 +33172,7 @@
   "-|p|wild-bio-body.text-base|Keep creating. Keep building": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -33184,7 +33184,7 @@
   "-|p|wild-bio-body.text-base|If you would like a work of ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -34065,7 +34065,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -35378,7 +35378,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "talk-to-iscott|a|underline.decoration-[#edc775]|Privacy Policy": {
+  "talk-to-iscott|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -38396,7 +38396,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -40062,7 +40062,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -40653,7 +40653,7 @@
   "-|p|text-white/90.pb-2|Federal Hill, Baltimore City": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40665,7 +40665,7 @@
   "-|p|wild-ruins-body|My client asked me, \"What do": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40677,7 +40677,7 @@
   "-|p||I stood there looking at the": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40689,7 +40689,7 @@
   "-|p||Federal Hill is a high groun": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40701,7 +40701,7 @@
   "-|p||So when my client asked that": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40725,7 +40725,7 @@
   "-|p||We'd already done a couple p": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40832,7 +40832,7 @@
   "-|p||In my mind, the \"backstory\" ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40844,7 +40844,7 @@
   "-|p||A stone munitions structure—": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40856,7 +40856,7 @@
   "-|p||And then—more than 200 years": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40880,7 +40880,7 @@
   "-|p|wild-ruins-body.leading-relaxed|The finished space was built": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40892,7 +40892,7 @@
   "-|li||Bluestone patios and a walk": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40904,7 +40904,7 @@
   "-|li||Seating placed where you'd n": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40916,7 +40916,7 @@
   "-|li||A reflecting pool": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40928,7 +40928,7 @@
   "-|li||A rusting urn with overflowi": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40940,7 +40940,7 @@
   "-|li||And the Ruin fragments thems": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40964,7 +40964,7 @@
   "-|p||Much of the stone used is re": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40976,7 +40976,7 @@
   "-|p||As streets aged and construc": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -40988,7 +40988,7 @@
   "-|p||A few local people had set s": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41000,7 +41000,7 @@
   "-|p||That's why the finished work": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41107,7 +41107,7 @@
   "-|p||The Ruins isn't a replica an": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41119,7 +41119,7 @@
   "-|p||My hope is that decades from": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41143,7 +41143,7 @@
   "-|p||That would serve in the real": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41155,7 +41155,7 @@
   "-|p||I'll happily come over to yo": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41167,7 +41167,7 @@
   "-|p||The “Ruin” concept can go a ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41179,7 +41179,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|The remains of the original ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41191,7 +41191,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Gristmill Ruin beside a st": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41203,7 +41203,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|Something along the lines of": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41215,7 +41215,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Ruin of any type that's ha": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41227,7 +41227,7 @@
   "-|p||And yes—done right, this kin": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -41239,7 +41239,7 @@
   "-|p||If you've got a space and wa": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.307744px 0px, rgba(30, 8, 2, 0.89) 0px 0.702336px 0px, rgba(25, 6, 1, 0.8) 0px 1.18566px 0px, rgba(25, 6, 1, 0.66) 0px 1.71242px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.270928px 0px, rgba(30, 8, 2, 0.79) 0px 0.614355px 0px, rgba(25, 6, 1, 0.7) 0px 1.03878px 0px, rgba(25, 6, 1, 0.576) 0px 1.44545px 0px",
    "fontSize": "18.88px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -42120,7 +42120,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -43891,7 +43891,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -44483,7 +44483,7 @@
   "-|p|wild-bio-body.text-base|From 6 months old, Scott G. ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44495,7 +44495,7 @@
   "-|p|wild-bio-body.text-base|As a kid, Scott was impossib": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44507,7 +44507,7 @@
   "-|p|wild-bio-body.text-base|For more than 40 years, Scot": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44531,7 +44531,7 @@
   "-|p|wild-bio-body.text-base|Scott doesn't see life as so": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44543,7 +44543,7 @@
   "-|p|wild-bio-body.text-base|In his mid-forties he began ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44555,7 +44555,7 @@
   "-|p|wild-bio-body.text-base|Scott is constantly studying": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44567,7 +44567,7 @@
   "-|p|wild-bio-body.text-base|His mindset is simple:": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44579,7 +44579,7 @@
   "-|span|wild-bio-mindset-line|Life Begins at Middle Age": {
    "color": "rgb(240, 140, 40)",
    "webkitTextFillColor": "rgb(240, 140, 40)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44591,7 +44591,7 @@
   "-|p|wild-bio-body.text-base|Scott is the first to admit ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44603,7 +44603,7 @@
   "-|p|wild-bio-body.text-base|WildWorks exists for one rea": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44615,7 +44615,7 @@
   "-|p|wild-bio-body.text-base|Based in Baltimore, Scott is": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44627,7 +44627,7 @@
   "-|p|wild-bio-body.text-base|His goals are simple and amb": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44639,7 +44639,7 @@
   "-|li|wild-bio-body|To become a landscape artist": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44651,7 +44651,7 @@
   "-|li|wild-bio-body|To work with as many people,": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44663,7 +44663,7 @@
   "-|p|wild-bio-body.text-base|Scott G. Dietz believes abov": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44675,7 +44675,7 @@
   "-|p|wild-bio-body.text-base|Keep creating. Keep building": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -44687,7 +44687,7 @@
   "-|p|wild-bio-body.text-base|If you would like a work of ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -45568,7 +45568,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -46283,7 +46283,7 @@
   "top|span||Talk to iScott": {
    "color": "rgb(233, 104, 25)",
    "webkitTextFillColor": "rgb(233, 104, 25)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.388908px 0px, rgba(30, 8, 2, 0.89) 0px 0.777535px 0px, rgba(25, 6, 1, 0.714) 0px 1.1663px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.46669px 0px, rgba(30, 8, 2, 0.89) 0px 0.933098px 0px, rgba(25, 6, 1, 0.714) 0px 1.39951px 0px",
    "fontSize": "14.04px",
    "fontWeight": "750",
    "fontFamily": "Cambria, \"Cambria Math\", Georgia, \"Times New Roman\", serif",
@@ -46331,7 +46331,7 @@
   "top|span||Call Now": {
    "color": "rgb(233, 104, 25)",
    "webkitTextFillColor": "rgb(233, 104, 25)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.410846px 0px, rgba(30, 8, 2, 0.89) 0px 0.821396px 0px, rgba(25, 6, 1, 0.714) 0px 1.23209px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.493016px 0px, rgba(30, 8, 2, 0.89) 0px 0.985735px 0px, rgba(25, 6, 1, 0.714) 0px 1.47845px 0px",
    "fontSize": "14.832px",
    "fontWeight": "750",
    "fontFamily": "Cambria, \"Cambria Math\", Georgia, \"Times New Roman\", serif",
@@ -46879,7 +46879,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "talk-to-iscott|a|underline.decoration-[#edc775]|Privacy Policy": {
+  "talk-to-iscott|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -49897,7 +49897,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -51563,7 +51563,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -52154,7 +52154,7 @@
   "-|p|text-white/90.pb-2|Federal Hill, Baltimore City": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52166,7 +52166,7 @@
   "-|p|wild-ruins-body|My client asked me, \"What do": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52178,7 +52178,7 @@
   "-|p||I stood there looking at the": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52190,7 +52190,7 @@
   "-|p||Federal Hill is a high groun": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52202,7 +52202,7 @@
   "-|p||So when my client asked that": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52226,7 +52226,7 @@
   "-|p||We'd already done a couple p": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52333,7 +52333,7 @@
   "-|p||In my mind, the \"backstory\" ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52345,7 +52345,7 @@
   "-|p||A stone munitions structure—": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52357,7 +52357,7 @@
   "-|p||And then—more than 200 years": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52381,7 +52381,7 @@
   "-|p|wild-ruins-body.leading-relaxed|The finished space was built": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52393,7 +52393,7 @@
   "-|li||Bluestone patios and a walk": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52405,7 +52405,7 @@
   "-|li||Seating placed where you'd n": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52417,7 +52417,7 @@
   "-|li||A reflecting pool": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52429,7 +52429,7 @@
   "-|li||A rusting urn with overflowi": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52441,7 +52441,7 @@
   "-|li||And the Ruin fragments thems": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52465,7 +52465,7 @@
   "-|p||Much of the stone used is re": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52477,7 +52477,7 @@
   "-|p||As streets aged and construc": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52489,7 +52489,7 @@
   "-|p||A few local people had set s": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52501,7 +52501,7 @@
   "-|p||That's why the finished work": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52608,7 +52608,7 @@
   "-|p||The Ruins isn't a replica an": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52620,7 +52620,7 @@
   "-|p||My hope is that decades from": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52644,7 +52644,7 @@
   "-|p||That would serve in the real": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52656,7 +52656,7 @@
   "-|p||I'll happily come over to yo": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52668,7 +52668,7 @@
   "-|p||The “Ruin” concept can go a ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52680,7 +52680,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|The remains of the original ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52692,7 +52692,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Gristmill Ruin beside a st": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52704,7 +52704,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|Something along the lines of": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52716,7 +52716,7 @@
   "-|li|wild-ruins-list-item.leading-[2]|A Ruin of any type that's ha": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52728,7 +52728,7 @@
   "-|p||And yes—done right, this kin": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -52740,7 +52740,7 @@
   "-|p||If you've got a space and wa": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgba(35, 9, 2, 0.97) 0px 0.28688px 0px, rgba(30, 8, 2, 0.89) 0px 0.65472px 0px, rgba(25, 6, 1, 0.8) 0px 1.10528px 0px, rgba(25, 6, 1, 0.66) 0px 1.59632px 0px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.25256px 0px, rgba(30, 8, 2, 0.79) 0px 0.572704px 0px, rgba(25, 6, 1, 0.7) 0px 0.968352px 0px, rgba(25, 6, 1, 0.576) 0px 1.34746px 0px",
    "fontSize": "17.6px",
    "fontWeight": "500",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -53621,7 +53621,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -55393,7 +55393,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
@@ -55985,7 +55985,7 @@
   "-|p|wild-bio-body.text-base|From 6 months old, Scott G. ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -55997,7 +55997,7 @@
   "-|p|wild-bio-body.text-base|As a kid, Scott was impossib": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56009,7 +56009,7 @@
   "-|p|wild-bio-body.text-base|For more than 40 years, Scot": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56033,7 +56033,7 @@
   "-|p|wild-bio-body.text-base|Scott doesn't see life as so": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56045,7 +56045,7 @@
   "-|p|wild-bio-body.text-base|In his mid-forties he began ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56057,7 +56057,7 @@
   "-|p|wild-bio-body.text-base|Scott is constantly studying": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56069,7 +56069,7 @@
   "-|p|wild-bio-body.text-base|His mindset is simple:": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56081,7 +56081,7 @@
   "-|span|wild-bio-mindset-line|Life Begins at Middle Age": {
    "color": "rgb(240, 140, 40)",
    "webkitTextFillColor": "rgb(240, 140, 40)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56093,7 +56093,7 @@
   "-|p|wild-bio-body.text-base|Scott is the first to admit ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56105,7 +56105,7 @@
   "-|p|wild-bio-body.text-base|WildWorks exists for one rea": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56117,7 +56117,7 @@
   "-|p|wild-bio-body.text-base|Based in Baltimore, Scott is": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56129,7 +56129,7 @@
   "-|p|wild-bio-body.text-base|His goals are simple and amb": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56141,7 +56141,7 @@
   "-|li|wild-bio-body|To become a landscape artist": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56153,7 +56153,7 @@
   "-|li|wild-bio-body|To work with as many people,": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56165,7 +56165,7 @@
   "-|p|wild-bio-body.text-base|Scott G. Dietz believes abov": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56177,7 +56177,7 @@
   "-|p|wild-bio-body.text-base|Keep creating. Keep building": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -56189,7 +56189,7 @@
   "-|p|wild-bio-body.text-base|If you would like a work of ": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
-   "textShadow": "rgb(0, 0, 0) 0px 0.55px 0px, rgb(0, 0, 0) 0px 0.9px 0.13056px, rgba(0, 0, 0, 0.78) 0px 1.2px 0.4px",
+   "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.234192px 0px, rgba(30, 8, 2, 0.79) 0px 0.531053px 0px, rgba(25, 6, 1, 0.7) 0px 0.897926px 0px, rgba(25, 6, 1, 0.576) 0px 1.24946px 0px",
    "fontSize": "16.32px",
    "fontWeight": "400",
    "fontFamily": "Manrope, \"Manrope Fallback\", Manrope, system-ui, sans-serif",
@@ -57070,7 +57070,7 @@
    "borderRadius": "0px",
    "opacity": "1"
   },
-  "-|a|underline.decoration-[#edc775]|Privacy Policy#2": {
+  "-|a|underline.decoration-[#fce0ad]|Privacy Policy": {
    "color": "rgb(252, 224, 173)",
    "webkitTextFillColor": "rgb(252, 224, 173)",
    "textShadow": "rgba(35, 9, 2, 0.867) 0px 0.2009px 0px, rgba(30, 8, 2, 0.79) 0px 0.45556px 0px, rgba(25, 6, 1, 0.7) 0px 0.77028px 0px, rgba(25, 6, 1, 0.576) 0px 1.07184px 0px",
