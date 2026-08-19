@@ -1,0 +1,42 @@
+⚠ Cross origin request detected from mission-control.tail00dfe0.ts.net to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[Resend API Error]: {
+  status: 403,
+  error: {
+    statusCode: 403,
+    message: 'The wildworks.ai domain is not verified. Please, add and verify your domain on https://resend.com/domains',
+    name: 'validation_error'
+  },
+  path: '/emails'
+}
+[Resend API Error]: {
+  status: 403,
+  error: {
+    statusCode: 403,
+    message: 'The wildworks.ai domain is not verified. Please, add and verify your domain on https://resend.com/domains',
+    name: 'validation_error'
+  },
+  path: '/emails'
+}
+[Resend API Error]: {
+  status: 403,
+  error: {
+    statusCode: 403,
+    message: 'The wildworks.ai domain is not verified. Please, add and verify your domain on https://resend.com/domains',
+    name: 'validation_error'
+  },
+  path: '/emails'
+}
+[Resend API Error]: {
+  status: 403,
+  error: {
+    statusCode: 403,
+    message: 'The wildworks.ai domain is not verified. Please, add and verify your domain on https://resend.com/domains',
+    name: 'validation_error'
+  },
+  path: '/emails'
+}
+⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Cross origin request detected from 100.96.131.75 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins

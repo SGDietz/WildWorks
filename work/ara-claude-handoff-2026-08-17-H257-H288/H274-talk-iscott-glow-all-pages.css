@@ -1,0 +1,26 @@
+/* H274: Talk to iScott glow dampen — every page on the site.
+   G 2026-08-17. Ara checked Home, Wildfire, Ruins, Projects, Bio,
+   privacy, terms, communications, accessibility, ai-disclosure, disclaimer.
+   Do not touch Return to WildWorks on legal. Do not touch the avatar overlay CTA. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  a.wild-iscott-action-button,
+  a[aria-label="Talk to iScott"],
+  a[href*="wake-iscott=1"],
+  a.wild-home-phone-iscott-test__button[href*="talk-to-iscott"],
+  a.wild-home-phone-iscott-test__button[aria-label="Talk to iScott"]
+):not(.wild-site-avatar-overlay-cta):not([aria-label="Return to WildWorks"]) {
+  --ww-talk-control-brightness: 0.78 !important;
+  --ww-talk-control-brightness-hover: 0.82 !important;
+  filter: brightness(var(--ww-talk-control-brightness, 0.78)) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  a.wild-iscott-action-button,
+  a[aria-label="Talk to iScott"],
+  a[href*="wake-iscott=1"],
+  a.wild-home-phone-iscott-test__button[href*="talk-to-iscott"],
+  a.wild-home-phone-iscott-test__button[aria-label="Talk to iScott"]
+):not(.wild-site-avatar-overlay-cta):not([aria-label="Return to WildWorks"]):is(:hover, :focus-visible) {
+  filter: brightness(var(--ww-talk-control-brightness-hover, 0.82)) !important;
+}

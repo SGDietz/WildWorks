@@ -1,0 +1,38 @@
+/* H373 - the last pure-black shadow on the site.
+ *
+ * "Who is Scott G. Dietz?" - the biggest heading on G's own page - was still
+ * carrying rgb(0,0,0) WITH BLUR at 69.7px. Three stops, 0.028em, soft edges: the
+ * exact smudged family G had us strip off everything else today, sitting on the
+ * one page that is about him.
+ *
+ * It survived because it has no class of its own - it is a bare h1 with Tailwind
+ * size utilities, so every hook-based sweep walked straight past it. Claudette's
+ * H357 gave it colour two and left the shadow alone; my own sweeps matched on
+ * class names and never saw it.
+ *
+ * Onto the LARGE band, which is where 69.7px belongs and where its own sibling
+ * heading .wild-bio-reinvention-heading already sits at 69.666px - so the two
+ * headings on that page now match instead of one being black and blurred.
+ *
+ * House ink, ZERO BLUR, 10 steps, gap 0.62px at 69.7px.
+ *
+ * VERIFIED BEFORE WRITING: this is the only element left on any of the five
+ * pages painting a black shadow above 20px. The "Or Call Today!" captions on
+ * Ruins, Projects and Bio - the ones I was holding a question on - are ALREADY
+ * on the house ladder at 0.056314em, swept up by the sitewide footer pass. No
+ * rule needed, so none written.
+ */
+
+.wild-subpage--bio h1:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  text-shadow:
+    rgba(35,9,2,0.97) 0 0.008914em 0,
+    rgba(34,9,2,0.936) 0 0.017829em 0,
+    rgba(33,8,2,0.901) 0 0.026743em 0,
+    rgba(32,8,2,0.867) 0 0.035657em 0,
+    rgba(31,8,2,0.832) 0 0.044572em 0,
+    rgba(29,7,1,0.798) 0 0.053486em 0,
+    rgba(28,7,1,0.763) 0 0.062400em 0,
+    rgba(27,7,1,0.729) 0 0.071314em 0,
+    rgba(26,6,1,0.694) 0 0.080229em 0,
+    rgba(25,6,1,0.66) 0 0.089143em 0 !important;
+}

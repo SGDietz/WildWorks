@@ -1,0 +1,1097 @@
+﻿diff --git a/app/api/iscott/lead/confirm/route.ts b/app/api/iscott/lead/confirm/route.ts
+index c776f6c..d36721e 100644
+--- a/app/api/iscott/lead/confirm/route.ts
++++ b/app/api/iscott/lead/confirm/route.ts
+@@ -38,15 +38,26 @@ export async function POST(request: Request) {
+       contactMethod,
+       contactValue,
+     });
++    const isTestHeld = result.detail === "test_traffic_not_sent";
+     await logServerTelemetryEvent({
+       request,
+-      eventType: result.delivered ? "iscott_lead_email_sent" : "iscott_lead_email_queued",
+-      severity: result.queued ? "low" : "high",
+-      provider: "resend",
++      eventType: isTestHeld
++        ? "iscott_lead_test_held"
++        : result.delivered
++          ? "iscott_lead_email_sent"
++          : "iscott_lead_email_queued",
++      severity: result.queued || isTestHeld ? "low" : "high",
++      provider: isTestHeld ? "local" : "resend",
+       sessionId,
+       route: "/api/iscott/lead/confirm",
+       statusCode: result.queued ? 200 : 503,
+-      userVisibleState: result.delivered ? "sent" : result.queued ? "saved_for_delivery" : "delivery_failed",
++      userVisibleState: isTestHeld
++        ? "test_not_sent"
++        : result.delivered
++          ? "sent"
++          : result.queued
++            ? "saved_for_delivery"
++            : "delivery_failed",
+       payload: {
+         contactMethod,
+         queued: result.queued,
+diff --git a/app/api/liveavatar/session-transcript/sync/route.ts b/app/api/liveavatar/session-transcript/sync/route.ts
+index f355025..50fa213 100644
+--- a/app/api/liveavatar/session-transcript/sync/route.ts
++++ b/app/api/liveavatar/session-transcript/sync/route.ts
+@@ -8,12 +8,23 @@ import { checkRateLimit } from "../../../../../src/lib/rateLimit";
+ import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../../src/lib/supabaseAdmin";
+ import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
+ import { insertSupabaseRow } from "../../../../../src/lib/telemetryServer";
++import {
++  clearLiveAvatarIdleSession,
++  noteLiveAvatarSessionActivity,
++} from "../../../../../src/lib/liveAvatarIdleSessions";
+ import {
+   getIScottLeadState,
+   processIScottTranscriptRows,
+   type IScottLeadState,
+ } from "../../../../../src/lib/iscottLeadCapture";
+ import { API_KEY, API_URL } from "../../secrets";
++import {
++  classifyTraffic,
++  isMeaningfulPublicMessage,
++  isPublicLeadAlertEligible,
++  trafficColumns,
++} from "../../../../../src/lib/trafficClassification";
++import { notifyFirstPublicMessageByEmail } from "../../../../../src/lib/voiceEmailNotifications";
+ 
+ const SAFE_SESSION_TOKEN = /^[A-Za-z0-9._-]{20,4000}$/;
+ 
+@@ -107,6 +118,11 @@ export async function POST(request: Request) {
+     const route = cleanOptionalString(body?.route, 180);
+     const viewport = cleanOptionalString(body?.viewport, 40);
+     const reason = cleanOptionalString(body?.reason, 80);
++    const traffic = await classifyTraffic({
++      anonymousVisitorId,
++      userAgent: request.headers.get("user-agent"),
++    });
++    const classified = trafficColumns(traffic);
+ 
+     if (!isSafeTranscriptionSessionId(liveAvatarSessionId)) {
+       return Response.json({ error: "Invalid liveAvatarSessionId" }, { status: 400 });
+@@ -188,6 +204,7 @@ export async function POST(request: Request) {
+         route,
+         source: "liveavatar_proxy",
+         metadata: { reason, viewport, session_active: parsed.sessionActive },
++        ...classified,
+         ...(parsed.sessionActive === false ? { ended_at: new Date().toISOString() } : {}),
+       },
+       { onConflict: "session_id", mergeDuplicates: true },
+@@ -217,6 +234,7 @@ export async function POST(request: Request) {
+       route,
+       viewport,
+       metadata: { relative_timestamp: row.relative_timestamp ?? null, reason },
++      ...classified,
+     }));
+ 
+     const existingKeys = new Set<string>();
+@@ -267,6 +285,12 @@ export async function POST(request: Request) {
+       }];
+     });
+ 
++    if (parsed.sessionActive === false) {
++      clearLiveAvatarIdleSession(sessionToken);
++    } else if (rows.length > 0) {
++      noteLiveAvatarSessionActivity(sessionToken);
++    }
++
+     if (rows.length > 0) {
+       const insertResponse = await fetch(`${url}/rest/v1/conversation_messages?on_conflict=session_id,role,la_absolute_timestamp`, {
+         method: "POST",
+@@ -289,6 +313,44 @@ export async function POST(request: Request) {
+       }
+     }
+ 
++    const firstMeaningfulPublicMessage = isPublicLeadAlertEligible(traffic.trafficClass)
++      ? rows.find((row) => row.role === "user" && isMeaningfulPublicMessage(row.message))
++      : null;
++    if (firstMeaningfulPublicMessage) {
++      const server = request.headers;
++      const location = [
++        server.get("x-vercel-ip-city"),
++        server.get("x-vercel-ip-country-region"),
++        server.get("x-vercel-ip-country"),
++      ].filter(Boolean).join(", ") || null;
++      const notification = await notifyFirstPublicMessageByEmail({
++        sessionId: liveAvatarSessionId,
++        anonymousVisitorId,
++        message: firstMeaningfulPublicMessage.message,
++        route,
++        receivedAt: new Date(),
++        location,
++        device: [request.headers.get("user-agent"), viewport].filter(Boolean).join(" | "),
++        metadata: {
++          classificationReason: traffic.reason,
++          classificationConfidence: traffic.confidence,
++        },
++      });
++      if (!notification.queued) {
++        await logServerTelemetryEvent({
++          request,
++          eventType: "public_message_notification_failed",
++          severity: "high",
++          provider: "resend",
++          sessionId: liveAvatarSessionId,
++          anonymousVisitorId,
++          route: "/api/liveavatar/session-transcript/sync",
++          statusCode: notification.status || 502,
++          payload: { detail: notification.detail },
++        });
++      }
++    }
++
+     let leadState: IScottLeadState | null = null;
+     let leadCaptureError: string | null = null;
+     try {
+diff --git a/app/pages/avatar-iscott/route.ts b/app/pages/avatar-iscott/route.ts
+index 0a15f24..1698bfd 100644
+--- a/app/pages/avatar-iscott/route.ts
++++ b/app/pages/avatar-iscott/route.ts
+@@ -1,4 +1,4 @@
+-∩╗┐const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
++const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
+ const LOCAL_AVATAR_ASSET_PREFIX = "/pages/avatar-iscott-assets/_next/";
+ 
+ export const dynamic = "force-dynamic";
+@@ -15,7 +15,7 @@ const wildWorksButtonCss = `
+       --ww-avatar-gold: #b7823a;
+       --ww-avatar-honey: #e0a85a;
+       --ww-avatar-parchment: #f3cf92;
+-      --ww-avatar-cream: #f7d9a5;
++      --ww-avatar-cream: #fce0ad;
+       --ww-avatar-button-ink: #7d2f20;
+     }
+ 
+@@ -43,8 +43,8 @@ const wildWorksButtonCss = `
+       display: grid !important;
+       place-items: center !important;
+       padding-bottom: 0 !important;
+-      color: #f7d9a5 !important;
+-      -webkit-text-fill-color: #f7d9a5 !important;
++      color: #fce0ad !important;
++      -webkit-text-fill-color: #fce0ad !important;
+       background: none !important;
+       font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
+       font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
+@@ -119,7 +119,7 @@ const wildWorksButtonCss = `
+       border-radius: 8px !important;
+       background:
+         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
+-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #913f16 100%) !important;
++        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
+       padding: 0.85rem 1rem !important;
+       color: var(--ww-avatar-button-ink) !important;
+       font-family: Georgia, "Times New Roman", serif !important;
+@@ -183,14 +183,15 @@ const wildWorksButtonCss = `
+ 
+     #wildworks-lead-confirmation {
+       position: fixed !important;
+-      top: 55% !important;
++      top: var(--wildworks-lead-top, 50%) !important;
+       left: 50% !important;
+       z-index: 2147483645 !important;
+       display: none !important;
+-      width: min(82vw, 19rem) !important;
+-      transform: translate(-50%, -50%) !important;
+-      color: #4a1d0d !important;
++      width: min(calc(100vw - 2rem), 31rem) !important;
++      transform: translateX(-50%) !important;
++      color: var(--ww-avatar-button-ink) !important;
+       font-family: Georgia, "Times New Roman", serif !important;
++      pointer-events: none !important;
+       text-align: center !important;
+     }
+ 
+@@ -200,96 +201,81 @@ const wildWorksButtonCss = `
+     }
+ 
+     .wildworks-lead-card {
+-      border: 1px solid rgba(255, 242, 207, 0.84) !important;
+-      border-radius: 10px !important;
++      pointer-events: auto !important;
++      border: 1px solid rgba(112, 49, 11, 0.72) !important;
++      border-radius: 0.72rem !important;
+       background:
+-        radial-gradient(circle at 50% -26%, rgba(255, 252, 228, 0.98), transparent 52%),
+-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 43%, #bc702e 76%, #8b3d16 100%) !important;
+-      padding: 0.72rem 0.78rem 0.8rem !important;
++        radial-gradient(circle at 50% -32%, rgba(255, 247, 213, 0.92), transparent 54%),
++        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #9f4719 100%) !important;
++      padding: 0.92rem 1.15rem 1rem !important;
+       box-shadow:
+-        0 18px 44px rgba(20, 7, 1, 0.5),
+-        inset 0 1px 0 rgba(255, 250, 224, 0.92),
+-        inset 0 -1px 0 rgba(74, 25, 5, 0.5) !important;
++        0 16px 42px rgba(20, 7, 1, 0.42),
++        0 0 24px rgba(224, 168, 90, 0.18),
++        inset 0 1px 0 rgba(255, 247, 218, 0.78),
++        inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+     }
+ 
+-    .wildworks-lead-kicker {
+-      margin: 0 0 0.26rem !important;
+-      color: #7d2f20 !important;
+-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+-      font-size: 0.62rem !important;
+-      font-weight: 850 !important;
+-      letter-spacing: 0.14em !important;
++    .wildworks-lead-label {
++      display: flex !important;
++      align-items: center !important;
++      justify-content: center !important;
++      gap: 0.38rem !important;
++      margin: 0 0 0.34rem !important;
++      color: var(--ww-avatar-button-ink) !important;
++      font-size: clamp(0.72rem, 2.9vw, 0.88rem) !important;
++      font-weight: 800 !important;
++      letter-spacing: 0.12em !important;
+       line-height: 1.1 !important;
+       text-transform: uppercase !important;
+     }
+ 
+-    .wildworks-lead-title {
+-      margin: 0 0 0.42rem !important;
+-      color: #5a210e !important;
+-      font-size: clamp(1.05rem, 5.1vw, 1.34rem) !important;
+-      font-weight: 800 !important;
+-      line-height: 1.05 !important;
+-      text-shadow: 0 1px 0 rgba(255, 235, 187, 0.62) !important;
++    .wildworks-lead-label-icon {
++      color: var(--ww-avatar-button-ink) !important;
++      font-size: 1rem !important;
++      letter-spacing: 0 !important;
++      line-height: 1 !important;
+     }
+ 
+     #wildworks-lead-value {
+       box-sizing: border-box !important;
++      display: block !important;
+       width: 100% !important;
+-      min-height: 2.32rem !important;
+-      border: 1px solid rgba(94, 35, 10, 0.5) !important;
+-      border-radius: 6px !important;
+-      outline: none !important;
+-      background: rgba(255, 248, 221, 0.92) !important;
+-      padding: 0.48rem 0.58rem !important;
+-      color: #42170a !important;
+-      font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important;
+-      font-size: clamp(0.82rem, 3.8vw, 1.02rem) !important;
+-      font-weight: 800 !important;
+-      line-height: 1.1 !important;
+-      text-align: center !important;
+-      box-shadow: inset 0 2px 5px rgba(74, 25, 5, 0.12) !important;
+-    }
+-
+-    .wildworks-lead-actions {
+-      display: flex !important;
+-      justify-content: center !important;
+-      gap: 0.42rem !important;
+-      margin-top: 0.5rem !important;
+-    }
+-
+-    .wildworks-lead-action {
+-      min-height: 2.25rem !important;
+-      border: 1px solid rgba(255, 242, 207, 0.62) !important;
+-      border-radius: 6px !important;
+-      padding: 0.42rem 0.68rem !important;
+-      color: #fff4d8 !important;
+-      background: linear-gradient(180deg, #8f431b 0%, #59230d 100%) !important;
++      min-height: 1.3em !important;
++      color: var(--ww-avatar-button-ink) !important;
+       font-family: Georgia, "Times New Roman", serif !important;
+-      font-size: 0.76rem !important;
+-      font-weight: 800 !important;
+-      line-height: 1 !important;
+-      box-shadow: inset 0 1px 0 rgba(255, 230, 181, 0.25) !important;
++      font-size: clamp(1rem, 4.2vw, 1.3rem) !important;
++      font-weight: 900 !important;
++      line-height: 1.25 !important;
++      text-align: center !important;
++      overflow-wrap: anywhere !important;
++      text-shadow: 0 1px 0 rgba(255, 247, 218, 0.58) !important;
+     }
+ 
+-    .wildworks-lead-action-secondary {
+-      color: #5b210d !important;
+-      background: rgba(255, 243, 208, 0.72) !important;
+-      border-color: rgba(92, 32, 8, 0.38) !important;
++    #wildworks-lead-status {
++      margin: 0.65rem 0 0 !important;
++      color: var(--ww-avatar-button-ink) !important;
++      font-family: Arial, sans-serif !important;
++      font-size: 0.8rem !important;
++      font-weight: 700 !important;
++      line-height: 1.35 !important;
+     }
+ 
+-    #wildworks-lead-status {
+-      min-height: 1em !important;
+-      margin: 0.44rem 0 0 !important;
+-      color: #511d0d !important;
+-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+-      font-size: 0.66rem !important;
+-      font-weight: 750 !important;
+-      line-height: 1.25 !important;
++    #wildworks-lead-confirm {
++      margin-top: 0.7rem !important;
++      border: 1px solid rgba(73, 28, 5, 0.78) !important;
++      border-radius: 0.42rem !important;
++      background: linear-gradient(180deg, #7f3a14, #562008) !important;
++      color: #fff0c9 !important;
++      cursor: pointer !important;
++      font: 800 0.78rem/1 Arial, sans-serif !important;
++      letter-spacing: 0.06em !important;
++      padding: 0.62rem 0.84rem !important;
++      text-transform: uppercase !important;
+     }
+ 
+     @keyframes wildworks-lead-rise {
+-      from { opacity: 0; transform: translate(-50%, calc(-50% + 0.75rem)) scale(0.97); }
+-      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
++      from { opacity: 0; transform: translate(-50%, 0.75rem) scale(0.97); }
++      to { opacity: 1; transform: translateX(-50%) scale(1); }
+     }
+ 
+     body.wildworks-session-ended-active {
+@@ -368,7 +354,7 @@ const wildWorksButtonCss = `
+       margin: 0 !important;
+       color: transparent !important;
+       -webkit-text-fill-color: transparent !important;
+-      background-image: linear-gradient(180deg, #f7d9a5 0%, #e0a85a 48%, #a76431 100%) !important;
++      background-image: linear-gradient(180deg, #fce0ad 0%, #e0a85a 48%, #a76431 100%) !important;
+       -webkit-background-clip: text !important;
+       background-clip: text !important;
+       font-size: clamp(2.2rem, 10vw, 3.15rem) !important;
+@@ -495,6 +481,10 @@ const wildWorksAutoWakeScript = `
+       const params = new URLSearchParams(window.location.search);
+       if (!params.has("wake")) return;
+ 
++      const cleanUrl = new URL(window.location.href);
++      cleanUrl.searchParams.delete("wake");
++      window.history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
++
+       let attempts = 0;
+       const tryStart = () => {
+         attempts += 1;
+@@ -518,6 +508,127 @@ const wildWorksAutoWakeScript = `
+   </script>
+ `;
+ 
++const wildWorksIdleTimeoutScript = `
++  <script id="wildworks-avatar-idle-timeout">
++    (() => {
++      const initializeIdleGuard = () => {
++      if (typeof window.fetch !== "function") {
++        window.setTimeout(initializeIdleGuard, 50);
++        return;
++      }
++      const idleLimitMs = 60 * 1000;
++      let idleTimer = null;
++      let sessionActive = false;
++      let stopping = false;
++      let sessionAuthorization = "";
++
++      const originalFetch = window.fetch.bind(window);
++      const requestUrl = (input) => typeof input === "string" ? input : input?.url || "";
++      const requestAuthorization = (input, init) => {
++        try {
++          const headers = new Headers(init?.headers || (input instanceof Request ? input.headers : undefined));
++          return headers.get("Authorization") || "";
++        } catch {
++          return "";
++        }
++      };
++
++      const clearIdleTimer = () => {
++        if (idleTimer !== null) window.clearTimeout(idleTimer);
++        idleTimer = null;
++      };
++
++      const finishLocally = () => {
++        sessionActive = false;
++        stopping = false;
++        clearIdleTimer();
++        window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", {
++          detail: { reason: "idle_timeout" },
++        }));
++        window.location.replace("/pages/avatar-iscott");
++      };
++
++      const stopForIdle = async () => {
++        if (!sessionActive || stopping) return;
++        stopping = true;
++
++        try {
++          if (sessionAuthorization) {
++            await originalFetch("/api/v1/sessions/stop", {
++              method: "POST",
++              headers: {
++                Authorization: sessionAuthorization,
++                "Content-Type": "application/json",
++              },
++              body: JSON.stringify({ reason: "USER_CLOSED" }),
++              keepalive: true,
++            });
++          }
++        } catch (error) {
++          console.error("[iScott] idle stop request failed", error);
++        } finally {
++          finishLocally();
++        }
++      };
++
++      const armIdleTimer = () => {
++        if (!sessionActive || stopping) return;
++        clearIdleTimer();
++        idleTimer = window.setTimeout(stopForIdle, idleLimitMs);
++      };
++
++      ["pointerdown", "keydown", "touchstart", "input"].forEach((eventName) => {
++        document.addEventListener(eventName, armIdleTimer, { capture: true, passive: true });
++      });
++      window.addEventListener("wildworks:avatar-activity", armIdleTimer);
++      document.addEventListener("visibilitychange", () => {
++        if (document.visibilityState === "hidden") void stopForIdle();
++      });
++      window.addEventListener("pagehide", () => {
++        if (!sessionActive || !sessionAuthorization) return;
++        sessionActive = false;
++        clearIdleTimer();
++        void originalFetch("/api/v1/sessions/stop", {
++          method: "POST",
++          headers: {
++            Authorization: sessionAuthorization,
++            "Content-Type": "application/json",
++          },
++          body: JSON.stringify({ reason: "USER_CLOSED" }),
++          keepalive: true,
++        }).catch(() => undefined);
++      });
++
++      window.fetch = async (input, init) => {
++        const url = requestUrl(input);
++        const authorization = requestAuthorization(input, init);
++        const response = await originalFetch(input, init);
++
++        if (url.includes("/api/v1/sessions/start") && response.ok) {
++          sessionAuthorization = authorization || sessionAuthorization;
++          sessionActive = true;
++          stopping = false;
++          armIdleTimer();
++        } else if (url.includes("/api/v1/sessions/stop")) {
++          sessionActive = false;
++          clearIdleTimer();
++        }
++
++        return response;
++      };
++
++      window.__wildworksAvatarIdleGuard = {
++        idleLimitMs,
++        isActive: () => sessionActive,
++        noteActivity: armIdleTimer,
++        stopNow: stopForIdle,
++      };
++      };
++      initializeIdleGuard();
++    })();
++  </script>
++`;
++
+ const wildWorksStartScreenScript = `
+   <script id="wildworks-avatar-start-screen">
+     (() => {
+@@ -711,8 +822,12 @@ const wildWorksCaptureBridgeScript = `
+             keepalive,
+           );
+           const data = response && "json" in response ? await response.json().catch(() => null) : null;
++          const previousTimestamp = state.nextTimestamp;
+           if (data && typeof data.nextTimestamp === "number") {
+             state.nextTimestamp = data.nextTimestamp;
++            if (previousTimestamp !== null && data.nextTimestamp > previousTimestamp) {
++              window.dispatchEvent(new CustomEvent("wildworks:avatar-activity"));
++            }
+           }
+           if (data && data.lead) {
+             window.dispatchEvent(new CustomEvent("wildworks:lead-state", { detail: data.lead }));
+@@ -766,26 +881,7 @@ const wildWorksLeadConfirmationScript = `
+       let activeKey = null;
+       let typingTimer = null;
+       let audioContext = null;
+-
+-      const findFinishButtons = () => Array.from(document.querySelectorAll("button")).filter((button) =>
+-        /^(?:finish|finish conversation|finish session|end conversation)$/i.test((button.textContent || "").trim()),
+-      );
+-
+-      const setFinishButtonsVisible = (visible) => {
+-        findFinishButtons().forEach((button) => {
+-          if (!visible) {
+-            if (!button.dataset.wildworksPreviousDisplay) {
+-              button.dataset.wildworksPreviousDisplay = button.style.display || "__empty__";
+-            }
+-            button.style.setProperty("display", "none", "important");
+-          } else if (button.dataset.wildworksPreviousDisplay) {
+-            const previous = button.dataset.wildworksPreviousDisplay;
+-            button.style.removeProperty("display");
+-            if (previous !== "__empty__") button.style.display = previous;
+-            delete button.dataset.wildworksPreviousDisplay;
+-          }
+-        });
+-      };
++      let activeLead = null;
+ 
+       const ensurePanel = () => {
+         let panel = document.getElementById("wildworks-lead-confirmation");
+@@ -793,16 +889,13 @@ const wildWorksLeadConfirmationScript = `
+         panel = document.createElement("section");
+         panel.id = "wildworks-lead-confirmation";
+         panel.setAttribute("aria-live", "polite");
++        panel.setAttribute("aria-hidden", "true");
+         panel.innerHTML = [
+           '<div class="wildworks-lead-card">',
+-          '  <p class="wildworks-lead-kicker">Confirm Your Information</p>',
+-          '  <h2 class="wildworks-lead-title" id="wildworks-lead-title">Email for Scott</h2>',
+-          '  <input id="wildworks-lead-value" autocomplete="email" inputmode="email" aria-label="Contact information to confirm">',
+-          '  <div class="wildworks-lead-actions">',
+-          '    <button class="wildworks-lead-action" id="wildworks-lead-confirm" type="button">Yes, ThatΓÇÖs Right</button>',
+-          '    <button class="wildworks-lead-action wildworks-lead-action-secondary" id="wildworks-lead-edit" type="button">Fix It</button>',
+-          '  </div>',
+-          '  <p id="wildworks-lead-status"></p>',
++          '  <p class="wildworks-lead-label"><span class="wildworks-lead-label-icon" aria-hidden="true">Γ£ë</span><span id="wildworks-lead-label-text">Your Email</span></p>',
++          '  <span id="wildworks-lead-value" role="output" aria-labelledby="wildworks-lead-label-text"></span>',
++          '  <p id="wildworks-lead-status" role="status">Confirm the details before WildWorks prepares the handoff.</p>',
++          '  <button id="wildworks-lead-confirm" type="button">Confirm Handoff</button>',
+           '</div>',
+         ].join("");
+         document.body.appendChild(panel);
+@@ -825,12 +918,12 @@ const wildWorksLeadConfirmationScript = `
+         } catch {}
+       };
+ 
+-      const typeValue = (input, value) => {
++      const typeValue = (output, value) => {
+         if (typingTimer) window.clearInterval(typingTimer);
+-        input.value = "";
++        output.textContent = "";
+         let index = 0;
+         typingTimer = window.setInterval(() => {
+-          input.value += value.charAt(index);
++          output.textContent += value.charAt(index);
+           tick();
+           index += 1;
+           if (index >= value.length) {
+@@ -840,89 +933,114 @@ const wildWorksLeadConfirmationScript = `
+         }, 72);
+       };
+ 
++      const isVisible = (element) => {
++        const rect = element.getBoundingClientRect();
++        const style = window.getComputedStyle(element);
++        return rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none";
++      };
++
++      const positionAboveConversationControl = (panel) => {
++        const control = Array.from(document.querySelectorAll("button"))
++          .filter((candidate) => /^(?:talk to i?scott|finish)$/i.test((candidate.textContent || "").trim()))
++          .find(isVisible);
++        if (!control) return false;
++
++        panel.style.visibility = "hidden";
++        panel.style.display = "block";
++        const controlRect = control.getBoundingClientRect();
++        const panelHeight = panel.getBoundingClientRect().height;
++        const top = Math.max(12, controlRect.top - panelHeight - 12);
++        panel.style.setProperty("--wildworks-lead-top", top + "px");
++        panel.style.visibility = "";
++        return true;
++      };
++
++      const refreshLeadPosition = () => {
++        const panel = document.getElementById("wildworks-lead-confirmation");
++        if (!panel || !activeLead || !positionAboveConversationControl(panel)) return;
++        panel.setAttribute("aria-hidden", "false");
++        panel.classList.add("wildworks-lead-visible");
++      };
++
++      const confirmLead = async () => {
++        if (!activeLead || activeLead.status === "submitted" || activeLead.submittedAt) return;
++        const method = activeLead.contactMethod === "phone" ? "phone" : "email";
++        const value = method === "email" ? activeLead.email : activeLead.phone;
++        const button = document.getElementById("wildworks-lead-confirm");
++        const status = document.getElementById("wildworks-lead-status");
++        if (!value || !button || !status) return;
++        button.disabled = true;
++        status.textContent = "Preparing your handoffΓÇª";
++        try {
++          const response = await fetch("/api/iscott/lead/confirm", {
++            method: "POST",
++            headers: { "Content-Type": "application/json" },
++            body: JSON.stringify({ sessionId: activeLead.sessionId, contactMethod: method, contactValue: value }),
++          });
++          const result = await response.json().catch(() => null);
++          if (!response.ok || !result?.queued) throw new Error(result?.error || "The handoff could not be prepared.");
++          activeLead = result.lead || activeLead;
++          const testHeld = result.detail === "test_traffic_not_sent" || result.lead?.notificationStatus === "test_held";
++          status.textContent = testHeld
++            ? "Test session ΓÇö not sent."
++            : result.delivered
++              ? "WildWorks received the notification-service confirmation."
++              : "Your details are queued for a secure WildWorks handoff.";
++          document.getElementById("wildworks-lead-confirmation")?.setAttribute(
++            "data-handoff-state",
++            testHeld ? "test_held" : result.delivered ? "notified" : "queued",
++          );
++          showLead(activeLead);
++        } catch (error) {
++          status.textContent = error instanceof Error ? error.message : "The handoff could not be prepared.";
++          button.disabled = false;
++        }
++      };
++
+       const showLead = (lead) => {
+-        if (!lead || lead.status !== "ready_for_confirmation") return;
++        const existingPanel = document.getElementById("wildworks-lead-confirmation");
++        if (!lead || lead.status === "submitted" || lead.submittedAt) {
++          if (typingTimer) window.clearInterval(typingTimer);
++          typingTimer = null;
++          activeKey = null;
++          existingPanel?.classList.remove("wildworks-lead-visible");
++          existingPanel?.setAttribute("aria-hidden", "true");
++          existingPanel?.setAttribute(
++            "data-handoff-state",
++            lead && lead.notificationStatus === "sent" ? "notified" : lead ? "queued" : "idle",
++          );
++          activeLead = null;
++          return;
++        }
+         const method = lead.contactMethod === "phone" ? "phone" : lead.contactMethod === "email" ? "email" : lead.email ? "email" : lead.phone ? "phone" : null;
+         const value = method === "email" ? lead.email : method === "phone" ? lead.phone : null;
+         if (!method || !value) return;
+         const key = lead.sessionId + ":" + method + ":" + value;
+         if (key === activeKey) return;
+         activeKey = key;
++        activeLead = lead;
+ 
+         const panel = ensurePanel();
+-        const title = panel.querySelector("#wildworks-lead-title");
+-        const input = panel.querySelector("#wildworks-lead-value");
+-        const confirm = panel.querySelector("#wildworks-lead-confirm");
+-        const edit = panel.querySelector("#wildworks-lead-edit");
++        const label = panel.querySelector("#wildworks-lead-label-text");
++        const output = panel.querySelector("#wildworks-lead-value");
+         const status = panel.querySelector("#wildworks-lead-status");
+-        if (!title || !input || !confirm || !edit || !status) return;
+-
+-        title.textContent = method === "email" ? "Email for Scott" : "Phone Number for Scott";
+-        input.type = method === "email" ? "email" : "tel";
+-        input.autocomplete = method === "email" ? "email" : "tel";
+-        input.inputMode = method === "email" ? "email" : "tel";
+-        input.readOnly = false;
+-        status.textContent = "Please make sure iScott heard it exactly right.";
+-        delete panel.dataset.wildworksComplete;
+-        confirm.disabled = false;
+-        edit.disabled = false;
+-        confirm.style.removeProperty("display");
+-        edit.style.removeProperty("display");
+-        panel.classList.add("wildworks-lead-visible");
+-        setFinishButtonsVisible(false);
+-        typeValue(input, value);
+-
+-        edit.onclick = () => {
+-          if (typingTimer) window.clearInterval(typingTimer);
+-          typingTimer = null;
+-          input.focus();
+-          input.select();
+-          status.textContent = "Correct it here, then confirm.";
+-        };
+-
+-        confirm.onclick = async () => {
+-          const contactValue = input.value.trim();
+-          if (!contactValue) {
+-            status.textContent = "Please enter the contact information first.";
+-            input.focus();
+-            return;
+-          }
+-          confirm.disabled = true;
+-          edit.disabled = true;
+-          status.textContent = "Saving everything for ScottΓÇª";
+-          try {
+-            const response = await fetch("/api/iscott/lead/confirm", {
+-              method: "POST",
+-              headers: { "Content-Type": "application/json" },
+-              body: JSON.stringify({ sessionId: lead.sessionId, contactMethod: method, contactValue }),
+-            });
+-            const data = await response.json().catch(() => null);
+-            if (!response.ok || !data?.ok) throw new Error(data?.error || "The handoff could not be completed.");
+-            title.textContent = data.delivered ? "Sent to Scott" : "Saved for Scott";
+-            status.textContent = data.delivered
+-              ? "Scott@WildWorks.ai has the complete lead, transcript, and uploads."
+-              : "The complete lead is safely queued for Scott@WildWorks.ai.";
+-            input.readOnly = true;
+-            confirm.style.display = "none";
+-            edit.style.display = "none";
+-            panel.dataset.wildworksComplete = "true";
+-            setFinishButtonsVisible(true);
+-          } catch (error) {
+-            status.textContent = error instanceof Error ? error.message : "The handoff could not be completed.";
+-            confirm.disabled = false;
+-            edit.disabled = false;
+-          }
+-        };
++        const button = panel.querySelector("#wildworks-lead-confirm");
++        if (!label || !output || !status || !button) return;
++
++        label.textContent = method === "email" ? "Your Email" : "Your Phone";
++        typeValue(output, value);
++        status.textContent = "Confirm the details before WildWorks prepares the handoff.";
++        panel.setAttribute("data-handoff-state", "awaiting");
++        button.hidden = false;
++        button.disabled = false;
++        button.onclick = confirmLead;
++        refreshLeadPosition();
+       };
+ 
+       window.addEventListener("wildworks:lead-state", (event) => showLead(event.detail));
+-      const observer = new MutationObserver(() => {
+-        const panel = document.getElementById("wildworks-lead-confirmation");
+-        if (panel?.classList.contains("wildworks-lead-visible") && panel.dataset.wildworksComplete !== "true") {
+-          setFinishButtonsVisible(false);
+-        }
+-      });
+-      observer.observe(document.documentElement, { childList: true, subtree: true });
++      window.addEventListener("resize", refreshLeadPosition);
++      window.addEventListener("orientationchange", refreshLeadPosition);
++      new MutationObserver(refreshLeadPosition).observe(document.documentElement, { childList: true, subtree: true });
+     })();
+   </script>
+ `;
+@@ -1072,7 +1190,7 @@ export async function GET(request: Request) {
+     .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
+     .replace(
+       "</body>",
+-      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
++      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksIdleTimeoutScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+     );
+ 
+   return new Response(html, {
+diff --git a/src/lib/iscottLeadCapture.ts b/src/lib/iscottLeadCapture.ts
+index f30f178..834b070 100644
+--- a/src/lib/iscottLeadCapture.ts
++++ b/src/lib/iscottLeadCapture.ts
+@@ -1,9 +1,34 @@
+ import { truncateUtf8String } from "./apiRouteSecurity";
+ import { notifyIScottLeadByEmail } from "./voiceEmailNotifications";
+ import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
++import {
++  detectsAcceptedFollowUp,
++  detectsContextualContactSendConfirmation,
++  detectsSimpleAffirmation,
++  extractProjectNeed,
++  extractSpokenFullName,
++  formatLeadTranscript,
++  preferProjectNeed,
++} from "./iscottLeadParsing";
++import { classifyTraffic, trafficColumns } from "./trafficClassification";
++import {
++  ISCOTT_TEST_HELD_STATUS,
++  canDispatchIScottLeadNotification,
++} from "./iscottTrafficResolve";
++
++export {
++  detectsAcceptedFollowUp,
++  detectsContextualContactSendConfirmation,
++  detectsSimpleAffirmation,
++  extractProjectNeed,
++  preferProjectNeed,
++} from "./iscottLeadParsing";
+ 
+ const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
+ const PHONE_PATTERN = /(?:\+?\d{1,3}[\s().-]*)?(?:\d[\s().-]*){9,15}\d/g;
++// Prevent a new parser rule from replaying a lead captured before the rule
++// existed. Older leads remain available to the explicit confirmation route.
++const CONTEXTUAL_CONFIRMATION_INTRODUCED_AT = Date.parse("2026-08-16T17:30:00.000Z");
+ 
+ export type IScottTranscriptRow = {
+   role: "user" | "assistant";
+@@ -42,6 +67,9 @@ type LeadRow = {
+   submitted_at: string | null;
+   notification_outbox_id: string | null;
+   notification_status: string | null;
++  traffic_class?: "owner" | "test" | "public" | "bot";
++  traffic_reason?: string;
++  traffic_confidence?: number;
+   transcript_text: string | null;
+   transcript_snapshot: unknown[];
+   media_snapshot: unknown[];
+@@ -175,16 +203,7 @@ function titleWords(value: string): string {
+ }
+ 
+ function extractFullName(text: string): string | null {
+-  const match = text.match(
+-    /\b(?:my name is|my name's|call me)\s+([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})/iu,
+-  );
+-  if (!match?.[1]) return null;
+-  const candidate = match[1]
+-    .split(/\b(?:and|but|from|in)\b/i)[0]
+-    .replace(/[.,!?;:]+$/g, "")
+-    .trim();
+-  if (candidate.length < 2 || candidate.length > 90) return null;
+-  return titleWords(candidate);
++  return extractSpokenFullName(text);
+ }
+ 
+ function extractLocation(text: string): string | null {
+@@ -206,14 +225,24 @@ function extractLocation(text: string): string | null {
+   return titleWords(candidate);
+ }
+ 
+-function extractProjectNeed(text: string): string | null {
+-  const match = text.match(
+-    /\b(?:i|we)\s+(?:want|wanted|need|needed|would like|am looking|are looking)\s+(?:to\s+)?([^.!?]{3,260})/i,
+-  );
+-  if (!match?.[1]) return null;
+-  const candidate = match[1].replace(/\s+/g, " ").trim();
+-  if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
+-  return candidate.charAt(0).toUpperCase() + candidate.slice(1);
++function userTurnTexts(rows: IScottTranscriptRow[]): string[] {
++  const turns: string[] = [];
++  let fragments: string[] = [];
++  const flush = () => {
++    const text = fragments.join(" ").replace(/\s+/g, " ").trim();
++    if (text) turns.push(text);
++    fragments = [];
++  };
++
++  for (const row of rows) {
++    if (row.role === "user" && row.message.trim()) {
++      fragments.push(row.message.trim());
++    } else {
++      flush();
++    }
++  }
++  flush();
++  return turns;
+ }
+ 
+ function extractContactMethod(text: string): "email" | "phone" | null {
+@@ -232,14 +261,20 @@ function detectsDeclinedFollowUp(text: string): boolean {
+   return /\b(?:do not|don't)\s+(?:contact|call|email)|\bno\s+follow[- ]?up\b|\bnot interested\b/i.test(text);
+ }
+ 
+-function detectsAcceptedFollowUp(text: string): boolean {
+-  return /\b(?:yes|sure|okay|ok|please)\b.{0,35}\b(?:pass|send|share|contact|reach|follow)\b|\b(?:contact|reach|follow up with)\s+me\b/i.test(text);
+-}
+-
+ function isOperatorCorrection(text: string): boolean {
+-  return /\b(?:what you should say|you should say|make sure|we need to|we got to|needs? to be corrected|don't say|do not say|the max|stop everything and do that)\b/i.test(text);
++  return /\b(?:what you should say|you should say|then you say|as soon as i say|make sure|we need to|we got to|you(?:'ve)? got to|needs? to be corrected|don't say|do not say|take down this|it(?:'s| is) got to go away|there should(?:n't| not)? be any click|the max|stop everything and do that)\b/i.test(text);
+ }
+ 
++export const iscottLeadCaptureTestUtils = {
++  detectsAcceptedFollowUp,
++  detectsSimpleAffirmation,
++  extractProjectNeed,
++  extractFullName,
++  isOperatorCorrection,
++  preferProjectNeed,
++  userTurnTexts,
++};
++
+ function sourceEventKey(
+   sessionId: string,
+   row: IScottTranscriptRow,
+@@ -260,6 +295,19 @@ function preferLonger(current: string | null, next: string | null): string | nul
+   return current;
+ }
+ 
++function leadTranscriptFields(
++  rows: IScottTranscriptRow[],
++  existing: LeadRow | null,
++): { transcript_text: string | null; transcript_snapshot: unknown[] } {
++  if (rows.length === 0) {
++    return {
++      transcript_text: existing?.transcript_text ?? null,
++      transcript_snapshot: existing?.transcript_snapshot ?? [],
++    };
++  }
++  return formatLeadTranscript(rows);
++}
++
+ function toState(row: LeadRow): IScottLeadState {
+   return {
+     sessionId: row.session_id,
+@@ -404,22 +452,58 @@ export async function processIScottTranscriptRows(args: {
+   let phone = existing?.phone ?? null;
+   let contactMethod = existing?.contact_method ?? null;
+   let consentStatus = existing?.consent_status ?? "unknown";
++  let contactConfirmedAt = existing?.contact_confirmed_at ?? null;
++  const captureTime = new Date().toISOString();
++
++  for (const text of userTurnTexts(args.rows)) {
++    fullName = preferLonger(fullName, extractFullName(text));
++    location = extractLocation(text) ?? location;
++    projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
++
++    const previousEmail = email;
++    const previousPhone = phone;
++    const nextEmail = extractEmail(text);
++    const nextPhone = extractPhone(text);
++    email = nextEmail ?? email;
++    phone = nextPhone ?? phone;
++    contactMethod = extractContactMethod(text) ?? contactMethod;
++
++    const contactChanged =
++      (nextEmail && previousEmail && nextEmail !== previousEmail) ||
++      (nextPhone && previousPhone && nextPhone !== previousPhone);
++    if (contactChanged && existing?.status !== "confirmed" && existing?.status !== "submitted") {
++      contactConfirmedAt = null;
++      consentStatus = "unknown";
++    }
++
++    const hasCurrentContact = Boolean(
++      contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone,
++    );
++    if (detectsDeclinedFollowUp(text)) {
++      consentStatus = "declined";
++      continue;
++    }
++    if (isOperatorCorrection(text) || !hasCurrentContact) continue;
+ 
+-  for (const row of userRows) {
+-    fullName = preferLonger(fullName, extractFullName(row.message));
+-    location = extractLocation(row.message) ?? location;
+-    projectNeed = projectNeed ?? extractProjectNeed(row.message);
+-    email = extractEmail(row.message) ?? email;
+-    phone = extractPhone(row.message) ?? phone;
+-    contactMethod = extractContactMethod(row.message) ?? contactMethod;
+-    if (detectsDeclinedFollowUp(row.message)) consentStatus = "declined";
+-    else if (detectsAcceptedFollowUp(row.message)) consentStatus = "accepted";
+   }
+   if (!contactMethod) {
+     if (email && !phone) contactMethod = "email";
+     else if (phone && !email) contactMethod = "phone";
+   }
+ 
++  const currentContact = contactMethod === "email" ? email : contactMethod === "phone" ? phone : null;
++  const isPostRolloutLead = !existing || Date.parse(existing.created_at) >= CONTEXTUAL_CONFIRMATION_INTRODUCED_AT;
++  if (
++    consentStatus !== "declined" &&
++    contactMethod &&
++    currentContact &&
++    isPostRolloutLead &&
++    detectsContextualContactSendConfirmation(args.rows, contactMethod, currentContact)
++  ) {
++    contactConfirmedAt = contactConfirmedAt ?? captureTime;
++    consentStatus = "accepted";
++  }
++
+   const hasContact = Boolean(contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone);
+   let status: LeadRow["status"] = consentStatus === "declined"
+     ? "declined"
+@@ -428,7 +512,13 @@ export async function processIScottTranscriptRows(args: {
+       : "capturing";
+   if (existing?.status === "confirmed" || existing?.status === "submitted") status = existing.status;
+ 
+-  const now = new Date().toISOString();
++  const now = captureTime;
++  const traffic = await classifyTraffic({
++    anonymousVisitorId:
++      args.anonymousVisitorId ??
++      existing?.anonymous_visitor_id ??
++      (/^(?:codex-|ww-test-|ww-owner-)/.test(args.sessionId) ? args.sessionId : null),
++  });
+   const row = await writeLead({
+     session_id: args.sessionId,
+     anonymous_visitor_id: args.anonymousVisitorId ?? existing?.anonymous_visitor_id ?? null,
+@@ -441,12 +531,12 @@ export async function processIScottTranscriptRows(args: {
+     contact_method: contactMethod,
+     email,
+     phone,
+-    contact_confirmed_at: existing?.contact_confirmed_at ?? null,
++    contact_confirmed_at: contactConfirmedAt,
+     submitted_at: existing?.submitted_at ?? null,
+     notification_outbox_id: existing?.notification_outbox_id ?? null,
+     notification_status: existing?.notification_status ?? null,
+-    transcript_text: existing?.transcript_text ?? null,
+-    transcript_snapshot: existing?.transcript_snapshot ?? [],
++    ...trafficColumns(traffic),
++    ...leadTranscriptFields(args.rows, existing),
+     media_snapshot: existing?.media_snapshot ?? [],
+     metadata: {
+       ...(existing?.metadata ?? {}),
+@@ -458,6 +548,22 @@ export async function processIScottTranscriptRows(args: {
+   });
+ 
+   await insertExtractionEvents(args.sessionId, userRows, args.anonymousVisitorId, args.route);
++
++  if (
++    row.status === "ready_for_confirmation" &&
++    row.contact_confirmed_at &&
++    row.consent_status === "accepted" &&
++    row.contact_method &&
++    (row.contact_method === "email" ? row.email : row.phone)
++  ) {
++    const submitted = await confirmAndSubmitIScottLead({
++      sessionId: args.sessionId,
++      contactMethod: row.contact_method,
++      contactValue: row.contact_method === "email" ? row.email! : row.phone!,
++    });
++    return submitted.lead;
++  }
++
+   return toState(row);
+ }
+ 
+@@ -562,6 +668,14 @@ export async function confirmAndSubmitIScottLead(args: {
+       ? existing.email === email
+       : existing.phone === phone
+   );
++  if (existing.notification_status === ISCOTT_TEST_HELD_STATUS && sameConfirmedContact) {
++    return {
++      lead: toState(existing),
++      queued: true,
++      delivered: false,
++      detail: "test_traffic_not_sent",
++    };
++  }
+   if (existing.status === "submitted" && existing.notification_outbox_id && sameConfirmedContact) {
+     const outbox = await rest<LeadOutboxRow>(
+       `voice_email_outbox?id=eq.${encodeURIComponent(existing.notification_outbox_id)}&select=id,status&limit=1`,
+@@ -581,6 +695,33 @@ export async function confirmAndSubmitIScottLead(args: {
+   }
+ 
+   const now = existing.contact_confirmed_at ?? new Date().toISOString();
++  const mayNotify = canDispatchIScottLeadNotification({
++    trafficClass: existing.traffic_class ?? null,
++    visitorId: existing.anonymous_visitor_id ?? null,
++    sessionId: args.sessionId,
++  });
++  if (!mayNotify) {
++    const held = await writeLead({
++      ...existing,
++      status: "confirmed",
++      consent_status: "accepted",
++      contact_method: args.contactMethod,
++      email,
++      phone,
++      contact_confirmed_at: now,
++      submitted_at: null,
++      notification_outbox_id: null,
++      notification_status: ISCOTT_TEST_HELD_STATUS,
++      updated_at: now,
++    });
++    return {
++      lead: toState(held),
++      queued: true,
++      delivered: false,
++      detail: "test_traffic_not_sent",
++    };
++  }
++
+   let confirmed = await writeLead({
+     ...existing,
+     status: "confirmed",

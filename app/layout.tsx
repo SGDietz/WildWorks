@@ -316,6 +316,7 @@ import "./H369-sitewide-footer-and-wildfire.css";
 import "./H370-home-last-stripers.css";
 import "./H371-home-edge-mobile.css";
 import "./H372-home-desktop-edge.css";
+import "./H373-bio-heading-black-shadow.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";

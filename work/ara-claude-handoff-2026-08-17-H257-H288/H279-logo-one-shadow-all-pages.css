@@ -1,0 +1,17 @@
+/* H279: Whole logo uses the locked WILDWORKS/scroll shadow.
+   G 2026-08-17 12:43. Fine Art & Practical / Landscaping must match.
+   H264 was installed and still failed: it clipped ::before off the tagline
+   and left a weak second layer. This file unclips ::before and hides
+   the extra tagline layer. All 5 pages. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:before {
+  opacity: 0.98 !important;
+  filter: none !important;
+  clip-path: none !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  background: #321005 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect {
+  display: none !important;
+}

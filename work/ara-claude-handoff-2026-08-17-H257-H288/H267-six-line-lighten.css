@@ -1,0 +1,23 @@
+/* H267: Six-line Wildfire stack is a little too heavy. Lighten all.
+   Especially the lower 3 photographed-build lines.
+   G 2026-08-17 10:40. Do not change letter colors. These 6 lines only. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-sequence-callout__line--patio,
+  .wild-wildfire-sequence-callout__line--lounge,
+  .wild-wildfire-sequence-callout__line--going
+) {
+  filter: none !important;
+  text-shadow: 0 0.75px 0 rgba(35, 9, 2, 0.7), 0 1.7px 0 rgba(25, 6, 1, 0.44) !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top.wild-home #project-wildfire :is(
+  .wild-wildfire-build-note__line,
+  .wild-wildfire-build-note__line--lead,
+  .wild-wildfire-build-note__line--middle,
+  .wild-wildfire-build-note__line--close
+) {
+  filter: none !important;
+  text-shadow: 0 0.45px 0 rgba(35, 9, 2, 0.55), 0 1.05px 0 rgba(25, 6, 1, 0.32) !important;
+}

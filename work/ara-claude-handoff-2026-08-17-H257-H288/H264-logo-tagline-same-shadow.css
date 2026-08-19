@@ -1,0 +1,19 @@
+/* H264: Tagline uses the exact WILDWORKS/scroll shadow.
+   G 2026-08-17 10:38: wordmark + scrolls are perfect. Fine Art & Practical
+   and Landscaping must match that same shadow on Home, Wildfire, Ruins,
+   Projects, Bio. Do not change letter colors. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:before {
+  opacity: 0.98 !important;
+  filter: none !important;
+  clip-path: inset(0 0 32%) !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  background: #321005 !important;
+}
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect {
+  opacity: 0.98 !important;
+  filter: none !important;
+  transform: translateY(clamp(3px, 0.28vw, 4.5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  background: #321005 !important;
+}

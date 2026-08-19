@@ -1,0 +1,18 @@
+/* H257: Project Wildfire six-line stack — one patio-depth effect on every line.
+   G 2026-08-17: keep the Then Came the Patio shadow; lift the three
+   photographed-build lines; pull Then We Just Kept Going down to the same
+   strength. Do not change letter colors. Home only. */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #project-wildfire :is(
+  .wild-wildfire-sequence-callout__line,
+  .wild-wildfire-sequence-callout__line--patio,
+  .wild-wildfire-sequence-callout__line--lounge,
+  .wild-wildfire-sequence-callout__line--going,
+  .wild-wildfire-build-note__line,
+  .wild-wildfire-build-note__line--lead,
+  .wild-wildfire-build-note__line--middle,
+  .wild-wildfire-build-note__line--close
+) {
+  filter: none !important;
+  text-shadow: var(--ww-home-display-depth-strong) !important;
+}
