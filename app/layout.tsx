@@ -297,6 +297,7 @@ import "./H340-iscott-front-door-small-text-color-one.css";
 import "./H346-subpage-small-text-color-one.css";
 import "./H350-small-text-shadow-back-off-10.css";
 import "./H351-five-color-return.css";
+import "./H352-remaining-small-text-colour-one.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
