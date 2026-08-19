@@ -2696,6 +2696,30 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             text-shadow: var(--ww-home-display-depth-strong) !important;
           }
 
+          /* E12 (Grok wrote this, Claude verified and installed 2026-08-19).
+             G: "all six of these cards ... make all that text, everything in
+             there, the number two color."
+
+             Only the six services card BODIES move. The live winner was
+             H106x-home-heading-color-key.css - "small copy on Copper secondary
+             cards uses permanent Color 1" - which lands on
+             .wild-card :is(p, p *) at 81 ids. Titles are h3 so they never
+             matched it and are already Colour 2; bodies are p so they did.
+             Adding #services takes this to 82 and wins by one, without
+             editing that shared lock - it also covers money-panel, story
+             cards, statement, AI cards, travel and footer, and G named the
+             services cards only. */
+          html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
+            body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+            #top.wild-home
+            #services
+            .wild-card
+            .wild-card-body
+            :is(p, p *, li, li *) {
+            color: #edc775 !important;
+            -webkit-text-fill-color: #edc775 !important;
+          }
+
         `}</style>
         <input
           ref={iScottMediaInputRef}

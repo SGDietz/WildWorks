@@ -1,0 +1,56 @@
+/* H327: G's iPad vertical ride, 2026-08-19.
+   70 stacked ids on purpose: the first cut used 40 and lost to my own H325,
+   which generates 60. Existing is not winning - count the rival.
+   iPad portrait is 820x1180 - one of G's five locked viewports. Desktop
+   1920x1080 and laptop 1366x768 are approved and must not move, so the tablet
+   work sits behind a portrait media query.
+   Verified by computed style and by screenshot at 820x1180. */
+
+/* ------------------------------------------------------------------ */
+/* P22 - "What WildWorks is Known For" reads as a mishmash.            */
+/*   G: "the letters i l d and o r k s are real heavy, but ... the w   */
+/*   and other w is not. Something's really wrong."                    */
+/*                                                                     */
+/*   I caused this earlier tonight. Taking the heading down 10% I      */
+/*   matched span.wild-line-title__line but missed the NESTED span      */
+/*   .wild-services-title__wildworks, which sits inside the first line. */
+/*   So "What" and "is Known for:" dropped to a 0.41px first layer      */
+/*   while the word "WildWorks" between them stayed at 0.8px - twice as */
+/*   heavy, inside one phrase. That is exactly the unevenness G saw.    */
+/*                                                                     */
+/*   inherit makes the nested word take its parent's computed ladder,   */
+/*   so the whole heading matches by construction and cannot drift      */
+/*   apart again the next time the ladder is retuned. All viewports.    */
+/* ------------------------------------------------------------------ */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #services .wild-services-title__wildworks:not(#_):not(#_):not(#_) {
+  text-shadow: inherit !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* P1 - the logo tagline STILL separates under the g on iPad.          */
+/*   G: "there's, like, separation under the g. You can see the         */
+/*   background color between the letter and the shadow."              */
+/*                                                                     */
+/*   The desktop fix (removing the 1.012 scale) landed and holds - the  */
+/*   transform computes to matrix(1,0,0,1,...) on tablet too. What is   */
+/*   left is the FILTER: five stacked drop-shadow(0 -1px 0) lifted the  */
+/*   dark copy UP, so its bottom edge rose above the glyph bottom and   */
+/*   copper showed underneath. On a phone the art is small enough to    */
+/*   hide it and on desktop the offset is proportionally tiny; the      */
+/*   tablet size is exactly where it shows.                             */
+/*                                                                     */
+/*   Fill DOWNWARD instead, and tuck the copy a touch further under.    */
+/*   Screenshot-checked at 820x1180 before and after.                   */
+/*   The LOVED WILDWORKS wordmark is a different element and is not     */
+/*   touched - verified still at matrix(1.012, ...).                    */
+/* ------------------------------------------------------------------ */
+@media (min-width: 521px) and (max-width: 1279px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect:not(#_):not(#_):not(#_) {
+    transform: translateY(1px) scale(1) !important;
+    filter:
+      drop-shadow(rgb(50, 16, 5) 0px 1px 0px)
+      drop-shadow(rgb(50, 16, 5) 0px 1px 0px)
+      drop-shadow(rgb(50, 16, 5) 1px 0px 0px)
+      drop-shadow(rgb(50, 16, 5) -1px 0px 0px) !important;
+  }
+}
