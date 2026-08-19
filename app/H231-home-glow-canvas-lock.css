@@ -45,16 +45,12 @@
   --ww-canonical-route-glow: var(--ww-canonical-home-glow);
 }
 
+/* G 2026-08-19: Ruins used to stack its own edge darkening on top of the shared
+   glow, so it could never match Home no matter what the palette did. With the
+   five colours locked and the centre glow restored, that extra shade is just
+   drift. Ruins now uses the same canvas as every other route. */
 html:has(.wild-subpage--ruins) {
-  --ww-canonical-route-glow:
-    linear-gradient(
-      90deg,
-      rgb(49 16 5 / 13%) 0%,
-      transparent 24%,
-      transparent 76%,
-      rgb(49 16 5 / 13%) 100%
-    ),
-    var(--ww-canonical-home-glow);
+  --ww-canonical-route-glow: var(--ww-canonical-home-glow);
 }
 
 html:has(.wild-subpage--wildfire):not(#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow#ww-canonical-home-glow) {

@@ -114,12 +114,17 @@ const sparkleIcon =
 const wildWorksButtonCss = `
   <style id="wildworks-avatar-button-style">
     :root {
+      /* G 2026-08-19: "everything needs to be theme colors, brand colors."
+         The surface and type tokens now come off the locked five. black/night
+         stay dark on purpose - they are scrims and text shadows, and painting
+         those orange would destroy contrast rather than brand anything.
+         button-ink stays a dark ink because it sits on the gold buttons. */
       --ww-avatar-black: #080302;
       --ww-avatar-night: #130702;
-      --ww-avatar-wood: #3d1c08;
-      --ww-avatar-gold: #b7823a;
-      --ww-avatar-honey: #e0a85a;
-      --ww-avatar-parchment: #f3cf92;
+      --ww-avatar-wood: #c44d0b;
+      --ww-avatar-gold: #e96819;
+      --ww-avatar-honey: #f08c28;
+      --ww-avatar-parchment: #edc775;
       --ww-avatar-cream: #fce0ad;
       --ww-avatar-button-ink: #7d2f20;
     }
