@@ -1,5 +1,9 @@
 # iPad vertical (820×1180) — G's ride, 2026-08-19
 
+**STATUS: all 31 items complete.** P9 and P10 were "do not change".
+Mine + Grok's (P2, P3, P12, P13-P18, P20). Every one verified by computed
+style at 820x1180 with desktop 1920x1080 and laptop 1366x768 proven unmoved.
+
 G: **"Everything here is iPad vertical only."** So the shadow and size numbers
 below are scoped to iPad portrait, EXCEPT the four items he explicitly widened
 to every device / the whole home page — those are marked **GLOBAL**.

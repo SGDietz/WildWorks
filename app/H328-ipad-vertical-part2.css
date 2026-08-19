@@ -161,9 +161,13 @@
   }
 
   /* P28 "Let's Talk About Your Dream Project." - G: "it's too small. Needs to
-     be much larger text." */
+     be much larger text."
+     First cut used 1.5em and changed NOTHING: em is relative to the 16px
+     parent, so 1.5em = 24px, which is exactly what the old
+     clamp(1.5rem, 2.35vw, 43px) already resolved to at 820. A coincidence that
+     read as a working rule. 2.4em = 38.4px, genuinely larger. */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-footer-contact-cta__title:not(#_):not(#_):not(#_) {
-    font-size: 1.5em !important;
+    font-size: 2.4em !important;
   }
 
   /* P29 "Start the Conversation Now" - G: "needs to be all in one line."
