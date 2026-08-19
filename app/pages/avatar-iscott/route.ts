@@ -306,7 +306,9 @@ const wildWorksButtonCss = `
       /* G 2026-08-19: "it needs to be over the word Finish." The bottom edge was
          always right - the card was simply TALL, so it grew upward into his chin.
          Anchor restored; the card below is kept short instead. */
-      bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
+      /* G 2026-08-19: "the box is still too high. It's like right at iScott's
+         lips, basically. It's got to be down." */
+      bottom: calc(0.55rem + env(safe-area-inset-bottom, 0px)) !important;
       left: 50% !important;
       z-index: 60 !important;
       display: none !important;
@@ -350,7 +352,8 @@ const wildWorksButtonCss = `
       align-items: center !important;
       justify-content: center !important;
       gap: 0.5rem !important;
-      margin: 0 !important;
+      /* G 2026-08-19: "your email, the words are too close to the box." */
+      margin: 0 0 0.42rem !important;
       color: #edc775 !important;
       font-size: 0.72rem !important;
       font-weight: 600 !important;
@@ -390,7 +393,10 @@ const wildWorksButtonCss = `
          from. color alone was never going to hold on his device. */
       -webkit-appearance: none !important;
       appearance: none !important;
-      background: rgba(139, 90, 43, 0.92) !important;
+      /* G 2026-08-19: "the colors are awful. My God." Off the improvised brown
+         and onto the brand card surface, the same one every panel on the site
+         uses, with Colour 1 ink. */
+      background: #e96819 !important;
       color: #fce0ad !important;
       -webkit-text-fill-color: #fce0ad !important;
       caret-color: #edc775 !important;
@@ -411,8 +417,8 @@ const wildWorksButtonCss = `
     #wildworks-lead-value:-webkit-autofill:active {
       -webkit-text-fill-color: #fce0ad !important;
       caret-color: #edc775 !important;
-      -webkit-box-shadow: 0 0 0 1000px rgba(139, 90, 43, 0.92) inset !important;
-      box-shadow: 0 0 0 1000px rgba(139, 90, 43, 0.92) inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #e96819 inset !important;
+      box-shadow: 0 0 0 1000px #e96819 inset !important;
     }
 
     #wildworks-lead-value::placeholder {
@@ -739,7 +745,9 @@ const wildWorksButtonCss = `
       }
 
       #wildworks-lead-confirmation {
-        bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
+        /* G 2026-08-19: "the box is still too high. It's like right at iScott's
+         lips, basically. It's got to be down." */
+      bottom: calc(0.55rem + env(safe-area-inset-bottom, 0px)) !important;
       }
 
       #wildworks-lead-label-text {
@@ -1521,6 +1529,13 @@ const wildWorksLeadConfirmationScript = `
       let revealedContactKey = null;
       let activeLead = null;
       let dismissed = false;
+      // G 2026-08-19: "the box should have been up by now ... there's no box up
+      // with my phone number." He gave an email first, the panel dropped after
+      // that flow, and the dismissed flag was permanent for the whole session,
+      // he switched to phone the box could never come back. He was talking to a
+      // dead panel. Remember WHAT was showing when it was dismissed; a genuinely
+      // new capture is allowed to reopen it, the same one is not.
+      let dismissedFor = null;
 
       const markAvatarShell = () => {
         document.documentElement.setAttribute("data-ww-avatar-shell", "true");
@@ -1618,7 +1633,7 @@ const wildWorksLeadConfirmationScript = `
           '      <svg class="ww-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>',
           '      <svg class="ww-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 3h4l1 4-2 1a12 12 0 0 0 6 6l1-2 4 1v4c0 1-1 2-2 2C10 19 5 14 5 7c0-1 1-2 2-2z"/></svg>',
           '    </span><span id="wildworks-lead-label-text">Your Email</span></p>',
-          '    <input id="wildworks-lead-value" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="type or spell your email" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
+          '    <input id="wildworks-lead-value" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
           '    <p id="wildworks-lead-spoken-readback" aria-hidden="true"></p>',
           '    <div class="wildworks-lead-actions">',
           '      <button id="wildworks-lead-confirm" type="button" aria-label="Send these details to Scott">Send these details to Scott</button>',
@@ -1784,6 +1799,9 @@ const wildWorksLeadConfirmationScript = `
           window.requestAnimationFrame(() => {
             window.setTimeout(() => {
               dismissed = true;
+              dismissedFor = activeLead
+                ? [activeLead.contactMethod, activeLead.email, activeLead.phone].join(":")
+                : null;
               hidePanel();
             }, ms);
           });
@@ -1794,6 +1812,8 @@ const wildWorksLeadConfirmationScript = `
         logUi(reason === "close" ? "iscott_ui_close_tap" : "iscott_ui_finish_tap", { reason }, true);
         hidePanel();
         dismissed = true;
+        // a deliberate Finish/Close ends the session outright - nothing reopens
+        dismissedFor = "session-ended";
         if (window.__wildworksAvatarIdleGuard?.stopNowWithoutReload) {
           await window.__wildworksAvatarIdleGuard.stopNowWithoutReload(reason);
           return;
@@ -1885,6 +1905,13 @@ const wildWorksLeadConfirmationScript = `
         if (key === activeKey && !submitted) return;
         activeKey = key;
         activeLead = lead;
+        // A new contact method, or a different value, is a NEW capture and is
+        // allowed to bring the panel back. Finishing the session is not.
+        const dismissalKey = [lead.contactMethod, lead.email, lead.phone].join(":");
+        if (dismissed && dismissedFor !== "session-ended" && dismissedFor !== dismissalKey) {
+          dismissed = false;
+          dismissedFor = null;
+        }
         if (dismissed) return;
 
         const panel = ensurePanel();
@@ -1909,7 +1936,9 @@ const wildWorksLeadConfirmationScript = `
           typingTimer = null;
           output.value = "";
           output.textContent = "";
-          output.placeholder = method === "email" ? "type or spell your email" : "type or say your phone number";
+          // G 2026-08-19: "just leave the box open, empty. Don't put in there
+          // type or spell your." The field stays blank.
+          output.placeholder = "";
           output.readOnly = false;
           output.disabled = false;
           output.setAttribute("aria-label", method === "email" ? "Your email address" : "Your phone number");
@@ -1996,6 +2025,9 @@ const wildWorksLeadConfirmationScript = `
         }
         if (dismiss) dismiss.onclick = () => {
           dismissed = true;
+          dismissedFor = activeLead
+            ? [activeLead.contactMethod, activeLead.email, activeLead.phone].join(":")
+            : null;
           revealVersion += 1;
           revealingContact = false;
           if (typingTimer) window.clearInterval(typingTimer);
