@@ -16,3 +16,18 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-closing-region--a.wild-footer-closing-region--a {
   background: transparent !important;
 }
+
+/* G 2026-08-19: the band he photographed behind "Let's Talk About Your Dream
+   Project". The existing rules above cover the CLOSING region; the contact CARD
+   region was still being painted a flat #c44d0b by a 30-id tone rule. Flat is
+   the problem, not the colour - the canvas carries the centre glow, so a solid
+   block over it reads darker through the middle and shows up as a hard band.
+   Transparent lets the glow run straight through, which is what he asked for:
+   "it should just be the background color, keep the glow in the center."
+   Rival is 30 ids, so this carries 40. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-footer-contact-card-region,
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-footer-contact-card-region--a {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
