@@ -59,8 +59,8 @@ assert.equal(
 assert.equal(formatSpokenEmailForReadback("not-an-email"), "");
 // G 2026-08-19: "I want him to be clear." Grouped, never one unbroken run.
 assert.equal(formatSpokenPhoneForReadback("4105550101"), "4-1-0, 5-5-5, 0-1-0-1");
-assert.equal(formatSpokenPhoneForReadback("14105550101"), "plus 1, 4-1-0, 5-5-5, 0-1-0-1");
-assert.equal(formatSpokenPhoneForReadback("493012345678"), "plus 4-9, 3-0-1, 2-3-4, 5-6-7-8");
+assert.equal(formatSpokenPhoneForReadback("14105550101"), "1, 4-1-0, 5-5-5, 0-1-0-1");
+assert.equal(formatSpokenPhoneForReadback("493012345678"), "4-9, 3-0-1, 2-3-4, 5-6-7-8");
 assert.equal(formatSpokenPhoneForReadback("12"), "");
 assert.equal(formatSpokenEmailForReadback("a-b-c at e-x-a-m-p-l-e"), "");
 assert.match(

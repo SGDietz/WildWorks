@@ -184,7 +184,8 @@ export function formatSpokenPhoneForReadback(phone: string): string {
     ? [national.slice(0, 3), national.slice(3, 6), national.slice(6)]
     : [national];
   const spokenNational = groups.map(speak).join(", ");
-  return country ? `plus ${speak(country)}, ${spokenNational}` : spokenNational;
+  // G 2026-08-19: "do not do Plus 1 though, take that out, just numbers."
+  return country ? `${speak(country)}, ${spokenNational}` : spokenNational;
 }
 
 export function visitorChoseContactMethod(text: string): "email" | "phone" | null {

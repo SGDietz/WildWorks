@@ -34,8 +34,15 @@ Laptop = `xl:` (1280–1535). Never target `2xl:` alone — invisible to G.
 | 14 | Avatar block at the BOTTOM | Make it **the same as the avatar block at the top** |
 | 15 | "Call WildWorks Today!" + the phone number at the bottom | **+20% shadow** |
 
-## Open question for G
-- #5: which block is "then we just kept going"?
+## Resolved
+- #5 was NOT ambiguous: "Then We Just Kept Going" is a heading on the page,
+  already carried in H317 as B6. Still to do at -20%.
+
+## Done 2026-08-19 (verified by computed style, not by the file existing)
+1, 2, 3, 4, 9, 11, 13. See `app/H325-home-shadow-walkthrough-20260819.css`.
+
+## Still open
+5, 6, 7, 8, 10, 12, 14, 15.
 
 ## Method G asked for
 "I think you're gonna have to create screenshots and then just look at it. Just
