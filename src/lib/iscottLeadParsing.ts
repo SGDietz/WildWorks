@@ -8,6 +8,13 @@ export function extractProjectNeed(text: string): string | null {
   const candidate = match[1].replace(/\s+/g, " ").trim();
   if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
   if (isCoachingOrPersonaNeed(candidate)) return null;
+  // Grok, 2026-08-19: the lead for session 6f3a7caa carried project_need
+  // "Tell my phone number". G was operating the contact flow, not describing a
+  // project, and Scott would have opened that lead to read it as the job.
+  // Anything that is only about the mechanics of being contacted is not a need.
+  if (/\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i.test(candidate)) {
+    return null;
+  }
   return candidate.charAt(0).toUpperCase() + candidate.slice(1);
 }
 

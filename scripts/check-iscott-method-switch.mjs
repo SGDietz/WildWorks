@@ -65,4 +65,43 @@ assert.match(
   "a confirmed contact is still protected from being overwritten by prose",
 );
 
+
+// ---------------------------------------------------------------------------
+// Grok's Supabase forensics on the same session found three more, 2026-08-19.
+// ---------------------------------------------------------------------------
+
+// A second package must be able to go when the CONTACT changes after a send.
+// "Already handled" used to mean the whole lead was done; what was actually
+// done was one package for one contact, so a later phone number never reached
+// Scott at all.
+assert.match(
+  capture,
+  /const sentContact = row\.metadata\?\.last_sent_contact \?\? null;/,
+  "the lead records WHICH contact a package was sent to",
+);
+assert.match(
+  capture,
+  /const contactAlreadySent = Boolean\(sentContact\) && sentContact === contactHeldNow;/,
+  "handled means handled for THIS contact, not for the whole lead",
+);
+assert.match(
+  capture,
+  /last_sent_contact: notification\.queued \? sentContactValue/,
+  "the sent contact is stamped when the package actually goes",
+);
+
+// A lead must never advertise a method it holds no value for. The row that
+// started this read contact_method "phone" with phone NULL, which put an
+// unanswerable lead in front of Scott.
+assert.match(
+  capture,
+  /if \(contactMethod === "phone" && !phone && email\) contactMethod = "email";/,
+  "a method with no value falls back to the one that has a value",
+);
+assert.match(
+  capture,
+  /if \(contactMethod === "email" && !email && phone\) contactMethod = "phone";/,
+  "and the same in the other direction",
+);
+
 console.log("iScott method-switch check OK.");

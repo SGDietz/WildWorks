@@ -609,6 +609,13 @@ export async function processIScottTranscriptRows(args: {
     consentStatus = "accepted";
   }
 
+  // Grok, same forensics: the row read contact_method "phone" with phone NULL.
+  // A lead must never claim a way to be reached that it does not hold - that is
+  // what put an unanswerable lead in front of Scott. If the named method has no
+  // value, fall back to whichever one does rather than advertising an empty one.
+  if (contactMethod === "phone" && !phone && email) contactMethod = "email";
+  if (contactMethod === "email" && !email && phone) contactMethod = "phone";
+
   const hasContact = Boolean(contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone);
   let status: LeadRow["status"] = consentStatus === "declined"
     ? "declined"
@@ -690,10 +697,24 @@ export async function processIScottTranscriptRows(args: {
   // requires iScott to have asked the send/permission question first, and the
   // yes to land inside the confirmation window.
   const spokenContact = row.contact_method === "phone" ? row.phone : row.email;
+  // Grok's Supabase forensics on session 6f3a7caa, 2026-08-19: G sent an email
+  // package, then changed his mind and gave a PHONE number. The row flipped its
+  // method label to phone and Scott was never told - because "already handled"
+  // treated the whole LEAD as done, when what was done was one PACKAGE for one
+  // contact. A visitor who says "actually call me instead" has given Scott new
+  // information and it has to travel.
+  //
+  // So: handled means handled FOR THIS CONTACT. If the contact that was sent is
+  // not the contact we now hold, this is a fresh package.
+  const sentContact = row.metadata?.last_sent_contact ?? null;
+  const contactHeldNow = row.contact_method === "phone" ? row.phone : row.email;
+  const contactAlreadySent = Boolean(sentContact) && sentContact === contactHeldNow;
   const alreadyHandled =
-    row.status === "submitted" ||
-    row.notification_status === "sent" ||
-    row.notification_status === "queued";
+    contactAlreadySent ||
+    ((row.status === "submitted" ||
+      row.notification_status === "sent" ||
+      row.notification_status === "queued") &&
+      !sentContact);
   if (
     !alreadyHandled &&
     row.consent_status === "accepted" &&
@@ -978,8 +999,16 @@ export async function confirmAndSubmitIScottLead(args: {
   });
 
   const submittedAt = notification.queued ? now : null;
+  const sentContactValue = confirmed.contact_method === "phone" ? confirmed.phone : confirmed.email;
   const finalRow = await writeLead({
     ...confirmed,
+    // Stamp WHICH contact this package went to. Without it there is no way to
+    // tell "this lead was sent" from "this contact was sent", and a later change
+    // of method silently never travels.
+    metadata: {
+      ...(confirmed.metadata ?? {}),
+      last_sent_contact: notification.queued ? sentContactValue : (confirmed.metadata?.last_sent_contact ?? null),
+    },
     status: notification.queued ? "submitted" : "confirmed",
     submitted_at: submittedAt,
     notification_outbox_id: notification.outboxId,
