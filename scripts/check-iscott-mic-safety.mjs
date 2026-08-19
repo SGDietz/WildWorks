@@ -90,7 +90,14 @@ assert.equal(
 // Loading field (G 2026-08-17): the avatar's loading background is the site's
 // locked red-copper gold-reference formula, never dirt brown.
 const siteCopper = "linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%) #c44d0b !important";
-assert.equal(route.split(siteCopper).length - 1, 2, "base field and loading cover both use the site's locked copper formula");
+// G 2026-08-19: "that color needs to be changed to one of the main background
+// colors." The cover was primary #c44d0b inside a card #e96819 panel, so the
+// avatar area read as a hole punched in the card. It now matches the surface
+// it covers. Both are brand colours, so this pins WHICH goes WHERE - stricter
+// than the old count, which two wrong colours could have satisfied.
+const cardCover = "linear-gradient(180deg, #e96819 0%, #e96819 48%, #e96819 100%) #e96819 !important";
+assert.equal(route.split(siteCopper).length - 1, 1, "the base field keeps the locked copper formula");
+assert.equal(route.split(cardCover).length - 1, 1, "the loading cover matches the card it sits in");
 assert.doesNotMatch(route, /#8d5520|#774018/, "dirt-brown loading gradient is gone");
 
 console.log("iScott microphone safety checks passed");

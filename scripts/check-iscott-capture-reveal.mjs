@@ -22,8 +22,16 @@ const showLeadEnd = route.indexOf("document\.addEventListener", showLeadStart);
 const showLead = route.slice(showLeadStart, showLeadEnd);
 assert.match(showLead, /if \(!method\) return;/, "no contact UI before a visitor selects a contact method");
 assert.match(showLead, /if \(!value\) \{[\s\S]{0,1800}output\.value = ""[\s\S]{0,1800}button\.hidden = true/, "method-only state never paints or sends a contact");
-assert.match(showLead, /type or spell your email/, "email selection has a safe pre-capture path");
-assert.match(showLead, /type or say your phone number/, "phone remains a first-class pre-capture path");
+// G 2026-08-19: "just leave the box open, empty. Don't put in there type or
+// spell your." The placeholder is gone on purpose. What this guard was really
+// protecting is not - choosing a method must still open an EMPTY, USABLE field
+// before anything is captured. That is now asserted directly.
+assert.match(showLead, /output\.placeholder = ""/, "pre-capture field opens empty");
+assert.match(showLead, /output\.readOnly = false/, "and it is usable, not locked");
+assert.doesNotMatch(showLead, /type or spell your email/, "the retired placeholder has not crept back");
+// G 2026-08-19: the phone placeholder is retired for the same reason as the
+// email one - "just leave the box open, empty."
+assert.doesNotMatch(showLead, /type or say your phone number/, "the retired phone placeholder has not crept back");
 assert.match(showLead, /output\.readOnly = false/, "method-only field stays typable");
 assert.match(showLead, /output\.disabled = false/, "method-only field is not locked");
 assert.match(showLead, /revealCapturedContact\(output, visible\)/, "confirmed capture drives the reveal");

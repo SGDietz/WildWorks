@@ -109,7 +109,7 @@ const wildWorksMicrophoneSafetyScript = `
 `;
 
 const sparkleIcon =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2388421f' stroke-width='2.35' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M7 5H3'/%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23e96819' stroke-width='2.35' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M7 5H3'/%3E%3C/svg%3E";
 
 const wildWorksButtonCss = `
   <style id="wildworks-avatar-button-style">
@@ -126,7 +126,11 @@ const wildWorksButtonCss = `
       --ww-avatar-honey: #f08c28;
       --ww-avatar-parchment: #edc775;
       --ww-avatar-cream: #fce0ad;
-      --ww-avatar-button-ink: #7d2f20;
+      /* G 2026-08-19: "the finish button is still the old color." The whole
+         site moved to card #e96819 in H337; this button lives inside the
+         proxied avatar app, so no site stylesheet could ever reach it and it
+         was left behind on the old #7d2f20. */
+      --ww-avatar-button-ink: #e96819;
     }
 
     html,
@@ -232,11 +236,14 @@ const wildWorksButtonCss = `
       align-items: center !important;
       justify-content: center !important;
       gap: 0.22rem !important;
-      border: 1px solid rgba(246, 211, 154, 0.36) !important;
+      border: 1px solid #fce0ad !important;
       border-radius: 8px !important;
+      /* Same stack H337 puts on every button on the site. The old middle stops
+         #e8ad59 and #b96d2d are not WildWorks colours and were what turned the
+         lower third muddy. */
       background:
-        radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
+        radial-gradient(circle at 50% -30%, rgba(255, 250, 232, 0.95), transparent 52%),
+        linear-gradient(180deg, #fce0ad 0%, #edc775 38%, #f08c28 72%, #c44d0b 100%) !important;
       padding: 0.85rem 1rem !important;
       color: var(--ww-avatar-button-ink) !important;
       font-family: Georgia, "Times New Roman", serif !important;
@@ -245,12 +252,16 @@ const wildWorksButtonCss = `
       line-height: 1 !important;
       letter-spacing: 0 !important;
       text-decoration: none !important;
-      text-shadow: none !important;
+      /* the words carry the site's depth ink, at the 10% G asked for */
+      text-shadow:
+        rgba(35, 9, 2, 0.882) 0 0.01731em 0,
+        rgba(30, 8, 2, 0.81) 0 0.03461em 0,
+        rgba(25, 6, 1, 0.648) 0 0.05192em 0 !important;
       box-shadow:
-        0 16px 42px rgba(20, 7, 1, 0.42),
-        0 0 24px rgba(224, 168, 90, 0.18),
-        inset 0 1px 0 rgba(255, 247, 218, 0.78),
-        inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
+        0 16px 42px rgba(58, 33, 8, 0.44),
+        0 0 24px rgba(240, 140, 40, 0.22),
+        inset 0 1px 0 rgba(252, 224, 173, 0.78),
+        inset 0 -1px 0 rgba(196, 77, 11, 0.46) !important;
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease !important;
       white-space: nowrap !important;
     }
@@ -280,7 +291,9 @@ const wildWorksButtonCss = `
 
     .btn-wood:hover:not(:disabled),
     .btn-inset:hover:not(:disabled) {
-      filter: saturate(1.08) brightness(1.02) !important;
+      /* G asked for the brightnesses evened out. A button that brightens under
+         the thumb is the same defect arriving a second later. */
+      filter: none !important;
       transform: translateY(-2px) !important;
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 232, 190, 0.38) !important;
     }
@@ -459,7 +472,7 @@ const wildWorksButtonCss = `
       /* Match the site's gold btn-wood treatment. */
       background:
         radial-gradient(circle at 50% -36%, rgba(255, 247, 213, 0.92), transparent 50%),
-        linear-gradient(180deg, #ffe7af 0%, #e8ad59 42%, #b96d2d 74%, #c44d0b 100%) !important;
+        linear-gradient(180deg, #fce0ad 0%, #edc775 38%, #f08c28 72%, #c44d0b 100%) !important;
       color: #fce0ad !important;
       cursor: pointer !important;
       font: 800 1rem/1.2 Arial, sans-serif !important;
@@ -702,7 +715,7 @@ const wildWorksButtonCss = `
     }
 
     #wildworks-avatar-legal-band a:focus-visible {
-      outline: 2px solid #ffe7af !important;
+      outline: 2px solid #fce0ad !important;
       outline-offset: 2px !important;
     }
 

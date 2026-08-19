@@ -1084,7 +1084,10 @@ assert.match(overlayCss, /stopNowWithoutReload/, "L67 Finish stops without reloa
 assert.match(overlayCss, /\^finish\$/, "L67 Finish click is intercepted");
 assert.doesNotMatch(overlayCss, /positionAboveConversationControl/, "L64 do not measure Finish to place the card");
 assert.match(overlayCss, /z-index: 60 !important/, "L63/66 card COVERS Finish while open (G rev 2, 2026-08-17)");
-assert.match(overlayCss, /bottom: calc\(1\.9rem/, "L65/77 card sits down over the Finish zone, not over the face");
+// G 2026-08-19: "the box is still too high. It's like right at iScott's lips."
+// The INTENT of this guard is unchanged - the card sits LOW, over the Finish
+// zone and never over his face - only the number moved further down.
+assert.match(overlayCss, /bottom: calc\(0\.55rem/, "L65/77 card sits down over the Finish zone, not over the face");
 assert.match(overlayCss, /data-empty="true"/, "L76 empty media is marked");
 assert.match(overlayCss, /#wildworks-lead-media\[data-empty="true"\]/, "L76 empty media hidden");
 assert.match(overlayCss, /iscott_ui_confirm_tap/, "L85 confirm tap log");
