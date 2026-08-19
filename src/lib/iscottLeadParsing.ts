@@ -1228,3 +1228,91 @@ export function detectsContextualContactSendConfirmation(
   }
   return false;
 }
+
+// G, 2026-08-19: "I definitely want to qualify leads. iScott can definitely
+// further probe people with questions on how serious they are, and then you guys
+// can put that in the report."
+//
+// Deterministic on purpose. This reads what the VISITOR actually said and quotes
+// it back; it never scores a stranger on a hunch. Scott is going to ring these
+// people, and a lead labelled "hot" on a guess wastes his afternoon worse than
+// one labelled "unknown" honestly.
+//
+// Every field is either the visitor's own words or null. Null means "they did not
+// say", which is real information and is reported as such.
+export type LeadQualification = {
+  timeline: string | null;
+  budget: string | null;
+  ownership: string | null;
+  competing: string | null;
+  readiness: "ready" | "planning" | "early" | "unknown";
+  signals: string[];
+};
+
+const QUAL_PATTERNS: Array<{
+  key: "timeline" | "budget" | "ownership" | "competing";
+  re: RegExp;
+}> = [
+  { key: "timeline", re: /\b(?:as soon as possible|asap|right away|immediately|this (?:week|month|spring|summer|fall|autumn|winter|year)|next (?:week|month|spring|summer|fall|year)|within (?:a|the|\d+)\s*(?:week|weeks|month|months)|by (?:spring|summer|fall|autumn|winter|christmas|the end of[^.!?]{0,24})|in the spring|in the fall|no rush|not in a hurry|just (?:looking|browsing|starting)|down the road|someday|eventually)\b/i },
+  { key: "budget", re: /\b(?:budget|\$\s?\d[\d,]*|\d+\s*(?:k\b|thousand)|price range|ballpark|how much|afford|spend(?:ing)?\b|quote|estimate|financing)\b/i },
+  { key: "ownership", re: /\b(?:my (?:house|home|property|yard|backyard|land|place)|we own|i own|our (?:house|home|property|yard)|just bought|closing on|renting|landlord|hoa\b)\b/i },
+  { key: "competing", re: /\b(?:another (?:contractor|company|quote|bid)|other (?:contractors|companies|quotes|bids)|shopping around|comparing|second opinion|already (?:have|got) a quote|talked to (?:a|another|some) (?:contractor|builder|landscaper))\b/i },
+];
+
+// Wording that means the visitor is ready to move, versus wording that means they
+// are a long way off. Kept separate from the patterns above so a "no rush" cannot
+// be mistaken for a timeline commitment.
+const READY_NOW = /\b(?:as soon as possible|asap|right away|immediately|this (?:week|month)|ready to (?:go|start|book)|when can (?:he|scott|you) (?:start|come)|need (?:this|it) done)\b/i;
+const EARLY_ONLY = /\b(?:just (?:looking|browsing|curious|starting)|no rush|not in a hurry|down the road|someday|eventually|next year|thinking about)\b/i;
+
+export function summariseLeadQualification(visitorTexts: string[]): LeadQualification {
+  const clean = visitorTexts
+    .map((t) => (t || "").replace(/\s+/g, " ").trim())
+    .filter((t) => t.length > 2);
+  const joined = clean.join(" ");
+
+  const found: Record<string, string | null> = {
+    timeline: null, budget: null, ownership: null, competing: null,
+  };
+  const signals: string[] = [];
+
+  for (const { key, re } of QUAL_PATTERNS) {
+    for (const line of clean) {
+      const m = line.match(re);
+      if (!m) continue;
+      // Quote the visitor's sentence, not the matched fragment - Scott needs the
+      // context, and a bare keyword is how a lead gets misread.
+      const quote = line.length > 160 ? `${line.slice(0, 157)}...` : line;
+      found[key] = quote;
+      signals.push(`${key}: "${quote}"`);
+      break;
+    }
+  }
+
+  const readyNow = READY_NOW.test(joined);
+  const earlyOnly = EARLY_ONLY.test(joined);
+  let readiness: LeadQualification["readiness"] = "unknown";
+  if (readyNow && !earlyOnly) readiness = "ready";
+  else if (earlyOnly && !readyNow) readiness = "early";
+  else if (found.timeline || found.budget || found.ownership) readiness = "planning";
+
+  return {
+    timeline: found.timeline,
+    budget: found.budget,
+    ownership: found.ownership,
+    competing: found.competing,
+    readiness,
+    signals,
+  };
+}
+
+// Pull the VISITOR lines back out of a rendered transcript so the email can
+// qualify without needing the raw rows. Anything that is not clearly a visitor
+// line is ignored rather than guessed at.
+export function visitorLinesFromTranscript(transcript: string): string[] {
+  return (transcript || "")
+    .split(/\r?\n/)
+    .filter((line) => /^VISITOR:/i.test(line.trim()))
+    .map((line) => line.replace(/^\s*VISITOR:\s*/i, "").trim())
+    .filter(Boolean);
+}

@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { randomUUID } from "node:crypto";
 import { truncateUtf8String } from "./apiRouteSecurity";
+import { summariseLeadQualification, visitorLinesFromTranscript } from "./iscottLeadParsing";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
 import { safeJsonPayload } from "./telemetryServer";
 import {
@@ -904,6 +905,34 @@ export async function notifyIScottLeadByEmail(
     summaryMedia +
     ` Confirmed ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`;
 
+  // G, 2026-08-19: "I definitely want to qualify leads... he can further probe
+  // people with questions on how serious they are, and then you guys can put that
+  // in the report."
+  //
+  // Read off the transcript, quoting the visitor. No score is invented: where
+  // they said nothing, it says so. Scott is going to ring these people, and a
+  // lead marked hot on a hunch wastes his afternoon worse than one marked
+  // unknown honestly.
+  const qual = summariseLeadQualification(visitorLinesFromTranscript(args.transcript ?? ""));
+  const READINESS_COPY: Record<string, string> = {
+    ready: "READY NOW - they asked to get moving",
+    planning: "PLANNING - real project, no date named",
+    early: "EARLY - looking around, not ready",
+    unknown: "NOT ESTABLISHED - iScott did not get a read",
+  };
+  const qualRows: Array<[string, string | null]> = [
+    ["Readiness", READINESS_COPY[qual.readiness] ?? READINESS_COPY.unknown],
+    ["Timeline", qual.timeline],
+    ["Budget talk", qual.budget],
+    ["Property", qual.ownership],
+    ["Other contractors", qual.competing],
+  ];
+  const qualText = qualRows
+    .filter(([, v]) => Boolean(v))
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("\n");
+  const qualTextBlock = `\n\nHOW SERIOUS\n${qualText}${qual.signals.length ? "" : "\nNothing else was said about timing, budget or ownership."}`;
+
   const subjectLocation = location ? ` — ${location}` : "";
   const subject = truncateUtf8String(`New iScott lead — ${fullName}${subjectLocation}`, 220);
   const detailsText = [
@@ -927,7 +956,7 @@ export async function notifyIScottLeadByEmail(
   // Transcript is deliberately NOT inlined any more. G: "I shouldn't need the
   // full transcript in the email. That button open transcript, as long as it
   // works, is great." The dashboard link is still in the details above.
-  const text = `SUMMARY\n${summary}\n\n${detailsText.join("\n")}${mediaText}`;
+  const text = `SUMMARY\n${summary}${qualTextBlock}\n\n${detailsText.join("\n")}${mediaText}`;
 
   const detailRows = [
     ["Name", fullName],
@@ -958,7 +987,7 @@ export async function notifyIScottLeadByEmail(
         return `<li style="margin:0 0 16px"><strong>${escapeHtml(item.name)}</strong><br><span style="color:#6d5a49">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
       }).join("")
     : "<li>None.</li>";
-  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><div style="margin:0 0 22px;padding:16px 18px;background:#f9edd6;border-left:4px solid #a44b20;border-radius:8px"><p style="margin:0 0 6px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Summary</p><p style="margin:0;font-size:15px;line-height:1.55;color:#4a2410">${escapeHtml(summary)}</p></div><table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Photos, Videos and Files</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
+  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><div style="margin:0 0 22px;padding:16px 18px;background:#f9edd6;border-left:4px solid #a44b20;border-radius:8px"><p style="margin:0 0 6px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Summary</p><p style="margin:0;font-size:15px;line-height:1.55;color:#4a2410">${escapeHtml(summary)}</p></div>${qualRows.filter(([, v]) => Boolean(v)).length ? `<div style="margin:0 0 22px;padding:16px 18px;background:#fff4e2;border:1px solid #e2c18b;border-radius:8px"><p style="margin:0 0 10px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">How serious</p><table style="width:100%;border-collapse:collapse">${qualRows.filter(([, v]) => Boolean(v)).map(([label, value]) => `<tr><td style="width:150px;padding:5px 12px 5px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:5px 0;font-weight:600;white-space:pre-wrap">${escapeHtml(String(value))}</td></tr>`).join("")}</table></div>` : ""}<table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Photos, Videos and Files</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
 
   return deliverVoiceEmail({
     eventType: "iscott_lead",
