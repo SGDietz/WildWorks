@@ -23,7 +23,7 @@ export default function TheRuins() {
                 <h1 className="mb-4 text-3xl sm:mb-6 sm:text-5xl">The Ruins</h1>
                 <p className="text-white/90 pb-2">Federal Hill, Baltimore City, Maryland</p>
                 <div className="space-y-2 leading-relaxed">
-                    <p>My client asked me, &quot;What do you see here?&quot;</p>
+                    <p className="wild-ruins-body">My client asked me, &quot;What do you see here?&quot;</p>
                     <p>
                         I stood there looking at their Normie Back Yard—flowers, mulch, a gravel walk, and a wooden bench—and not only was there no there there, but I felt like, given the location, this area needed a story.
                     </p>
@@ -74,7 +74,7 @@ export default function TheRuins() {
             <section className="wild-subpage-section discordSection discordSection--3 px-4 text-white mx-auto w-full sm:px-6 sm:pt-2">
                 <div className="wild-ruins-rail">
                 <h2 className="text-xl mb-2">Building the Ruins</h2>
-                <p className="leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
+                <p className="wild-ruins-body leading-relaxed mb-4">The finished space was built to feel wild and real, with:</p>
                 <ul className="list-disc list-outside space-y-2 leading-relaxed mb-2 pl-6">
                     <li>Bluestone patios and a walk</li>
                     <li>Seating placed where you&apos;d naturally want to sit</li>
@@ -143,7 +143,7 @@ export default function TheRuins() {
                     <p>I&apos;ll happily come over to your house, or jump on a video call with you, wherever you are in the world, to discuss ideas.</p>
                     <p>The “Ruin” concept can go a hundred directions, and it can be purpose-built to suit your life&apos;s needs. Your Ruin could be:</p>
                     <ul className="list-disc list-outside space-y-2 leading-relaxed mb-2 pl-6">
-                        <li className="leading-[2]">
+                        <li className="wild-ruins-list-item leading-[2]">
                             The remains of the original farmhouse that &quot;predates the neighborhood,&quot;
                             where the gnarly, jagged, broken base of an old stone chimney becomes
                              a modern, purpose built, working wood-fire feature—surrounded by stone floors with intentionally fractured edges.
@@ -152,16 +152,16 @@ export default function TheRuins() {
                         {/* <li>
                             <strong>Collapsed stone garden walls</strong> from an old stone building that become natural boulder seating, like the structure simply fell into place over time.
                         </li> */}
-                        <li className="leading-[2]">
+                        <li className="wild-ruins-list-item leading-[2]">
                             A Gristmill Ruin beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
                         </li>
-                        <li className="leading-[2]">
+                        <li className="wild-ruins-list-item leading-[2]">
                             Something along the lines of a &quot;Crumbling Roman-Style Bathhouse&quot; that could feel like it has been there for centuries. Low, arched stone walls remain from what once formed the bathhouse rooms. Some walls stand waist-high, others rise taller, broken irregularly as if the centuries simply took their toll. In the ground lie half-sunken bathing basins, their stone edges softened by time. Clear water flows gently through them, as if an old natural spring still feeds the baths. Small channels
                             guide the water from one basin to the next, echoing the way Roman baths once circulated water through different pools.
                             Everything appears aged, imperfect, and naturally deteriorated—yet beneath the historic look is a fully modern, purpose built system.
                             The “ancient” baths can operate as a hot tub, a plunge or lap pool, or even part of a larger swimming pool design.
                         </li>
-                        <li className="leading-[2]">
+                        <li className="wild-ruins-list-item leading-[2]">
                             A Ruin of any type that&apos;s half gathering space, half sanctuary—something you&apos;ll use constantly,
                             and that people will talk about forever.
                         </li>
