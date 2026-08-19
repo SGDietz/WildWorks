@@ -66,7 +66,33 @@ const wildWorksMicrophoneSafetyScript = `
       const sanitizeRawMicrophoneWarning = () => {
         if (!document.body) return;
 
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        // NEVER WALK INTO SCRIPT OR STYLE. A script element's source IS a text
+        // node, so without this filter the sanitizer rewrites the SOURCE CODE of
+        // any injected script whose text happens to contain one of the markers -
+        // and "getUserMedia" is a marker.
+        //
+        // That is not hypothetical. On 2026-08-19 the mic-gated pause was moved
+        // into wildworks-avatar-capture-bridge, its comments mention
+        // getUserMedia, and this walker replaced THAT ENTIRE SCRIPT with the
+        // 72-character warning sentence. The script never ran: no pace marks, no
+        // transcript sync, no lead capture. G rode iScott and Supabase recorded a
+        // token and nothing else. It looked exactly like the earlier "two whole
+        // conversations recorded nothing" incident, and it had the same shape -
+        // a live script silently replaced rather than a logic bug.
+        //
+        // The markers describe VISITOR-FACING COPY. They have no business
+        // matching machine text, and script and style are never visitor-facing.
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode: (candidate) => {
+            const owner = candidate.parentElement;
+            if (!owner) return NodeFilter.FILTER_REJECT;
+            const tag = owner.tagName;
+            if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEMPLATE" || tag === "NOSCRIPT") {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        });
         const rawNodes = [];
         let node = walker.nextNode();
         while (node) {
