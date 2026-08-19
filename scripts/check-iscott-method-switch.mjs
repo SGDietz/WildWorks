@@ -1,4 +1,6 @@
-// G's ride, Supabase session 6f3a7caa, 2026-08-19 03:52.
+// G's rides, Supabase sessions 6f3a7caa (2026-08-19 03:52) and 89c453ff
+// (2026-08-19 12:23). Read item 3 below before changing anything here - the
+// second ride REVERSED what the first one taught.
 //
 // He gave an email, confirmed it, then changed his mind and asked to be reached
 // by PHONE, and read the number out. iScott read it back correctly and said it
@@ -33,16 +35,34 @@ assert.match(
   "a method switch can still capture its value past a confirmed contact",
 );
 
-// 3. The abandoned method's value must not ride along on the new lead.
-assert.match(
+// 3. REVERSED 2026-08-19 after ride 89c453ff. This used to assert that a switch
+// DROPPED the abandoned method's value. That dropping destroyed one contact per
+// switch, and a ride that flips method twice destroyed both - the lead row came
+// out with email NULL and phone NULL while the mail to Scott already carried the
+// phone. G had asked for both to be kept, in those words, on the same ride.
+//
+// A captured contact value is never destroyed. Assert the nulling is GONE, so a
+// later tidy-up cannot quietly restore it.
+assert.doesNotMatch(
   capture,
-  /if \(methodSwitched\) \{[\s\S]{0,400}if \(methodOnly === "phone"\) email = null;/,
-  "switching to phone drops the stale email",
+  /if \(methodSwitched\) \{[\s\S]{0,600}if \(methodOnly === "phone"\) email = null;/,
+  "a method switch must NOT destroy a captured email",
 );
-assert.match(
+assert.doesNotMatch(
   capture,
-  /if \(methodSwitched\) \{[\s\S]{0,400}if \(methodOnly === "email"\) phone = null;/,
-  "switching to email drops the stale phone",
+  /if \(methodSwitched\) \{[\s\S]{0,600}if \(methodOnly === "email"\) phone = null;/,
+  "a method switch must NOT destroy a captured phone",
+);
+
+// 3b. Scott must be told EVERY way the visitor left to reach him, not only the
+// preferred one. G, ride 89c453ff: "it should say phone and email sent." The
+// notification body already lists both; assert it, because item 3 above now
+// guarantees both can survive to reach it.
+const notify = await readFile("src/lib/voiceEmailNotifications.ts", "utf8");
+assert.match(
+  notify,
+  /email \? `Email: \$\{email\}` : null,[\s\S]{0,40}phone \? `Phone: \$\{phone\}` : null,/,
+  "the lead email lists every contact the lead holds, not just the preferred one",
 );
 
 // 4. A switch must re-open consent - the new value has not been confirmed yet.

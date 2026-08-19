@@ -561,11 +561,25 @@ export async function processIScottTranscriptRows(args: {
       email = nextEmail ?? email;
       phone = nextPhone ?? phone;
     }
+    // G's ride 89c453ff, 2026-08-19 12:23. The lead row came out with BOTH
+    // email and phone NULL while the mail to Scott carried the phone - the row
+    // hollowed out behind a lead that had already gone. Dropping the abandoned
+    // method destroyed one value per switch, and G's later turns flipped the
+    // method more than once, so both were destroyed.
+    //
+    // The dropping was mine, from the 6f3a7caa fix hours earlier, and it was the
+    // wrong lesson. That lead failed because the PHONE was never captured, not
+    // because the email rode along. G, on this ride, asked for the opposite of
+    // dropping: "let me give you my phone number also, and Scott can reach out
+    // with me either way."
+    //
+    // So: a captured contact value is NEVER destroyed. Switching method changes
+    // which one Scott is asked to use first; it does not throw away a way to
+    // reach the visitor. The read-back still has to confirm the new value, which
+    // is what clearing the confirmation below is for.
     if (methodSwitched) {
       contactConfirmedAt = null;
       consentStatus = "unknown";
-      if (methodOnly === "phone") email = null;
-      if (methodOnly === "email") phone = null;
     }
     contactMethod = methodOnly ?? contactMethod;
 
