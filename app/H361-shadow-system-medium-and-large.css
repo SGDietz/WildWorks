@@ -1,0 +1,158 @@
+/* H361 — ONE SHADOW SYSTEM for medium and large text, all five content pages.
+ *
+ * >>> NO SMALL TEXT IS TOUCHED BY THIS FILE. NOT ONE SELECTOR. <<<
+ * G: "DON'T DO ANY SMALL TEXT. Don't do any small text... no small text for
+ * anything we've been discussing here. SUPER IMPORTANT. Don't change anything.
+ * I think I like all the small text."
+ * The H350 body ladder is untouched and every body-copy class is absent below.
+ *
+ * G, 2026-08-19: "Find that uniform with all the different sizes... err on the
+ * side of a little bit heavier, just a smidge. Just do the bigger text, and the
+ * text in the cards and things."
+ *
+ * ============ THE TWO ANCHORS HE GAVE ME, MEASURED ============
+ * He pointed at two things in the same breath, on the same screen:
+ *
+ *   "Let's Talk About Your Dream Project."   32.101px   HE SAID: great, love it,
+ *       0.7 / 1.6 / 2.7 / 3.9px  =  .021806 / .049843 / .084110 / .121492em
+ *       alphas .97 / .89 / .80 / .66                     maybe a touch heavy
+ *
+ *   "START THE CONVERSATION NOW"             40px       HE SAID: too light
+ *       0.574 / 1.3016 / 2.2008 / 3.0624px  =  .01435 / .03254 / .05502 / .07656em
+ *
+ * THAT SECOND ONE IS THE H350 BODY-TEXT LADDER. A 40px display line has been
+ * wearing the small-text shadow. That is not a taste problem, it is a display
+ * line in the wrong class of shadow — which is exactly why it reads light next
+ * to a 32px line that looks right to him.
+ *
+ * ============ WHY ONE em RATIO IS NOT ACTUALLY UNIFORM ============
+ * He asked for uniform across all the different sizes. A single em ratio does
+ * not give that, and the proof is in his own two verdicts today:
+ *     Ruins h1, 88.79px, .0163em  -> 1.45px first stop, 8.05px deep  -> TOO HEAVY
+ *     Let's Talk, 32.1px, .0218em -> 0.70px first stop, 3.90px deep  -> GREAT
+ * The HIGHER ratio is the one he likes, on the SMALLER type. Shadow depth has to
+ * grow SLOWER than the type or big headings turn into slabs. So the system is
+ * three bands, same shape, same inks, ratio stepping down as type grows:
+ *
+ *     MEDIUM   24-48px    .021806 / .049843 / .084110 / .121492em   <- his anchor, unchanged
+ *     LARGE    48-80px    .016000 / .036571 / .061714 / .089143em
+ *     XL       80px+      .012500 / .028571 / .048214 / .069643em
+ *
+ * Every band keeps the anchor's proportions (1 : 2.286 : 3.857 : 5.571) and its
+ * alphas (.97 / .89 / .80 / .66). House ink only. ZERO BLUR anywhere — blur is
+ * what reads as smudge and it is why so much of the subpage type looks muddy.
+ *
+ * SANITY CHECK against what he has already ruled on:
+ *   START THE CONVERSATION 40px   .574 -> .874px   +52% heavier   he asked for heavier
+ *   Let's Talk        32.1px      unchanged                        he said it is right
+ *   phone numbers     93.6px      .80  -> 1.17px   +46%            he asked for ~50%
+ *   Ruins h1          88.8px      1.45 -> 1.11px                   lighter than the
+ *                                 value he called too heavy, heavier than the halved
+ *                                 one he accepted — "a smidge heavier", as asked
+ *
+ * ============ WEIGHT — WHY THE SELECTORS LOOK LIKE THAT ============
+ * I PREFLIGHTED THIS FILE AGAINST THE LIVE PAGE BEFORE SENDING IT. As plain
+ * classes, ALL THREE BANDS LOST:
+ *     medium band  vs a 152-id !important rule
+ *     large band   vs a  64-id !important rule
+ *     XL band      vs a  28-id !important rule
+ * It would have installed green and changed nothing. So each band now carries
+ * 400 ids, written as :not(#_) x400 because that is far shorter on the page than
+ * #wildworks-body x400 and counts the same.
+ *
+ * 200 was not enough. PREFLIGHTED AT 200 AGAINST ALL FIVE PAGES AND THE LARGE
+ * BAND STILL LOST ON THE RUINS, to a 294-id !important rule. 400 clears that and
+ * every other competitor I found, and stays far
+ * under the 6090-id button rule, which this file does not go near.
+ *
+ * If you would rather edit those three authorities in place than carry another
+ * layer, DO — the values are all here and an in-place edit is cleaner. This is
+ * written to land as-is because you are buried and I would rather hand you
+ * something that works than something that needs a decision first.
+ */
+
+/* ============ MEDIUM BAND, 24-48px  —  his anchor, verbatim ============ */
+html body:not(:has(.wild-legal-home)) :is(
+  .wild-footer-contact-cta__kicker,
+  .wild-footer-contact-cta__kicker-line,
+  .wild-signup-title,
+  .wild-projects-click-note,
+  .wild-footer-stonework-note,
+  .wild-footer-stonework-note__second-line,
+  .money-panel-kicker,
+  .wild-kicker,
+  .wild-kicker-frame,
+  .wild-wildfire-build-note__line
+):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  text-shadow:
+    rgba(35, 9, 2, 0.97) 0 0.021806em 0,
+    rgba(30, 8, 2, 0.89) 0 0.049843em 0,
+    rgba(25, 6, 1, 0.80) 0 0.084110em 0,
+    rgba(25, 6, 1, 0.66) 0 0.121492em 0 !important;
+}
+
+/* ============ LARGE BAND, 48-80px ============ */
+html body:not(:has(.wild-legal-home)) :is(
+  .wild-home-statement__phrase,
+  .wild-home-statement__line,
+  .wild-start-title__start,
+  .wild-start-title__with,
+  .wild-start-title__name,
+  .wild-projects-page-intro__line,
+  .wild-signature-title__line,
+  .wild-signature-title__two,
+  .wild-signature-title__three,
+  .wild-hero-headline__line,
+  .wild-hero-lede-line,
+  .wildfire-hero-headline__line,
+  .wildfire-hero-summary__line
+):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  text-shadow:
+    rgba(35, 9, 2, 0.97) 0 0.016000em 0,
+    rgba(30, 8, 2, 0.89) 0 0.036571em 0,
+    rgba(25, 6, 1, 0.80) 0 0.061714em 0,
+    rgba(25, 6, 1, 0.66) 0 0.089143em 0 !important;
+}
+
+/* ============ EXTRA LARGE BAND, 80px+  —  the big phone numbers live here ============ */
+html body:not(:has(.wild-legal-home)) :is(
+  .wild-phone-number-line > a[href^="tel:"],
+  .wild-projects-page-title,
+  .wildfire-page-heading__project,
+  .wildfire-page-heading__wildfire,
+  .wildfire-hero-kicker__cap
+):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  text-shadow:
+    rgba(35, 9, 2, 0.97) 0 0.012500em 0,
+    rgba(30, 8, 2, 0.89) 0 0.028571em 0,
+    rgba(25, 6, 1, 0.80) 0 0.048214em 0,
+    rgba(25, 6, 1, 0.66) 0 0.069643em 0 !important;
+}
+
+/* ===========================================================================
+ * DELIBERATELY NOT IN THIS FILE
+ *
+ * ALL SMALL TEXT. Every body-copy class, every paragraph, every list item,
+ *   the signup fine print, the disclosures, the card body, the step copy, the
+ *   footer legal links, the copyright line. NONE of it is named above. He said
+ *   don't touch it and I have not.
+ *
+ * EVERY BUTTON AND BUTTON LABEL. Packets F, H and K set those and he has looked
+ *   at them and approved them.
+ *
+ * "Let's Talk About Your Dream Project." — .wild-footer-contact-cta__title is
+ *   the ANCHOR. It already carries these exact medium-band values. Naming it
+ *   would only restate what is true and risk moving it. Left alone on purpose.
+ *
+ * THE RUINS HEADINGS — H358 halves them and he approved that. This file does not
+ *   name them, so H358 stands. If you install both, check the Ruins h1 and h2
+ *   still read as he wants them.
+ *
+ * THE SIX LEGAL PAGES — guarded out with :not(:has(.wild-legal-home)).
+ *
+ * THE SIX SERVICE CARD TITLES, #services .wild-line-title__line, 17.5px.
+ *   He said "the text in the cards and things" AND "no small text". At 17.5px
+ *   those titles are SMALLER than the 19.66px card body he told me not to touch.
+ *   I could not resolve that from his words and I am NOT guessing. QUESTION IS
+ *   WITH HIM. One word and they join the medium band.
+ * ======================================================================== */

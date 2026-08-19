@@ -9,13 +9,17 @@ export default function ProjectsPage() {
       <ProjectsGallery />
       {/* G 2026-08-18: the grid does not look clickable, same problem the
           Wildfire carousel had. */}
-      <p className="wild-projects-click-note">Click to Enlarge</p>
+      <p className="wild-projects-click-note">Click on Any Image for the 98 Pic Carousel</p>
       {/* G 2026-08-19: "much larger, like double the size of that font and
           maybe three or four lines. Do three lines and do colors one two three."
           Split into three spans so each line can carry its own brand colour -
           one element cannot be three colours. Wording unchanged. */}
       <p className="wild-projects-page-intro">
-        <span className="wild-projects-page-intro__line wild-projects-page-intro__line--one">WildWorks Designs and Builds Complete Outdoor Environments.</span>
+        <span className="wild-projects-page-intro__line wild-projects-page-intro__line--one">
+          <span className="wild-projects-page-intro__part--a">WildWorks Designs and Builds</span>
+          {" "}
+          <span className="wild-projects-page-intro__part--b">Complete Outdoor Environments.</span>
+        </span>
         <span className="wild-projects-page-intro__line wild-projects-page-intro__line--two">Each Project is Shaped Around the Land</span>
         <span className="wild-projects-page-intro__line wild-projects-page-intro__line--three">and How its Owners Want to Live.</span>
       </p>

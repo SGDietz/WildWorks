@@ -340,7 +340,7 @@ export default function Footer() {
             variants={fadeInUp}
             style={{ marginTop: 0, whiteSpace: "normal" }}
           >
-            Let&apos;s Talk About Your Dream Project.
+            Let&apos;s Talk About Your Dream Project
           </motion.h2>
           <motion.div className="wild-footer-contact-cta__actions" variants={fadeInUp}>
             <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
