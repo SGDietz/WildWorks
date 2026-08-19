@@ -185,7 +185,7 @@ export default function Wildfire() {
           below. 98 = the 93 construction photos plus the 5 finished ones, i.e.
           wildfireViewerImages.length - the number the lightbox actually walks. */}
       <p className="wildfire-gallery-rolodex-note">
-        Click on Any Pic to Flip Through the {wildfireViewerImages.length} Picture Carousel.
+        Click on Any Image for the {wildfireViewerImages.length} Pic Carousel
       </p>
       <div className="wildfire-gallery-home-contact">
         <PhoneNumberLine
