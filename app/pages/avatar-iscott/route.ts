@@ -1845,18 +1845,33 @@ const wildWorksLeadConfirmationScript = `
         const panel = document.getElementById("wildworks-lead-confirmation");
         if (!panel || !activeLead || dismissed) return;
         panel.style.removeProperty("--wildworks-lead-top");
-        const buttons = document.querySelectorAll("button");
-        let finish = null;
-        for (const button of buttons) {
-          if (/^finish$/i.test((button.textContent || "").trim())) {
-            finish = button;
-            break;
+        // Prefer the marked button. The text match is a fallback for the case
+        // where the avatar app has not been tagged yet on this paint.
+        let finish = document.querySelector("[data-ww-finish]");
+        if (!finish) {
+          for (const button of document.querySelectorAll("button")) {
+            if (/^finish$/i.test((button.textContent || "").trim())) { finish = button; break; }
           }
         }
         const rect = finish && finish.getBoundingClientRect ? finish.getBoundingClientRect() : null;
         if (rect && rect.height > 0 && rect.top > 0 && rect.top < window.innerHeight) {
-          const lift = Math.round(window.innerHeight - rect.top + 12);
-          panel.style.setProperty("bottom", lift + "px", "important");
+          // G has now said this four times, and the old arithmetic was the exact
+          // opposite of the ask:
+          //     lift = innerHeight - rect.TOP + 12
+          // put the card's bottom edge 12px ABOVE the top of Finish, which is
+          // why his screenshot shows it floating on iScott's chest with the
+          // button clear underneath it. G, 2026-08-19: "it's not over the finish
+          // button", "it's like a cross, iScott's shoulders, it needs to be
+          // across the finish button."
+          //
+          // Anchor to the BOTTOM of Finish instead, and overhang it slightly, so
+          // the card covers the button rather than stopping short of it. The
+          // card grows upward from here, so covering the bottom edge covers the
+          // whole button. Measured live each time it is shown, so it lands right
+          // on any device instead of relying on a guessed offset.
+          const OVERHANG_PX = 6;
+          const lift = Math.round(window.innerHeight - rect.bottom - OVERHANG_PX);
+          panel.style.setProperty("bottom", Math.max(0, lift) + "px", "important");
         } else {
           panel.style.removeProperty("bottom");
         }
