@@ -354,7 +354,7 @@ const wildWorksButtonCss = `
          Arial was never the brand face either. The site's body copy is Cambria;
          the stack is hardcoded because this CSS is injected into the proxied
          avatar app, where globals.css custom properties do not resolve. */
-      color: #c44d0b !important;
+      color: #fce0ad !important;
       font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
       pointer-events: none !important;
       text-align: center !important;
@@ -375,7 +375,9 @@ const wildWorksButtonCss = `
          footprint so it cannot reach his face. */
       max-width: min(19rem, 88vw) !important;
       margin: 0 auto !important;
-      padding: 0.5rem 0.85rem !important;
+      /* G: "the size, it could be a little shorter. It doesn't have to be
+         quite so tall." Vertical padding down, horizontal untouched. */
+      padding: 0.34rem 0.85rem !important;
       /* G 2026-08-19: "it needs to be brand colors." Off the old wood browns and
          onto the locked five: primary field, card-colour border, text-3 glow. */
       /* G ride 89c453ff, 2026-08-19: "the colors are awful" / "way too dark" /
@@ -401,11 +403,17 @@ const wildWorksButtonCss = `
          is one line of type, this is a panel with a field inside it, and taking
          the ramp all the way to primary would bury the label in the dark end.
          Same family, same shine, readable at panel height. */
+      /* G, ride b1dd603f: "do the box as the main thing as the primary
+         background color. Use a little box where your actual email goes as the
+         secondary color... I think the box is the card color. So keep that."
+         So: outer panel PRIMARY, inner field CARD, and the three text colours
+         inside. He also said "the size, it could be a little shorter."
+         This replaces the cream panel I tried an hour ago - his call, his eye. */
       border: 1px solid #fce0ad !important;
       border-radius: 8px !important;
       background:
-        radial-gradient(circle at 50% -30%, rgba(255, 250, 232, 0.95), transparent 52%),
-        linear-gradient(180deg, #fce0ad 0%, #edc775 46%, #f08c28 100%) !important;
+        radial-gradient(circle at 50% -30%, rgba(252, 224, 173, 0.20), transparent 58%),
+        #c44d0b !important;
       box-shadow:
         inset 0 1px 0 rgba(255, 250, 232, 0.85),
         inset 0 -1px 0 rgba(196, 77, 11, 0.35),
@@ -419,9 +427,9 @@ const wildWorksButtonCss = `
       gap: 0.5rem !important;
       /* G 2026-08-19: "your email, the words are too close to the box." */
       margin: 0 0 0.42rem !important;
-      /* Flipped to dark ink 2026-08-19 with the box going cream. #edc775 on a
-         cream field is unreadable - the label has to invert with the surface. */
-      color: #c44d0b !important;
+      /* G, ride b1dd603f: "do the words your email in color number one."
+         Back to text-1 now the panel is primary again. */
+      color: #fce0ad !important;
       font-size: 0.72rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.18em !important;
@@ -431,9 +439,15 @@ const wildWorksButtonCss = `
 
     .wildworks-lead-label-icon {
       display: inline-flex !important;
-      /* G 2026-08-19: "the little email icon should be a little bigger" */
-      width: 1.35rem !important;
-      height: 1.35rem !important;
+      /* G, ride b1dd603f: "you can't see the little piece of mail. It needs to
+         be bigger. The little piece of mail needs to be at least as big as the
+         letters." The label is 1.3rem on a phone, so the icon matches it and
+         then some - 1.5em keeps it tied to the label's own size rather than a
+         fixed rem that stops tracking when the label scales.
+         "Do the envelope icon in color text number two." */
+      width: 1.5em !important;
+      height: 1.5em !important;
+      flex: 0 0 auto !important;
       color: #edc775 !important;
       letter-spacing: 0 !important;
       line-height: 1 !important;
@@ -448,7 +462,7 @@ const wildWorksButtonCss = `
       box-sizing: border-box !important;
       display: block !important;
       width: 100% !important;
-      min-height: 2.75rem !important;
+      min-height: 2.4rem !important;
       margin: 0 auto !important;
       padding: 0.28rem 0.5rem !important;
       border: 1px solid #f08c28 !important;
@@ -463,10 +477,13 @@ const wildWorksButtonCss = `
       /* G 2026-08-19: "the colors are awful. My God." Off the improvised brown
          and onto the brand card surface, the same one every panel on the site
          uses, with Colour 1 ink. */
+      /* G, ride b1dd603f: "I think the box is the card color. So keep that." -
+         the field stays card #e96819. "And then inside the box, write email or
+         phone number in text color number two." */
       background: #e96819 !important;
-      color: #fce0ad !important;
-      -webkit-text-fill-color: #fce0ad !important;
-      caret-color: #edc775 !important;
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+      caret-color: #fce0ad !important;
       /* G ride 89c453ff, 2026-08-19: "the phone number is not in the brand font."
          It was monospace, chosen for digit legibility. He is looking at his own
          number in a face that appears nowhere else on the site. The site's body
@@ -487,8 +504,8 @@ const wildWorksButtonCss = `
     #wildworks-lead-value:-webkit-autofill:hover,
     #wildworks-lead-value:-webkit-autofill:focus,
     #wildworks-lead-value:-webkit-autofill:active {
-      -webkit-text-fill-color: #fce0ad !important;
-      caret-color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+      caret-color: #fce0ad !important;
       -webkit-box-shadow: 0 0 0 1000px #e96819 inset !important;
       box-shadow: 0 0 0 1000px #e96819 inset !important;
     }
@@ -593,7 +610,7 @@ const wildWorksButtonCss = `
     #wildworks-lead-sent {
       display: none !important;
       margin: 0.4rem 0 0 !important;
-      color: #c44d0b !important;
+      color: #fce0ad !important;
       font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
       font-weight: 800 !important;
       font-size: clamp(0.82rem, 3.6vw, 1.1rem) !important;

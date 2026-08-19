@@ -978,7 +978,25 @@ function isDirectContactSendPrompt(message: string, contactMethod: "email" | "ph
   if (asksContactPermission && (mentionsContact || normalized.includes(label) || /\b(?:that|this)\s+(?:email|number|phone)\b/i.test(normalized))) {
     return true;
   }
-  if (asksSendNow && (mentionsContact || normalized.includes(label))) return true;
+  // G's ride b1dd603f, 2026-08-19 16:39. THIS COST A LEAD.
+  //
+  // iScott asked "Perfect! May I send these details to Scott?" and G answered
+  // "Yes." The lead never went. consent_status stayed "unknown",
+  // contact_confirmed_at stayed null, the auto-send condition was never met, and
+  // iScott then TOLD him "Scott has your details and will follow up" - a send he
+  // had not earned, on a lead that was still sitting at ready_for_confirmation.
+  //
+  // The rule contradicted itself. asksSendNow above deliberately accepts "these
+  // details" as a valid phrasing - it is listed right there in the pattern - and
+  // then this line demanded the SAME message also name the address or contain
+  // the literal word "email". "May I send these details to Scott?" has neither,
+  // so a perfectly clear question followed by a clear yes registered as nothing.
+  //
+  // asksSendNow is already specific: it requires may-i/should-i/want-me-to, plus
+  // send, plus it/this/these details/your details/them, plus to Scott or the
+  // WildWorks team. That whole shape IS the send prompt. Nothing about it is
+  // ambiguous enough to need a second confirmation that the contact was named.
+  if (asksSendNow) return true;
   return mentionsContact && isContactReadBack(message, contactValue) && asksSendNow;
 }
 
