@@ -99,22 +99,12 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     0.68) 0em 0.04816em 0em !important;
 }
 
-/* 1. Logo tagline - "you can see through the background color between the
-   line of the g, the bottom, and the shadow. Should be none of that."
-
-   Cause: the tagline's shadow layer was scaled (1.012), so the dark copy grew
-   outward and copper showed between each glyph and its shadow, worst on
-   descenders. logo-menu-shadow-tune.css diagnosed exactly this on 2026-08-17
-   and was never imported anywhere. This is its prescription: no scale.
-
-   The WILDWORKS wordmark + scrolls are LOVED and are a DIFFERENT element
-   (.wild-top-logo::before) fed by the same variable, so the variable itself is
-   deliberately left alone. Verified unchanged at matrix(1.012,...).
-   All five pages, as G asked. */
-html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect:not(#_):not(#_):not(#_) {
-  transform: translateY(clamp(0.45px, 0.056vw, 0.9px)) scale(1) !important;
-}
-
+/* 1. Logo tagline - REVERTED 2026-08-19.
+   G looked at the result and said "You drifted here." He is right: closing the
+   descender gap changed the character of a mark he had already approved, and
+   an approved visual outranks a defect I went looking for. The rule that
+   removed scale(var(--ww-top-logo-shadow-scale)) is deleted, so the original
+   cascade owns the tagline again. Do not re-open this without G asking. */
 /* 13. "Talk to iScott just looks like shit. It looks dingy. Call now and email
    now ... they're beautiful. Talk to iScott needs to be just like Call Now."
 
