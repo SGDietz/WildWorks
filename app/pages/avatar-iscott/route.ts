@@ -337,7 +337,7 @@ const wildWorksButtonCss = `
       transform: translateX(-50%) !important;
       /* G ride 89c453ff, 2026-08-19: "the colors are awful" and "the phone number
          is not in the brand font."
-         #ffe9c2 was never a WildWorks colour - it is off the locked five by a
+         The old ffe9c2 was never a WildWorks colour - off the locked five by a
          hair, close enough to pass a glance. Text-1 is #fce0ad.
          Arial was never the brand face either. The site's body copy is Cambria;
          the stack is hardcoded because this CSS is injected into the proxied
