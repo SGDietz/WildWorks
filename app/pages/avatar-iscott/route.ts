@@ -794,6 +794,30 @@ const wildWorksButtonCss = `
       }
     }
 
+    /* G 2026-08-19, riding on the iPad: "you're down and to the left ... you're
+       not centered. The avatar needs to be centered."
+
+       Cause: the ONLY rule that frames the avatar sat behind
+       (max-width: 520px) or a short landscape query. An iPad in portrait is
+       ~768-1024px tall-side-up, so it matched NEITHER - there was no framing
+       rule on a tablet at all, and the embedded player placed him wherever it
+       liked. This is the same framing the phone already uses, applied to the
+       gap between phone and desktop. Desktop is untouched. */
+    @media (min-width: 521px) and (max-width: 1279px) {
+      [data-ww-avatar-shell] [data-ww-avatar-video],
+      [data-ww-avatar-shell] video,
+      [data-ww-avatar-shell] canvas,
+      html[data-ww-avatar-shell] video,
+      html[data-ww-avatar-shell] canvas {
+        object-fit: cover !important;
+        object-position: 50% 28% !important;
+        transform: none !important;
+        transform-origin: 50% 28% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+
     @media (max-width: 287px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.5rem) !important;
@@ -1715,11 +1739,21 @@ const wildWorksLeadConfirmationScript = `
       // server-detected consent arrives on the lead state, fire the real send
       // once — no tap required. Visitor-typed edits keep the manual button.
       const autoConfirmed = {};
+      // G 2026-08-19: "it just came and went too fast ... I just looked at it
+      // and it was gone. It should be like 2 full seconds." The wait used to
+      // start the instant the state changed, so the fade-in ate part of it and
+      // he never got a full two seconds of actually SEEING the checkmark. Start
+      // counting only once the panel has painted - two frames guarantees the
+      // browser has put it on screen - so his two seconds are two real seconds.
       const dropPanelSoon = (ms) => {
-        window.setTimeout(() => {
-          dismissed = true;
-          hidePanel();
-        }, ms);
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            window.setTimeout(() => {
+              dismissed = true;
+              hidePanel();
+            }, ms);
+          });
+        });
       };
 
       const stopSession = async (reason) => {

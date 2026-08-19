@@ -532,13 +532,26 @@ export async function processIScottTranscriptRows(args: {
     const previousPhone = phone;
     const nextEmail = extractEmail(text);
     const nextPhone = extractPhone(text);
-    email = nextEmail ?? email;
-    phone = nextPhone ?? phone;
+
+    // G 2026-08-19: "people are going to start in the middle ... the system
+    // should be built to be smart enough to do that." Once the visitor has
+    // confirmed a spelled read-back, that address is settled. A later passing
+    // mention of it must not silently replace the confirmed value - only an
+    // explicit correction can. On G's ride he confirmed sgdietz@pm.me and then
+    // kept talking ABOUT the address, and the talking overwrote the answer.
+    const contactAlreadyConfirmed = Boolean(contactConfirmedAt);
+    const soundsLikeCorrection =
+      isOperatorCorrection(text) ||
+      /\b(?:no|not|nope|actually|i said|it'?s|that'?s|should be|correction|wrong|instead)\b/i.test(text);
+    if (!contactAlreadyConfirmed || soundsLikeCorrection) {
+      email = nextEmail ?? email;
+      phone = nextPhone ?? phone;
+    }
     contactMethod = methodOnly ?? contactMethod;
 
     const contactChanged =
-      (nextEmail && previousEmail && nextEmail !== previousEmail) ||
-      (nextPhone && previousPhone && nextPhone !== previousPhone);
+      (previousEmail && email && email !== previousEmail) ||
+      (previousPhone && phone && phone !== previousPhone);
     if (contactChanged && existing?.status !== "confirmed" && existing?.status !== "submitted") {
       contactConfirmedAt = null;
       consentStatus = "unknown";
