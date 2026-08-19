@@ -1230,7 +1230,29 @@ export function detectsContextualContactSendConfirmation(
     }
     if (row.role !== "user") continue;
     if (isUiOnlyAffirmation(row.message)) continue;
-    if (isSendCommandConsent(row.message) && (sawSendPrompt || sawReadBack)) {
+    // G's ride 7325f798, 2026-08-19 13:46. THE SECOND LEAD LOST THE SAME DAY.
+    //
+    // He said, in one breath: "so the email's correct. Send the email to Scott."
+    // isSendCommandConsent reads that as an explicit command - correctly. Then
+    // this line threw it away, because it also demanded that iScott had ASKED
+    // first. In that ride iScott never asked, and the only read-back he had done
+    // was of a MIS-HEARD address (S-G-D-I-E-Z) before G corrected it, so it did
+    // not match the stored contact either. Both flags were false. A direct
+    // instruction from the visitor registered as nothing, the row stayed at
+    // ready_for_confirmation, and iScott told him "Perfect! I'm sending that to
+    // Scott." G then said, on the recording: "it should fire immediately... it's
+    // been a full minute. And nothing."
+    //
+    // THE COMMAND IS THE CONSENT. Being asked first is one way to get consent,
+    // not the only way. isSendCommandConsent is already narrow - it requires the
+    // verb, a WildWorks/Scott target or an explicit my/the information|details|
+    // email, it refuses UI-only affirmations, and negation wins outright, so
+    // "don't send my info" can never reach here. Nothing about "send the email
+    // to Scott" needs iScott's permission to count.
+    //
+    // The prompt-and-affirmation path below is untouched: a plain "yes" still
+    // requires that something was actually asked, and still inside the window.
+    if (isSendCommandConsent(row.message)) {
       return true;
     }
     if (
