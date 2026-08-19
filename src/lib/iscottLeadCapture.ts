@@ -543,9 +543,29 @@ export async function processIScottTranscriptRows(args: {
     const soundsLikeCorrection =
       isOperatorCorrection(text) ||
       /\b(?:no|not|nope|actually|i said|it'?s|that'?s|should be|correction|wrong|instead)\b/i.test(text);
-    if (!contactAlreadyConfirmed || soundsLikeCorrection) {
+    // REGRESSION FIX, 2026-08-19, and the regression was mine from earlier the
+    // same night. Making a confirmed contact sticky ALSO blocked a legitimate
+    // change of method. On G's ride he gave an email, confirmed it, then said
+    // "can I have Scott reach me by my phone number?" and read the number out.
+    // Because a contact was already confirmed, and a phone number does not
+    // "sound like a correction", the number was never stored - and the lead was
+    // still submitted and mailed to Scott carrying the OLD email and an empty
+    // phone. A lead reached him with the wrong way to answer it.
+    //
+    // Switching method is a NEW capture, not prose about the old one. It always
+    // takes the value, clears the old confirmation so the new value must be
+    // confirmed on its own, and drops the abandoned method's value so it cannot
+    // ride along on the lead.
+    const methodSwitched = Boolean(methodOnly) && methodOnly !== contactMethod;
+    if (!contactAlreadyConfirmed || soundsLikeCorrection || methodSwitched) {
       email = nextEmail ?? email;
       phone = nextPhone ?? phone;
+    }
+    if (methodSwitched) {
+      contactConfirmedAt = null;
+      consentStatus = "unknown";
+      if (methodOnly === "phone") email = null;
+      if (methodOnly === "email") phone = null;
     }
     contactMethod = methodOnly ?? contactMethod;
 
