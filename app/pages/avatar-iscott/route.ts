@@ -182,10 +182,16 @@ const wildWorksButtonCss = `
       }
     }
 
+    /* G 2026-08-19: "that color needs to be changed to one of the main
+       background colors." The cover was primary #c44d0b while the panel it
+       sits inside is card #e96819 - two different oranges, so the avatar area
+       read as a hole punched in the card while it loaded. Both are brand
+       colours; the wrong one was chosen. It now matches the surface it covers,
+       so "Loading iScott" reads as the card thinking rather than a gap. */
     html.wildworks-avatar-loading body::before {
       z-index: 2147483646 !important;
       background:
-        linear-gradient(180deg, #c44d0b 0%, #c44d0b 48%, #c44d0b 100%) #c44d0b !important;
+        linear-gradient(180deg, #e96819 0%, #e96819 48%, #e96819 100%) #e96819 !important;
       pointer-events: auto !important;
     }
 
