@@ -518,10 +518,24 @@ export async function processIScottTranscriptRows(args: {
   let contactConfirmedAt = existing?.contact_confirmed_at ?? null;
   const captureTime = new Date().toISOString();
 
+  // Grok's forensics on ride 89c453ff, 2026-08-19: after the contact was settled,
+  // G kept SAYING the words "email" and "phone" while talking about the screen -
+  // "it should say phone and email sent", "I have not received an email" - and
+  // every one of those restamped contact_method. Talking about the interface is
+  // not choosing how to be reached.
+  //
+  // Once a contact has been confirmed, only a turn that actually CARRIES a new
+  // contact value may change the preference. Before anything is confirmed, a bare
+  // "email's great" is exactly how a visitor answers the question, so it still
+  // counts.
+  const methodChangeIsCredible = (text: string, confirmed: boolean): boolean =>
+    !confirmed || Boolean(extractEmail(text)) || Boolean(extractPhone(text));
+
   for (const text of userTurnTexts(rows)) {
     const methodOnly = extractContactMethod(text);
+    const methodCredible = methodChangeIsCredible(text, Boolean(contactConfirmedAt));
     if (!shouldParseLeadFacts(text) && !isOperatorCorrection(text)) {
-      if (methodOnly) contactMethod = methodOnly;
+      if (methodOnly && methodCredible) contactMethod = methodOnly;
       continue;
     }
     fullName = preferLonger(fullName, extractFullName(text));
@@ -556,7 +570,7 @@ export async function processIScottTranscriptRows(args: {
     // takes the value, clears the old confirmation so the new value must be
     // confirmed on its own, and drops the abandoned method's value so it cannot
     // ride along on the lead.
-    const methodSwitched = Boolean(methodOnly) && methodOnly !== contactMethod;
+    const methodSwitched = Boolean(methodOnly) && methodCredible && methodOnly !== contactMethod;
     if (!contactAlreadyConfirmed || soundsLikeCorrection || methodSwitched) {
       email = nextEmail ?? email;
       phone = nextPhone ?? phone;
@@ -577,11 +591,18 @@ export async function processIScottTranscriptRows(args: {
     // which one Scott is asked to use first; it does not throw away a way to
     // reach the visitor. The read-back still has to confirm the new value, which
     // is what clearing the confirmation below is for.
-    if (methodSwitched) {
+    // A8, Grok, same ride: the row came out submitted AND sent with
+    // consent_status "unknown" and contact_confirmed_at null, because turns after
+    // the send re-opened consent on a lead that had already reached Scott. A
+    // package that has gone cannot become unconsented afterwards - the visitor
+    // said yes and Scott has the mail. Only a lead still in flight can be
+    // re-opened.
+    const leadAlreadyClosed = existing?.status === "confirmed" || existing?.status === "submitted";
+    if (methodSwitched && !leadAlreadyClosed) {
       contactConfirmedAt = null;
       consentStatus = "unknown";
     }
-    contactMethod = methodOnly ?? contactMethod;
+    contactMethod = (methodOnly && methodCredible ? methodOnly : null) ?? contactMethod;
 
     const contactChanged =
       (previousEmail && email && email !== previousEmail) ||

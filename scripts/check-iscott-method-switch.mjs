@@ -24,8 +24,32 @@ const capture = await readFile("src/lib/iscottLeadCapture.ts", "utf8");
 // 1. A change of method must be recognised at all.
 assert.match(
   capture,
-  /const methodSwitched = Boolean\(methodOnly\) && methodOnly !== contactMethod;/,
-  "a change of contact method is detected",
+  /const methodSwitched = Boolean\(methodOnly\) && methodCredible && methodOnly !== contactMethod;/,
+  "a change of contact method is detected, and only from a credible turn",
+);
+
+// 1b. Ride 89c453ff, found by Grok: after the contact was settled, G kept saying
+// the words "email" and "phone" while talking about the SCREEN - "it should say
+// phone and email sent", "I have not received an email" - and each one restamped
+// contact_method. Talking about the interface is not choosing how to be reached.
+assert.match(
+  capture,
+  /const methodChangeIsCredible = \(text: string, confirmed: boolean\): boolean =>[\s\S]{0,200}!confirmed \|\| Boolean\(extractEmail\(text\)\) \|\| Boolean\(extractPhone\(text\)\);/,
+  "once a contact is confirmed, only a turn carrying a contact value may change the method",
+);
+
+// 1c. Same ride: the row came out submitted AND sent with consent_status
+// "unknown" and contact_confirmed_at null, because turns after the send re-opened
+// consent on a lead that had already reached Scott.
+assert.match(
+  capture,
+  /const leadAlreadyClosed = existing\?\.status === "confirmed" \|\| existing\?\.status === "submitted";/,
+  "a lead that has already gone is recognised as closed",
+);
+assert.match(
+  capture,
+  /if \(methodSwitched && !leadAlreadyClosed\) \{/,
+  "consent is never re-opened on a lead that has already reached Scott",
 );
 
 // 2. It must be able to take a value even when a contact is already confirmed.
@@ -68,12 +92,12 @@ assert.match(
 // 4. A switch must re-open consent - the new value has not been confirmed yet.
 assert.match(
   capture,
-  /if \(methodSwitched\) \{[\s\S]{0,300}contactConfirmedAt = null;/,
+  /if \(methodSwitched && !leadAlreadyClosed\) \{[\s\S]{0,300}contactConfirmedAt = null;/,
   "a method switch clears the old confirmation",
 );
 assert.match(
   capture,
-  /if \(methodSwitched\) \{[\s\S]{0,300}consentStatus = "unknown";/,
+  /if \(methodSwitched && !leadAlreadyClosed\) \{[\s\S]{0,300}consentStatus = "unknown";/,
   "a method switch clears consent so the new value must be confirmed",
 );
 
