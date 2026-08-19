@@ -1286,6 +1286,65 @@ const wildWorksIdleTimeoutScript = `
         }).catch(() => undefined);
       });
 
+      // G, ride b1dd603f: he hit the microphone permission button while iScott
+      // was already talking and it cut him off mid-sentence. And repeatedly
+      // before that: "he should sit there until the people press the permission
+      // for the microphone, then after they press the permission for the
+      // microphone, two seconds, then he starts talking."
+      //
+      // SECOND ATTEMPT AT THIS, AND DELIBERATELY BUILT NOT TO REPEAT THE FIRST.
+      // The first attempt wrapped navigator.mediaDevices.getUserMedia and
+      // restructured this fetch wrapper. After it, two of G's whole
+      // conversations recorded NOTHING - no pace marks, no transcript, no lead -
+      // and it had to be reverted on evidence of harm without a diagnosis.
+      //
+      // So this one touches neither. getUserMedia is left completely alone. The
+      // wrapper keeps the exact shape that has been working. All that changes is
+      // WHAT is awaited inside the try block that was already there.
+      //
+      // Three things make it unable to repeat that failure:
+      //   1. HARD CAP. It can wait at most MIC_WAIT_CAP_MS for permission. If the
+      //      Permissions API is missing, throws, never resolves, or the visitor
+      //      never answers, it falls through to the plain 2s hold and the start
+      //      proceeds. There is no path where this blocks a session forever.
+      //   2. Everything is inside try/catch. Any throw resolves immediately.
+      //   3. It is READ-ONLY - it observes permission state and never requests
+      //      it, so it cannot change what the avatar app is allowed to do.
+      //
+      // Marked at every step, so one ride tells us whether it behaved rather
+      // than us guessing a fourth time.
+      const MIC_WAIT_CAP_MS = 8000;
+      const waitForMicThenPause = async () => {
+        let granted = false;
+        try {
+          const perms = navigator.permissions;
+          if (perms && typeof perms.query === "function") {
+            const status = await Promise.race([
+              perms.query({ name: "microphone" }),
+              new Promise((r) => window.setTimeout(() => r(null), 1200)),
+            ]);
+            if (status && status.state === "granted") {
+              granted = true;
+              wwPaceMark("mic_already_granted");
+            } else if (status) {
+              wwPaceMark("mic_waiting", { state: status.state });
+              granted = await new Promise((resolve) => {
+                let done = false;
+                const finish = (v) => { if (!done) { done = true; resolve(v); } };
+                try {
+                  status.onchange = () => { if (status.state === "granted") finish(true); };
+                } catch {}
+                window.setTimeout(() => finish(false), MIC_WAIT_CAP_MS);
+              });
+              wwPaceMark(granted ? "mic_granted" : "mic_wait_timed_out");
+            }
+          }
+        } catch {}
+        // Whether permission was granted, refused, or never observable, the
+        // visitor now gets the two silent seconds before he speaks.
+        await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+      };
+
       window.fetch = async (input, init) => {
         const url = requestUrl(input);
         const authorization = requestAuthorization(input, init);
@@ -1652,7 +1711,7 @@ const wildWorksCaptureBridgeScript = `
           isSessionStart = startUrl.includes("/api/v1/sessions/start");
           if (isSessionStart) {
             wwPaceMark("start_intercepted");
-            await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+            await waitForMicThenPause();
             wwPaceMark("delay_released");
           }
         } catch {}
