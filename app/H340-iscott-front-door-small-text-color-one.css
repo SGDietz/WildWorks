@@ -1,0 +1,50 @@
+/* H340 - iScott Front Door: small text back to colour one
+ *
+ * Slice: home page, section.wild-section--intro only. Colour only.
+ *
+ * G, 2026-08-19: "Under iScott is the Front Door, all that small text is the
+ * number two color. That's a mistake. That all needs to go back to the number
+ * one color. Don't change the shadow. Just change the color."
+ * And: "Also, by talking to iScott or uploading media, make that the number
+ * one color also."
+ *
+ * ORIGIN: written by Claudette (laptop) as packet WW-20260819-A. Her intent and
+ * scope were right. Her SELECTORS were inert and her measurement was wrong, so
+ * this is her slice rewritten, not her file installed. Detail below, because
+ * whoever reads this next needs to know why it looks like this.
+ *
+ * WHAT IS ACTUALLY ON SCREEN, measured by CDP against the live build at
+ * 1366x768 AND 820x1180 before writing a line:
+ *   .money-step-content p    rgb(237,199,117) = #edc775  = colour TWO
+ *   .wild-iscott-disclosure  rgb(237,199,117) = #edc775  = colour TWO
+ * G was right. It is colour two, at every viewport. It was reported to me as
+ * black with no colour rule on the chain; it is neither.
+ *
+ * WHAT SETS IT: H328-ipad-vertical-part2.css line 208 -
+ *   html body#wildworks-body{x90}:has(#top.wild-home)
+ *   .money-step-content p:not(#_):not(#_):not(#_) { color:#edc775 !important }
+ * That is ~94 ids and !important, and it sits at brace depth 0 - OUTSIDE the
+ * iPad media query - so it applies at every viewport. Its own comment says
+ * "P26 + P25 + P27 + P30 + P31 - all small text on the home page, make it all
+ * color number two", which was G's instruction on 2026-08-18.
+ *
+ * So this is NOT a bug leaking. It is G reversing yesterday's sitewide decision
+ * for ONE section. That is why this file does not touch H328: the rest of that
+ * instruction still stands everywhere else on the page.
+ *
+ * WHY THE SELECTOR LOOKS LIKE THIS: it has to beat ~94 ids plus !important. It
+ * carries the same id weight and adds ONE class - .wild-section--intro - which
+ * wins on class count and simultaneously scopes it to the Front Door section
+ * and nothing else. A plain two-class selector loses silently: the build stays
+ * green, the file is present, and nothing changes on screen.
+ *
+ * NOT TOUCHED, on G's word: the 1 2 3 4 badges, the logo, the big Talk to
+ * iScott button, the avatar icon, the Upload button, and every text-shadow in
+ * the section.
+ */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) .wild-section--intro .money-step-content p:not(#_):not(#_):not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) .wild-section--intro .wild-iscott-disclosure:not(#_):not(#_):not(#_) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}

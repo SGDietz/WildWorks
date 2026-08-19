@@ -86,8 +86,14 @@ assert.match(overlay, /setCaptureHidden\(true\)/);
 assert.match(overlay, /setCaptureHidden\(false\)/);
 assert.match(overlay, /setSentVisible\(true, method\)/);
 assert.match(overlay, /#wildworks-lead-spoken-readback/);
+// Shape updated 2026-08-19, intent unchanged. G asked for dashes in the
+// displayed phone number ("443-797-2166 ... just visually"), so the confirmed
+// captured value now passes through displayContact() on its way to the field.
+// It is still the CAPTURED value that drives the reveal - that is what this
+// assertion exists to protect - and confirmLead strips the formatting back out
+// before anything is sent, so Scott never receives a dashed string.
 assert.match(overlay, /lead\.spokenReadback/);
-assert.match(overlay, /revealCapturedContact\(output, visible\)/);
+assert.match(overlay, /revealCapturedContact\(output, displayContact\(method, visible\)\)/);
 
 const captureSrc = await fs.readFile(path.resolve("src/lib/iscottLeadCapture.ts"), "utf8");
 assert.match(captureSrc, /spokenReadback: method === "email" && raw \? formatSpokenEmailForReadback\(raw\)/);

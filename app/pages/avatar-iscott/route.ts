@@ -327,8 +327,15 @@ const wildWorksButtonCss = `
       display: none !important;
       width: min(calc(100vw - 2rem), 28rem) !important;
       transform: translateX(-50%) !important;
-      color: #ffe9c2 !important;
-      font-family: Arial, Helvetica, sans-serif !important;
+      /* G ride 89c453ff, 2026-08-19: "the colors are awful" and "the phone number
+         is not in the brand font."
+         #ffe9c2 was never a WildWorks colour - it is off the locked five by a
+         hair, close enough to pass a glance. Text-1 is #fce0ad.
+         Arial was never the brand face either. The site's body copy is Cambria;
+         the stack is hardcoded because this CSS is injected into the proxied
+         avatar app, where globals.css custom properties do not resolve. */
+      color: #c44d0b !important;
+      font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
       pointer-events: none !important;
       text-align: center !important;
     }
@@ -351,9 +358,22 @@ const wildWorksButtonCss = `
       padding: 0.5rem 0.85rem !important;
       /* G 2026-08-19: "it needs to be brand colors." Off the old wood browns and
          onto the locked five: primary field, card-colour border, text-3 glow. */
-      border: 2px solid #e96819 !important;
+      /* G ride 89c453ff, 2026-08-19: "the colors are awful" / "way too dark" /
+         "they've got to be nice brand, beautiful colors."
+         The box was #c44d0b - primary, our darkest - floated on the #e96819 card
+         panel. Two dark oranges touching, so it read muddy rather than as a
+         thing sitting on top of something.
+         My first fix moved it to card #e96819 and G's own screenshot killed that
+         idea before it shipped: the panel behind it is already that colour, so
+         the box would have dissolved into it.
+         It goes CREAM instead. Same family as the Finish and Upload buttons
+         right beside it, which G has already approved sitewide - light field,
+         dark ink, gold edge. Highest contrast available inside the locked five,
+         and it reads as a card laid over the panel because it is lighter than
+         everything around it, not darker. */
+      border: 2px solid #f08c28 !important;
       border-radius: 1rem !important;
-      background: #c44d0b !important;
+      background: linear-gradient(180deg, #fce0ad 0%, #edc775 100%) !important;
       box-shadow:
         inset 0 1px 0 rgba(252, 224, 173, 0.30),
         0 0 28px rgba(240, 140, 40, 0.55) !important;
@@ -367,7 +387,9 @@ const wildWorksButtonCss = `
       gap: 0.5rem !important;
       /* G 2026-08-19: "your email, the words are too close to the box." */
       margin: 0 0 0.42rem !important;
-      color: #edc775 !important;
+      /* Flipped to dark ink 2026-08-19 with the box going cream. #edc775 on a
+         cream field is unreadable - the label has to invert with the surface. */
+      color: #c44d0b !important;
       font-size: 0.72rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.18em !important;
@@ -413,7 +435,12 @@ const wildWorksButtonCss = `
       color: #fce0ad !important;
       -webkit-text-fill-color: #fce0ad !important;
       caret-color: #edc775 !important;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+      /* G ride 89c453ff, 2026-08-19: "the phone number is not in the brand font."
+         It was monospace, chosen for digit legibility. He is looking at his own
+         number in a face that appears nowhere else on the site. The site's body
+         copy is Cambria; hardcoded because globals.css custom properties do not
+         resolve inside the proxied avatar app. */
+      font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
       font-size: clamp(0.95rem, 3.6vw, 1.15rem) !important;
       font-weight: 900 !important;
       line-height: 1.25 !important;
@@ -1743,6 +1770,26 @@ const wildWorksLeadConfirmationScript = `
         } catch {}
       };
 
+      // G ride 89c453ff, 2026-08-19: "there should be dashes in there,
+      // 443-797-2166. So for visually, just visually."
+      // Display only. The value that gets SENT is stripped back to digits in
+      // confirmLead, so Scott never receives a formatted string and the server's
+      // own normaliser still sees what it expects.
+      const displayContact = (method, value) => {
+        if (method !== "phone") return value;
+        const raw = String(value || "");
+        const digits = raw.replace(/\D/g, "");
+        if (digits.length === 10) {
+          return digits.slice(0, 3) + "-" + digits.slice(3, 6) + "-" + digits.slice(6);
+        }
+        if (digits.length === 11 && digits.charAt(0) === "1") {
+          return "1-" + digits.slice(1, 4) + "-" + digits.slice(4, 7) + "-" + digits.slice(7);
+        }
+        // Anything else is left exactly as spoken - a partial number must not be
+        // dressed up to look complete.
+        return raw;
+      };
+
       const revealCapturedContact = (output, value) => {
         const next = String(value || "");
         if (revealingContact && output.getAttribute("data-reveal-target") === next) return;
@@ -1827,10 +1874,28 @@ const wildWorksLeadConfirmationScript = `
         document.querySelector(".wildworks-lead-capture")?.setAttribute("data-hidden", hidden ? "true" : "false");
       };
 
+      // G ride 89c453ff, 2026-08-19, twice: "it only said phone number sent...
+      // it should say phone AND email sent."
+      // He had given both and the label named one. Until this morning the lead
+      // could only ever hold one, because a method switch destroyed the other -
+      // so naming one was accurate and the real bug was upstream. That is fixed
+      // now (a captured contact is never destroyed), which means the label has
+      // to be able to say both.
+      const sentLabelFor = (method) => {
+        const hasEmail = Boolean(activeLead && activeLead.email);
+        const hasPhone = Boolean(activeLead && activeLead.phone);
+        if (hasEmail && hasPhone) return "Phone and email sent to Scott ✓";
+        if (hasPhone) return "Phone sent to Scott ✓";
+        if (hasEmail) return "Email sent to Scott ✓";
+        // Nothing readable on the lead - fall back to the method that was used
+        // rather than claiming something we cannot see.
+        return method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓";
+      };
+
       const setSentVisible = (visible, method) => {
         const sent = document.getElementById("wildworks-lead-sent");
         if (!sent) return;
-        sent.textContent = method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓";
+        sent.textContent = sentLabelFor(method);
         sent.setAttribute("data-visible", visible ? "true" : "false");
       };
 
@@ -1880,7 +1945,12 @@ const wildWorksLeadConfirmationScript = `
         const method = activeLead.contactMethod === "phone" ? "phone" : "email";
         const edited = document.getElementById("wildworks-lead-value")?.value?.trim();
         const captured = method === "email" ? activeLead.email : activeLead.phone;
-        const value = userEditedContact ? edited : captured;
+        // The field now DISPLAYS a phone with dashes (G asked for it, visually).
+        // Strip formatting back out before it is sent, so a visitor who retypes
+        // over the dashed value cannot put "443-797-2166" into Scott's lead.
+        // The non-edited path already sends the server's own captured value.
+        const editedForSend = method === "phone" && edited ? edited.replace(/[^\d+]/g, "") : edited;
+        const value = userEditedContact ? editedForSend : captured;
         const button = document.getElementById("wildworks-lead-confirm");
         const status = document.getElementById("wildworks-lead-status");
         if (!value || !button || !status) return;
@@ -2037,10 +2107,10 @@ const wildWorksLeadConfirmationScript = `
         } else {
           setCaptureHidden(false);
           setSentVisible(false, method);
-          revealCapturedContact(output, visible);
+          revealCapturedContact(output, displayContact(method, visible));
         }
         status.textContent = delivered
-          ? (method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓")
+          ? sentLabelFor(method)
           : statusFromLead(lead);
         status.hidden = !status.textContent;
         const media = panel.querySelector("#wildworks-lead-media");

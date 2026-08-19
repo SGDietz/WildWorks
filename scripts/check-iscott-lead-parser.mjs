@@ -754,8 +754,14 @@ assert.match(display.ariaLabel, /4105550101/, "L71 owner aria names the checkabl
 assert.doesNotMatch(display.visible, /4105550101/);
 assert.match(overlayCss, /lead\.displayValue/, "L71 overlay paints displayValue");
 assert.match(overlayCss, /lead\.ariaLabel/, "L71 overlay uses ariaLabel");
+// Shape updated 2026-08-19, intent unchanged. G asked for dashes in the
+// displayed phone number ("443-797-2166 ... just visually"), so the confirmed
+// captured value now passes through displayContact() on its way to the field.
+// It is still the CAPTURED value that drives the reveal - that is what this
+// assertion exists to protect - and confirmLead strips the formatting back out
+// before anything is sent, so Scott never receives a dashed string.
 assert.match(overlayCss, /<input id="wildworks-lead-value"/, "L70/72 email is an immediate editable field");
-assert.match(overlayCss, /revealCapturedContact\(output, visible\)/, "L71/73 captured value uses the iSolve-style reveal");
+assert.match(overlayCss, /revealCapturedContact\(output, displayContact\(method, visible\)\)/, "L71/73 captured value uses the iSolve-style reveal");
 assert.match(overlayCss, /window\.setInterval/, "L71/73 characters land progressively");
 assert.match(overlayCss, /revealVersion/, "L71/73 a newer capture cancels an older reveal");
 assert.doesNotMatch(overlayCss, /oscillator\.frequency\.value = 720/, "L74 typing ticks are gone");

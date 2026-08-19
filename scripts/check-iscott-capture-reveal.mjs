@@ -33,8 +33,14 @@ assert.doesNotMatch(showLead, /type or spell your email/, "the retired placehold
 // email one - "just leave the box open, empty."
 assert.doesNotMatch(showLead, /type or say your phone number/, "the retired phone placeholder has not crept back");
 assert.match(showLead, /output\.readOnly = false/, "method-only field stays typable");
+// Shape updated 2026-08-19, intent unchanged. G asked for dashes in the
+// displayed phone number ("443-797-2166 ... just visually"), so the confirmed
+// captured value now passes through displayContact() on its way to the field.
+// It is still the CAPTURED value that drives the reveal - that is what this
+// assertion exists to protect - and confirmLead strips the formatting back out
+// before anything is sent, so Scott never receives a dashed string.
 assert.match(showLead, /output\.disabled = false/, "method-only field is not locked");
-assert.match(showLead, /revealCapturedContact\(output, visible\)/, "confirmed capture drives the reveal");
+assert.match(showLead, /revealCapturedContact\(output, displayContact\(method, visible\)\)/, "confirmed capture drives the reveal");
 assert.match(showLead, /output\.readOnly = Boolean\(submitted\)/, "submitted values remain immutable");
 assert.match(showLead, /userEditedContact = false/, "a newly captured value may reveal from the start");
 
@@ -54,8 +60,12 @@ assert.match(route, /Phone sent to Scott ✓/, "terminal phone label names Scott
 assert.doesNotMatch(route, /Confirm the details before Scott gets them/, "L22 hated confirm copy is gone");
 assert.match(route, /hasSendPermission/, "L21 Send waits for permission");
 assert.match(route, /button\.hidden = Boolean\(submitted\) \|\| !permitted/, "L21 Send stays hidden until permission or a visitor edit");
+// Shape updated 2026-08-19, intent unchanged: a visitor-typed value still wins
+// over the captured one. It is now `editedForSend`, which is the same typed
+// value with phone formatting stripped, so a visitor retyping over the dashed
+// display cannot put "443-797-2166" into Scott's lead.
 assert.match(confirm, /if \(revealingContact\) return;/, "a partial reveal cannot submit");
-assert.match(confirm, /userEditedContact \? edited : captured/, "visitor-edited email or phone is authoritative");
+assert.match(confirm, /userEditedContact \? editedForSend : captured/, "visitor-edited email or phone is authoritative");
 assert.match(route, /const cancelRevealForVisitorEdit = \(\) => \{[\s\S]{0,400}revealVersion \+= 1[\s\S]{0,400}revealingContact = false/, "visitor input cancels the reveal immediately");
 assert.match(route, /addEventListener\("beforeinput", cancelRevealForVisitorEdit\)/, "visitor input cancels before the edit lands");
 assert.match(route, /button\.hidden = !typed && !activeLead\?\.email && !activeLead\?\.phone/, "typed contact unhides Send before capture");
