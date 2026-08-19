@@ -1,0 +1,73 @@
+/* H346 - the FIVE content pages: shared footer small text to colour ONE
+ *
+ * G, 2026-08-19: "All small text everywhere on the site... there's a home page
+ * and four sub pages. They are separate from the six legal pages. So forget the
+ * six legal pages. I'm talking about Home, Wildfire, Ruins, Projects, Bio. All
+ * that small text needs to be color number one." He corrected himself twice to
+ * be exact: "not white - needs to be color number one", then "text color 1".
+ * And: "Be super careful of no drift. Only do exactly what I'm asking."
+ *
+ * ORIGIN: Claudette (laptop), packet WW-20260819-E. Her scope analysis was
+ * correct in every particular and I verified all of it against the served markup
+ * before writing a line. Her selectors are rewritten here at a weight that can
+ * actually win; the reasoning below is hers.
+ *
+ * ============ THE TRAP, AND WHY THE SCOPE IS :not(:has(.wild-legal-home)) ============
+ *
+ * THE SIX LEGAL PAGES CARRY .wild-home ON THEIR ROOT. Verified by fetching all
+ * eleven routes and counting class attributes: privacy-policy, disclaimer,
+ * terms-of-service, accessibility, ai-disclosure and communications each carry
+ * .wild-home five times. So ANY rule scoped by .wild-home alone repaints the six
+ * pages G just said to forget. That is the biggest hazard in this job.
+ *
+ * The existing home block is safe only because it uses :has(#top.wild-home), and
+ * id="top" appears on Home alone - verified, 1 on Home, 0 on all ten others.
+ *
+ * FIRST ATTEMPT used :not(:has(.wild-legal-home)), from Claudette's count:
+ *   Home 0 | Wildfire 1 | The-ruins 8 | Projects 1 | who-is-g 4
+ *   all six legal pages 0
+ * That is a correct SUBPAGE discriminator and it worked - but measuring after
+ * install showed HOME still on colour two for these two selectors, because home
+ * carries no .wild-subpage either. G asked for five pages, not four: "there's a
+ * home page and four sub pages... Home, Wildfire, Ruins, Projects, Bio."
+ *
+ * The right discriminator is the one that separates content from legal:
+ *   .wild-legal-home, counted per route -
+ *     Home 0 | Wildfire 0 | The-ruins 0 | Projects 0 | who-is-g 0
+ *     privacy-policy 1 | disclaimer 1 | terms-of-service 1
+ *     accessibility 1 | ai-disclosure 1 | communications 1
+ * So :not(:has(.wild-legal-home)) is every content page and no legal page. It
+ * adds no id weight, since :not() takes its argument's specificity and that
+ * argument is a class.
+ *
+ * (The raw string "wild-subpage" appears on every page including the legal six,
+ * inside inline <style> text. Count class attributes, not the string. That one
+ * nearly caught us.)
+ *
+ * ============ WHAT IS NOT HERE, AND WHY ============
+ *
+ * .wildfire-gallery-rolodex-note and .wild-signup-fine-print were in the packet.
+ * Measured: both already resolve to #fce0ad on all four subpages. Writing rules
+ * that change nothing is how a file grows until nobody can tell what it does, so
+ * they are left out. If they ever drift, they come back.
+ *
+ * .wild-iscott-disclosure is handled in H328 as a one-value edit, because that
+ * file already governs it and adding a second authority here would be the
+ * stacking we have been trying to stop.
+ *
+ * The remaining Ruins and Bio body copy carries no stable class - bare <p> and
+ * Tailwind utilities. Writing against .text-base or a bare p is how you repaint
+ * things nobody asked for. Left for stable hooks. Also noted for G: the Ruins
+ * carries text-white/90, a Tailwind class painting white, which is not one of
+ * the five.
+ *
+ * WEIGHT: the rules being beaten measure 27 ids (kicker) and 18 ids (stonework
+ * note), both !important. 30 plus two :not() clears both with room and nothing
+ * more. Colour and fill only - no shadow, no size, no spacing, no layout.
+ */
+
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) .wild-footer-contact-cta__kicker:not(#_):not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) .wild-footer-stonework-note:not(#_):not(#_) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}

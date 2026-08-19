@@ -234,11 +234,19 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   -webkit-text-fill-color: #fce0ad !important;
 }
 
-/* Sitewide avatar disclosure - every route EXCEPT home, which is overridden
- * by the higher-specificity home-scoped rule above. G's colour-two decision
- * still stands everywhere he did not walk. */
+/* Was: sitewide avatar disclosure held at colour two, because G had only walked
+ * the home page. He has since walked the rest: "All small text everywhere on the
+ * site... there's a home page and four sub pages. They are separate from the six
+ * legal pages. So forget the six legal pages. I'm talking about Home, Wildfire,
+ * Ruins, Projects, Bio. All that small text needs to be color number one."
+ *
+ * Counted on the served markup before changing it: .wild-iscott-disclosure exists
+ * on home (3) and on each of the four subpages (1 each), and on ZERO of the six
+ * legal pages. So this block governs nothing but the four subpages now, and G
+ * wants those at colour one. One value, no new rule. Claudette found this and was
+ * right that it belonged in this file rather than in a new one. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-iscott-disclosure:not(#_):not(#_):not(#_),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-iscott-disclosure *:not(#_):not(#_):not(#_) {
-  color: #edc775 !important;
-  -webkit-text-fill-color: #edc775 !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
 }

@@ -294,6 +294,7 @@ import "./H337-all-buttons-one-treatment.css";
 import "./H338-projects-page-order.css";
 import "./H339-projects-intro-and-gap.css";
 import "./H340-iscott-front-door-small-text-color-one.css";
+import "./H346-subpage-small-text-color-one.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
