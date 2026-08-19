@@ -149,24 +149,27 @@ export default function Footer() {
     >
       <style>{`
         body .wild-footer-mobile-strip.wild-footer-mobile-strip {
-          border-top-color: rgba(247, 217, 165, 0.5) !important;
-          background: linear-gradient(180deg, rgba(203, 98, 45, 0.98), rgba(174, 67, 27, 0.98)) !important;
-          color: #a94f24 !important;
-          -webkit-text-fill-color: #a94f24 !important;
+          border-top-color: rgba(252, 224, 173, 0.5) !important;
+          background: linear-gradient(180deg, #e96819, #c44d0b) !important;
+          color: #fce0ad !important;
+          -webkit-text-fill-color: #fce0ad !important;
           box-shadow: 0 -8px 24px rgba(89, 31, 6, 0.22) !important;
         }
 
         body .wild-footer-mobile-strip .wild-footer-mobile-strip-inner {
-          background: radial-gradient(ellipse at 50% 0%, rgba(255, 202, 124, 0.2), transparent 72%) !important;
+          background: radial-gradient(ellipse at 50% 0%, rgba(252, 224, 173, 0.2), transparent 72%) !important;
         }
 
         body .wild-footer-mobile-strip .wild-footer-mobile-link.wild-footer-mobile-link {
-          border-color: rgba(247, 217, 165, 0.72) !important;
+          border-color: rgba(252, 224, 173, 0.72) !important;
           background:
-            radial-gradient(circle at 34% 24%, rgba(255, 232, 178, 0.34), transparent 48%),
-            linear-gradient(180deg, #eaa15e 0%, #d76f35 55%, #c15426 100%) !important;
-          color: #a94f24 !important;
-          -webkit-text-fill-color: #a94f24 !important;
+            radial-gradient(circle at 34% 24%, rgba(252, 224, 173, 0.34), transparent 48%),
+            linear-gradient(180deg, #fce0ad 0%, #edc775 55%, #e96819 100%) !important;
+          /* Grok's patch put cream ink here too, but this button's background
+             is now the LIGHT cream->gold ramp above - cream on cream is
+             invisible. Primary ink, same as every other light button. */
+          color: #c44d0b !important;
+          -webkit-text-fill-color: #c44d0b !important;
           box-shadow:
             inset 0 1px 0 rgba(255, 238, 194, 0.5),
             0 4px 12px rgba(92, 31, 6, 0.2) !important;
