@@ -64,6 +64,7 @@ async function explicitLabel(anonymousVisitorId: string | null): Promise<Traffic
 export async function classifyTraffic(args: {
   anonymousVisitorId?: string | null;
   userAgent?: string | null;
+  origin?: string | null;
 }): Promise<TrafficClassification> {
   const anonymousVisitorId = clean(args.anonymousVisitorId, 160);
   const label = await explicitLabel(anonymousVisitorId);
@@ -71,6 +72,7 @@ export async function classifyTraffic(args: {
     anonymousVisitorId,
     userAgent: args.userAgent,
     explicitLabel: label,
+    origin: args.origin,
   });
 }
 
@@ -88,4 +90,19 @@ export function isMeaningfulPublicMessage(value: string): boolean {
   const words = text.match(/[\p{L}\p{N}]+/gu) ?? [];
   if (words.length < 3) return false;
   return !/^(hello|hi|hey|test|testing|you there|are you there|can you hear me)[!?. ]*$/i.test(text);
+}
+
+// One place to derive "where did this request come from", so every call site
+// agrees. Origin and Referer are what a browser actually sends; the request host
+// is the fallback for same-origin server calls.
+export function originFromRequest(request: Request): string | null {
+  try {
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
+    const host = (() => { try { return new URL(request.url).host; } catch { return ""; } })();
+    const joined = [origin, referer, host].filter(Boolean).join(" ");
+    return joined || null;
+  } catch {
+    return null;
+  }
 }

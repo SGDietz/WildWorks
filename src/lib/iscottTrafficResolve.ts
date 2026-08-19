@@ -7,6 +7,11 @@ export type TrafficClassification = {
 };
 
 const TEST_UA = /(HeadlessChrome|Playwright|Puppeteer|jsdom|Lighthouse)/i;
+// G 2026-08-18: 215 "public" sessions collapsed to 45 once internal origins were
+// excluded by hand. Sessions arriving from the dev server or the mission-control
+// tailscale door were being counted as strangers, which made the traffic numbers
+// meaningless. Anything served from a private host is our own traffic.
+const INTERNAL_HOST = /(^|\/\/|@)(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\]|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)|tail[0-9a-z]+\.ts\.net|\.local(:|\/|$)/i;
 const BOT_UA = /(googlebot|bingbot|duckduckbot|baiduspider|yandexbot|facebookexternalhit|meta-externalagent|crawler|spider|slurp|semrushbot|ahrefsbot)/i;
 
 function clean(value: unknown, max = 240): string | null {
@@ -19,6 +24,7 @@ export function resolveTrafficClassification(args: {
   anonymousVisitorId?: string | null;
   userAgent?: string | null;
   explicitLabel?: TrafficClassification | null;
+  origin?: string | null;
 }): TrafficClassification {
   const anonymousVisitorId = clean(args.anonymousVisitorId, 160);
   if (anonymousVisitorId?.startsWith("codex-") || anonymousVisitorId?.startsWith("ww-test-")) {
@@ -28,6 +34,12 @@ export function resolveTrafficClassification(args: {
     return { trafficClass: "owner", reason: "owner_test_identifier", confidence: 1 };
   }
   if (args.explicitLabel) return args.explicitLabel;
+  // Internal origin beats the user-agent checks but never an explicit label or an
+  // owner/codex identifier - those are deliberate and stay authoritative.
+  const origin = clean(args.origin, 300) ?? "";
+  if (origin && INTERNAL_HOST.test(origin)) {
+    return { trafficClass: "test", reason: "internal_origin", confidence: 1 };
+  }
   const userAgent = clean(args.userAgent, 900) ?? "";
   if (TEST_UA.test(userAgent)) {
     return { trafficClass: "test", reason: "automated_test_browser", confidence: 1 };

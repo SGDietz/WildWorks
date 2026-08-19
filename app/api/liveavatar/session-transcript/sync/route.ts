@@ -23,12 +23,10 @@ import {
   sessionLooksLikeOperatorQa,
 } from "../../../../../src/lib/iscottLeadParsing";
 import { API_KEY, API_URL } from "../../secrets";
-import {
-  classifyTraffic,
+import { classifyTraffic,
   canDispatchFirstPublicMessageAlert,
   isMeaningfulPublicMessage,
-  trafficColumns,
-} from "../../../../../src/lib/trafficClassification";
+  trafficColumns, originFromRequest } from "../../../../../src/lib/trafficClassification";
 import { notifyFirstPublicMessageByEmail } from "../../../../../src/lib/voiceEmailNotifications";
 import {
   classifyTranscriptInsertFailure,
@@ -130,6 +128,7 @@ export async function POST(request: Request) {
     const traffic = await classifyTraffic({
       anonymousVisitorId,
       userAgent: request.headers.get("user-agent"),
+      origin: originFromRequest(request),
     });
     const classified = trafficColumns(traffic);
 

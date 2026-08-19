@@ -922,6 +922,9 @@ const wildWorksAutoWakeScript = `
         }
       };
 
+      // Back to the original 600ms on purpose. The two-second beat now lives on
+      // the session-start call itself, which every path shares, so delaying here
+      // as well would stack to 2.6s+ on the auto-wake path only.
       window.setTimeout(tryStart, 600);
     })();
   </script>
@@ -1334,7 +1337,21 @@ const wildWorksCaptureBridgeScript = `
       };
 
       const originalFetch = window.fetch.bind(window);
+      // G 2026-08-18: "I need a two second start" - his mouth was opening before
+      // there was anything to hear. The Talk button belongs to the embedded
+      // avatar app, so there is no click handler of ours to hook. This is the one
+      // choke point every start path goes through - the button, the ?wake
+      // auto-start, and the Restart panel all end up here - so holding the
+      // session-start call for two seconds gives the video and audio time to come
+      // up together, once, without stacking delays.
+      const WILDWORKS_START_DELAY_MS = 2000;
       window.fetch = async (input, init) => {
+        try {
+          const startUrl = typeof input === "string" ? input : input?.url || "";
+          if (startUrl.includes("/api/v1/sessions/start")) {
+            await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+          }
+        } catch {}
         const response = await originalFetch(input, init);
         try {
           const url = typeof input === "string" ? input : input?.url || "";

@@ -1,6 +1,6 @@
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { getRequestTelemetryContext, insertConversationTelemetryFallback, insertSupabaseRow, safeJsonPayload, storeRawTelemetryBackup } from "./telemetryServer";
-import { classifyTraffic, trafficColumns } from "./trafficClassification";
+import { classifyTraffic, trafficColumns, originFromRequest } from "./trafficClassification";
 
 function cleanString(value: unknown, maxChars = 1000): string | null {
   if (typeof value !== "string") return null;
@@ -28,6 +28,7 @@ export async function logServerTelemetryEvent(args: {
   const traffic = await classifyTraffic({
     anonymousVisitorId,
     userAgent: server.userAgent,
+    origin: originFromRequest(args.request),
   });
   const row = {
     session_id: sessionId,

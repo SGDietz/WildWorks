@@ -12,10 +12,8 @@ import {
   safeJsonPayload,
   storeRawTelemetryBackup,
 } from "../../../../src/lib/telemetryServer";
-import {
-  classifyTraffic,
-  trafficColumns,
-} from "../../../../src/lib/trafficClassification";
+import { classifyTraffic,
+  trafficColumns, originFromRequest } from "../../../../src/lib/trafficClassification";
 
 type Severity = "critical" | "high" | "medium" | "low";
 type Sentiment = "negative" | "positive";
@@ -183,6 +181,7 @@ export async function POST(request: Request) {
     const traffic = await classifyTraffic({
       anonymousVisitorId,
       userAgent: server.userAgent,
+      origin: originFromRequest(request),
     });
     const classified = trafficColumns(traffic);
     const deviceKind =
