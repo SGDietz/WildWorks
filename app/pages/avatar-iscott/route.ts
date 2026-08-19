@@ -1650,64 +1650,11 @@ const wildWorksCaptureBridgeScript = `
       // WILDWORKS_START_DELAY_MS, which lives HERE, so it was broken in both
       // directions. Nothing about the logic changes - it just lives in the same
       // scope as its caller and its constant now.
-      // G, ride b1dd603f: he hit the microphone permission button while iScott
-      // was already talking and it cut him off mid-sentence. And repeatedly
-      // before that: "he should sit there until the people press the permission
-      // for the microphone, then after they press the permission for the
-      // microphone, two seconds, then he starts talking."
-      //
-      // SECOND ATTEMPT AT THIS, AND DELIBERATELY BUILT NOT TO REPEAT THE FIRST.
-      // The first attempt wrapped navigator.mediaDevices.getUserMedia and
-      // restructured this fetch wrapper. After it, two of G's whole
-      // conversations recorded NOTHING - no pace marks, no transcript, no lead -
-      // and it had to be reverted on evidence of harm without a diagnosis.
-      //
-      // So this one touches neither. getUserMedia is left completely alone. The
-      // wrapper keeps the exact shape that has been working. All that changes is
-      // WHAT is awaited inside the try block that was already there.
-      //
-      // Three things make it unable to repeat that failure:
-      //   1. HARD CAP. It can wait at most MIC_WAIT_CAP_MS for permission. If the
-      //      Permissions API is missing, throws, never resolves, or the visitor
-      //      never answers, it falls through to the plain 2s hold and the start
-      //      proceeds. There is no path where this blocks a session forever.
-      //   2. Everything is inside try/catch. Any throw resolves immediately.
-      //   3. It is READ-ONLY - it observes permission state and never requests
-      //      it, so it cannot change what the avatar app is allowed to do.
-      //
-      // Marked at every step, so one ride tells us whether it behaved rather
-      // than us guessing a fourth time.
-      const MIC_WAIT_CAP_MS = 8000;
-      const waitForMicThenPause = async () => {
-        let granted = false;
-        try {
-          const perms = navigator.permissions;
-          if (perms && typeof perms.query === "function") {
-            const status = await Promise.race([
-              perms.query({ name: "microphone" }),
-              new Promise((r) => window.setTimeout(() => r(null), 1200)),
-            ]);
-            if (status && status.state === "granted") {
-              granted = true;
-              wwPaceMark("mic_already_granted");
-            } else if (status) {
-              wwPaceMark("mic_waiting", { state: status.state });
-              granted = await new Promise((resolve) => {
-                let done = false;
-                const finish = (v) => { if (!done) { done = true; resolve(v); } };
-                try {
-                  status.onchange = () => { if (status.state === "granted") finish(true); };
-                } catch {}
-                window.setTimeout(() => finish(false), MIC_WAIT_CAP_MS);
-              });
-              wwPaceMark(granted ? "mic_granted" : "mic_wait_timed_out");
-            }
-          }
-        } catch {}
-        // Whether permission was granted, refused, or never observable, the
-        // visitor now gets the two silent seconds before he speaks.
-        await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
-      };
+      // The mic-gated pause and its 8-second permission wait were REMOVED here
+      // on 2026-08-19 after they were measured costing ten seconds of load. The
+      // reasoning is written in full at the call site below. Nothing references
+      // MIC_WAIT_CAP_MS or waitForMicThenPause any more - if either name comes
+      // back, read that note first.
 
       // G has now reported "there was still no delay" on three separate rides.
       // I have twice reasoned about why it should work and twice been wrong, so
@@ -1769,8 +1716,31 @@ const wildWorksCaptureBridgeScript = `
           isSessionStart = startUrl.includes("/api/v1/sessions/start");
           if (isSessionStart) {
             wwPaceMark("start_intercepted");
-            await waitForMicThenPause();
-            wwPaceMark("delay_released");
+            // 2026-08-19, MEASURED ON G'S RIDE 99a49da8 AND REMOVED THE SAME HOUR.
+            //
+            // The mic-gated pause finally ran tonight - and it cost TEN SECONDS.
+            // The marks from that ride say it plainly:
+            //     tap                   876ms
+            //     start_intercepted    1541ms
+            //     mic_waiting          1547ms   state "prompt"
+            //     mic_wait_timed_out   9549ms   <- the FULL 8s cap, waiting
+            //     delay_released      11552ms   <- then the 2s hold
+            //     first_video_frame   20158ms
+            // Against 4793ms on the ride before it, when this never ran.
+            //
+            // IT CANNOT WORK ON THIS PATH AND THE NUMBERS PROVE WHY. The browser
+            // does not ask for the microphone until the avatar app is starting -
+            // which is the very call we are holding. So it waits for permission
+            // that cannot be granted yet, burns the whole cap, and only then
+            // adds the two seconds. The wait is not slow because the visitor is
+            // slow; it is slow because nothing has asked him anything.
+            //
+            // G, this evening: "let's not worry about it... don't spend much
+            // more time on it," and then: "just address the taking really long
+            // to load." Both point the same way, so the hold comes off the start
+            // path entirely. If the pause is ever wanted again it belongs on the
+            // permission-granted EVENT, not in front of the call that triggers
+            // the permission prompt.
           }
         } catch {}
         const response = await originalFetch(input, init);
