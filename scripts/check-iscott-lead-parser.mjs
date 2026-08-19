@@ -234,7 +234,10 @@ assert.equal(isPublicLeadAlertEligible("test"), false);
 assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public" }), true);
 assert.equal(canDispatchIScottLeadNotification({ sessionId: "codex-smoke-1" }), false);
 assert.equal(canDispatchIScottLeadNotification({ visitorId: "ww-test-smoke-1" }), false);
-assert.equal(canDispatchIScottLeadNotification({ sessionId: "ww-owner-smoke-1" }), false);
+// G 2026-08-19: owner leads now DO dispatch, so he gets a real checkmark on his
+// own smoke tests. The mail goes to his own inbox either way. Automated "test"
+// identifiers above stay blocked.
+assert.equal(canDispatchIScottLeadNotification({ sessionId: "ww-owner-smoke-1" }), true);
 assert.equal(
   canDispatchIScottLeadNotification({ trafficClass: "public", sessionId: "ww-test-smoke-1" }),
   false,
@@ -389,8 +392,8 @@ assert.match(
 );
 assert.equal(
   canDispatchIScottLeadNotification({ trafficClass: "public", visitorId: "ww-owner-smoke-1" }),
-  false,
-  "WW-10 owner prefix beats a public row label",
+  true,
+  "WW-10 owner prefix still resolves owner - and owner now dispatches (G 2026-08-19)",
 );
 assert.equal(
   canDispatchIScottLeadNotification({ trafficClass: "public", sessionId: "codex-76row-retest" }),

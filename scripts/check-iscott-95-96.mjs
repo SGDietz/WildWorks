@@ -4,14 +4,34 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import ts from "typescript";
 
-async function loadTs(rel) {
-  const source = await fs.readFile(path.resolve(rel), "utf8");
-  const out = ts.transpileModule(source, {
+// The transpiled copy has to carry its relative dependencies with it, or the
+// module's own imports (./iscottSalesCopy) never resolve and this whole guard
+// dies at import time - which is exactly what it had been doing, so none of the
+// checks below ever ran. Fixed 2026-08-19.
+const OUT_DIR = path.resolve(".next/iscott-9596");
+
+async function transpileInto(rel, seen = new Set()) {
+  const abs = path.resolve(rel);
+  const name = path.basename(abs, ".ts");
+  if (seen.has(abs)) return path.join(OUT_DIR, `${name}.mjs`);
+  seen.add(abs);
+  const source = await fs.readFile(abs, "utf8");
+  let out = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
   }).outputText;
-  const dest = path.resolve(`.next/${path.basename(rel, ".ts")}-9596.mjs`);
-  await fs.mkdir(path.resolve(".next"), { recursive: true });
+  const deps = [...out.matchAll(/from ["'](\.\/[A-Za-z0-9_.-]+)["']/g)].map((m) => m[1]);
+  for (const dep of new Set(deps)) {
+    await transpileInto(path.join(path.dirname(abs), `${dep.slice(2)}.ts`), seen);
+    out = out.split(`from "${dep}"`).join(`from "${dep}.mjs"`).split(`from '${dep}'`).join(`from '${dep}.mjs'`);
+  }
+  await fs.mkdir(OUT_DIR, { recursive: true });
+  const dest = path.join(OUT_DIR, `${name}.mjs`);
   await fs.writeFile(dest, out, "utf8");
+  return dest;
+}
+
+async function loadTs(rel) {
+  const dest = await transpileInto(rel);
   return import(`${pathToFileURL(dest).href}?v=${Date.now()}`);
 }
 
@@ -24,8 +44,19 @@ const { sessionLooksLikeOperatorQa } = await loadTs("src/lib/iscottLeadParsing.t
 
 assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public", sessionId: "codex-76row-retest" }), false);
 assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public", visitorId: "ww-test-smoke-1" }), false);
-assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public", visitorId: "ww-owner-smoke-1" }), false);
+// G 2026-08-19: owner leads now dispatch for real so G gets a true checkmark on
+// his own ride. Automated codex-/ww-test- traffic above stays blocked.
+assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public", visitorId: "ww-owner-smoke-1" }), true);
+assert.equal(canDispatchIScottLeadNotification({ trafficClass: "owner", operatorQa: true }), true);
 assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public", operatorQa: true }), false);
+// The first-public-message ping stays public-only - G must not be paged about
+// talking to his own site.
+assert.equal(
+  canDispatchFirstPublicMessageAlert({
+    classification: { trafficClass: "owner", reason: "owner_test_identifier", confidence: 1 },
+  }),
+  false,
+);
 assert.equal(canDispatchIScottLeadNotification({ trafficClass: "public" }), true);
 const unlabeled = resolveTrafficClassification({});
 assert.equal(unlabeled.reason, "unlabeled_nonbot");

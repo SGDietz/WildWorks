@@ -62,7 +62,14 @@ export function canDispatchIScottLeadNotification(args: {
   sessionId?: string | null;
   operatorQa?: boolean | null;
 }): boolean {
-  if (args.operatorQa) return false;
+  // G 2026-08-19: owner sessions used to be held, so he could never reach the end
+  // of his own flow and never saw a real checkmark. The destination is his own
+  // inbox either way, so a genuine send costs nothing and makes the tick true.
+  // operatorQa no longer blocks delivery for owner - it is still recorded on the
+  // lead so a QA row stays identifiable. Automated "test" traffic stays blocked:
+  // headless browsers must never email anyone.
+  const ownerLead = args.trafficClass === "owner";
+  if (args.operatorQa && !ownerLead) return false;
   const resolved = resolveTrafficClassification({
     anonymousVisitorId: args.visitorId || args.sessionId || null,
     explicitLabel:
@@ -73,7 +80,7 @@ export function canDispatchIScottLeadNotification(args: {
         ? { trafficClass: args.trafficClass, reason: "lead_row", confidence: 1 }
         : null,
   });
-  return isPublicLeadAlertEligible(resolved.trafficClass);
+  return isPublicLeadAlertEligible(resolved.trafficClass) || resolved.trafficClass === "owner";
 }
 
 export function canDispatchFirstPublicMessageAlert(args: {
@@ -83,6 +90,9 @@ export function canDispatchFirstPublicMessageAlert(args: {
   operatorQa?: boolean | null;
 }): boolean {
   if (args.classification.reason === "unlabeled_nonbot") return false;
+  // Deliberately public-only. Owner leads now send email, but G should not get a
+  // "first public message" page for talking to his own site.
+  if (args.classification.trafficClass !== "public") return false;
   return canDispatchIScottLeadNotification({
     trafficClass: args.classification.trafficClass,
     visitorId: args.visitorId,

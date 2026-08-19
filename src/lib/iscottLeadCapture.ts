@@ -766,7 +766,18 @@ export async function confirmAndSubmitIScottLead(args: {
       ? existing.email === email
       : existing.phone === phone
   );
-  if (existing.notification_status === ISCOTT_TEST_HELD_STATUS && sameConfirmedContact) {
+  // G 2026-08-19: a lead parked as test_held BEFORE owner sends were allowed has
+  // to get a real send on the next confirm, or G still never sees the checkmark.
+  // Only short-circuit when the gate is genuinely still shut for this row.
+  const heldRowStillBlocked =
+    existing.notification_status === ISCOTT_TEST_HELD_STATUS &&
+    !canDispatchIScottLeadNotification({
+      trafficClass: existing.traffic_class ?? null,
+      visitorId: existing.anonymous_visitor_id ?? null,
+      sessionId: args.sessionId,
+      operatorQa: existing.metadata?.operator_qa === true,
+    });
+  if (heldRowStillBlocked && sameConfirmedContact) {
     return {
       lead: toState(existing),
       queued: true,
@@ -794,6 +805,10 @@ export async function confirmAndSubmitIScottLead(args: {
 
   const now = existing.contact_confirmed_at ?? new Date().toISOString();
   const transcript = await readTranscript(args.sessionId);
+  // G 2026-08-19: this flag still MARKS a lead as QA, but for owner sessions it no
+  // longer blocks the send - see canDispatchIScottLeadNotification. Previously
+  // "owner" plus a transcript full of dev phrases ("the box", "as soon as I say")
+  // guaranteed a hold, so G's smoke tests could never reach a real checkmark.
   const operatorQa =
     existing.metadata?.operator_qa === true ||
     existing.traffic_class === "owner" ||
