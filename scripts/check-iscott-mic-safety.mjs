@@ -1,4 +1,8 @@
 import assert from "node:assert/strict";
+// 2026-08-19: this used to pin the EXACT call text, so adding the acceptNode
+// filter that stops the sanitizer eating script bodies failed the guard even
+// though the change was the fix. The assertion now checks the walker still
+// starts at document.body over text nodes, and leaves the filter free to grow.
 import fs from "node:fs/promises";
 
 const route = await fs.readFile("app/pages/avatar-iscott/route.ts", "utf8");
@@ -30,7 +34,7 @@ assert.doesNotMatch(shim, /webkitGetUserMedia|mozGetUserMedia/, "CRASH GUARD: no
 // Layer 2: the rendered-panel cleaner.  React mounts this warning late, as
 // nested elements, and re-renders it, so presence alone is not enough.
 assert.match(shim, /const unavailableMessage = "Microphone isn't available here\./, "visitor message is plain English");
-assert.match(shim, /createTreeWalker\(document\.body, NodeFilter\.SHOW_TEXT\)/, "cleaner collects the rendered text fragments");
+assert.match(shim, /createTreeWalker\(\s*document\.body,\s*NodeFilter\.SHOW_TEXT/, "cleaner collects the rendered text fragments");
 assert.match(shim, /const findWarningPanel = \(nodes\) => \{[\s\S]{0,400}panel\.contains\(other\)/, "the panel is found from the fragments, not from a remote class name");
 assert.match(shim, /index === 0 \? cleanWarningText\(current\) : ""/, "nested fragments say the message once instead of repeating it");
 assert.match(shim, /rawNode\.data = cleaned/, "cleaner rewrites text in place");
