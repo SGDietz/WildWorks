@@ -247,6 +247,10 @@ function isOperatorCorrection(text: string): boolean {
 export const iscottLeadCaptureTestUtils = {
   detectsAcceptedFollowUp,
   detectsSimpleAffirmation,
+  extractContactMethod,
+  // Exported 2026-08-19 so check-iscott-ride-89c453ff-replay.mjs can drive G's
+  // real turns through the real extractors instead of asserting on source text.
+  extractPhone,
   extractProjectNeed,
   extractFullName,
   isOperatorCorrection,
