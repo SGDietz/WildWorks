@@ -377,8 +377,17 @@ const wildWorksButtonCss = `
       padding: 0.28rem 0.5rem !important;
       border: 1px solid #f08c28 !important;
       border-radius: 0.375rem !important;
-      background: rgba(196, 77, 11, 0.55) !important;
+      /* G 2026-08-19, from the iPad: "blue letters and the colors ... they've
+         got to be nice brand, beautiful colors", and the box read as "a really
+         hard orange". iOS obeys -webkit-text-fill-color over color, and it sets
+         its own on autofill and on detected data - which is where the blue came
+         from. color alone was never going to hold on his device. */
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      background: rgba(139, 90, 43, 0.92) !important;
       color: #fce0ad !important;
+      -webkit-text-fill-color: #fce0ad !important;
+      caret-color: #edc775 !important;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
       font-size: clamp(0.95rem, 3.6vw, 1.15rem) !important;
       font-weight: 900 !important;
@@ -389,9 +398,39 @@ const wildWorksButtonCss = `
       outline: none !important;
     }
 
+    /* iOS/Chrome autofill repaints the field and the ink. Hold the brand. */
+    #wildworks-lead-value:-webkit-autofill,
+    #wildworks-lead-value:-webkit-autofill:hover,
+    #wildworks-lead-value:-webkit-autofill:focus,
+    #wildworks-lead-value:-webkit-autofill:active {
+      -webkit-text-fill-color: #fce0ad !important;
+      caret-color: #edc775 !important;
+      -webkit-box-shadow: 0 0 0 1000px rgba(139, 90, 43, 0.92) inset !important;
+      box-shadow: 0 0 0 1000px rgba(139, 90, 43, 0.92) inset !important;
+    }
+
+    #wildworks-lead-value::placeholder {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+      opacity: 0.72 !important;
+    }
+
+    /* iOS turns anything that looks like an address or a number into a blue
+       system link inside the panel. Brand ink wins. */
+    #wildworks-lead-confirmation a,
+    #wildworks-lead-confirmation a:visited,
+    #wildworks-lead-confirmation [x-apple-data-detectors] {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+      text-decoration: none !important;
+    }
+
     #wildworks-lead-status {
       margin: 0.65rem 0 0 !important;
       color: #fce0ad !important;
+      /* G 2026-08-19: "that confirmation should be the same beautiful brand
+         colors. It was not." iOS was repainting this line too. */
+      -webkit-text-fill-color: #fce0ad !important;
       font-family: Arial, sans-serif !important;
       font-size: 1.05rem !important;
       font-weight: 700 !important;

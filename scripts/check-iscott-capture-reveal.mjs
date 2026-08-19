@@ -35,7 +35,11 @@ const confirmEnd = route.indexOf("const showLead =", confirmStart);
 const confirm = route.slice(confirmStart, confirmEnd);
 assert.match(confirm, /fetch\("\/api\/iscott\/lead\/confirm"/, "send stays behind the explicit confirm control");
 assert.match(confirm, /I'm sending that to Scott\./, "pre-send status is the authorized sending copy");
-assert.match(confirm, /if \(testHeld \|\| failed\) \{[\s\S]{0,500}setCaptureHidden\(false\)/, "test-held or failed confirmation restores recovery");
+// G 2026-08-19: the two outcomes were split apart deliberately. A FAILED send
+// must bring the box back so the visitor can retry. A test-held lead clears on
+// the same beat as a real send - it is not an error the visitor can act on.
+assert.match(confirm, /else if \(failed\) \{[\s\S]{0,300}setCaptureHidden\(false\)/, "a failed send restores the box for retry");
+assert.match(confirm, /if \(testHeld\) \{[\s\S]{0,400}setCaptureHidden\(true\)/, "a held lead clears quietly, it is not a visitor-facing error");
 assert.match(confirm, /else if \(delivered\) \{[\s\S]{0,400}setSentVisible\(true, method\)/, "checked sent state requires real delivery");
 assert.match(route, /Email sent to Scott ✓/, "terminal email label names Scott");
 assert.match(route, /Phone sent to Scott ✓/, "terminal phone label names Scott");

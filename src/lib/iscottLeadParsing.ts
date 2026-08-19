@@ -114,23 +114,48 @@ export function isIncompleteAvatarUtterance(text: string): boolean {
 
 const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
 
+// G 2026-08-19: this function invented "of@bm.me.so" out of the sentence
+// "instead of @bm.me. So it should be", and iScott mailed the lead there, so G
+// never got it. The old version collapsed whitespace around EVERY literal "@"
+// and ".", including punctuation that was just prose - which glued the previous
+// word onto the address ("instead of" -> "of@") and swallowed the next sentence
+// as a TLD (". So" -> ".so").
+//
+// Only the SPOKEN words pull their neighbours together. A literal @ or . that
+// was already in the text keeps the spacing it came with, so an address that is
+// merely being talked about can no longer be harvested out of a sentence.
+const SPOKEN_AT = "\u0001";
+const SPOKEN_DOT = "\u0002";
+const SPOKEN_UNDERSCORE = "\u0003";
+const SPOKEN_DASH = "\u0004";
+
 export function normalizeSpokenEmail(text: string): string {
-  return text
+  const marked = text
     .toLowerCase()
-    .replace(/\b(?:at sign|at)\b/g, "@")
-    .replace(/\b(?:dot|period)\b/g, ".")
-    .replace(/\bunderscore\b/g, "_")
-    .replace(/\b(?:dash|hyphen)\b/g, "-")
-    .replace(/\s*@\s*/g, "@")
-    .replace(/\s*\.\s*/g, ".")
-    .replace(/\s*_\s*/g, "_")
-    .replace(/\s*-\s*/g, "-");
+    .replace(/\b(?:at sign|at)\b/g, SPOKEN_AT)
+    .replace(/\b(?:dot|period)\b/g, SPOKEN_DOT)
+    .replace(/\bunderscore\b/g, SPOKEN_UNDERSCORE)
+    .replace(/\b(?:dash|hyphen)\b/g, SPOKEN_DASH);
+  return marked
+    .replace(new RegExp("\\s*" + SPOKEN_AT + "\\s*", "g"), "@")
+    .replace(new RegExp("\\s*" + SPOKEN_DOT + "\\s*", "g"), ".")
+    .replace(new RegExp("\\s*" + SPOKEN_UNDERSCORE + "\\s*", "g"), "_")
+    .replace(new RegExp("\\s*" + SPOKEN_DASH + "\\s*", "g"), "-");
 }
+
+// Words that only ever appear as a TLD because a sentence carried on. G's ride
+// produced ".so" from "... .me. So it should be". Belt and braces behind the
+// normaliser above.
+const SENTENCE_TAIL_TLD = /\.(?:so|and|but|then|now|because|however|also|though|instead|which|that)$/i;
 
 export function extractEmail(text: string): string | null {
   const direct = text.match(EMAIL_PATTERN)?.[0];
   const spoken = normalizeSpokenEmail(text).match(EMAIL_PATTERN)?.[0];
-  const email = (direct ?? spoken)?.toLowerCase().slice(0, 254) ?? null;
+  let email = (direct ?? spoken)?.toLowerCase().slice(0, 254) ?? null;
+  if (email && SENTENCE_TAIL_TLD.test(email)) {
+    const trimmed = email.replace(SENTENCE_TAIL_TLD, "");
+    email = EMAIL_PATTERN.test(trimmed) ? trimmed : null;
+  }
   return email;
 }
 
