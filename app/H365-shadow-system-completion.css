@@ -1,122 +1,56 @@
-/* H365 - the last display text still on pure black. Completes H361. Shadow only.
+/* H365 - the display text H361 did not reach. REGENERATED AGAINST THE GAP RULE.
  *
- * I RE-CRAWLED ALL FIVE PAGES AFTER YOUR INSTALL. The system worked: HOME WENT
- * FROM 48 DISTINCT SHADOW SETTINGS TO 36, and each subpage from 17-20 down to 16.
+ * Same regeneration as H361: depths, inks and alphas identical, ONLY THE STEP
+ * COUNTS recomputed against  steps = ceil(envelope_px / 0.75) + 1  at the top of
+ * the band each rule sits in.
  *
- * THREE THINGS ARE STILL ON PURE BLACK WITH BLUR AND ARE DISPLAY TYPE, SO THEY
- * BELONG IN THE SYSTEM. Everything else left on black is SMALL TEXT and G has said
- * twice not to touch it - the full list of what I am leaving alone is at the
- * bottom so you can check my line rather than trust it.
+ * WHAT IS IN HERE AND WHY:
+ *   .wild-projects-page-intro__part--a and __part--b   58.4px, LARGE band
+ *      These two spans were created by the markup split I specified. Their PARENT
+ *      is on the large band, but a child span does not inherit a text-shadow set
+ *      on the parent - it gets whatever a rule sets on IT, and the old black rule
+ *      still named them. My own component change put two brand-new elements onto
+ *      the black family and neither of us noticed for an hour.
+ *      RESIZE = RECHECK THE SHADOW. SPLIT = RECHECK THE SHADOW.
  *
- * 1. .wild-projects-page-intro__part--a and __part--b   58.4px
- *    MY MISS, AND A FRESH ONE. The split I specified created these two spans an
- *    hour ago. Their PARENT __line--one is on H361's large band, but a child span
- *    does not inherit a text-shadow that a rule sets on the parent - it gets
- *    whatever a rule sets on IT, and the old black rule still names them. So my
- *    own component change put two brand-new elements onto the black family.
- *    THE LESSON IS THE SIBLING OF YOURS: NEW ELEMENT = NEW SHADOW TO CHECK. You
- *    said resize means recheck the shadow. Splitting means the same thing.
+ *   .wild-footer-stonework-note > span and __second-line   32.8px, MEDIUM band
+ *      The wrapper was already in H361's medium band; these inner spans carried
+ *      their own black rule.
  *
- * 2. .wild-phone-number-line__call-today   60.1px, ON ALL FIVE PAGES
- *    'Or Call WildWorks Today!' and 'Or Call Today!'. Sixty-pixel display type,
- *    sitting right beside the phone numbers we just put on the house ladder, and
- *    still black with blur. G named the NUMBERS, so I kept the captions out of
- *    every earlier packet on purpose - but he has since asked for the whole site
- *    to be uniform and these are the loudest remaining exception, right next to
- *    the thing he was looking at when he asked.
+ * .wild-phone-number-line__call-today is NOT in this file. Claude cut it when I
+ * flagged it as the one selector where I had widened past G's literal words, and
+ * G has since named only the BOTTOM instance himself - that one is handled in
+ * H368. The other instances are covered by H370's striping repair.
  *
- * 3. the second line of the stonework note   32.8px
- *    'All Stonework on this Site was Designed...' - the wrapper is already in
- *    H361's medium band but this inner span carries its own black rule.
+ * WEIGHT: 400 ids, !important. Preflighted.
  *
- * All three go on the band their size puts them in: 32.8px and 58.4px and 60.1px
- * are LARGE band for the two big ones and MEDIUM for the stonework line.
- *
- * WEIGHT: preflighted, 400 ids, same as the rest.
- *
- * WEIGHT: every selector carries 400 ids, written as :not(#_) x400 because it is
- * far shorter on the page than #wildworks-body x400 and counts identically.
- * I PREFLIGHTED THIS AGAINST THE LIVE PAGE BEFORE SENDING. As plain classes every
- * rule in it LOST to an existing !important authority and would have installed
- * green and done nothing. 400 clears the heaviest competitor I found on any of
- * the five pages and stays far under the 6090-id button rule, which this file
- * does not go near. If you would rather edit those authorities in place than
- * carry another layer, do - the values are all here. This is written to LAND
- * AS-IS because you are buried.
+ * ============ STEP COUNT, per rule ============
+ *   LARGE band, ceiling 80px                    9 steps, gap 0.73px at 80px
+ *   MEDIUM band, ceiling 48px                   8 steps, gap 0.68px at 48px
  */
-
-/* ================================================================================
- * 2026-08-19, G looking at the Wildfire hero: "look at the shadow. This is fucking
- * ridiculously horrible."
- *
- * HE IS RIGHT AND IT IS NOT A TASTE PROBLEM. Magnified at 2x, the shadow under
- * that headline is not a shadow at all - it is a set of SEPARATE DARK BARS with
- * page colour showing between them, like a barcode under every serif.
- *
- * THE MECHANISM. Each stop of a text-shadow is a whole copy of the glyph, offset
- * and with no blur. Four stops means four copies. The GAPS BETWEEN THE OFFSETS
- * were wider than the thin parts of the letterform, so on a serif or a hairline
- * each copy landed clear of the one before it instead of overlapping it:
- *
- *     LARGE band  87px type   stops 1.39 / 3.18 / 5.37 / 7.76px   GAPS UP TO 2.39px
- *     XL band    130px type   stops 1.62 / 3.71 / 6.26 / 9.04px   GAPS UP TO 2.78px
- *
- * A serif at that size is thinner than 2.4px. So the copies did not touch, and the
- * background showed through between them. On thick stems it looked fine, which is
- * why it read as "sometimes horrible" rather than "always wrong" - and why nobody
- * caught it from the numbers. It only shows when you magnify the render.
- *
- * THE FIX CHANGES NOTHING YOU CAN MEASURE ABOUT THE DESIGN. Same total depth, same
- * house inks, same alpha ramp from .97 down to .66. The ladder is simply cut into
- * TEN steps instead of four, so consecutive copies overlap:
- *
- *     LARGE band  87px type   gaps 0.78px    XL band  130px   gaps 0.90px
- *
- * Every stop still lands inside the same envelope the four-stop version described.
- * It is the same shadow, drawn solid instead of striped.
- *
- * IF YOU EVER RE-TUNE A DEPTH: the rule is that the gap between consecutive stops
- * must stay under about one pixel at the LARGEST size the band serves. Four stops
- * cannot do that above roughly 50px. Add steps, do not add blur - blur is the
- * smudge G had us take off everything today.
- * ============================================================================= */
-
 
 .wild-projects-page-intro__part--a:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
 .wild-projects-page-intro__part--b:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
-  text-shadow:
-    rgba(35,9,2,0.97) 0 0.008914em 0,
-    rgba(34,9,2,0.936) 0 0.017829em 0,
-    rgba(33,8,2,0.901) 0 0.026743em 0,
-    rgba(32,8,2,0.867) 0 0.035657em 0,
-    rgba(31,8,2,0.832) 0 0.044572em 0,
-    rgba(29,7,1,0.798) 0 0.053486em 0,
-    rgba(28,7,1,0.763) 0 0.062400em 0,
-    rgba(27,7,1,0.729) 0 0.071314em 0,
-    rgba(26,6,1,0.694) 0 0.080229em 0,
-    rgba(25,6,1,0.66) 0 0.089143em 0 !important;
-
-/* HELD BACK BY CLAUDE, 2026-08-19: .wild-phone-number-line__call-today.
- *
- * Claudette flagged this one herself as the single selector in the file where
- * she had widened past G's literal words - he named the phone NUMBERS, not the
- * 'Or Call Today!' captions beside them - and asked me to cut it if I read it
- * that way. I do. G tightened the rule an hour earlier, in his words: "let's
- * keep it back more towards harder guardrails, because everything drifts so
- * much. And I will tell you, or you ask me, and I'll clarify."
- *
- * She is probably right on the merits: it is 60px display type on all five
- * pages, still black with blur, sitting directly beside type we just moved onto
- * the house ladder. It will look like an exception because it IS one. But
- * probably-right is exactly what the guardrail exists to stop, so it goes to him
- * as a question instead of into the build.
- *
- * TO INSTALL IT: add .wild-phone-number-line__call-today to the large-band
- * selector list above, carrying the same 400 ids. Nothing else changes. */
+  text-shadow: rgba(35, 9, 2, 0.970) 0 0.016000em 0,
+    rgba(34, 9, 2, 0.931) 0 0.025143em 0,
+    rgba(32, 8, 2, 0.892) 0 0.034286em 0,
+    rgba(31, 8, 2, 0.854) 0 0.043429em 0,
+    rgba(30, 8, 2, 0.815) 0 0.052572em 0,
+    rgba(29, 8, 2, 0.776) 0 0.061714em 0,
+    rgba(28, 7, 2, 0.738) 0 0.070857em 0,
+    rgba(26, 6, 1, 0.699) 0 0.080000em 0,
+    rgba(25, 6, 1, 0.660) 0 0.089143em 0 !important;
 }
 
 .wild-footer-stonework-note > span:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
 .wild-footer-stonework-note__second-line:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
-  text-shadow: rgba(35,9,2,0.97) 0 0.012149em 0, rgba(34,9,2,0.936) 0 0.024298em 0, rgba(33,8,2,0.901) 0 0.036448em 0, rgba(32,8,2,0.867) 0 0.048597em 0, rgba(31,8,2,0.832) 0 0.060746em 0, rgba(29,7,1,0.798) 0 0.072895em 0, rgba(28,7,1,0.763) 0 0.085044em 0, rgba(27,7,1,0.729) 0 0.097194em 0, rgba(26,6,1,0.694) 0 0.109343em 0, rgba(25,6,1,0.66) 0 0.121492em 0 !important;
+  text-shadow: rgba(35, 9, 2, 0.970) 0 0.021806em 0,
+    rgba(34, 9, 2, 0.926) 0 0.036047em 0,
+    rgba(32, 8, 2, 0.881) 0 0.050288em 0,
+    rgba(31, 8, 2, 0.837) 0 0.064529em 0,
+    rgba(29, 8, 2, 0.793) 0 0.078769em 0,
+    rgba(28, 7, 2, 0.749) 0 0.093010em 0,
+    rgba(26, 7, 1, 0.704) 0 0.107251em 0,
+    rgba(25, 6, 1, 0.660) 0 0.121492em 0 !important;
 }
 
