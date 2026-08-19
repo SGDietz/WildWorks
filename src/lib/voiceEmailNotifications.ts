@@ -875,6 +875,35 @@ export async function notifyIScottLeadByEmail(
     signedUrl: safeHttpsUrl(item.signedUrl),
   }));
 
+  // G, 2026-08-19, looking at a real lead in his inbox: "I need a summary first.
+  // You know, I need all the information, name, project, preferred contact, all
+  // that stuff... a hundred words or less, fifty words, a hundred words,
+  // whatever. Whatever is important."
+  //
+  // Built from the stored fields, not from a model. Scott opens this on a phone
+  // between jobs; it has to say who wants what and how to answer them before he
+  // scrolls anything. Deterministic also means it cannot invent a job the
+  // visitor never asked for.
+  const summaryReach = [
+    phone ? `phone ${phone}` : null,
+    email ? `email ${email}` : null,
+  ].filter(Boolean).join(" and ");
+  const summaryPrefers = phone && email
+    ? ` They gave both, and prefer ${args.contactMethod === "phone" ? "a phone call" : "email"}.`
+    : "";
+  const summaryMedia = media.length
+    ? ` They uploaded ${media.length} file${media.length === 1 ? "" : "s"} - links below.`
+    : "";
+  const summaryWhere = location ? ` in ${location}` : "";
+  const summaryWant = projectNeed
+    ? `wants ${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`
+    : "did not say what the project is yet";
+  const summary =
+    `${fullName}${summaryWhere} ${summaryWant}.` +
+    (summaryReach ? ` Reach them on ${summaryReach}.${summaryPrefers}` : " No contact details were captured.") +
+    summaryMedia +
+    ` Confirmed ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`;
+
   const subjectLocation = location ? ` — ${location}` : "";
   const subject = truncateUtf8String(`New iScott lead — ${fullName}${subjectLocation}`, 220);
   const detailsText = [
@@ -895,7 +924,10 @@ export async function notifyIScottLeadByEmail(
         `${index + 1}. ${item.name} (${item.mimeType}, ${item.sizeBytes} bytes)${item.signedUrl ? `\n   ${item.signedUrl}` : ""}`,
       ).join("\n")}`
     : "\n\nUPLOADED PHOTOS AND VIDEOS\nNone.";
-  const text = `${detailsText.join("\n")}\n\nFULL TRANSCRIPT\n${transcript}${mediaText}`;
+  // Transcript is deliberately NOT inlined any more. G: "I shouldn't need the
+  // full transcript in the email. That button open transcript, as long as it
+  // works, is great." The dashboard link is still in the details above.
+  const text = `SUMMARY\n${summary}\n\n${detailsText.join("\n")}${mediaText}`;
 
   const detailRows = [
     ["Name", fullName],
@@ -926,7 +958,7 @@ export async function notifyIScottLeadByEmail(
         return `<li style="margin:0 0 16px"><strong>${escapeHtml(item.name)}</strong><br><span style="color:#6d5a49">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
       }).join("")
     : "<li>None.</li>";
-  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Full Transcript</h2><div style="white-space:pre-wrap;background:#f4e2c2;border-radius:8px;padding:16px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.55">${escapeHtml(transcript)}</div><h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Uploaded Photos and Videos</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
+  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><div style="margin:0 0 22px;padding:16px 18px;background:#f9edd6;border-left:4px solid #a44b20;border-radius:8px"><p style="margin:0 0 6px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Summary</p><p style="margin:0;font-size:15px;line-height:1.55;color:#4a2410">${escapeHtml(summary)}</p></div><table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Photos, Videos and Files</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
 
   return deliverVoiceEmail({
     eventType: "iscott_lead",
