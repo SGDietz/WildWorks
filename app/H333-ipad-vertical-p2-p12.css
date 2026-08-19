@@ -1,0 +1,14 @@
+/* H330: iPad vertical only. P2 hero-copy air + P12 statement phone shadow.
+   ID stacks generated. Beat live rivals by one. */
+
+@media (min-width: 768px) and (max-width: 1180px) and (orientation: portrait) {
+  /* P2: move the whole hero copy stack down. Spacing only. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home .wild-hero.discordSection .wild-hero-copy {
+    padding-top: 62px !important;
+  }
+
+  /* P12: statement phone only (--home-tree). Shadow ×0.90 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-tree a[href^="tel:"] {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.00905em 0, rgba(30, 8, 2, 0.9) 0 0.02263em 0, rgba(25, 6, 1, 0.82) 0 0.0396em 0, rgba(25, 6, 1, 0.68) 0 0.05658em 0 !important;
+  }
+}

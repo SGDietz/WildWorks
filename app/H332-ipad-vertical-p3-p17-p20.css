@@ -1,0 +1,39 @@
+/* CLAUDE EDIT 2026-08-19 - P17 only, and this was MY error, not Grok's.
+   His arithmetic was correct for the 50.3333px the title measured when he took
+   the reading. In the same round I bumped that title to 1.42em for P19
+   ("significantly larger ... at least three font sizes"), and because these
+   ladders are em they scaled up with the type: 0.72px became 1.022px, so the
+   shadow read HEAVIER instead of 10% lighter. Each P17 layer is divided by
+   1.42 so the rendered result lands on G's 0.72px at the new size.
+   He could not have known - I kept P19 and did not tell him. */
+/* H329: iPad vertical only. P3 hero phone, P17 P18 P20 projects.
+   ID stacks generated. Beat live rivals by one.
+   P3 is hero block only. P17 both title spans together.
+   P18 uses ×1.2222 against current (original +10%, not current +10%). */
+
+@media (min-width: 768px) and (max-width: 1180px) and (orientation: portrait) {
+  /* P3a hero Call WildWorks Today ×0.80 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-hero .wild-phone-number-line__call-today {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01333em 0, rgba(30, 8, 2, 0.9) 0 0.03333em 0, rgba(25, 6, 1, 0.82) 0 0.05833em 0, rgba(25, 6, 1, 0.68) 0 0.08333em 0 !important;
+  }
+
+  /* P3b hero tel number only ×0.80 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-hero a[href^="tel:"] {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.00805em 0, rgba(30, 8, 2, 0.9) 0 0.02012em 0, rgba(25, 6, 1, 0.82) 0 0.0352em 0, rgba(25, 6, 1, 0.68) 0 0.05029em 0 !important;
+  }
+
+  /* P17 WildWorks + Projects together ×0.90 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__title-wildworks, html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__title-projects {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01007em 0, rgba(30, 8, 2, 0.9) 0 0.0233em 0, rgba(25, 6, 1, 0.82) 0 0.0403em 0, rgba(25, 6, 1, 0.68) 0 0.05792em 0 !important;
+  }
+
+  /* P18 Wild by design: current × (1.10 / 0.90) */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects > p.wild-home-projects__tagline > span:not(#_):not(#_):not(#_) {
+    text-shadow: rgba(35, 9, 2, 0.9) 0 0.02983em 0, rgba(25, 6, 1, 0.6) 0 0.06319em 0 !important;
+  }
+
+  /* P20 capabilities copy ×0.80 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #projects .wild-home-projects__capabilities p {
+    text-shadow: rgba(35, 9, 2, 0.96) 0 0.01067em 0, rgba(30, 8, 2, 0.88) 0 0.02418em 0, rgba(25, 6, 1, 0.78) 0 0.04089em 0, rgba(25, 6, 1, 0.64) 0 0.05689em 0 !important;
+  }
+}

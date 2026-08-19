@@ -1,0 +1,25 @@
+/* H328: iPad vertical only. P13 P14 P15 P16.
+   ID stacks generated. Beat live rivals by one. Do not touch
+   .wild-signature-title__three. Desktop/laptop must not match. */
+
+@media (min-width: 768px) and (max-width: 1180px) and (orientation: portrait) {
+  /* P13 Tree of Life title ×0.90 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wildworks-proof .wild-tree-title .wild-line-title__line {
+    text-shadow: rgba(35, 9, 2, 0.97) 0 0.01223em 0, rgba(30, 8, 2, 0.89) 0 0.02772em 0, rgba(25, 6, 1, 0.81) 0 0.04728em 0, rgba(25, 6, 1, 0.67) 0 0.06848em 0 !important;
+  }
+
+  /* P14 copy under the tree title ×0.90 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #wildworks-proof p.wild-body:not(#_):not(#_):not(#_) {
+    text-shadow: rgba(35, 9, 2, 0.96) 0 0.01552em 0, rgba(30, 8, 2, 0.88) 0 0.03517em 0, rgba(25, 6, 1, 0.78) 0 0.05948em 0, rgba(25, 6, 1, 0.64) 0 0.08275em 0 !important;
+  }
+
+  /* P15 What Could / Be Cooler ×0.90 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #signature-work .wild-signature-title__one {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01275em 0, rgba(30, 8, 2, 0.9) 0 0.03188em 0, rgba(25, 6, 1, 0.82) 0 0.05578em 0, rgba(25, 6, 1, 0.68) 0 0.07969em 0 !important;
+  }
+
+  /* P16 Than Having / A Ruin ×0.80 */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #signature-work .wild-signature-title__two {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.01133em 0, rgba(30, 8, 2, 0.9) 0 0.02833em 0, rgba(25, 6, 1, 0.82) 0 0.04958em 0, rgba(25, 6, 1, 0.68) 0 0.07083em 0 !important;
+  }
+}
