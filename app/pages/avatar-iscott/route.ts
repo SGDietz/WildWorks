@@ -355,8 +355,9 @@ const wildWorksButtonCss = `
 
     .wildworks-lead-label-icon {
       display: inline-flex !important;
-      width: 1.05rem !important;
-      height: 1.05rem !important;
+      /* G 2026-08-19: "the little email icon should be a little bigger" */
+      width: 1.35rem !important;
+      height: 1.35rem !important;
       color: #edc775 !important;
       letter-spacing: 0 !important;
       line-height: 1 !important;

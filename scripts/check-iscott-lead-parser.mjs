@@ -379,10 +379,18 @@ assert.match(
   "WW-3 default overlay is hidden",
 );
 
-assert.doesNotMatch(
+// G 2026-08-19 reversed L21: "There is no tap... you want to just say yes.
+// Yes. Do that." Spoken permission now completes the send instead of unlocking
+// a button the visitor could not see.
+assert.match(
   captureSrc,
-  /consent_status === "accepted"[\s\S]{0,220}confirmAndSubmitIScottLead/,
-  "L21 spoken permission unlocks Send; it does not auto-submit",
+  /consent_status === "accepted"[\s\S]{0,400}confirmAndSubmitIScottLead/,
+  "spoken permission auto-submits",
+);
+assert.match(
+  captureSrc,
+  /alreadyHandled[\s\S]{0,400}confirmAndSubmitIScottLead/,
+  "auto-submit never re-fires on an already sent or queued lead",
 );
 assert.match(captureSrc, /notification_outbox_id: notification\.outboxId/, "WW-8 outbox written on notify");
 assert.match(

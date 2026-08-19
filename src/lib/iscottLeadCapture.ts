@@ -649,6 +649,38 @@ export async function processIScottTranscriptRows(args: {
 
   await insertExtractionEvents(args.sessionId, rows, args.anonymousVisitorId, args.route);
 
+  // G 2026-08-19: "There is no tap." The visitor says yes out loud and the send
+  // has to actually fire. Verbal consent used to only RECORD permission and then
+  // wait on a button, so iScott's "tap Send to Scott" pointed at nothing. The
+  // same confirmation that grants permission now completes the handoff.
+  // Consent is not a bare "yes" - detectsContextualContactSendConfirmation above
+  // requires iScott to have asked the send/permission question first, and the
+  // yes to land inside the confirmation window.
+  const spokenContact = row.contact_method === "phone" ? row.phone : row.email;
+  const alreadyHandled =
+    row.status === "submitted" ||
+    row.notification_status === "sent" ||
+    row.notification_status === "queued";
+  if (
+    !alreadyHandled &&
+    row.consent_status === "accepted" &&
+    row.contact_confirmed_at &&
+    (row.contact_method === "email" || row.contact_method === "phone") &&
+    spokenContact
+  ) {
+    try {
+      const spokenSend = await confirmAndSubmitIScottLead({
+        sessionId: args.sessionId,
+        contactMethod: row.contact_method,
+        contactValue: spokenContact,
+      });
+      return spokenSend.lead;
+    } catch {
+      // An auto-send failure must never break transcript capture. The visible
+      // Send control stays as the fallback path.
+    }
+  }
+
   return toState(row);
 }
 

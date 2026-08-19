@@ -174,7 +174,17 @@ export function iscottEmailReadbackPrompt(email: string): string | null {
 export function formatSpokenPhoneForReadback(phone: string): string {
   const digits = phone.replace(/\D/g, "");
   if (digits.length < 10 || digits.length > 15) return "";
-  return [...digits].join("-");
+  // G 2026-08-19: "I want him to be clear" - never one unbroken run of digits.
+  // Speak it in groups with a comma between them so iScott pauses where a person
+  // would, and lead with the country code when the number carries one.
+  const speak = (chunk: string) => [...chunk].join("-");
+  const national = digits.length > 10 ? digits.slice(-10) : digits;
+  const country = digits.slice(0, digits.length - national.length);
+  const groups = national.length === 10
+    ? [national.slice(0, 3), national.slice(3, 6), national.slice(6)]
+    : [national];
+  const spokenNational = groups.map(speak).join(", ");
+  return country ? `plus ${speak(country)}, ${spokenNational}` : spokenNational;
 }
 
 export function visitorChoseContactMethod(text: string): "email" | "phone" | null {
@@ -183,8 +193,13 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   if (/\b(?:email|e-mail|phone|call|telephone)\s+or\s+(?:email|e-mail|phone|call|telephone)\b/i.test(normalized)) {
     return null;
   }
-  if (/\b(?:how should|would you like|should scott|reach out)\b/i.test(normalized)
-    && /\b(?:email|e-mail|phone)\b/i.test(normalized)) {
+  // G 2026-08-19: this used to reject ANY line containing "reach out", which
+  // swallowed the visitor's own answer - "I would like for Scott to reach out by
+  // email" - so the capture box never opened. Reject only a line actually SHAPED
+  // like the question; a line offering both methods is already rejected above.
+  // KEEP IN SYNC with its twin - check-iscott-method-choice.mjs fails on drift.
+  if (/\?\s*$/.test(normalized)
+    && /\b(?:how should|how would|would you like|should scott|which do you prefer|best way)\b/i.test(normalized)) {
     return null;
   }
   if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
