@@ -1571,59 +1571,36 @@ const wildWorksCaptureBridgeScript = `
       };
       window.__wwPaceMark = wwPaceMark;
 
-      // G, 2026-08-19, after four rides of asking for a pause he could never
-      // feel: "the two second delay has got to be when he's initiated. Now he
-      // loads and then sits there waiting. He should sit there until the people
+      // 2026-08-19, REVERTED. The mic-gated pause is temporarily out.
+      //
+      // After that change G rode iScott TWICE and Supabase recorded NOTHING -
+      // no iscott_start_pace marks, no transcript rows, no lead. Two real
+      // conversations, no trace. app_events proved the page was alive
+      // (page_unload, page_hidden, page_visible) and liveavatar_token_created
+      // fired twice, so the rides genuinely started and he paid for them. The
+      // only things missing were the two that live behind this wrapper.
+      //
+      // Both worked on the 12:23 ride, before the change. The served script
+      // parses clean, so I could not prove the mechanism from the outside -
+      // and losing a visitor's entire conversation is far worse than any pause.
+      // So this goes back to the shape that was known to work, and the pause
+      // gets re-approached with evidence instead of another guess.
+      //
+      // G's spec stands and is NOT abandoned: two seconds AFTER the microphone
+      // permission, not on session start. "He should sit there until the people
       // press the permission for the microphone, then after they press the
-      // permission for the microphone, two seconds, then he starts talking."
-      //
-      // That is the answer, and it fixes two problems at once.
-      //
-      // The old hold sat on /api/v1/sessions/start. Grok's measurement of ride
-      // 89c453ff: the start POST is SERIALISED behind that hold, so the ~9.6s of
-      // provider session-start and WebRTC negotiation could not overlap it. It
-      // cost a flat 2s of load - tap to first frame was 12.4s where it would
-      // have been ~10.4s - and bought a pause nobody could perceive, because the
-      // copper cover was over the screen for 10.4 of those seconds anyway.
-      //
-      // The microphone prompt is the right gate. It is the one moment the
-      // visitor is definitely looking at the screen and definitely knows they
-      // just did something. Hold two seconds AFTER permission is granted and
-      // they get exactly what G described: his still face, silent, two beats,
-      // then he speaks.
-      //
-      // The start call is no longer delayed at all, so those 2s come back off
-      // the load.
-      const micGate = { grantedAt: 0, released: false };
-      try {
-        const md = navigator.mediaDevices;
-        if (md && typeof md.getUserMedia === "function") {
-          const originalGUM = md.getUserMedia.bind(md);
-          md.getUserMedia = async (constraints) => {
-            const wantsAudio = !constraints || constraints.audio !== false;
-            if (wantsAudio) wwPaceMark("mic_requested");
-            const stream = await originalGUM(constraints);
-            if (wantsAudio && !micGate.released) {
-              micGate.grantedAt = Math.round(performance.now());
-              wwPaceMark("mic_granted");
-              // The visitor has just tapped Allow. Hold the stream back for two
-              // seconds before handing it to the avatar app, so nothing it does
-              // with the microphone - including starting to speak - can happen
-              // inside that window.
-              await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
-              micGate.released = true;
-              wwPaceMark("mic_delay_released");
-            }
-            return stream;
-          };
-        }
-      } catch {}
-
+      // permission, two seconds, then he starts talking." The next attempt hangs
+      // that off a permission event WITHOUT restructuring this wrapper.
       window.fetch = async (input, init) => {
-        const startUrl = typeof input === "string" ? input : input?.url || "";
-        const isSessionStart = startUrl.includes("/api/v1/sessions/start");
+        let isSessionStart = false;
         try {
-          if (isSessionStart) wwPaceMark("start_intercepted");
+          const startUrl = typeof input === "string" ? input : input?.url || "";
+          isSessionStart = startUrl.includes("/api/v1/sessions/start");
+          if (isSessionStart) {
+            wwPaceMark("start_intercepted");
+            await new Promise((resolve) => window.setTimeout(resolve, WILDWORKS_START_DELAY_MS));
+            wwPaceMark("delay_released");
+          }
         } catch {}
         const response = await originalFetch(input, init);
         try {
