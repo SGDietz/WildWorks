@@ -420,7 +420,14 @@ const wildWorksButtonCss = `
          So: outer panel PRIMARY, inner field CARD, and the three text colours
          inside. He also said "the size, it could be a little shorter."
          This replaces the cream panel I tried an hour ago - his call, his eye. */
-      border: 1px solid #fce0ad !important;
+      /* G, ride 7325f798: "the rim around your email, the whole thing is really
+         thick. Make it really thin... maybe the one around the email is okay,
+         just use that same color... take the rim around the whole box and just
+         do exactly the same things, exactly the same thickness as is around the
+         email box now."
+         So the outer rim is now byte-identical to the field's rim below:
+         1px solid #f08c28. Not similar - the same. */
+      border: 1px solid #f08c28 !important;
       border-radius: 8px !important;
       background:
         radial-gradient(circle at 50% -30%, rgba(252, 224, 173, 0.20), transparent 58%),
@@ -438,9 +445,10 @@ const wildWorksButtonCss = `
       gap: 0.5rem !important;
       /* G 2026-08-19: "your email, the words are too close to the box." */
       margin: 0 0 0.42rem !important;
-      /* G, ride b1dd603f: "do the words your email in color number one."
-         Back to text-1 now the panel is primary again. */
-      color: #fce0ad !important;
+      /* G, ride 7325f798, reversing his own earlier call: "reverse the... put
+         your email as color number 2." An hour before he asked for colour one
+         here. Latest signal wins. */
+      color: #edc775 !important;
       font-size: 0.72rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.18em !important;
@@ -456,10 +464,14 @@ const wildWorksButtonCss = `
          then some - 1.5em keeps it tied to the label's own size rather than a
          fixed rem that stops tracking when the label scales.
          "Do the envelope icon in color text number two." */
-      width: 1.5em !important;
-      height: 1.5em !important;
+      /* G, ride 7325f798: "the actual mail envelope, make it SIGNIFICANTLY
+         larger. And just make it color number 1."
+         1.5em -> 2.2em. Still in em so it tracks the label rather than freezing
+         at one size, which is why it went to em in the first place. */
+      width: 2.2em !important;
+      height: 2.2em !important;
       flex: 0 0 auto !important;
-      color: #edc775 !important;
+      color: #fce0ad !important;
       letter-spacing: 0 !important;
       line-height: 1 !important;
     }
@@ -1880,7 +1892,7 @@ const wildWorksLeadConfirmationScript = `
           // field and paint a badge over it. These are the opt-outs LastPass,
           // 1Password, Bitwarden and Dashlane each respect. autocomplete stays
           // email/tel so phones keep showing the right keyboard.
-          '    <input id="wildworks-lead-value" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-form-type="other" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
+          '    <input id="wildworks-lead-value" type="text" autocomplete="off" inputmode="email" spellcheck="false" placeholder="" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-form-type="other" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
           '    <p id="wildworks-lead-spoken-readback" aria-hidden="true"></p>',
           '    <div class="wildworks-lead-actions">',
           '      <button id="wildworks-lead-confirm" type="button" aria-label="Send these details to Scott">Send these details to Scott</button>',
@@ -1957,6 +1969,30 @@ const wildWorksLeadConfirmationScript = `
         return raw;
       };
 
+      // G, ride 7325f798: "the email address, as large as it can comfortably fit,
+      // larger. And if an email address from somebody is really long, it's gotta
+      // squeeze down and be smaller print."
+      //
+      // So the field starts big and only shrinks when the text would overflow.
+      // Steps down from the ideal until it fits or hits the floor, so a short
+      // address like G's reads large and a long one still fits on one line.
+      const FIT_MAX_REM = 1.6;
+      const FIT_MIN_REM = 0.78;
+      const fitValueText = (output) => {
+        try {
+          if (!output) return;
+          let size = FIT_MAX_REM;
+          output.style.setProperty("font-size", size + "rem", "important");
+          // scrollWidth beats clientWidth the moment the text no longer fits.
+          let guard = 0;
+          while (output.scrollWidth > output.clientWidth + 1 && size > FIT_MIN_REM && guard < 40) {
+            size = Math.round((size - 0.04) * 100) / 100;
+            output.style.setProperty("font-size", size + "rem", "important");
+            guard += 1;
+          }
+        } catch {}
+      };
+
       const revealCapturedContact = (output, value) => {
         const next = String(value || "");
         if (revealingContact && output.getAttribute("data-reveal-target") === next) return;
@@ -1972,6 +2008,7 @@ const wildWorksLeadConfirmationScript = `
         if (reduceMotion || !next || output.readOnly) {
           output.value = next;
           output.textContent = next;
+          fitValueText(output);
           revealingContact = false;
           return;
         }
@@ -1982,6 +2019,7 @@ const wildWorksLeadConfirmationScript = `
         output.textContent = "";
         let index = 0;
         typingTimer = window.setInterval(() => {
+          fitValueText(output);
           if (version !== revealVersion || userEditedContact || output.readOnly) {
             if (typingTimer) window.clearInterval(typingTimer);
             typingTimer = null;
@@ -2254,8 +2292,12 @@ const wildWorksLeadConfirmationScript = `
         const icon = panel.querySelector(".wildworks-lead-label-icon");
         if (icon) icon.setAttribute("data-method", method);
         panel.setAttribute("data-contact-method", method);
-        output.setAttribute("type", method === "email" ? "email" : "tel");
-        output.setAttribute("autocomplete", method === "email" ? "email" : "tel");
+        // LastPass and friends key off type="email"/"tel". Keep it type=text
+        // and steer the keyboard with inputmode instead - G, ride 7325f798:
+        // "last pass has to go."
+        output.setAttribute("type", "text");
+        output.setAttribute("autocomplete", "off");
+        output.setAttribute("inputmode", method === "email" ? "email" : "tel");
         if (!value) {
           // G's ride 89c453ff: "it just came up again... and now it hasn't gone
           // away." Grok found the path. After a send, dismissedFor holds the old
