@@ -292,11 +292,10 @@ const wildWorksButtonCss = `
       top: auto !important;
       /* G 2026-08-17 (rev 2): the box COVERS the Finish button while open —
          Finish comes back when the box drops after the checkmark. */
-      /* G 2026-08-19 smoke test: "this stupid box is on your face... it's way
-         too high, it needs to come down." Dropped from 1.9rem to 0.5rem and the
-         card slimmed below, so it sits at the very bottom edge instead of
-         riding up over iScott's chin. */
-      bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
+      /* G 2026-08-19: "it needs to be over the word Finish." The bottom edge was
+         always right - the card was simply TALL, so it grew upward into his chin.
+         Anchor restored; the card below is kept short instead. */
+      bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
       left: 50% !important;
       z-index: 60 !important;
       display: none !important;
@@ -324,16 +323,14 @@ const wildWorksButtonCss = `
       max-width: min(19rem, 88vw) !important;
       margin: 0 auto !important;
       padding: 0.5rem 0.85rem !important;
-      /* G 2026-08-17: brand colors — warm wood field, honey border, amber glow. */
-      border: 2px solid #e0a85a !important;
+      /* G 2026-08-19: "it needs to be brand colors." Off the old wood browns and
+         onto the locked five: primary field, card-colour border, text-3 glow. */
+      border: 2px solid #e96819 !important;
       border-radius: 1rem !important;
-      background:
-        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 231, 175, 0.16), transparent 60%),
-        linear-gradient(160deg, #5a2c0c 0%, #3a2108 62%, #2a1706 100%) !important;
+      background: #c44d0b !important;
       box-shadow:
-        inset 0 1px 0 rgba(255, 247, 218, 0.35),
-        inset 0 2px 14px rgba(0, 0, 0, 0.5),
-        0 0 34px rgba(224, 168, 90, 0.55) !important;
+        inset 0 1px 0 rgba(252, 224, 173, 0.30),
+        0 0 28px rgba(240, 140, 40, 0.55) !important;
       backdrop-filter: blur(2px) !important;
     }
 
@@ -343,7 +340,7 @@ const wildWorksButtonCss = `
       justify-content: center !important;
       gap: 0.5rem !important;
       margin: 0 !important;
-      color: #f1c477 !important;
+      color: #edc775 !important;
       font-size: 0.72rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.18em !important;
@@ -355,7 +352,7 @@ const wildWorksButtonCss = `
       display: inline-flex !important;
       width: 1.05rem !important;
       height: 1.05rem !important;
-      color: #f1c477 !important;
+      color: #edc775 !important;
       letter-spacing: 0 !important;
       line-height: 1 !important;
     }
@@ -372,10 +369,10 @@ const wildWorksButtonCss = `
       min-height: 2.75rem !important;
       margin: 0 auto !important;
       padding: 0.28rem 0.5rem !important;
-      border: 1px solid #b7823a !important;
+      border: 1px solid #f08c28 !important;
       border-radius: 0.375rem !important;
-      background: rgba(61, 28, 8, 0.55) !important;
-      color: #ffe9c2 !important;
+      background: rgba(196, 77, 11, 0.55) !important;
+      color: #fce0ad !important;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
       font-size: clamp(0.95rem, 3.6vw, 1.15rem) !important;
       font-weight: 900 !important;
@@ -441,6 +438,21 @@ const wildWorksButtonCss = `
     .wildworks-lead-card[data-box-view="sending"] .wildworks-lead-capture,
     .wildworks-lead-card[data-box-view="sent"] .wildworks-lead-capture {
       display: none !important;
+    }
+
+    /* G 2026-08-19: "I hope I never see this box again. All it should be is the
+       box that I mentioned." Everything except the label, the field and the sent
+       checkmark is hidden for good - the Send button (the flow is verbal), the
+       status line that printed "Test session - not sent.", and the sync notice.
+       The elements remain in the DOM on purpose: plenty of existing logic still
+       queries them, and deleting the nodes would null-crash that code. */
+    .wildworks-lead-actions,
+    #wildworks-lead-confirm,
+    #wildworks-lead-status,
+    #wildworks-lead-sync {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
     #wildworks-lead-sent {
@@ -676,7 +688,7 @@ const wildWorksButtonCss = `
       }
 
       #wildworks-lead-confirmation {
-        bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
+        bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
       }
 
       #wildworks-lead-label-text {
@@ -740,7 +752,7 @@ const wildWorksButtonCss = `
     @media (max-width: 287px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.5rem) !important;
-        bottom: calc(0.4rem + env(safe-area-inset-bottom, 0px)) !important;
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
       }
     }
 
@@ -1698,13 +1710,20 @@ const wildWorksLeadConfirmationScript = `
           const delivered = Boolean(result.delivered) && result.lead?.notificationStatus === "sent";
           const failed = isSendFailureStatus(result.lead?.notificationStatus);
           const sendState = testHeld ? "test_held" : delivered ? "notified" : failed ? "failed" : "queued";
-          if (testHeld || failed) {
+          if (testHeld) {
+            // G's own sessions are classified test, so the lead is held by
+            // design. He never wants the panel to sit there explaining that, so
+            // it clears on the same 2s beat as a real send - but it deliberately
+            // does NOT show the checkmark, because nothing was actually sent.
+            setCaptureHidden(true);
+            setSentVisible(false, method);
+            status.textContent = "Test session — not sent.";
+            dropPanelSoon(2000);
+          } else if (failed) {
             setCaptureHidden(false);
             setSentVisible(false, method);
             document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "failed");
-            status.textContent = testHeld
-              ? "Test session — not sent."
-              : "The send failed. Scott does not have this yet. I will keep the details here.";
+            status.textContent = "The send failed. Scott does not have this yet. I will keep the details here.";
             button.disabled = false;
           } else if (delivered) {
             setCaptureHidden(true);
