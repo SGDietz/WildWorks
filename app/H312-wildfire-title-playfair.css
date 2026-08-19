@@ -1,4 +1,14 @@
-/* H312: G 2026-08-18 — "all fonts should be uniform across all devices" and
+/* 2026-08-19 UPDATE - THE FACE ITSELF CHANGED. See the long note in layout.tsx.
+   Playfair fixed the per-device problem below and it stays fixed, but Playfair's
+   own f overhangs into the following i at this size, so "Wildfire" kept showing a
+   blob instead of a tittle. That is the thing G has been pointing at. Cinzel is
+   an all-caps engraved roman matching the wordmark above it - no lowercase f, no
+   tittle, no j descender, so neither fault can happen. Playfair stays in the
+   stack behind it as the fallback.
+
+   ORIGINAL NOTE BELOW, still true about the cascade.
+
+   H312: G 2026-08-18 — "all fonts should be uniform across all devices" and
    "I don't like a square dot for an i."
 
    Both come from the same root cause. H238 asks the Wildfire page title for
@@ -25,6 +35,22 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   .wildfire-hero > .wildfire-page-heading .wildfire-page-heading__wildfire,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire
   .wildfire-hero > .wildfire-page-heading .wildfire-hero-kicker__cap {
-  font-family: var(--font-playfair), "Playfair Display", "Libre Baskerville",
-    Georgia, serif !important;
+  font-family: var(--font-cinzel), "Cinzel", var(--font-playfair),
+    "Playfair Display", Georgia, serif !important;
+  /* Cinzel is an all-caps roman, so the same words set about 4 percent wider
+     than Playfair did. At 9.2rem that tipped "Project Wildfire" onto two lines
+     at 1366 - measured, it needed 1401px of a 1366px row. The title has always
+     been ONE line and that is the approved layout, so the ceiling comes down to
+     8.8rem, and the middle term from 14vw to 9.5vw.
+
+     The 14vw was dead weight - at 1366 it computes to 191px, so the clamp only
+     ever picked its ceiling and the size never tracked the screen at all. That
+     is why a fixed ceiling could not fix the wrap: the row is 1298px of a 1366
+     viewport once padding is taken, and the words need 9.52x the font size.
+     9.5vw keeps that ratio honest at every width - 1235px of 1298 at 1366,
+     1067 of 1121 at 1180 - while 8.8rem still caps it on big screens.
+
+     MEASURED one line at 1920, 1366 and 1180. Mobile keeps the 5rem floor and
+     stays two lines exactly as it already was with the old face. */
+  font-size: clamp(5rem, 9.5vw, 8.8rem) !important;
 }

@@ -1,5 +1,13 @@
 /* Bio background reset: primary field with one barely visible center light.
-   Bio only. Cards, text, buttons, and other routes are untouched. */
+   Bio only. Cards, text, buttons, and other routes are untouched.
+
+   2026-08-19: .wild-top-logo-landscaping-effect REMOVED from the transparent
+   list below. It is not a background - it is the tagline's drop shadow, the
+   logo shape masked from the same PNG and tinted #321005. Blanking it here left
+   Bio as the ONE page of five with no shadow under "Fine Art & Practical
+   Landscaping", while H351 was separately painting it page-copper on the other
+   four. Same mistake twice in two files: a canvas guard treating a masked
+   shadow as a panel. G asked for the logo to match on all five. */
 
 html:has(.wild-subpage--bio) {
   --ww-bio-primary: #c44d0b;
@@ -38,7 +46,6 @@ html body#wildworks-body:not(#bio-solid#bio-solid#bio-solid#bio-solid#bio-solid#
   :is(
     header.wild-site-header,
     .wild-top-logo-band,
-    .wild-top-logo-landscaping-effect,
     footer#footer,
     footer#footer .wild-footer-main,
     footer#footer .wild-footer-contact-card-region,

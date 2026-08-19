@@ -7,6 +7,7 @@ import {
   Playfair_Display,
   Manrope,
   Caladea,
+  Cinzel,
 } from "next/font/google";
 import "./globals.css";
 import "./gold-standard.css";
@@ -349,6 +350,30 @@ const caladea = Caladea({
   subsets: ["latin"],
 });
 
+// G, 2026-08-19, for the fourth or fifth time: "I've continuously asked for this
+// to change the Font here on project wildfire."
+//
+// Every previous round changed some element TO Playfair and called it done. This
+// time I photographed the glyphs at 2x instead of reading a stylesheet, and the
+// thing he keeps pointing at is real and is IN Playfair: at 147px its f has a
+// ball terminal that overhangs far enough to swallow the dot of the following i,
+// so "Wildfire" renders with a blob where the tittle should be. Turning
+// ligatures off does not help - it is what CREATES the collision, because the fi
+// ligature exists precisely to resolve it. Libre Baskerville, the only other
+// display serif already loaded, collides the same way, and more tracking does
+// not separate them because the overhang is in the glyph, not the advance.
+//
+// So the face itself had to change, which is what he asked for in the first
+// place. Cinzel is a Trajan-style engraved roman - the same family of letterform
+// as the WILDWORKS wordmark directly above it, so the page reads as one thing -
+// and being an all-caps face it has NO lowercase f, NO tittle and NO j
+// descender. Both faults he has named for weeks cannot occur in it.
+const cinzel = Cinzel({
+  weight: ["400", "700"],
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+});
+
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wildworks.live").replace(/\/$/, "");
 const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 
@@ -555,7 +580,7 @@ export default function RootLayout({
       </head>
       <body
         id="wildworks-body"
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${manrope.variable} ${caladea.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${manrope.variable} ${caladea.variable} ${cinzel.variable} antialiased`}
       >
         <style data-wildworks-copper-canvas>{universalCopperCanvasCss}</style>
         <div className="relative min-h-screen overflow-hidden">

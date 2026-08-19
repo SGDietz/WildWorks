@@ -76,7 +76,24 @@ html:not(:has(.wild-legal-home))
 
 html:not(:has(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
-  :is(.wild-top-logo-landscaping-effect, .wild-home-craftsmanship-video, .wild-branded-video) {
+  /* 2026-08-19: .wild-top-logo-landscaping-effect REMOVED from this list.
+     G, four times: "the shadow is just a little far off. Look under the g in
+     Landscaping, under the a, you can see background color."
+
+     That element is not a canvas. It is the logo shape again, masked from the
+     same PNG, tinted #321005, nudged down and scaled 1.012 - it IS the drop
+     shadow under the tagline. Painting it #c44d0b filled its body with the page
+     colour, so all that survived was the thin dark ring its drop-shadow filters
+     draw around the edge. The orange he can see under the g and the a is this
+     silhouette showing page colour between each letter and its own shadow.
+
+     It reads as a gap. It is actually the shadow with its middle painted out.
+
+     Restoring it to #321005 (H118/H264 set that and were being overridden here)
+     closes the gap on all five pages without touching
+     --ww-top-logo-shadow-scale, which is locked because it also drives the
+     wordmark. The two video containers were correct and stay. */
+  :is(.wild-home-craftsmanship-video, .wild-branded-video) {
   background-color: #c44d0b !important;
 }
 
