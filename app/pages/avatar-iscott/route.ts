@@ -148,8 +148,11 @@ const wildWorksButtonCss = `
       display: grid !important;
       place-items: center !important;
       padding-bottom: 0 !important;
-      color: #fce0ad !important;
-      -webkit-text-fill-color: #fce0ad !important;
+      /* G 2026-08-19: "make that color number two" - the Loading iScott wordmark
+         moves off text-1 onto text-2. The field behind it is already the primary
+         background (#c44d0b), which is what he asked for. */
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
       background: none !important;
       font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
       font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
@@ -289,7 +292,11 @@ const wildWorksButtonCss = `
       top: auto !important;
       /* G 2026-08-17 (rev 2): the box COVERS the Finish button while open —
          Finish comes back when the box drops after the checkmark. */
-      bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
+      /* G 2026-08-19 smoke test: "this stupid box is on your face... it's way
+         too high, it needs to come down." Dropped from 1.9rem to 0.5rem and the
+         card slimmed below, so it sits at the very bottom edge instead of
+         riding up over iScott's chin. */
+      bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
       left: 50% !important;
       z-index: 60 !important;
       display: none !important;
@@ -312,9 +319,11 @@ const wildWorksButtonCss = `
       flex-direction: column !important;
       align-items: center !important;
       width: 100% !important;
-      max-width: min(22rem, 90vw) !important;
+      /* G: "it should just be the little email box with the email" - smaller
+         footprint so it cannot reach his face. */
+      max-width: min(19rem, 88vw) !important;
       margin: 0 auto !important;
-      padding: 0.85rem 1.25rem !important;
+      padding: 0.5rem 0.85rem !important;
       /* G 2026-08-17: brand colors — warm wood field, honey border, amber glow. */
       border: 2px solid #e0a85a !important;
       border-radius: 1rem !important;
@@ -667,7 +676,7 @@ const wildWorksButtonCss = `
       }
 
       #wildworks-lead-confirmation {
-        bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px)) !important;
+        bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
       }
 
       #wildworks-lead-label-text {
@@ -731,7 +740,7 @@ const wildWorksButtonCss = `
     @media (max-width: 287px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.5rem) !important;
-        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
+        bottom: calc(0.4rem + env(safe-area-inset-bottom, 0px)) !important;
       }
     }
 
@@ -1702,7 +1711,7 @@ const wildWorksLeadConfirmationScript = `
             setSentVisible(true, method);
             document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "sent");
             status.textContent = method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓";
-            dropPanelSoon(3000);
+            dropPanelSoon(2000);  // G 2026-08-19: hold the checkmark 2s, then drop
           } else {
             setCaptureHidden(true);
             setSentVisible(false, method);
@@ -1798,7 +1807,7 @@ const wildWorksLeadConfirmationScript = `
           setSentVisible(true, method);
           if (!dropScheduled[contactKey]) {
             dropScheduled[contactKey] = true;
-            dropPanelSoon(3500);
+            dropPanelSoon(2000);  // G 2026-08-19: same 2s beat on the typed path
           }
         } else if (submitted && !failed) {
           setCaptureHidden(true);
