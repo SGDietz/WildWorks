@@ -90,12 +90,19 @@ const COLLECT = function (props) {
     let own = "";
     for (const n of el.childNodes) if (n.nodeType === 3) own += " " + n.textContent;
     own = own.replace(/\s+/g, " ").trim();
-    const isControl = el.tagName === "A" || el.tagName === "BUTTON" || el.tagName === "INPUT";
-    if (own.length < 3 && !isControl) continue;
+    // 2026-08-19: this used to require text, or a/button/input. An <svg> has
+    // neither, so every icon on the site was invisible to the detector - it
+    // reported "nothing moved" for an icon change I had definitely just made.
+    // A false negative is worse than a false alarm, because it is trusted.
+    const tag = el.tagName.toUpperCase();
+    const isVisual = tag === "A" || tag === "BUTTON" || tag === "INPUT" ||
+                     tag === "SVG" || tag === "IMG" || tag === "VIDEO" || tag === "PATH";
+    if (own.length < 3 && !isVisual) continue;
     const holder = el.closest("section[id],div[id]");
     // A key that survives re-render: where it is, what it is, what it says.
-    let key = [holder ? holder.id : "-", el.tagName.toLowerCase(),
-               String(el.className || "").trim().split(/\s+/).slice(0, 2).join("."),
+    let key = [holder ? holder.id : "-", tag.toLowerCase(),
+               (el.getAttribute && el.getAttribute("class") ? el.getAttribute("class") : "")
+                 .trim().split(/\s+/).slice(0, 2).join("."),
                own.slice(0, 28)].join("|");
     seen[key] = (seen[key] || 0) + 1;
     if (seen[key] > 1) key += "#" + seen[key];
