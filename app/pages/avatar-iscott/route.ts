@@ -235,6 +235,18 @@ const wildWorksButtonCss = `
       background: transparent !important;
     }
 
+    /* G, ride 308c9716: "the icon on the finish button needs some shadow."
+       The labels on these buttons already carry depth; the icons were flat.
+       Same drop-shadow pair the site puts on every button icon, in house ink. */
+    .btn-wood svg,
+    .btn-inset svg,
+    [data-ww-finish] svg,
+    [data-ww-talk] svg {
+      filter:
+        drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
+        drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
+    }
+
     .btn-wood,
     .btn-inset {
       display: inline-flex !important;
@@ -379,13 +391,25 @@ const wildWorksButtonCss = `
          dark ink, gold edge. Highest contrast available inside the locked five,
          and it reads as a card laid over the panel because it is lighter than
          everything around it, not darker. */
-      border: 2px solid #f08c28 !important;
-      border-radius: 1rem !important;
-      background: linear-gradient(180deg, #fce0ad 0%, #edc775 100%) !important;
+      /* G, ride 308c9716: "the box is just ugly. Make it look like the Finish
+         box and the Talk to iScott and the Upload Photos or Videos. Keep the
+         colors in this spirit with the shine, and it's just a beautiful... the
+         elegance of it all."
+         So it takes the same treatment those buttons carry, four lines above:
+         the radial shine at 50% -30%, the cream hairline border, the 8px radius.
+         The ramp stops at #f08c28 instead of running down to #c44d0b - a button
+         is one line of type, this is a panel with a field inside it, and taking
+         the ramp all the way to primary would bury the label in the dark end.
+         Same family, same shine, readable at panel height. */
+      border: 1px solid #fce0ad !important;
+      border-radius: 8px !important;
+      background:
+        radial-gradient(circle at 50% -30%, rgba(255, 250, 232, 0.95), transparent 52%),
+        linear-gradient(180deg, #fce0ad 0%, #edc775 46%, #f08c28 100%) !important;
       box-shadow:
-        inset 0 1px 0 rgba(252, 224, 173, 0.30),
-        0 0 28px rgba(240, 140, 40, 0.55) !important;
-      backdrop-filter: blur(2px) !important;
+        inset 0 1px 0 rgba(255, 250, 232, 0.85),
+        inset 0 -1px 0 rgba(196, 77, 11, 0.35),
+        0 10px 26px rgba(35, 9, 2, 0.42) !important;
     }
 
     .wildworks-lead-label {
@@ -560,15 +584,28 @@ const wildWorksButtonCss = `
       pointer-events: none !important;
     }
 
+    /* G, ride 308c9716: "the check mark was underneath the check mark box.
+       Should be on one line with the text." It was a block <p> inside a 19rem
+       card, so "Phone and email sent to Scott" wrapped and pushed the tick onto
+       its own line. One flex row that cannot wrap, with the SIZE allowed to
+       shrink to fit instead of the LINE allowed to break. Cambria to match the
+       rest of the panel; Arial was never the brand face. */
     #wildworks-lead-sent {
       display: none !important;
       margin: 0.4rem 0 0 !important;
-      color: var(--ww-avatar-button-ink) !important;
-      font: 800 1.15rem/1.3 Arial, sans-serif !important;
+      color: #c44d0b !important;
+      font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+      font-weight: 800 !important;
+      font-size: clamp(0.82rem, 3.6vw, 1.1rem) !important;
+      line-height: 1.25 !important;
+      white-space: nowrap !important;
     }
 
     #wildworks-lead-sent[data-visible="true"] {
-      display: block !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.35rem !important;
     }
 
     #wildworks-lead-spoken-readback {
@@ -1751,7 +1788,12 @@ const wildWorksLeadConfirmationScript = `
           '      <svg class="ww-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>',
           '      <svg class="ww-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 3h4l1 4-2 1a12 12 0 0 0 6 6l1-2 4 1v4c0 1-1 2-2 2C10 19 5 14 5 7c0-1 1-2 2-2z"/></svg>',
           '    </span><span id="wildworks-lead-label-text">Your Email</span></p>',
-          '    <input id="wildworks-lead-value" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
+          // G, ride 308c9716: "the LastPass red box should not be in there...
+          // that should be excluded." Password managers read this as a login
+          // field and paint a badge over it. These are the opt-outs LastPass,
+          // 1Password, Bitwarden and Dashlane each respect. autocomplete stays
+          // email/tel so phones keep showing the right keyboard.
+          '    <input id="wildworks-lead-value" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-form-type="other" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
           '    <p id="wildworks-lead-spoken-readback" aria-hidden="true"></p>',
           '    <div class="wildworks-lead-actions">',
           '      <button id="wildworks-lead-confirm" type="button" aria-label="Send these details to Scott">Send these details to Scott</button>',
@@ -1945,10 +1987,32 @@ const wildWorksLeadConfirmationScript = `
         return method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓";
       };
 
+      // G, ride 308c9716: "the check mark... it needs to be up longer. It was
+      // just a flash. It was just like, I don't know, a half second, maybe a full
+      // second. It should be up there 2 seconds."
+      //
+      // The 2s drop was already scheduled and was never the problem. The POLL
+      // loop calls setSentVisible(false) as soon as a poll returns whose
+      // notificationStatus has not caught up to "sent" - the submitted-but-not-
+      // delivered branch. confirmLead shows the tick, a poll a few hundred ms
+      // later hides it, and the drop timer then closes a panel that is already
+      // empty. That is the flash.
+      //
+      // Once the tick is up it owns the screen for its full hold. A late poll
+      // cannot take it down early.
+      const SENT_HOLD_MS = 2000;
+      let sentShownAt = 0;
+
       const setSentVisible = (visible, method) => {
         const sent = document.getElementById("wildworks-lead-sent");
         if (!sent) return;
-        sent.textContent = sentLabelFor(method);
+        if (!visible && sentShownAt && Date.now() - sentShownAt < SENT_HOLD_MS) return;
+        if (visible) {
+          sent.textContent = sentLabelFor(method);
+          if (!sentShownAt) sentShownAt = Date.now();
+        } else {
+          sentShownAt = 0;
+        }
         sent.setAttribute("data-visible", visible ? "true" : "false");
       };
 
