@@ -66,8 +66,34 @@
  * more. Colour and fill only - no shadow, no size, no spacing, no layout.
  */
 
-html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) .wild-footer-contact-cta__kicker:not(#_):not(#_),
+/* 2026-08-19, LATER THE SAME DAY: G walked the legal pages and asked for the
+ * kicker there too - "On every single one of these, Start the Conversation Now
+ * needs to be color number one." The legalese above it stays white and is not
+ * touched: "everything legal is white. Now once you get under the legalese, then
+ * we go back to the standard website branding colors."
+ *
+ * So the kicker no longer needs the legal guard and is lifted out of this file's
+ * scope into its own unscoped rule below. The stonework note KEEPS the guard - he
+ * did not ask for that one on the legal pages.
+ *
+ * Claudette sent an H348 to add this on top; binned on her own suggestion, since
+ * a second authority for one value is exactly the stacking we have been undoing. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(:has(.wild-legal-home)) .wild-footer-stonework-note:not(#_):not(#_) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}
+
+/* Kicker on ALL ELEVEN routes - no legal guard, because G asked for it there too.
+ *
+ * WEIGHT MATTERS HERE AND I GOT IT WRONG ONCE: my first attempt wrote this as
+ * plain classes with !important. The rule it has to beat carries 27 ids and
+ * !important, so the plain version lost - and because I had also lifted the
+ * kicker OUT of the 30-id rule above, the five content pages regressed to colour
+ * two. Caught by measuring after install, which is the only reason it was caught.
+ * Same id weight as the scoped rule, minus the scope. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-footer-contact-cta__kicker:not(#_):not(#_),
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-footer-contact-cta__kicker-line:not(#_):not(#_) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
 }
