@@ -235,9 +235,9 @@ const wildWorksButtonCss = `
       background: transparent !important;
     }
 
-    /* G, ride 308c9716: "the icon on the finish button needs some shadow."
-       The labels on these buttons already carry depth; the icons were flat.
-       Same drop-shadow pair the site puts on every button icon, in house ink. */
+    /* Any icon on these buttons that IS an svg. The Finish button's sparkle is
+       not - it is a ::before background-image and is handled on that rule. This
+       one is kept for the buttons that do use svg markup. */
     .btn-wood svg,
     .btn-inset svg,
     [data-ww-finish] svg,
@@ -302,6 +302,17 @@ const wildWorksButtonCss = `
       background-position: center !important;
       background-repeat: no-repeat !important;
       background-size: contain !important;
+      /* G asked for this TWICE - ride 308c9716 "the icon on the finish button
+         needs some shadow", then ride b1dd603f "the icon inside the finish
+         button needs some, some shadow" with "I keep saying the same fucking
+         goddamn things" in between. He was right to be angry: my first fix
+         targeted ".btn-wood svg", and this icon is not an svg at all. It is a
+         ::before with a background-image, so that rule matched nothing and
+         never applied. Same drop-shadow pair the rest of the site puts on
+         button icons, on the element that actually draws it. */
+      filter:
+        drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
+        drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
     }
 
     .btn-inset {
