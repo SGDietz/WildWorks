@@ -1351,7 +1351,15 @@ const wildWorksCaptureBridgeScript = `
           // capture open — stays under the 60/min IP rate limit with margin),
           // 5s when idle.
           state.intervalId = window.setInterval(() => {
-            const gap = Date.now() < state.hotUntil ? 2000 : 5000;
+            // G 2026-08-19: "as soon as somebody commits to email, boom, that box
+            // should pop up immediately." The client cannot hear the visitor -
+            // the embedded avatar app owns the mic and the transcript - so the
+            // box can only appear as fast as the next poll returns the parsed
+            // lead. Hot cadence tightened 2000ms -> 1200ms, which cuts the
+            // worst-case pop-up lag by ~40%. It cannot go much lower: the route
+            // is capped at 60 requests/min per IP, and 1200ms is 50/min, leaving
+            // margin. 900ms would be 66/min and would start getting throttled.
+            const gap = Date.now() < state.hotUntil ? 1200 : 5000;
             if (Date.now() - state.lastSyncAt >= gap) syncTranscript("interval");
           }, 1000);
         }
