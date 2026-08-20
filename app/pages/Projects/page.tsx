@@ -9,7 +9,7 @@ export default function ProjectsPage() {
       <ProjectsGallery />
       {/* G 2026-08-18: the grid does not look clickable, same problem the
           Wildfire carousel had. */}
-      <p className="wild-projects-click-note">Click On Any Image For The 98 Picture Carousel</p>
+      <p className="wild-projects-click-note">Click On Any Image To Enlarge</p>
       {/* G 2026-08-19: "much larger, like double the size of that font and
           maybe three or four lines. Do three lines and do colors one two three."
           Split into three spans so each line can carry its own brand colour -
