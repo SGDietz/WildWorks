@@ -319,6 +319,8 @@ import "./H372-home-desktop-edge.css";
 import "./H373-bio-heading-black-shadow.css";
 import "./H374-home-shadow-opacity.css";
 import "./H375-sitewide-shadow-opacity.css";
+import "./H376-wildfire-title-match-home.css";
+import "./H377-ruins-width-and-heading-colour.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
