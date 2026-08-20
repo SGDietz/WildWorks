@@ -19,8 +19,17 @@ html body .wild-subpage--bio :is(h1, h2, h3, h4) :is(span, em, strong, i, b, a) 
 
 html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins :is(p, li, td, th, label, figcaption, blockquote, dd, dt, small),
 html body .wild-subpage--bio.wild-subpage--bio.wild-subpage--bio :is(p, li, td, th, label, figcaption, blockquote, dd, dt, small),
-html body .wild-subpage--ruins .wild-ruins-rail.wild-ruins-rail :is(p, li),
-html body .wild-subpage--bio .wild-bio-mindset-line {
+html body .wild-subpage--ruins .wild-ruins-rail.wild-ruins-rail :is(p, li) {
+  /* .wild-bio-mindset-line REMOVED from this Manrope list 2026-08-19.
+     G: "change all the small text into that same font" on the bio page. This
+     rule was naming that one span by hand and pinning it to Manrope, so it was
+     the last thing on the page still on the old face while the paragraph around
+     it had moved. With this gone the span simply inherits Playfair from its
+     parent .wild-bio-body, which is where it should have come from all along.
+     I tried to out-weigh this rule three times first - bare class at 900 ids,
+     then a matched selector shape - and it was served every time and still lost.
+     EDIT THE RULE THAT SETS IT. */
+
   font-family: var(--font-manrope), Manrope, system-ui, sans-serif !important;
 }
 
