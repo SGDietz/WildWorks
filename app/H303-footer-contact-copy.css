@@ -12,7 +12,7 @@
    :has(#top#top.wild-home:not(.wild-legal-home)).
 
    MEASURED BEFORE VALUES, live:
-     .wild-footer-contact-cta__title   0 2px 5px #2a0c02d1   ONE stop, 5px BLUR
+     .wild-footer-contact-cta__title   0 2px 5px #2a0c027d   ONE stop, 5px BLUR
      .wild-footer-contact-cta__kicker  var(--ww-footer-title-shadow)
      .wild-footer-closing              none
      .wild-signup-choice               none
@@ -29,7 +29,7 @@
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__title,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) .wild-footer-contact-cta__title * {
   filter: none !important;
-  text-shadow: 0 .7px 0 rgba(35,9,2,.97), 0 1.6px 0 rgba(30,8,2,.89), 0 2.7px 0 rgba(25,6,1,.8), 0 3.9px 0 rgba(25,6,1,.66) !important;
+  text-shadow: 0 .7px 0 rgba(35,9,2,0.582), 0 1.6px 0 rgba(30,8,2,0.534), 0 2.7px 0 rgba(25,6,1,0.48), 0 3.9px 0 rgba(25,6,1,0.396) !important;
 }
 
 /* Footer contact CTA kicker - HEADING STRENGTH per G's revision, raised from

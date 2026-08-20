@@ -140,7 +140,7 @@ html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
      to a flat small stack off Home, so the winning declaration now carries the
      Stonework stack itself. Home is unchanged - this is the same stack Home
      already resolved. */
-  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #000000d1 !important;
+  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #0000007d !important;
 }
 
 html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
@@ -155,7 +155,7 @@ html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
   line-height: 0.98 !important;
   letter-spacing: 0.025em !important;
   /* Same Stonework stack as the phone line above - one look on all pages. */
-  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #000000d1 !important;
+  text-shadow: 0 clamp(1px, 0.04em, 3px) #000, 0 clamp(1.5px, 0.065em, 4.5px) clamp(0.2px, 0.012em, 0.9px) #000, 0 clamp(2px, 0.095em, 6px) clamp(0.6px, 0.035em, 2.4px) #0000007d !important;
 }
 
 @media (max-width: 640px) {

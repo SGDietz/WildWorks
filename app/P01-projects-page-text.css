@@ -4,7 +4,7 @@
    legal routes are structurally unreachable.
 
    MEASURED:
-     .wild-projects-page-title  0 3px #2f0c03b3, 0 11px 24px #2f0c0347
+     .wild-projects-page-title  0 3px #2f0c036b, 0 11px 24px #2f0c0347
                                 <- 24px BLUR, black-brown
      .wild-projects-page-intro  inherits the same blurred stack
 
@@ -25,10 +25,10 @@
 
 /* G 2026-08-17 FINAL BASIS: the target is 85% of THE IDEAL itself, not 85% of
    each previous value. The Ideal measures
-     0 .8px 0 #230902fa, 0 2px 0 #1e0802e6, 0 3.5px 0 #190601d1, 0 5px 0 #190601ad
+     0 .8px 0 #23090296, 0 2px 0 #1e08028a, 0 3.5px 0 #1906017d, 0 5px 0 #19060168
    so every new/unlocked text rule in this file now carries the single uniform
    85% treatment:
-     0 0.68px 0 rgba(35,9,2,0.833), 0 1.7px 0 rgba(30,8,2,0.767), 0 2.98px 0 rgba(25,6,1,0.697), 0 4.25px 0 rgba(25,6,1,0.577)
+     0 0.68px 0 rgba(35,9,2,0.5), 0 1.7px 0 rgba(30,8,2,0.46), 0 2.98px 0 rgba(25,6,1,0.418), 0 4.25px 0 rgba(25,6,1,0.577)
    x=0 and blur=0 preserved. The Ideal and every locked element are absent from
    this file and therefore unchanged. */
 
@@ -37,13 +37,13 @@
    in this file reduced 15%. x=0 and blur=0 preserved. Locked elements are not
    present in this file and are therefore unaffected. */
 
-/* "WildWorks Projects" page title. Measured live: 0 3px #2f0c03b3,
+/* "WildWorks Projects" page title. Measured live: 0 3px #2f0c036b,
    0 11px 24px #2f0c0347 - a 24px BLURRED black-brown stack, the heaviest blur
    left anywhere in the site. Replaced with the warm four-stop ladder. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-title,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--projects) .wild-subpage--projects.wild-subpage--projects .wild-projects-page-title span {
   filter: none !important;
-  text-shadow: rgba(35,9,2,0.833) 0 0.4250px 0, rgba(34,9,2,0.805) 0 0.8500px 0, rgba(33,8,2,0.776) 0 1.2750px 0, rgba(32,8,2,0.748) 0 1.7000px 0, rgba(31,8,2,0.719) 0 2.1250px 0, rgba(29,7,1,0.691) 0 2.5500px 0, rgba(28,7,1,0.662) 0 2.9750px 0, rgba(27,7,1,0.634) 0 3.4000px 0, rgba(26,6,1,0.605) 0 3.8250px 0, rgba(25,6,1,0.577) 0 4.2500px 0;
+  text-shadow: rgba(35,9,2,0.5) 0 0.4250px 0, rgba(34,9,2,0.483) 0 0.8500px 0, rgba(33,8,2,0.466) 0 1.2750px 0, rgba(32,8,2,0.449) 0 1.7000px 0, rgba(31,8,2,0.431) 0 2.1250px 0, rgba(29,7,1,0.415) 0 2.5500px 0, rgba(28,7,1,0.397) 0 2.9750px 0, rgba(27,7,1,0.634) 0 3.4000px 0, rgba(26,6,1,0.605) 0 3.8250px 0, rgba(25,6,1,0.577) 0 4.2500px 0;
 }
 
 /* Projects page intro copy - body ladder, matching Home small copy. */

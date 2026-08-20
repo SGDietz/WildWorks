@@ -24,7 +24,7 @@ body .wild-phone-number-line > a {
   line-height: 0.98;
   letter-spacing: clamp(0.12em, 0.62vw, 0.3em);
   text-decoration: none;
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.84);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.504);
   paint-order: stroke fill;
   text-shadow: var(--ww-home-wordmark-text-effect);
   white-space: nowrap;

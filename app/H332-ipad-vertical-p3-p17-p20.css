@@ -30,16 +30,16 @@
   /* P3b hero tel number only ×0.80 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-hero a[href^="tel:"] {
     text-shadow:
-    rgba(35,9,2,0.98) 0 0.005029em 0,
-    rgba(34,9,2,0.947) 0 0.010058em 0,
-    rgba(33,8,2,0.913) 0 0.015087em 0,
-    rgba(32,8,2,0.88) 0 0.020116em 0,
-    rgba(31,8,2,0.847) 0 0.025145em 0,
-    rgba(29,7,1,0.813) 0 0.030174em 0,
-    rgba(28,7,1,0.78) 0 0.035203em 0,
-    rgba(27,7,1,0.747) 0 0.040232em 0,
-    rgba(26,6,1,0.713) 0 0.045261em 0,
-    rgba(25,6,1,0.68) 0 0.050290em 0 !important;
+    rgba(35,9,2,0.588) 0 0.005029em 0,
+    rgba(34,9,2,0.568) 0 0.010058em 0,
+    rgba(33,8,2,0.548) 0 0.015087em 0,
+    rgba(32,8,2,0.528) 0 0.020116em 0,
+    rgba(31,8,2,0.508) 0 0.025145em 0,
+    rgba(29,7,1,0.488) 0 0.030174em 0,
+    rgba(28,7,1,0.468) 0 0.035203em 0,
+    rgba(27,7,1,0.448) 0 0.040232em 0,
+    rgba(26,6,1,0.428) 0 0.045261em 0,
+    rgba(25,6,1,0.408) 0 0.050290em 0 !important;
   }
 
   /* P17 WildWorks + Projects together ×0.90 */

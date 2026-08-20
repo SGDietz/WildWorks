@@ -10,15 +10,15 @@
   /* P12: statement phone only (--home-tree). Shadow ×0.90 */
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) #top .wild-phone-number-line--home-tree a[href^="tel:"] {
     text-shadow:
-    rgba(35,9,2,0.98) 0 0.005658em 0,
-    rgba(34,9,2,0.947) 0 0.011316em 0,
-    rgba(33,8,2,0.913) 0 0.016974em 0,
-    rgba(32,8,2,0.88) 0 0.022632em 0,
-    rgba(31,8,2,0.847) 0 0.028290em 0,
-    rgba(29,7,1,0.813) 0 0.033948em 0,
-    rgba(28,7,1,0.78) 0 0.039606em 0,
-    rgba(27,7,1,0.747) 0 0.045264em 0,
-    rgba(26,6,1,0.713) 0 0.050922em 0,
-    rgba(25,6,1,0.68) 0 0.056580em 0 !important;
+    rgba(35,9,2,0.588) 0 0.005658em 0,
+    rgba(34,9,2,0.568) 0 0.011316em 0,
+    rgba(33,8,2,0.548) 0 0.016974em 0,
+    rgba(32,8,2,0.528) 0 0.022632em 0,
+    rgba(31,8,2,0.508) 0 0.028290em 0,
+    rgba(29,7,1,0.488) 0 0.033948em 0,
+    rgba(28,7,1,0.468) 0 0.039606em 0,
+    rgba(27,7,1,0.448) 0 0.045264em 0,
+    rgba(26,6,1,0.428) 0 0.050922em 0,
+    rgba(25,6,1,0.408) 0 0.056580em 0 !important;
   }
 }
