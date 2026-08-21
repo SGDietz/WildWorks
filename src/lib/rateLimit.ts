@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 
 const WINDOW_SECONDS = 60;
 const DEFAULT_PER_MINUTE = 60;
@@ -140,7 +141,10 @@ export async function checkCriticalRateLimit(
   },
 ): Promise<Response | null> {
   if (process.env.NODE_ENV !== "production") return null;
-  if (!isSupabaseAdminConfigured()) return unavailableResponse();
+  if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "critical rate limiter", operation: "RPC reserve_api_rate_limit", failureKind: "configuration", correlationSource: "rate-limit:configuration" });
+    return unavailableResponse();
+  }
 
   const anonymousVisitorId = `rate-limit:${hashIp(getClientIp(request))}`;
   const perMinute = options.perMinute ?? 2;
@@ -163,9 +167,13 @@ export async function checkCriticalRateLimit(
         p_global_per_day: globalPerDay,
       }),
     });
-    if (!reservation.ok) return unavailableResponse();
+    if (!reservation.ok) {
+      queueSupabaseOperationalAlert({ component: "critical rate limiter", operation: "RPC reserve_api_rate_limit", statusCode: reservation.status, correlationSource: `rate-limit:${reservation.status}` });
+      return unavailableResponse();
+    }
     return (await reservation.json()) === true ? null : rateLimitResponse();
   } catch {
+    queueSupabaseOperationalAlert({ component: "critical rate limiter", operation: "RPC reserve_api_rate_limit", correlationSource: "rate-limit:connectivity" });
     return unavailableResponse();
   }
 }

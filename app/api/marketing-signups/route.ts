@@ -13,6 +13,7 @@ import {
 } from "../../../src/lib/marketingConsent.mjs";
 import { Resend } from "resend";
 import twilio from "twilio";
+import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
 
 type SignupChannel = "email" | "sms" | "both";
 
@@ -139,6 +140,7 @@ export async function POST(request: Request) {
     }
 
     if (!isSupabaseAdminConfigured()) {
+      await logServerTelemetryEvent({ request, eventType: "marketing_signup_store_failed", severity: "high", provider: "supabase", route: "/api/marketing-signups", statusCode: 503 });
       return Response.json({ error: "The signup record is not configured yet. Please contact WildWorks directly below." }, { status: 503 });
     }
 
@@ -160,6 +162,7 @@ export async function POST(request: Request) {
     const insertResult = await insertSignup(record);
     if (!insertResult.ok) {
       console.error("marketing signup persistence failed", insertResult.status);
+      await logServerTelemetryEvent({ request, eventType: "marketing_signup_store_failed", severity: "high", provider: "supabase", route: "/api/marketing-signups", statusCode: insertResult.status });
       return Response.json({ error: "We could not save your signup. Please try again or contact WildWorks directly below." }, { status: 500 });
     }
 
@@ -228,6 +231,18 @@ export async function POST(request: Request) {
 
     const hasPendingDelivery = emailStatus === "pending" || smsStatus === "pending";
     const hasFailedDelivery = emailStatus === "failed" || smsStatus === "failed";
+    const hasUnavailableProvider = (plan.sendEmail && !emailProviderReady()) || (plan.sendSms && !smsProviderReady());
+    if (hasFailedDelivery || hasUnavailableProvider) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "marketing_signup_delivery_failed",
+        severity: "high",
+        provider: deliveryErrors.join("+") || "provider-not-configured",
+        sessionId: id,
+        route: "/api/marketing-signups",
+        statusCode: 202,
+      });
+    }
     return Response.json({
       ok: true,
       message: hasPendingDelivery || hasFailedDelivery
@@ -235,6 +250,7 @@ export async function POST(request: Request) {
         : signupResultMessage({ plan, consent }),
     }, { status: hasPendingDelivery || hasFailedDelivery ? 202 : 200 });
   } catch {
+    await logServerTelemetryEvent({ request, eventType: "marketing_signup_exception", severity: "high", provider: "local", route: "/api/marketing-signups", statusCode: 500 });
     return Response.json({ error: "We could not complete your signup. Please try again or contact WildWorks directly below." }, { status: 500 });
   }
 }

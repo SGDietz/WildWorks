@@ -33,3 +33,12 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   opacity: 0.98 !important;
   transform: translateY(clamp(1.2px, 0.12vw, 1.9px)) !important;
 }
+
+/* G: desktop/tablet menu shadow geometry tucked ten percent closer. */
+@media (min-width: 600px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body nav a:not(#_):not(#_):not(#_) {
+    text-shadow:
+      0 0.9px 0 rgba(40, 12, 2, 0.75),
+      0 1.8px 0.45px rgba(25, 6, 1, 0.35) !important;
+  }
+}

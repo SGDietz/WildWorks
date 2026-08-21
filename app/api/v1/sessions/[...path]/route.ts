@@ -9,6 +9,7 @@ import {
   armLiveAvatarIdleSession,
   clearLiveAvatarIdleSession,
 } from "../../../../../src/lib/liveAvatarIdleSessions";
+import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
 
 export const dynamic = "force-dynamic";
 
@@ -64,6 +65,16 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
     } as RequestInit & { duplex: "half" });
 
     const action = path.join("/");
+    if (!response.ok && action !== "stop") {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_session_proxy_failed",
+        severity: "high",
+        provider: "liveavatar",
+        route: `/api/v1/sessions/${action}`,
+        statusCode: response.status,
+      });
+    }
     if (response.ok && action === "start") {
       armLiveAvatarIdleSession(token, API_URL);
     } else if (action === "stop") {
@@ -85,6 +96,14 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
         { status: 413 },
       );
     }
+    await logServerTelemetryEvent({
+      request,
+      eventType: "liveavatar_session_proxy_failed",
+      severity: "high",
+      provider: "liveavatar",
+      route: `/api/v1/sessions/${path.join("/")}`,
+      statusCode: 500,
+    });
     return Response.json(
       { code: 500, data: { message: "LiveAvatar session proxy failed" } },
       { status: 500 },

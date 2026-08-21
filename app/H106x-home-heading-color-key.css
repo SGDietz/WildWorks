@@ -1456,3 +1456,59 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
 }
+
+
+/* ============ PHONE STORY COPY (<=599px) — Chief's mobile packet, corrected ============
+   Additive on purpose: the 719 group above stays whole, so 600-719 is frozen.
+   Cap is 1.9rem, not the drafted 1.95rem — the 21.75rem column above makes
+   1.95rem wrap "A Complete Project Build" (measured at 430 and 599).
+   The summary CANNOT be two physical lines (measured: six at every phone
+   width); Chief's v2 correction: the three COLORED spans (c1/c2/c3 - their
+   colors are locked) are wrapped by edit 10 in exactly TWO group elements,
+   each a centered block; the spans flow inline inside their group.
+   padding-top on the copy block is the "closer to the image" move — VALUE IS
+   FOR G'S EYE, adjust freely. */
+@media (max-width: 599px) {
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    > h1.wildfire-hero-headline {
+    text-align: center !important;
+    margin-inline: auto !important;
+  }
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    .wildfire-hero-headline__line:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+    /* 24 x :not(#_) on top of the shared prefix: the c3 line's own size rule
+       carries 30 id-equivalents, the heaviest of the three (c1/c2 sit at
+       <=24); measured live after the first cut at 12 beat c1/c2 but lost c3. Cap 1.875rem: 1.9rem left 2.6px of slack at 599, this leaves 7. */
+    display: block !important;
+    font-size: clamp(1.5rem, 7.2vw, 1.875rem) !important;
+  }
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    > p.wildfire-hero-summary {
+    text-align: center !important;
+    margin-inline: auto !important;
+    max-width: min(100%, 23.5rem) !important;
+    font-size: clamp(1rem, 4.55vw, 1.13rem) !important;
+  }
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    .wildfire-hero-summary__group {
+    display: block !important;
+  }
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    .wildfire-hero-summary__line:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+    /* the colored c1/c2/c3 spans flow INSIDE their group and wrap naturally -
+       Chief's v2 correction: exactly TWO presentation groups. The per-span
+       colors from this file's own color key are untouched. The 24-run clears
+       the existing per-line display:block owner, same as the headline lines
+       above (measured - the bare class installed green and stayed block). */
+    display: inline !important;
+  }
+html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy {
+    padding-top: 0.4rem !important;
+  }
+}

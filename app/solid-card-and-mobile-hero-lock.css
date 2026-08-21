@@ -151,8 +151,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     align-items: center !important;
     justify-items: center !important;
     text-align: center !important;
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
+    /* 2026-08-19, G: "I want people to have the ability to adjust ... that
+       should be on." He is right. `none` switches OFF the browser's text
+       scaling, which on Android also blocks the reader's own accessibility
+       text-size setting. 100% keeps the layout from being auto-inflated while
+       leaving the READER in control. Do not put this back to none. */
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
   }
 
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -178,8 +183,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     margin-inline: auto !important;
     text-align: center !important;
     transform-origin: center center !important;
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
+    /* 2026-08-19, G: "I want people to have the ability to adjust ... that
+       should be on." He is right. `none` switches OFF the browser's text
+       scaling, which on Android also blocks the reader's own accessibility
+       text-size setting. 100% keeps the layout from being auto-inflated while
+       leaving the READER in control. Do not put this back to none. */
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
   }
 
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body

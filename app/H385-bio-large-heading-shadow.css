@@ -1,0 +1,22 @@
+/* H385 - Bio heading shadow reduction for tablet/laptop/desktop only.
+   G requested a one-third depth reduction from the current >=600px winner.
+   Preserve the H375 ink/alpha ladder; retain two-thirds of each vertical offset.
+*/
+@layer ww-bio-large-heading-shadow {
+  @media (min-width: 600px) {
+    .wild-subpage--bio #ww-bio-primary-heading,
+    .wild-subpage--bio .wild-bio-reinvention-heading {
+      text-shadow:
+        rgba(35, 9, 2, 0.582) 0 0.005349em 0,
+        rgba(34, 9, 2, 0.561) 0 0.010697em 0,
+        rgba(33, 8, 2, 0.541) 0 0.016046em 0,
+        rgba(32, 8, 2, 0.52) 0 0.021394em 0,
+        rgba(31, 8, 2, 0.499) 0 0.026743em 0,
+        rgba(29, 7, 1, 0.479) 0 0.032091em 0,
+        rgba(28, 7, 1, 0.458) 0 0.037440em 0,
+        rgba(27, 7, 1, 0.437) 0 0.042789em 0,
+        rgba(26, 6, 1, 0.417) 0 0.048137em 0,
+        rgba(25, 6, 1, 0.396) 0 0.053486em 0 !important;
+    }
+  }
+}

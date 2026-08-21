@@ -1,5 +1,6 @@
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 
 const MAX_JSON_CHARS = 12000;
 const FALLBACK_MESSAGE_CHARS = 3900;
@@ -84,7 +85,10 @@ export function safeJsonPayload(value: unknown): Record<string, unknown> {
 }
 
 export async function insertSupabaseRow(table: string, row: Record<string, unknown>, options: { onConflict?: string; mergeDuplicates?: boolean } = {}): Promise<SupabaseInsertResult> {
-  if (!isSupabaseAdminConfigured()) return { ok: false, status: 0, detail: "supabase_not_configured" };
+  if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "telemetry database", operation: `insert ${table}`, failureKind: "configuration", correlationSource: `telemetry:${table}:configuration` });
+    return { ok: false, status: 0, detail: "supabase_not_configured" };
+  }
   let res: Response;
   try {
     const { url, serviceRoleKey } = getSupabaseAdminConfig();
@@ -95,9 +99,11 @@ export async function insertSupabaseRow(table: string, row: Record<string, unkno
       body: JSON.stringify(row),
     });
   } catch (error) {
+    queueSupabaseOperationalAlert({ component: "telemetry database", operation: `insert ${table}`, correlationSource: `telemetry:${table}:connectivity` });
     return { ok: false, status: 0, detail: error instanceof Error ? error.message : String(error) };
   }
   if (res.ok) return { ok: true, status: res.status, detail: "" };
+  queueSupabaseOperationalAlert({ component: "telemetry database", operation: `insert ${table}`, statusCode: res.status, correlationSource: `telemetry:${table}:${res.status}` });
   return { ok: false, status: res.status, detail: await res.text().catch(() => "") };
 }
 

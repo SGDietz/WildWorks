@@ -2,6 +2,7 @@ import { visitorChoseContactMethod } from "./iscottLeadCaptureUi";
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { notifyIScottLeadByEmail } from "./voiceEmailNotifications";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import {
   collectBargeInEvents,
   collectOperatorPromptEchoEvents,
@@ -144,7 +145,10 @@ async function rest<T>(
   path: string,
   init: { method?: "GET" | "POST" | "PATCH"; body?: unknown; prefer?: string } = {},
 ): Promise<RestResult<T>> {
+  const resource = path.split(/[?&/]/, 1)[0] || "lead-data";
+  const operation = `${init.method ?? "GET"} ${resource}`;
   if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "iScott lead database", operation, failureKind: "configuration", correlationSource: `iscott-lead:${resource}:configuration` });
     return { ok: false, status: 0, rows: [], detail: "supabase_not_configured" };
   }
   const { url, serviceRoleKey } = getSupabaseAdminConfig();
@@ -156,6 +160,9 @@ async function rest<T>(
       cache: "no-store",
     });
     const detail = response.ok ? "" : await response.text().catch(() => "");
+    if (!response.ok) {
+      queueSupabaseOperationalAlert({ component: "iScott lead database", operation, statusCode: response.status, correlationSource: `iscott-lead:${resource}:${response.status}` });
+    }
     const data: unknown = response.ok ? await response.json().catch(() => []) : [];
     return {
       ok: response.ok,
@@ -164,6 +171,7 @@ async function rest<T>(
       detail,
     };
   } catch (error) {
+    queueSupabaseOperationalAlert({ component: "iScott lead database", operation, correlationSource: `iscott-lead:${resource}:connectivity` });
     return {
       ok: false,
       status: 0,

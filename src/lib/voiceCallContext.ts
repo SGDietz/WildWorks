@@ -1,5 +1,6 @@
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
 import { voiceBackendSignal } from "./voiceFetchTimeouts";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 
 const CALL_SID_PATTERN = /^CA[0-9a-fA-F]{32}$/;
 const RECORDING_SID_PATTERN = /^RE[0-9a-fA-F]{32}$/;
@@ -54,7 +55,10 @@ async function rest<T>(
   path: string,
   init: { method: "GET" | "POST" | "PATCH"; body?: JsonObject; prefer?: string },
 ): Promise<{ ok: boolean; status: number; detail: string; rows: T[] }> {
+  const resource = path.split(/[?&/]/, 1)[0] || "voice-call-data";
+  const operation = `${init.method} ${resource}`;
   if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "voice call database", operation, failureKind: "configuration", correlationSource: `voice-call:${resource}:configuration` });
     return { ok: false, status: 0, detail: "supabase_not_configured", rows: [] };
   }
   try {
@@ -72,6 +76,7 @@ async function rest<T>(
       signal: voiceBackendSignal(),
     });
     if (!response.ok) {
+      queueSupabaseOperationalAlert({ component: "voice call database", operation, statusCode: response.status, correlationSource: `voice-call:${resource}:${response.status}` });
       return {
         ok: false,
         status: response.status,
@@ -87,6 +92,7 @@ async function rest<T>(
       rows: Array.isArray(body) ? (body as T[]) : [],
     };
   } catch (error) {
+    queueSupabaseOperationalAlert({ component: "voice call database", operation, correlationSource: `voice-call:${resource}:connectivity` });
     return {
       ok: false,
       status: 0,

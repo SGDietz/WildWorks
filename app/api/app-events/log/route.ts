@@ -4,6 +4,7 @@ import {
   truncateUtf8String,
 } from "../../../../src/lib/apiRouteSecurity";
 import { checkRateLimit } from "../../../../src/lib/rateLimit";
+import { queueOperationalAlertFromTelemetry } from "../../../../src/lib/wildworksOperationalAlerts";
 import { isSupabaseAdminConfigured } from "../../../../src/lib/supabaseAdmin";
 import {
   getRequestTelemetryContext,
@@ -461,6 +462,13 @@ export async function POST(request: Request) {
       payload,
       ...classified,
     };
+    queueOperationalAlertFromTelemetry({
+      eventType: row.event_type,
+      provider: row.provider,
+      route: row.route,
+      statusCode: row.status_code,
+      sessionId: row.session_id ?? row.anonymous_visitor_id,
+    });
     const err = await storeWithConversationFallback({
       table: "app_events",
       row,

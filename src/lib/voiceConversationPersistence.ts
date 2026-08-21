@@ -1,5 +1,6 @@
 import { MAX_TRANSCRIPTION_TEXT_CHARS, truncateUtf8String } from "./apiRouteSecurity";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import { safeJsonPayload } from "./telemetryServer";
 import { voiceBackendSignal } from "./voiceFetchTimeouts";
 
@@ -108,7 +109,10 @@ async function supabaseRest<T>(
   path: string,
   init: { method: "GET" | "POST" | "PATCH"; body?: JsonObject; prefer?: string },
 ): Promise<RestResult<T>> {
+  const resource = path.split(/[?&/]/, 1)[0] || "voice-conversation-data";
+  const operation = `${init.method} ${resource}`;
   if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "voice conversation database", operation, failureKind: "configuration", correlationSource: `voice-conversation:${resource}:configuration` });
     return { ...failed("supabase_not_configured"), rows: [] };
   }
 
@@ -127,6 +131,7 @@ async function supabaseRest<T>(
       signal: voiceBackendSignal(),
     });
     if (!response.ok) {
+      queueSupabaseOperationalAlert({ component: "voice conversation database", operation, statusCode: response.status, correlationSource: `voice-conversation:${resource}:${response.status}` });
       return {
         ...failed(await response.text().catch(() => ""), response.status),
         rows: [],
@@ -140,6 +145,7 @@ async function supabaseRest<T>(
       rows: Array.isArray(body) ? (body as T[]) : [],
     };
   } catch (error) {
+    queueSupabaseOperationalAlert({ component: "voice conversation database", operation, correlationSource: `voice-conversation:${resource}:connectivity` });
     return {
       ...failed(error instanceof Error ? error.message : String(error)),
       rows: [],

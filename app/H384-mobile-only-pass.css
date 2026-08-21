@@ -1,0 +1,55 @@
+/* H384-mobile-only-pass.css
+   Work-ID: wildworks-mobile-only-packet
+   max-width 599px only. Freeze 600px+. Freeze iPad iScott.
+   Replaces unfinished H383-mobile-finishing-pass.css. Keep H248 hero scale 1.065.
+   Evidence: 390x844 protected 3020 baseline (no H383).
+*/
+@layer ww-mobile-only-pass {
+@media (max-width: 599px) {
+  /* 1. Bio hero: keep scale 1.065. Down+right vs old 1.25%/1.5%. Matches approved H248. */
+  .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero > .wild-zoomable-image > img {
+    transform: translate(3.75%, 2.5%) scale(1.065) !important;
+  }
+
+  /* 2. Having only: match adjacent Than ladder via inherit from __two. */
+  #signature-work .wild-signature-title__two > .wild-signature-title__having {
+    text-shadow: inherit !important;
+  }
+
+  /* 3. The Ruins - 10-stop live ladder, Y x0.90, alphas kept. */
+  #signature-work .wild-story-card--feature h3 {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.414px 0, rgba(35, 9, 2, 0.945) 0 0.828px 0, rgba(35, 9, 2, 0.914) 0 1.242px 0, rgba(35, 9, 2, 0.88) 0 1.656px 0, rgba(35, 9, 2, 0.847) 0 2.070px 0, rgba(35, 9, 2, 0.81) 0 2.484px 0, rgba(35, 9, 2, 0.78) 0 2.898px 0, rgba(35, 9, 2, 0.745) 0 3.312px 0, rgba(35, 9, 2, 0.714) 0 3.726px 0, rgba(35, 9, 2, 0.68) 0 4.140px 0 !important;
+  }
+
+  /* 4a. Home WildWorks Projects title - same 10-stop, Y x0.90. */
+  #projects > .wild-home-projects__title {
+    text-shadow: rgba(35, 9, 2, 0.98) 0 0.414px 0, rgba(35, 9, 2, 0.945) 0 0.828px 0, rgba(35, 9, 2, 0.914) 0 1.242px 0, rgba(35, 9, 2, 0.88) 0 1.656px 0, rgba(35, 9, 2, 0.847) 0 2.070px 0, rgba(35, 9, 2, 0.81) 0 2.484px 0, rgba(35, 9, 2, 0.78) 0 2.898px 0, rgba(35, 9, 2, 0.745) 0 3.312px 0, rgba(35, 9, 2, 0.714) 0 3.726px 0, rgba(35, 9, 2, 0.68) 0 4.140px 0 !important;
+  }
+
+  /* 4b. Wild by Design - live 10-stop, Y x1.10, alphas kept. */
+  #projects > .wild-home-projects__tagline > span {
+    text-shadow: rgba(35, 9, 2, 0.9) 0 0.244px 0, rgba(35, 9, 2, 0.867) 0 0.488px 0, rgba(35, 9, 2, 0.83) 0 0.732px 0, rgba(35, 9, 2, 0.8) 0 0.976px 0, rgba(35, 9, 2, 0.77) 0 1.220px 0, rgba(35, 9, 2, 0.733) 0 1.464px 0, rgba(35, 9, 2, 0.7) 0 1.708px 0, rgba(35, 9, 2, 0.667) 0 1.952px 0, rgba(35, 9, 2, 0.63) 0 2.196px 0, rgba(35, 9, 2, 0.6) 0 2.440px 0 !important;
+  }
+
+  /* 5. Dream four buttons only. Damp the verified H337 radial/center glow
+     from .92 to .90. Do not touch lettering, box-shadow, inset, or brightness. */
+  footer#footer .wild-footer-contact-cta__actions > a.money-cta.money-cta--primary {
+    --ww-target-button-center-glow: 0.90 !important;
+  }
+
+  /* 6. Projects heading vs Landscaping band: live title translateY -4px / -0.25rem,
+     visual gap ~31px. Cut gap by 1/3 (~10px). Keep H249 landmark, add -10px. */
+  .wild-subpage--projects > .wild-projects-page-title {
+    transform: translateY(calc(-0.25rem - 10px)) !important;
+  }
+
+  /* 7. Bio named headings Y x0.90, alphas kept. */
+  #ww-bio-primary-heading {
+    text-shadow: rgba(35, 9, 2, 0.97) 0 0.263px 0, rgba(35, 9, 2, 0.936) 0 0.526px 0, rgba(35, 9, 2, 0.901) 0 0.788px 0, rgba(35, 9, 2, 0.867) 0 1.051px 0, rgba(35, 9, 2, 0.832) 0 1.314px 0, rgba(35, 9, 2, 0.798) 0 1.577px 0, rgba(35, 9, 2, 0.763) 0 1.840px 0, rgba(35, 9, 2, 0.729) 0 2.102px 0, rgba(35, 9, 2, 0.694) 0 2.365px 0, rgba(35, 9, 2, 0.66) 0 2.628px 0 !important;
+  }
+
+  .wild-bio-reinvention-heading {
+    text-shadow: rgba(35, 9, 2, 0.97) 0 0.556px 0, rgba(35, 9, 2, 0.931) 0 0.874px 0, rgba(35, 9, 2, 0.893) 0 1.192px 0, rgba(35, 9, 2, 0.854) 0 1.509px 0, rgba(35, 9, 2, 0.815) 0 1.827px 0, rgba(35, 9, 2, 0.776) 0 2.145px 0, rgba(35, 9, 2, 0.738) 0 2.462px 0, rgba(35, 9, 2, 0.699) 0 2.780px 0, rgba(35, 9, 2, 0.66) 0 3.098px 0 !important;
+  }
+}
+}

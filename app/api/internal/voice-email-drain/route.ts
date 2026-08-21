@@ -9,6 +9,7 @@ import {
 } from "@/src/lib/voiceEmailNotifications";
 import { createVoiceRecordingPlaybackUrl } from "@/src/lib/voiceRecordingPlayback";
 import { voicemailFallbackEventId } from "@/src/lib/voiceNotificationIds";
+import { logServerTelemetryEvent } from "@/src/lib/serverTelemetryCapture";
 
 export const runtime = "nodejs";
 
@@ -72,6 +73,17 @@ async function handle(request: Request): Promise<Response> {
     }
   }
   const ok = result.ok && transcriptionFallbackErrors === 0;
+  if (!ok) {
+    await logServerTelemetryEvent({
+      request,
+      eventType: "voice_email_drain_failed",
+      severity: "high",
+      provider: "resend",
+      route: "/api/internal/voice-email-drain",
+      statusCode: 503,
+      payload: { failed: result.failed, transcriptionFallbackErrors },
+    });
+  }
   return Response.json(
     {
       ok,

@@ -131,14 +131,22 @@ export default function Wildfire() {
             <span id="ww-wildfire-first-fire" className="wildfire-hero-headline__line wildfire-hero-headline__line--c3">To The First Wood Fire.</span>
           </motion.h1>
           <motion.p className="wild-body wildfire-hero-summary" variants={fadeInUp}>
-            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
-              This is Not a Before-and-After Page. It is
+            {/* Two presentation groups (Chief's mobile packet v2). The colored
+                c1/c2/c3 spans are unchanged - the groups only decide the line
+                structure. The explicit space keeps c2/c3 words separated in
+                inline flow. */}
+            <span className="wildfire-hero-summary__group">
+              <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c1">
+                This is Not a Before-and-After Page. It is
+              </span>
             </span>
-            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
-              a Full Build Record for an Outdoor Fireplace,
-            </span>
-            <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
-              Patio, Outdoor Lounge, and an Upper Viewing Deck.
+            <span className="wildfire-hero-summary__group">
+              <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
+                a Full Build Record for an Outdoor Fireplace,
+              </span>{" "}
+              <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
+                Patio, Outdoor Lounge, and an Upper Viewing Deck.
+              </span>
             </span>
           </motion.p>
         </div>
@@ -185,7 +193,7 @@ export default function Wildfire() {
           below. 98 = the 93 construction photos plus the 5 finished ones, i.e.
           wildfireViewerImages.length - the number the lightbox actually walks. */}
       <p className="wildfire-gallery-rolodex-note">
-        Click on Any Image for the {wildfireViewerImages.length} Pic Carousel
+        Click On Any Image For The {wildfireViewerImages.length} Picture Carousel
       </p>
       <div className="wildfire-gallery-home-contact">
         <PhoneNumberLine

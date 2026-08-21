@@ -2356,7 +2356,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             src="/wildworks-home-banner-20260726.png"
             alt="WildWorks natural stone steps and landscape with the artist standing beside the work"
             priority
-            sizes="100vw"
+            /* 220vw on phones is not a typo. H381 scales this photo 2.18x on
+               mobile so G reads from the waist up, which means the browser
+               paints ~894 CSS px of image inside a 412 px box. At plain 100vw
+               Next picks the 640-wide variant for that box and the zoom then
+               stretches it - G asked to SEE himself, and a soft face defeats
+               the point. 220vw asks for a variant that matches what is actually
+               drawn. The source is 1536x1024, so the resolution is there to
+               spend. Desktop is unchanged at 100vw. */
+            sizes="(max-width: 719px) 165vw, 100vw"
             className="object-cover"
             lightboxClassName="wild-home-hero-lightbox"
             lightboxZoomPan
@@ -3392,7 +3400,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               Grateful They Let Us Build This Work of Art.
             </motion.p>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
-              The People I Love Working Look at a Space and Ask, “What’s the
+              The People I Love Working With Look at a Space and Ask, “What’s the
               Coolest Thing We Could Do Here?” They Want Something Beautiful,
               Tasteful, and Impossible to Find Anywhere Else.
             </motion.p>
@@ -3421,13 +3429,13 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               <span className="wild-signature-title__one">Be Cooler</span>
             </span>
             <span className="wild-signature-title__line">
-              <span className="wild-signature-title__two">Than Having</span>
+              <span className="wild-signature-title__two">Than <span className="wild-signature-title__having">Having</span></span>
             </span>
             <span className="wild-signature-title__line">
-            <span className="wild-signature-title__two">A Ruin</span>
+            <span className="wild-signature-title__two wild-signature-title__having">A Ruin</span>
             </span>
             <span className="wild-signature-title__line">
-              <span className="wild-signature-title__three">Of Your Own?</span>
+              <span className="wild-signature-title__three wild-signature-title__having">Of Your Own?</span>
             </span>
           </motion.h2>
         </div>
@@ -3760,6 +3768,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         >
           <BrandedVideoPlayer
             src="/wildworks-craftsmanship.mp4"
+            /* The video's OWN first frame, pulled straight out of the mp4, so
+               nothing changes once it loads - it just stops being black before
+               it does. A <video> with no poster paints solid black on a cold
+               load, which is the leading suspect for the black rectangle G has
+               reported on refresh. 800x450, 66KB. */
+            poster="/wildworks-craftsmanship-poster.jpg"
             ariaLabel="WildWorks dedication to craftsmanship video"
           />
         </section>

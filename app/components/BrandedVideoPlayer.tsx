@@ -20,6 +20,10 @@ import {
 type BrandedVideoPlayerProps = {
   src: string;
   ariaLabel: string;
+  /* A still to hold the frame until the video decodes. Without one the element
+     paints SOLID BLACK on a cold load - a black rectangle where the video will
+     be, cleared only once the first frame arrives. */
+  poster?: string;
 };
 
 type VideoStyle = CSSProperties & {
@@ -39,6 +43,7 @@ function formatTime(value: number) {
 export default function BrandedVideoPlayer({
   src,
   ariaLabel,
+  poster,
 }: BrandedVideoPlayerProps) {
   const shellRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -139,6 +144,7 @@ export default function BrandedVideoPlayer({
         ref={videoRef}
         className="wild-home-craftsmanship-video__player"
         playsInline
+        poster={poster}
         preload="metadata"
         onClick={togglePlayback}
         onLoadedMetadata={(event) => {

@@ -983,6 +983,93 @@ const wildWorksButtonCss = `
       }
     }
 
+    /* G 2026-08-20, physical iPad portrait smoke: iScott sat low-right in
+       the box on the Home page. Inner viewport numbers lie inside an iPadOS
+       frame, so this pin never trusts them: the legal-band script measures
+       the real frame box from the same-origin parent, confirms the OUTER
+       page is a coarse-pointer portrait tablet, and publishes explicit pixel
+       variables plus the flag below. No flag, no pin - phones, landscape,
+       desktops, full-page tablets, compliant embeds, and cross-origin
+       embedders all keep today's layout untouched. With the flag, the video
+       is pinned to the visible top-left corner at the frame's true pixel
+       size, so the whole video sits inside the visible box and the face
+       crop centers within it. */
+    html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] [data-ww-avatar-video],
+    html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] video,
+    html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] canvas,
+    html[data-ww-avatar-embedded][data-ww-embed-measured][data-ww-avatar-shell] video,
+    html[data-ww-avatar-embedded][data-ww-embed-measured][data-ww-avatar-shell] canvas {
+      position: fixed !important;
+      inset: 0 auto auto 0 !important;
+      width: var(--ww-embed-w) !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      height: var(--ww-embed-h) !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      object-position: 50% 28% !important;
+      transform: none !important;
+      z-index: 1 !important;
+    }
+
+    /* G 2026-08-21, five-state physical iPad portrait ride: rev-H already
+       measures the visible iframe and correctly centers the avatar media. The
+       remaining overlays were still centering against iPadOS's expanded inner
+       layout viewport, which put every fixed midpoint/bottom low-right of the
+       visible window. Reuse rev-H's measured box for overlays only; do not
+       touch the proven video/canvas geometry above. */
+    html[data-ww-avatar-embedded][data-ww-embed-measured] body::before,
+    html[data-ww-avatar-embedded][data-ww-embed-measured] #wildworks-session-ended-panel {
+      inset: 0 auto auto 0 !important;
+      width: var(--ww-embed-w) !important;
+      height: var(--ww-embed-h) !important;
+      box-sizing: border-box !important;
+    }
+
+    html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-finish] {
+      position: fixed !important;
+      inset: auto auto calc(100dvh - var(--ww-embed-h) + 0.75rem)
+        calc(var(--ww-embed-w) / 2) !important;
+      margin: 0 !important;
+      transform: translateX(-50%) !important;
+    }
+
+    html[data-ww-avatar-embedded][data-ww-embed-measured] #wildworks-lead-confirmation {
+      left: calc(var(--ww-embed-w) / 2) !important;
+      width: min(calc(var(--ww-embed-w) - 0.75rem), 19rem) !important;
+    }
+
+    html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* G 2026-08-21, physical iPad portrait post-Finish ride: the returned
+       start-screen image and its Talk control are a different composition from
+       the live video/canvas above. Pin only that explicitly finished state to
+       rev-H's measured iframe box; the initial rest screen, loading, talking,
+       Finish, lead capture, phones, landscape, and desktop never match this
+       state gate. Preserve the provider image's existing cover/center crop. */
+    html[data-ww-avatar-embedded][data-ww-embed-measured][data-ww-finish-returned]
+      img[alt="Start screen"] {
+      position: fixed !important;
+      inset: 0 auto auto 0 !important;
+      width: var(--ww-embed-w) !important;
+      height: var(--ww-embed-h) !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+
+    html[data-ww-avatar-embedded][data-ww-embed-measured][data-ww-finish-returned]
+      .fixed.bottom-28:has([data-ww-talk]) {
+      position: fixed !important;
+      inset: auto auto
+        calc(100dvh - var(--ww-embed-h) + clamp(6.7rem, 14vh, 7.3rem))
+        calc(var(--ww-embed-w) / 2) !important;
+      transform: translateX(-50%) !important;
+    }
+
     @media (max-width: 287px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.5rem) !important;
@@ -1024,6 +1111,72 @@ const wildWorksLegalBandScript = `
     (() => {
       if (window.parent !== window) {
         document.documentElement.setAttribute("data-ww-avatar-embedded", "true");
+      }
+      // G's iPad, 2026-08-20: inside an iPadOS frame the inner viewport can
+      // be laid out against expanded content, so inner percentages and inner
+      // media queries cannot place the video reliably. The parent page is
+      // same-origin, so measure the REAL frame box out there and hand the
+      // stylesheet explicit pixel values. The pin engages only when the
+      // OUTER page is a coarse-pointer portrait tablet and every reading is
+      // sound; any failure or non-match removes the flag and the app's own
+      // layout stands. A cross-origin embedder lands in the catch and stays
+      // untouched too.
+      if (window.parent !== window) {
+        const measureRoot = document.documentElement;
+        const outerTabletPortrait = "(pointer: coarse) and (orientation: portrait) and (min-width: 521px) and (max-width: 1279px)";
+        const applyEmbedMeasurement = () => {
+          try {
+            const frame = window.frameElement;
+            if (!frame || !window.parent.matchMedia(outerTabletPortrait).matches) {
+              measureRoot.removeAttribute("data-ww-embed-measured");
+              return;
+            }
+            // offsetWidth/offsetHeight, NOT a client rect: the Home panel
+            // zooms this frame's ancestors (A01, zoom 1.15 from 501px up),
+            // and a client rect returns zoomed page-space pixels while the
+            // frame's inner viewport lays out in its own pre-zoom pixels.
+            // The offset box is that pre-zoom layout box, and the frame has
+            // no border or padding, so it equals the inner viewport exactly.
+            const frameWidth = frame.offsetWidth;
+            const frameHeight = frame.offsetHeight;
+            if (frameWidth < 1 || frameHeight < 1) {
+              measureRoot.removeAttribute("data-ww-embed-measured");
+              return;
+            }
+            measureRoot.style.setProperty("--ww-embed-w", frameWidth + "px");
+            measureRoot.style.setProperty("--ww-embed-h", frameHeight + "px");
+            measureRoot.setAttribute("data-ww-embed-measured", "true");
+          } catch (error) {
+            measureRoot.removeAttribute("data-ww-embed-measured");
+          }
+        };
+        applyEmbedMeasurement();
+        window.addEventListener("load", applyEmbedMeasurement);
+        window.addEventListener("orientationchange", applyEmbedMeasurement);
+        window.addEventListener("resize", applyEmbedMeasurement);
+        try {
+          // Parent-side gate listener: Stage Manager / Split View drags can
+          // cross the tablet-portrait boundary without resizing the frame or
+          // rotating the device; only the parent's own media state sees it.
+          const outerGate = window.parent.matchMedia(outerTabletPortrait);
+          if (typeof outerGate.addEventListener === "function") {
+            outerGate.addEventListener("change", applyEmbedMeasurement);
+          } else if (typeof outerGate.addListener === "function") {
+            outerGate.addListener(applyEmbedMeasurement);
+          }
+        } catch (error) {}
+        try {
+          const FrameResizeObserver = window.parent.ResizeObserver || window.ResizeObserver;
+          if (FrameResizeObserver && window.frameElement) {
+            const frameObserver = new FrameResizeObserver(applyEmbedMeasurement);
+            frameObserver.observe(window.frameElement);
+            // The observer lives in the PARENT realm; disconnect it when this
+            // document goes away or reloads would accumulate one per session.
+            window.addEventListener("pagehide", () => {
+              try { frameObserver.disconnect(); } catch (error) {}
+            });
+          }
+        } catch (error) {}
       }
       if (document.getElementById("wildworks-avatar-legal-band")) return;
       const band = document.createElement("footer");
@@ -1073,9 +1226,105 @@ const wildWorksLoadingGateScript = `
       // (G's smoke, 2026-08-17: tap -> stall -> cover stuck 30s+).
       const loadingCapMs = 30000;
       const seenVideos = new WeakSet();
+      const reportedVideoFrames = new WeakSet();
       let loadingStartedAt = document.documentElement.classList.contains(loadingClass)
         ? Date.now()
         : 0;
+
+      // Chief 2026-08-21: one physical iPad ride must identify the provider's
+      // actual render node and containing block before another centering rule is
+      // guessed. This records geometry only when rev-H's existing measured
+      // embedded-iPad gate is already active. It changes no style or lifecycle.
+      const captureMeasuredIPadGeometry = (video) => {
+        if (!document.documentElement.matches("[data-ww-avatar-embedded][data-ww-embed-measured]")) {
+          return undefined;
+        }
+        const round = (value) => Number.isFinite(value) ? Math.round(value * 100) / 100 : null;
+        const rectOf = (node) => {
+          if (!node || typeof node.getBoundingClientRect !== "function") return null;
+          const rect = node.getBoundingClientRect();
+          return {
+            x: round(rect.x), y: round(rect.y), width: round(rect.width), height: round(rect.height),
+            top: round(rect.top), right: round(rect.right), bottom: round(rect.bottom), left: round(rect.left),
+          };
+        };
+        const pathOf = (node) => {
+          const parts = [];
+          let current = node;
+          while (current && current.nodeType === 1 && parts.length < 8) {
+            let part = current.tagName.toLowerCase();
+            if (current.id) part += "#" + current.id;
+            const classes = Array.from(current.classList || []).slice(0, 3);
+            if (classes.length) part += "." + classes.join(".");
+            parts.push(part);
+            current = current.parentElement;
+          }
+          return parts.reverse().join(" > ").slice(0, 480);
+        };
+        const nodeSummary = (node) => {
+          if (!node) return null;
+          const style = window.getComputedStyle(node);
+          return {
+            tag: node.tagName?.toLowerCase() || "",
+            path: pathOf(node),
+            rect: rectOf(node),
+            offset: { left: node.offsetLeft ?? null, top: node.offsetTop ?? null, width: node.offsetWidth ?? null, height: node.offsetHeight ?? null },
+            style: {
+              position: style.position, display: style.display, overflow: style.overflow,
+              top: style.top, right: style.right, bottom: style.bottom, left: style.left,
+              width: style.width, height: style.height, objectFit: style.objectFit,
+              objectPosition: style.objectPosition, transform: style.transform,
+              transformOrigin: style.transformOrigin, zIndex: style.zIndex,
+            },
+          };
+        };
+        let parentFrame = null;
+        try {
+          const frame = window.frameElement;
+          parentFrame = {
+            rect: rectOf(frame),
+            offset: frame ? { width: frame.offsetWidth, height: frame.offsetHeight } : null,
+            parentViewport: { width: window.parent.innerWidth, height: window.parent.innerHeight },
+          };
+        } catch (error) {}
+        const media = Array.from(document.querySelectorAll("video, canvas")).slice(0, 8);
+        return {
+          viewport: {
+            innerWidth: window.innerWidth, innerHeight: window.innerHeight,
+            clientWidth: document.documentElement.clientWidth, clientHeight: document.documentElement.clientHeight,
+            bodyScrollWidth: document.body?.scrollWidth ?? null, bodyScrollHeight: document.body?.scrollHeight ?? null,
+            visual: window.visualViewport ? {
+              width: round(window.visualViewport.width), height: round(window.visualViewport.height),
+              offsetLeft: round(window.visualViewport.offsetLeft), offsetTop: round(window.visualViewport.offsetTop),
+              scale: round(window.visualViewport.scale),
+            } : null,
+          },
+          parentFrame,
+          videoIntrinsic: { width: video?.videoWidth || 0, height: video?.videoHeight || 0 },
+          target: nodeSummary(video),
+          offsetParent: nodeSummary(video?.offsetParent),
+          media: media.map(nodeSummary),
+        };
+      };
+
+      const reportFirstVideoFrame = (video, preserveExistingMark = true) => {
+        if (!video) return;
+        const measuredIPad = document.documentElement.matches("[data-ww-avatar-embedded][data-ww-embed-measured]");
+        if (!measuredIPad) {
+          // Preserve the pre-diagnostic behavior byte-for-behavior outside the
+          // measured iPad path: rVFC reports; the fallback path does not.
+          if (preserveExistingMark) {
+            try { window.__wwPaceMark && window.__wwPaceMark("first_video_frame"); } catch {}
+          }
+          return;
+        }
+        if (reportedVideoFrames.has(video)) return;
+        reportedVideoFrames.add(video);
+        try {
+          const geometry = captureMeasuredIPadGeometry(video);
+          window.__wwPaceMark && window.__wwPaceMark("first_video_frame", geometry ? { geometry } : undefined);
+        } catch {}
+      };
 
       const endLoading = () => {
         if (typeof coverTimer !== "undefined" && coverTimer) {
@@ -1122,7 +1371,7 @@ const wildWorksLoadingGateScript = `
 
         if (typeof video.requestVideoFrameCallback === "function") {
           video.requestVideoFrameCallback(() => {
-            try { window.__wwPaceMark && window.__wwPaceMark("first_video_frame"); } catch {}
+            reportFirstVideoFrame(video);
             endLoading();
           });
           return;
@@ -1131,6 +1380,7 @@ const wildWorksLoadingGateScript = `
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => {
             if (video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+              reportFirstVideoFrame(video, false);
               endLoading();
             }
           });
@@ -1171,6 +1421,11 @@ const wildWorksLoadingGateScript = `
         if (releasePattern.test(visibleText)) endLoading();
       };
 
+      // V3: a start that fails before any frame - refused or thrown - is
+      // announced by the session guard on this event. endLoading owns the
+      // cover timer and the loading flag, and they live in THIS closure, so
+      // the guard cannot clear them directly (the cross-script lesson).
+      window.addEventListener("wildworks:avatar-start-failed", endLoading);
       if (document.documentElement.classList.contains(loadingClass)) beginLoading();
       window.addEventListener("load", syncLoadingState);
       const observer = new MutationObserver(syncLoadingState);
@@ -1278,6 +1533,9 @@ const wildWorksIdleTimeoutScript = `
           sessionActive = false;
           stopping = false;
           clearIdleTimer();
+          if (reason === "finish") {
+            document.documentElement.setAttribute("data-ww-finish-returned", "true");
+          }
           window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", {
             detail: { reason },
           }));
@@ -1307,10 +1565,344 @@ const wildWorksIdleTimeoutScript = `
         }
       };
 
+      // G's physical iPad smoke, 2026-08-20, V3 discipline (rev B, after the
+      // race review): the watchdog is a janitor for TRULY dead starts only.
+      // It acts solely when the document holds not a single video or canvas
+      // element AND an explicit state holds (loading cover up, or visible
+      // error text), across four agreeing samples. Any media element at all
+      // - playing, connecting, paused, mid-swap - blocks it, which is the
+      // literal reading of "never kill healthy, slow, or paused". Hidden
+      // documents, an observed pending microphone permission, and the app's
+      // own Session Ended panel also block it. Retry for the stuck first
+      // tap does NOT depend on it: the serialized fetch wrapper below stops
+      // a stale session directly before any second start proceeds. Teardown
+      // identity rides on a session GENERATION counter, never the
+      // authorization string - the capture fallback below admits that
+      // string can be empty, so it cannot carry identity.
+      const watchdogFirstSampleMs = 16000;
+      const watchdogSampleGapMs = 4000;
+      const watchdogSamplesRequired = 4;
+      let watchdogTimer = null;
+      let watchdogDeadSamples = 0;
+      let watchdogHandled = false;
+      let sessionGeneration = 0;
+      // THE cleanup promise. Non-null exactly while a guard-owned
+      // stop/cleanup is unresolved. Every start must see it settled (or the
+      // foreign stopping flag drop) before it may forward; a cleanup that
+      // will not settle inside the bound fails the start CLOSED - a late
+      // stop carries no immutable session id, so nothing may ever start
+      // over one still in flight. Rev D: the slot has an explicit owner
+      // token, the promise is PUBLISHED before any cleanup body runs (an
+      // async body with no await settles synchronously, and rev C's
+      // publish-after pattern stored an already-settled promise forever,
+      // wedging every later start), and it is cleared only while the same
+      // promise and owner still hold the slot, before the waiters wake.
+      let cleanupPromise = null;
+      let cleanupOwner = 0;
+      let microphonePermissionState = "";
+
+      // Rev H: the ONLY acceptable stop handle is the Authorization bearer
+      // carried by the very /api/v1/sessions/start request being forwarded
+      // - exact correlation by construction, no latest-token or FIFO
+      // fallback of any kind. Hardened for every header shape the fetch API
+      // accepts; init.headers wins over a Request's own headers, matching
+      // fetch semantics. A start with no extractable bearer FAILS CLOSED
+      // before it is forwarded: a session that could never be stopped is
+      // never allowed to exist.
+      const extractStartAuthorization = (input, init) => {
+        const readHeaders = (headers) => {
+          if (!headers) return "";
+          try {
+            if (typeof Headers !== "undefined" && headers instanceof Headers) {
+              return headers.get("authorization") || "";
+            }
+            if (Array.isArray(headers)) {
+              for (let index = 0; index < headers.length; index += 1) {
+                const pair = headers[index];
+                if (pair && typeof pair[0] === "string" && pair[0].toLowerCase() === "authorization") {
+                  return typeof pair[1] === "string" ? pair[1] : "";
+                }
+              }
+              return "";
+            }
+            if (typeof headers === "object") {
+              const names = Object.keys(headers);
+              for (let index = 0; index < names.length; index += 1) {
+                if (names[index].toLowerCase() === "authorization") {
+                  const value = headers[names[index]];
+                  return typeof value === "string" ? value : "";
+                }
+              }
+            }
+          } catch (error) {}
+          return "";
+        };
+        let bearerValue = "";
+        try {
+          if (init && init.headers) bearerValue = readHeaders(init.headers);
+          if (!bearerValue && input && typeof Request !== "undefined" && input instanceof Request) {
+            bearerValue = readHeaders(input.headers);
+          }
+        } catch (error) {}
+        return bearerValue;
+      };
+
+      try {
+        if (navigator.permissions && typeof navigator.permissions.query === "function") {
+          navigator.permissions.query({ name: "microphone" }).then((status) => {
+            microphonePermissionState = status.state || "";
+            if (typeof status.addEventListener === "function") {
+              status.addEventListener("change", () => {
+                microphonePermissionState = status.state || "";
+              });
+            }
+          }).catch(() => {});
+        }
+      } catch (error) {}
+
+      const mediaInventory = () => {
+        const media = document.querySelectorAll("video, canvas");
+        const videos = document.querySelectorAll("video");
+        const inventory = { count: media.length, playing: false, connecting: false };
+        for (let index = 0; index < videos.length; index += 1) {
+          const video = videos[index];
+          if (!video.paused && video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0) {
+            inventory.playing = true;
+          } else if (!video.paused && video.readyState >= 1) {
+            inventory.connecting = true;
+          }
+        }
+        return inventory;
+      };
+
+      const visibleErrorPattern = /session ended|avatar app unavailable|try again|failed to|error occurred/i;
+
+      const clearFailedStartProbe = () => {
+        if (watchdogTimer !== null) window.clearTimeout(watchdogTimer);
+        watchdogTimer = null;
+        watchdogDeadSamples = 0;
+      };
+
+      const teardownAfterFailedStart = (generationAtStop, ownerToken) => {
+        // Ownership validation FIRST, on the ONE reconciled pair: shared
+        // state - including the stopping unlock - mutates only when this
+        // cleanup's generation AND owner token still hold the guard.
+        if (sessionGeneration !== generationAtStop || cleanupOwner !== ownerToken) return;
+        sessionAuthorization = "";
+        sessionActive = false;
+        clearIdleTimer();
+        stopping = false;
+        window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+        window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", {
+          detail: { reason: "failed_start" },
+        }));
+        window.location.replace("/pages/avatar-iscott");
+      };
+
+      const publishCleanup = (runCleanup) => {
+        // Rev D publication contract: construct and PUBLISH the promise
+        // before one line of cleanup body runs, capture the generation at
+        // publish time, and on settle clear the slot only while this very
+        // promise and owner token still hold it - then wake the waiters.
+        cleanupOwner += 1;
+        const owner = cleanupOwner;
+        let settleCleanup = null;
+        const published = new Promise((resolve) => { settleCleanup = resolve; });
+        cleanupPromise = published;
+        const generationAtStop = sessionGeneration;
+        (async () => {
+          try {
+            await runCleanup(generationAtStop, owner);
+          } finally {
+            if (cleanupPromise === published && cleanupOwner === owner) {
+              // Invariant, asserted: the generation cannot move while a
+              // cleanup is published - every generation increment lives in
+              // the start ok-branch, and every start awaits cleanup
+              // settlement before it may forward. Gating this clear on the
+              // generation would turn a violation into a permanent wedge,
+              // so a violation is alarmed instead of silently wedging.
+              if (sessionGeneration !== generationAtStop) {
+                console.error("[iScott] cleanup invariant violated: generation moved during a published cleanup");
+              }
+              cleanupPromise = null;
+            }
+            settleCleanup();
+          }
+        })();
+        return published;
+      };
+
+      const recoverFromFailedStart = () => {
+        if (stopping || cleanupPromise) return;
+        // Race contract: stopping marks and the sampler cancels BEFORE any
+        // await; the whole cleanup is published as THE cleanup promise so
+        // no start can forward under it; stopping unlocks only inside the
+        // generation-validated teardown.
+        stopping = true;
+        clearFailedStartProbe();
+        // Rev H: sessions only exist with an exact captured bearer (the
+        // start fails closed otherwise), so the session's own authorization
+        // is always the handle.
+        const staleAuthorization = sessionAuthorization;
+        void publishCleanup(async (generationAtStop, ownerToken) => {
+          let stopVerified = false;
+          try {
+            if (staleAuthorization) {
+              const stopResponse = await originalFetch("/api/v1/sessions/stop", {
+                method: "POST",
+                headers: {
+                  Authorization: staleAuthorization,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ reason: "USER_CLOSED" }),
+                keepalive: true,
+              });
+              stopVerified = Boolean(stopResponse && stopResponse.ok);
+              if (!stopVerified) console.error("[iScott] failed-start stop returned status " + stopResponse.status);
+            }
+          } catch (error) {
+            console.error("[iScott] failed-start stop request failed", error);
+          }
+          // Only a VERIFIED HTTP-OK stop may clear state. Non-OK, thrown,
+          // or no-handle stops stay fail-closed: state and every handle
+          // survive so the next tap retries the verified stop. There is no
+          // time-based release.
+          if (stopVerified) {
+            teardownAfterFailedStart(generationAtStop, ownerToken);
+          } else if (sessionGeneration === generationAtStop && cleanupOwner === ownerToken) {
+            stopping = false;
+            window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+          }
+        });
+      };
+
+      const sampleFailedStart = () => {
+        watchdogTimer = null;
+        if (!sessionActive || stopping || watchdogHandled) return;
+        const inventory = mediaInventory();
+        const loadingHeld = document.documentElement.classList.contains("wildworks-avatar-loading");
+        const errorShown = visibleErrorPattern.test(document.body ? document.body.innerText || "" : "");
+        const endedPanelShown = Boolean(document.getElementById("wildworks-session-ended-panel"));
+        const backgrounded = document.visibilityState !== "visible";
+        const permissionPending = microphonePermissionState === "prompt";
+        let deadNow = false;
+        if (!backgrounded && !permissionPending && !endedPanelShown
+            && inventory.count === 0 && !inventory.playing && !inventory.connecting
+            && (errorShown || loadingHeld)) {
+          deadNow = true;
+        }
+        watchdogDeadSamples = deadNow ? watchdogDeadSamples + 1 : 0;
+        if (watchdogDeadSamples >= watchdogSamplesRequired) {
+          watchdogHandled = true;
+          try { window.__wwPaceMark && window.__wwPaceMark("failed_start_recovered", { errorShown: errorShown, mediaCount: inventory.count }); } catch {}
+          void recoverFromFailedStart();
+          return;
+        }
+        watchdogTimer = window.setTimeout(sampleFailedStart, watchdogSampleGapMs);
+      };
+
+      const armFailedStartProbe = () => {
+        clearFailedStartProbe();
+        watchdogHandled = false;
+        watchdogTimer = window.setTimeout(sampleFailedStart, watchdogFirstSampleMs);
+      };
+
+      const stopStaleBeforeRestart = () => {
+        if (cleanupPromise) return cleanupPromise;
+        if (stopping) return null;
+        // A second start while an older session is still active: stop and
+        // clear the old one BEFORE any new start may forward. stopping
+        // marks and the sampler cancels before the await; the cleanup is
+        // published through publishCleanup (publish-before-body, owner-
+        // validated clear); shared state - including the stopping unlock -
+        // mutates only after the generation validation.
+        stopping = true;
+        clearFailedStartProbe();
+        // Rev H: the session's own exact bearer is always the handle -
+        // authless sessions cannot exist any more.
+        const staleAuthorization = sessionAuthorization;
+        return publishCleanup(async (generationAtStop, ownerToken) => {
+          let stopVerified = false;
+          try {
+            if (staleAuthorization) {
+              const stopResponse = await originalFetch("/api/v1/sessions/stop", {
+                method: "POST",
+                headers: {
+                  Authorization: staleAuthorization,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ reason: "USER_CLOSED" }),
+                keepalive: true,
+              });
+              stopVerified = Boolean(stopResponse && stopResponse.ok);
+              if (!stopVerified) console.error("[iScott] stale-session stop returned status " + stopResponse.status);
+            }
+          } catch (error) {
+            console.error("[iScott] stale-session stop before restart failed", error);
+          }
+          // Only a VERIFIED HTTP-OK stop clears the barrier and permits
+          // forwarding. Anything else keeps state - and every handle, for
+          // the retry. There is no time-based release.
+          if (sessionGeneration === generationAtStop && cleanupOwner === ownerToken) {
+            stopping = false;
+            if (stopVerified) {
+              sessionAuthorization = "";
+              sessionActive = false;
+              clearIdleTimer();
+              // Let the capture bridge close the old session's books: it
+              // syncs the transcript and drops the talking flag; the new
+              // session re-raises both through its own start flow.
+              window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", {
+                detail: { reason: "stale_restart" },
+              }));
+            }
+          }
+        });
+      };
+
+      const boundedCleanupWait = async (limitMs) => {
+        // Awaits BOTH kinds of unresolved cleanup: the guard's own cleanup
+        // promise, and a foreign stop (Finish/idle/hide) that only signals
+        // through the shared stopping flag. Returns true only when neither
+        // remains; the caller fails the start closed on false.
+        const deadline = Date.now() + limitMs;
+        while ((stopping || cleanupPromise) && Date.now() < deadline) {
+          if (cleanupPromise) {
+            const remaining = Math.max(50, deadline - Date.now());
+            await Promise.race([
+              cleanupPromise,
+              new Promise((resolve) => { window.setTimeout(resolve, remaining); }),
+            ]);
+          } else {
+            await new Promise((resolve) => { window.setTimeout(resolve, 100); });
+          }
+        }
+        return !stopping && !cleanupPromise;
+      };
+
+      let pendingStartGate = null;
+
       const armIdleTimer = () => {
         if (!sessionActive || stopping) return;
         clearIdleTimer();
         idleTimer = window.setTimeout(stopForIdle, idleLimitMs);
+      };
+
+      // Diagnostic-only: correlate Safari visibility transitions with the
+      // exact permission/session/media state before rev-H performs its existing
+      // stop. Measured embedded tablets only; behavior is unchanged.
+      const markMeasuredIPadLifecycle = (stage, extra = {}) => {
+        if (!document.documentElement.matches("[data-ww-avatar-embedded][data-ww-embed-measured]")) return;
+        try {
+          window.__wwPaceMark && window.__wwPaceMark(stage, {
+            visibilityState: document.visibilityState,
+            microphonePermissionState,
+            sessionActive,
+            stopping,
+            media: mediaInventory(),
+            ...extra,
+          });
+        } catch {}
       };
 
       ["pointerdown", "keydown", "touchstart", "input"].forEach((eventName) => {
@@ -1318,9 +1910,15 @@ const wildWorksIdleTimeoutScript = `
       });
       window.addEventListener("wildworks:avatar-activity", armIdleTimer);
       document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") void stopForIdle();
+        if (document.visibilityState === "hidden") {
+          markMeasuredIPadLifecycle("visibility_hidden_before_idle_stop");
+          void stopForIdle();
+        } else {
+          markMeasuredIPadLifecycle("visibility_visible");
+        }
       });
       window.addEventListener("pagehide", () => {
+        markMeasuredIPadLifecycle("pagehide_before_stop");
         if (!sessionActive || !sessionAuthorization) return;
         sessionActive = false;
         clearIdleTimer();
@@ -1334,23 +1932,130 @@ const wildWorksIdleTimeoutScript = `
           keepalive: true,
         }).catch(() => undefined);
       });
+      window.addEventListener("wildworks:avatar-start-failed", () => {
+        markMeasuredIPadLifecycle("start_failed");
+      });
+      window.addEventListener("wildworks:avatar-session-ended", (event) => {
+        markMeasuredIPadLifecycle("session_ended", { reason: event?.detail?.reason || "" });
+      });
 
       window.fetch = async (input, init) => {
         const url = requestUrl(input);
-        const authorization = requestAuthorization(input, init);
-        const response = await originalFetch(input, init);
-
-        if (url.includes("/api/v1/sessions/start") && response.ok) {
-          sessionAuthorization = authorization || sessionAuthorization;
-          sessionActive = true;
-          stopping = false;
-          armIdleTimer();
-        } else if (url.includes("/api/v1/sessions/stop")) {
-          sessionActive = false;
-          clearIdleTimer();
+        if (!url.includes("/api/v1/sessions/start")) {
+          const response = await originalFetch(input, init);
+          if (url.includes("/api/v1/sessions/stop") && response.ok) {
+            // Rev G: only a stop the provider ANSWERED OK clears local
+            // state. A refused or thrown stop preserves the barrier, the
+            // handle, and the timers - the session may well still be live
+            // and billing, and clearing here was the unverified hole.
+            sessionActive = false;
+            sessionAuthorization = "";
+            clearIdleTimer();
+            clearFailedStartProbe();
+          }
+          return response;
         }
-
-        return response;
+        // Rev C: starts are SERIALIZED and CLEANUP-GATED. Each start waits
+        // for the previous start to settle AND for every unresolved cleanup
+        // - the guard's own cleanup promise or a foreign stop's stopping
+        // flag - before it may forward. A cleanup that does not settle
+        // inside the bound fails this start CLOSED: the stop request
+        // carries no immutable session id, so a late stop could land on a
+        // session started over it. Refusing the start costs one tap;
+        // colliding sessions cost money.
+        const previousStart = pendingStartGate;
+        let releaseStartGate = null;
+        const myStartGate = new Promise((resolve) => { releaseStartGate = resolve; });
+        pendingStartGate = myStartGate;
+        if (previousStart) {
+          try { await previousStart; } catch (error) {}
+        }
+        try {
+          if (sessionActive && sessionAuthorization && !stopping && !cleanupPromise) {
+            stopStaleBeforeRestart();
+          }
+          if (stopping || cleanupPromise) {
+            const cleanupSettled = await boundedCleanupWait(4000);
+            if (!cleanupSettled) {
+              // Fail closed, release the cover through the gate's own
+              // machinery, never forward. The visitor's next tap starts
+              // clean once the cleanup finally settles.
+              window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+              throw new TypeError("iScott start refused: an earlier session cleanup has not settled");
+            }
+          }
+          if (sessionActive) {
+            // Rev F barrier: sessionActive ALONE blocks a forward, checked
+            // after every cleanup wait and immediately before the request -
+            // and it stays closed until PROVIDER-BACKED proof the old
+            // session ended: a verified HTTP-OK stop cleared it above, or
+            // the app's own Session Ended terminal is on screen. There is
+            // no time-based release - elapsed time proves nothing.
+            const terminalShown = Boolean(document.getElementById("wildworks-session-ended-panel"));
+            if (terminalShown) {
+              sessionActive = false;
+              sessionAuthorization = "";
+              clearIdleTimer();
+              clearFailedStartProbe();
+              window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", {
+                detail: { reason: "terminal_observed" },
+              }));
+            } else {
+              window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+              throw new TypeError("iScott start refused: the previous session has not verifiably ended - tap again to retry the stop, or reload this page");
+            }
+          }
+          const generationAtSend = sessionGeneration;
+          // Rev H: the stop handle comes from THIS exact request, or the
+          // start does not happen. No correlation guess can exist because
+          // there is nothing to correlate - the bearer and the request are
+          // one object.
+          const exactAuthorization = extractStartAuthorization(input, init);
+          if (!exactAuthorization) {
+            window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+            throw new TypeError("iScott start refused: the start request carries no Authorization bearer, so its session could never be stopped");
+          }
+          let response;
+          try {
+            response = await originalFetch(input, init);
+          } catch (error) {
+            // A THROWN start (network failure) leaves no session: clear only
+            // the state it was sent under and release the cover through the
+            // loading-gate block's own machinery. The attempt's bearer dies
+            // with this scope.
+            if (sessionGeneration === generationAtSend) {
+              sessionActive = false;
+              sessionAuthorization = "";
+              clearIdleTimer();
+              clearFailedStartProbe();
+              window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+            }
+            throw error;
+          }
+          if (response.ok) {
+            // Bind ONLY now, and ONLY the bearer from this exact request.
+            sessionAuthorization = exactAuthorization;
+            sessionActive = true;
+            stopping = false;
+            sessionGeneration += 1;
+            armIdleTimer();
+            armFailedStartProbe();
+          } else if (sessionGeneration === generationAtSend) {
+            // A REFUSED start leaves no session - but only the state it was
+            // sent under is cleared; a session that armed in between is left
+            // alone, and the cover releases through its own block. The
+            // attempt's bearer dies with this scope.
+            sessionActive = false;
+            sessionAuthorization = "";
+            clearIdleTimer();
+            clearFailedStartProbe();
+            window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
+          }
+          return response;
+        } finally {
+          releaseStartGate();
+          if (pendingStartGate === myStartGate) pendingStartGate = null;
+        }
       };
 
       window.__wildworksAvatarIdleGuard = {

@@ -1,0 +1,157 @@
+/* H381: G's mobile Home punch list, 2026-08-19 late. PHONE ONLY.
+ *
+ * G, on his phone, walking down the Home page:
+ *   1. "the phone number under the hero image should be tucked up a little bit
+ *       closer to the hero image."
+ *   2. "You can't see me... I need to be on that right side. Keep everything the
+ *       same with the hero image. All the text, the buttons, everything exactly
+ *       the same. Just make me much bigger. Zoom in so that I'm on that right
+ *       side. You had done this before. So I'm basically just from like the
+ *       waist up. And you can see my face... It's more personal."
+ *   3. "See More WildWorks Projects, that split into two lines... The text needs
+ *       to be smaller to fit on one line. And then the icon should be the same
+ *       size as the text in that little box."
+ *   4. "At the very bottom... call today is fine. The phone number could be a
+ *       little bigger and it could be a little closer to the up arrows."
+ *
+ * EVERYTHING HERE IS INSIDE @media (max-width: 719px) - the house mobile
+ * breakpoint, 70 uses across app/. G's five standard viewports put 412 and 287
+ * inside it and iPad portrait 820 outside, so desktop, laptop and both iPads are
+ * untouched. Verify that way: 820 and up must not move a pixel.
+ *
+ * WEIGHTS ARE MEASURED, NOT GUESSED. Each rival below was read off the live page
+ * with CSS.getMatchedStylesForNode, and each rule here clears its own rival:
+ *   hero phone margin-top   rival  4 ids   here  8
+ *   See More font-size      rival 46 ids   here 52
+ *   footer phone font-size  rival  2 ids   here  9 + the same footer#footer chain
+ *   up-arrow margin-top     rival 16 ids   here 20 + the same footer chain
+ * Do not shorten these selectors. A shorter one loses and installs silently.
+ */
+
+/* ---- 1. The hero phone number tucks up under the photo -------------------
+   Rival: html body#wildworks-body x4 #top.wild-home .wild-phone-number-line--home-hero
+   { margin-top: 1.25rem !important } inside (max-width: 640px) = 20px at 412.
+   0.4rem leaves 6.4px, so the number rides ~14px closer to the image. */
+@media (max-width: 719px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home
+    .wild-phone-number-line--home-hero {
+    margin-top: 0.4rem !important;
+  }
+}
+
+/* ---- 2. Zoom the hero photo so G reads from the waist up -----------------
+   NOTHING ELSE MOVES. .wild-hero-copy - the wordmark, the headline, the lede
+   and both buttons - is a SIBLING of .wild-hero-media, not a child, so scaling
+   the photo cannot touch the type. Checked before writing this.
+
+   NO overflow rule is needed either: section.wild-hero already carries
+   overflow: hidden and border-radius: 10px, so it does the clipping and the
+   rounded corners survive. Do not add overflow to .wild-hero-media - it is
+   position: absolute and clipping it there would gain nothing.
+
+   The numbers: in the unscaled photo at 412 G's head sits ~12px below the image
+   top, his belt ~120px, and he is centred near 76% across.
+
+   2.18 WAS TOO FAR IN. G, 2026-08-19: "you zoomed in a little bit too much on
+   me. Zoom out. We wanna see a little bit of the stonework. Go back a
+   substantial amount, but certainly not all the way. I want people to see my
+   face." At 1.6 about the same origin his head lands ~14px down and the crop
+   runs to about mid-thigh, which brings the stonework back while his face still
+   reads. Origin is in PERCENT so it tracks the image box at every phone width
+   instead of drifting. The `sizes` attribute on the Home page moved 220vw ->
+   165vw to match: ask for the variant the zoom actually paints, no more. */
+@media (max-width: 719px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home
+    .wild-hero
+    .wild-hero-media img {
+    transform: scale(1.6) !important;
+    transform-origin: 78% 3.5% !important;
+  }
+}
+
+/* ---- 3. "See More WildWorks Projects" on one line, icon at text size -----
+   Rival: html body#wildworks-body x46 .wild-home-projects__more a.money-cta
+   { font-size: 26.9px !important } - a hard pixel value, which is why it wrapped.
+
+   WHY A calc AND NOT ONE NUMBER. Measured on the live page: the string is
+   364.4px wide at 26.9px, i.e. 13.547 x the font size, and the icon at 1em adds
+   one more, so the row needs 14.547F + 8.8px of gap inside (viewport - 72px) of
+   content box. Solving for F gives F <= (vw - 80.8) / 14.547, which is 22.8px at
+   412 but only 14.2px at 287. ONE fixed size cannot satisfy both - a size that
+   fits the 412 breaks 287 - so it has to track the viewport.
+   calc(6.5vw - 5.3px) is that line with ~5% held back.
+   The 1.68rem cap is today's 26.88px, so this can only ever SHRINK the label,
+   never grow it. The 0.8rem floor sits under the 287 limit.
+
+   nowrap is what actually guarantees the single line; the sizing is what keeps
+   nowrap from overflowing. They go together - do not keep one without the other. */
+@media (max-width: 719px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home-projects__more
+    a.money-cta {
+    /* CAP MOVED. G called this "way too big compared to the other buttons", so
+       the 1.68rem cap became 1.12rem - and that value now lives in H382 with
+       the rest of his walkthrough, which is the file that wins. This rule keeps
+       the FLOOR and the calc, which are what hold the label on one line at 287.
+       Do not re-add a cap here; two files owning one number is how sizes drift. */
+    font-size: clamp(0.8rem, calc(6.5vw - 5.3px), 1.68rem) !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home-projects__more
+    a.money-cta
+    span {
+    white-space: nowrap !important;
+  }
+
+  /* The icon takes the label's own size - G asked for exactly this. 1em is that
+     size by definition, so it stays matched as the calc above moves. */
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-home-projects__more
+    a.money-cta
+    svg {
+    width: 1em !important;
+    height: 1em !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* ---- 4. Bottom phone bigger, and closer to the up arrows -----------------
+   Rival A: html body#wildworks-body footer#footer .wild-footer-phone-iscott-group
+   > .wild-phone-number-line--footer-closing > a
+   { font-size: clamp(2.6rem, 9.65vw, 3.65rem) !important } = 41.6px at 412.
+
+   The new clamp raises 412 to 46px and leaves 287 exactly where it was: at 287
+   11.2vw is 32.1px, under the 2.6rem floor, so the floor still governs there.
+   That matters - the number already runs nearly the full width of a 287 screen
+   and growing it there would push it off the edge. Bigger where there is room,
+   unchanged where there is not.
+
+   Rival B: the up-arrow's own margin-top, clamp(2rem, 1.702rem + 1.22vw, 2.8rem)
+   = 32.26px at 412. 0.75rem closes ~20px of the 73px gap. "Or Call Today!" is
+   untouched - G said it is fine. */
+@media (max-width: 719px) {
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer
+    .wild-footer-phone-iscott-group
+    > .wild-phone-number-line--footer-closing
+    > a {
+    font-size: clamp(2.6rem, 11.2vw, 2.875rem) !important;
+  }
+
+  html
+    body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+    .wild-footer-final-region
+    .wild-footer-top-button.wild-footer-top-button--closing {
+    margin-top: 0.75rem !important;
+  }
+}

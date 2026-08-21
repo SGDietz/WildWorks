@@ -1,5 +1,6 @@
 import { authorizeVoiceEmailDrainRequest } from "@/src/lib/voiceCronAuthorization";
 import { sendDailyTelemetryDigest } from "@/src/lib/telemetryDigest";
+import { logServerTelemetryEvent } from "@/src/lib/serverTelemetryCapture";
 
 export const runtime = "nodejs";
 
@@ -9,6 +10,9 @@ async function handle(request: Request) {
   }
   try {
     const result = await sendDailyTelemetryDigest();
+    if (!result.ok) {
+      await logServerTelemetryEvent({ request, eventType: "telemetry_digest_failed", severity: "high", provider: "resend", route: "/api/internal/telemetry-digest", statusCode: 503 });
+    }
     return Response.json({
       ok: result.ok,
       queued: result.queued,
@@ -20,6 +24,7 @@ async function handle(request: Request) {
       headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
+    await logServerTelemetryEvent({ request, eventType: "telemetry_digest_failed", severity: "high", provider: "resend", route: "/api/internal/telemetry-digest", statusCode: 503 });
     return Response.json({
       ok: false,
       error: error instanceof Error ? error.message : "telemetry_digest_failed",
@@ -29,4 +34,3 @@ async function handle(request: Request) {
 
 export const GET = handle;
 export const POST = handle;
-

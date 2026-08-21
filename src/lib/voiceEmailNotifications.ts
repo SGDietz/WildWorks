@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { summariseLeadQualification, visitorLinesFromTranscript } from "./iscottLeadParsing";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import { safeJsonPayload } from "./telemetryServer";
 import {
   isVoiceEmailOutboxRowDue,
@@ -313,7 +314,10 @@ async function supabaseRest<T>(
   path: string,
   init: { method: "GET" | "POST" | "PATCH"; body?: JsonObject; prefer?: string },
 ): Promise<RestResult<T>> {
+  const resource = path.split(/[?&/]/, 1)[0] || "voice-email-data";
+  const operation = `${init.method} ${resource}`;
   if (!isSupabaseAdminConfigured()) {
+    queueSupabaseOperationalAlert({ component: "voice email outbox", operation, failureKind: "configuration", correlationSource: `voice-email:${resource}:configuration` });
     return { ok: false, status: 0, detail: "supabase_not_configured", rows: [] };
   }
   try {
@@ -331,6 +335,7 @@ async function supabaseRest<T>(
       signal: voiceBackendSignal(),
     });
     if (!response.ok) {
+      queueSupabaseOperationalAlert({ component: "voice email outbox", operation, statusCode: response.status, correlationSource: `voice-email:${resource}:${response.status}` });
       return {
         ok: false,
         status: response.status,
@@ -346,6 +351,7 @@ async function supabaseRest<T>(
       rows: Array.isArray(body) ? (body as T[]) : [],
     };
   } catch (error) {
+    queueSupabaseOperationalAlert({ component: "voice email outbox", operation, correlationSource: `voice-email:${resource}:connectivity` });
     return {
       ok: false,
       status: 0,

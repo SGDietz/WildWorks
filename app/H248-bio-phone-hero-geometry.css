@@ -14,4 +14,10 @@
     .wild-ab-band--intro > .wild-subpage-section {
     padding-top: 0.25rem !important;
   }
+
+  /* H248: approved phone-only Bio hero micro-adjustment. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-subpage--bio.wild-subpage--bio .wild-subpage-hero > .wild-zoomable-image > img {
+    transform: translate(3.75%, 2.5%) scale(1.065) !important;
+  }
 }

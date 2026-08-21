@@ -22,6 +22,15 @@ export async function POST(request: Request) {
   if (rateLimitError) return rateLimitError;
 
   if (!API_KEY || !API_URL || !AVATAR_ID || !VOICE_ID) {
+    await logServerTelemetryEvent({
+      request,
+      eventType: "liveavatar_token_failed",
+      severity: "critical",
+      provider: "liveavatar",
+      route: "/api/start-session",
+      statusCode: 500,
+      payload: { reason: "provider_configuration_missing" },
+    });
     return Response.json(
       {
         error:

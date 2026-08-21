@@ -1,0 +1,539 @@
+{
+  "source": "iscott-latest-hard-audit-20260817.json",
+  "work_id": "HG-ISCOTT-120-20260816-202557",
+  "turn_count": 76,
+  "turns": [
+    {
+      "n": 1,
+      "role": "assistant",
+      "text": "Hi, I'm iScott, Scott's personal assistant at WildWorks. Ask me about landscaping, art, construction, difficult property problems, or a state-of-the-art, fully A-I-driven website Scott can build to sell your services. What can I help you accomplish?",
+      "timestamp": 1786925395,
+      "completeness": null
+    },
+    {
+      "n": 2,
+      "role": "user",
+      "text": "Yeah, I'm saying that Scott can brand your company.",
+      "timestamp": 1786925400,
+      "completeness": null
+    },
+    {
+      "n": 3,
+      "role": "user",
+      "text": "And build a",
+      "timestamp": 1786925403,
+      "completeness": null
+    },
+    {
+      "n": 4,
+      "role": "user",
+      "text": "fully furnished AI-driven website to sell your brand.",
+      "timestamp": 1786925407,
+      "completeness": null
+    },
+    {
+      "n": 5,
+      "role": "assistant",
+      "text": "Absolutely! Scott can create a tailored, fully A-I-driven website designed to effectively showcase and sell your brand. What do you need the site to do?",
+      "timestamp": 1786925417,
+      "completeness": null
+    },
+    {
+      "n": 6,
+      "role": "user",
+      "text": "Okay, so for one thing, You're small.",
+      "timestamp": 1786925421,
+      "completeness": null
+    },
+    {
+      "n": 7,
+      "role": "user",
+      "text": "I think when the avatar— the avatar needs to be bigger.",
+      "timestamp": 1786925427,
+      "completeness": null
+    },
+    {
+      "n": 8,
+      "role": "user",
+      "text": "Um,",
+      "timestamp": 1786925428,
+      "completeness": null
+    },
+    {
+      "n": 9,
+      "role": "user",
+      "text": "The, you know, we don't need— when I'm talking to you on my phone, I don't need to see WildWorks Concierge. Start with Hi Scott.",
+      "timestamp": 1786925436,
+      "completeness": null
+    },
+    {
+      "n": 10,
+      "role": "user",
+      "text": "You know, I think maybe just the legal stuff underneath.",
+      "timestamp": 1786925440,
+      "completeness": null
+    },
+    {
+      "n": 11,
+      "role": "user",
+      "text": "I think, you know, you filling most of the page",
+      "timestamp": 1786925443,
+      "completeness": null
+    },
+    {
+      "n": 12,
+      "role": "user",
+      "text": "and the legal stuff underneath it, and that's it.",
+      "timestamp": 1786925447,
+      "completeness": null
+    },
+    {
+      "n": 13,
+      "role": "assistant",
+      "text": "Thanks for the feedback! It sounds like you want a more streamlined and prominent avatar presentation on the site.",
+      "timestamp": 1786925453,
+      "completeness": null
+    },
+    {
+      "n": 14,
+      "role": "user",
+      "text": "Yeah, so",
+      "timestamp": 1786925454,
+      "completeness": null
+    },
+    {
+      "n": 15,
+      "role": "user",
+      "text": "I definitely, I'm interested in a website. Why would I go with Scott? Has he done anything before this one?",
+      "timestamp": 1786925461,
+      "completeness": null
+    },
+    {
+      "n": 16,
+      "role": "assistant",
+      "text": "Scott has extensive experience in creating beautiful, A-I-driven websites tailored to individual needs. He built the WildWorks site as a working example, showcasing intentional design, useful information, and seamless functionality. If you're interested, I can help gather your details for Scott to discuss your website project. What’s your name and location?",
+      "timestamp": 1786925482,
+      "completeness": null
+    },
+    {
+      "n": 17,
+      "role": "user",
+      "text": "Uh, my name is George and I'm in it, uh, Orlando, Florida.",
+      "timestamp": 1786925488,
+      "completeness": null
+    },
+    {
+      "n": 18,
+      "role": "assistant",
+      "text": "Great, George! I've got the basic picture. Let me get the right contact information so Scott can take a look. How should Scott reach out to you - email or phone?",
+      "timestamp": 1786925498,
+      "completeness": null
+    },
+    {
+      "n": 19,
+      "role": "user",
+      "text": "Uh, email's fine.",
+      "timestamp": 1786925500,
+      "completeness": null
+    },
+    {
+      "n": 20,
+      "role": "assistant",
+      "text": "What’s your email address, George?",
+      "timestamp": 1786925503,
+      "completeness": null
+    },
+    {
+      "n": 21,
+      "role": "user",
+      "text": "Okay, when I say email is fine, Boom, the email box, the finish.",
+      "timestamp": 1786925506,
+      "completeness": null
+    },
+    {
+      "n": 22,
+      "role": "user",
+      "text": "Should either go away.",
+      "timestamp": 1786925510,
+      "completeness": null
+    },
+    {
+      "n": 23,
+      "role": "user",
+      "text": "Or the, the email box should come up.",
+      "timestamp": 1786925514,
+      "completeness": null
+    },
+    {
+      "n": 24,
+      "role": "user",
+      "text": "Boom, right there.",
+      "timestamp": 1786925515,
+      "completeness": null
+    },
+    {
+      "n": 25,
+      "role": "user",
+      "text": "Okay. I'm sick of saying the same things over and over again.",
+      "timestamp": 1786925516,
+      "completeness": null
+    },
+    {
+      "n": 26,
+      "role": "user",
+      "text": "And, um, I solve your problems.",
+      "timestamp": 1786925520,
+      "completeness": null
+    },
+    {
+      "n": 27,
+      "role": "user",
+      "text": "The code is written for this. It's almost perfect. Just bring that code into here.",
+      "timestamp": 1786925526,
+      "completeness": null
+    },
+    {
+      "n": 28,
+      "role": "user",
+      "text": "My email address is [EMAIL].",
+      "timestamp": 1786925532,
+      "completeness": null
+    },
+    {
+      "n": 29,
+      "role": "assistant",
+      "text": "Got it, George. I have your email address as [EMAIL]. Would you like me to send these details to the WildWorks team now?",
+      "timestamp": 1786925540,
+      "completeness": null
+    },
+    {
+      "n": 30,
+      "role": "user",
+      "text": "Um, so the box is fucked.",
+      "timestamp": 1786925545,
+      "completeness": null
+    },
+    {
+      "n": 31,
+      "role": "user",
+      "text": "Um, why in the goddamn fuck?",
+      "timestamp": 1786925547,
+      "completeness": null
+    },
+    {
+      "n": 32,
+      "role": "user",
+      "text": "Is there— is just not the code.",
+      "timestamp": 1786925550,
+      "completeness": null
+    },
+    {
+      "n": 33,
+      "role": "user",
+      "text": "For I Solve Your Problems.",
+      "timestamp": 1786925552,
+      "completeness": null
+    },
+    {
+      "n": 34,
+      "role": "user",
+      "text": "You know, just",
+      "timestamp": 1786925553,
+      "completeness": null
+    },
+    {
+      "n": 35,
+      "role": "user",
+      "text": "brought in here.",
+      "timestamp": 1786925554,
+      "completeness": null
+    },
+    {
+      "n": 36,
+      "role": "user",
+      "text": "You know, this— what is this box? Your email, confirm the details is",
+      "timestamp": 1786925558,
+      "completeness": null
+    },
+    {
+      "n": 37,
+      "role": "user",
+      "text": "before Scott gets him. What the fuck?",
+      "timestamp": 1786925560,
+      "completeness": null
+    },
+    {
+      "n": 38,
+      "role": "user",
+      "text": "Is this stupid shit?",
+      "timestamp": 1786925562,
+      "completeness": null
+    },
+    {
+      "n": 39,
+      "role": "user",
+      "text": "What is it?",
+      "timestamp": 1786925563,
+      "completeness": null
+    },
+    {
+      "n": 40,
+      "role": "user",
+      "text": "Why is this not just a clone?",
+      "timestamp": 1786925565,
+      "completeness": null
+    },
+    {
+      "n": 41,
+      "role": "user",
+      "text": "Of the code.",
+      "timestamp": 1786925566,
+      "completeness": null
+    },
+    {
+      "n": 42,
+      "role": "user",
+      "text": "From what?",
+      "timestamp": 1786925568,
+      "completeness": null
+    },
+    {
+      "n": 43,
+      "role": "user",
+      "text": "From I Solve Your Problems.",
+      "timestamp": 1786925570,
+      "completeness": null
+    },
+    {
+      "n": 44,
+      "role": "user",
+      "text": "But, yes, I, I can't see my email address here.",
+      "timestamp": 1786925573,
+      "completeness": null
+    },
+    {
+      "n": 45,
+      "role": "user",
+      "text": "What is— tell me my email address.",
+      "timestamp": 1786925575,
+      "completeness": null
+    },
+    {
+      "n": 46,
+      "role": "user",
+      "text": "It should be written and you should say it.",
+      "timestamp": 1786925577,
+      "completeness": null
+    },
+    {
+      "n": 47,
+      "role": "user",
+      "text": "What is it? What is my email address?",
+      "timestamp": 1786925579,
+      "completeness": null
+    },
+    {
+      "n": 48,
+      "role": "assistant",
+      "text": "Your email address is [EMAIL]. Would you like me to send these details to the WildWorks team now?",
+      "timestamp": 1786925587,
+      "completeness": null
+    },
+    {
+      "n": 49,
+      "role": "user",
+      "text": "Okay, that's a complete clusterfuck also. I keep asking for the same goddamn thing.",
+      "timestamp": 1786925592,
+      "completeness": null
+    },
+    {
+      "n": 50,
+      "role": "user",
+      "text": "When you— when the transcript is for you, for I, Scott DeBee to say it.",
+      "timestamp": 1786925595,
+      "completeness": null
+    },
+    {
+      "n": 51,
+      "role": "user",
+      "text": "There has to be a dash.",
+      "timestamp": 1786925598,
+      "completeness": null
+    },
+    {
+      "n": 52,
+      "role": "user",
+      "text": "S-G-D-",
+      "timestamp": 1786925602,
+      "completeness": null
+    },
+    {
+      "n": 53,
+      "role": "user",
+      "text": "I, you know, etc., for the whole email so that the AI so that iScott says the email address.",
+      "timestamp": 1786925605,
+      "completeness": null
+    },
+    {
+      "n": 54,
+      "role": "user",
+      "text": "correctly.",
+      "timestamp": 1786925610,
+      "completeness": null
+    },
+    {
+      "n": 55,
+      "role": "user",
+      "text": "God fucking damn it, install these changes.",
+      "timestamp": 1786925614,
+      "completeness": null
+    },
+    {
+      "n": 56,
+      "role": "user",
+      "text": "I, Scott, you have my permission.",
+      "timestamp": 1786925615,
+      "completeness": null
+    },
+    {
+      "n": 57,
+      "role": "user",
+      "text": "Descend.",
+      "timestamp": 1786925618,
+      "completeness": null
+    },
+    {
+      "n": 58,
+      "role": "user",
+      "text": "Scott.",
+      "timestamp": 1786925619,
+      "completeness": null
+    },
+    {
+      "n": 59,
+      "role": "user",
+      "text": "You're— this is my information.",
+      "timestamp": 1786925621,
+      "completeness": null
+    },
+    {
+      "n": 60,
+      "role": "assistant",
+      "text": "I understand your frustration, George. I'll make sure to pass along your feedback about the email format. Thank you for your permission. I'm preparing to send your details to Scott now.",
+      "timestamp": 1786925630,
+      "completeness": null
+    },
+    {
+      "n": 61,
+      "role": "user",
+      "text": "Okay, great.",
+      "timestamp": 1786925634,
+      "completeness": null
+    },
+    {
+      "n": 62,
+      "role": "assistant",
+      "text": "Perfect! Scott has your information and will follow up with you about your website project. If you have any photos or additional details to share, feel free to upload them. Otherwise, I'm here if you need anything else!",
+      "timestamp": 1786925646,
+      "completeness": null
+    },
+    {
+      "n": 63,
+      "role": "user",
+      "text": "Okay. So also,",
+      "timestamp": 1786925649,
+      "completeness": null
+    },
+    {
+      "n": 64,
+      "role": "user",
+      "text": "You know, we Where's the ability to send",
+      "timestamp": 1786925650,
+      "completeness": null
+    },
+    {
+      "n": 65,
+      "role": "assistant",
+      "text": "It seems",
+      "timestamp": 1786925653,
+      "completeness": null
+    },
+    {
+      "n": 66,
+      "role": "user",
+      "text": "Forget it. Good thing we Yeah.",
+      "timestamp": 1786925655,
+      "completeness": null
+    },
+    {
+      "n": 67,
+      "role": "user",
+      "text": "So, like, right now, I, I, there's no finish button. I, I can't hit finish.",
+      "timestamp": 1786925661,
+      "completeness": null
+    },
+    {
+      "n": 68,
+      "role": "user",
+      "text": "There's a— it says your email, confirm the details before Scott gets them.",
+      "timestamp": 1786925665,
+      "completeness": null
+    },
+    {
+      "n": 69,
+      "role": "user",
+      "text": "I'm just gonna tap it. Let's see if it stops.",
+      "timestamp": 1786925668,
+      "completeness": null
+    },
+    {
+      "n": 70,
+      "role": "user",
+      "text": "No, there's",
+      "timestamp": 1786925670,
+      "completeness": null
+    },
+    {
+      "n": 71,
+      "role": "assistant",
+      "text": "It sounds",
+      "timestamp": 1786925671,
+      "completeness": null
+    },
+    {
+      "n": 72,
+      "role": "user",
+      "text": "No stopping it.",
+      "timestamp": 1786925672,
+      "completeness": null
+    },
+    {
+      "n": 73,
+      "role": "assistant",
+      "text": "I understand. If",
+      "timestamp": 1786925674,
+      "completeness": null
+    },
+    {
+      "n": 74,
+      "role": "user",
+      "text": "Okay, I just gotta X out of the site or close the session. I just got",
+      "timestamp": 1786925679,
+      "completeness": null
+    },
+    {
+      "n": 75,
+      "role": "assistant",
+      "text": "I understand. If you need to close the session, that's",
+      "timestamp": 1786925682,
+      "completeness": null
+    },
+    {
+      "n": 76,
+      "role": "user",
+      "text": "Okay.",
+      "timestamp": 1786925683,
+      "completeness": null
+    }
+  ]
+}

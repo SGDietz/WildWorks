@@ -1,4 +1,5 @@
 import { randomUUID, timingSafeEqual } from "node:crypto";
+import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 
 const ACCOUNT_SID_PATTERN = /^AC[0-9a-fA-F]{32}$/;
 const API_KEY_SID_PATTERN = /^SK[0-9a-fA-F]{32}$/;
@@ -178,6 +179,7 @@ function normalizePreview(value: unknown): VoiceRetentionPreview {
 async function supabaseRpc<T>(name: string, body: JsonObject): Promise<OperationResult<T>> {
   const config = getRetentionSupabaseConfig();
   if (!config) {
+    queueSupabaseOperationalAlert({ component: "voice retention job", operation: `RPC ${name}`, failureKind: "configuration", correlationSource: `voice-retention:${name}:configuration` });
     return { ok: false, errorCode: "supabase_not_configured" };
   }
   try {
@@ -193,11 +195,13 @@ async function supabaseRpc<T>(name: string, body: JsonObject): Promise<Operation
       signal: AbortSignal.timeout(5_000),
     });
     if (!response.ok) {
+      queueSupabaseOperationalAlert({ component: "voice retention job", operation: `RPC ${name}`, statusCode: response.status, correlationSource: `voice-retention:${name}:${response.status}` });
       return { ok: false, errorCode: `supabase_rpc_${response.status}` };
     }
     const value = await response.json().catch(() => null) as T;
     return { ok: true, value };
   } catch {
+    queueSupabaseOperationalAlert({ component: "voice retention job", operation: `RPC ${name}`, correlationSource: `voice-retention:${name}:connectivity` });
     return { ok: false, errorCode: "supabase_rpc_unavailable" };
   }
 }

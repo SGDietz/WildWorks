@@ -141,6 +141,32 @@ html body#wildworks-body footer#footer :is(.wild-phone-number-line__call-today, 
     background: transparent !important;
   }
 
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(h2, h3, h4) {
+    color: var(--ww-text-2) !important;
+    -webkit-text-fill-color: var(--ww-text-2) !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(p, li, strong, em) {
+    color: var(--ww-text-1) !important;
+    -webkit-text-fill-color: var(--ww-text-1) !important;
+  }
+
+  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .wild-ruins-home-contact {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+}
+
+
+/* ============ RELOCATED by Chief's mobile packet ============
+   The five lower B-band card geometries now run 600-719 only. On phones the
+   bands fall back to the full-width page field — the same model as the good
+   top block. Declarations are byte-identical; the window's lower bound keeps
+   600-719 pixel-identical, and 720+ never had these (verified: border-left
+   1px at 719, 0px at 720). Band text colors and contact transparency remain
+   in the <=719 block above, so phone contacts stay visually continuous. */
+@media (min-width: 600px) and (max-width: 719px) {
   html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-color-band.ruins-tone--b {
     width: calc(100% - 2rem) !important;
     margin: 0 auto !important;
@@ -162,21 +188,5 @@ html body#wildworks-body footer#footer :is(.wild-phone-number-line__call-today, 
     margin-bottom: 1.25rem !important;
     border-bottom: 1px solid rgb(252 224 173 / 35%) !important;
     border-radius: 0 0 1.1rem 1.1rem !important;
-  }
-
-  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(h2, h3, h4) {
-    color: var(--ww-text-2) !important;
-    -webkit-text-fill-color: var(--ww-text-2) !important;
-  }
-
-  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .ruins-tone--b :is(p, li, strong, em) {
-    color: var(--ww-text-1) !important;
-    -webkit-text-fill-color: var(--ww-text-1) !important;
-  }
-
-  html:has(.wild-subpage--ruins) body#wildworks-body .wild-subpage--ruins .wild-ruins-home-contact {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
   }
 }

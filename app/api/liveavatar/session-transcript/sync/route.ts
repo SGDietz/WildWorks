@@ -458,6 +458,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error syncing LiveAvatar transcript:", error);
+    await logServerTelemetryEvent({
+      request,
+      eventType: "liveavatar_transcript_sync_failed",
+      severity: "high",
+      provider: "liveavatar",
+      route: "/api/liveavatar/session-transcript/sync",
+      statusCode: 500,
+    });
     return Response.json({ error: "Failed to sync LiveAvatar transcript" }, { status: 500 });
   }
 }

@@ -69,6 +69,7 @@ export async function POST(request: Request) {
 
   try {
     if (!isSupabaseAdminConfigured()) {
+      await logServerTelemetryEvent({ request, eventType: "supabase_configuration_failed", severity: "critical", provider: "supabase", route: "/api/media/capture", statusCode: 503 });
       return Response.json({ error: "Supabase media storage is not configured." }, { status: 503 });
     }
 
@@ -226,6 +227,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error saving iScott media:", error instanceof Error ? error.message : "unknown error");
+    await logServerTelemetryEvent({
+      request,
+      eventType: "iscott_media_capture_exception",
+      severity: "high",
+      provider: "supabase",
+      route: "/api/media/capture",
+      statusCode: 502,
+    });
     return Response.json(
       { error: "iScott could not save that media right now." },
       { status: 502 },

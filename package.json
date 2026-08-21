@@ -16,7 +16,8 @@
     "check:iscott-lead": "node scripts/check-iscott-lead-parser.mjs",
     "check:iscott-mic": "node scripts/check-iscott-mic-safety.mjs",
     "check:iscott-capture-reveal": "node scripts/check-iscott-capture-reveal.mjs",
-    "check:iscott-spoken-email": "node scripts/check-iscott-spoken-email.mjs"
+    "check:iscott-spoken-email": "node scripts/check-iscott-spoken-email.mjs",
+    "check:operational-alerts": "node scripts/check-wildworks-operational-alerts.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -89,7 +89,7 @@ export default function TheRuins() {
             <div className="ruins-color-band ruins-tone--b">
             <section className="wild-subpage-section discordSection discordSection--4 px-4 py-4 text-white mx-auto w-full sm:px-6">
                 <div className="wild-ruins-rail">
-                <h2 className="text-xl mb-2">This Stone Has Baltimore in It</h2>
+                <h2 className="text-xl mb-2">This Stone Has Baltimore In It</h2>
                 <div className="space-y-2 leading-relaxed">
                     <p>
                         Much of the stone used is reclaimed granite—the kind that actually spent a previous life of 150+ years as Baltimore street and curb stone.

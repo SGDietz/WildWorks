@@ -70,8 +70,10 @@ export async function POST(request: Request) {
     const detail = error instanceof Error ? error.message : "unknown_error";
     await logServerTelemetryEvent({
       request,
-      eventType: "iscott_lead_confirmation_failed",
-      severity: "high",
+      eventType: detail === "invalid_email" || detail === "invalid_phone"
+        ? "iscott_lead_confirmation_validation_failed"
+        : "iscott_lead_confirmation_failed",
+      severity: detail === "invalid_email" || detail === "invalid_phone" ? "low" : "high",
       provider: "supabase",
       route: "/api/iscott/lead/confirm",
       statusCode: 500,

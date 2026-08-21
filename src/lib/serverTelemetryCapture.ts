@@ -1,6 +1,7 @@
 import { truncateUtf8String } from "./apiRouteSecurity";
 import { getRequestTelemetryContext, insertConversationTelemetryFallback, insertSupabaseRow, safeJsonPayload, storeRawTelemetryBackup } from "./telemetryServer";
 import { classifyTraffic, trafficColumns, originFromRequest } from "./trafficClassification";
+import { queueOperationalAlertFromTelemetry } from "./wildworksOperationalAlerts";
 
 function cleanString(value: unknown, maxChars = 1000): string | null {
   if (typeof value !== "string") return null;
@@ -42,6 +43,14 @@ export async function logServerTelemetryEvent(args: {
     payload: { ...safeJsonPayload(args.payload), server },
     ...trafficColumns(traffic),
   };
+
+  queueOperationalAlertFromTelemetry({
+    eventType: row.event_type,
+    provider: row.provider,
+    route: row.route,
+    statusCode: row.status_code,
+    sessionId: row.session_id ?? row.anonymous_visitor_id,
+  });
 
   const rawBackupOk = await storeRawTelemetryBackup({ category: "server_app_event", sessionId: fallbackSessionId, anonymousVisitorId, value: row });
   const result = await insertSupabaseRow("app_events", row);

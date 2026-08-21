@@ -1,16 +1,75 @@
 /* H238: the two project routes lead with their page title, followed
    immediately by media. Overlay labels remain component-owned and absent. */
 
+/* THE CLIP WINDOW, and why this rule exists.
+ *
+ * .wild-subpage--wildfire carries overflow:hidden. The heading below it carries a
+ * NEGATIVE margin-top (-22px phone .. -32px desktop), so the heading box starts
+ * ABOVE its own clipping parent's top edge. Measured ink clearance, 19 widths:
+ *
+ *   old wrapper (147.2px)   +21 .. +50px   safe everywhere, BY ACCIDENT
+ *   wrapper = span size     -11 .. +11px   SHAVED below 768, tight to 900
+ *
+ * The old oversized wrapper was never doing type work - the two inner spans paint
+ * every letter. Its 147.2px strut was silently acting as the SPACER that held the
+ * glyphs below the clip line. Shrink the wrapper to the size G asked for and the
+ * caps get sliced flat on phones. Verified by A/B on one build, then by screenshot.
+ *
+ * So the spacer moves out of the type and into the clip: pull the box up 40px and
+ * pad it back down 40px. Net layout position is IDENTICAL - margin cancels padding
+ * - but the clip window now opens 40px higher, which is more headroom than the old
+ * accident ever gave. Restored clearance is +28 .. +51px.
+ *
+ * SAFE because this element paints NOTHING: transparent background, no image, no
+ * border, no box-shadow, no ::before/::after content, and ZERO absolutely
+ * positioned descendants anchor to it (checked at 1366 and 412). It contributes
+ * the clip and nothing else. Do not add a background to it without revisiting this.
+ *
+ * PADDING NEEDS !important HERE. An existing rule, .wild-subpage--wildfire
+ * { padding: 0 !important }, zeroes this element's padding. Without matching
+ * weight the margin lands, the padding does not, and the WHOLE PAGE rides up
+ * 40px. That is exactly what happened on the first attempt at this fix. The
+ * margin needs no flag - nothing else claims it. Assert BOTH computed values,
+ * never just that the rule is in the file.
+ */
+html body#wildworks-body .wild-subpage--wildfire {
+  margin-top: -40px;
+  padding-top: 40px !important;
+}
+
+
 html body#wildworks-body .wild-subpage--wildfire
   .wildfire-hero > .wildfire-page-heading {
   display: block;
   width: min(calc(100% - clamp(1.5rem, 5vw, 4.5rem)), 92rem);
-  margin: calc(clamp(-1.5rem, -1.6vw, -0.9rem) - 0.5rem) auto
+  /* THE LOGO SEAM. G has asked more than once to bring this title up closer to
+     the logo. It failed twice before and the reason was never the margin - it
+     was the clip. Pulling the heading up pushed its glyphs above
+     .wild-subpage--wildfire's overflow:hidden edge and the caps got shaved, so
+     every attempt looked WORSE and got reverted. With the clip window opened
+     above, the pull finally does what it says.
+
+     -0.25em, not a pixel value, so the amount tracks the type: ~32px at the
+     129.76px desktop title, ~10px at the 39.14px phone one. A fixed pixel pull
+     that suits a desktop would eat a phone's whole gap.
+
+     THIS SPENDS CLIP HEADROOM - it is subtracted straight off the clearance the
+     guard measures. Budget after this: ~19px desktop, ~19px phone, against the
+     8px floor in check-wildfire-title-clearance.mjs. Pull harder than about
+     0.4em and that guard goes red. Run it after any change here. */
+  margin: calc(clamp(-1.5rem, -1.6vw, -0.9rem) - 0.5rem - 0.25em) auto
     calc(clamp(1.75rem, 2.8vw, 2.5rem) - 0.12em);
   color: var(--ww-text-2) !important;
   -webkit-text-fill-color: var(--ww-text-2) !important;
   font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
-  font-size: clamp(5rem, 14vw, 9.2rem);
+  /* 2026-08-19, G: "put the title size back to 129.76." H363 shrank the two
+     inner spans to clamp(2.4rem, 9.5vw, 8.11rem) but left THIS wrapper at
+     clamp(5rem, 14vw, 9.2rem) = 147.2px. The wrapper holds a bare " " text
+     node between the spans, so that 147.2px was still painting the word gap
+     AND raising a 164.9px strut over spans that only need 158.3px. Same clamp
+     as the spans now: one size for the whole heading, no strut, no drift.
+     H363's header invites editing the authority in place rather than layering. */
+  font-size: clamp(2.4rem, 9.5vw, 8.11rem);
   font-weight: 700;
   /* The display face has ascenders outside a unit line box.  Keep that paint
      inside the heading without moving the following hero image. */
@@ -98,7 +157,8 @@ html body#wildworks-body .wild-subpage--projects > .wild-projects-page-title {
   html body#wildworks-body .wild-subpage--wildfire
     .wildfire-hero > .wildfire-page-heading {
     order: 1;
-    margin-bottom: 0.6rem;
+    /* .6rem -> .35rem: Chief's mobile packet, title tighter to what follows. */
+    margin-bottom: 0.35rem;
   }
 
   html body#wildworks-body .wild-subpage--wildfire
