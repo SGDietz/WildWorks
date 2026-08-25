@@ -845,7 +845,11 @@ async function signMedia(media: MediaRow): Promise<string | null> {
       {
         method: "POST",
         headers: adminHeaders(serviceRoleKey),
-        body: JSON.stringify({ expiresIn: 7 * 24 * 60 * 60 }),
+        // 2026-08-24: was 7 days. These links open a customer's private photos
+        // of their own property and they sit in an inbox for as long as they
+        // live. 12 hours is long enough for G to read the mail and look; a link
+        // that leaks a week later is dead.
+        body: JSON.stringify({ expiresIn: 12 * 60 * 60 }),
         cache: "no-store",
       },
     );

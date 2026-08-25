@@ -6,6 +6,38 @@ import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../s
 const INTAKE_MEDIA_BUCKET = process.env.SUPABASE_INTAKE_MEDIA_BUCKET || "wildworks-intake-media";
 const MAX_MEDIA_BYTES = Number(process.env.WILDWORKS_MAX_MEDIA_BYTES || 50 * 1024 * 1024);
 
+// 2026-08-24. Was `media.type.startsWith("image/")`, which trusts a label the
+// browser supplies and happily accepts image/svg+xml - an SVG is a document that
+// can carry script, not a picture. Explicit list, and svg is not on it.
+const ALLOWED_MEDIA_TYPES = [
+  "image/jpeg", "image/png", "image/webp", "image/gif",
+  "video/mp4", "video/quicktime", "video/webm",
+] as const;
+
+/** Does the file actually START like the type it claims to be? */
+function looksLikeDeclaredType(bytes: Uint8Array, mime: string): boolean {
+  const at = (i: number) => bytes[i] ?? -1;
+  const ascii = (off: number, text: string) =>
+    [...text].every((ch, i) => at(off + i) === ch.charCodeAt(0));
+  switch (mime) {
+    case "image/jpeg":
+      return at(0) === 0xff && at(1) === 0xd8 && at(2) === 0xff;
+    case "image/png":
+      return at(0) === 0x89 && ascii(1, "PNG");
+    case "image/gif":
+      return ascii(0, "GIF8");
+    case "image/webp":
+      return ascii(0, "RIFF") && ascii(8, "WEBP");
+    case "video/mp4":
+    case "video/quicktime":
+      return ascii(4, "ftyp");
+    case "video/webm":
+      return at(0) === 0x1a && at(1) === 0x45 && at(2) === 0xdf && at(3) === 0xa3;
+    default:
+      return false;
+  }
+}
+
 export const dynamic = "force-dynamic";
 
 function cleanText(value: FormDataEntryValue | null, maxChars: number): string | null {
@@ -53,7 +85,7 @@ async function ensurePrivateMediaBucket(url: string, serviceRoleKey: string) {
       name: INTAKE_MEDIA_BUCKET,
       public: false,
       file_size_limit: MAX_MEDIA_BYTES,
-      allowed_mime_types: null,
+      allowed_mime_types: ALLOWED_MEDIA_TYPES,
     }),
   });
   if (!created.ok && created.status !== 409) {
@@ -73,12 +105,22 @@ export async function POST(request: Request) {
       return Response.json({ error: "Supabase media storage is not configured." }, { status: 503 });
     }
 
+    // Check the declared length BEFORE parsing. formData() buffers the whole
+    // upload, so the old order read a 2 GB body and only then said it was too big.
+    const declaredLength = Number(request.headers.get("content-length") || 0);
+    if (Number.isFinite(declaredLength) && declaredLength > MAX_MEDIA_BYTES) {
+      return Response.json(
+        { error: `That file is larger than the ${Math.floor(MAX_MEDIA_BYTES / 1024 / 1024)} MB upload limit.` },
+        { status: 413 },
+      );
+    }
+
     const formData = await request.formData();
     const media = formData.get("media");
     if (!(media instanceof File)) {
       return Response.json({ error: "A photo or video file is required." }, { status: 400 });
     }
-    if (!media.type.startsWith("image/") && !media.type.startsWith("video/")) {
+    if (!(ALLOWED_MEDIA_TYPES as readonly string[]).includes(media.type)) {
       return Response.json({ error: "Only photo and video files are accepted." }, { status: 415 });
     }
     if (media.size <= 0 || media.size > MAX_MEDIA_BYTES) {
@@ -107,6 +149,14 @@ export async function POST(request: Request) {
     const { url, serviceRoleKey } = getSupabaseAdminConfig();
     await ensurePrivateMediaBucket(url, serviceRoleKey);
     const bytes = await media.arrayBuffer();
+
+    // Last word on what this file is: its own first bytes, not its label.
+    if (!looksLikeDeclaredType(new Uint8Array(bytes.slice(0, 16)), media.type)) {
+      return Response.json(
+        { error: "That file does not look like the kind of file it says it is." },
+        { status: 415 },
+      );
+    }
     const uploadResponse = await fetch(
       `${url}/storage/v1/object/${encodeURIComponent(INTAKE_MEDIA_BUCKET)}/${objectPath
         .split("/")

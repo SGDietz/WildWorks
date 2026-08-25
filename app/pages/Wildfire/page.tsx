@@ -145,7 +145,7 @@ export default function Wildfire() {
                 a Full Build Record for an Outdoor Fireplace,
               </span>{" "}
               <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
-                Patio, Outdoor Lounge, and an Upper Viewing Deck.
+                <span className="wildfire-hero-summary__patio">Patio</span>, Outdoor Lounge, and an Upper Viewing Deck.
               </span>
             </span>
           </motion.p>

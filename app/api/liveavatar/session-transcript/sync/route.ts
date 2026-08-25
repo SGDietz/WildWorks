@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import {
   MAX_TRANSCRIPTION_TEXT_CHARS,
   assertAllowedOrigin,
@@ -103,6 +104,41 @@ function parseTranscriptPayload(json: unknown): {
   return { sessionActive, nextTimestamp, transcriptData };
 }
 
+/**
+ * Fingerprint of the visitor's session token. Never the token itself: this is
+ * written into conversation_sessions.metadata, which other code reads.
+ */
+function tokenFingerprint(sessionToken: string): string {
+  return createHash("sha256").update(sessionToken).digest("hex").slice(0, 32);
+}
+
+/**
+ * Who already owns this LiveAvatar session?
+ *
+ * Returns the stored fingerprint, or null when nobody has claimed the session
+ * yet (the very first sync). Returns undefined when the lookup itself failed -
+ * the caller treats that as "cannot verify" and refuses, because failing open
+ * here is what the whole fix exists to prevent.
+ */
+async function storedSessionFingerprint(
+  liveAvatarSessionId: string,
+): Promise<string | null | undefined> {
+  try {
+    const { url, serviceRoleKey } = getSupabaseAdminConfig();
+    const res = await fetch(
+      `${url}/rest/v1/conversation_sessions?session_id=eq.${encodeURIComponent(liveAvatarSessionId)}&select=metadata&limit=1`,
+      { headers: { apikey: serviceRoleKey, Authorization: `Bearer ${serviceRoleKey}` }, cache: "no-store" },
+    );
+    if (!res.ok) return undefined;
+    const rows = (await res.json()) as Array<{ metadata?: Record<string, unknown> | null }>;
+    if (rows.length === 0) return null;
+    const fp = rows[0]?.metadata?.token_fp;
+    return typeof fp === "string" && fp.length > 0 ? fp : null;
+  } catch {
+    return undefined;
+  }
+}
+
 function isLiveAvatarResponseSuccess(json: unknown, httpOk: boolean): boolean {
   if (!httpOk) return false;
   if (!json || typeof json !== "object") return false;
@@ -165,6 +201,44 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, skipped: true, error: "Supabase is not configured" }, { status: 202 });
     }
 
+    // OWNERSHIP GATE (2026-08-24). Runs before the provider is touched.
+    // The first sync of a session claims it; every later sync must present the
+    // same token. Without this, sessionToken was decorative and any caller
+    // could read any visitor's transcript with the account key.
+    const callerFingerprint = tokenFingerprint(sessionToken);
+    const ownerFingerprint = await storedSessionFingerprint(liveAvatarSessionId);
+
+    if (ownerFingerprint === undefined) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_transcript_owner_check_unavailable",
+        severity: "high",
+        provider: "supabase",
+        sessionId: liveAvatarSessionId,
+        route: "/api/liveavatar/session-transcript/sync",
+        statusCode: 503,
+        payload: { reason },
+      });
+      return Response.json(
+        { error: "Session ownership could not be verified. Please try again." },
+        { status: 503 },
+      );
+    }
+
+    if (ownerFingerprint !== null && ownerFingerprint !== callerFingerprint) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_transcript_owner_mismatch",
+        severity: "critical",
+        provider: "liveavatar",
+        sessionId: liveAvatarSessionId,
+        route: "/api/liveavatar/session-transcript/sync",
+        statusCode: 403,
+        payload: { reason },
+      });
+      return Response.json({ error: "Session does not belong to this caller" }, { status: 403 });
+    }
+
     const params = new URLSearchParams();
     if (typeof startTimestamp === "number" && Number.isFinite(startTimestamp)) {
       params.set("start_timestamp", String(Math.floor(startTimestamp)));
@@ -211,7 +285,10 @@ export async function POST(request: Request) {
         anonymous_visitor_id: anonymousVisitorId,
         route,
         source: "liveavatar_proxy",
-        metadata: { reason, viewport, session_active: parsed.sessionActive },
+        // token_fp claims the session for this visitor's token. The upsert
+        // merges duplicates and replaces metadata wholesale, so it must be
+        // written on every sync or the claim would be erased by the next one.
+        metadata: { reason, viewport, session_active: parsed.sessionActive, token_fp: callerFingerprint },
         ...classified,
         ...(parsed.sessionActive === false
           && (reason === "session_stop" || reason === "session_ended" || reason === "page_hidden" || reason === "pagehide")

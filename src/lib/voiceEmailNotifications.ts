@@ -919,7 +919,10 @@ export async function notifyIScottLeadByEmail(
   // they said nothing, it says so. Scott is going to ring these people, and a
   // lead marked hot on a hunch wastes his afternoon worse than one marked
   // unknown honestly.
-  const qual = summariseLeadQualification(visitorLinesFromTranscript(args.transcript ?? ""));
+  const qual = summariseLeadQualification(
+    visitorLinesFromTranscript(args.transcript ?? ""),
+    { hasRealProject: Boolean(projectNeed) },
+  );
   const READINESS_COPY: Record<string, string> = {
     ready: "READY NOW - they asked to get moving",
     planning: "PLANNING - real project, no date named",

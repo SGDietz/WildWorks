@@ -24,11 +24,11 @@ html
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-top-logo.wild-top-logo::before {
   z-index: 0 !important;
-  background: #321005 !important;
+  background: #000 !important;
   background-image: none !important;
-  opacity: 0.78 !important;
-  filter: none !important;
-  transform: translateY(clamp(3px, 0.38vw, 5px)) scale(var(--ww-top-logo-shadow-scale)) !important;
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 0.35px 0 #000) !important;
+  transform: translateY(clamp(0.6px, 0.07vw, 1px)) scale(var(--ww-top-logo-fill-scale)) !important;
 }
 
 html
@@ -38,6 +38,6 @@ html
   background: #fce0ad !important;
   background-image: none !important;
   opacity: 1 !important;
-  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  filter: none !important;
   transform: scale(var(--ww-top-logo-fill-scale)) !important;
 }

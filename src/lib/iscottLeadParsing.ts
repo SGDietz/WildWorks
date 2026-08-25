@@ -2,10 +2,26 @@ import { iscottSalesCopyContextBlock } from "./iscottSalesCopy";
 
 const PROJECT_NEED_PATTERN = /\b(?:i|we)\s+(?:want|wanted|need|needed|would like|am looking|are looking)\s+(?:to\s+)?([^.!?]{3,260})/i;
 
+// G, 2026-08-23, looking at a real lead: the summary line just quoted his own
+// spoken disfluency verbatim ("a cascading, you know, I want like a stream
+// and..."). Strip filler words and a restarted "I want" clause the same way
+// extractLocation already strips "uh"/"um" - deterministic cleanup of what was
+// said, never inventing new wording.
+function stripSpokenProjectFiller(text: string): string {
+  return text
+    .replace(/,?\s*\byou know\b,?\s*/gi, " ")
+    .replace(/\b(?:um+|uh+|er|ah)\b,?\s*/gi, " ")
+    .replace(/\bi(?:'d| would)?\s+(?:want|wanted|need|needed|would like)\s+(?:to\s+)?like\b\s*(?:an?\s+)?/gi, "")
+    .replace(/\s+,/g, ",")
+    .replace(/,\s*,+/g, ",")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function extractProjectNeed(text: string): string | null {
   const match = text.match(PROJECT_NEED_PATTERN);
   if (!match?.[1]) return null;
-  const candidate = match[1].replace(/\s+/g, " ").trim();
+  const candidate = stripSpokenProjectFiller(match[1].replace(/\s+/g, " ").trim());
   if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
   if (isCoachingOrPersonaNeed(candidate)) return null;
   // Grok, 2026-08-19: the lead for session 6f3a7caa carried project_need
@@ -1305,7 +1321,10 @@ const QUAL_PATTERNS: Array<{
 const READY_NOW = /\b(?:as soon as possible|asap|right away|immediately|this (?:week|month)|ready to (?:go|start|book)|when can (?:he|scott|you) (?:start|come)|need (?:this|it) done)\b/i;
 const EARLY_ONLY = /\b(?:just (?:looking|browsing|curious|starting)|no rush|not in a hurry|down the road|someday|eventually|next year|thinking about)\b/i;
 
-export function summariseLeadQualification(visitorTexts: string[]): LeadQualification {
+export function summariseLeadQualification(
+  visitorTexts: string[],
+  extra?: { hasRealProject?: boolean },
+): LeadQualification {
   const clean = visitorTexts
     .map((t) => (t || "").replace(/\s+/g, " ").trim())
     .filter((t) => t.length > 2);
@@ -1335,6 +1354,13 @@ export function summariseLeadQualification(visitorTexts: string[]): LeadQualific
   if (readyNow && !earlyOnly) readiness = "ready";
   else if (earlyOnly && !readyNow) readiness = "early";
   else if (found.timeline || found.budget || found.ownership) readiness = "planning";
+  // G, 2026-08-23, on a real lead marked "NOT ESTABLISHED" after he described a
+  // specific project in detail and said yes immediately: "planning" already
+  // means "real project, no date named" - this tier just never checked whether
+  // one was actually described. A lead only reaches this email after consent is
+  // confirmed elsewhere, so a real, specific project on its own is the same
+  // honest signal as timeline/budget/ownership, not a guess.
+  else if (extra?.hasRealProject) readiness = "planning";
 
   return {
     timeline: found.timeline,

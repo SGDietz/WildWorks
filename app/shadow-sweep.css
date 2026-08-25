@@ -9,7 +9,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   filter: none !important;
   text-shadow:
     0 1px 0 rgba(50, 16, 5, 0.96),
-    0 2px 0 rgba(50, 16, 5, 0.78) !important;
+    0 1px 0 rgba(50, 16, 5, 0.78) !important;
 }
 
 /* S2 LOGO — one whole-image shadow. Splitting the wordmark and tagline into
@@ -21,15 +21,13 @@ html body .wild-top-logo {
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo.wild-top-logo:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15)::before {
   clip-path: none !important;
-  filter:
-    drop-shadow(0 -1px 0 #321005)
-    drop-shadow(0 1px 0 #321005) !important;
-  transform: translateY(clamp(3px, 0.28vw, 4.5px))
+  filter: drop-shadow(0 0.35px 0 #000) !important;
+  transform: translateY(clamp(0.6px, 0.07vw, 1px))
     scale(var(--ww-top-logo-fill-scale)) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo .wild-top-logo-landscaping-effect:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#z6):not(#z7):not(#z8):not(#z9):not(#z10):not(#y1):not(#y2):not(#y3):not(#y4):not(#y5):not(#y6):not(#y7):not(#y8):not(#y9):not(#y10):not(#y11):not(#y12):not(#y13):not(#y14):not(#y15) {
-  display: block !important;
+  display: none !important;
   background: #321005 !important;
   opacity: 1 !important;
   clip-path: inset(55% 8% 4% 8%) !important;

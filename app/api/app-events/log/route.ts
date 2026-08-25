@@ -106,13 +106,10 @@ async function storeWithConversationFallback(args: {
   onConflict?: string;
   mergeDuplicates?: boolean;
 }): Promise<Response | null> {
-  const rawBackupOk = await storeRawTelemetryBackup({
-    category: args.source,
-    sessionId: args.fallbackSessionId,
-    anonymousVisitorId: args.anonymousVisitorId,
-    value: args.fallbackValue,
-  });
-
+  // 2026-08-24: raw storage copy is a BACKUP and now behaves like one - written
+  // only when the real insert and the conversation fallback have both failed.
+  // It used to run on every single event, duplicating visitor data into object
+  // storage that nothing ever cleans up.
   const result = await insertSupabaseRow(args.table, args.row, {
     onConflict: args.onConflict,
     mergeDuplicates: args.mergeDuplicates,
@@ -133,6 +130,12 @@ async function storeWithConversationFallback(args: {
     console.warn(`${args.table} insert used conversation fallback:`, result.detail);
     return null;
   }
+  const rawBackupOk = await storeRawTelemetryBackup({
+    category: args.source,
+    sessionId: args.fallbackSessionId,
+    anonymousVisitorId: args.anonymousVisitorId,
+    value: args.fallbackValue,
+  });
   if (rawBackupOk) {
     console.warn(`${args.table} insert used raw storage backup:`, result.detail);
     return null;

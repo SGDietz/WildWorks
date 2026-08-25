@@ -196,7 +196,7 @@ export default function Footer() {
               variants={fadeInUp}
               onSubmit={handleSignupSubmit}
             >
-              <fieldset className="wild-signup-choice" aria-label="Choose email, SMS, or both">
+              <fieldset className="wild-signup-choice" aria-label="Choose email or SMS">
                 {signupOptions.map(({ id, label, icon: Icon }) => (
                   <button
                     key={id}
@@ -455,6 +455,14 @@ export default function Footer() {
               {FOOTER_STONEWORK_LINE_END}
             </span>
           </p>
+          <a
+            className="wild-footer-aiasap-link"
+            href="https://aiasap.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {"Discover What’s Possible With aiASAP"}
+          </a>
           <span
             className="wild-footer-copyright"
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}

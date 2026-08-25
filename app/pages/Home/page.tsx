@@ -161,16 +161,16 @@ const showWildfireInspirationSection = false;
 
 const iScottSteps = [
   {
-    title: "Describe areas you'd like beautified or problem areas you may have.",
+    title: "Tell iScott the Land Problem, or the Space You Want Built.",
   },
   {
-    title: "Talk through location and timing preferences.",
+    title: "Show the Property — Photos, Video, Timing, Where You Are.",
   },
   {
-    title: "Bounce ideas off iScott, and he will bounce ideas right back at you.",
+    title: "He Throws Real Ideas Back, Then Briefs Scott.",
   },
   {
-    title: "If appropriate, iScott will set up either an in-person or video chat with the real Scott.",
+    title: "When It Fits, He Puts You on a Call or a Video with the Real Scott.",
   },
 ];
 
@@ -240,7 +240,7 @@ const services = [
       <>
         After Four Decades of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps
         Pushing Designs to New Heights and Carries Them into the Real World with the Judgement, Craft, and Experience
-        They Require. <strong>Your Project Could be the Next Among the World&apos;s Wildest Builds.</strong>
+        They Require. <strong className="wild-worlds-wildest-builds-copy">Your Project Could be the Next Among the World&apos;s Wildest Builds.</strong>
       </>,
     ],
     icon: Sparkles,
@@ -250,7 +250,7 @@ const services = [
     titleLines: ["Problem Solving"],
     body: [
       "Some Home and Garden Problems Have been Lived with for Years - Even Decades. Water, Grading, Access, Wet Walls, Cracked Foundations, and Failed Repairs Can Become Part of the Property Because Nobody has Found the Real Cause or Built a Fix that Will Actually Hold.",
-      "Scott Loves Challenges and Charges into the Problems Most Contractors Shy Away from, so Bring Him Your Hard Ones! He will Do All that is Possible to Analyze the Entire Issue Entirely, and Come Up with a Lasting, Practical Solution.",
+      "Scott Loves Challenges and Charges into the Problems Most Contractors Shy Away from, so Bring Him Your Hard Ones! He Digs Until He Finds the Real Cause, Then Builds a Fix that Holds.",
     ],
     icon: Wrench,
   },
@@ -267,7 +267,7 @@ const services = [
     title: "Ballparks",
     titleLines: ["Ballparks"],
     body: [
-      "40 Years of Design and Build Experience Creates Practical Wisdom Which Scott Draws Upon to Give Ballpark Numbers Early, to Help Set Clear Expectations, and the Scope of Work, Before Any Design is to Begin.",
+      "Forty Years of Design and Build Work Means Scott Can Give Real Ballpark Numbers Early — Before Anyone Spends Money on a Design.",
       "Once the Range and Scope are Agreed Upon, Design Begins. You Move Forward Informed, Without Spending Time and Money Developing a Plan that Does not Fit the Budget.",
     ],
     icon: DollarSign,
@@ -277,7 +277,7 @@ const services = [
     titleLines: ["How Much Can WildWorks Do?"],
     body: [
       "WildWorks is the Place to Start Any Project, Any Material, Inside or Outside Your Home to Full Design/Build Work from the Ground Up. WildWorks Can Also Serve as the Design and Diagnosis Layer around the Contractor Team You Already have.",
-      "Scott and His Crews Do Much of the Work in House, and We have a Full Roster of Trusted Allied Specialists to Call upon When Needed; Electricians, Plumbers, HVAC Specialists, Etc.",
+      "Scott and His Crews Do Much of the Work in House, and We have a Full Roster of Trusted Allied Specialists to Call upon When Needed: Electricians, Plumbers, HVAC Specialists, Etc.",
     ],
     icon: Compass,
   },
@@ -286,7 +286,7 @@ const services = [
     titleLines: ["Anywhere in the World"],
     body: [
       "Start with What You have: Photographs, Videos, a Plan, a Problem, or Just a Dream. iScott Can Organize the Details so Scott has a Clear First Look at the Property and the Conversation Can Begin by Phone or Video Chat.",
-      "Any Project, Anywhere in the World, Scott would be Super Happy to Travel to You, Design and Build – for You. Talk to iScott, Get Things Moving. Scott Can Start Remotely with a Design or Diagnosis Conversation, Even Design and Work through Budgets.",
+      "Scott Will Travel for the Right Project. Anywhere on Planet Earth. Talk to iScott, Get Things Moving. Scott Can Start Remotely with a Design or Diagnosis Conversation, Even Design and Work through Budgets.",
     ],
     icon: Globe2,
   },
@@ -2763,8 +2763,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               style={noWhiteTextStyle}
             >
               Start with iScott, Scott&apos;s digital twin. Talk to him like you
-              would the real Scott. Tell him your goals, timing, dream projects,
-              and any home and garden problems you may have.
+              would the real Scott. Tell him the land problem, the build, the
+              dream — and if you also need a brand or a site, say so. Same
+              conversation.
             </motion.p>
             <motion.p
               className="wild-body wild-iscott-body wild-iscott-body--color-one"
@@ -2772,9 +2773,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               style={noWhiteTextStyle}
             >
               Show him your space using the Upload Photos or Videos button.
-              Describe what you want, and he will organize the details and hand
-              them off to the real Scott. This helps Scott have context for when your first
-              conversation begins.
+              Describe what you want. He organizes it so your first talk with
+              Scott starts in the middle, not at zero.
             </motion.p>
             <motion.div className="money-step-list wild-iscott-steps-inline" variants={stagger}>
               {iScottSteps.map((item, index) => (
@@ -2793,9 +2793,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               variants={fadeInRight}
               style={noWhiteTextStyle}
             >
-              iScott gathers, discusses, gathers information, and hands off that information to Scott. He
-              does not replace Scott. He briefs the real Scott so your first
-              conversation starts with understanding.
+              Talk. Upload. iScott briefs Scott. He does not replace Scott —
+              then you talk to the man himself.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <IScottUploadAction
@@ -3812,7 +3811,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.article key={service.title} className="wild-card" variants={cardDrift} custom={index}>
+              <motion.article
+                key={service.title}
+                className={`wild-card${service.title === "How Much Can WildWorks Do?" ? " wild-card--capability-fit" : ""}`}
+                variants={cardDrift}
+                custom={index}
+              >
                 <div
                   className="wild-card-heading"
                   style={{
@@ -3985,7 +3989,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
           {/* H278 (G 2026-08-17): cards removed; his written words instead. */}
           <motion.p className="wild-body wild-site-offer-copy" variants={stagger}>
             <span className="wild-site-offer-copy__line">
-              Let the Ai Collect Context, Set Appointments, and Sell Your Brand — for You on Auto-Pilot
+              Let the Site Gather the Lead and Keep the Conversation Moving While You Work
             </span>
           </motion.p>
         </div>

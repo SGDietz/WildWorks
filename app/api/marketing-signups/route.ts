@@ -1,5 +1,5 @@
 import { assertAllowedOrigin, truncateUtf8String } from "../../../src/lib/apiRouteSecurity";
-import { checkRateLimit } from "../../../src/lib/rateLimit";
+import { checkCriticalRateLimit } from "../../../src/lib/rateLimit";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../src/lib/supabaseAdmin";
 import { wildWorksSenderConfigurationError } from "../../../src/lib/wildworksEmailIdentity.mjs";
 import {
@@ -110,7 +110,16 @@ export async function POST(request: Request) {
   const originError = assertAllowedOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = await checkRateLimit(request);
+  // 2026-08-24: was the ordinary in-memory limiter. This endpoint SENDS EMAIL
+  // AND SMS, which costs real money per send, so it gets the strict one: counted
+  // in the database, shared across restarts and instances, and it fails CLOSED
+  // when it cannot check rather than waving the caller through.
+  const rateLimitError = await checkCriticalRateLimit(request, {
+    eventType: "rate_limit_marketing_signup",
+    perMinute: 2,
+    perDay: 5,
+    globalPerDay: 200,
+  });
   if (rateLimitError) return rateLimitError;
 
   try {

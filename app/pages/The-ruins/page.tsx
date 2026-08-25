@@ -34,7 +34,7 @@ export default function TheRuins() {
                         So when my client asked that question, my mind didn&apos;t stay in &quot;landscaping mode,&quot; it went straight to: <i>What could have happened here?</i>
                     </p>
                     <p>
-                        We&apos;d already done a couple projects with these clients in the years prior, so I knew something important: they were open to &quot;cool and wild,&quot; as long as it made sense and was executed well. That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
+                        We&apos;d already done a couple of projects with these clients in the years prior, so I knew something important: they were open to &quot;cool and wild,&quot; as long as it made sense and was executed well. That&apos;s why I didn&apos;t rush it. I spent a couple weeks thinking—pencil and paper, sitting in the space, staring at it from different angles—because I knew if I could come up with the right idea, they&apos;d let me build it.
                     </p>
                 </div>
                 </div>
@@ -146,19 +146,19 @@ export default function TheRuins() {
                         <li className="wild-ruins-list-item leading-[2]">
                             The remains of the original farmhouse that &quot;predates the neighborhood,&quot;
                             where the gnarly, jagged, broken base of an old stone chimney becomes
-                             a modern, purpose built, working wood-fire feature—surrounded by stone floors with intentionally fractured edges.
+                             a modern, purpose-built, working wood-fire feature—surrounded by stone floors with intentionally fractured edges.
                              What is it today? Ultra cool party zone that you will want to live in, and friends will want to come over and have fun in.
                         </li>
                         {/* <li>
                             <strong>Collapsed stone garden walls</strong> from an old stone building that become natural boulder seating, like the structure simply fell into place over time.
                         </li> */}
                         <li className="wild-ruins-list-item leading-[2]">
-                            A Gristmill Ruin beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700&apos;s real gristmill.
+                            A Gristmill Ruin beside a stream—water, stone, moss, worn thresholds—built to feel like it is all that remains from an early 1700s real gristmill.
                         </li>
                         <li className="wild-ruins-list-item leading-[2]">
                             Something along the lines of a &quot;Crumbling Roman-Style Bathhouse&quot; that could feel like it has been there for centuries. Low, arched stone walls remain from what once formed the bathhouse rooms. Some walls stand waist-high, others rise taller, broken irregularly as if the centuries simply took their toll. In the ground lie half-sunken bathing basins, their stone edges softened by time. Clear water flows gently through them, as if an old natural spring still feeds the baths. Small channels
                             guide the water from one basin to the next, echoing the way Roman baths once circulated water through different pools.
-                            Everything appears aged, imperfect, and naturally deteriorated—yet beneath the historic look is a fully modern, purpose built system.
+                            Everything appears aged, imperfect, and naturally deteriorated—yet beneath the historic look is a fully modern, purpose-built system.
                             The “ancient” baths can operate as a hot tub, a plunge or lap pool, or even part of a larger swimming pool design.
                         </li>
                         <li className="wild-ruins-list-item leading-[2]">

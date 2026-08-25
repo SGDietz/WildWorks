@@ -16,8 +16,27 @@ export async function POST(request: Request) {
   const originError = assertAllowedOrigin(request);
   if (originError) return originError;
 
+  // Money ceiling, set deliberately 2026-08-24 (G: "what safeguards can we put
+  // in to not burn money?"). These were running on library defaults
+  // (2/min, 12/day/visitor, 100/day global) that nobody chose.
+  //
+  // Minting is the only thing here that costs real money, and it bills whether
+  // or not anyone is talking. Measured real public traffic to date is ~6
+  // sessions/day, so 40 leaves ~7x headroom while cutting the worst possible
+  // day from 100 sessions to 40. perDay is per visitor IP: a bored kid gets 6
+  // goes a day, a real buyer never needs a seventh.
+  //
+  // globalPerDay is scoped BY EVENT TYPE in reserve_api_rate_limit - the count
+  // filters on event_type - so this ceiling cannot starve signup, lead confirm
+  // or any other critical-limited route.
+  //
+  // This limiter fails CLOSED: any Supabase error returns unavailable rather
+  // than minting. That is the correct trade for a paid endpoint.
   const rateLimitError = await checkCriticalRateLimit(request, {
     eventType: "rate_limit_liveavatar_session",
+    perMinute: 2,
+    perDay: 6,
+    globalPerDay: 40,
   });
   if (rateLimitError) return rateLimitError;
 

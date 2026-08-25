@@ -1,0 +1,119 @@
+/* H386: G 2026-08-22 — exact route/phrase shadow cleanup. */
+
+/* Patio keeps the original ladder on Color 2 phone; 600+ receives the full
+   parent effect through --ww-patio-shadow. */
+.wild-subpage--wildfire .wildfire-hero-summary__patio:not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_) {
+  text-shadow: var(--ww-patio-shadow, var(--ww-color3-original-shadow)) !important;
+}
+
+/* H356 reads this explicit freeze while its body-copy fallback is reduced. */
+.wild-subpage--bio :is(.wild-bio-mindset-line, .wild-bio-body a) {
+  --ww-bio-body-shadow: rgba(35,9,2,0.865) 0 0.006125em 0, rgba(34,9,2,0.833) 0 0.012250em 0, rgba(33,8,2,0.801) 0 0.018374em 0, rgba(32,8,2,0.768) 0 0.024499em 0, rgba(31,8,2,0.736) 0 0.030624em 0, rgba(29,7,1,0.704) 0 0.036749em 0, rgba(28,7,1,0.672) 0 0.042874em 0, rgba(27,7,1,0.639) 0 0.048998em 0, rgba(26,6,1,0.607) 0 0.055123em 0, rgba(25,6,1,0.575) 0 0.061248em 0;
+}
+
+@media (min-width: 600px) {
+  .wild-subpage--bio :is(.wild-bio-mindset-line, .wild-bio-body a) {
+    --ww-bio-body-shadow: rgba(35,9,2,0.865) 0 0.007656em 0, rgba(34,9,2,0.833) 0 0.015312em 0, rgba(33,8,2,0.801) 0 0.022968em 0, rgba(32,8,2,0.768) 0 0.030624em 0, rgba(31,8,2,0.736) 0 0.038280em 0, rgba(29,7,1,0.704) 0 0.045936em 0, rgba(28,7,1,0.672) 0 0.053592em 0, rgba(27,7,1,0.639) 0 0.061248em 0, rgba(26,6,1,0.607) 0 0.068904em 0, rgba(25,6,1,0.575) 0 0.076560em 0;
+  }
+}
+
+/* Byte/value-preserved pre-halo ladders at their existing 520/521 and
+   599/600 seams. The shared rule below only appends the added halo. */
+#iscott-sales .wild-iscott-title__segment--three { --ww-color3-original-shadow: rgba(35,9,2,0.96) 0 0.004090em 0, rgba(34,9,2,0.936) 0 0.008180em 0, rgba(33,8,2,0.911) 0 0.012270em 0, rgba(32,8,2,0.887) 0 0.016360em 0, rgba(31,8,2,0.862) 0 0.020450em 0, rgba(29,7,1,0.838) 0 0.024540em 0, rgba(28,7,1,0.813) 0 0.028630em 0, rgba(27,7,1,0.789) 0 0.032720em 0, rgba(26,6,1,0.764) 0 0.036810em 0, rgba(25,6,1,0.74) 0 0.040900em 0; }
+#project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.97) 0 0.018259em 0, rgba(32,8,2,0.867) 0 0.036519em 0, rgba(28,7,1,0.763) 0 0.054778em 0, rgba(25,6,1,0.66) 0 0.073037em 0; }
+#project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.019625em 0, rgba(33,9,2,0.908) 0 0.037569em 0, rgba(31,8,2,0.846) 0 0.055512em 0, rgba(29,8,2,0.784) 0 0.073456em 0, rgba(27,7,1,0.722) 0 0.091399em 0, rgba(25,6,1,0.660) 0 0.109343em 0; }
+#ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.006240em 0, rgba(33,9,2,0.551) 0 0.015600em 0, rgba(32,8,2,0.520) 0 0.024960em 0, rgba(30,8,2,0.489) 0 0.034320em 0, rgba(28,7,2,0.458) 0 0.043680em 0, rgba(27,7,1,0.427) 0 0.053040em 0, rgba(25,6,1,0.396) 0 0.062400em 0; }
+.wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.006240em 0, rgba(33,9,2,0.551) 0 0.015600em 0, rgba(32,8,2,0.520) 0 0.024960em 0, rgba(30,8,2,0.489) 0 0.034320em 0, rgba(28,7,2,0.458) 0 0.043680em 0, rgba(27,7,1,0.427) 0 0.053040em 0, rgba(25,6,1,0.396) 0 0.062400em 0; }
+.wild-subpage--projects .wild-projects-page-intro__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.016000em 0, rgba(34,9,2,0.931) 0 0.025143em 0, rgba(32,8,2,0.892) 0 0.034286em 0, rgba(31,8,2,0.854) 0 0.043429em 0, rgba(30,8,2,0.815) 0 0.052572em 0, rgba(29,8,2,0.776) 0 0.061714em 0, rgba(28,7,2,0.738) 0 0.070857em 0, rgba(26,6,1,0.699) 0 0.080000em 0, rgba(25,6,1,0.660) 0 0.089143em 0; }
+#wildworks-proof .wild-tree-title .wild-line-title__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.97) 0 0.008750em 0, rgba(34,9,2,0.937) 0 0.017500em 0, rgba(33,8,2,0.903) 0 0.026250em 0, rgba(32,8,2,0.87) 0 0.035000em 0, rgba(31,8,2,0.837) 0 0.043750em 0, rgba(29,7,1,0.803) 0 0.052500em 0, rgba(28,7,1,0.77) 0 0.061250em 0, rgba(27,7,1,0.737) 0 0.070000em 0, rgba(26,6,1,0.703) 0 0.078750em 0, rgba(25,6,1,0.67) 0 0.087500em 0; }
+#signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.012800em 0, rgba(33,9,2,0.918) 0 0.022552em 0, rgba(32,8,2,0.867) 0 0.032305em 0, rgba(30,8,2,0.815) 0 0.042057em 0, rgba(28,7,2,0.763) 0 0.051809em 0, rgba(27,7,1,0.712) 0 0.061562em 0, rgba(25,6,1,0.660) 0 0.071314em 0; }
+#services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.98) 0 0.004816em 0, rgba(34,9,2,0.947) 0 0.009632em 0, rgba(33,8,2,0.913) 0 0.014448em 0, rgba(32,8,2,0.88) 0 0.019264em 0, rgba(31,8,2,0.847) 0 0.024080em 0, rgba(29,7,1,0.813) 0 0.028896em 0, rgba(28,7,1,0.78) 0 0.033712em 0, rgba(27,7,1,0.747) 0 0.038528em 0, rgba(26,6,1,0.713) 0 0.043344em 0, rgba(25,6,1,0.68) 0 0.048160em 0; }
+
+@media (min-width: 521px) {
+  .wild-subpage--projects .wild-projects-page-intro__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.011143em 0, rgba(34,9,2,0.555) 0 0.022286em 0, rgba(32,8,2,0.529) 0 0.033429em 0, rgba(31,8,2,0.502) 0 0.044572em 0, rgba(29,7,1,0.476) 0 0.055714em 0, rgba(28,7,1,0.449) 0 0.066857em 0, rgba(26,6,1,0.423) 0 0.078000em 0, rgba(25,6,1,0.396) 0 0.089143em 0; }
+  #iscott-sales .wild-iscott-title__segment--three { --ww-color3-original-shadow: rgba(35,9,2,0.576) 0 0.005843em 0, rgba(33,8,2,0.554) 0 0.011686em 0, rgba(32,8,2,0.532) 0 0.017529em 0, rgba(30,8,2,0.51) 0 0.023371em 0, rgba(28,7,1,0.488) 0 0.029214em 0, rgba(27,6,1,0.466) 0 0.035057em 0, rgba(25,6,1,0.444) 0 0.040900em 0; }
+  #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.009738em 0, rgba(32,8,2,0.535) 0 0.019476em 0, rgba(30,8,2,0.489) 0 0.029215em 0, rgba(28,7,1,0.443) 0 0.038953em 0, rgba(25,6,1,0.396) 0 0.048691em 0; }
+  #project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.014579em 0, rgba(33,8,2,0.545) 0 0.029158em 0, rgba(31,8,2,0.508) 0 0.043737em 0, rgba(29,7,1,0.47) 0 0.058316em 0, rgba(27,7,1,0.433) 0 0.072895em 0, rgba(25,6,1,0.396) 0 0.087474em 0; }
+  #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.516) 0 0.008920em 0, rgba(33,8,2,0.485) 0 0.017841em 0, rgba(31,8,2,0.454) 0 0.026761em 0, rgba(29,7,1,0.422) 0 0.035681em 0, rgba(27,7,1,0.391) 0 0.044602em 0, rgba(25,6,1,0.36) 0 0.053522em 0; }
+  #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.008023em 0, rgba(34,9,2,0.555) 0 0.016046em 0, rgba(32,8,2,0.529) 0 0.024069em 0, rgba(31,8,2,0.502) 0 0.032092em 0, rgba(29,7,1,0.476) 0 0.040114em 0, rgba(28,7,1,0.449) 0 0.048137em 0, rgba(26,6,1,0.423) 0 0.056160em 0, rgba(25,6,1,0.396) 0 0.064183em 0; }
+}
+
+@media (min-width: 600px) {
+  .wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-patio-shadow: var(--ww-color3-full-shadow); }
+  #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.010712em 0, rgba(32,8,2,0.535) 0 0.021424em 0, rgba(30,8,2,0.489) 0 0.032137em 0, rgba(28,7,1,0.443) 0 0.042848em 0, rgba(25,6,1,0.396) 0 0.053560em 0; }
+  #project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.466) 0 0.014579em 0, rgba(33,8,2,0.436) 0 0.029158em 0, rgba(31,8,2,0.406) 0 0.043737em 0, rgba(29,7,1,0.376) 0 0.058316em 0, rgba(27,7,1,0.346) 0 0.072895em 0, rgba(25,6,1,0.317) 0 0.087474em 0; }
+  #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.007221em 0, rgba(34,9,2,0.555) 0 0.014441em 0, rgba(32,8,2,0.529) 0 0.021662em 0, rgba(31,8,2,0.502) 0 0.028883em 0, rgba(29,7,1,0.476) 0 0.036103em 0, rgba(28,7,1,0.449) 0 0.043323em 0, rgba(26,6,1,0.423) 0 0.050544em 0, rgba(25,6,1,0.396) 0 0.057765em 0; }
+}
+
+/* Exact established large Color 3 phrases on page-background surfaces. */
+:is(
+  #iscott-sales .wild-iscott-title__segment--three,
+  #project-wildfire .wild-wildfire-sequence-callout__line--going,
+  #project-wildfire .wild-wildfire-build-note__line--close,
+  #ww-wildfire-first-fire,
+  .wild-subpage--wildfire .wildfire-hero-summary__line--c3,
+  .wild-subpage--projects .wild-projects-page-intro__line--three,
+  #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+  #signature-work .wild-signature-title__three,
+  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
+):not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_) {
+  --ww-color3-full-shadow:
+    var(--ww-color3-original-shadow),
+    0 -0.035em 0 #000;
+  -webkit-text-stroke: var(--ww-color3-rim-width, 0) #000 !important;
+  paint-order: stroke fill !important;
+  text-shadow: var(--ww-color3-full-shadow) !important;
+}
+
+/* G 2026-08-23: extend the accepted Home composition to the full established
+   inventory. Keep every target's original lower ladder and paint the same thin
+   black rim behind the fill; legal, controls, hero-image type, and normal copy
+   are absent from this explicit list. */
+:is(
+  #iscott-sales .wild-iscott-title__segment--three,
+  #project-wildfire .wild-wildfire-sequence-callout__line--going,
+  #project-wildfire .wild-wildfire-build-note__line--close,
+  #ww-wildfire-first-fire,
+  .wild-subpage--wildfire .wildfire-hero-summary__line--c3,
+  .wild-subpage--projects .wild-projects-page-intro__line--three,
+  #wildworks-proof .wild-tree-title .wild-line-title__line--three,
+  #signature-work .wild-signature-title__three,
+  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
+) {
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0.009em !important;
+}
+
+/* Home hero only: match the approved full-size iScott icon depth. The labels,
+   buttons, and avatar/Finish controls are intentionally outside this selector. */
+#top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta > svg {
+  filter:
+    drop-shadow(rgba(35, 9, 2, 0.9) 0 1px 0)
+    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0) !important;
+}
+
+/* The existing button system carries deliberately extreme specificity. This
+   exact Home-hero restatement wins only the two reviewed SVGs. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta > svg {
+  filter:
+    drop-shadow(rgba(35, 9, 2, 0.9) 0 1px 0)
+    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0) !important;
+}
+
+/* The Color 2 Patio word inherits from the targeted summary line at 600px+;
+   pin its established full halo so this Color 3 cleanup cannot alter it. */
+@media (min-width: 600px) {
+  .wild-subpage--wildfire .wildfire-hero-summary__patio {
+    --ww-patio-shadow:
+      var(--ww-color3-original-shadow),
+      -0.040em 0 0.022em rgba(35,9,2,0.12),
+      0.040em 0 0.022em rgba(35,9,2,0.12),
+      0 -0.035em 0.022em rgba(35,9,2,0.09),
+      -0.028em -0.028em 0.020em rgba(35,9,2,0.07),
+      0.028em -0.028em 0.020em rgba(35,9,2,0.07),
+      -0.028em 0.035em 0.024em rgba(35,9,2,0.10),
+      0.028em 0.035em 0.024em rgba(35,9,2,0.10),
+      0 0.055em 0.030em rgba(25,6,1,0.14) !important;
+  }
+}

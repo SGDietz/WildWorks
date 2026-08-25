@@ -273,6 +273,29 @@ const wildWorksButtonCss = `
         drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
     }
 
+    /* G, ride 2026-08-23: "the finish box and the start box. The icon needs a
+       little bit more of the shadow effect... by 20%." Then, same ride,
+       correcting the first attempt: match the treatment on the OTHER iScott
+       controls, "attached rather than detached/blurred." My first attempt
+       scaled the y-OFFSET (0.75px->0.9px, 1.5px->1.8px), which pushes the
+       shadow further from the icon - that reads as MORE detached, the exact
+       opposite of what was asked, even though blur-radius stayed 0px both
+       times. Reverted the offsets back to the site-wide baseline
+       (0.75px / 1.5px, byte-identical to every other icon's shadow - that IS
+       "attached," same position as "the other iScott controls") and instead
+       added the extra 20% as opacity on the second, wider layer only: 0.6 ->
+       0.72. The first layer's 0.9 alpha has no clean 20% headroom under 1.0,
+       so it stays as-is; darkening only the far layer still reads as "a
+       little more effect" without moving anything's position. NOT visually
+       confirmed live - flagging for G to eyeball and correct again if this
+       still isn't it, same as the color judgment calls in RISK.md. */
+    [data-ww-finish] svg,
+    [data-ww-talk] svg {
+      filter:
+        drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
+        drop-shadow(rgba(25, 6, 1, 0.72) 0px 1.5px 0px) !important;
+    }
+
     .btn-wood,
     .btn-inset {
       display: inline-flex !important;
@@ -339,6 +362,25 @@ const wildWorksButtonCss = `
       filter:
         drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
         drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
+    }
+
+    /* G, ride 2026-08-23: same "shadow effect... on the icon itself by 20%"
+       ask, for Finish's actual glyph - the sparkle ::before immediately
+       above, not the generic svg rule (Finish has no real svg, per the
+       comment up top). .btn-wood also styles the Restart button (see
+       "Restart iScott", id="wildworks-avatar-restart", class="btn-wood"), so
+       editing .btn-wood::before directly would have boosted Restart's icon
+       too - not asked for. [data-ww-finish] is stamped by this page's own JS
+       only onto the button whose text is exactly "Finish," so this override
+       reaches Finish alone; Restart keeps the original values above.
+       CORRECTED same ride, per the svg rule above: offset reverted to the
+       site-wide baseline (0.75px / 1.5px - "attached," matching every other
+       icon including Restart's own), the extra 20% moved to the far layer's
+       opacity instead (0.6 -> 0.72). Not visually confirmed live. */
+    [data-ww-finish]::before {
+      filter:
+        drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
+        drop-shadow(rgba(25, 6, 1, 0.72) 0px 1.5px 0px) !important;
     }
 
     .btn-inset {
@@ -453,11 +495,24 @@ const wildWorksButtonCss = `
          email box now."
          So the outer rim is now byte-identical to the field's rim below:
          1px solid #f08c28. Not similar - the same. */
-      border: 1px solid #f08c28 !important;
+      /* G, ride 2026-08-23: "the colors are kind of hard... make them the
+         softer, lighter colors of the brand... not the background color. In
+         the box is the background color of the website... none of that.
+         That's too hard. Maybe some of the text can be the number 3 color.
+         But softer colors in that box."
+         Primary #c44d0b (the site's own background colour, explicitly
+         rejected) is out. The fill moves to #f08c28 - Text 3, one of the two
+         lighter/softer tones he pointed at, and the same colour he floated
+         for "some of the text." The old rim (#f08c28, byte-identical to the
+         field's rim two comments up) would now vanish into a fill of the same
+         colour, so it moves to #fce0ad - Text 1, the lightest tone in the
+         locked five - so the box still reads as a card with a defined edge
+         instead of a flat, borderless patch. */
+      border: 1px solid #fce0ad !important;
       border-radius: 8px !important;
       background:
         radial-gradient(circle at 50% -30%, rgba(252, 224, 173, 0.20), transparent 58%),
-        #c44d0b !important;
+        #f08c28 !important;
       box-shadow:
         inset 0 1px 0 rgba(255, 250, 232, 0.85),
         inset 0 -1px 0 rgba(196, 77, 11, 0.35),
@@ -497,7 +552,15 @@ const wildWorksButtonCss = `
       width: 2.2em !important;
       height: 2.2em !important;
       flex: 0 0 auto !important;
-      color: #fce0ad !important;
+      /* G, ride 2026-08-23: "your phone and the phone itself icon should be
+         the same color." The label two rules up and the value field below
+         are both already #edc775 - Text 2. This icon was the odd one out at
+         #fce0ad; it moves to #edc775 so label, value, and icon (SVGs draw in
+         currentColor, both the mail and phone glyphs at line ~2597-2598
+         below) are byte-identical. Applies to the email icon too, since both
+         methods share this one class - they end up in agreement as a result,
+         which was not the ask but is not a regression either. */
+      color: #edc775 !important;
       letter-spacing: 0 !important;
       line-height: 1 !important;
     }

@@ -518,8 +518,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    byte-for-byte; only these large controls and the Dream Project four are dimmed. */
 html body#wildworks-body :is(
   .wild-home-phone-iscott-test:not(.wild-home-phone-iscott-test--legal-return) > .wild-home-phone-iscott-test__button,
-  a.wild-iscott-action-button[aria-label="Talk to iScott"],
-  footer#footer .wild-footer-contact-cta__actions > a.money-cta.money-cta--primary
+  a.wild-iscott-action-button[aria-label="Talk to iScott"]
 ) {
   --ww-large-cta-brightness: 0.94 !important;
   --ww-large-cta-shadow:
@@ -529,10 +528,15 @@ html body#wildworks-body :is(
     rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
 }
 
-/* G: take only the center brightness down a barely noticeable amount on the
-   closing Talk control and the four Dream Project actions. Signup Email/SMS
-   and every other button keep the canonical 0.95 center highlight. */
-html body#wildworks-body footer#footer .wild-home-phone-iscott-test--footer-closing > a.wild-home-phone-iscott-test__button,
-html body#wildworks-body footer#footer .wild-footer-contact-cta__actions > a.money-cta.money-cta--primary {
+/* G: keep the closing Talk control at its approved level. Signup Email/SMS,
+   legal Return, avatar-overlay Talk, and every other button remain unchanged. */
+html body#wildworks-body footer#footer .wild-home-phone-iscott-test--footer-closing > a.wild-home-phone-iscott-test__button {
   --ww-target-button-center-glow: 0.92;
+}
+
+/* G 2026-08-22: reduce only the Dream Project four another 10%. Keep their
+   geometry, labels, destinations, and inset paint unchanged. This unlayered
+   H337 owner intentionally wins over the phone-only H384 layer. */
+html body#wildworks-body footer#footer .wild-footer-contact-cta__actions > a.money-cta.money-cta--primary {
+  --ww-target-button-center-glow: 0.828;
 }

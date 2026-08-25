@@ -8,9 +8,9 @@ import { useTrackpadHorizontalGesture } from "../lib/useTrackpadHorizontalGestur
 
 const EDGE_GUARD_PX = 24;
 const HORIZONTAL_AXIS_RATIO = 1.15;
-const MIN_SWIPE_DISTANCE_PX = 44;
-const MAX_SWIPE_DISTANCE_PX = 72;
-const VIEWPORT_DISTANCE_RATIO = 0.1;
+const MIN_SWIPE_DISTANCE_PX = 32;
+const MAX_SWIPE_DISTANCE_PX = 56;
+const VIEWPORT_DISTANCE_RATIO = 0.08;
 
 const interactiveIgnoreSelector = [
   "a", "button", "form", "input", "textarea", "select", "option", "label",
@@ -118,9 +118,9 @@ export default function MainPageSwipeNavigation() {
     if (data.absX <= data.absY * HORIZONTAL_AXIS_RATIO) return;
 
     const requiredDistance = routeSwipeThroughDistance(sourceEvent.target) ?? Math.max(
-        MIN_SWIPE_DISTANCE_PX,
-        Math.min(MAX_SWIPE_DISTANCE_PX, viewportWidth * VIEWPORT_DISTANCE_RATIO),
-      );
+      MIN_SWIPE_DISTANCE_PX,
+      Math.min(MAX_SWIPE_DISTANCE_PX, viewportWidth * VIEWPORT_DISTANCE_RATIO),
+    );
     if (data.absX < requiredDistance) return;
 
     commitNavigation(direction);
@@ -136,8 +136,10 @@ export default function MainPageSwipeNavigation() {
   });
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: (data) => navigate(1, data),
-    onSwipedRight: (data) => navigate(-1, data),
+    onSwiped: (data) => {
+      if (data.dir === "Left") navigate(1, data);
+      if (data.dir === "Right") navigate(-1, data);
+    },
     delta: { left: 24, right: 24, up: 9999, down: 9999 },
     trackTouch: true,
     trackMouse: false,

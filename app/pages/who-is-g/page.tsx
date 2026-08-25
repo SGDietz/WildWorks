@@ -23,7 +23,7 @@ export default function WhoIsG() {
         <div className="space-y-2 text-left text-sm leading-relaxed">
           <h1 id="ww-bio-primary-heading" className="text-2xl sm:text-3xl">Who is Scott G. Dietz?</h1>
           <p className="wild-bio-body text-base">
-            From 6 months old, Scott G. Dietz was raised in Bel Air, Maryland, just north of Baltimore City. His roots run deep in the area—both of his parents were born and raised in Baltimore City.
+            From infancy, Scott G. Dietz was raised in Bel Air, Maryland, just north of Baltimore City. His roots run deep in the area—both of his parents were born and raised in Baltimore City.
           </p>
           <p className="wild-bio-body text-base">
             As a kid, Scott was impossible to control—undisciplined, restless, and constantly pushing boundaries. As he grew and matured, that same force turned into explosive creative energy.
@@ -79,7 +79,7 @@ export default function WhoIsG() {
             Keep creating. Keep building. Always be willing to help others solve their problems. And never stop getting back up.
           </p>
           <p className="wild-bio-body text-base">
-            If you would like a work of exquisite art of your own, or need help solving one or more problems—
+            If you would like a work of art on your land, a hard problem solved, or — after that — a brand or an Ai-Native website: talk to iScott, or call.
           </p>
         </div>
 

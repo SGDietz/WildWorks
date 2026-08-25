@@ -11937,6 +11937,41 @@ body .wild-home-hero-stonework-note {
   white-space: nowrap;
 }
 
+/* Home-only acceptance slice: a plain cross-site path between the unchanged
+   stonework attribution and the existing copyright/legal footer. */
+#footer .wild-footer-aiasap-link {
+  display: inline-block;
+  max-width: 100%;
+  margin: clamp(1.35rem, 2.4vw, 2rem) auto clamp(0.9rem, 1.8vw, 1.35rem);
+  color: var(--ww-color-2, #edc775) !important;
+  -webkit-text-fill-color: var(--ww-color-2, #edc775) !important;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  text-align: center;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
+  text-shadow: 0 1px 3px rgba(42, 12, 2, 0.72);
+  transition: color 160ms ease, text-decoration-color 160ms ease, transform 160ms ease;
+}
+
+#footer .wild-footer-aiasap-link:hover {
+  color: var(--ww-color-1, #fce0ad) !important;
+  -webkit-text-fill-color: var(--ww-color-1, #fce0ad) !important;
+  transform: translateY(-1px);
+}
+
+#footer .wild-footer-aiasap-link:focus-visible {
+  color: var(--ww-color-1, #fce0ad) !important;
+  -webkit-text-fill-color: var(--ww-color-1, #fce0ad) !important;
+  outline: 3px solid var(--ww-color-1, #fce0ad);
+  outline-offset: 0.25rem;
+  border-radius: 0.2rem;
+}
+
 @media (max-width: 1440px) {
   #footer .wild-footer-stonework-note {
     max-width: min(100%, 68rem);

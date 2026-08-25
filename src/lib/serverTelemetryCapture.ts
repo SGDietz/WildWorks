@@ -52,11 +52,17 @@ export async function logServerTelemetryEvent(args: {
     sessionId: row.session_id ?? row.anonymous_visitor_id,
   });
 
-  const rawBackupOk = await storeRawTelemetryBackup({ category: "server_app_event", sessionId: fallbackSessionId, anonymousVisitorId, value: row });
+  // 2026-08-24: the raw copy used to be written on EVERY event, before the
+  // primary insert even ran - a second permanent pile of network, location,
+  // referrer and device data with no deletion path. It is a backup, so it now
+  // only happens when the real write has actually failed.
   const result = await insertSupabaseRow("app_events", row);
   if (result.ok) return;
 
   const fallbackOk = await insertConversationTelemetryFallback({ sessionId: fallbackSessionId, source: "app_event", value: { table: "app_events", tableInsertStatus: result.status, tableInsertDetail: result.detail, ...row } });
+  const rawBackupOk = fallbackOk
+    ? false
+    : await storeRawTelemetryBackup({ category: "server_app_event", sessionId: fallbackSessionId, anonymousVisitorId, value: row });
   if (!fallbackOk && !rawBackupOk && result.detail !== "supabase_not_configured") {
     console.warn("Server telemetry event not stored:", result.detail);
   }

@@ -1,0 +1,41 @@
+﻿/* H388 - MENU BAR SHADOW. G, 2026-08-24: "add a little bit of shadow to the
+   menu bar just above it... not too heavy."
+
+   WHAT WAS THERE: the winning authority for the nav links was shadow-sweep's
+   S1 MENU rule - text-shadow: 0 1px #321005f5, 0 1px #321005c7 - i.e. two
+   IDENTICAL 1px layers, which is just a flat 1px edge, not a shadow with any
+   depth. Measured at 123 ids in the built CSS, so this file carries 160.
+
+   WHAT THIS DOES: the same construction now used on the top logo (H387) -
+   straight down, zero horizontal offset, zero blur, several layers stepping
+   evenly so they overlap and leave no background between the letter and its
+   shadow - but sized for 16-22px nav type instead of a 120px wordmark.
+
+   Reach is 0.10em (~2px at the 1.25rem nav size), against the logo's 8px on a
+   ~120px cap. Deliberately restrained: G said "not too heavy", and nav text is
+   read at a glance, so anything deeper starts to blur the word.
+
+   em, not px, on purpose. The nav steps through 1rem / 1.125rem / 1.25rem /
+   1.375rem across breakpoints; a fixed px shadow would read progressively
+   heavier as the type shrinks. em keeps the ratio constant at every size -
+   the same fault S01-shadow-scale-tune.css fixed sitewide.
+
+   NOTE text-shadow does NOT compound the way chained filter:drop-shadow()
+   does. Each layer is drawn from the original glyph, so these offsets are
+   absolute, not cumulative. (H387 needed reach/8 per layer for exactly the
+   opposite reason.)
+
+   Scoped to the desktop header nav only - that is the bar G pointed at. The
+   mobile slide-out menu is left alone. */
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  header.wild-site-header a.wild-nav-link {
+  text-shadow:
+    0 0.025em 0 rgba(50, 16, 5, 0.96),
+    0 0.05em 0 rgba(50, 16, 5, 0.85),
+    0 0.075em 0 rgba(50, 16, 5, 0.70),
+    0 0.10em 0 rgba(50, 16, 5, 0.52)
+    !important;
+}
+
