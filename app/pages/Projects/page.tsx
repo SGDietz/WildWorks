@@ -23,7 +23,18 @@ export default function ProjectsPage() {
           <span className="wild-projects-page-intro__part--b">Complete Outdoor Environments.</span>
         </span>
         <span className="wild-projects-page-intro__line wild-projects-page-intro__line--two">Each Project is Shaped Around the Land</span>
-        <span className="wild-projects-page-intro__line wild-projects-page-intro__line--three">and How its Owners Want to Live.</span>
+        {/* G 2026-08-25: the sitewide colour-3 rule paints this line with
+            `text-shadow: var(--ww-color3-full-shadow) !important`, and its :is()
+            outranks a 6000-id selector - specificity cannot win, and feeding it
+            the variable inline did not win either. So take the text OUT of that
+            rule's reach: the outer span keeps the class (and therefore the
+            colour), while the words live in an inner span that the colour-3
+            selector does not match, carrying the reference stack. This is the
+            same shape that already works for "and Builds". The global variable
+            and the iScott sales title are untouched. */}
+        <span className="wild-projects-page-intro__line wild-projects-page-intro__line--three">
+          <span className="wild-projects-page-intro__three-ink">and How its Owners Want to Live.</span>
+        </span>
       </p>
       {/* 2026-08-24 (G): Projects had two lines of copy and nothing telling a
           buyer what to do next. One kicker only - no invented captions. */}
@@ -39,16 +50,22 @@ export default function ProjectsPage() {
           alignItems: "center",
           gap: "0.1em",
           margin: "1.15rem auto 0",
-          maxWidth: "64rem",
+          // Widened 64rem -> 70rem, 2026-08-25: with the four lines held on
+          // nowrap, line four measured 1022px inside a 1024px box at 1440px+.
+          // Two pixels is not enough headroom if the serif falls back to a
+          // different face on someone's device, and an overflow would break
+          // the four-line rhythm G asked for.
+          maxWidth: "70rem",
           padding: "0 1rem",
           textAlign: "center",
           fontFamily: '"Playfair Display", "Libre Baskerville", Georgia, serif',
           fontWeight: 700,
-          // Must stay SUBORDINATE to the intro headline at every width. On a
-          // 375px phone the intro drops to 28px, and a 1.75rem floor made this
-          // exactly the same size - it read as a second headline. Roughly 70%
-          // of the intro across the range instead.
-          fontSize: "clamp(1.3rem, 2.6vw, 2.3rem)",
+          // G 2026-08-25: "this text should be larger... have it match the text
+          // above... have it be that big." Now MATCHES the intro headline at
+          // every width (this reverses the 2026-08-24 "stay subordinate" call).
+          // The var is defined in H339 so the phone value can differ; the
+          // fallback is the desktop intro size.
+          fontSize: "var(--ww-projects-kicker-size, clamp(2.6rem, 4.3vw, 3.65rem))",
           lineHeight: 1.14,
           textWrap: "balance",
           textShadow:
@@ -58,9 +75,21 @@ export default function ProjectsPage() {
             " rgba(26,6,1,0.423) 0 0.062400em 0, rgba(25,6,1,0.396) 0 0.071314em 0",
         }}
       >
-        <span style={{ color: "#fce0ad" }}>These Are Finished Places.</span>
-        <span style={{ color: "#edc775" }}>Stone, Fire, Water, Garden. Open Any Picture.</span>
-        <span style={{ color: "#f08c28" }}>Then Tell iScott Which Feeling You Want on Your Land.</span>
+        {/* G 2026-08-25 (second pass): "those five lines... don't look balanced
+            with the four lines above... They need to be probably four lines, a
+            little bit wider each... you have them almost all the same width. It
+            should not be almost all the same width... first line text colour
+            one, second line two, third line three, fourth line back to colour
+            one. Make this balanced across all devices."
+            FOUR explicit lines, deliberately increasing in width so the block
+            has the same ragged rhythm as the intro above it. Colours and the
+            no-wrap that holds these breaks on every device live in H339 - an
+            inline colour cannot win here, a sitewide rule forces
+            -webkit-text-fill-color cream over every span. */}
+        <span className="wild-projects-page-kicker__line">These Are Finished Spaces.</span>
+        <span className="wild-projects-page-kicker__line">Stone, Fire, Water &amp; Garden.</span>
+        <span className="wild-projects-page-kicker__line">Open Any Picture, Then Tell iScott</span>
+        <span className="wild-projects-page-kicker__line">Which Feeling You Want on Your Land.</span>
       </p>
       <div className="wild-projects-home-contact">
         <PhoneNumberLine

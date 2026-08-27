@@ -7,6 +7,9 @@ const PRODUCTION_WSS_URL =
 const PRODUCTION_BASE_URLS = new Set([
   "https://wildworks.live",
   "https://www.wildworks.live",
+  // Kept in step with PRODUCTION_VOICE_HOSTS in twilioVoiceWebhooks.ts.
+  "https://wildworks.ai",
+  "https://www.wildworks.ai",
 ]);
 
 function value(env: NodeJS.ProcessEnv, name: string): string {

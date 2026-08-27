@@ -331,6 +331,8 @@ import "./H385-bio-large-heading-shadow.css";
 import "./H386-ww-shadow-cleanup.css";
 import "./H387-top-logo-shadow-match-projects.css";
 import "./H388-menu-bar-shadow.css";
+import "./H389-iscott-prompt-lines.css";
+import "./H390-phone-audit-20260826.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
@@ -378,7 +380,7 @@ const caladea = Caladea({
   subsets: ["latin"],
 });
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wildworks.live").replace(/\/$/, "");
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://wildworks.ai").replace(/\/$/, "");
 const heroImageUrl = `${siteUrl}/wildworks-home-banner-20260726.png`;
 
 // Permanent route-level canvas guard. This lives in the shared layout so a

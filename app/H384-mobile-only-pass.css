@@ -131,6 +131,17 @@
 
   .wild-subpage--wildfire .wildfire-page-heading > .wildfire-page-heading__wildfire {
     transform: none !important;
+    /* G 2026-08-26 phone audit: "leave the word Project the same size and make
+       Wildfire significantly larger... maybe two font sizes or so."
+       This has to live HERE. The rule ten lines above forces
+       `font-size: inherit !important` on BOTH words, which silently defeated a
+       size set anywhere else - three attempts from two other stylesheets matched,
+       were flagged important, and still computed as the inherited 60.45px.
+       Overriding it in the very next rule, on the same element, is what sticks.
+       20vw = 78px at 390 against the wrapper's 60.45px. "Wildfire" measures
+       3.77px of width per px of font, so 78px = 294px inside 366px of room.
+       Verified single-line at 320 / 360 / 390 / 430. Project is untouched. */
+    font-size: clamp(3.25rem, 20vw, 5.5rem) !important;
   }
 
   .wild-subpage--wildfire .wildfire-hero-copy {

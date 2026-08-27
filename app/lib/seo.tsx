@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.wildworks.live"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://wildworks.ai"
 ).replace(/\/$/, "");
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;

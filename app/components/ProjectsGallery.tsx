@@ -8,7 +8,7 @@ import HeldLightboxImage, { type LightboxDirection } from "./HeldLightboxImage";
 import { projectImages, type ProjectImage } from "../lib/projectImages";
 import { useLightboxSwipe } from "../lib/useLightboxSwipe";
 
-const projectPageOrder = [5, 0, 8, 3, 1, 10, 6, 4, 13, 2, 11, 7, 9];
+const projectPageOrder = [5, 0, 8, 3, 1, 10, 6, 14, 4, 13, 2, 11, 7, 9];
 
 const orderedProjectImages: ProjectImage[] = projectPageOrder.map(
   (index) => projectImages[index],

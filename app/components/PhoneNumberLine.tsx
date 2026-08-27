@@ -55,7 +55,7 @@ export default function PhoneNumberLine({
       {callTextFirst ? callToday : null}
       <a
         href="tel:+14437972166"
-        aria-label="Call WildWorks at 1+443-797-2166"
+        aria-label="Call WildWorks at 1+443 797 2166"
         style={iScottDepthEffect}
       >
         1+443-797-2166

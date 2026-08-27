@@ -293,7 +293,7 @@ const wildWorksButtonCss = `
     [data-ww-talk] svg {
       filter:
         drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
-        drop-shadow(rgba(25, 6, 1, 0.72) 0px 1.5px 0px) !important;
+        drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
     }
 
     .btn-wood,
@@ -380,7 +380,7 @@ const wildWorksButtonCss = `
     [data-ww-finish]::before {
       filter:
         drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
-        drop-shadow(rgba(25, 6, 1, 0.72) 0px 1.5px 0px) !important;
+        drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
     }
 
     .btn-inset {

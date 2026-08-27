@@ -4,8 +4,6 @@ const ALLOWED_ORIGINS = new Set([
   "https://www.wildworks.live",
   "https://wildworks.ai",
   "https://www.wildworks.ai",
-  "https://wildworkslandscaping.com",
-  "https://www.wildworkslandscaping.com",
   // Tailnet HTTPS doors (tailscale serve fronts 3020 as plain HTTP, so the
   // protocol/host match can never pass; the exact origins must be listed).
   "https://mission-control.tail00dfe0.ts.net",

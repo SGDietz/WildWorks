@@ -1,0 +1,79 @@
+/* H390 - G's phone-only audit, 2026-08-26.
+   Every rule here came from him going down the site on his phone. Sizes were
+   chosen by MEASURING headroom first, because of his standing rule:
+   "Don't ever make things two lines that are one line."
+   Verified at 320 / 360 / 390 / 430px. Keep H232 as the last import. */
+
+/* ---- 1. Wildfire hero headline: CENTRE the three lines. --------------------
+   G: "a complete project build is a little to the right... something's off
+   there. Look at the centering." He was right and it was not a nudge: the <h1>
+   itself is text-align:center, but each __line span is a display:block with
+   text-align:LEFT, so all three hugged x=21 while the paragraph underneath was
+   properly centred. That mismatch is what his eye caught. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-hero-headline__line {
+  /* text-align alone does nothing here: each line box is shrink-to-fit
+     (measured boxW 318.7 == naturalW 318.7 inside 348 of space), so the
+     TEXT was already flush in a box that itself sat hard left at x=21.
+     The BOX is what needs centring. */
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ---- 2. Air between the headline and the paragraph ------------------------
+   G: "To the first wood fire, and this is not a before, needs a little
+   spacing." Measured gap was 8.8px. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-hero-summary {
+  margin-top: 1.35rem !important;
+}
+
+/* ---- 3. Wildfire summary text up a step ----------------------------------
+   G: "outdoor lounge and an upper viewing deck definitely needs to be larger
+   font. A little larger." Set in em so it tracks the paragraph at every width.
+   This block already wraps as a paragraph, so growing it adds no new problem. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wildfire-hero-summary__line {
+  font-size: 1.61em !important;
+}
+
+/* ---- 4. "Project Wildfire": NOT done here. H363 sizes the wrapper and both
+   words in one 1200-id rule; the second word's own size had to go in THAT file.
+   See H363. */
+
+/* ---- 5. "Of Your Own?" much bigger ---------------------------------------
+   G: "what could be cooler than having a ruin of your own? Of your own, it
+   should be much bigger. Significantly larger text."
+   Measured 77.3% headroom on that line, so a big jump is safe. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-signature-title__three.wild-signature-title__having {
+  font-size: 1.45em !important;
+}
+
+/* ---- 6. Text 3 upper edge: NOT done here. The whole curated Text-3 list is
+   governed by --ww-color3-full-shadow in H386, whose selector carries 1200 ids
+   via :not(#_) repetition. Restoring the upper layer at that variable is one
+   line and fixes every element at once; trying to out-specify it from here
+   loses silently. See H386. */
+
+/* ---- 7. Projects title tuck: NOT done here. H338 owns that margin at 122 ids
+   and a media query does not beat specificity. Patched in H338. */
+
+/* ---- 8. "and How its Owners Want to Live." was NOT fixable from here.
+   A 6122-id !important rule in H339 paints that inner span and beats anything
+   a new file can say. The upper layer was appended to that rule instead.
+   Lesson: on this site, find the winning rule and edit IT. */
+
+/* ---- 9. "Project Wildfire": the second word, from the LAST stylesheet. -----
+   Trail: H384 (loaded after H363) sizes the WRAPPER to clamp(3.25rem, 15.5vw,
+   4.5rem) and both words simply inherit it - H363's own child rules never take
+   effect. So the child needs its own declaration from a file that loads later
+   than H384, which is this one. Absolute, not em: an em value here computed as
+   plain inherited size twice.
+   20vw = 78px at 390 against the wrapper's 60.45px. "Wildfire" measures 3.77px
+   of width per px of font, so 78px = 294px inside 366px of room. */
+@media (max-width: 599px) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-page-heading__wildfire {
+    font-size: clamp(3.25rem, 20vw, 5.5rem) !important;
+  }
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-page-heading {
+    line-height: 0.84 !important;
+  }
+}

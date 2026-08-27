@@ -14,6 +14,7 @@ import {
 import { Resend } from "resend";
 import twilio from "twilio";
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
+import { emailShell, emailParagraph, emailRows, emailLink } from "../../../src/lib/emailTheme";
 
 type SignupChannel = "email" | "sms" | "both";
 
@@ -89,7 +90,21 @@ async function insertSignup(row: Record<string, unknown>) {
 }
 
 function emailHtml() {
-  return `<div style="font-family:Georgia,serif;color:#4b230f;line-height:1.55"><h1 style="color:#a94f24">Welcome to WildWorks</h1><p>Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.</p><p>To unsubscribe from email, <a href="mailto:hello@wildworks.ai?subject=Unsubscribe%20from%20WildWorks%20email">email WildWorks</a>. For help, call WildWorks at 1+443-797-2166.</p></div>`;
+  // G 2026-08-25: "All emails from WildWorks should be theme colors."
+  // Wording unchanged - only the paint comes from the locked five now.
+  return emailShell({
+    title: "Welcome to WildWorks",
+    heading: "Welcome to WildWorks",
+    eyebrow: "WildWorks",
+    bodyHtml: [
+      emailParagraph(
+        "Thank you for signing up for WildWorks updates. We will use this address only for the updates you selected.",
+      ),
+      emailParagraph(
+        `To unsubscribe from email, ${emailLink("mailto:hello@wildworks.ai?subject=Unsubscribe%20from%20WildWorks%20email", "email WildWorks")}. For help, call WildWorks at 1+443-797-2166.`,
+      ),
+    ].join(""),
+  });
 }
 
 function escapeHtml(value: string) {
@@ -103,7 +118,17 @@ function escapeHtml(value: string) {
 }
 
 function signupNotificationHtml(args: { channel: SignupChannel; email: string | null; phone: string | null; sourcePath: string }) {
-  return `<div style="font-family:Arial,sans-serif;line-height:1.5"><h2>New WildWorks signup</h2><p><strong>Selection:</strong> ${escapeHtml(args.channel)}</p><p><strong>Email:</strong> ${args.email ? escapeHtml(args.email) : "—"}</p><p><strong>Mobile:</strong> ${args.phone ? escapeHtml(args.phone) : "—"}</p><p><strong>Source:</strong> ${escapeHtml(args.sourcePath)}</p></div>`;
+  return emailShell({
+    title: "New WildWorks signup",
+    heading: "New WildWorks signup",
+    eyebrow: "WildWorks",
+    bodyHtml: emailRows([
+      ["Selection", args.channel],
+      ["Email", args.email ?? "—"],
+      ["Mobile", args.phone ?? "—"],
+      ["Source", args.sourcePath],
+    ]),
+  });
 }
 
 export async function POST(request: Request) {

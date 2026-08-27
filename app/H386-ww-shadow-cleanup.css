@@ -22,8 +22,19 @@
 #iscott-sales .wild-iscott-title__segment--three { --ww-color3-original-shadow: rgba(35,9,2,0.96) 0 0.004090em 0, rgba(34,9,2,0.936) 0 0.008180em 0, rgba(33,8,2,0.911) 0 0.012270em 0, rgba(32,8,2,0.887) 0 0.016360em 0, rgba(31,8,2,0.862) 0 0.020450em 0, rgba(29,7,1,0.838) 0 0.024540em 0, rgba(28,7,1,0.813) 0 0.028630em 0, rgba(27,7,1,0.789) 0 0.032720em 0, rgba(26,6,1,0.764) 0 0.036810em 0, rgba(25,6,1,0.74) 0 0.040900em 0; }
 #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.97) 0 0.018259em 0, rgba(32,8,2,0.867) 0 0.036519em 0, rgba(28,7,1,0.763) 0 0.054778em 0, rgba(25,6,1,0.66) 0 0.073037em 0; }
 #project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.019625em 0, rgba(33,9,2,0.908) 0 0.037569em 0, rgba(31,8,2,0.846) 0 0.055512em 0, rgba(29,8,2,0.784) 0 0.073456em 0, rgba(27,7,1,0.722) 0 0.091399em 0, rgba(25,6,1,0.660) 0 0.109343em 0; }
-#ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.006240em 0, rgba(33,9,2,0.551) 0 0.015600em 0, rgba(32,8,2,0.520) 0 0.024960em 0, rgba(30,8,2,0.489) 0 0.034320em 0, rgba(28,7,2,0.458) 0 0.043680em 0, rgba(27,7,1,0.427) 0 0.053040em 0, rgba(25,6,1,0.396) 0 0.062400em 0; }
-.wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.006240em 0, rgba(33,9,2,0.551) 0 0.015600em 0, rgba(32,8,2,0.520) 0 0.024960em 0, rgba(30,8,2,0.489) 0 0.034320em 0, rgba(28,7,2,0.458) 0 0.043680em 0, rgba(27,7,1,0.427) 0 0.053040em 0, rgba(25,6,1,0.396) 0 0.062400em 0; }
+/* G 2026-08-27: "Through the First Wood Fire" on Home looks great - match this
+   line's shadow, top AND bottom, to it. The top edge was already shared; the
+   BOTTOM was the mismatch (0.582->0.396 over 0.0624em here vs 0.970->0.660 over
+   0.109em there), which is why the upper edge read as "too much" on this page.
+   Ladders copied verbatim from .wild-wildfire-build-note__line--close at all
+   THREE of its seams - base, 521, 600 - so they match at every width. */
+#ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.019625em 0, rgba(33,9,2,0.908) 0 0.037569em 0, rgba(31,8,2,0.846) 0 0.055512em 0, rgba(29,8,2,0.784) 0 0.073456em 0, rgba(27,7,1,0.722) 0 0.091399em 0, rgba(25,6,1,0.660) 0 0.109343em 0; }
+/* G 2026-08-27: "on Outdoor Lounge and an Upper Viewing Deck, make the lower
+   shadow a little more pronounced." Every alpha x1.25, geometry untouched - so
+   it darkens without growing a longer tail. Below 600px the Patio word inherits
+   this ladder (its own pin only exists at 600+), which is correct: Patio is the
+   first word of the same sentence and must not read lighter than the rest. */
+.wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-color3-original-shadow: rgba(35,9,2,0.728) 0 0.006240em 0, rgba(33,9,2,0.689) 0 0.015600em 0, rgba(32,8,2,0.650) 0 0.024960em 0, rgba(30,8,2,0.611) 0 0.034320em 0, rgba(28,7,2,0.573) 0 0.043680em 0, rgba(27,7,1,0.534) 0 0.053040em 0, rgba(25,6,1,0.495) 0 0.062400em 0; }
 .wild-subpage--projects .wild-projects-page-intro__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.016000em 0, rgba(34,9,2,0.931) 0 0.025143em 0, rgba(32,8,2,0.892) 0 0.034286em 0, rgba(31,8,2,0.854) 0 0.043429em 0, rgba(30,8,2,0.815) 0 0.052572em 0, rgba(29,8,2,0.776) 0 0.061714em 0, rgba(28,7,2,0.738) 0 0.070857em 0, rgba(26,6,1,0.699) 0 0.080000em 0, rgba(25,6,1,0.660) 0 0.089143em 0; }
 #wildworks-proof .wild-tree-title .wild-line-title__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.97) 0 0.008750em 0, rgba(34,9,2,0.937) 0 0.017500em 0, rgba(33,8,2,0.903) 0 0.026250em 0, rgba(32,8,2,0.87) 0 0.035000em 0, rgba(31,8,2,0.837) 0 0.043750em 0, rgba(29,7,1,0.803) 0 0.052500em 0, rgba(28,7,1,0.77) 0 0.061250em 0, rgba(27,7,1,0.737) 0 0.070000em 0, rgba(26,6,1,0.703) 0 0.078750em 0, rgba(25,6,1,0.67) 0 0.087500em 0; }
 #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.012800em 0, rgba(33,9,2,0.918) 0 0.022552em 0, rgba(32,8,2,0.867) 0 0.032305em 0, rgba(30,8,2,0.815) 0 0.042057em 0, rgba(28,7,2,0.763) 0 0.051809em 0, rgba(27,7,1,0.712) 0 0.061562em 0, rgba(25,6,1,0.660) 0 0.071314em 0; }
@@ -33,7 +44,8 @@
   .wild-subpage--projects .wild-projects-page-intro__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.011143em 0, rgba(34,9,2,0.555) 0 0.022286em 0, rgba(32,8,2,0.529) 0 0.033429em 0, rgba(31,8,2,0.502) 0 0.044572em 0, rgba(29,7,1,0.476) 0 0.055714em 0, rgba(28,7,1,0.449) 0 0.066857em 0, rgba(26,6,1,0.423) 0 0.078000em 0, rgba(25,6,1,0.396) 0 0.089143em 0; }
   #iscott-sales .wild-iscott-title__segment--three { --ww-color3-original-shadow: rgba(35,9,2,0.576) 0 0.005843em 0, rgba(33,8,2,0.554) 0 0.011686em 0, rgba(32,8,2,0.532) 0 0.017529em 0, rgba(30,8,2,0.51) 0 0.023371em 0, rgba(28,7,1,0.488) 0 0.029214em 0, rgba(27,6,1,0.466) 0 0.035057em 0, rgba(25,6,1,0.444) 0 0.040900em 0; }
   #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.009738em 0, rgba(32,8,2,0.535) 0 0.019476em 0, rgba(30,8,2,0.489) 0 0.029215em 0, rgba(28,7,1,0.443) 0 0.038953em 0, rgba(25,6,1,0.396) 0 0.048691em 0; }
-  #project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.014579em 0, rgba(33,8,2,0.545) 0 0.029158em 0, rgba(31,8,2,0.508) 0 0.043737em 0, rgba(29,7,1,0.47) 0 0.058316em 0, rgba(27,7,1,0.433) 0 0.072895em 0, rgba(25,6,1,0.396) 0 0.087474em 0; }
+  #project-wildfire .wild-wildfire-build-note__line--close,
+  #ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.014579em 0, rgba(33,8,2,0.545) 0 0.029158em 0, rgba(31,8,2,0.508) 0 0.043737em 0, rgba(29,7,1,0.47) 0 0.058316em 0, rgba(27,7,1,0.433) 0 0.072895em 0, rgba(25,6,1,0.396) 0 0.087474em 0; }
   #wildworks-proof .wild-tree-title .wild-line-title__line--three,
   #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.516) 0 0.008920em 0, rgba(33,8,2,0.485) 0 0.017841em 0, rgba(31,8,2,0.454) 0 0.026761em 0, rgba(29,7,1,0.422) 0 0.035681em 0, rgba(27,7,1,0.391) 0 0.044602em 0, rgba(25,6,1,0.36) 0 0.053522em 0; }
   #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.008023em 0, rgba(34,9,2,0.555) 0 0.016046em 0, rgba(32,8,2,0.529) 0 0.024069em 0, rgba(31,8,2,0.502) 0 0.032092em 0, rgba(29,7,1,0.476) 0 0.040114em 0, rgba(28,7,1,0.449) 0 0.048137em 0, rgba(26,6,1,0.423) 0 0.056160em 0, rgba(25,6,1,0.396) 0 0.064183em 0; }
@@ -42,7 +54,8 @@
 @media (min-width: 600px) {
   .wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-patio-shadow: var(--ww-color3-full-shadow); }
   #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.010712em 0, rgba(32,8,2,0.535) 0 0.021424em 0, rgba(30,8,2,0.489) 0 0.032137em 0, rgba(28,7,1,0.443) 0 0.042848em 0, rgba(25,6,1,0.396) 0 0.053560em 0; }
-  #project-wildfire .wild-wildfire-build-note__line--close { --ww-color3-original-shadow: rgba(35,9,2,0.466) 0 0.014579em 0, rgba(33,8,2,0.436) 0 0.029158em 0, rgba(31,8,2,0.406) 0 0.043737em 0, rgba(29,7,1,0.376) 0 0.058316em 0, rgba(27,7,1,0.346) 0 0.072895em 0, rgba(25,6,1,0.317) 0 0.087474em 0; }
+  #project-wildfire .wild-wildfire-build-note__line--close,
+  #ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.466) 0 0.014579em 0, rgba(33,8,2,0.436) 0 0.029158em 0, rgba(31,8,2,0.406) 0 0.043737em 0, rgba(29,7,1,0.376) 0 0.058316em 0, rgba(27,7,1,0.346) 0 0.072895em 0, rgba(25,6,1,0.317) 0 0.087474em 0; }
   #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.007221em 0, rgba(34,9,2,0.555) 0 0.014441em 0, rgba(32,8,2,0.529) 0 0.021662em 0, rgba(31,8,2,0.502) 0 0.028883em 0, rgba(29,7,1,0.476) 0 0.036103em 0, rgba(28,7,1,0.449) 0 0.043323em 0, rgba(26,6,1,0.423) 0 0.050544em 0, rgba(25,6,1,0.396) 0 0.057765em 0; }
 }
 
@@ -60,7 +73,8 @@
 ):not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_) {
   --ww-color3-full-shadow:
     var(--ww-color3-original-shadow),
-    0 -0.035em 0 #000;
+    0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
+    0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34);
   -webkit-text-stroke: var(--ww-color3-rim-width, 0) #000 !important;
   paint-order: stroke fill !important;
   text-shadow: var(--ww-color3-full-shadow) !important;
@@ -81,7 +95,28 @@
   #signature-work .wild-signature-title__three,
   #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
 ) {
-  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  /* G 2026-08-26, phone audit: "everywhere on the site where it's text colour
+     number three and it's on top of the primary background colour, it should
+     have an additional shadow on the top of the letters."
+     This line USED to drop the upper layer and leave only the rim, which is
+     why an audit of all sixteen Text-3 elements found the upper edge on none
+     of them except the four H389 prompt lines. The upper layer is restored
+     here and the rim is KEPT - they do different jobs and G asked for the
+     shadow, not for the rim to go. This reverses the 2026-08-23 call above.
+
+     G 2026-08-27, CORRECTION: the layer first written here was
+     `0 -0.035em 0 #000` - solid opaque black, em-based so it GREW with the
+     type. G: "you took the top shadow effect and equaled the bottom, and it
+     looks horrible... reduce it back to where it was everywhere on the site,
+     in all views." It is now the SAME upper edge he approved on 2026-08-25 for
+     the Projects line-three ("that has a second shadow effect. KEEP that") -
+     two layers at 50%/34% black, both offsets px-CLAMPED so the edge stays a
+     hairline at every font size and every viewport. Do not go back to a solid
+     black em offset here; that is the thing he rejected. */
+  --ww-color3-full-shadow:
+    var(--ww-color3-original-shadow),
+    0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
+    0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34) !important;
   --ww-color3-rim-width: 0.009em !important;
 }
 

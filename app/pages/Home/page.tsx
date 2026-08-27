@@ -216,13 +216,13 @@ const aiCapabilities = [
   {
     title: "Human Handoff",
     titleParts: ["Human", "Handoff"],
-    body: "iScott Organizes the Details and Passes Them Off to the Real Scott, So Access to Beautiful Design Still Runs Through Human Taste, Judgement, and Experience While WildWorks.Ai is in Beta and Building Out the System.",
+    body: "iScott Organizes the Details and Passes Them Off to the Real Scott, So Access to Beautiful Design Still Runs Through Human Taste, Judgment, and Experience While WildWorks.Ai is in Beta and Building Out the System.",
     icon: Wrench,
   },
   {
     title: "Design Iteration",
     titleParts: ["Design", "Iteration"],
-    body: "Scott Uses 40+ Years of Taste, Field Judgement, Engineering Sense, and Ai Assisted Design to Turn Rough Photos and Goals Into Tasteful, Practical Options.",
+    body: "Scott Uses 40+ Years of Taste, Field Judgment, Engineering Sense, and Ai Assisted Design to Turn Rough Photos and Goals Into Tasteful, Practical Options.",
     icon: Sparkles,
   },
 ];
@@ -239,7 +239,7 @@ const services = [
       </>,
       <>
         After Four Decades of Designing and Building Hands-On, Scott Does not Stop at Merely Cool Ideas. He Keeps
-        Pushing Designs to New Heights and Carries Them into the Real World with the Judgement, Craft, and Experience
+        Pushing Designs to New Heights and Carries Them into the Real World with the Judgment, Craft, and Experience
         They Require. <strong className="wild-worlds-wildest-builds-copy">Your Project Could be the Next Among the World&apos;s Wildest Builds.</strong>
       </>,
     ],
@@ -276,7 +276,7 @@ const services = [
     title: "How Much Can WildWorks Do?",
     titleLines: ["How Much Can WildWorks Do?"],
     body: [
-      "WildWorks is the Place to Start Any Project, Any Material, Inside or Outside Your Home to Full Design/Build Work from the Ground Up. WildWorks Can Also Serve as the Design and Diagnosis Layer around the Contractor Team You Already have.",
+      "WildWorks is the Place to Start Any Project, Any Material, Inside or Outside Your Home, All the Way to Full Design/Build Work from the Ground Up. WildWorks Can Also Serve as the Design and Diagnosis Layer around the Contractor Team You Already have.",
       "Scott and His Crews Do Much of the Work in House, and We have a Full Roster of Trusted Allied Specialists to Call upon When Needed: Electricians, Plumbers, HVAC Specialists, Etc.",
     ],
     icon: Compass,
@@ -615,7 +615,7 @@ function renderSignatureStoryLine(
       <a
         className="wild-story-contact-link wild-story-contact-link--phone"
         href="tel:+14437972166"
-        aria-label="Call WildWorks at 1+443-797-2166"
+        aria-label="Call WildWorks at 1+443 797 2166"
         style={storyInlineActionStyle}
       >
         <Phone aria-hidden className="wild-story-contact-icon" />
@@ -2030,15 +2030,15 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
 
         @media (max-width: 719px) {
           #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--lead {
-            font-size: clamp(0.98rem, 4.3vw, 1.15rem) !important;
+            font-size: clamp(0.98rem, 4.95vw, 1.32rem) !important;
           }
 
           #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--middle {
-            font-size: clamp(1.05rem, 4.8vw, 1.3rem) !important;
+            font-size: clamp(1.05rem, 5.45vw, 1.48rem) !important;
           }
 
           #top#top.wild-home #project-wildfire .wild-wildfire-build-note__line--close {
-            font-size: clamp(1.12rem, 5.4vw, 1.42rem) !important;
+            font-size: clamp(1.12rem, 6.25vw, 1.64rem) !important;
           }
         }
 
@@ -3020,7 +3020,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                 title="Scott and WildWorks Stone Art"
               />
             </div>
-            <p className="money-panel-kicker wild-preserve-ai-case">Ai + Human Judgement</p>
+            <p className="money-panel-kicker wild-preserve-ai-case">Ai + Human Judgment</p>
             <h3 className="wild-line-title" aria-label="iScott Gathers, Scott Designs with Ai, You Move Forward.">
               <LineTitle lines={["iScott Gathers,", "Scott Designs with Ai,", "You Move Forward."]} />
             </h3>
@@ -3037,7 +3037,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               iScott Collects the Details and Confirms How to Reach You, Then
               Hands the Project to Scott. Scott Reviews the Area, Gets Back to
               You with Questions and Comments, and Uses 40+ Years of Practical
-              Judgement, Taste, Engineering Sense, and Ai Assisted Design to Give
+              Judgment, Taste, Engineering Sense, and Ai Assisted Design to Give
               You an Exquisitely Beautiful Design, a Useful Fix, or the Clearest
               Next Step. In Beta, You Work Directly with Scott While WildWorks.Ai
               Becomes the System You Help Build.

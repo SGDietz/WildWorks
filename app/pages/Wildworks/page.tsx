@@ -58,7 +58,7 @@ export default function WildworksLegalIndex() {
               style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
             >
               Practical website terms, privacy language, communications rules, accessibility information,
-              disclaimers, and iScott disclosure for <BrandText>WildWorks.Live</BrandText>.
+              disclaimers, and iScott disclosure for <BrandText>WildWorks.ai</BrandText>.
             </p>
             <p
               className="wild-legal-copy mx-auto max-w-3xl text-base leading-7"

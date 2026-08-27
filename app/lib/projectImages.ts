@@ -20,4 +20,6 @@ export const projectImages: ProjectImage[] = [
   { src: "/projects/12.jpg", alt: "WildWorks formal stone fountain and wall", width: 3600, height: 2400 },
   { src: "/projects/13.jpg", alt: "WildWorks patterned stone terrace", width: 2592, height: 1936 },
   { src: "/projects/14.jpg", alt: "WildWorks stone steps framed by greenery", width: 3024, height: 4032 },
+  // G 2026-08-26, sent from Dropbox for the middle of the Projects gallery.
+  { src: "/projects/15.jpg", alt: "WildWorks stone compass rose medallion set into a mixed stone patio", width: 1152, height: 2048 },
 ];

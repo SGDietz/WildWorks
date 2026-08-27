@@ -2,7 +2,15 @@ import twilio from "twilio";
 
 const DEFAULT_TTS_PROVIDER = "ElevenLabs";
 const ALLOWED_TTS_PROVIDERS = new Set(["ElevenLabs", "Google", "Amazon"]);
-const PRODUCTION_VOICE_HOSTS = new Set(["wildworks.live", "www.wildworks.live"]);
+const PRODUCTION_VOICE_HOSTS = new Set([
+  "wildworks.live",
+  "www.wildworks.live",
+  // WildWorks.ai is the canonical domain as of 2026-08-26. The phone line still
+  // points at .live, but if TWILIO_VOICE_PUBLIC_BASE_URL ever moves to .ai the
+  // webhook would be rejected as non-production without these two.
+  "wildworks.ai",
+  "www.wildworks.ai",
+]);
 const PRODUCTION_WSS_HOST = "wildworks-iscott-voice.onrender.com";
 const PRODUCTION_WSS_PATH = "/twilio/conversationrelay";
 

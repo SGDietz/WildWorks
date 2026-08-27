@@ -347,7 +347,7 @@ export default function Footer() {
               <Sparkles aria-hidden className="h-5 w-5" />
               <span>Talk to iScott</span>
             </motion.a>
-            <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443-797-2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443 797 2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Phone aria-hidden className="h-5 w-5" />
               <span>Call Now</span>
             </motion.a>

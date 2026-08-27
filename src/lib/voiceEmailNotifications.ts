@@ -17,6 +17,15 @@ import {
 } from "./voiceNotificationIds";
 import { voiceBackendSignal } from "./voiceFetchTimeouts";
 import { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
+import {
+  THEME as EMAIL_THEME,
+  emailShell,
+  emailSubheading,
+  emailCallout,
+  emailRows,
+  emailButton,
+  emailPre,
+} from "./emailTheme";
 
 export { isVoiceEmailOutboxRowDue, voiceEmailRetryDelayMs } from "./voiceEmailOutboxPolicy";
 export { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
@@ -259,7 +268,7 @@ function detailLine(label: string, value: string | null): { text: string; html: 
   if (!value) return null;
   return {
     text: `${label}: ${value}`,
-    html: `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`,
+    html: `<p style="margin:0 0 8px;font-size:14px;color:${EMAIL_THEME.text1}"><strong style="color:${EMAIL_THEME.text2};font-weight:700">${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`,
   };
 }
 
@@ -271,7 +280,7 @@ function secureLinkLine(label: string, value: string | null): { text: string; ht
     const escaped = escapeHtml(url.toString());
     return {
       text: `${label}: ${url.toString()}`,
-      html: `<p><strong>${escapeHtml(label)}:</strong> <a href="${escaped}">Play recording</a></p>`,
+      html: `<p style="margin:0 0 8px;font-size:14px;color:${EMAIL_THEME.text1}"><strong style="color:${EMAIL_THEME.text2};font-weight:700">${escapeHtml(label)}:</strong> <a href="${escaped}" style="color:${EMAIL_THEME.text1};font-weight:700;text-decoration:underline">Play recording</a></p>`,
     };
   } catch {
     return detailLine(label, value);
@@ -302,11 +311,16 @@ function notificationBody(args: {
     ? `\n${args.bodyLabel}:\n${args.body}`
     : "";
   const bodyHtml = args.body && args.bodyLabel
-    ? `<h3>${escapeHtml(args.bodyLabel)}</h3><p style="white-space:pre-wrap">${escapeHtml(args.body)}</p>`
+    ? `${emailSubheading(args.bodyLabel)}${emailPre(args.body)}`
     : "";
   return {
     text: [args.heading, ...details.map((line) => line.text)].join("\n") + bodyText,
-    html: `<div style="font-family:Arial,sans-serif;line-height:1.5"><h2>${escapeHtml(args.heading)}</h2>${details.map((line) => line.html).join("")}${bodyHtml}</div>`,
+    html: emailShell({
+      title: args.heading,
+      heading: args.heading,
+      eyebrow: "WildWorks · iScott",
+      bodyHtml: `${details.map((line) => line.html).join("")}${bodyHtml}`,
+    }),
   };
 }
 
@@ -979,24 +993,40 @@ export async function notifyIScottLeadByEmail(
   ].filter((row): row is [string, string] => Boolean(row[1]));
   const linksHtml = [
     leadDashboardUrl
-      ? `<a href="${escapeHtml(leadDashboardUrl)}" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:7px;background:#9a461c;color:#fff7df;text-decoration:none;font-weight:700">Open Complete Lead in Supabase</a>`
+      ? emailButton(leadDashboardUrl, "Open Complete Lead in Supabase")
       : "",
     transcriptDashboardUrl
-      ? `<a href="${escapeHtml(transcriptDashboardUrl)}" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:7px;background:#6d3012;color:#fff7df;text-decoration:none;font-weight:700">Open Transcript</a>`
+      ? emailButton(transcriptDashboardUrl, "Open Transcript")
       : "",
   ].join("");
   const mediaHtml = media.length
     ? media.map((item) => {
         const link = item.signedUrl
-          ? `<a href="${escapeHtml(item.signedUrl)}" style="color:#8d3e18;font-weight:700">Open file</a>`
+          ? `<a href="${escapeHtml(item.signedUrl)}" style="color:${EMAIL_THEME.text1};font-weight:700;text-decoration:underline">Open file</a>`
           : "Stored privately in Supabase";
         const preview = item.signedUrl && item.mimeType.startsWith("image/")
-          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid #e2c18b"></a></div>`
+          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid ${EMAIL_THEME.text3}"></a></div>`
           : "";
-        return `<li style="margin:0 0 16px"><strong>${escapeHtml(item.name)}</strong><br><span style="color:#6d5a49">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
+        return `<li style="margin:0 0 16px;color:${EMAIL_THEME.text1}"><strong>${escapeHtml(item.name)}</strong><br><span style="color:${EMAIL_THEME.text2}">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
       }).join("")
     : "<li>None.</li>";
-  const html = `<!doctype html><html><body style="margin:0;background:#f6ead5;color:#35180a;font-family:Arial,sans-serif"><div style="max-width:760px;margin:0 auto;padding:28px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:26px"><p style="margin:0 0 6px;color:#a44b20;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">WildWorks · iScott</p><h1 style="margin:0 0 20px;font-family:Georgia,serif;font-size:28px;color:#6f2f12">New Confirmed Lead</h1><div style="margin:0 0 22px;padding:16px 18px;background:#f9edd6;border-left:4px solid #a44b20;border-radius:8px"><p style="margin:0 0 6px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Summary</p><p style="margin:0;font-size:15px;line-height:1.55;color:#4a2410">${escapeHtml(summary)}</p></div>${qualRows.filter(([, v]) => Boolean(v)).length ? `<div style="margin:0 0 22px;padding:16px 18px;background:#fff4e2;border:1px solid #e2c18b;border-radius:8px"><p style="margin:0 0 10px;color:#a44b20;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">How serious</p><table style="width:100%;border-collapse:collapse">${qualRows.filter(([, v]) => Boolean(v)).map(([label, value]) => `<tr><td style="width:150px;padding:5px 12px 5px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:5px 0;font-weight:600;white-space:pre-wrap">${escapeHtml(String(value))}</td></tr>`).join("")}</table></div>` : ""}<table style="width:100%;border-collapse:collapse;margin-bottom:20px">${detailRows.map(([label, value]) => `<tr><td style="width:150px;padding:7px 12px 7px 0;color:#75583e;vertical-align:top">${escapeHtml(label)}</td><td style="padding:7px 0;font-weight:650;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table>${linksHtml}<h2 style="margin:24px 0 10px;font-family:Georgia,serif;color:#6f2f12">Photos, Videos and Files</h2><ol style="padding-left:22px">${mediaHtml}</ol></div></div></body></html>`;
+  const qualLive = qualRows.filter(([, v]) => Boolean(v));
+  const html = emailShell({
+    title: "New Confirmed Lead",
+    heading: "New Confirmed Lead",
+    eyebrow: "WildWorks · iScott",
+    maxWidth: 760,
+    bodyHtml: [
+      emailCallout({ label: "Summary", html: escapeHtml(summary) }),
+      qualLive.length
+        ? `<div style="margin:0 0 22px;padding:16px 18px;background:${EMAIL_THEME.pageBg};border:1px solid ${EMAIL_THEME.text3};border-radius:8px"><p style="margin:0 0 10px;color:${EMAIL_THEME.text2};font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">How serious</p>${emailRows(qualLive as Array<[string, string | null | undefined]>)}</div>`
+        : "",
+      emailRows(detailRows as Array<[string, string | null | undefined]>),
+      linksHtml,
+      emailSubheading("Photos, Videos and Files"),
+      `<ol style="padding-left:22px;color:${EMAIL_THEME.text1}">${mediaHtml}</ol>`,
+    ].join(""),
+  });
 
   return deliverVoiceEmail({
     eventType: "iscott_lead",
@@ -1052,7 +1082,25 @@ export async function notifyFirstPublicMessageByEmail(
     "",
     message,
   ].filter((line): line is string => line !== null).join("\n");
-  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#35180a;background:#f6ead5"><div style="max-width:720px;margin:auto;padding:24px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:24px">${testId ? '<p style="margin:0 0 12px;color:#a44b20;font-weight:800">TEST ONLY — controlled notification smoke; not visitor traffic.</p>' : ""}<h1 style="font-family:Georgia,serif;color:#6f2f12">VIP iScott Message</h1><p><strong>Apparent interest:</strong> ${escapeHtml(interest)}</p><p><strong>Session:</strong> ${escapeHtml(sessionId)}</p>${receivedAt ? `<p><strong>Received:</strong> ${escapeHtml(receivedAt)}</p>` : ""}${route ? `<p><strong>Route:</strong> ${escapeHtml(route)}</p>` : ""}${location ? `<p><strong>Approximate location:</strong> ${escapeHtml(location)}</p>` : ""}${device ? `<p><strong>Device:</strong> ${escapeHtml(device)}</p>` : ""}<div style="white-space:pre-wrap;background:#f4e2c2;border-radius:8px;padding:16px">${escapeHtml(message)}</div></div></div></body></html>`;
+  const html = emailShell({
+    title: "VIP iScott Message",
+    heading: "VIP iScott Message",
+    eyebrow: "WildWorks · iScott",
+    bodyHtml: [
+      testId
+        ? emailCallout({ label: "Test only", html: "Controlled notification smoke; not visitor traffic." })
+        : "",
+      emailRows([
+        ["Apparent interest", interest],
+        ["Session", sessionId],
+        ["Received", receivedAt],
+        ["Route", route],
+        ["Approximate location", location],
+        ["Device", device],
+      ]),
+      emailPre(message),
+    ].join(""),
+  });
   return deliverVoiceEmail({
     eventType: "telemetry_message",
     idempotencyKey: testId ? `telemetry-message:test:${testId}` : `telemetry-message:first:${sessionId}`,
@@ -1088,7 +1136,12 @@ export async function notifyTelemetryDigestByEmail(
     `Bot sessions excluded: ${args.botSessions}`,
     ...(topRoutes.length ? ["", "Top public routes:", ...topRoutes.map((item) => `- ${item.route}: ${item.count}`)] : []),
   ];
-  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#35180a;background:#f6ead5"><div style="max-width:720px;margin:auto;padding:24px"><div style="background:#fffaf0;border:1px solid #d2a667;border-radius:12px;padding:24px"><h1 style="font-family:Georgia,serif;color:#6f2f12">WildWorks Visitor Digest</h1><pre style="white-space:pre-wrap;font-family:Arial,sans-serif">${escapeHtml(lines.join("\n"))}</pre></div></div></body></html>`;
+  const html = emailShell({
+    title: "WildWorks Visitor Digest",
+    heading: "WildWorks Visitor Digest",
+    eyebrow: "WildWorks · iScott",
+    bodyHtml: emailPre(lines.join("\n")),
+  });
   return deliverVoiceEmail({
     eventType: "telemetry_digest",
     idempotencyKey: `telemetry-digest:${digestDate}`,

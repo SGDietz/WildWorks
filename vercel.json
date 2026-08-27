@@ -12,6 +12,14 @@
     {
       "path": "/api/internal/telemetry-digest",
       "schedule": "30 12 * * *"
+    },
+    {
+      "path": "/api/cron/health",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/health?daily=1",
+      "schedule": "0 13 * * *"
     }
   ]
 }

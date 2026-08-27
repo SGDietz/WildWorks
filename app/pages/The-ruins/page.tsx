@@ -1,5 +1,6 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
 import LargeIScottCta from "../../components/LargeIScottCta";
+import IScottPromptLines from "../../components/IScottPromptLines";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
 
 export default function TheRuins() {
@@ -122,7 +123,7 @@ export default function TheRuins() {
                 <h2 className="text-xl mb-2">Why This Works</h2>
                 <div className="space-y-2 leading-relaxed">
                     <p>
-                        The Ruins isn&apos;t a replica and is plausible and real—and now it is a place that makes people sit and wonder.
+                        The Ruins isn&apos;t a replica. It is plausible and real — and now it is a place that makes people sit and wonder.
                     </p>
                     <p>
                         My hope is that decades from now, even hundreds of years from now, people will still stand there looking at The Ruins and say:
@@ -184,6 +185,10 @@ export default function TheRuins() {
               <PhoneNumberLine
                 className="wild-phone-number-line--home-footer"
                 showCallToday={false}
+              />
+              <IScottPromptLines
+                setup={"His Client Asked, \"What Do You See Here?\""}
+                ask={"Now Tell iScott What You See on Yours."}
               />
               <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
             </div>
