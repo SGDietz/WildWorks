@@ -40,6 +40,16 @@
 #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.970) 0 0.012800em 0, rgba(33,9,2,0.918) 0 0.022552em 0, rgba(32,8,2,0.867) 0 0.032305em 0, rgba(30,8,2,0.815) 0 0.042057em 0, rgba(28,7,2,0.763) 0 0.051809em 0, rgba(27,7,1,0.712) 0 0.061562em 0, rgba(25,6,1,0.660) 0 0.071314em 0; }
 #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.98) 0 0.004816em 0, rgba(34,9,2,0.947) 0 0.009632em 0, rgba(33,8,2,0.913) 0 0.014448em 0, rgba(32,8,2,0.88) 0 0.019264em 0, rgba(31,8,2,0.847) 0 0.024080em 0, rgba(29,7,1,0.813) 0 0.028896em 0, rgba(28,7,1,0.78) 0 0.033712em 0, rgba(27,7,1,0.747) 0 0.038528em 0, rgba(26,6,1,0.713) 0 0.043344em 0, rgba(25,6,1,0.68) 0 0.048160em 0; }
 
+/* G 2026-08-27, "fix the stripes". These ladders are stacked glyph copies with
+   ZERO blur, so they only read solid while consecutive copies still overlap.
+   The step is in em, so it grows with the type: at 90px "To The First Wood
+   Fire." was 1.31px between copies and combed visibly, while the Home line G
+   approved runs 0.76px and reads smooth. Fix is copy COUNT, not reach: each
+   ladder below keeps its exact reach and its accumulated darkness (drift under
+   0.6%) and simply adds copies until the largest gap is <= 0.70px at the
+   biggest size that ladder ever renders. Measured maxima: first-fire 90px,
+   signature-three 149.6px, services-two 106.4px. */
+
 @media (min-width: 521px) {
   .wild-subpage--projects .wild-projects-page-intro__line--three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.011143em 0, rgba(34,9,2,0.555) 0 0.022286em 0, rgba(32,8,2,0.529) 0 0.033429em 0, rgba(31,8,2,0.502) 0 0.044572em 0, rgba(29,7,1,0.476) 0 0.055714em 0, rgba(28,7,1,0.449) 0 0.066857em 0, rgba(26,6,1,0.423) 0 0.078000em 0, rgba(25,6,1,0.396) 0 0.089143em 0; }
   #iscott-sales .wild-iscott-title__segment--three { --ww-color3-original-shadow: rgba(35,9,2,0.576) 0 0.005843em 0, rgba(33,8,2,0.554) 0 0.011686em 0, rgba(32,8,2,0.532) 0 0.017529em 0, rgba(30,8,2,0.51) 0 0.023371em 0, rgba(28,7,1,0.488) 0 0.029214em 0, rgba(27,6,1,0.466) 0 0.035057em 0, rgba(25,6,1,0.444) 0 0.040900em 0; }
@@ -47,7 +57,7 @@
   #project-wildfire .wild-wildfire-build-note__line--close,
   #ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.014579em 0, rgba(33,8,2,0.545) 0 0.029158em 0, rgba(31,8,2,0.508) 0 0.043737em 0, rgba(29,7,1,0.47) 0 0.058316em 0, rgba(27,7,1,0.433) 0 0.072895em 0, rgba(25,6,1,0.396) 0 0.087474em 0; }
   #wildworks-proof .wild-tree-title .wild-line-title__line--three,
-  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.516) 0 0.008920em 0, rgba(33,8,2,0.485) 0 0.017841em 0, rgba(31,8,2,0.454) 0 0.026761em 0, rgba(29,7,1,0.422) 0 0.035681em 0, rgba(27,7,1,0.391) 0 0.044602em 0, rgba(25,6,1,0.36) 0 0.053522em 0; }
+  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two { --ww-color3-original-shadow: rgba(35,9,2,0.384) 0 0.005947em 0, rgba(34,9,2,0.371) 0 0.011894em 0, rgba(33,8,2,0.357) 0 0.017841em 0, rgba(32,8,2,0.332) 0 0.023788em 0, rgba(30,8,2,0.319) 0 0.029734em 0, rgba(29,7,1,0.306) 0 0.035681em 0, rgba(28,7,1,0.282) 0 0.041628em 0, rgba(26,7,1,0.270) 0 0.047575em 0, rgba(25,6,1,0.257) 0 0.053522em 0; }
   #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.008023em 0, rgba(34,9,2,0.555) 0 0.016046em 0, rgba(32,8,2,0.529) 0 0.024069em 0, rgba(31,8,2,0.502) 0 0.032092em 0, rgba(29,7,1,0.476) 0 0.040114em 0, rgba(28,7,1,0.449) 0 0.048137em 0, rgba(26,6,1,0.423) 0 0.056160em 0, rgba(25,6,1,0.396) 0 0.064183em 0; }
 }
 
@@ -55,8 +65,8 @@
   .wild-subpage--wildfire .wildfire-hero-summary__line--c3 { --ww-patio-shadow: var(--ww-color3-full-shadow); }
   #project-wildfire .wild-wildfire-sequence-callout__line--going { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.010712em 0, rgba(32,8,2,0.535) 0 0.021424em 0, rgba(30,8,2,0.489) 0 0.032137em 0, rgba(28,7,1,0.443) 0 0.042848em 0, rgba(25,6,1,0.396) 0 0.053560em 0; }
   #project-wildfire .wild-wildfire-build-note__line--close,
-  #ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.466) 0 0.014579em 0, rgba(33,8,2,0.436) 0 0.029158em 0, rgba(31,8,2,0.406) 0 0.043737em 0, rgba(29,7,1,0.376) 0 0.058316em 0, rgba(27,7,1,0.346) 0 0.072895em 0, rgba(25,6,1,0.317) 0 0.087474em 0; }
-  #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.582) 0 0.007221em 0, rgba(34,9,2,0.555) 0 0.014441em 0, rgba(32,8,2,0.529) 0 0.021662em 0, rgba(31,8,2,0.502) 0 0.028883em 0, rgba(29,7,1,0.476) 0 0.036103em 0, rgba(28,7,1,0.449) 0 0.043323em 0, rgba(26,6,1,0.423) 0 0.050544em 0, rgba(25,6,1,0.396) 0 0.057765em 0; }
+  #ww-wildfire-first-fire { --ww-color3-original-shadow: rgba(35,9,2,0.269) 0 0.007289em 0, rgba(35,9,2,0.269) 0 0.014579em 0, rgba(34,8,2,0.249) 0 0.021868em 0, rgba(33,8,2,0.249) 0 0.029158em 0, rgba(32,8,2,0.229) 0 0.036448em 0, rgba(31,8,2,0.229) 0 0.043737em 0, rgba(30,8,2,0.210) 0 0.051026em 0, rgba(29,7,1,0.210) 0 0.058316em 0, rgba(28,7,1,0.191) 0 0.065605em 0, rgba(27,7,1,0.191) 0 0.072895em 0, rgba(26,7,1,0.174) 0 0.080184em 0, rgba(25,6,1,0.174) 0 0.087474em 0; }
+  #signature-work .wild-signature-title__three { --ww-color3-original-shadow: rgba(35,9,2,0.415) 0 0.004443em 0, rgba(35,9,2,0.407) 0 0.008887em 0, rgba(34,9,2,0.392) 0 0.013330em 0, rgba(33,9,2,0.376) 0 0.017774em 0, rgba(32,8,2,0.368) 0 0.022217em 0, rgba(31,8,2,0.349) 0 0.026661em 0, rgba(30,8,2,0.339) 0 0.031104em 0, rgba(29,7,1,0.328) 0 0.035548em 0, rgba(28,7,1,0.310) 0 0.039991em 0, rgba(28,7,1,0.302) 0 0.044435em 0, rgba(26,6,1,0.287) 0 0.048878em 0, rgba(26,6,1,0.274) 0 0.053322em 0, rgba(25,6,1,0.267) 0 0.057765em 0; }
 }
 
 /* Exact established large Color 3 phrases on page-background surfaces. */

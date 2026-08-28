@@ -28,9 +28,15 @@
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-footer-contact-cta__title {
   font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
   font-size: clamp(1.5rem, 2.35vw, 43px) !important;
+  /* G 2026-08-27 "fix the stripes": this ladder is in fixed px, so its gaps
+     (0.7 / 0.9 / 1.1 / 1.2px) never shrank with the type and the copies stopped
+     touching at EVERY width, on every page. Same 3.9px reach, same darkness
+     (1.5% drift), 4 -> 6 copies so the largest gap is 0.65px. */
   text-shadow:
-    0 0.7px 0 rgba(35, 9, 2, 0.97),
-    0 1.6px 0 rgba(30, 8, 2, 0.89),
-    0 2.7px 0 rgba(25, 6, 1, 0.8),
-    0 3.9px 0 rgba(25, 6, 1, 0.66) !important;
+    0 0.65px 0 rgba(35, 9, 2, 0.961),
+    0 1.3px 0 rgba(32, 8, 2, 0.821),
+    0 1.95px 0 rgba(28, 7, 2, 0.713),
+    0 2.6px 0 rgba(25, 6, 1, 0.614),
+    0 3.25px 0 rgba(25, 6, 1, 0.473),
+    0 3.9px 0 rgba(25, 6, 1, 0.443) !important;
 }
