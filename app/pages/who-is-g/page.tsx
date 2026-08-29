@@ -1,7 +1,6 @@
 import AspectRatioImage from "../../components/AspectRatioImage";
 import BrandText from "../../components/BrandText";
 import LargeIScottCta from "../../components/LargeIScottCta";
-import IScottPromptLines from "../../components/IScottPromptLines";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
 
 export default function WhoIsG() {
@@ -91,10 +90,6 @@ export default function WhoIsG() {
         <PhoneNumberLine
           className="wild-phone-number-line--home-footer"
           showCallToday={false}
-        />
-        <IScottPromptLines
-          setup={"You’ve Read a Life of Constant Reinvention."}
-          ask={"Tell iScott What You’d Reinvent on Your Land."}
         />
         <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
       </div>

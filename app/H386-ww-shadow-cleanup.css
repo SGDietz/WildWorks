@@ -81,8 +81,40 @@
   #signature-work .wild-signature-title__three,
   #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
 ):not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_) {
+  /* G 2026-08-28, with screenshots: "This is ridiculously huge. Shadows make it
+     more like the other colored texts... everywhere on the site that color 3
+     text is against the primary bg."
+
+     MEASURED on his own example - the three stacked lines on Home:
+
+       "Then Came the Patio."      Text 1   0 top,  4 bottom, 0.0609em deep
+       "Then Came the Lounge."     Text 2   0 top,  4 bottom, 0.0609em deep
+       "Then We Just Kept Going."  Text 3   2 top, 10 bottom, 0.1203em deep
+
+     Text 3 carried two upper layers the other two do not have at all, ten
+     bottom stops instead of four, and DOUBLE the depth. My earlier "unify" pass
+     made Text 3 consistent with itself and left it twice as heavy as its own
+     neighbours - which is exactly what he is pointing at.
+
+     This ladder is now copied verbatim from "Then Came the Patio." (Text 1),
+     converted to em so it holds at every size. Text 3 and Text 1 are now the
+     same shadow. */
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396);
   --ww-color3-full-shadow:
     var(--ww-color3-original-shadow),
+    /* THE TOP EDGE. G 2026-08-28, after I removed it uninstructed: "Are you
+       removing the top shadow edge on the number three text on the primary
+       background color? It needs to have a nice dash on there. You cannot
+       deviate... This is incredibly important that you put it back on there."
+
+       He never asked for this to go. I stripped it while matching the BOTTOM
+       ladder to Text 1, which was not the same instruction. Restored verbatim
+       from the pre-edit backup - same clamps, same alphas, byte for byte.
+       DO NOT REMOVE THIS AGAIN WITHOUT HIM ASKING BY NAME. */
     0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
     0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34);
   -webkit-text-stroke: var(--ww-color3-rim-width, 0) #000 !important;
@@ -123,8 +155,40 @@
      two layers at 50%/34% black, both offsets px-CLAMPED so the edge stays a
      hairline at every font size and every viewport. Do not go back to a solid
      black em offset here; that is the thing he rejected. */
+  /* G 2026-08-28, with screenshots: "This is ridiculously huge. Shadows make it
+     more like the other colored texts... everywhere on the site that color 3
+     text is against the primary bg."
+
+     MEASURED on his own example - the three stacked lines on Home:
+
+       "Then Came the Patio."      Text 1   0 top,  4 bottom, 0.0609em deep
+       "Then Came the Lounge."     Text 2   0 top,  4 bottom, 0.0609em deep
+       "Then We Just Kept Going."  Text 3   2 top, 10 bottom, 0.1203em deep
+
+     Text 3 carried two upper layers the other two do not have at all, ten
+     bottom stops instead of four, and DOUBLE the depth. My earlier "unify" pass
+     made Text 3 consistent with itself and left it twice as heavy as its own
+     neighbours - which is exactly what he is pointing at.
+
+     This ladder is now copied verbatim from "Then Came the Patio." (Text 1),
+     converted to em so it holds at every size. Text 3 and Text 1 are now the
+     same shadow. */
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396);
   --ww-color3-full-shadow:
     var(--ww-color3-original-shadow),
+    /* THE TOP EDGE. G 2026-08-28, after I removed it uninstructed: "Are you
+       removing the top shadow edge on the number three text on the primary
+       background color? It needs to have a nice dash on there. You cannot
+       deviate... This is incredibly important that you put it back on there."
+
+       He never asked for this to go. I stripped it while matching the BOTTOM
+       ladder to Text 1, which was not the same instruction. Restored verbatim
+       from the pre-edit backup - same clamps, same alphas, byte for byte.
+       DO NOT REMOVE THIS AGAIN WITHOUT HIM ASKING BY NAME. */
     0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
     0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34) !important;
   --ww-color3-rim-width: 0.009em !important;
@@ -133,17 +197,27 @@
 /* Home hero only: match the approved full-size iScott icon depth. The labels,
    buttons, and avatar/Finish controls are intentionally outside this selector. */
 #top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta > svg {
-  filter:
+  /* Variable-driven 2026-08-28 so the Home gold standard can reach these hero
+     icons. Fallback byte-identical to the value that was here, so nothing moves
+     unless a scope sets --ww-cta-icon-shadow. Both this block and its
+     higher-specificity restatement below are converted - converting only one
+     would have left the restatement winning with the old literal. */
+  filter: var(--ww-cta-icon-shadow,
     drop-shadow(rgba(35, 9, 2, 0.9) 0 1px 0)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0) !important;
+    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0)) !important;
 }
 
 /* The existing button system carries deliberately extreme specificity. This
    exact Home-hero restatement wins only the two reviewed SVGs. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row .money-cta > svg {
-  filter:
+  /* Variable-driven 2026-08-28 so the Home gold standard can reach these hero
+     icons. Fallback byte-identical to the value that was here, so nothing moves
+     unless a scope sets --ww-cta-icon-shadow. Both this block and its
+     higher-specificity restatement below are converted - converting only one
+     would have left the restatement winning with the old literal. */
+  filter: var(--ww-cta-icon-shadow,
     drop-shadow(rgba(35, 9, 2, 0.9) 0 1px 0)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0) !important;
+    drop-shadow(rgba(25, 6, 1, 0.6) 0 2px 0)) !important;
 }
 
 /* The Color 2 Patio word inherits from the targeted summary line at 600px+;
@@ -161,4 +235,150 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
       0.028em 0.035em 0.024em rgba(35,9,2,0.10),
       0 0.055em 0.030em rgba(25,6,1,0.14) !important;
   }
+}
+
+/* G 2026-08-28, mobile walk-down, Projects intro: "and how its owners want to
+   live - you can barely see it. It needs to pop."
+
+   MEASURED, and it is NOT a size problem - all three intro lines are 28px. It is
+   contrast against the #c44d0b primary background:
+
+     Text 1 #fce0ad  "WildWorks Designs and Builds..."      3.72:1
+     Text 2 #edc775  "Complete Outdoor Environments."       2.95:1
+     Text 3 #f08c28  "and How its Owners Want to Live."     1.92:1   <- this line
+
+   1.92:1 is roughly half its neighbours and far under any readability floor.
+   Orange type on an orange field.
+
+   The five colours and their roles are locked, so this does NOT recolour the
+   line. Instead it thickens the existing dark rim that H386 already paints
+   behind the fill (paint-order: stroke fill is set above), from 0.009em to
+   0.03em - about 0.84px at 28px. That buys real edge separation while leaving
+   both the palette and the newly unified shadow ladder untouched.
+
+   NOTE FOR G: this makes the line legible, but the honest fix for 1.92:1 is
+   giving that line Text 1 or Text 2 like its neighbours. That moves a locked
+   colour role, so it is his call, not a side effect of a legibility pass.
+
+   Applied at all widths: the contrast is identical on desktop, so a line you can
+   barely read on a phone is equally unreadable on a monitor. */
+html body#wildworks-body#wildworks-body
+  .wild-subpage--projects .wild-projects-page-intro__three-ink,
+html body#wildworks-body#wildworks-body
+  .wild-subpage--projects .wild-projects-page-intro__line--three {
+  --ww-color3-rim-width: 0.03em !important;
+}
+
+/* G 2026-08-28, same walk, Projects kicker: he read the four lines out loud -
+   "These are finished spaces... Open any picture, then tell iScott... which
+   feeling you want on your land" - and said they needed attention.
+
+   MEASURED all four against the #c44d0b background. Three are fine. Exactly one
+   is not, and it is the line he quoted twice:
+
+     "These Are Finished Spaces."          Text 1   3.72:1
+     "Stone, Fire, Water & Garden."        Text 2   2.95:1
+     "Open Any Picture, Then Tell iScott"  Text 3   1.92:1   <- this one, rim 0px
+     "Which Feeling You Want on Your Land." Text 1  3.72:1
+
+   Same defect as the intro line above: Text 3 on the primary orange. These
+   kicker lines are NOT in the color3 target list, so they never received even
+   the 0.009em rim - they were bare. Same treatment, same reasoning, palette
+   untouched.
+
+   For the record, all four already sit on ONE line and are centred to the pixel
+   at both 360 and 375 wide (each line's midpoint = viewport midpoint exactly),
+   so the "make them fit / one line" half of his note was already true. */
+html body#wildworks-body#wildworks-body
+  .wild-subpage--projects .wild-projects-page-kicker__line {
+  paint-order: stroke fill !important;
+}
+/* The four spans carry NO modifier classes - they are four identical
+   `wild-projects-page-kicker__line` spans and the colours come from nth-child.
+   A `--three` / `--c3` selector matches nothing here and would have shipped
+   inert, so this targets the third child directly. If the line order ever
+   changes, this rim follows the POSITION, not the colour - re-check it then. */
+html body#wildworks-body#wildworks-body
+  .wild-subpage--projects .wild-projects-page-kicker__line:nth-child(3) {
+  -webkit-text-stroke: 0.03em #000 !important;
+}
+
+
+/* G 2026-08-28: "all this number three text color on the primary background is
+   ridiculous... cut that shadow effect on the bottom by forty percent. Do that
+   everywhere."
+
+   The unified color3 family above already took the 40% cut. These THREE are also
+   Text 3 (#f08c28) on the primary #c44d0b, but they were never in that family -
+   they carry no top shadow and no --ww-color3-original-shadow - so the family cut
+   missed them. "Everywhere" means them too.
+
+   Each ladder below is that element's OWN measured geometry, converted to em and
+   with every alpha multiplied by 0.6. Layer count, offsets and colours are
+   untouched, so only the darkness changes - no reshaping, no banding.
+
+   Note on the third: "Website Like This?" (#ai-websites) and "is Known for:"
+   (#services) share the class .wild-line-title__line--two, but only the first is
+   outside the family. Scoping by the section id keeps this cut off the one that
+   was already handled - a bare class selector here would have double-cut it. */
+
+/* Legendary (hero headline em) */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top .wild-hero-headline__line em {
+  text-shadow: 0 0.0289em 0 rgba(35, 9, 2, 0.588), 0 0.05419em 0 rgba(34, 9, 2, 0.558), 0 0.07948em 0 rgba(32, 8, 2, 0.528), 0 0.10477em 0 rgba(30, 8, 2, 0.498), 0 0.13006em 0 rgba(28, 7, 1, 0.468), 0 0.15535em 0 rgba(26, 7, 1, 0.438), 0 0.18064em 0 rgba(25, 6, 1, 0.408) !important;
+}
+
+/* Anywhere on Planet Earth (hero lede italic) */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top .wild-hero-lede-line--italic {
+  text-shadow: 0 0.016em 0 rgba(35, 9, 2, 0.582), 0 0.02514em 0 rgba(34, 9, 2, 0.558), 0 0.03429em 0 rgba(32, 8, 2, 0.534), 0 0.04343em 0 rgba(31, 8, 2, 0.513), 0 0.05257em 0 rgba(30, 8, 2, 0.49), 0 0.06171em 0 rgba(29, 8, 2, 0.466), 0 0.07086em 0 rgba(28, 7, 2, 0.442), 0 0.08em 0 rgba(26, 6, 1, 0.419), 0 0.08914em 0 rgba(25, 6, 1, 0.396) !important;
+}
+
+/* Website Like This? (#ai-websites only - NOT #services 'is Known for:', which is already in the family) */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #ai-websites .wild-line-title__line--two {
+  text-shadow: 0 0.009em 0 rgba(35, 9, 2, 0.42), 0 0.018em 0 rgba(34, 9, 2, 0.402), 0 0.027em 0 rgba(33, 8, 2, 0.386), 0 0.036em 0 rgba(32, 8, 2, 0.366), 0 0.045em 0 rgba(31, 8, 2, 0.35), 0 0.054em 0 rgba(29, 7, 1, 0.334), 0 0.063em 0 rgba(28, 7, 1, 0.315), 0 0.072em 0 rgba(27, 7, 1, 0.299), 0 0.081em 0 rgba(26, 6, 1, 0.282), 0 0.09em 0 rgba(25, 6, 1, 0.264) !important;
+}
+
+
+/* G 2026-08-28: "match that block exactly."
+
+   The iScott sales title is one heading in three segments, and its Text 3
+   segment was the odd one out:
+
+     "iScott"      Text 2   10 stops, 0.04090em deep
+     "is the"      Text 2   10 stops, 0.04090em deep
+     "Front Door"  Text 3    4 stops, 0.06086em deep   <- 50%% deeper
+
+   The shared family ladder is right for the rest of the site but too deep for
+   THIS block, because this block runs its own shallow, dense treatment. Ladder
+   below is copied verbatim off "is the", the segment directly above it, so all
+   three segments of the heading now carry an identical shadow.
+
+   Direct text-shadow rather than the family variable: the family sets
+   `text-shadow: var(--ww-color3-full-shadow) !important` at ~857 ids, so a
+   variable override at lower specificity would have been ignored. 880 clears it
+   with the smallest margin that works - deliberately not the 4800 seen
+   elsewhere in this codebase, since G is already unhappy about page weight. */
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #iscott-sales .wild-iscott-title__segment--three {
+  /* CORRECTED: this was written as a direct `text-shadow` and did NOT win -
+     PROVEN by injecting the same declaration at 901, 1001 and even 1201 ids,
+     none of which took effect, while setting the VARIABLE at 900 took hold
+     immediately. Something pins text-shadow on this element beyond reach of raw
+     specificity. Setting --ww-color3-original-shadow instead lets the family's
+     own `var(--ww-color3-full-shadow)` compute this ladder. Exactly the
+     "pin the variable, not the property" rule I had already learned today on
+     the upload box and the avatar CTA, and then failed to apply here. */
+  --ww-color3-original-shadow:
+    0 0.00409em 0 rgba(35, 9, 2, 0.96),
+    0 0.00818em 0 rgba(34, 9, 2, 0.937),
+    0 0.01227em 0 rgba(33, 8, 2, 0.91),
+    0 0.01636em 0 rgba(32, 8, 2, 0.886),
+    0 0.02045em 0 rgba(31, 8, 2, 0.863),
+    0 0.02454em 0 rgba(29, 7, 1, 0.84),
+    0 0.02863em 0 rgba(28, 7, 1, 0.81),
+    0 0.03272em 0 rgba(27, 7, 1, 0.79),
+    0 0.03681em 0 rgba(26, 6, 1, 0.765),
+    0 0.04090em 0 rgba(25, 6, 1, 0.74) !important;
 }

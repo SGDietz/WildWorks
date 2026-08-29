@@ -186,8 +186,11 @@ export default function TheRuins() {
                 className="wild-phone-number-line--home-footer"
                 showCallToday={false}
               />
+              {/* G 2026-08-28: "Take out his client asked, what do you see
+                  here. Delete that." The ask stays, recoloured to Text 2 and
+                  forced onto one line - see H391. */}
               <IScottPromptLines
-                setup={"His Client Asked, \"What Do You See Here?\""}
+                className="wild-iscott-prompt--ruins-single"
                 ask={"Now Tell iScott What You See on Yours."}
               />
               <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />

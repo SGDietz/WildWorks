@@ -96,7 +96,10 @@
 @media (max-width: 600px) {
   .wild-subpage--projects > .wild-projects-gallery {
     grid-template-columns: repeat(8, minmax(0, 1fr));
-    grid-template-rows: repeat(25, clamp(3rem, 12vw, 3.8rem));
+    /* 25 -> 22: the bottom pair now shares one band ending at row 22. Leaving
+       25 explicit tracks would paint three empty rows of dead space below the
+       last picture. */
+    grid-template-rows: repeat(22, clamp(3rem, 12vw, 3.8rem));
   }
 
   .wild-subpage--projects > .wild-projects-gallery
@@ -171,16 +174,27 @@
     grid-row: 17 / span 2;
   }
 
+  /* G 2026-08-28, mobile walk-down, Projects page: "at the very bottom you have
+     two large... most of them don't mess with, just the bottom two. Make them
+     look like the ones at the top."
+
+     The top group he pointed at is items 1-3: one narrow tall tile on the left
+     (cols 1-3) with two short wide tiles stacked on the right (cols 4-8). With
+     only two tiles left at the bottom, the faithful version of that look is the
+     same 3/5 left-right split, both spanning one flush band - narrow-tall on the
+     left, wide on the right, matching the top's proportions exactly.
+
+     Both were cols 1-8 full-width singles stacked on rows 19-22 and 23-25. */
   .wild-subpage--projects > .wild-projects-gallery
     > .wild-projects-gallery__item:nth-child(13) {
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 3;
     grid-row: 19 / span 4;
   }
 
   .wild-subpage--projects > .wild-projects-gallery
     > .wild-projects-gallery__item:nth-child(14) {
-    grid-column: 1 / span 8;
-    grid-row: 23 / span 3;
+    grid-column: 4 / span 5;
+    grid-row: 19 / span 4;
   }
 }
 

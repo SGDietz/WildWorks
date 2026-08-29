@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView, type Variants } from "framer-motion";
+import { markIScottStart, watchAvatarFrame } from "../../../src/lib/iscottStartTiming";
 import {
   Camera,
   ChevronLeft,
@@ -542,6 +543,20 @@ function LiveAvatarEmbedInner({
     sendPendingMedia();
   }, [sendPendingMedia]);
 
+  // Stage marks for the start-up timing. Mount/unmount of the frame is the only
+  // place that knows the avatar was asked for and then given up on.
+  useEffect(() => {
+    if (!shouldMountAvatar) return;
+    markIScottStart("iframe_created");
+    const stop = watchAvatarFrame(iframeRef.current);
+    return () => {
+      stop();
+      // Unmounting while a start was in flight IS the failure G reports -
+      // "it doesn't even load, it comes back to talk to iScott".
+      markIScottStart("reverted");
+    };
+  }, [shouldMountAvatar]);
+
   return (
     <div ref={ref} className="absolute inset-0">
       {shouldMountAvatar ? (
@@ -552,7 +567,11 @@ function LiveAvatarEmbedInner({
           title="iScott WildWorks Concierge"
           allow="camera; microphone; autoplay; fullscreen"
           className="absolute inset-0 h-full w-full border-0"
-          onLoad={sendPendingMedia}
+          onLoad={() => {
+            markIScottStart("iframe_loaded");
+            watchAvatarFrame(iframeRef.current);
+            sendPendingMedia();
+          }}
           allowFullScreen
         />
       ) : (
@@ -809,6 +828,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     projectLightboxIndex === null ? null : homeProjectLightboxImages[projectLightboxIndex] ?? null;
 
   const wakeIScottAvatar = useCallback(() => {
+    // G 2026-08-28: measure where the wait actually goes, on his phone.
+    // markIScottStart is fail-open; it cannot throw into this handler.
+    markIScottStart("tap");
     setAvatarWakeKey((current) => current + 1);
   }, []);
 

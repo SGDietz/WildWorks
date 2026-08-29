@@ -172,3 +172,60 @@
   }
 }
 }
+
+/* G 2026-08-28, mobile walk-down: "in the avatar box, upload photos or videos,
+   that text is just a little too small. Increase the whole box by 20%. Increase
+   the text and icon size by 10%, in all of them... only on mobile - on desktop
+   it's fine."
+
+   MEASURED at 375 wide before the change: button 223 x 38, label 16px, icon
+   17.59px, min-height 37.6px, padding 3.2px 6.4px.
+
+   The two winning rules for this control are variable-driven -
+   `var(--ww-mobile-talk-font-size, 1rem)` and
+   `var(--ww-mobile-talk-icon-size, 1.1rem)`, both inside a 129-id !important
+   rule at (max-width: 640px). Rather than out-specify that, the variables are
+   set on the button itself, which beats any inherited value and leaves the
+   existing rule as the single owner of the property. Nothing else on the site
+   reads these from this element.
+
+   Text and icon +10%; box +20% on height, padding and width. Desktop is
+   untouched - this whole file is mobile-only. */
+@media (max-width: 600px) {
+  .wild-iscott-upload .wild-iscott-upload__button {
+    --ww-mobile-talk-font-size: 1.1rem;   /* 16px   -> 17.6px  (+10%) */
+    --ww-mobile-talk-icon-size: 1.21rem;  /* 17.59px -> 19.36px (+10%) */
+    /* Height and padding are variable-driven too - setting them directly lost
+       to the same 129-id !important rule, which reads
+       var(--ww-mobile-talk-min-height) and var(--ww-mobile-talk-padding).
+       Measured before: min-height 37.6px (2.35rem), padding 3.2/6.4px
+       (0.2rem/0.4rem). Both x1.2 here. min-width is not variable-driven, so it
+       stays a direct property - it already verified at +20%. */
+    --ww-mobile-talk-min-height: 2.82rem; /* 37.6px -> 45.1px  (+20%) */
+    --ww-mobile-talk-padding: 0.24rem 0.48rem; /* 0.2/0.4rem x 1.2 */
+    min-width: 268px !important;          /* 223px  -> 268px   (+20%) */
+  }
+}
+
+/* G 2026-08-28, mobile walk-down: "Explore the Ruins and Call Now in the ruins
+   section of the homepage - the text is too small. It should be much bigger in
+   those buttons."
+
+   MEASURED at 375 wide: both buttons 317 x 52 with a 17.92px label, sitting in
+   a 341px container. For comparison the footer "Call Now" on the same page runs
+   22.4px on a NARROWER 266px button - which is exactly why these two read small
+   for their size.
+
+   The winning rule is the 41-id one reading
+   var(--ww-action-button-label-size, 1.12rem), so the variable is set here
+   rather than adding another !important to the pile. 1.12rem -> 1.4rem (+25%),
+   landing on the same 22.4px as that approved footer control.
+
+   Scoped to the ruins pair only - G named those two specifically, and this whole
+   file is mobile-only, so desktop keeps its current size. Say the word if you
+   want desktop matched too. */
+@media (max-width: 600px) {
+  .wild-story-actions--ruins .wild-story-action {
+    --ww-action-button-label-size: 1.4rem;
+  }
+}

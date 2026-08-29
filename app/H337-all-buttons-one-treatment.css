@@ -315,9 +315,12 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   color: #e96819 !important;
   stroke: #e96819 !important;
   text-shadow: none !important;
-  filter:
+  /* Variable-driven 2026-08-28: this block carries 5,684 ids, so restyling
+     these icons any other way meant ~85KB of selector on a site G already calls
+     slow. Fallback is byte-identical to what it declared before. */
+  filter: var(--ww-cta-icon-shadow,
     drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
+    drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px)) !important;
 }
 
 /* STEP D, G 2026-08-19: "the icon itself is too heavy on the shadow. Back it off
@@ -349,9 +352,32 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   color: #e96819 !important;
   stroke: #e96819 !important;
   text-shadow: none !important;
-  filter:
-    drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
+  /* G 2026-08-28: avatar icon deepened twice at his request. He then pointed at
+     this exact value and called it the gold standard for the whole site.
+     BACKED OFF 2026-08-28 evening. G: "they're all too dark. Back the shadow
+     off twenty percent of what you added." Removed 20% of the ADDED amount, not
+     20% of the shadow: 0.95 -> 0.94 @ 1.15 -> 1.12px, and 0.70 -> 0.68 @ 2.3 ->
+     2.24px. Deliberately still ABOVE this morning's baseline (0.90 @1px / 0.60
+     @2px) - a straight 20% cut would have landed below it and undone shadow he
+     never asked to lose. He picked this reading himself. */
+  /* G 2026-08-28 later: "all the icons are a little too much. Back off the
+     icons fifteen percent... only on the home page." Made variable-driven so
+     the Home-scoped cut below reaches this icon too - this button carries the
+     `money-cta` class, so it is already inside that scope. The fallback is the
+     unchanged value, which is what this same button keeps in the FOOTER PANEL
+     on every OTHER page (it renders from FooterIScottPanel.tsx as well), so
+     "home page only" stays literally true. */
+  filter: var(--ww-cta-icon-shadow,
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)) !important;
 }
 
 
@@ -359,9 +385,11 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    52px control. It stays px, as the literal numbers he signed off on. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button:not(#_):not(#_):not(#_) > svg,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-home-phone-iscott-test__button.wild-home-phone-iscott-test__button:not(#_):not(#_):not(#_) svg {
-  filter:
+  /* Variable-driven 2026-08-28 so the Home gold standard reaches this icon.
+     Fallback byte-identical to what was here. */
+  filter: var(--ww-cta-icon-shadow,
     drop-shadow(rgba(35, 9, 2, 0.9) 0px 1px 0px)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0px 2px 0px) !important;
+    drop-shadow(rgba(25, 6, 1, 0.6) 0px 2px 0px)) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .money-cta.money-cta:not(#_):not(#_):not(#_) svg *,
@@ -550,4 +578,146 @@ html body#wildworks-body footer#footer .wild-home-phone-iscott-test--footer-clos
    H337 owner intentionally wins over the phone-only H384 layer. */
 html body#wildworks-body footer#footer .wild-footer-contact-cta__actions > a.money-cta.money-cta--primary {
   --ww-target-button-center-glow: 0.828;
+}
+
+
+/* G 2026-08-28. Avatar Talk-to-iScott: size frozen so it cannot shrink when the
+   avatar mounts (measured: it shrank 18.5px and slid 9.2px right), and the drop
+   shadow set to the value he approved by eye - "somewhere in between what it was
+   and what it is now" - which he has since named the site's gold standard.
+
+   The mobile-talk variables are set here because a 129-id rule seizes this
+   button once the avatar is live and reads them; pinning the properties directly
+   loses to it. */
+html body#wildworks-body#wildworks-body#wildworks-body .wild-site-avatar-overlay-cta.wild-site-avatar-overlay-cta {
+  --ww-large-cta-shadow:
+    rgba(58, 33, 8, 0.396) 0px 14.4px 37.8px 0px,
+    rgba(240, 140, 40, 0.198) 0px 0px 21.6px 0px,
+    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
+    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
+  --ww-mobile-talk-font-size: 1.12rem;
+  --ww-mobile-talk-icon-size: 1.25rem;
+  --ww-mobile-talk-padding: 0.85rem 1rem;
+  font-size: 1.12rem !important;
+  padding: 0.85rem 1rem !important;
+  gap: 0.55rem !important;
+  min-width: max-content !important;
+}
+
+
+/* ============================================================================
+   THE GOLD STANDARD - G, 2026-08-28, pointing at the avatar's Talk to iScott:
+
+     "that is the golden... the Talk to iScott and the icon shadow should be the
+      gold standard for everything in the website. Do everything in that way,
+      with that exact amount of shadow, all the buttons, everywhere, all the
+      legal pages, everywhere. Just do the home page first though."
+
+   Both values are copied verbatim off `.wild-site-avatar-overlay-cta` as it
+   stands in the build he approved - not re-derived, not rounded.
+
+   SCOPED TO HOME ONLY. He said "just do the home page first. Let me know when
+   the home page is done." Widening this to the rest of the site and the legal
+   pages is the SAME two declarations with `.wild-home` removed - do not widen
+   it until he has seen Home and said go.
+
+   Nothing is being out-specified here: the button shadow feeds
+   var(--ww-large-cta-shadow), which the 3,045-id rule already reads, and the
+   icon feeds var(--ww-cta-icon-shadow) added above. No !important war, no
+   selector bloat. ========================================================== */
+/* Scope note: `.wild-home :is(...)` only reached 9 of 24 buttons - the footer,
+   signup and back-to-top controls sit OUTSIDE the .wild-home element even though
+   they render on the Home page. `html:has(#top.wild-home)` is the pattern this
+   codebase already uses for "this IS the Home page", and it covers the shared
+   components too while staying strictly Home-only. */
+html:has(#top.wild-home) body#wildworks-body :is(
+  .money-cta,
+  .wild-iscott-upload__button,
+  .wild-signup-choice-button,
+  .wild-home-phone-iscott-test__button,
+  .wild-footer-top-button,
+  .wild-utility-button
+) {
+  --ww-large-cta-shadow:
+    rgba(58, 33, 8, 0.396) 0px 14.4px 37.8px 0px,
+    rgba(240, 140, 40, 0.198) 0px 0px 21.6px 0px,
+    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
+    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
+  /* -15% on the icons, G 2026-08-28 evening, looking at real screenshots:
+     "all the icons are a little too much. Back off the icons, fifteen percent."
+     Every alpha and every offset x0.85 off the value above:
+       0.94 -> 0.80 @ 1.12 -> 0.95px
+       0.68 -> 0.58 @ 2.24 -> 1.90px
+     Layer count and colours untouched, so only the weight changes.
+     This is now BELOW the pre-today baseline (0.90 @1px / 0.60 @2px) - he is
+     judging by eye off screenshots and asked for it twice, so that is the
+     call. HOME ONLY: this whole block is inside html:has(#top.wild-home). */
+  /* G 2026-08-28 evening, third pass: "the icons have no shadow... it just needs
+     a dash. Don't go too heavy."
+
+     MEASURED, and the weight was never the real problem. The LABEL next to the
+     icon carries a DENSE 10-stop ladder - alphas 0.97 down to 0.714, offsets
+     0.149px through 1.489px in steps under a fifth of a pixel. That reads as one
+     solid carved edge. The ICON carried TWO drop-shadows with a GAP between them
+     (0.95px and 1.9px). Two separated lines can only ever look like a heavy
+     double-line (his "too much") or like nothing (his "no shadow") - it can
+     never look like the text beside it.
+
+     So this is the label's own ladder, rebuilt as drop-shadows, in em so it
+     scales with each button instead of going heavy on the phone. Same reach as
+     the label (0.083em), same alpha range, 8 stops instead of 10 to keep the
+     filter cost down - the steps are still ~0.19px apart, well under a pixel,
+     so it paints solid with no banding. Reach is 33% SHORTER than the version he
+     called too much, and it is continuous, which is the "dash" he is asking for.
+
+     HOME ONLY - this whole block sits inside html:has(#top.wild-home).
+     CORRECTED, and this is the part worth remembering: chained drop-shadow()
+     filters COMPOUND. Each one shadows the RESULT of the one before it, not the
+     original icon - unlike text-shadow, where every layer draws off the same
+     glyph. My first attempt copied the label's rising offsets (0.0104 ... 0.0831em)
+     straight across, and they ADDED UP to 0.373em - a long black smear under the
+     big Talk to iScott control. Photographed it, saw it, fixed it.
+
+     The chain builds the ladder by itself: eight IDENTICAL 0.0104em steps land
+     copies at 0.0104, 0.0208 ... 0.0831em, with alphas 0.97^1 ... 0.97^8 =
+     0.97 down to 0.78. That is the label's ladder almost exactly, and the reach
+     is the label's 0.083em - not four times it.
+     CLAMPED, measured against each button's OWN label ladder:
+
+       button            label reach     icon reach (em)   icon reach (clamped)
+       Upload / Ruins /
+       signup / avatar      1.49px           1.49px            1.49px
+       big 52px Talk        2.70px           4.32px            2.72px
+
+     A bare em step matched the small buttons exactly and overshot the 52px
+     control by 60% - the same way an em shadow turns into a slab on big type.
+     clamp(0.16px, 0.0104em, 0.34px) holds the small buttons unchanged and pulls
+     the big one back onto its own label. One value, right on every button.
+
+     PASS 4, and this one is by EYE, not by arithmetic. G, with a screenshot:
+     "these icons just don't look anywhere near similar to the text shadow.
+     Make them about the same. Check them visually."
+
+     He is right and the measurement was a trap. Matching the label's reach
+     EXACTLY (2.72px icon vs its label's 2.70px) still looks thinner, because the
+     ICON IS PHYSICALLY BIGGER THAN THE LETTERS - a 52px icon box beside roughly
+     37px of cap height. The same absolute shadow is a smaller fraction of the
+     icon, so it reads lighter. Equal numbers, unequal look.
+
+     So the ladder is now sized to the ICON, about 1.8x the label's reach, and
+     10 stops instead of 8 to keep every step sub-pixel and solid:
+       small 17.92px buttons: 0.269px x 10 = 2.69px (label 1.49px)
+       big 52px control:      0.50px  x 10 = 5.00px (label 2.70px)
+     Verified in screenshots at 1280 and 375, not from the numbers. */
+  --ww-cta-icon-shadow:
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
+    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0) !important;
 }

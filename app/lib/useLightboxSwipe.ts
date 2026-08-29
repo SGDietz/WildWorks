@@ -67,7 +67,21 @@ export function useLightboxSwipe(
 
   const handlers = useSwipeable({
     onSwiping: (data) => {
-      if ((data.dir !== "Left" && data.dir !== "Right") || data.absX <= data.absY * 1.15) return;
+      // G 2026-08-28, mobile walk-down, said twice: "it's not swiping from left
+      // to right very easily... it's very difficult" and "the left and right
+      // from the bottom just does not work."
+      //
+      // The gate was absX > absY * 1.15 - horizontal had to beat vertical by
+      // 15%, i.e. the swipe had to stay within ~41 degrees of dead horizontal.
+      // A real thumb swipe arcs, and because .wild-main-shell sets
+      // touch-action: pan-y the browser starts scrolling vertically on the same
+      // gesture, so an arced swipe both moved the page AND got rejected here.
+      // That combination is what made it feel broken rather than merely fussy.
+      //
+      // 0.8 accepts up to ~51 degrees off horizontal, which covers a natural
+      // arc, while still rejecting a genuine vertical scroll (where absY is far
+      // larger than absX). Direction check above is unchanged.
+      if ((data.dir !== "Left" && data.dir !== "Right") || data.absX <= data.absY * 0.8) return;
       const host = hostFor(data);
       gestureHostRef.current = host;
       const routeSwipeDistance = Number(host.dataset.routeSwipeThrough);
@@ -83,7 +97,13 @@ export function useLightboxSwipe(
     },
     onSwiped: (data) => {
       const host = gestureHostRef.current ?? hostFor(data);
-      const horizontal = (data.dir === "Left" || data.dir === "Right") && data.absX > data.absY * 1.15;
+      // Must match the move gate above. This is the COMMIT gate: the one above
+      // decides whether the drag tracks, this one decides whether releasing
+      // actually changes the picture. Leaving this at 1.15 while the move gate
+      // was relaxed would be worse than the original bug - the image would
+      // follow the thumb and then snap back, which reads as the site ignoring
+      // you rather than as a fussy gesture.
+      const horizontal = (data.dir === "Left" || data.dir === "Right") && data.absX > data.absY * 0.8;
       const requiredDistance = Math.max(44, Math.min(68, window.innerWidth * 0.08));
       if (!horizontal || data.absX < requiredDistance) {
         resetDrag(host, true);

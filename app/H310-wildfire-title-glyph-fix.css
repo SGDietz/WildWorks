@@ -31,3 +31,28 @@ html body#wildworks-body .wild-subpage--wildfire
   font-variant-ligatures: none !important;
   letter-spacing: 0.02em !important;
 }
+
+/* G 2026-08-28, mobile walk-down: "Project Wildfire needs a little space between
+   the two words... the J and the D are touching each other. Also make Project,
+   just the word Project at the top, one font size larger."
+
+   MEASURED at 375x812 before the fix: both words are display:block, so they are
+   two stacked lines, and the gap between them was exactly 0.00px - "Project"
+   bottom 299.2, "Wildfire" top 299.2. line-height was 52.31px on a 58.13px font
+   (0.90), i.e. tighter than the type itself, so the j descender of Project runs
+   straight into the d ascender of Wildfire. That is the touch he is seeing; it is
+   vertical, not a word space.
+
+   Enlarging Project makes its descender longer, so the clearance has to grow with
+   it or the fix would make the collision worse. Both are set together here.
+
+   NOTE for whoever is next: the letter-spacing: 0.02em in the block above is
+   INERT - it computes to `normal` on this element, so something later outbids it.
+   Left in place rather than silently deleted, but do not trust it. This block is
+   written with a heavier selector for that exact reason. */
+html body#wildworks-body#wildworks-body .wild-subpage--wildfire
+  .wildfire-hero > .wildfire-page-heading > .wildfire-page-heading__project {
+  font-size: 1.12em !important;
+  line-height: 1.04 !important;
+  margin-bottom: 0.06em !important;
+}

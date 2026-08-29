@@ -1499,6 +1499,193 @@ const wildWorksLoadingGateScript = `
   </script>
 `;
 
+/* MEDIA PROBE - Chief's spec, 2026-08-28.
+
+   iScott creates a session every time (HTTP 201, the provider confirms it) and no
+   picture ever arrives. The provider's own session records cannot settle it: the
+   good ride on 8/27 ran 167s and the bad ones die in 9-28s, but ALL of them end
+   "USER_DISCONNECTED", which cannot tell "joined the room then left" from "never
+   joined at all".
+
+   Only the visible video element can. This watches that one element and splits the
+   failure four ways:
+
+     no_video_element               the vendor app never mounted a video at all
+     video_element_no_remote_track  room publication / subscription failure
+     track_but_no_dimensions        a track arrived and nothing decoded
+     attached_not_playing           decoded but never played (autoplay / attach)
+     playing                        alive - it works
+
+   RULES THIS OBEYS, none of them decoration:
+   - Fail-open. Every path wrapped. Measurement may never break the thing it
+     measures, and this exact file has burned us on that before.
+   - It NEVER calls play(), never retries a start, never mints. A presentation
+     failure is not a reason to buy a second session.
+   - It stops on first success, on pagehide, on avatar-start-failed, or on its own
+     cap. It cannot poll forever.
+   - The 30s window starts when a VIDEO APPEARS, not at page load. The session does
+     not begin until roughly ten seconds in, so a load-anchored cap would expire
+     before the thing it measures exists.
+   - No backticks inside: this whole file is template literals and one stray
+     backtick breaks the build. String concatenation only. */
+const wildWorksMediaProbeScript = `
+  <script>
+    (function () {
+      try {
+        var LOAD_AT = Date.now();
+        var NO_VIDEO_CAP_MS = 60000;
+        var WATCH_MS = 30000;
+        var MARKS = [1000, 3000, 6000, 12000, 20000, 29000];
+
+        var sent = {}, stopped = false, video = null, videoAt = null, mi = 0, poll = null;
+
+        var send = function (point, extra) {
+          try {
+            if (sent[point]) return;
+            sent[point] = true;
+            fetch("/api/app-events/log", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              keepalive: true,
+              body: JSON.stringify({
+                eventType: "iscott_media_probe",
+                sessionId: (window.__wildworksAvatarSessionId || null),
+                payload: Object.assign({
+                  point: point,
+                  sinceLoadMs: Date.now() - LOAD_AT,
+                  sinceVideoMs: videoAt ? Date.now() - videoAt : null
+                }, extra || {})
+              })
+            }).catch(function () {});
+          } catch (e) {}
+        };
+
+        var tracks = function (v) {
+          var o = { srcObject: false, nTracks: 0, nVideo: 0, nAudio: 0, nLive: 0, kinds: [] };
+          try {
+            var st = v && v.srcObject;
+            if (!st || typeof st.getTracks !== "function") return o;
+            o.srcObject = true;
+            var ts = st.getTracks() || [];
+            o.nTracks = ts.length;
+            for (var i = 0; i < ts.length; i++) {
+              var t = ts[i];
+              o.kinds.push(t.kind + "/" + t.readyState + "/" + (t.enabled ? "on" : "off") + "/" + (t.muted ? "muted" : "unmuted"));
+              if (t.kind === "video") o.nVideo++;
+              if (t.kind === "audio") o.nAudio++;
+              if (t.readyState === "live") o.nLive++;
+            }
+          } catch (e) {}
+          return o;
+        };
+
+        var snap = function (v) {
+          var o = {};
+          try {
+            o.readyState = v.readyState;
+            o.networkState = v.networkState;
+            o.paused = v.paused;
+            o.w = v.videoWidth;
+            o.h = v.videoHeight;
+            o.t = Math.round((v.currentTime || 0) * 1000) / 1000;
+          } catch (e) {}
+          return o;
+        };
+
+        var state = function () {
+          return video ? Object.assign(tracks(video), snap(video)) : { noVideo: true };
+        };
+
+        var stop = function () {
+          stopped = true;
+          try { if (poll) clearInterval(poll); } catch (e) {}
+        };
+
+        var verdict = function () {
+          try {
+            var c;
+            if (!video) {
+              c = "no_video_element";
+            } else {
+              var ti = tracks(video), sn = snap(video);
+              if (!ti.srcObject || ti.nVideo === 0) c = "video_element_no_remote_track";
+              else if (!sn.w || !sn.h) c = "track_but_no_dimensions";
+              else if (sn.paused || !sn.t) c = "attached_not_playing";
+              else c = "playing";
+            }
+            send("verdict", Object.assign({ verdict: c }, state()));
+          } catch (e) {
+            send("verdict", { verdict: "probe_error" });
+          }
+        };
+
+        var watch = function (v) {
+          video = v;
+          videoAt = Date.now();
+          send("video_appeared", state());
+          var names = ["loadedmetadata", "canplay", "playing", "waiting", "stalled", "error", "ended", "emptied", "suspend"];
+          for (var i = 0; i < names.length; i++) {
+            (function (n) {
+              try {
+                v.addEventListener(n, function () { send("ev_" + n, state()); }, { once: true });
+              } catch (e) {}
+            })(names[i]);
+          }
+          try {
+            var st = v.srcObject;
+            if (st && typeof st.getTracks === "function") {
+              var ts = st.getTracks() || [];
+              for (var j = 0; j < ts.length; j++) {
+                (function (t) {
+                  try {
+                    t.addEventListener("mute", function () { send("track_mute_" + t.kind, state()); });
+                    t.addEventListener("unmute", function () { send("track_unmute_" + t.kind, state()); });
+                    t.addEventListener("ended", function () { send("track_ended_" + t.kind, state()); });
+                  } catch (e) {}
+                })(ts[j]);
+              }
+            }
+          } catch (e) {}
+        };
+
+        var look = function () {
+          if (stopped) return;
+          try {
+            var el = document.querySelector("video");
+            if (el && el !== video) { watch(el); mi = 0; }
+
+            if (video) {
+              var sn = snap(video);
+              if (sn.w > 0 && sn.h > 0 && sn.t > 0 && !sn.paused) {
+                send("first_frame_seen", state());
+                verdict(); stop(); return;
+              }
+              var age = Date.now() - videoAt;
+              while (mi < MARKS.length && age >= MARKS[mi]) {
+                send("v_at_" + Math.round(MARKS[mi] / 1000) + "s", state());
+                mi++;
+              }
+              if (age > WATCH_MS) { verdict(); stop(); return; }
+            } else if (Date.now() - LOAD_AT > NO_VIDEO_CAP_MS) {
+              verdict(); stop(); return;
+            }
+          } catch (e) { stop(); }
+        };
+
+        poll = window.setInterval(look, 250);
+
+        try {
+          window.addEventListener("pagehide", function () { verdict(); stop(); });
+          window.addEventListener("wildworks:avatar-start-failed", function () {
+            send("start_failed_event", state());
+            verdict(); stop();
+          });
+        } catch (e) {}
+      } catch (e) {}
+    })();
+  </script>
+`;
+
 const wildWorksAutoWakeScript = `
   <script id="wildworks-avatar-auto-wake">
     (() => {
@@ -1510,6 +1697,67 @@ const wildWorksAutoWakeScript = `
       window.history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
 
       let attempts = 0;
+
+      // THE BUG, found 2026-08-28 and PROVEN with a free headless A/B.
+      //
+      // The vendor renders this button on the SERVER, so it is visible and
+      // clickable BEFORE React hydrates and attaches its handler. We were firing
+      // at 600ms; React did not take ownership until ~818ms. So the click landed
+      // on an element nobody was listening to, and - because tryStart RETURNS as
+      // soon as it finds a button - it never tried again.
+      //
+      // The measured proof, same page, same synthetic click, hold armed so
+      // nothing could mint:
+      //     click BEFORE React ownership -> 0 start requests. Silent. No error.
+      //     click AFTER  React ownership -> 1 request to /api/start-session.
+      //
+      // That is the whole failure G has been living with: tap logged, no session,
+      // no video, no console error, no credit spent - and it worked now and then,
+      // whenever hydration happened to win the race.
+      //
+      // The fix is to wait for React to own the element, NOT to click more. Still
+      // exactly ONE click, just not a wasted one - a second click could
+      // double-start a genuinely slow handler.
+      // HARDENED after Chief's review, and both of his points were right.
+      //
+      // 1. A __reactFiber$ key is NOT proof of readiness. The fiber can be
+      //    attached before the host element carries its functional props, so
+      //    fiber-only ownership can still mean a click lands on nothing. What we
+      //    actually need is the real handler: a __reactProps$ object whose
+      //    onClick is a function.
+      // 2. My first version's catch returned TRUE - fail open. That was wrong.
+      //    If the check ever breaks, failing open clicks an unproven SSR button,
+      //    which is precisely the bug this exists to prevent. It now fails
+      //    CLOSED: keep polling, and if we never prove readiness, say so via
+      //    auto_wake_gave_up instead of firing a click we know is a no-op.
+      //
+      // The trade-off, stated so nobody has to rediscover it: if the vendor ever
+      // renames React's internals, readiness can never be proven and iScott will
+      // not auto-start at all. That is why sawReactKey is reported - a give-up
+      // with sawButton true and sawReactKey false means "React internals moved",
+      // not "hydration was slow", and it is one telemetry row away from obvious.
+      const readiness = (el) => {
+        try {
+          const names = Object.getOwnPropertyNames(el);
+          let anyReactKey = false;
+          for (let i = 0; i < names.length; i += 1) {
+            const name = names[i];
+            if (name.indexOf("__react") === 0) anyReactKey = true;
+            if (name.indexOf("__reactProps$") !== 0) continue;
+            const props = el[name];
+            if (props && typeof props.onClick === "function") {
+              return { anyReactKey: true, ready: true };
+            }
+          }
+          return { anyReactKey: anyReactKey, ready: false };
+        } catch (e) {
+          return { anyReactKey: false, ready: false };
+        }
+      };
+
+      let sawButton = false;
+      let sawReactKey = false;
+
       const tryStart = () => {
         attempts += 1;
         const button = Array.from(document.querySelectorAll("button")).find((candidate) => {
@@ -1518,13 +1766,31 @@ const wildWorksAutoWakeScript = `
         });
 
         if (button) {
-          button.click();
-          return;
+          sawButton = true;
+          const state = readiness(button);
+          if (state.anyReactKey) sawReactKey = true;
+          if (state.ready) {
+            button.click();
+            return;
+          }
         }
 
         if (attempts < 48) {
           window.setTimeout(tryStart, 250);
+          return;
         }
+
+        // 12s and the button never carried a functional onClick. Clicking now
+        // would be the same silent no-op, so record it rather than pretend.
+        try {
+          if (window.__wwPaceMark) {
+            window.__wwPaceMark("auto_wake_gave_up", {
+              sawButton: sawButton,
+              sawReactKey: sawReactKey,
+              attempts: attempts,
+            });
+          }
+        } catch (e) {}
       };
 
       // Back to the original 600ms on purpose. The two-second beat now lives on
@@ -3390,7 +3656,7 @@ export async function GET(request: Request) {
     .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
     .replace(
       "</body>",
-      `${wildWorksLoadingGateScript}${wildWorksStartScreenScript}${wildWorksIdleTimeoutScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${wildWorksLegalBandScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
+      `${wildWorksLoadingGateScript}${wildWorksMediaProbeScript}${wildWorksStartScreenScript}${wildWorksIdleTimeoutScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${wildWorksLegalBandScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
   return new Response(html, {

@@ -8,7 +8,6 @@ import { createPortal } from "react-dom";
 import ImageGallery from "../../components/ImageGallery";
 import HeldLightboxImage, { type LightboxDirection } from "../../components/HeldLightboxImage";
 import LargeIScottCta from "../../components/LargeIScottCta";
-import IScottPromptLines from "../../components/IScottPromptLines";
 import PhoneNumberLine from "../../components/PhoneNumberLine";
 import { useLightboxSwipe } from "../../lib/useLightboxSwipe";
 import { wildfireFinishedImages, wildfireViewerImages } from "../../lib/wildfireImages";
@@ -200,9 +199,6 @@ export default function Wildfire() {
         <PhoneNumberLine
           className="wild-phone-number-line--home-footer"
           showCallToday={false}
-        />
-        <IScottPromptLines
-          ask={"Tell iScott Where Yours Should Start."}
         />
         <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
       </div>

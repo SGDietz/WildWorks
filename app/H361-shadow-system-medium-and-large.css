@@ -82,15 +82,31 @@
   /* 2 selector(s) removed by Claude 2026-08-19: the Wildfire hero and
      title live in H369 at G's -30%%. This band was naming them AND WINNING,
      so his reduction never landed. If they come back here it dies again. */
-  text-shadow: rgba(35, 9, 2, 0.970) 0 0.016000em 0,
-    rgba(34, 9, 2, 0.931) 0 0.025143em 0,
-    rgba(32, 8, 2, 0.892) 0 0.034286em 0,
-    rgba(31, 8, 2, 0.854) 0 0.043429em 0,
-    rgba(30, 8, 2, 0.815) 0 0.052572em 0,
-    rgba(29, 8, 2, 0.776) 0 0.061714em 0,
-    rgba(28, 7, 2, 0.738) 0 0.070857em 0,
-    rgba(26, 6, 1, 0.699) 0 0.080000em 0,
-    rgba(25, 6, 1, 0.660) 0 0.089143em 0 !important;
+  /* G 2026-08-28: "all this number three text color on the primary background is
+     ridiculous... cut that shadow effect on the bottom by forty percent. Do that
+     everywhere."
+
+     This band was the last island still at the old 0.970 head while the rest of
+     the site had come down to 0.582 - the exact 0.58-vs-0.97 split H375's header
+     describes as the thing he had been chasing. Every alpha x0.6; geometry,
+     stop count and colours untouched.
+
+     NOTE, because it is wider than his literal words: this band covers the hero
+     lines in ALL THREE text colours, not just Text 3. Cutting only the two Text-3
+     lines would have left "Makes Your Home" heavy directly above "Legendary"
+     light, and "By Creating Beautiful Things" heavy beside "Anywhere on Planet
+     Earth" light - a visibly mismatched hero. His standing instruction all
+     evening has been to MATCH things across the site, so the whole band moves
+     together. One word and I put Text 1 and Text 2 back. */
+  text-shadow: rgba(35, 9, 2, 0.582) 0 0.016000em 0,
+    rgba(34, 9, 2, 0.559) 0 0.025143em 0,
+    rgba(32, 8, 2, 0.535) 0 0.034286em 0,
+    rgba(31, 8, 2, 0.512) 0 0.043429em 0,
+    rgba(30, 8, 2, 0.489) 0 0.052572em 0,
+    rgba(29, 8, 2, 0.466) 0 0.061714em 0,
+    rgba(28, 7, 2, 0.443) 0 0.070857em 0,
+    rgba(26, 6, 1, 0.419) 0 0.080000em 0,
+    rgba(25, 6, 1, 0.396) 0 0.089143em 0 !important;
 }
 
 .wild-phone-number-line > a[href^="tel:"]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
