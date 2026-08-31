@@ -3505,6 +3505,26 @@ const wildWorksLeadConfirmationScript = `
         const method = lead.contactMethod === "phone" ? "phone" : "email";
         return [lead.sessionId, method, method === "email" ? lead.email : lead.phone].join(":");
       };
+      // AUTO-HIDE, G 2026-08-31 (ride adfdc2ff): "I'm still talking to you, and
+      // the email sent to Scott with the check mark is still up. That needs to
+      // just be up for 2 full seconds and then go away."
+      //
+      // This reverses the 2026-08-29 "persistent" decision above, which came
+      // from the OPPOSITE complaint - that no confirmation appeared at all.
+      // Both are satisfied by treating SENT_HOLD_MS as one boundary with two
+      // jobs: nothing may take the tick down BEFORE it (the old floor, kept
+      // verbatim), and it takes itself down AT it.
+      //
+      // Only the tick is hidden. The panel is never touched here - a timer that
+      // dropped the whole panel is the dropPanelSoon bug removed on 2026-08-29,
+      // and it carried the details away with it.
+      let sentHideTimer = null;
+      const clearSentHideTimer = () => {
+        if (sentHideTimer) {
+          window.clearTimeout(sentHideTimer);
+          sentHideTimer = null;
+        }
+      };
       const setSentVisible = (visible, method, label) => {
         const sent = document.getElementById("wildworks-lead-sent");
         if (!sent) return;
@@ -3512,7 +3532,20 @@ const wildWorksLeadConfirmationScript = `
         if (visible) {
           sent.textContent = label || sentLabelFor(method);
           if (!sentShownAt) sentShownAt = Date.now();
+          // Re-arm from the ORIGINAL show time, not from this call: showLead
+          // repaints on every poll, and restarting the clock each time is how a
+          // two-second tick becomes a permanent one again.
+          clearSentHideTimer();
+          const elapsed = Date.now() - sentShownAt;
+          sentHideTimer = window.setTimeout(() => {
+            sentHideTimer = null;
+            const el = document.getElementById("wildworks-lead-sent");
+            if (!el) return;
+            sentShownAt = 0;
+            el.setAttribute("data-visible", "false");
+          }, Math.max(0, SENT_HOLD_MS - elapsed));
         } else {
+          clearSentHideTimer();
           sentShownAt = 0;
         }
         sent.setAttribute("data-visible", visible ? "true" : "false");

@@ -551,11 +551,26 @@ const statusText = (dom) => dom.doc.getElementById("wildworks-lead-status")?.tex
   assert.equal(tick(dom).visible, true, "a verified send must put a confirmation on screen");
   assert.match(tick(dom).text, /sent to Scott/i);
 
-  // PERSISTENT. Nothing may be queued that takes the confirmation away again.
-  dom.runTimers();
+  // TWO SECONDS, THEN GONE. G reversed this on 2026-08-31 (ride adfdc2ff):
+  // "I'm still talking to you, and the email sent to Scott with the check mark
+  // is still up. That needs to just be up for 2 full seconds and then go away."
+  //
+  // The 8/29 rule this replaces came from the OPPOSITE complaint - that no
+  // confirmation appeared at all - so the half that still matters is that it
+  // cannot be pulled down EARLY. Both halves are asserted here: a repaint
+  // inside the hold must not remove it, and the hold boundary must.
   dom.frames.splice(0, dom.frames.length).forEach((fn) => fn());
+  assert.equal(
+    tick(dom).visible,
+    true,
+    "a repaint inside the two-second hold must not take the confirmation down",
+  );
   dom.runTimers();
-  assert.equal(tick(dom).visible, true, "the confirmation must persist, not flash");
+  assert.equal(
+    tick(dom).visible,
+    false,
+    "the confirmation must clear itself once the two-second hold is up",
+  );
   assert.equal(
     dom.doc.getElementById("wildworks-lead-confirmation").classList.contains("wildworks-lead-visible"),
     true,
