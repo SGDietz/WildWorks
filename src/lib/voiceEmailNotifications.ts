@@ -101,6 +101,13 @@ type VoiceEmailContent = {
   text: string;
   html: string;
   metadata?: JsonObject;
+  /**
+   * Queue this one for later instead of sending it now. The drain already
+   * selects on `next_attempt_at.is.null,next_attempt_at.lte.<now>`, so a future
+   * value simply parks the row until it is due. Used by the partial-lead alert
+   * so a conversation that finishes normally never produces two emails.
+   */
+  deferUntil?: string | null;
 };
 
 type VoiceNotificationBase = {
@@ -504,6 +511,7 @@ async function enqueueVoiceEmail(
         text_body: content.text,
         html_body: content.html,
         payload: safeJsonPayload(content.metadata),
+        next_attempt_at: content.deferUntil ?? null,
       },
       prefer: "return=representation",
     },
@@ -749,6 +757,24 @@ async function deliverVoiceEmail(
   const queued = await enqueueVoiceEmail(content);
   if (!queued.result.ok || !queued.result.rows[0]) return outboxFailure(queued.result);
   const row = queued.result.rows[0];
+  // DEFERRED: queued on purpose and deliberately not attempted here. The row is
+  // parked until next_attempt_at and the drain picks it up then - by which time
+  // a lead that went on to finish will have retired it (see
+  // supersedePendingPartialLead below). Returning delivered:false is the honest
+  // answer: nothing has been sent yet, and nothing about this row is a failure.
+  if (content.deferUntil && row.status === "pending") {
+    return {
+      ok: true,
+      status: queued.result.status,
+      detail: "",
+      outboxId: row.id,
+      outboxStatus: row.status,
+      providerMessageId: null,
+      queued: true,
+      delivered: false,
+      deduplicated: queued.deduplicated,
+    };
+  }
   if (row.status === "sent") {
     return {
       ok: true,
@@ -989,6 +1015,53 @@ export async function notifyVoicemailByEmail(
 // strict path protects stays protected and every one of those assertions is
 // still true; this door only ever carries mail that is loudly labelled
 // INCOMPLETE and keyed '#partial' so the outbox cannot confuse the two.
+/**
+ * How long an incomplete lead waits before it is mailed.
+ *
+ * G's ride adfdc2ff, 2026-08-31: the INCOMPLETE alert landed 65 seconds before
+ * the real package for the SAME conversation, so one good lead produced two
+ * emails. He had given his address; his name simply had not arrived yet.
+ *
+ * Ten minutes is longer than any capture sequence observed on a real ride and
+ * short enough that a genuinely abandoned lead still reaches him while the
+ * visitor might plausibly be re-contacted.
+ */
+const PARTIAL_LEAD_DELAY_MS = 10 * 60 * 1000;
+
+const INCOMPLETE_SUBJECT_PREFIX = "INCOMPLETE iScott lead";
+
+/**
+ * Retire any still-pending incomplete alert for a session whose real package
+ * has now gone. 'dead_letter' is one of the five statuses the table's CHECK
+ * constraint allows - read off pg_constraint rather than assumed - and it means
+ * exactly this: queued, will not be delivered, keep the row for the audit.
+ *
+ * Failure here is deliberately silent. The complete package has already
+ * reached Scott, and a tidy-up that cannot run must never turn a delivered
+ * lead into a reported failure.
+ */
+async function supersedePendingPartialLead(sessionId: string | null): Promise<void> {
+  if (!sessionId) return;
+  try {
+    await supabaseRest<VoiceEmailOutboxRow>(
+      `voice_email_outbox?session_id=eq.${encodeURIComponent(sessionId)}` +
+        `&status=eq.pending&subject=like.${encodeURIComponent(INCOMPLETE_SUBJECT_PREFIX + "*")}`,
+      {
+        method: "PATCH",
+        body: {
+          status: "dead_letter",
+          last_error: "superseded_by_complete_lead",
+          next_attempt_at: null,
+          lease_token: null,
+          lease_expires_at: null,
+        },
+      },
+    );
+  } catch {
+    // See above: never let the tidy-up mask a successful delivery.
+  }
+}
+
 export async function notifyIScottPartialLeadByEmail(
   args: IScottLeadEmailArgs,
 ): Promise<VoiceEmailNotificationResult> {
@@ -1159,7 +1232,7 @@ export async function notifyIScottLeadByEmail(
     ].join(""),
   });
 
-  return deliverVoiceEmail({
+  const delivery = await deliverVoiceEmail({
     eventType: "iscott_lead",
     // Scott's own copy. The visitor receipt is a separate event with its own
     // address; this constructor never learns the visitor's mailbox as a
@@ -1175,6 +1248,11 @@ export async function notifyIScottLeadByEmail(
     subject,
     text,
     html,
+    // An incomplete alert is PARKED, not sent. It only becomes mail if the
+    // conversation never produces a real package - see PARTIAL_LEAD_DELAY_MS.
+    deferUntil: isPartial
+      ? new Date(Date.now() + PARTIAL_LEAD_DELAY_MS).toISOString()
+      : null,
     metadata: {
       ...args.metadata,
       fullName,
@@ -1183,8 +1261,15 @@ export async function notifyIScottLeadByEmail(
       email,
       phone,
       mediaCount: media.length,
+      partial: isPartial,
     },
   });
+
+  // The real package went. Retire the incomplete alert for this session if one
+  // is still waiting, so a lead that finished normally mails Scott exactly once.
+  if (!isPartial && delivery.ok) await supersedePendingPartialLead(sessionId);
+
+  return delivery;
 }
 
 async function notifyIScottVisitorConfirmationByEmailWithGate(
