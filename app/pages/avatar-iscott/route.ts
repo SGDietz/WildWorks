@@ -730,7 +730,15 @@ const wildWorksButtonCss = `
          copy is Cambria; hardcoded because globals.css custom properties do not
          resolve inside the proxied avatar app. */
       font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
-      font-size: clamp(0.95rem, 3.6vw, 1.15rem) !important;
+      /* Ceiling raised with FIT_MAX_REM below, 2026-08-31. The JS fit loop
+         may never lay the value out larger than the CSS will paint - the
+         guard in check-iscott-lead-truth-20260829 asserts exactly that, and
+         it caught this pair being changed one at a time. 1.75rem x the 1.25
+         line-height below is 2.19rem, still inside the field's 2.4rem
+         min-height, so raising it does not move the box or anything under
+         it, and 1.74 keeps the shrink loop landing exactly on its floor.
+         G: "the email address needs to be a size appropriate to the box." */
+      font-size: clamp(0.95rem, 3.6vw, 1.74rem) !important;
       font-weight: 900 !important;
       line-height: 1.25 !important;
       text-align: center !important;
@@ -3287,7 +3295,25 @@ const wildWorksLeadConfirmationScript = `
       // paints one over the field's own padding.
       // KEEP IN SYNC with its twin - check-iscott-lead-truth-20260829.mjs
       // reads these three constants out of this file and fails on drift.
-      const FIT_MAX_REM = 1.12;
+      // G's ride 129b69d6, 2026-08-31, said three times: "That's super small
+      // text. I can barely see it", "the email address needs to be a size
+      // appropriate to the box", "a super long email address may be smaller
+      // text."
+      //
+      // The shrink-to-fit loop below was already correct. The ceiling was the
+      // fault: at 1.12rem a SHORT address like his own never grew into the box,
+      // it just sat at about eighteen pixels inside an embedded frame that is
+      // only 286px wide on his phone, which is exactly the "small" he means.
+      //
+      // 1.74rem, and the last two decimals are load-bearing. The shrink loop
+      // steps 0.02rem, so the ceiling has to sit on that grid above the 0.62
+      // floor or an extreme address steps straight PAST the floor and lands at
+      // 0.61 - which is what 1.75 did, and a guard caught it. 0.62 + 56 x 0.02
+      // = 1.74 exactly. It is also the largest value that keeps the field's own
+      // height: line-height here is 1.25, so 1.74 x 1.25 = 2.18rem of text box
+      // inside a 2.4rem min-height field. Nothing below moves. Long addresses
+      // still step down exactly as before - the second half of what he asked.
+      const FIT_MAX_REM = 1.74;
       const FIT_MIN_REM = 0.62;
       const FIT_RESERVE_PX = 6;
       const fitContentWidth = (output) => {
@@ -3304,7 +3330,10 @@ const wildWorksLeadConfirmationScript = `
           const available = fitContentWidth(output);
           if (available <= 0) return;
           let guard = 0;
-          while (output.scrollWidth > available && size > FIT_MIN_REM && guard < 60) {
+          // Guard raised with the ceiling: stepping 0.02rem from 1.75 down to
+          // the 0.62 floor takes 57 iterations, so the old cap of 60 left
+          // almost no margin and a long address could stop shrinking early.
+          while (output.scrollWidth > available && size > FIT_MIN_REM && guard < 140) {
             size = Math.round((size - 0.02) * 100) / 100;
             output.style.setProperty("font-size", size + "rem", "important");
             guard += 1;

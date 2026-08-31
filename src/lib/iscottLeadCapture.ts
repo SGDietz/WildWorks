@@ -616,11 +616,28 @@ export async function processIScottTranscriptRows(args: {
     // the package, and after they re-confirmed, that old name is what would
     // have travelled to Scott. Material changes are taken; refinements still
     // merge the way they always did.
+    // A REPLACEMENT NEEDS AN INTRODUCTION. G's ride 129b69d6, 2026-08-31.
+    //
+    // The rule above is right that "actually, my name is Gregory Vance" must
+    // REPLACE an earlier "George" rather than merge with it. What it did not
+    // check is whether the new name arrived as an introduction at all. On that
+    // ride the extractor produced "Information" out of the middle of a normal
+    // sentence, leadPackageFieldChanged agreed it was materially different from
+    // "Scott", and the real name G had given two minutes earlier was thrown
+    // away. The parser fault is fixed in extractSpokenNameAndPlace; this is the
+    // second lock, so a bad extraction can never again overwrite a good name.
+    //
+    // Replacing requires the visitor to actually say who they are. Without a
+    // cue a new reading can still FILL IN an empty name, or lengthen one
+    // ("George" -> "George Smith"), which is what preferLonger already does.
     const spokenName = extractFullName(text);
     if (spokenName) {
-      fullName = isMeaningfulVisitorName(spokenName) && leadPackageFieldChanged("name", fullName, spokenName)
-        ? spokenName
-        : preferLonger(fullName, spokenName);
+      const introducesName = /\b(?:my name is|my name's|call me|i(?:'m| am)|this is|it's|its)\b/i.test(text);
+      const mayReplace =
+        isMeaningfulVisitorName(spokenName) &&
+        leadPackageFieldChanged("name", fullName, spokenName) &&
+        (!fullName || introducesName);
+      fullName = mayReplace ? spokenName : preferLonger(fullName, spokenName);
     }
     location = extractLocation(text) ?? location;
     const spokenNeed = extractProjectNeed(text);

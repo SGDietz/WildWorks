@@ -49,15 +49,57 @@ function titleNameWords(value: string): string {
   return value.replace(/\b[\p{L}]/gu, (letter) => letter.toUpperCase());
 }
 
+/**
+ * "<name> from <place>", with or without an introduction cue.
+ *
+ * G's ride 129b69d6, 2026-08-31: he gave his name as "Scott" and the package
+ * reached him carrying the name "Information". The sentence that did it was
+ *
+ *     "I mean, you could have gotten more information from me, but it's..."
+ *
+ * The old pattern made the whole cue group optional and then matched ANY
+ * "<word> from <word>," anywhere in a sentence, so it read "information from
+ * me," as name=Information, place=me. "me" was not in the rejected-place list,
+ * so it sailed through, and the capture layer then treated it as a correction
+ * and REPLACED the real name.
+ *
+ * The bare, cueless form still has to work - "Scott from Timonium." is exactly
+ * how someone answers "what's your name?" - so it is kept, but ANCHORED to the
+ * start of the utterance (after optional hesitation words). An introduction is
+ * the first thing out of your mouth; a stray "X from Y" eleven words deep is
+ * not one. Cued forms stay matchable anywhere.
+ *
+ * Pronouns are also refused as places, which independently kills "from me",
+ * "from you", "from them".
+ */
 export function extractSpokenNameAndPlace(text: string): { name: string | null; location: string | null } {
-  const match = text.match(
-    /\b(?:(?:my name is|my name's|call me|i(?:'m| am))\s+)?([\p{L}][\p{L}'-]*)\s+from\s+([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})(?=\s*[.!?,]|$)/iu,
+  const NAME_WORD = "([\\p{L}][\\p{L}'-]*)";
+  const PLACE_WORDS = "([\\p{L}][\\p{L}'-]*(?:\\s+[\\p{L}][\\p{L}'-]*){0,3})";
+  const TAIL = "(?=\\s*[.!?,]|$)";
+  // Cued: an explicit introduction, allowed anywhere in the turn.
+  const cued = new RegExp(
+    "\\b(?:my name is|my name's|call me|i(?:'m| am))\\s+" + NAME_WORD + "\\s+from\\s+" + PLACE_WORDS + TAIL,
+    "iu",
   );
+  // Bare: no cue, so it only counts when it OPENS the turn.
+  const bare = new RegExp(
+    "^\\s*(?:(?:uh|um|er|ah|oh|well|hi|hey|hello|yeah|yes)[,\\s]+)*" +
+      NAME_WORD + "\\s+from\\s+" + PLACE_WORDS + TAIL,
+    "iu",
+  );
+  const match = text.match(cued) ?? text.match(bare);
   if (!match?.[1] || !match[2]) return { name: null, location: null };
   const name = match[1].trim();
   const place = match[2].replace(/[.,!?;:]+$/g, "").trim();
   if (NAME_STOP.test(name) || name.length < 2 || name.length > 40) return { name: null, location: null };
-  if (/^(?:here|there|work|home|scratch|the)$/i.test(place) || place.length < 2 || place.length > 80) {
+  // A pronoun is never a place. "from me" is the one that cost a real lead.
+  if (
+    /^(?:here|there|work|home|scratch|the|me|you|us|them|him|her|it|myself|yourself|someone|anyone|everyone|somebody|anybody|everybody)$/i.test(
+      place,
+    ) ||
+    place.length < 2 ||
+    place.length > 80
+  ) {
     return { name: titleNameWords(name), location: null };
   }
   return { name: titleNameWords(name), location: titleLocationWords(place) };
@@ -555,8 +597,53 @@ export function extractContactPreference(text: string): "sms" | "voice" | "email
   return null;
 }
 
+/**
+ * Did the visitor confirm the read-back?
+ *
+ * G's ride 129b69d6, 2026-08-31. iScott spelled the address and asked "Did I
+ * hear that exactly right?" G answered
+ *
+ *     "But yes, you, you said it correctly."
+ *
+ * and this returned FALSE, because the old pattern accepted only two shapes -
+ * "<field> is correct" and "that's the right <field>" - both of which require
+ * the visitor to NAME THE FIELD back. Nobody talks like that. Not one line in
+ * that entire ride matched, so contact_readback_correct stayed false, consent
+ * never locked, the package never qualified, and G received an "INCOMPLETE
+ * iScott lead" email for a lead where he had given his name, his address, and
+ * an explicit yes.
+ *
+ * This is the same fault as the "Yet." bug fixed the previous night: a
+ * whitelist narrower than human speech, sitting on the path a real lead has to
+ * cross. Widened to the ordinary ways people say "you got it", with the refusal
+ * check FIRST so a correction can never be read as a confirmation.
+ */
 export function detectsContactReadBackCorrect(text: string): boolean {
-  return /\b(?:phone number|email|number)\s+is\s+correct\b|\bthat(?:'s| is) the (?:right )?(?:number|email)\b/i.test(text);
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (!normalized) return false;
+  // REFUSALS FIRST. "no that's wrong", "not correct", "that's not right",
+  // "almost right" - none of these are a confirmation, and several of them
+  // contain the very words the positive patterns look for.
+  if (
+    /\b(?:not|isn't|isnt|ain't|aint|wasn't|wrong|incorrect|nope|nah|almost|nearly|close but|other way)\b/i.test(
+      normalized,
+    )
+  ) {
+    return false;
+  }
+  if (/^\s*no\b/i.test(normalized)) return false;
+  // The original two shapes, kept verbatim so nothing that used to pass stops.
+  if (
+    /\b(?:phone number|email|number)\s+is\s+correct\b|\bthat(?:'s| is) the (?:right )?(?:number|email)\b/i.test(
+      normalized,
+    )
+  ) {
+    return true;
+  }
+  // How people actually answer "did I hear that right?"
+  return /\b(?:that(?:'s| is) (?:it|right|correct)|you (?:said|got|read|have|heard) (?:it|that|them)?\s*(?:right|correct|correctly)|said it correctly|got it right|read it right|heard it right|exactly right|perfectly|spot on|correct|right)\b/i.test(
+    normalized,
+  );
 }
 
 export function normalizeAssistantReadBackSpacing(text: string): string {
