@@ -322,10 +322,14 @@ const wildWorksButtonCss = `
       letter-spacing: 0 !important;
       text-decoration: none !important;
       /* the words carry the site's depth ink, at the 10% G asked for */
+      /* BACKED OFF 10%, G 2026-08-31 (ride adfdc2ff): "the finish button... back
+         off the shadow effect by 10%." Alphas x 0.9; the offsets are untouched,
+         so the depth reads lighter without the letters moving or the ladder
+         changing shape. 0.882 -> 0.794, 0.81 -> 0.729, 0.648 -> 0.583. */
       text-shadow:
-        rgba(35, 9, 2, 0.882) 0 0.01731em 0,
-        rgba(30, 8, 2, 0.81) 0 0.03461em 0,
-        rgba(25, 6, 1, 0.648) 0 0.05192em 0 !important;
+        rgba(35, 9, 2, 0.794) 0 0.01731em 0,
+        rgba(30, 8, 2, 0.729) 0 0.03461em 0,
+        rgba(25, 6, 1, 0.583) 0 0.05192em 0 !important;
       box-shadow:
         0 16px 42px rgba(58, 33, 8, 0.44),
         0 0 24px rgba(240, 140, 40, 0.22),
@@ -504,8 +508,29 @@ const wildWorksButtonCss = `
     html[data-ww-avatar-embedded] [data-ww-finish]::before,
     html[data-ww-avatar-embedded] [data-ww-talk] svg,
     html[data-ww-avatar-embedded] [data-ww-finish] svg {
+      /* G 2026-08-31, on the Finish button: "the icon inside the finish needs to
+         be more... It's strong. I've been asking for this 100 fucking times."
+         He has, and this is why it survived: the icon shadow was fixed on the
+         HOME buttons this morning (H337) and this rule - the copy that dresses
+         the icons INSIDE the avatar embed - was left on the old value. Same
+         defect, second location, which is the standing rule about fixing a bug
+         everywhere it lives.
+
+         Reach was never the problem here. Measured against .btn-wood's own
+         label ladder at font-size 1.12rem: label total 0.05192em = 0.93px, icon
+         0.9px. Already parity. What it lacked was GRADE - one flat step reads
+         as a printed edge, not as depth, next to a label built from three
+         stops that fade 35,9,2 -> 25,6,1.
+
+         So the total is held and the single step is split into the label's own
+         three, with the label's own falloff. Three chained drop-shadows, not
+         ten: ten opaque copies is what blobbed these thin-stroke glyphs on
+         2026-08-29 and that lesson stands. Offsets px-clamped both ends so the
+         edge stays a hairline at every size. */
       filter:
-        drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.9px, 0.045em, 1.4px) 0.25px) !important;
+        drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px)
+        drop-shadow(rgba(30, 8, 2, 0.72) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px)
+        drop-shadow(rgba(25, 6, 1, 0.54) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px) !important;
     }
 
     .btn-inset {
