@@ -1467,6 +1467,42 @@ const wildWorksButtonCss = `
       transform: translateX(-50%) !important;
     }
 
+    /* G 2026-08-31, straight answer to the question that had been open all day:
+       "it's wrong in the normal phone browser, fine in telegram."
+
+       Measured, not guessed. Same 288x512 frame both times, returned-Talk state:
+         normal phone   button sits 67px  off the frame bottom
+         Telegram       button sits 119px off the frame bottom
+       52px lower on a real phone. That is the fault he has been describing.
+
+       Cause is NOT the bottom value - both compute the same 107.2px. It is
+       POSITION. This stylesheet carries a blanket
+           body > :not(script):not(style) { position: relative !important }
+       which exists to give the loading cover a stacking context, and it beats
+       Tailwind's plain .fixed. So the returned-Talk wrapper is un-fixed and
+       falls back into flow. The ONLY thing that ever escaped it is the measured
+       iPad pin below, which restates position: fixed !important - and that pin
+       is gated to coarse-pointer portrait 521-1279px. Telegram's in-app browser
+       reports 575 and passes it. A real phone reports ~390-430 and never does,
+       so on his phone nothing re-fixes the wrapper.
+
+       Gated on the pin NOT having engaged, so the iPad path cannot be touched:
+       where the measured rule applies it still wins, unchanged. On a phone the
+       iframe's inner viewport equals the frame box exactly (verified 288x512 =
+       288x512), so the app's own anchor is the correct one here - the same
+       clamp the Finish control in this document already uses. No new numbers
+       invented. Video sizing, the session-ended panel and the lead card all
+       ride the measured flag too and are deliberately left alone. */
+    html[data-ww-avatar-embedded]:not([data-ww-embed-measured])[data-ww-finish-returned]
+      .fixed.bottom-28:has([data-ww-talk]) {
+      position: fixed !important;
+      bottom: clamp(6.7rem, 14vh, 7.3rem) !important;
+      left: 50% !important;
+      right: auto !important;
+      top: auto !important;
+      transform: translateX(-50%) !important;
+    }
+
     @media (max-width: 287px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.5rem) !important;
