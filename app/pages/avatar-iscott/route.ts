@@ -326,10 +326,15 @@ const wildWorksButtonCss = `
          off the shadow effect by 10%." Alphas x 0.9; the offsets are untouched,
          so the depth reads lighter without the letters moving or the ladder
          changing shape. 0.882 -> 0.794, 0.81 -> 0.729, 0.648 -> 0.583. */
+      /* SECOND back-off, G 2026-08-31 ride 009124c0, looking at the first one:
+         "Finish looks, you know, it still has got a little too heavy of the
+         shadow effect." Another 0.9 on top of the first, so the label now sits
+         at 0.81 of where it started: 0.882 -> 0.794 -> 0.715. Offsets still
+         untouched - the letters have not moved through any of this. */
       text-shadow:
-        rgba(35, 9, 2, 0.794) 0 0.01731em 0,
-        rgba(30, 8, 2, 0.729) 0 0.03461em 0,
-        rgba(25, 6, 1, 0.583) 0 0.05192em 0 !important;
+        rgba(35, 9, 2, 0.715) 0 0.01731em 0,
+        rgba(30, 8, 2, 0.656) 0 0.03461em 0,
+        rgba(25, 6, 1, 0.525) 0 0.05192em 0 !important;
       box-shadow:
         0 16px 42px rgba(58, 33, 8, 0.44),
         0 0 24px rgba(240, 140, 40, 0.22),
@@ -527,10 +532,18 @@ const wildWorksButtonCss = `
          ten: ten opaque copies is what blobbed these thin-stroke glyphs on
          2026-08-29 and that lesson stands. Offsets px-clamped both ends so the
          edge stays a hairline at every size. */
+      /* MORE, G 2026-08-31 ride 009124c0, in the same breath as backing the
+         label off: "the icon does not have enough shadow." He is asking for the
+         two to diverge - lighter letters, heavier glyph - so this stops being a
+         parity exercise. Reach goes up ~45% (0.0173em -> 0.0251em per step,
+         three steps = 0.0753em against the label's 0.05192em) and every alpha
+         goes up. Still three graded steps, never ten: ten opaque copies is what
+         blobbed these thin-stroke glyphs on 2026-08-29. Offsets stay px-clamped
+         so the edge cannot become a slab on the larger controls. */
       filter:
-        drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px)
-        drop-shadow(rgba(30, 8, 2, 0.72) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px)
-        drop-shadow(rgba(25, 6, 1, 0.54) 0 clamp(0.3px, 0.0173em, 0.47px) 0.12px) !important;
+        drop-shadow(rgba(35, 9, 2, 0.96) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px)
+        drop-shadow(rgba(30, 8, 2, 0.84) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px)
+        drop-shadow(rgba(25, 6, 1, 0.68) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px) !important;
     }
 
     .btn-inset {
@@ -763,7 +776,7 @@ const wildWorksButtonCss = `
          min-height, so raising it does not move the box or anything under
          it, and 1.74 keeps the shrink loop landing exactly on its floor.
          G: "the email address needs to be a size appropriate to the box." */
-      font-size: clamp(0.95rem, 3.6vw, 1.74rem) !important;
+      font-size: clamp(0.95rem, 3.6vw, 2.22rem) !important;
       font-weight: 900 !important;
       line-height: 1.25 !important;
       text-align: center !important;
@@ -774,6 +787,34 @@ const wildWorksButtonCss = `
          itself rather than as an injected node. Nothing but the brand fill
          belongs in here. */
       background-image: none !important;
+    }
+
+    /* NARROW FRAMES: give the value its width back.
+       G, three rides running, escalating each time - 2026-08-31 15:21:45:
+       "The text is super small though. It's like midget size. It's like
+       ridiculously small. Needs to be way fucking bigger."
+
+       Raising the fit ceiling twice did not fix it, because the ceiling was
+       never the binding constraint. The 1.85rem symmetric padding is: 59.2px of
+       a card that is min(100vw - 1rem, 28rem) = 286px on his embed, so 21% of
+       the box is reserved before a glyph is drawn, and the fit loop then shrinks
+       the value to survive what is left.
+
+       That padding exists for a real reason - a password-manager badge is
+       absolutely positioned against this field's border box and would otherwise
+       sit on the letters (G's ride 2026-08-29, the red LastPass box). It is kept
+       in full at the widths where a manager is actually likely. This relief is
+       scoped to 520px and below, which is the avatar embed on a phone, and stays
+       symmetric so the value remains optically centred.
+
+       Available width for text on his 286px card:
+         1.85rem padding -> 270 - 59.2 - 2 - 6 = 202.8px
+         0.95rem padding -> 270 - 30.4 - 2 - 6 = 231.6px   (+14%)
+       With the 2.22rem ceiling that is roughly double what he called midget. */
+    @media (max-width: 520px) {
+      #wildworks-lead-value {
+        padding-inline: 0.95rem !important;
+      }
     }
 
     /* The browsers' own in-field controls sit exactly where the value ends.
@@ -3338,7 +3379,7 @@ const wildWorksLeadConfirmationScript = `
       // height: line-height here is 1.25, so 1.74 x 1.25 = 2.18rem of text box
       // inside a 2.4rem min-height field. Nothing below moves. Long addresses
       // still step down exactly as before - the second half of what he asked.
-      const FIT_MAX_REM = 1.74;
+      const FIT_MAX_REM = 2.22;
       const FIT_MIN_REM = 0.62;
       const FIT_RESERVE_PX = 6;
       const fitContentWidth = (output) => {

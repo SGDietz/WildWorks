@@ -640,6 +640,18 @@ export function detectsContactReadBackCorrect(text: string): boolean {
   ) {
     return true;
   }
+  // ANSWERS TO THE QUESTION ITSELF. G's ride 009124c0, 2026-08-31: iScott asked
+  // "Did I hear that exactly right?" and G answered "You did." - which is the
+  // most natural answer there is, and it returned false, so consent never
+  // locked and the lead died holding a confirmed phone number.
+  //
+  // The list widened this morning accepts "you SAID/GOT/READ/HAVE/HEARD it
+  // right". It requires a verb from that set AND a "right/correct" after it.
+  // "You did." carries neither. A question of the form "did I ...?" is answered
+  // by echoing the auxiliary, so that echo has to count on its own.
+  if (/^(?:\s*(?:yes|yeah|yep|yup|ok|okay)[,.\s]+)*you (?:did|do|have)\b/i.test(normalized)) {
+    return true;
+  }
   // How people actually answer "did I hear that right?"
   return /\b(?:that(?:'s| is) (?:it|right|correct)|you (?:said|got|read|have|heard) (?:it|that|them)?\s*(?:right|correct|correctly)|said it correctly|got it right|read it right|heard it right|exactly right|perfectly|spot on|correct|right)\b/i.test(
     normalized,
@@ -1005,10 +1017,17 @@ export function isSendCommandConsent(text: string): boolean {
   // information to the WildWorks team." registered NO consent): accept
   // wildworks-team targets, filler before the yes, and the plain imperative.
   return (
-    (/\bsend\b[^.!?]{0,60}?\bto\s+(?:the\s+)?(?:wildworks(?:\s+team)?|scott)\b/i.test(normalized)
-      && /\b(?:yes|yeah|okay|ok)\b/i.test(normalized))
-    || /\bsend\s+(?:my|the)\s+(?:information|info|details|email|lead)\b/i.test(normalized)
+    // A PLAIN IMPERATIVE IS CONSENT. G's ride 009124c0, 2026-08-31: the old
+    // shape required a "yes/yeah/okay" token to sit alongside "send ... to
+    // Scott", so the bare command "send that to Scott" - which is a clearer
+    // instruction than any of those words - did not register. Someone telling
+    // you to do a thing has consented to the thing. The negation guard above
+    // still owns "don't send", and it runs first.
+    /\b(?:send|forward|pass|give)\b[^.!?]{0,60}?\bto\s+(?:the\s+)?(?:wildworks(?:\s+team)?|scott)\b/i.test(normalized)
+    || /\bsend\s+(?:my|the|that|this|it|them|those)\s*(?:information|info|details|email|lead|number|phone)?\b/i.test(normalized)
     || /^(?:(?:um+|uh|okay|ok|all\s?right|alright|well|so)[,.]?\s+)*(?:yes|yeah)[,.]?\s+send\b/i.test(normalized)
+    // "you have my permission" is explicit consent in words, with no verb at all.
+    || /\byou have my permission\b/i.test(normalized)
   );
 }
 

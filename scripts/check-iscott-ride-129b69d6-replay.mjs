@@ -124,3 +124,41 @@ assert.ok(
 );
 
 console.log("iScott ride 129b69d6 replay passed: one name ('Scott'), read-back confirmed, refusals still refused.");
+
+/* ------------------------------------------------- ride 009124c0, 2026-08-31 */
+// He confirmed the read-back and gave an explicit send command, and the lead
+// still did not go:
+//   15:21:26  iScott: "...two one six six. Did I hear that exactly right?"
+//   15:21:27  G:      "You did."
+//   15:21:55  G:      "Yes, send that to Scott. You have my permission."
+// consent_status stayed "unknown". The send command HAD registered; the
+// read-back gate had not, so consent could never lock.
+assert.equal(
+  m.detectsContactReadBackCorrect("You did."),
+  true,
+  "'You did.' is the natural answer to 'did I hear that right?' and must confirm",
+);
+for (const yes of ["You did", "Yes, you did.", "Yeah you did", "You do", "You have."]) {
+  assert.equal(m.detectsContactReadBackCorrect(yes), true, `should confirm: ${yes}`);
+}
+// The auxiliary echo must not swallow a refusal that starts the same way.
+for (const no of ["You did not.", "You didn't.", "No, you did not get that right."]) {
+  assert.equal(m.detectsContactReadBackCorrect(no), false, `must NOT confirm: ${no}`);
+}
+
+// A plain imperative is consent. Someone telling you to do a thing has
+// consented to the thing.
+for (const cmd of [
+  "send that to Scott",
+  "Yes, send that to Scott. You have my permission.",
+  "send it to Scott",
+  "forward that to Scott",
+  "you have my permission",
+]) {
+  assert.equal(m.isSendCommandConsent(cmd), true, `should be consent: ${cmd}`);
+}
+for (const cmd of ["don't send that to Scott", "do not send my info", "never send that to Scott"]) {
+  assert.equal(m.isSendCommandConsent(cmd), false, `must NOT be consent: ${cmd}`);
+}
+
+console.log("iScott ride 009124c0 replay passed: 'You did.' confirms, bare send command is consent, refusals still refused.");
