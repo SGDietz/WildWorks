@@ -50,6 +50,7 @@ await fs.writeFile(
     "export const notifyIScottLeadByEmail = async () => null;",
     "export const getSupabaseAdminConfig = () => ({ url: '', serviceRoleKey: '' });",
     "export const isSupabaseAdminConfigured = () => false;",
+    "export const queueSupabaseOperationalAlert = () => undefined;",
   ].join("\n"),
   "utf8",
 );
@@ -63,9 +64,12 @@ const LOCAL = [
   "apiRouteSecurity",
   "trafficClassification",
   "iscottTrafficResolve",
+  // Pure gate and copy for the disabled visitor receipt: no I/O, so it is
+  // loaded for real rather than stubbed.
+  "iscottVisitorConfirmation",
   "iscottLeadCapture",
 ];
-const STUBBED = ["voiceEmailNotifications", "supabaseAdmin"];
+const STUBBED = ["voiceEmailNotifications", "supabaseAdmin", "wildworksOperationalAlerts"];
 const rewrites = [
   ...LOCAL.map((n) => [`from "./${n}"`, `from "./replay-${n}.mjs"`]),
   ...STUBBED.map((n) => [`from "./${n}"`, 'from "./replay-stub.mjs"']),

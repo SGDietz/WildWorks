@@ -94,6 +94,18 @@ const {
   spokenPreferenceSignal,
   visitorChoseContactMethod,
   nextFreeTranscriptTimestamp,
+  evaluateExactContactSendConsent,
+  detectsExactContactSendConfirmation,
+  isExactContactReadback,
+  isSpecificProjectNeed,
+  isMeaningfulVisitorName,
+  sameContactValue,
+  normalizedContactValue,
+  leadNotQualifiedReason,
+  LeadNotQualifiedError,
+  evaluateIScottLeadSendQualification,
+  nextIScottLeadQuestion,
+  iscottLeadGatherOrder,
 } = await import(`${pathToFileURL(tempPath).href}?v=${Date.now()}`);
 const adapterSource = await fs.readFile(path.resolve("src/lib/telemetryEventAdapter.ts"), "utf8");
 const adapterOut = ts.transpileModule(adapterSource, {
@@ -195,7 +207,23 @@ assert.equal(transcript.transcript_snapshot.length, 2);
 
 assert.equal(mayClaimHandoffSent({ status: "ready_for_confirmation", notificationStatus: null }), false);
 assert.equal(mayClaimHandoffSent({ status: "submitted", notificationStatus: "queued" }), false);
-assert.equal(mayClaimHandoffSent({ status: "submitted", notificationStatus: "sent" }), true);
+assert.equal(mayClaimHandoffSent({ status: "submitted", notificationStatus: "sent" }), false);
+for (const notificationOutboxId of [null, undefined, "", "   ", "outbox-id", "not-a-linked-uuid"]) {
+  assert.equal(
+    mayClaimHandoffSent({ status: "submitted", notificationStatus: "sent", notificationOutboxId }),
+    false,
+    `sent truth fails closed for unlinked outbox id: ${String(notificationOutboxId)}`,
+  );
+}
+const LINKED_OUTBOX_ID = "11111111-1111-4111-8111-111111111111";
+assert.equal(
+  mayClaimHandoffSent({
+    status: "submitted",
+    notificationStatus: "sent",
+    notificationOutboxId: LINKED_OUTBOX_ID,
+  }),
+  true,
+);
 assert.equal(
   leadPanelStatusCopy({ status: "ready_for_confirmation" }),
   "",
@@ -286,7 +314,11 @@ assert.match(auditedRide.transcript_text, /VISITOR: Send them to Scott\. Yes\./)
 assert.equal(auditedRide.mayClaimSent, false, "WW-2/4/5/8 no sent claim before outbox sent");
 
 const unsubmitted = { status: "ready_for_confirmation", notificationStatus: null };
-const submittedSent = { status: "submitted", notificationStatus: "sent" };
+const submittedSent = {
+  status: "submitted",
+  notificationStatus: "sent",
+  notificationOutboxId: LINKED_OUTBOX_ID,
+};
 assert.equal(
   allowedAvatarHandoffSpeech("Yes, I sent your information to Scott", unsubmitted),
   false,
@@ -767,10 +799,23 @@ assert.match(overlayCss, /revealVersion/, "L71/73 a newer capture cancels an old
 assert.doesNotMatch(overlayCss, /oscillator\.frequency\.value = 720/, "L74 typing ticks are gone");
 assert.doesNotMatch(overlayCss, /\/@\|\\d\{7,\}\/\.test\(visible\)/, "L71 @ no longer hides the email");
 assert.doesNotMatch(overlayCss, /Preparing your handoff/, "L39 tap does not claim preparing");
-assert.match(overlayCss, /I'm sending that to Scott\./, "L22 tap copy is send, not confirm-before-Scott");
+// L22, restated 2026-08-30. The tap copy used to announce a send at the moment
+// the button was pressed, ahead of the server's answer. Both the panel string
+// and the library string now say what is true of every outcome that can follow:
+// the details are being checked, and nothing has been sent.
+assert.match(
+  overlayCss,
+  /status\.textContent = "Checking your details\. Nothing has been sent to Scott yet\.";/,
+  "L22 tap copy checks the details and claims no send",
+);
 assert.equal(
   confirmingHandoffStatusCopy(),
-  "Sending these details to Scott. He does not have them yet.",
+  "Checking your details. Nothing has been sent to Scott yet.",
+);
+assert.doesNotMatch(
+  confirmingHandoffStatusCopy(),
+  /\bsending\b/i,
+  "no pre-send copy may claim a send is under way",
 );
 assert.equal(
   capturedAwaitingPermissionCopy(),
@@ -1026,7 +1071,7 @@ assert.equal(
     status: "submitted",
     submittedAt: "2026-08-16T00:00:00Z",
     notificationStatus: "queued",
-    notificationOutboxId: "obx-1",
+    notificationOutboxId: LINKED_OUTBOX_ID,
   }).allowed,
   false,
   "L41/44 outbox without sent receipt cannot claim follow-up",
@@ -1042,7 +1087,7 @@ assert.equal(
     status: "submitted",
     submittedAt: "2026-08-16T00:00:00Z",
     notificationStatus: "sent",
-    notificationOutboxId: "obx-1",
+    notificationOutboxId: LINKED_OUTBOX_ID,
   }).allowed,
   true,
   "L43/44 sent plus outbox may claim",
@@ -1189,5 +1234,640 @@ assert.equal(replay102.snapshotKeepsSession, true, "L102 snapshot is not the las
 assert.equal(replay102.georgeSurvivesLateBatch, true, "L102/91 late batch does not erase George");
 assert.equal(replay102.cannotClaimSent, true, "L102/40 unsubmitted ride cannot claim sent");
 assert.equal(replay102.cannotClaimPreparing, true, "L102/39 unsubmitted ride cannot claim preparing");
+
+/* ------------------------------------------------------------------ *
+ * QUALIFICATION AND THE EXACT-CONTACT CONSENT GATE, 2026-08-29.
+ *
+ * Scott is going to ring these people. A package only leaves WildWorks
+ * carrying a name he can say, a job he can quote, and a contact the visitor
+ * read back and said yes to. Everything below drives the real functions.
+ * ------------------------------------------------------------------ */
+
+const QEMAIL = "visitor@example.com";
+const QOTHER = "someone.else@example.com";
+const QREADBACK = `I have your email as ${QEMAIL}. Did I get that right?`;
+const QASK = "May I send these details to Scott?";
+const qualifiedBase = {
+  fullName: "Jennifer Mcallister",
+  projectNeed: "A pool and a waterfall out back",
+  contactMethod: "email",
+  contactValue: QEMAIL,
+  consentStatus: "accepted",
+  contactConfirmedAt: "2026-08-29T15:00:00.000Z",
+};
+
+// Q1. A SPECIFIC PROJECT. "Landscaping" is a category, not a job Scott can
+//     quote, and null means the visitor never said - which is a block, not a
+//     thing to guess at.
+for (const generic of [null, "", "landscaping", "Some landscaping", "help", "A project", "work", "Info"]) {
+  assert.equal(isSpecificProjectNeed(generic), false, `"${generic}" must not qualify as a project need`);
+}
+for (const real of [
+  "A pool and a waterfall out back",
+  "Website and branding/logo makeover",
+  "A patio rebuilt in flagstone",
+]) {
+  assert.equal(isSpecificProjectNeed(real), true, `"${real}" is a job Scott can act on`);
+}
+assert.equal(
+  isSpecificProjectNeed("You to be like a super positive salesman"),
+  false,
+  "coaching iScott is never the visitor's project",
+);
+assert.equal(isSpecificProjectNeed("My phone number"), false, "contact mechanics are not a project");
+
+// Q1b. CORRECTED 2026-08-29. The generic block only ever matched a WHOLE phrase,
+//      so stacking two vague words walked straight through it. Every line here
+//      is a real thing a visitor says that Scott cannot quote from.
+for (const vague of [
+  "Some landscaping",
+  "some help",
+  "Help with a project",
+  "A landscaping project",
+  "a landscaping job",
+  "some yard work",
+  "help with my yard",
+  "a project done",
+  "some work done",
+  "the landscaping",
+  "some information",
+  "a quote",
+]) {
+  assert.equal(
+    isSpecificProjectNeed(vague),
+    false,
+    `"${vague}" is a category, not a job Scott can act on`,
+  );
+}
+// Q1b-direct. FOLLOW-UP 2026-08-29. The block below used to be asserted ONLY
+// through extractProjectNeed, and the extractor strips the "I want" off the
+// front - so the gate was never actually asked about a sentence carrying its
+// own pronoun. Handed one DIRECTLY, "I want some landscaping" had "i" as its
+// single non-scaffold token and passed as a job Scott could quote. A pronoun is
+// grammar: it says WHO is asking, never WHAT the work is. Same for the verb.
+//
+// These call isSpecificProjectNeed on the raw sentence, no extractor in the
+// way, which is also how the confirm API sees a stored project_need column.
+for (const direct of [
+  "I want some landscaping",
+  "I need some help",
+  "I need help with a project",
+  "We want a landscaping project",
+  "A landscaping project",
+  // and the same lines as they actually arrive, with terminal punctuation
+  "I want some landscaping.",
+  "I need some help.",
+  "I need help with a project.",
+  "We want a landscaping project.",
+  // the pronouns the fix added, each carrying nothing but scaffold behind it
+  "They want a landscaping job",
+  "He needs some yard work",
+  "My project",
+  "I just want a quote",
+]) {
+  assert.equal(
+    isSpecificProjectNeed(direct),
+    false,
+    `"${direct}" asked directly must not qualify - grammar is not detail`,
+  );
+}
+// Q1b-uncertainty. Apostrophes used to split "don't" into "don" + "t";
+// "don" then looked like the one concrete word in an otherwise empty answer.
+// Politeness, timing and adverb padding must not turn uncertainty or a bare
+// category into a job Scott can quote.
+for (const direct of [
+  "I don't know",
+  "I don’t know",
+  "I dont know",
+  "I do not know",
+  "I'm not sure",
+  "I am unsure",
+  "I have no idea",
+  "No clue yet",
+  "I don't know what kind of project yet",
+  "Honestly, I probably don't know right now",
+  "Could you please help me sometime",
+  "I just need landscaping soon",
+  "We probably want a project eventually",
+  "Maybe later",
+]) {
+  assert.equal(
+    isSpecificProjectNeed(direct),
+    false,
+    `"${direct}" carries uncertainty or padding, not a concrete project need`,
+  );
+}
+// A pronoun in front of a REAL job is still a real job. The fix must not have
+// bought its strictness by refusing sentences people genuinely say.
+for (const direct of [
+  "I want a pool and a waterfall out back",
+  "We need the driveway repaved",
+  "I need help with a retaining wall",
+  "My patio is sinking",
+  "I'm not sure of the style, but I need a patio rebuilt",
+  "Maybe later, a pool with a waterfall",
+  "Please quote a flagstone path",
+  "We probably need better drainage in the back yard",
+]) {
+  assert.equal(
+    isSpecificProjectNeed(direct),
+    true,
+    `"${direct}" carries a concrete word Scott can quote from`,
+  );
+}
+// And the same sentences as the visitor actually speaks them, through the real
+// extractor, so the block cannot be true only for hand-written fixtures.
+for (const spoken of [
+  "I want some landscaping.",
+  "I need some help.",
+  "I need help with a project.",
+  "We want a landscaping project.",
+]) {
+  assert.equal(
+    isSpecificProjectNeed(extractProjectNeed(spoken)),
+    false,
+    `"${spoken}" must not qualify as a project need`,
+  );
+}
+// The detail is what makes it a job. One concrete word is enough.
+for (const real of [
+  "Some landscaping around a new pool",
+  "Help with a retaining wall by the driveway",
+  "A landscaping project with a stone firepit",
+  "I want the yard regraded so it stops flooding",
+]) {
+  assert.equal(isSpecificProjectNeed(real), true, `"${real}" carries something Scott can quote`);
+}
+
+// Q1c. A NAME SCOTT CAN OPEN A CALL WITH. Blank values, placeholders, contact
+//      values and field labels all block until iScott gathers a real name.
+//      2026-08-30: a legitimate single word is a name. The one-token rule that
+//      used to sit here refused "Cher" and "Solveig" - real answers from real
+//      visitors - and sent iScott back to ask again.
+for (const real of ["Solveig Hansen", "Cher Bono", "Jennifer Mcallister", "Mary-Anne O'Neill", "Jean-Luc Picard"]) {
+  assert.equal(isMeaningfulVisitorName(real), true, `"${real}" is a real name`);
+}
+for (const placeholder of [
+  null, undefined, "", "   ", "a", "N/A", "n/a", "none", "unknown", "test", "Testing",
+  "visitor", "Guest", "anonymous", "someone", "no name", "First Last", "my name",
+  "asdf", "qwerty", "xxx", "1234", "???", "idk",
+]) {
+  assert.equal(
+    isMeaningfulVisitorName(placeholder),
+    false,
+    `"${placeholder}" must not pass as the visitor's name`,
+  );
+}
+// The gate and the gather order both read the same rule.
+assert.equal(
+  evaluateIScottLeadSendQualification({ ...qualifiedBase, fullName: "test" }).blockers.includes("missing_full_name"),
+  true,
+  "a placeholder name blocks the send",
+);
+assert.equal(
+  evaluateIScottLeadSendQualification({ ...qualifiedBase, fullName: "Solveig" }).blockers.includes("missing_full_name"),
+  false,
+  "a legitimate one-word name is a name and does not block the send",
+);
+assert.notEqual(
+  nextIScottLeadQuestion({ fullName: "Solveig", projectNeed: "A pool and a waterfall out back" }).step,
+  "full_name",
+  "iScott does not ask again for a name the visitor has already given",
+);
+assert.equal(
+  evaluateIScottLeadSendQualification({ ...qualifiedBase, fullName: "visitor" }).blockers.includes("missing_full_name"),
+  true,
+  "a one-word placeholder still blocks the send",
+);
+assert.equal(
+  nextIScottLeadQuestion({ fullName: "N/A", projectNeed: "A pool and a waterfall out back" }).step,
+  "full_name",
+  "iScott asks again rather than accepting a placeholder",
+);
+
+// Q2. THE READ-BACK. Exact means exact - the stored value, literally or in
+//     iScott's spelled form, and nothing else riding along with it.
+assert.equal(isExactContactReadback(QREADBACK, "email", QEMAIL), true, "a plain read-back of the held address");
+assert.equal(
+  isExactContactReadback(
+    "Let me spell that out: V-I-S-I-T-O-R at E-X-A-M-P-L-E dot C-O-M. Did I hear that right?",
+    "email",
+    QEMAIL,
+  ),
+  true,
+  "iScott's spelled read-back is the same read-back",
+);
+assert.equal(
+  isExactContactReadback(`I have your email as ${QOTHER}. Did I get that right?`, "email", QEMAIL),
+  false,
+  "a read-back of some OTHER address is not a read-back of this one",
+);
+assert.equal(
+  isExactContactReadback("I have your email. Did I get that right?", "email", QEMAIL),
+  false,
+  "a read-back that never says the address is not exact",
+);
+assert.equal(
+  isExactContactReadback("I have your phone number as 4-4-3, 5-5-5, 0-1-4-2. Did I get that right?", "phone", "4435550142"),
+  true,
+  "a number spoken in groups is still an exact read-back",
+);
+
+// Q3. READ-BACK, THEN THE SEND QUESTION, THEN AN ADJACENT YES. This is the
+//     only shape a plain "Yes." may travel on.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 40 },
+      { role: "user", message: "Yes, that's right.", laAbsoluteTimestamp: 43 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 46 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 48 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, true, "read-back then ask then yes is send consent");
+  assert.equal(consent.reason, "readback_prompt_affirmation");
+}
+
+// Q4. A GENERIC ASK WITH NO EXACT READ-BACK. The yes is real; it is just not
+//     attached to any address anyone confirmed, so it may not send.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: "Perfect!", laAbsoluteTimestamp: 40 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 46 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 48 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, false, "a generic ASK + Yes must not send");
+  assert.equal(consent.reason, "no_exact_contact_readback");
+  // The broad detector still calls it a yes. The two rules are deliberately
+  // different questions, and only the strict one opens the door.
+  assert.equal(
+    detectsContextualContactSendConfirmation(
+      [
+        { role: "assistant", message: QASK, laAbsoluteTimestamp: 46 },
+        { role: "user", message: "Yes.", laAbsoluteTimestamp: 48 },
+      ],
+      "email",
+      QEMAIL,
+    ),
+    true,
+    "evaluateContactSendConsent is unchanged - it still reads a yes as a yes",
+  );
+}
+
+// Q5. A READ-BACK THAT DRIFTED TOO FAR FROM THE QUESTION cannot be spent on it.
+assert.equal(
+  evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "Yes, that's right.", laAbsoluteTimestamp: 12 },
+      { role: "assistant", message: "Scott has built gardens all over Baltimore.", laAbsoluteTimestamp: 14 },
+      { role: "user", message: "That sounds good.", laAbsoluteTimestamp: 16 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 18 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 20 },
+    ],
+    "email",
+    QEMAIL,
+  ).reason,
+  "readback_too_far_from_prompt",
+);
+
+// Q6. A CHANGED CONTACT kills the read-back and the consent that stood on it.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 10 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 12 },
+      { role: "user", message: `Actually use ${QOTHER} instead.`, laAbsoluteTimestamp: 14 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 16 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, false, "a yes cannot be spent on an address the visitor replaced");
+  assert.equal(consent.reason, "contact_changed_after_consent");
+}
+
+// Q7. THE SEND COMMAND, CORRECTED 2026-08-29.
+//
+//     This gate used to accept ANY explicit command anywhere in the transcript,
+//     with no read-back at all - and "Yes, send it to Scott." is a phrase
+//     iScott's own prompting invites. So the strict rule could be satisfied by a
+//     sentence that never named an address, which is the broad rule wearing the
+//     strict rule's name.
+//
+//     A command is still permission and iScott still does not have to have asked
+//     first. What it may no longer do is stand in for the read-back.
+
+// Q7a. Read-back, then the command. ACCEPTED - this is the shape ride 7325f798
+//      should have had, and the one the gather order now produces.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "Yes, send it to Scott.", laAbsoluteTimestamp: 12 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, true, "a command sitting on the exact read-back is consent");
+  assert.equal(consent.reason, "send_command");
+}
+
+// Q7b. The command ALONE, with nothing read back. REFUSED. Nobody has confirmed
+//      which address it is about, and G's rides are full of addresses that were
+//      mis-heard once and corrected later.
+{
+  const consent = evaluateExactContactSendConsent(
+    [{ role: "user", message: "Yes, send it to Scott.", laAbsoluteTimestamp: 10 }],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, false, "a bare command may not mint consent on its own");
+  assert.equal(consent.reason, "no_exact_contact_readback");
+}
+
+// Q7c. RIDE 7325f798's ACTUAL SHAPE: a read-back of the WRONG address, the
+//      visitor's correction, then the command - and no second read-back. The
+//      corrected address has never been said back to them, so it is refused.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: `I have your email as ${QOTHER}. Did I get that right?`, laAbsoluteTimestamp: 10 },
+      { role: "user", message: `No, that's not right. It's ${QEMAIL}.`, laAbsoluteTimestamp: 12 },
+      { role: "user", message: "Yes, send it to Scott.", laAbsoluteTimestamp: 14 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, false, "a correction is not a read-back of the correction");
+  assert.equal(consent.reason, "no_exact_contact_readback");
+}
+
+// Q7d. A COMPLETE, ACCEPTED ride on the OLD address, and then the visitor
+//      changes it. Neither address may be sent to: the old one lost the lead,
+//      the new one never earned it.
+{
+  const changed = [
+    { role: "assistant", message: `I have your email as ${QOTHER}. Did I get that right?`, laAbsoluteTimestamp: 10 },
+    { role: "user", message: "Yes, send it to Scott.", laAbsoluteTimestamp: 12 },
+    { role: "user", message: `Actually use ${QEMAIL} instead.`, laAbsoluteTimestamp: 14 },
+  ];
+  const forOld = evaluateExactContactSendConsent(changed, "email", QOTHER);
+  assert.equal(forOld.consented, false, "consent on the replaced address dies with it");
+  assert.equal(forOld.reason, "contact_changed_after_consent");
+  const forNew = evaluateExactContactSendConsent(changed, "email", QEMAIL);
+  assert.equal(forNew.consented, false, "and the new address inherits nothing");
+  assert.equal(forNew.reason, "no_exact_contact_readback");
+}
+
+// Q7e. A command spoken BEFORE there is any contact at all. There is nothing to
+//      have read back yet, so there is nothing to consent to.
+{
+  const consent = evaluateExactContactSendConsent(
+    [
+      { role: "user", message: "Yes, send my details to Scott.", laAbsoluteTimestamp: 10 },
+      { role: "assistant", message: "What is the best email address for you?", laAbsoluteTimestamp: 12 },
+      { role: "user", message: `It's ${QEMAIL}.`, laAbsoluteTimestamp: 14 },
+    ],
+    "email",
+    QEMAIL,
+  );
+  assert.equal(consent.consented, false, "a command before the contact exists is not consent for it");
+  assert.equal(consent.reason, "no_exact_contact_readback");
+}
+
+// Q7f. The broad detector is deliberately unchanged - it still answers "did the
+//      visitor say yes to a send?" and it still says yes to all of the above.
+//      Only the strict gate opens the door.
+assert.equal(
+  detectsContextualContactSendConfirmation(
+    [{ role: "user", message: "Yes, send it to Scott.", laAbsoluteTimestamp: 10 }],
+    "email",
+    QEMAIL,
+  ),
+  true,
+  "evaluateContactSendConsent still reads a command as a command",
+);
+
+assert.equal(
+  detectsExactContactSendConfirmation(
+    [
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "No, don't send my information.", laAbsoluteTimestamp: 12 },
+    ],
+    "email",
+    QEMAIL,
+  ),
+  false,
+  "a refusal is never consent under the strict rule either",
+);
+
+// Q8. THE WHOLE GATE. Every field is required and each names its own blocker.
+assert.equal(evaluateIScottLeadSendQualification(qualifiedBase).qualified, true, "a complete lead qualifies");
+for (const [override, blocker] of [
+  [{ fullName: null }, "missing_full_name"],
+  [{ fullName: "   " }, "missing_full_name"],
+  [{ projectNeed: null }, "generic_project_need"],
+  [{ projectNeed: "Landscaping" }, "generic_project_need"],
+  [{ contactValue: null }, "missing_contact"],
+  [{ contactMethod: null }, "missing_contact"],
+  [{ consentStatus: "unknown" }, "consent_not_accepted"],
+  [{ consentStatus: "declined" }, "consent_not_accepted"],
+  [{ contactConfirmedAt: null }, "contact_not_confirmed"],
+  [{ requestedContactValue: QOTHER }, "contact_mismatch"],
+]) {
+  const result = evaluateIScottLeadSendQualification({ ...qualifiedBase, ...override });
+  assert.equal(result.qualified, false, `${blocker} must block the send`);
+  assert.ok(result.blockers.includes(blocker), `expected blocker ${blocker}, got ${result.blockers.join(",")}`);
+}
+assert.equal(
+  evaluateIScottLeadSendQualification({ ...qualifiedBase, requestedContactValue: QEMAIL.toUpperCase() }).qualified,
+  true,
+  "the same address in different case is the same address",
+);
+assert.equal(sameContactValue("phone", "+1 (443) 555-0142", "4435550142"), true, "phone comparison is by digits");
+assert.equal(sameContactValue("phone", "4435550142", "4435550143"), false);
+
+// Q8b. ONE definition of "the same contact", 2026-08-29. Every idempotency
+//      comparison in the lead pipeline asks this function, so the formatting
+//      variants a real visitor produces have to collapse here or they collapse
+//      nowhere - and the ones that are genuinely different must stay different.
+for (const [method, a, b, same, why] of [
+  ["phone", "(443) 555-0142", "443.555.0142", true, "punctuation is not a different phone"],
+  ["phone", "+1 443 555 0142", "4435550142", true, "a country code is not a different phone"],
+  ["phone", "443 555 0142", "  4435550142  ", true, "surrounding space is not a different phone"],
+  ["phone", "4435550142", "4435550143", false, "one different digit IS a different phone"],
+  ["email", "Visitor@Example.COM", "visitor@example.com", true, "case is not a different mailbox"],
+  ["email", " visitor@example.com ", "visitor@example.com", true, "stray space is not a different mailbox"],
+  ["email", "visitor @ example.com", "visitor@example.com", true, "spoken spacing is not a different mailbox"],
+  ["email", "visitor@example.com", "someone.else@example.com", false, "a different address IS different"],
+  ["email", "", "visitor@example.com", false, "a blank is never the same as a real address"],
+  ["email", "", "", false, "two blanks are not the same contact"],
+  ["phone", "5550142", "5550142", false, "a value too short to be a phone is not a contact at all"],
+]) {
+  assert.equal(sameContactValue(method, a, b), same, `${why}: ${a} / ${b}`);
+  assert.equal(sameContactValue(method, b, a), same, `and the comparison is symmetric: ${a} / ${b}`);
+}
+assert.equal(normalizedContactValue("phone", "+1 (443) 555-0142"), "4435550142");
+assert.equal(normalizedContactValue("email", " Visitor @ Example.com "), "visitor@example.com");
+assert.equal(normalizedContactValue("email", "   "), null, "a blank normalizes to no contact, not to an empty key");
+assert.equal(normalizedContactValue("phone", "12345"), null, "too few digits is not a phone");
+
+// Q8b2. THE DEAD BRANCH, 2026-08-29. The send-prompt rule ended on a line that
+//       could only be reached with asksSendNow already false, so it was a
+//       constant false dressed as a rule about read-backs. Removing it changed
+//       nothing, and this is the case it pretended to decide: a turn that reads
+//       the address back but asks no send question opens no prompt, so the yes
+//       that follows it is not permission to mail anybody.
+assert.equal(
+  evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: `I have your email as ${QEMAIL}. Is that right?`, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 12 },
+    ],
+    "email",
+    QEMAIL,
+  ).consented,
+  false,
+  "a read-back with no send question behind it is not consent to send",
+);
+
+// Q8c. THE TYPED REFUSAL. The reason a lead was blocked is data, not a prefix
+//      on a sentence. It still SAYS the old words, because telemetry and logs
+//      have been reading them for a week, but nothing downstream has to parse
+//      them to decide what the visitor is told.
+{
+  const refusal = new LeadNotQualifiedError({
+    reason: "no_exact_contact_consent",
+    blockers: ["no_exact_contact_consent", "consent_not_accepted"],
+  });
+  assert.ok(refusal instanceof Error, "a refusal is still an Error, so every existing catch still works");
+  assert.equal(refusal.message, "lead_not_qualified:no_exact_contact_consent", "the logged wording is unchanged");
+  assert.equal(refusal.reason, "no_exact_contact_consent", "and the reason is a field, not a substring");
+  assert.deepEqual(refusal.blockers, ["no_exact_contact_consent", "consent_not_accepted"]);
+  assert.equal(leadNotQualifiedReason(refusal), "no_exact_contact_consent");
+}
+// Nothing else is a refusal. A plain Error whose message merely LOOKS like one
+// used to be read as a 409; it is a server fault again, which is the truth.
+for (const notARefusal of [
+  new Error("lead_not_qualified:no_exact_contact_consent"),
+  new Error("lead_not_qualified:something_invented"),
+  new Error("boom"),
+  { leadNotQualified: true, reason: "something_invented" },
+  { leadNotQualified: true },
+  { reason: "missing_full_name" },
+  null,
+  undefined,
+  "lead_not_qualified:missing_contact",
+]) {
+  assert.equal(
+    leadNotQualifiedReason(notARefusal),
+    null,
+    `only a typed refusal carrying a known blocker is a refusal: ${String(notARefusal)}`,
+  );
+}
+
+// Q9. The gate reads the TRANSCRIPT too when it is given one, so a lead whose
+//     stored consent came from somewhere else still cannot ride a generic yes.
+assert.equal(
+  evaluateIScottLeadSendQualification({
+    ...qualifiedBase,
+    rows: [
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 12 },
+    ],
+  }).reason,
+  "no_exact_contact_consent",
+);
+assert.equal(
+  evaluateIScottLeadSendQualification({
+    ...qualifiedBase,
+    rows: [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 10 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 12 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 14 },
+    ],
+  }).qualified,
+  true,
+);
+
+// Q10. ONE ITEM AT A TIME, in order, and never a question about something we
+//      already know. G has asked for this on every ride.
+assert.deepEqual(
+  iscottLeadGatherOrder(),
+  ["full_name", "project_need", "contact_method", "contact_value", "contact_readback", "send_permission"],
+);
+const gatherWalk = [
+  [{}, "full_name"],
+  [{ fullName: "Jennifer Mcallister" }, "project_need"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "Landscaping" }, "project_need"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "A pool and a waterfall out back" }, "contact_method"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "A pool and a waterfall out back", contactMethod: "email" }, "contact_value"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "A pool and a waterfall out back", contactMethod: "email", contactValue: QEMAIL }, "contact_readback"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "A pool and a waterfall out back", contactMethod: "email", contactValue: QEMAIL, contactReadBack: true }, "send_permission"],
+  [{ fullName: "Jennifer Mcallister", projectNeed: "A pool and a waterfall out back", contactMethod: "email", contactValue: QEMAIL, contactReadBack: true, consentStatus: "accepted" }, "ready"],
+];
+for (const [state, step] of gatherWalk) {
+  const next = nextIScottLeadQuestion(state);
+  assert.equal(next.step, step, `expected the next missing item to be ${step}`);
+  if (step === "ready") {
+    assert.equal(next.question, null, "a qualified lead has nothing left to ask");
+    continue;
+  }
+  assert.ok(next.question, `${step} must produce a question`);
+  assert.equal(
+    (next.question.match(/\?/g) || []).length,
+    1,
+    `${step} must ask exactly one question, got "${next.question}"`,
+  );
+  assert.doesNotMatch(next.question, /\band your\b|\band the\b/i, `${step} must not stack two asks`);
+}
+// The read-back question the gather step produces is one the gate accepts.
+{
+  const readback = nextIScottLeadQuestion({
+    fullName: "Jennifer Mcallister",
+    projectNeed: "A pool and a waterfall out back",
+    contactMethod: "email",
+    contactValue: QEMAIL,
+  }).question;
+  assert.equal(
+    isExactContactReadback(readback, "email", QEMAIL),
+    true,
+    "the read-back iScott is told to say must satisfy the read-back rule",
+  );
+}
+
+// Q11. The shipping code actually asks the gate on both send paths.
+assert.match(
+  captureSrc,
+  /evaluateIScottLeadSendQualification[\s\S]{0,600}confirmAndSubmitIScottLead/,
+  "auto-send is gated on qualification",
+);
+assert.match(
+  captureSrc,
+  /throw new LeadNotQualifiedError\(/,
+  "confirmAndSubmitIScottLead refuses an unqualified lead with a TYPED refusal",
+);
+assert.doesNotMatch(
+  captureSrc,
+  /throw new Error\(`lead_not_qualified/,
+  "the refusal must not be a string somebody downstream has to parse",
+);
+assert.doesNotMatch(
+  captureSrc,
+  /consent_status: "accepted"/,
+  "the confirm path must never write consent it did not read",
+);
+assert.match(
+  captureSrc,
+  /const now = existing\.contact_confirmed_at;/,
+  "the confirm path must never mint a contact confirmation",
+);
 
 console.log("iScott lead parser check OK.");

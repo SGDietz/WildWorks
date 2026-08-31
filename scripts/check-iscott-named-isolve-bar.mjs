@@ -34,6 +34,15 @@ assert.match(route, /Your Phone/, "phone parity label is present");
 assert.match(route, /playTypewriterClick/, "typewriter feedback is present");
 assert.match(route, /userEditedContact/, "visitor edits still cancel reveal");
 assert.match(route, /data-box-view", "sent"/, "sent view remains explicit");
-assert.match(route, /Boolean\(result\.delivered\) && result\.lead\?\.notificationStatus === "sent"/, "sent remains delivery-gated");
+assert.match(
+  route,
+  /const hasDeliveredTruth = \(lead\) =>[\s\S]{0,300}hasSubmittedTruth\(lead\)[\s\S]{0,160}Boolean\(lead\?\.notificationOutboxId\)[\s\S]{0,160}lead\?\.notificationStatus === "sent"/,
+  "sent requires submission truth and a linked owner-notification outbox",
+);
+assert.match(
+  route,
+  /const delivered = Boolean\(result\.delivered\) && hasDeliveredTruth\(result\.lead\);/,
+  "provider delivery must also satisfy linked-outbox delivery truth",
+);
 assert.doesNotMatch(route, /startAccountSetup|magic-link|takesEmailFastPath/, "iSolve account flows are not coupled");
 console.log("iScott named iSolve email/phone bar checks passed.");

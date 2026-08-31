@@ -120,12 +120,17 @@ assert.match(
 // Scott at all.
 assert.match(
   capture,
-  /const sentContact = row\.metadata\?\.last_sent_contact \?\? null;/,
-  "the lead records WHICH contact a package was sent to",
+  /function lastSentContact\(metadata:[\s\S]{0,300}const value = metadata\?\.last_sent_contact;[\s\S]{0,200}if \(typeof value !== "string"\) return null;/,
+  "the lead reads WHICH contact a package was sent to through the typed metadata guard",
 );
 assert.match(
   capture,
-  /const contactAlreadySent = Boolean\(sentContact\) && sentContact === contactHeldNow;/,
+  /const sentContact = lastSentContact\(row\.metadata\);/,
+  "the package decision uses the guarded sent-contact value",
+);
+assert.match(
+  capture,
+  /const contactAlreadySent = sameContactValue\([\s\S]{0,120}sentContact,[\s\S]{0,120}contactHeldNow,[\s\S]{0,80}\);/,
   "handled means handled for THIS contact, not for the whole lead",
 );
 assert.match(

@@ -48,18 +48,68 @@ const confirmStart = route.indexOf("const confirmLead =");
 const confirmEnd = route.indexOf("const showLead =", confirmStart);
 const confirm = route.slice(confirmStart, confirmEnd);
 assert.match(confirm, /fetch\("\/api\/iscott\/lead\/confirm"/, "send stays behind the explicit confirm control");
-assert.match(confirm, /I'm sending that to Scott\./, "pre-send status is the authorized sending copy");
+// 2026-08-30. The pre-send line used to claim a send had started before the
+// server had looked at the package. It says what is actually happening now, and
+// says plainly that nothing has gone.
+assert.match(
+  confirm,
+  /status\.textContent = "Checking your details\. Nothing has been sent to Scott yet\.";/,
+  "the pre-send status checks details and claims no send",
+);
+assert.doesNotMatch(
+  confirm,
+  /status\.textContent = "I'm sending that to Scott\.";/,
+  "the optimistic pre-send claim has not crept back",
+);
 // G 2026-08-19: the two outcomes were split apart deliberately. A FAILED send
-// must bring the box back so the visitor can retry. A test-held lead clears on
-// the same beat as a real send - it is not an error the visitor can act on.
-assert.match(confirm, /else if \(failed\) \{[\s\S]{0,300}setCaptureHidden\(false\)/, "a failed send restores the box for retry");
-assert.match(confirm, /if \(testHeld\) \{[\s\S]{0,400}setCaptureHidden\(true\)/, "a held lead clears quietly, it is not a visitor-facing error");
-assert.match(confirm, /else if \(delivered\) \{[\s\S]{0,400}setSentVisible\(true, method\)/, "checked sent state requires real delivery");
+// must bring the box back so the visitor can retry.
+// Shape updated 2026-08-29, intent unchanged and widened. G's physical ride:
+// the API can answer queued:true - which is only the server saying it INTENDS
+// to try - while the lead is not submitted and has no submittedAt. Nothing was
+// handed off, so that is a failure too, and it takes the same retry path. The
+// branch condition is now `failed || !submittedTruth`.
+assert.match(confirm, /else if \(failed \|\| !submittedTruth\) \{[\s\S]{0,600}setCaptureHidden\(false\)/, "a failed or unverified send restores the box for retry");
+// CORRECTED 2026-08-29. The held branch used to call setCaptureHidden(true)
+// outright. A held lead has no submittedAt and the server never marked it
+// submitted, so that collapsed the visitor's details on a send that had not
+// happened - the same premature collapse the failure path was fixed for. It may
+// not hide the capture ahead of verified submitted/submittedAt truth.
+assert.match(confirm, /if \(testHeld\) \{[\s\S]{0,1600}setCaptureHidden\(submittedTruth\)/, "a held lead never hides the capture ahead of verified submission");
+assert.doesNotMatch(confirm, /if \(testHeld\) \{[\s\S]{0,1600}setCaptureHidden\(true\)/, "no flat capture collapse on a lead that was never submitted");
+// FOLLOW-UP 2026-08-29. Keeping the capture and then dropping the panel it
+// lives in is the same defect one level up: dropPanelSoon(2000) set `dismissed`
+// and hid the whole card two seconds after a send that had not happened, so the
+// visitor's value left the screen anyway with no way back to it. Nothing may be
+// scheduled to conceal a held lead, and the helper itself is gone so it cannot
+// be called back into service.
+// (The name survives in the removal note above the helper's old home, so the
+//  next reader knows what went and why. What must not survive is a CALL or a
+//  redefinition, which is what these two match on.)
+assert.doesNotMatch(confirm, /dropPanelSoon\(/, "a held lead may not schedule its own disappearance");
+assert.doesNotMatch(route, /const dropPanelSoon = /, "the delayed-hide helper is removed, not merely unused");
+assert.doesNotMatch(route, /dropPanelSoon\(\d/, "nothing anywhere may arm a delayed panel hide");
+assert.match(
+  confirm,
+  /if \(testHeld\) \{[\s\S]{0,1800}data-box-view", "captured"\)/,
+  "a held lead returns to the captured view rather than staying dimmed and locked in sending",
+);
+assert.match(
+  confirm,
+  /if \(testHeld\) \{[\s\S]{0,1800}button\.disabled = false/,
+  "and Send comes back, so a held lead stays retryable",
+);
+// Window widened 2026-08-29 only because the branch carries a longer comment
+// now; the assertion itself is unchanged - the tick still requires delivery.
+assert.match(confirm, /else if \(delivered\) \{[\s\S]{0,800}setSentVisible\(true, method\)/, "checked sent state requires real delivery");
 assert.match(route, /Email sent to Scott ✓/, "terminal email label names Scott");
 assert.match(route, /Phone sent to Scott ✓/, "terminal phone label names Scott");
 assert.doesNotMatch(route, /Confirm the details before Scott gets them/, "L22 hated confirm copy is gone");
 assert.match(route, /hasSendPermission/, "L21 Send waits for permission");
-assert.match(route, /button\.hidden = Boolean\(submitted\) \|\| !permitted/, "L21 Send stays hidden until permission or a visitor edit");
+assert.match(
+  route,
+  /button\.hidden = \(Boolean\(submitted\) && !retryableFailure\) \|\| !permitted \|\| delivered/,
+  "L21 Send stays hidden until permission or a visitor edit, except for an intentional failed-send retry",
+);
 // Shape updated 2026-08-19, intent unchanged: a visitor-typed value still wins
 // over the captured one. It is now `editedForSend`, which is the same typed
 // value with phone formatting stripped, so a visitor retyping over the dashed
