@@ -59,3 +59,42 @@
     font-weight: 900 !important;
   }
 }
+
+/* DESKTOP AND LAPTOP - G 2026-08-31, "all".
+   He answered the colour question with "keep orange, size only" and told me to
+   apply it everywhere. Auditing all nine Text-3-on-primary lines across Home,
+   Wildfire and Projects at 412 / 575 / 820 / 1366 / 1920 turned up exactly one
+   more instance of the fault he reported, and it is the SAME line at a width he
+   never screenshotted.
+
+   MEASURED, "Then We Just Kept Going." against "Then Came the Patio.":
+
+       width     going     patio    ratio
+        720px    43.92     43.92     1.00   fine
+        820px    48.00     48.00     1.00   fine   (iPad portrait)
+        900px    48.00     48.00     1.00   fine
+        950px    -         -         0.664  BROKEN
+       1366px    59.42     89.47     0.664  BROKEN (laptop)
+       1920px    63.20     94.40     0.669  BROKEN (desktop)
+
+   Below 901px the payoff already matches its opener exactly. From ~901px up it
+   collapses to two thirds of it and fades into the background - the same
+   "doesn't pop" G reported on his phone, sitting unnoticed on the two widths he
+   actually works on.
+
+   Fix is deliberately unimaginative: give it the OPENER'S OWN CLAMP, so the
+   ratio becomes 1.00 - which is not a new design, it is what every width below
+   901px already does. Scoped at min-width 901px so the correct 720-900 band is
+   not touched. At the opener's size the line occupies 82% of its box at 1366
+   and 79% at 1920, both clear of overflow (verified, not estimated).
+
+   The other seven Text-3 lines were measured and are ALREADY at or above their
+   own stack maximum at all five viewports, and each already matches its
+   siblings' weight. Nothing to do there, and changing them would have meant
+   editing approved visuals that are not broken. */
+@media (min-width: 901px) {
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+    font-size: clamp(2.05rem, 6.55vw, 5.9rem) !important;
+    font-weight: 900 !important;
+  }
+}
