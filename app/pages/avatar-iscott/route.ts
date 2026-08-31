@@ -485,17 +485,27 @@ const wildWorksButtonCss = `
        Finish handler are all untouched. ============================== */
     html[data-ww-avatar-embedded] [data-ww-talk],
     html[data-ww-avatar-embedded] [data-ww-finish] {
+      /* THIS is the rule that paints the Finish and Talk labels, and it covers
+         BOTH states - initial Talk, Finish, and the Talk you come back to.
+         G asked for this shadow to come down twice and nothing moved, because
+         both times I edited .btn-wood, which also sets text-shadow important
+         but is LESS specific than this pair of attribute selectors, so it
+         loses. Verified by rendering the real page offline and reading
+         CSS.getMatchedStylesForNode: two important rules match this button and
+         this one wins. Both of his reductions are applied here, where they
+         land - alphas multiplied by 0.81. Offsets untouched, so nothing
+         moves. */
       text-shadow:
-        rgba(35,9,2,0.97) 0 0.008722em 0,
-        rgba(34,9,2,0.941) 0 0.017444em 0,
-        rgba(33,8,2,0.913) 0 0.026167em 0,
-        rgba(32,8,2,0.884) 0 0.034889em 0,
-        rgba(31,8,2,0.855) 0 0.043611em 0,
-        rgba(29,7,1,0.827) 0 0.052333em 0,
-        rgba(28,7,1,0.798) 0 0.061056em 0,
-        rgba(27,7,1,0.745) 0 0.069778em 0,
-        rgba(26,6,1,0.700) 0 0.078500em 0,
-        rgba(25,6,1,0.660) 0 0.087222em 0 !important;
+        rgba(35,9,2,0.786) 0 0.008722em 0,
+        rgba(34,9,2,0.762) 0 0.017444em 0,
+        rgba(33,8,2,0.74) 0 0.026166em 0,
+        rgba(32,8,2,0.716) 0 0.034888em 0,
+        rgba(31,8,2,0.693) 0 0.043610em 0,
+        rgba(29,7,1,0.67) 0 0.052332em 0,
+        rgba(28,7,1,0.646) 0 0.061054em 0,
+        rgba(27,7,1,0.603) 0 0.069776em 0,
+        rgba(26,6,1,0.567) 0 0.078498em 0,
+        rgba(25,6,1,0.535) 0 0.087220em 0 !important;
     }
 
     /* Both icon shapes, because the two states draw the sparkle differently:
@@ -540,10 +550,26 @@ const wildWorksButtonCss = `
          goes up. Still three graded steps, never ten: ten opaque copies is what
          blobbed these thin-stroke glyphs on 2026-08-29. Offsets stay px-clamped
          so the edge cannot become a slab on the larger controls. */
+      /* DENSITY, not reach. Rendered at 7x offline and actually looked at: the
+         label was a solid slab and the icon beside it was a flat glyph with a
+         hairline. Both had a similar TOTAL reach - label 0.0872em over TEN
+         stops, icon 0.0753em over three. Three sparse copies read as an edge;
+         ten touching copies read as depth. The icon now uses the label's exact
+         step, 0.008722em, ten times, with the label's own alpha ramp.
+         This is not the 2026-08-29 blob: that came from LARGE per-step offsets
+         closing the sparkle's internal gaps. At 0.0087em a step is about a
+         fifth of a pixel on a 24px glyph, far under the width of any gap. */
       filter:
-        drop-shadow(rgba(35, 9, 2, 0.96) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px)
-        drop-shadow(rgba(30, 8, 2, 0.84) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px)
-        drop-shadow(rgba(25, 6, 1, 0.68) 0 clamp(0.42px, 0.0251em, 0.68px) 0.12px) !important;
+        drop-shadow(rgba(35,9,2,0.97) 0 0.008722em 0.02px)
+        drop-shadow(rgba(34,9,2,0.941) 0 0.008722em 0.02px)
+        drop-shadow(rgba(33,8,2,0.913) 0 0.008722em 0.02px)
+        drop-shadow(rgba(32,8,2,0.884) 0 0.008722em 0.02px)
+        drop-shadow(rgba(31,8,2,0.855) 0 0.008722em 0.02px)
+        drop-shadow(rgba(29,7,1,0.827) 0 0.008722em 0.02px)
+        drop-shadow(rgba(28,7,1,0.798) 0 0.008722em 0.02px)
+        drop-shadow(rgba(27,7,1,0.745) 0 0.008722em 0.02px)
+        drop-shadow(rgba(26,6,1,0.7) 0 0.008722em 0.02px)
+        drop-shadow(rgba(25,6,1,0.66) 0 0.008722em 0.02px) !important;
     }
 
     .btn-inset {
