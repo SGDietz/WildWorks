@@ -335,6 +335,7 @@ import "./H389-iscott-prompt-lines.css";
 import "./H390-phone-audit-20260826.css";
 import "./H391-wildfire-punchlines-pop.css";
 import "./H392-homepage-center-shadow-text3.css";
+import "./H393-homepage-text-colors.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
