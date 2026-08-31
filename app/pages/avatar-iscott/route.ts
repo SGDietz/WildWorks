@@ -769,7 +769,10 @@ const wildWorksButtonCss = `
          it picks it covers padding and not glyphs. text-align stays centre, so
          symmetric padding also keeps the value optically centred. */
       padding: 0.28rem 1.85rem !important;
-      border: 1px solid #f08c28 !important;
+      border: none !important;
+      border-width: 0 !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
       border-radius: 0.375rem !important;
       /* G 2026-08-19, from the iPad: "blue letters and the colors ... they've
          got to be nice brand, beautiful colors", and the box read as "a really
@@ -784,7 +787,15 @@ const wildWorksButtonCss = `
       /* G, ride b1dd603f: "I think the box is the card color. So keep that." -
          the field stays card #e96819. "And then inside the box, write email or
          phone number in text color number two." */
-      background: #e96819 !important;
+      /* G 2026-08-31, Telegram photo 779577932, via Chief: the YOUR EMAIL card
+         had a second, darker orange box drawn inside it holding the address.
+         He wants ONE box. The outer .wildworks-lead-card stays the card; the
+         field itself stops painting its own surface and its own edge. This
+         reverses his earlier "keep the field the card color" only for the
+         INNER field - the outer card is untouched. Ink, font, sizing and the
+         LastPass padding above are all deliberately kept. */
+      background: transparent !important;
+      background-image: none !important;
       color: #edc775 !important;
       -webkit-text-fill-color: #edc775 !important;
       caret-color: #fce0ad !important;
@@ -884,8 +895,10 @@ const wildWorksButtonCss = `
     #wildworks-lead-value:-webkit-autofill:active {
       -webkit-text-fill-color: #edc775 !important;
       caret-color: #fce0ad !important;
-      -webkit-box-shadow: 0 0 0 1000px #e96819 inset !important;
-      box-shadow: 0 0 0 1000px #e96819 inset !important;
+      /* That 1000px inset IS the inner orange box coming back on autofill.
+         Ink and caret stay; only the surface goes. */
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
     }
 
     #wildworks-lead-value::placeholder {
