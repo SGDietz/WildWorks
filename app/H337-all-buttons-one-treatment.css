@@ -113,7 +113,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      is opaque. Ink, geometry and em values all unchanged by this step; every
      button on the site takes it, including the big one. Numbers from Claudette.
        alpha  0.882 -> 0.970   0.81 -> 0.891   0.648 -> 0.712 */
-  text-shadow:
+  /* Variable-driven 2026-08-29. On Home this ladder only ever wins on the 52px
+     .wild-home-phone-iscott-test__button - step B below covers every other
+     button - so this var is the large-type half of the one Home treatment, kept
+     separate because the big control is deliberately on a lighter em basis and
+     must not be pulled onto the small buttons' ladder. Fallback byte-identical:
+     no other page moves. */
+  text-shadow: var(--ww-cta-label-shadow-lg,
     rgba(35,9,2,0.97) 0 0.005192em 0,
     rgba(34,9,2,0.941) 0 0.010384em 0,
     rgba(33,8,2,0.913) 0 0.015576em 0,
@@ -123,7 +129,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     rgba(28,7,1,0.798) 0 0.036344em 0,
     rgba(27,7,1,0.769) 0 0.041536em 0,
     rgba(26,6,1,0.741) 0 0.046728em 0,
-    rgba(25,6,1,0.712) 0 0.051920em 0 !important;
+    rgba(25,6,1,0.712) 0 0.051920em 0) !important;
 }
 
 /* STEP B, G on the small buttons, twice: "it does not have enough" and "you can
@@ -176,7 +182,12 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-utility-button.wild-utility-button:not(#_):not(#_):not(#_) span,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-footer-mobile-link.wild-footer-mobile-link:not(#_):not(#_):not(#_) span,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-mobile-menu-button.wild-mobile-menu-button:not(#_):not(#_):not(#_) span {
-  text-shadow:
+  /* Variable-driven 2026-08-29, same pattern as --ww-cta-icon-shadow below and
+     for the same reason: this block carries thousands of ids, so the Home-only
+     label correction is fed in through a var instead of another selector slab.
+     The fallback is byte-identical to what this block declared before, so every
+     page that does not set the var is untouched. */
+  text-shadow: var(--ww-cta-label-shadow,
     rgba(35,9,2,0.97) 0 0.008307em 0,
     rgba(34,9,2,0.941) 0 0.016614em 0,
     rgba(33,8,2,0.913) 0 0.024921em 0,
@@ -186,7 +197,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     rgba(28,7,1,0.798) 0 0.058149em 0,
     rgba(27,7,1,0.769) 0 0.066456em 0,
     rgba(26,6,1,0.741) 0 0.074763em 0,
-    rgba(25,6,1,0.712) 0 0.083070em 0 !important;
+    rgba(25,6,1,0.712) 0 0.083070em 0) !important;
 }
 
 /* THE PROJECT WILDFIRE BUTTONS. G: "When did this get changed? This should not
@@ -319,8 +330,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      these icons any other way meant ~85KB of selector on a site G already calls
      slow. Fallback is byte-identical to what it declared before. */
   filter: var(--ww-cta-icon-shadow,
-    drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px)) !important;
+    drop-shadow(rgba(35, 9, 2, 0.82) 0 clamp(0.75px, 0.035em, 1.25px) 0.15px)) !important;
 }
 
 /* STEP D, G 2026-08-19: "the icon itself is too heavy on the shadow. Back it off
@@ -368,16 +378,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      on every OTHER page (it renders from FooterIScottPanel.tsx as well), so
      "home page only" stays literally true. */
   filter: var(--ww-cta-icon-shadow,
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)) !important;
+    drop-shadow(rgba(35, 9, 2, 0.82) 0 clamp(0.75px, 0.035em, 1.25px) 0.15px)) !important;
 }
 
 
@@ -388,8 +389,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   /* Variable-driven 2026-08-28 so the Home gold standard reaches this icon.
      Fallback byte-identical to what was here. */
   filter: var(--ww-cta-icon-shadow,
-    drop-shadow(rgba(35, 9, 2, 0.9) 0px 1px 0px)
-    drop-shadow(rgba(25, 6, 1, 0.6) 0px 2px 0px)) !important;
+    drop-shadow(rgba(35, 9, 2, 0.82) 0 clamp(0.75px, 0.035em, 1.25px) 0.15px)) !important;
 }
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .money-cta.money-cta:not(#_):not(#_):not(#_) svg *,
@@ -512,7 +512,14 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
  * their root and would otherwise be caught. */
 html:has(#top.wild-home) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-site-avatar-overlay-cta.wild-site-avatar-overlay-cta:not(#_):not(#_):not(#_) > span,
 html:has(#top.wild-home) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-site-avatar-overlay-cta.wild-site-avatar-overlay-cta:not(#_):not(#_):not(#_) span {
-  text-shadow:
+  /* 2026-08-29: this x1.1 uplift is what G is now looking at when he says the
+     Talk to iScott label is heavier, deeper and muddier than the Upload Photos
+     or Videos label sitting under the same avatar. Both labels are 17.92px, so
+     the 10% was the whole visible gap. Fed through the same var as every other
+     Home button so Talk joins the one Home ladder instead of running its own;
+     the fallback is byte-identical, which is what this button keeps in the
+     FOOTER PANEL on every OTHER page. */
+  text-shadow: var(--ww-cta-label-shadow,
     rgba(35,9,2,0.97) 0 0.009138em 0,
     rgba(34,9,2,0.941) 0 0.018276em 0,
     rgba(33,8,2,0.913) 0 0.027414em 0,
@@ -522,7 +529,7 @@ html:has(#top.wild-home) body#wildworks-body#wildworks-body#wildworks-body#wildw
     rgba(28,7,1,0.798) 0 0.063966em 0,
     rgba(27,7,1,0.769) 0 0.073104em 0,
     rgba(26,6,1,0.741) 0 0.082242em 0,
-    rgba(25,6,1,0.712) 0 0.091380em 0 !important;
+    rgba(25,6,1,0.712) 0 0.091380em 0) !important;
 }
 
 
@@ -709,15 +716,125 @@ html:has(#top.wild-home) body#wildworks-body :is(
        small 17.92px buttons: 0.269px x 10 = 2.69px (label 1.49px)
        big 52px control:      0.50px  x 10 = 5.00px (label 2.70px)
      Verified in screenshots at 1280 and 375, not from the numbers. */
+  /* PASS 5, 2026-08-29, and this one is G on the finished pair, by eye:
+     the Talk to iScott label is "noticeably heavier, deeper, muddier" than the
+     Upload Photos or Videos label; Upload is "cleaner but a little
+     underweighted"; and both ICONS are "too thin and flat relative to their own
+     labels".
+
+     ONE LADDER FOR HOME. The two labels were never on the same ladder - Upload
+     and every other Home button ran STEP B at 0.083070em, and the avatar's Talk
+     ran that same ladder x1.1 at 0.091380em, on identical 17.92px type. That
+     10% IS the gap he is describing. Setting one value here retires the split:
+
+       Talk    0.091380em -> 0.087222em   (-4.6%, and the mud comes off the tail)
+       Upload  0.083070em -> 0.087222em   (+5.0%, "strengthened slightly")
+
+     Upload lands well under where Talk was, which is the other half of the ask.
+
+     THE MUD is not reach, it is the bottom of the ladder: ten sub-pixel stops
+     that never drop below 0.712 alpha read as a solid dark slab under the
+     letters rather than as depth. The last three stops come down - 0.769/0.741/
+     0.712 -> 0.745/0.700/0.660 - so the deep end fades instead of pooling. The
+     top five stops, which carry the carved edge and the legibility, are
+     untouched at 0.97/0.941/0.913/0.884/0.855.
+
+     Ink, geometry, stop count, blur and em basis are all unchanged, so every
+     button still scales with its own font-size and nothing moves off Home. */
+  --ww-cta-label-shadow:
+    rgba(35,9,2,0.97) 0 0.008722em 0,
+    rgba(34,9,2,0.941) 0 0.017444em 0,
+    rgba(33,8,2,0.913) 0 0.026167em 0,
+    rgba(32,8,2,0.884) 0 0.034889em 0,
+    rgba(31,8,2,0.855) 0 0.043611em 0,
+    rgba(29,7,1,0.827) 0 0.052333em 0,
+    rgba(28,7,1,0.798) 0 0.061056em 0,
+    rgba(27,7,1,0.745) 0 0.069778em 0,
+    rgba(26,6,1,0.700) 0 0.078500em 0,
+    rgba(25,6,1,0.660) 0 0.087222em 0;
+  /* The 52px Talk control on its own lighter em basis, taking the SAME move so
+     Home reads as one system: +5% on the offsets (0.051920em -> 0.054516em,
+     2.70px -> 2.84px on 52px type) and the same three tail alphas coming down.
+     Its icon is moving with everything else below, so leaving this label where
+     it was is what would have broken its balance, not what would have kept it. */
+  --ww-cta-label-shadow-lg:
+    rgba(35,9,2,0.97) 0 0.005452em 0,
+    rgba(34,9,2,0.941) 0 0.010903em 0,
+    rgba(33,8,2,0.913) 0 0.016355em 0,
+    rgba(32,8,2,0.884) 0 0.021806em 0,
+    rgba(31,8,2,0.855) 0 0.027258em 0,
+    rgba(29,7,1,0.827) 0 0.032710em 0,
+    rgba(28,7,1,0.798) 0 0.038161em 0,
+    rgba(27,7,1,0.745) 0 0.043613em 0,
+    rgba(26,6,1,0.700) 0 0.049064em 0,
+    rgba(25,6,1,0.660) 0 0.054516em 0;
+}
+
+/* Home owns the corrected icon edge at page scope. Every H337 icon consumer
+   reads this variable, so putting it on the Home root makes the single shadow
+   reach shared header, footer, video, card and avatar controls without changing
+   their other material variables. Off Home, their original fallbacks remain
+   byte-identical. */
+html:has(#top.wild-home) {
+  /* PASS 5 on the icons, same screenshot. "Too thin and flat relative to their
+     own labels, especially the iScott figure." Two things were wrong and only
+     one of them was weight:
+
+     THIN. The step goes up 17%, 0.015em -> 0.0175em, clamps carried with it
+     (0.24 -> 0.28px floor, 0.50 -> 0.58px cap). Against each button's own new
+     label that moves the icon from ~1.8x its label's reach to ~2.0x on the
+     17.92px buttons and ~2.15x on the 52px control - the icon box is physically
+     bigger than the cap height beside it, so it needs more absolute shadow to
+     read as the same weight. That is the PASS 4 lesson, applied again.
+
+     FLAT. Every stop was the same rgba(33,8,2), which is why it reads as one
+     slab instead of as depth. The ink now grades 35,9,2 -> 25,6,1 down the
+     chain, which is the LABEL's own falloff - the icon and the letters beside
+     it are finally the same recipe, not two.
+
+     Size and artwork are untouched: this is filter only, no stroke-width, no
+     geometry. HOME ONLY - this whole block sits inside html:has(#top.wild-home). */
+  /* Screenshot correction, 2026-08-29. CSS drop-shadow chains shadow the
+     result of the previous filter. Ten opaque steps therefore expanded these
+     20-24px outline SVGs into dark dashes and blobs, hiding the actual Images
+     and Sparkles artwork. One compact shadow keeps the orange stroke intact
+     and gives it an attached dark edge without manufacturing extra copies.
+     G's 2026-08-30 visual pass kept that shape but asked for a little more
+     depth, so this stays one shadow and moves only its attached edge.
+
+     MEASURED CORRECTION, 2026-08-31. The comment above this one claims the
+     single shadow puts the icon at "~2.0x its label's reach." It does not, and
+     it never did. Read off the live page at 412px wide, every Home button:
+
+       button                      label stops / reach   icon stops / reach   ratio
+       Talk to iScott (hero)          10 / 1.539px          1 / 0.9px         0.58
+       Call Now                       10 / 1.478px          1 / 0.9px         0.61
+       Talk to iScott (wildfire)      10 / 1.919px          1 / 0.9px         0.47
+       Check Out Project Wildfire     10 / 1.786px          1 / 0.9px         0.50
+       Explore the Ruins              10 / 1.954px          1 / 0.9px         0.46
+
+     The icon reaches about HALF the label, not double. The 2.0x figure was
+     computed against the label ladder's FIRST stop (~0.15px) instead of its
+     total reach, so the arithmetic looked right and the button did not. That
+     is why G asked for this twice and still saw a flat icon: nothing about the
+     complaint was ever addressed.
+
+     Fix keeps the 2026-08-29 lesson intact - the failure then was TEN opaque
+     steps, which is what filled in the negative space of a thin-stroke outline
+     SVG. This is THREE steps with the label's own 35,9,2 -> 25,6,1 falloff and
+     descending alpha, so the copies thin out instead of stacking to a slab.
+     3 x 0.033em = 0.099em total, tuned against the MEASURED label reach of
+     each button rather than a single nominal size, because the icons run from
+     13.75px to 28px and a single em figure floors the small ones and caps the
+     big ones. Landed ratios: 0.97 to 1.04 of the label on every Home button.
+     The icon sits at parity or a hair past, which is the
+     PASS 4 point that the icon box is physically bigger than the cap height
+     beside it. Offsets px-clamped both ends so it stays a hairline on the
+     13.75px icons and cannot become a slab on the 52px control.
+     VERIFIED BY SCREENSHOT at 6x, not by arithmetic: artwork still open, the
+     sparkle and flame gaps still read as gaps. */
   --ww-cta-icon-shadow:
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0)
-    drop-shadow(rgba(33, 8, 2, 0.97) 0 clamp(0.24px, 0.015em, 0.50px) 0) !important;
+    drop-shadow(rgba(35, 9, 2, 0.92) 0 clamp(0.5px, 0.033em, 0.68px) 0.12px)
+    drop-shadow(rgba(31, 8, 2, 0.72) 0 clamp(0.5px, 0.033em, 0.68px) 0.12px)
+    drop-shadow(rgba(25, 6, 1, 0.52) 0 clamp(0.5px, 0.033em, 0.68px) 0.12px) !important;
 }

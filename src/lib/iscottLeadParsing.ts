@@ -18,19 +18,20 @@ function stripSpokenProjectFiller(text: string): string {
     .trim();
 }
 
+// Grok, 2026-08-19: the lead for session 6f3a7caa carried project_need
+// "Tell my phone number". G was operating the contact flow, not describing a
+// project, and Scott would have opened that lead to read it as the job.
+// Anything that is only about the mechanics of being contacted is not a need.
+const CONTACT_MECHANICS_NEED =
+  /\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i;
+
 export function extractProjectNeed(text: string): string | null {
   const match = text.match(PROJECT_NEED_PATTERN);
   if (!match?.[1]) return null;
   const candidate = stripSpokenProjectFiller(match[1].replace(/\s+/g, " ").trim());
   if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
   if (isCoachingOrPersonaNeed(candidate)) return null;
-  // Grok, 2026-08-19: the lead for session 6f3a7caa carried project_need
-  // "Tell my phone number". G was operating the contact flow, not describing a
-  // project, and Scott would have opened that lead to read it as the job.
-  // Anything that is only about the mechanics of being contacted is not a need.
-  if (/\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i.test(candidate)) {
-    return null;
-  }
+  if (CONTACT_MECHANICS_NEED.test(candidate)) return null;
   return candidate.charAt(0).toUpperCase() + candidate.slice(1);
 }
 
@@ -104,9 +105,51 @@ export function detectsAcceptedFollowUp(text: string): boolean {
 
 export function detectsSimpleAffirmation(text: string): boolean {
   const t = text.trim();
+  // NEGATION WINS, AND IT IS CHECKED FIRST.
+  //
+  // This guard exists because of what the next block had to accept. "yet" is
+  // now a yes token, and "not yet" is one of the most natural refusals in
+  // English. Without this line, the fix for a missed yes would have started
+  // manufacturing consent out of a plain no - far worse than the bug it
+  // repairs. Same for "don't send that yet" and "hold on".
+  if (
+    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:no|nope|nah|not|don'?t|do not|hold on|hang on|wait|stop)\b/i.test(t)
+  ) {
+    return false;
+  }
   // G live rides 2026-08-17: real yeses arrive with filler ("And, but yes,
-  // that email is correct." / "I already confirmed it.") — count them.
-  if (/^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:yes|yeah|yep|correct|right|that(?:'s| is) right|you got it|exactly)\b/i.test(t)) {
+  // that email is correct." / "I already confirmed it.") - count them.
+  //
+  // G live ride ae10ba06, 2026-08-29 19:00 ET. THIS COST A LEAD.
+  //
+  // iScott asked "May I send these details to Scott?" and G answered "Yep."
+  // The transcriber wrote "Yet." Every token on the old list was a spelling
+  // of a WORD; none was a spelling of a MIS-HEARING, and voice is the only
+  // way anyone ever answers this question. The row froze at
+  // ready_for_confirmation, no mail was ever built, and iScott told him
+  // "Scott has your details and will follow up" regardless.
+  //
+  // "ya" excludes "ya know" - that is filler in front of a sentence, not an
+  // answer to anything.
+  // REVERSAL AFTER THE YES. Grok caught this on 2026-08-30 and he was right:
+  // the negation guard above is START-anchored, so it only sees a refusal that
+  // OPENS the turn. Every one of these opens with a real yes token and then
+  // takes it straight back -
+  //
+  //   "yeah, but hold on"   "yeah no"   "sure, later"   "yes, wait"
+  //   "sure, only if Scott calls first"
+  //
+  // and all of them would have registered as clean consent. A yes that is
+  // immediately qualified is not a yes; it is a question nobody has asked yet.
+  // Ordering matters: this runs AFTER the yes matched, so "And, but yes, that
+  // email is correct." survives - its "but" sits in the filler BEFORE the yes,
+  // and the remainder carries no reversal.
+  if (/^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:yes|yeah|yep|yup|yet|ya|yah|sure|absolutely|definitely|affirmative|of\s+course|correct|right|exactly)\b[\s\S]*\b(?:but|wait|hold\s+on|hang\s+on|later|actually|unless|though|only\s+if|as\s+long\s+as|no|not|don'?t|never|stop)\b/i.test(t)) {
+    return false;
+  }
+  if (
+    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:yes|yeah|yep|yup|yet|ya(?!\s*know)|yah|sure|absolutely|definitely|affirmative|of\s+course|go\s+ahead|do\s+it|please\s+do|send\s+it|correct|right|that(?:'s| is) right|you got it|exactly)\b/i.test(t)
+  ) {
     return true;
   }
   return /\b(?:that(?:'s| is)?\s+(?:email|number|phone)?\s*(?:is\s+)?correct\b|i\s+(?:already\s+)?confirmed(?:\s+it)?\b|it(?:'s| is)\s+confirmed\b)/i.test(t);
@@ -559,8 +602,31 @@ export function sendReadyStatusCopy(): string {
   return "Check the captured details, then choose Send to Scott.";
 }
 
+// WHAT THE VISITOR IS TOLD WHILE THE SEND IS BEING DECIDED, 2026-08-30.
+//
+// The old line here said "Sending these details to Scott." It was put on screen
+// the moment the button was pressed, before the server had looked at the package
+// at all - and most of the time a refused package is exactly what the server
+// finds. The visitor was told a send had started, then told a step was missing.
+// The first of those two sentences was never true.
+//
+// Nothing is claimed now that has not happened. The details are being CHECKED,
+// and nothing has been sent - which is the truth for every outcome this line can
+// be followed by.
+export function checkingDetailsStatusCopy(): string {
+  return "Checking your details. Nothing has been sent to Scott yet.";
+}
+
+// Kept as the name the panel and its checks already use. One string, one truth.
 export function confirmingHandoffStatusCopy(): string {
-  return "Sending these details to Scott. He does not have them yet.";
+  return checkingDetailsStatusCopy();
+}
+
+// A package that changed after the visitor gave permission is not refused
+// because anything is wrong with it - it is simply not the package they agreed
+// to, so the agreement has to be asked for again.
+export function changedPackageStatusCopy(): string {
+  return "Nothing has been sent. Your details changed after you gave permission — let iScott read the new details back, say yes, then choose Send to Scott.";
 }
 
 export function collectOperatorPromptEchoEvents(
@@ -875,9 +941,14 @@ export function mayClaimHandoffSent(args: {
 }): boolean {
   if (args.notificationStatus === "failed" || args.notificationStatus === "dead_letter") return false;
   if (args.notificationStatus === "test_held") return false;
+  const linkedOutboxId = typeof args.notificationOutboxId === "string"
+    ? args.notificationOutboxId
+    : "";
+  const hasLinkedOutbox = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+    .test(linkedOutboxId);
   return (args.status === "submitted" || Boolean(args.submittedAt))
     && args.notificationStatus === "sent"
-    && (args.notificationOutboxId === undefined || Boolean(args.notificationOutboxId));
+    && hasLinkedOutbox;
 }
 
 export function mergeLeadTranscriptHistory(
@@ -1013,7 +1084,14 @@ function isDirectContactSendPrompt(message: string, contactMethod: "email" | "ph
   // WildWorks team. That whole shape IS the send prompt. Nothing about it is
   // ambiguous enough to need a second confirmation that the contact was named.
   if (asksSendNow) return true;
-  return mentionsContact && isContactReadBack(message, contactValue) && asksSendNow;
+  // 2026-08-29. The line that used to sit here read
+  //   return mentionsContact && isContactReadBack(...) && asksSendNow;
+  // one line below `if (asksSendNow) return true`, so it could only ever be
+  // reached with asksSendNow already false. It was a provably constant false
+  // wearing the shape of a rule, and it read as though a read-back could still
+  // rescue a turn that is not a send prompt. Written plainly instead: no
+  // decision changes, and the last line no longer lies about what it does.
+  return false;
 }
 
 export function avatarSpeechClaimsHandoffSent(text: string): boolean {
@@ -1021,6 +1099,14 @@ export function avatarSpeechClaimsHandoffSent(text: string): boolean {
   return (
     /\b(?:i sent|i've sent|i have sent|we sent)\b[\s\S]{0,80}\b(?:scott|wildworks|team|details|information)\b/i.test(normalized)
     || /\bpreparing (?:to send|the handoff)\b/i.test(normalized)
+    // G live ride ae10ba06, 2026-08-29. iScott said "I'm sending that to
+    // Scott." - the PROGRESSIVE form - while the lead sat unconfirmed. Every
+    // pattern above describes a send already finished or still promised; none
+    // describes one supposedly happening right now, so the canonical gate
+    // waved the exact sentence through. The sync route caught it only because
+    // it ORs in iscottSpeechClaimsSendingNow by hand; any other caller of
+    // allowedIscottSpeech was unprotected. Same pattern, lifted verbatim.
+    || /\b(?:i(?:'|’)?m|i am|we(?:'|’)?re|we are) sending\b[\s\S]{0,100}\b(?:scott|wildworks|your details|the details|information)\b/i.test(normalized)
     || /\bscott (?:has|already has) (?:the|your) (?:information|details)\b/i.test(normalized)
     || /\b(?:i will send|i'll send|we will send)\b[\s\S]{0,80}\b(?:your details|the details|them|it)\s+(?:directly|over)\b/i.test(normalized)
     || /\b(?:he'll|he will|scott will)\s+(?:be in touch|reach out|follow up|review your request)\b/i.test(normalized)
@@ -1204,9 +1290,11 @@ export function evaluateIScottCaptureSlice(args: {
   const projectNeed = need.projectNeed;
   const createdAt = args.createdAt ?? new Date().toISOString();
   const isPostRollout = Date.parse(createdAt) >= Date.parse("2026-08-16T17:30:00.000Z");
+  // Same rule the pipeline stamps consent on, so a replay of a real ride can
+  // never report a consent the live code would not have stored.
   const shouldConfirm =
     isPostRollout &&
-    detectsContextualContactSendConfirmation(args.rows, args.contactMethod, args.contactValue);
+    detectsExactContactSendConfirmation(args.rows, args.contactMethod, args.contactValue);
   const transcript = formatLeadTranscript(args.rows);
   return {
     fullName,
@@ -1226,19 +1314,108 @@ export function evaluateIScottCaptureSlice(args: {
   };
 }
 
-export function detectsContextualContactSendConfirmation(
-  rows: TranscriptTurn[],
+const LITERAL_EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/g;
+// Long enough to be a real number, loose enough to survive dashes, dots,
+// spaces and parentheses. Anything shorter than ten digits is discarded below.
+const LITERAL_PHONE_RE = /\+?\d[\d\s().-]{8,20}\d/g;
+
+function phoneDigits(value: string): string {
+  return value.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
+}
+
+// Is a DIFFERENT contact value of this method sitting in this turn? Used to
+// notice that the address on the table has changed, so a prompt, a read-back or
+// a yes that belonged to the old value cannot be spent on the new one.
+function mentionsDifferentContactValue(
+  message: string,
   contactMethod: "email" | "phone",
   contactValue: string,
 ): boolean {
+  // Compared on the same normalized key every other contact comparison uses, so
+  // "the address changed" can never mean "the visitor said it with different
+  // spacing". A candidate we cannot normalize - a five-digit number, a blank -
+  // is not a contact at all and never counts as a different one.
+  const target = normalizedContactValue(contactMethod, contactValue);
+  if (!target) return false;
+  const found = contactMethod === "email"
+    ? message.toLowerCase().match(LITERAL_EMAIL_RE) ?? []
+    : message.match(LITERAL_PHONE_RE) ?? [];
+  return found.some((candidate) => {
+    const value = normalizedContactValue(contactMethod, candidate);
+    return value !== null && value !== target;
+  });
+}
+
+export type ContactSendConsent = {
+  consented: boolean;
+  reason:
+    | "send_command"
+    | "prompt_then_affirmation"
+    | "no_send_prompt"
+    | "affirmation_not_adjacent"
+    | "affirmation_outside_window"
+    | "contact_changed_after_consent"
+    | "contact_not_read_back";
+};
+
+// G's physical ride, 2026-08-29. iScott read the address back, asked "May I send
+// these details to Scott?", G answered a plain "Yes." - and nothing was sent.
+//
+// The old rule required BOTH turns to carry a LiveAvatar absolute timestamp.
+// laAbsoluteTimestamp is nullable the whole way down this pipe (the sync route
+// falls back to a column that is itself nullable, and merged history rows store
+// "none"), so on any turn that arrived without one the plain-yes path was dead
+// code - the send prompt was recognised, the yes was recognised, and the
+// conjunction was still false.
+//
+// The binding that actually matters is ORDER, not the clock: the yes has to be
+// the visitor's very next substantive turn after the question. That is enforced
+// here for every session. The 90-second window is still enforced on top of it
+// whenever both timestamps exist, so the "yes" 100 seconds later still fails.
+//
+// It is also bound to the CONTACT. A different address or number appearing in
+// the conversation clears any prompt, read-back or consent that came before it,
+// so a yes can never be spent on a value the visitor has since changed.
+export function evaluateContactSendConsent(
+  rows: TranscriptTurn[],
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): ContactSendConsent {
   let lastPromptAt: number | null = null;
   let sawSendPrompt = false;
   let sawReadBack = false;
+  let promptNamedContact = false;
+  let userTurnsSincePrompt = 0;
+  // A value other than the one we now hold has been spoken and not yet
+  // superseded by the current one.
+  let contactSuperseded = false;
+  let accepted: "send_command" | "prompt_then_affirmation" | null = null;
+  let refusalReason: ContactSendConsent["reason"] = "no_send_prompt";
+
+  const resetPrompt = () => {
+    sawSendPrompt = false;
+    lastPromptAt = null;
+    promptNamedContact = false;
+    userTurnsSincePrompt = 0;
+  };
+
   for (const row of rows) {
+    if (messageMentionsContact(row.message, contactValue)) {
+      contactSuperseded = false;
+    } else if (mentionsDifferentContactValue(row.message, contactMethod, contactValue)) {
+      contactSuperseded = true;
+      sawReadBack = false;
+      if (accepted) refusalReason = "contact_changed_after_consent";
+      accepted = null;
+      resetPrompt();
+    }
+
     if (row.role === "assistant") {
       if (isDirectContactSendPrompt(row.message, contactMethod, contactValue)) {
         sawSendPrompt = true;
         lastPromptAt = row.laAbsoluteTimestamp;
+        promptNamedContact = messageMentionsContact(row.message, contactValue);
+        userTurnsSincePrompt = 0;
       } else if (isContactReadBack(row.message, contactValue)) {
         sawReadBack = true;
       }
@@ -1265,24 +1442,871 @@ export function detectsContextualContactSendConfirmation(
     // email, it refuses UI-only affirmations, and negation wins outright, so
     // "don't send my info" can never reach here. Nothing about "send the email
     // to Scott" needs iScott's permission to count.
-    //
-    // The prompt-and-affirmation path below is untouched: a plain "yes" still
-    // requires that something was actually asked, and still inside the window.
     if (isSendCommandConsent(row.message)) {
-      return true;
+      accepted = "send_command";
+      resetPrompt();
+      continue;
+    }
+    if (!sawSendPrompt) continue;
+    userTurnsSincePrompt += 1;
+    if (!detectsSimpleAffirmation(row.message)) continue;
+    if (userTurnsSincePrompt > 1) {
+      // The visitor said something else first. Whatever this yes belongs to, it
+      // is not the send question.
+      refusalReason = "affirmation_not_adjacent";
+      continue;
+    }
+    if (contactSuperseded && !promptNamedContact && !sawReadBack) {
+      // A value we do not hold is the last one anybody said out loud. Nothing
+      // has read the current one back, so this yes is not consent for it.
+      refusalReason = "contact_not_read_back";
+      continue;
     }
     if (
-      sawSendPrompt &&
-      detectsSimpleAffirmation(row.message) &&
       lastPromptAt !== null &&
       row.laAbsoluteTimestamp !== null &&
-      row.laAbsoluteTimestamp >= lastPromptAt &&
-      row.laAbsoluteTimestamp - lastPromptAt <= SEND_CONFIRMATION_WINDOW_SECONDS
+      (row.laAbsoluteTimestamp < lastPromptAt ||
+        row.laAbsoluteTimestamp - lastPromptAt > SEND_CONFIRMATION_WINDOW_SECONDS)
     ) {
-      return true;
+      refusalReason = "affirmation_outside_window";
+      continue;
+    }
+    accepted = "prompt_then_affirmation";
+    resetPrompt();
+  }
+
+  return accepted
+    ? { consented: true, reason: accepted }
+    : { consented: false, reason: refusalReason };
+}
+
+export function detectsContextualContactSendConfirmation(
+  rows: TranscriptTurn[],
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): boolean {
+  return evaluateContactSendConsent(rows, contactMethod, contactValue).consented;
+}
+
+// ---------------------------------------------------------------------------
+// QUALIFICATION, AND THE EXACT-CONTACT CONSENT GATE
+//
+// G, 2026-08-29. A lead only earns a send when four things are true and every
+// one of them came out of the visitor's mouth: a full name, a specific project
+// in their own words, the contact we are HOLDING RIGHT NOW read back exactly,
+// and an explicit yes to the send question sitting right next to it.
+//
+// evaluateContactSendConsent above is untouched and still answers the broad
+// question - "did the visitor say yes to a send?". This gate answers the
+// narrower one that actually opens the door: "was that yes attached to THIS
+// contact, after we read THIS contact back, on a lead Scott can act on?"
+//
+// A generic "May I send these details to Scott?" answered "Yes." is a real yes
+// and stays a real yes. It is simply not, on its own, enough to mail a
+// stranger's name and address to Scott - nobody has confirmed WHICH address the
+// yes was about, and G's rides are full of addresses that were mis-heard once
+// and corrected later.
+//
+// 2026-08-29, CORRECTION. This gate used to carry a blanket exception: any
+// explicit send COMMAND was accepted on its own, anywhere in the transcript,
+// with no read-back at all. That exception was the whole gate - "Yes, send it to
+// Scott." is a phrase iScott's own prompting invites, so the strict rule could
+// be satisfied by a sentence that never named an address, and the broad rule was
+// back in charge without saying so.
+//
+// The lesson of ride 7325f798 is kept where it belongs: a command is still
+// permission, and iScott does not have to have ASKED first. What a command
+// cannot do any more is stand in for the read-back. It has to sit immediately on
+// an exact read-back of the value we are holding right now, or on a send prompt
+// that is itself anchored to that read-back. A command spoken before any
+// read-back, or after the address changed, is refused - the visitor is telling
+// us to send something nobody has confirmed the spelling of.
+// ---------------------------------------------------------------------------
+
+// How far the read-back may sit from the send question. Zero means the question
+// follows it directly; two allows the visitor's "yes, that's right" in between,
+// which is the shape of every real ride.
+const READBACK_TO_PROMPT_MAX_TURNS = 2;
+
+const CONTACT_READBACK_SHAPE =
+  /\b(?:i have your|your (?:email|phone|number)|read (?:that|it) back|reading (?:that|it) back|spell (?:that|it) out|spelled (?:that|it) out|did i (?:get|hear) (?:that|it)|is that (?:the )?right|does that look right|is that correct)\b/i;
+
+// Did this turn say the CURRENT contact, exactly? Literal, or iScott's spelled
+// email form, or - the case messageMentionsContact alone cannot see - a phone
+// number spoken in groups, "4-4-3, 5-5-5, 0-1-4-2", where the commas he pauses
+// on sit between the digits. The digits themselves still have to match exactly.
+function messageSpeaksContactExactly(
+  message: string,
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): boolean {
+  if (messageMentionsContact(message, contactValue)) return true;
+  if (contactMethod !== "phone") return false;
+  const target = phoneDigits(contactValue);
+  if (!target) return false;
+  return message.replace(/\D/g, "").includes(target);
+}
+
+// An assistant turn that repeats the CURRENT contact and asks the visitor to
+// confirm it. Exact by construction, and a turn that also carries some other
+// address is not a read-back of this one.
+export function isExactContactReadback(
+  message: string,
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): boolean {
+  if (!contactValue.trim()) return false;
+  if (!messageSpeaksContactExactly(message, contactMethod, contactValue)) return false;
+  if (mentionsDifferentContactValue(message, contactMethod, contactValue)) return false;
+  return CONTACT_READBACK_SHAPE.test(message.replace(/\s+/g, " ").trim());
+}
+
+// THE ONE DEFINITION OF "the same way to reach this person", 2026-08-29.
+//
+// Every idempotency comparison in the lead pipeline has to agree on this, and
+// several of them used to compare raw strings with ===. "+1 (443) 555-0142" and
+// "4435550142" are one phone; "Visitor@Example.com" and "visitor@example.com"
+// are one mailbox; a spoken address that arrives with a stray space is the same
+// mailbox again. Compared literally, the same contact reads as a different one -
+// which is how a second identical package reaches Scott, and how a lead that was
+// already sent looks unsent to the next turn of the conversation.
+//
+// Null means "no usable value", never "equal to nothing": two absent contacts
+// are not the same contact, so callers cannot accidentally suppress a send by
+// comparing two blanks.
+export function normalizedContactValue(
+  contactMethod: "email" | "phone",
+  value: string | null | undefined,
+): string | null {
+  // Defensive about the input type, not just its shape: some of these values
+  // come out of a free-form JSON metadata column, and a comparison that throws
+  // inside the capture pipeline would take a visitor's whole turn down with it.
+  const text = typeof value === "string" ? value.trim() : "";
+  if (!text) return null;
+  if (contactMethod === "phone") {
+    const digits = phoneDigits(text);
+    return digits.length >= 10 ? digits : null;
+  }
+  return text.replace(/\s+/g, "").toLowerCase();
+}
+
+export function sameContactValue(
+  contactMethod: "email" | "phone",
+  a: string | null | undefined,
+  b: string | null | undefined,
+): boolean {
+  const left = normalizedContactValue(contactMethod, a);
+  const right = normalizedContactValue(contactMethod, b);
+  return left !== null && right !== null && left === right;
+}
+
+export type ExactContactSendConsent = {
+  consented: boolean;
+  reason:
+    | "send_command"
+    | "readback_prompt_affirmation"
+    | "no_send_prompt"
+    | "no_exact_contact_readback"
+    | "readback_too_far_from_prompt"
+    | "affirmation_not_adjacent"
+    | "affirmation_outside_window"
+    | "contact_changed_after_consent";
+  // WHERE in the transcript the permission was given, or null if it never was.
+  // 2026-08-30: reported so the package-chronology rule below can ask the one
+  // question this function was never asked - was the package the visitor said
+  // yes to still the package we are holding? Nothing about the consent decision
+  // itself changes; this is the same walk, reporting where it landed.
+  acceptedIndex: number | null;
+};
+
+export function evaluateExactContactSendConsent(
+  rows: TranscriptTurn[],
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): ExactContactSendConsent {
+  let accepted: "send_command" | "readback_prompt_affirmation" | null = null;
+  let acceptedIndex: number | null = null;
+  let refusal: ExactContactSendConsent["reason"] = "no_send_prompt";
+  // How many SUBSTANTIVE turns ago the current contact was read back, or null
+  // if it never was. Counted in turns rather than row indexes: a visitor
+  // breaking off to say the Finish button is too small is not distance between
+  // the read-back and the yes, and on G's rides it always sits right there.
+  let sinceReadback: number | null = null;
+  let promptOpen = false;
+  let promptAt: number | null = null;
+  let promptAnchored = false;
+  let userTurnsSincePrompt = 0;
+
+  const clearPrompt = () => {
+    promptOpen = false;
+    promptAt = null;
+    promptAnchored = false;
+    userTurnsSincePrompt = 0;
+  };
+  const stepAwayFromReadback = () => {
+    if (sinceReadback !== null) sinceReadback += 1;
+  };
+
+  for (const [index, row] of rows.entries()) {
+    // A value we do not hold has been spoken. Every read-back, question and yes
+    // that belonged to the old one dies with it - consent is never inherited by
+    // an address the visitor has since changed.
+    if (
+      mentionsDifferentContactValue(row.message, contactMethod, contactValue) &&
+      !messageSpeaksContactExactly(row.message, contactMethod, contactValue)
+    ) {
+      if (accepted || promptOpen || sinceReadback !== null) {
+        refusal = "contact_changed_after_consent";
+      }
+      accepted = null;
+      acceptedIndex = null;
+      sinceReadback = null;
+      clearPrompt();
+      continue;
+    }
+
+    if (row.role === "assistant") {
+      const namesContact =
+        messageSpeaksContactExactly(row.message, contactMethod, contactValue) &&
+        !mentionsDifferentContactValue(row.message, contactMethod, contactValue);
+      if (isDirectContactSendPrompt(row.message, contactMethod, contactValue)) {
+        // A send question that repeats the address IS its own read-back.
+        if (namesContact) sinceReadback = 0;
+        else stepAwayFromReadback();
+        promptOpen = true;
+        promptAt = row.laAbsoluteTimestamp;
+        promptAnchored = sinceReadback !== null && sinceReadback <= READBACK_TO_PROMPT_MAX_TURNS;
+        if (!promptAnchored) {
+          refusal = sinceReadback === null
+            ? "no_exact_contact_readback"
+            : "readback_too_far_from_prompt";
+        }
+        userTurnsSincePrompt = 0;
+        continue;
+      }
+      if (isExactContactReadback(row.message, contactMethod, contactValue)) sinceReadback = 0;
+      else stepAwayFromReadback();
+      continue;
+    }
+
+    if (row.role !== "user") continue;
+    if (isUiOnlyAffirmation(row.message)) continue;
+    stepAwayFromReadback();
+    if (promptOpen) userTurnsSincePrompt += 1;
+
+    const command = isSendCommandConsent(row.message);
+    const affirmation = detectsSimpleAffirmation(row.message);
+    if (!command && !affirmation) continue;
+
+    // TWO ways a visitor turn may carry permission, and both of them are tied to
+    // a read-back of the value we are holding at this moment.
+    //   1. it answers a send question that was itself anchored to the read-back
+    //   2. it is an explicit command sitting immediately on the read-back
+    const answersAnchoredPrompt = promptOpen && promptAnchored && userTurnsSincePrompt === 1;
+    const commandsOnTheReadback =
+      command && sinceReadback !== null && sinceReadback <= READBACK_TO_PROMPT_MAX_TURNS;
+
+    if (!answersAnchoredPrompt && !commandsOnTheReadback) {
+      // A contact change is the most specific thing that can be wrong here and
+      // it must not be overwritten by a vaguer reason further down the ride.
+      if (refusal !== "contact_changed_after_consent") {
+        if (sinceReadback === null) refusal = "no_exact_contact_readback";
+        else if (userTurnsSincePrompt > 1) refusal = "affirmation_not_adjacent";
+        else refusal = "readback_too_far_from_prompt";
+      }
+      continue;
+    }
+    if (
+      answersAnchoredPrompt &&
+      promptAt !== null &&
+      row.laAbsoluteTimestamp !== null &&
+      (row.laAbsoluteTimestamp < promptAt ||
+        row.laAbsoluteTimestamp - promptAt > SEND_CONFIRMATION_WINDOW_SECONDS)
+    ) {
+      refusal = "affirmation_outside_window";
+      continue;
+    }
+    accepted = answersAnchoredPrompt ? "readback_prompt_affirmation" : "send_command";
+    acceptedIndex = index;
+    clearPrompt();
+  }
+
+  return accepted
+    ? { consented: true, reason: accepted, acceptedIndex }
+    : { consented: false, reason: refusal, acceptedIndex: null };
+}
+
+export function detectsExactContactSendConfirmation(
+  rows: TranscriptTurn[],
+  contactMethod: "email" | "phone",
+  contactValue: string,
+): boolean {
+  return evaluateExactContactSendConsent(rows, contactMethod, contactValue).consented;
+}
+
+// A need Scott can act on. "Landscaping" is not a job; "a pool and a waterfall
+// out back" is. Null means the visitor never said, which blocks the send rather
+// than being guessed at.
+const GENERIC_NEED =
+  /^(?:some\s+|a\s+|an\s+|the\s+)?(?:landscap(?:e|ing)|yard\s*work|outdoor\s*work|work\s*(?:outside|outdoors)|projects?|jobs?|help|assistance|stuff|things?|work|something|anything|info(?:rmation)?|quotes?|estimates?|to\s+talk|to\s+chat|talk|chat)$/i;
+
+// 2026-08-29, CORRECTION. GENERIC_NEED above only ever matched a WHOLE phrase,
+// so the moment two generic words were stacked the block fell open: "I need help
+// with a project", "A landscaping project" and "I need some help" all sailed
+// through and would have been mailed to Scott as the job.
+//
+// A need is only concrete if it contains at least one word that is not scaffold.
+// Every token below is either grammar, a bare service CATEGORY, or a placeholder
+// noun for work in general - none of them tells Scott anything he can quote. A
+// real need always drags in a word from outside this list ("pool", "waterfall",
+// "patio", "flagstone", "website", "logo"), which is exactly the detail that
+// makes it worth his afternoon.
+const NEED_SCAFFOLD_TOKENS = new Set([
+  // grammar and hedging
+  "a", "an", "the", "some", "any", "my", "our", "your", "their", "his", "her",
+  "of", "with", "for", "on", "in", "at", "to", "and", "or", "just", "really",
+  "maybe", "please", "kind", "sort", "type", "bit", "little", "few", "more",
+  "new", "get", "getting", "got", "do", "doing", "done", "have", "having",
+  "need", "needs", "want", "wants", "like", "about", "around", "up", "out",
+  // 2026-08-29 FOLLOW-UP. The list above had no pronouns on it, so the gate was
+  // only ever strict about a need that had already been through
+  // extractProjectNeed - which strips the "I want" off the front. Asked
+  // DIRECTLY, "I want some landscaping" and "We want a landscaping project"
+  // carried "i" and "we" as their one non-scaffold token and passed as jobs
+  // Scott could quote. A pronoun is grammar. It says who is asking, never what
+  // the work is.
+  "i", "we", "you", "he", "she", "it", "they", "me", "us", "him", "them",
+  "mine", "ours", "yours", "hers", "theirs", "myself", "ourselves", "itself",
+  "this", "that", "these", "those", "here", "there", "who", "whom", "whose",
+  "what", "which", "whatever", "when", "where", "why", "how",
+  // Keep contractions whole when tokenising. A contraction is request grammar,
+  // never the concrete object or result that makes the request actionable.
+  "i'm", "im", "i've", "ive", "i'd", "id", "i'll", "ill",
+  "we're", "weve", "we've", "we'd", "we'll", "you're", "you've", "you'd", "you'll",
+  "they're", "they've", "they'd", "they'll", "he's", "he'd", "he'll", "she's", "she'd", "she'll",
+  // auxiliaries, modals, and the verbs that only ever open a request
+  "am", "is", "are", "was", "were", "be", "been", "being", "does", "did",
+  "has", "had", "will", "shall", "would", "could", "should", "can", "may",
+  "might", "must", "let", "gonna", "wanna", "looking", "seeking", "interested",
+  // conjunctions, hedges, and spoken filler
+  "if", "then", "so", "but", "because", "also", "too", "very", "quite",
+  "okay", "ok", "yes", "yeah", "no", "nope", "um", "uh", "er", "ah",
+  "know", "not", "sure", "unsure", "certain", "uncertain", "unknown", "clue",
+  "don't", "dont", "doesn't", "doesnt", "didn't", "didnt", "can't", "cant",
+  "couldn't", "couldnt", "wouldn't", "wouldnt", "shouldn't", "shouldnt",
+  "won't", "wont", "isn't", "isnt", "aren't", "arent", "wasn't", "wasnt",
+  "weren't", "werent", "haven't", "havent", "hasn't", "hasnt", "hadn't", "hadnt",
+  "idk", "dunno", "perhaps", "probably", "possibly", "basically", "actually",
+  "honestly", "simply", "generally", "thank", "thanks", "kindly",
+  "now", "today", "tonight", "tomorrow", "later", "soon", "sometime", "whenever",
+  "yet", "currently", "eventually", "asap", "immediately", "quickly", "right",
+  // service categories, which are not jobs
+  "landscape", "landscapes", "landscaped", "landscaping", "yard", "yards",
+  "lawn", "lawns", "garden", "gardens", "gardening", "outdoor", "outdoors",
+  // placeholder nouns for "work"
+  "project", "projects", "job", "jobs", "work", "works", "working",
+  "help", "helping", "assistance", "service", "services", "stuff", "thing",
+  "things", "something", "anything", "everything", "idea", "ideas",
+  "info", "information", "quote", "quotes", "estimate", "estimates",
+  "talk", "chat", "question", "questions",
+]);
+
+function needCarriesConcreteDetail(text: string): boolean {
+  const tokens = (text
+    .toLowerCase()
+    .replaceAll("’", "'")
+    .match(/[\p{L}\p{N}]+(?:'[\p{L}\p{N}]+)*/gu) ?? [])
+    // One-character grammar fragments still carry no project detail. Keeping
+    // apostrophe contractions whole avoids turning "don't" into the false
+    // concrete token "don" while preserving real words such as pool or patio.
+    .filter((token) => token.length > 1);
+  if (tokens.length === 0) return false;
+  return tokens.some((token) => !NEED_SCAFFOLD_TOKENS.has(token));
+}
+
+export function isSpecificProjectNeed(need: string | null | undefined): boolean {
+  const text = (need ?? "").replace(/\s+/g, " ").replace(/[.!?,;:\s]+$/g, "").trim();
+  if (!text) return false;
+  if (text.split(/\s+/).length < 2) return false;
+  if (GENERIC_NEED.test(text)) return false;
+  if (!needCarriesConcreteDetail(text)) return false;
+  if (isCoachingOrPersonaNeed(text)) return false;
+  if (CONTACT_MECHANICS_NEED.test(text)) return false;
+  if (isOperatorSalesLanguage(text)) return false;
+  return true;
+}
+
+// A name Scott can open a phone call with. 2026-08-29, CORRECTION: the gate
+// asked only whether the field was non-blank, so "test", "n/a" and "visitor"
+// counted as a name and a placeholder lead could reach him.
+//
+// 2026-08-30, SECOND CORRECTION. The rule then went too far the other way and
+// required two tokens, so a visitor who answers "Cher", "Solveig" or "Li" - the
+// only name they use - could never finish. A legitimate single-word name is a
+// name. What the gate is actually for is refusing values that are NOT names:
+// placeholders, contact values, and field labels. Those are all still refused,
+// one token or four, and iScott still ASKS for the full name (see
+// nextIScottLeadQuestion) - it simply no longer discards a real answer.
+const PLACEHOLDER_NAME =
+  /^(?:n\/?a|na|none|nil|null|nobody|no\s*name|unknown|unnamed|anon(?:ymous)?|visitor|guest|user|customer|client|someone|somebody|me|you|him|her|them|it|test(?:ing|er)?|test\s+test|demo|sample|example|asdf+|qwerty|abc+|xyz|x+|first\s+last|full\s+name|my\s+name|name|idk|not\s+sure|dunno|hello|hi|hey)$/i;
+
+const CONTACT_OR_FIELD_LABEL_NAME =
+  /^(?:(?:my|your|the|best|preferred|primary|alternate|alternative|home|work|mobile)\s+)*(?:e-?mail(?:\s+address)?|phone(?:\s+number)?|telephone(?:\s+number)?|cell(?:\s+(?:phone|number))?|contact(?:\s+(?:information|info|details|method|preference))?|address|first\s+name|last\s+name|name\s+field|best\s+time\s+to\s+call|call\s+me|reach\s+me|contact\s+me|do\s+not\s+(?:call|contact)|not\s+provided|rather\s+not\s+say|prefer\s+not\s+to\s+say|no\s+preference)$/i;
+
+const SPOKEN_DIGIT_NAME_WORDS = new Set([
+  "zero", "oh", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+]);
+
+// Words that answer "I'm ___" without ever being a name. The two-token rule used
+// to hide these; with a single word now acceptable they have to be refused on
+// their own merits, because extractSpokenFullName reads "I'm ready" the same way
+// it reads "I'm Cher". Every entry is a state, a feeling, or an activity - never
+// something a person is called.
+const NON_NAME_WORDS = new Set([
+  "ready", "curious", "interested", "listening", "waiting", "wondering", "hoping",
+  "thinking", "looking", "calling", "asking", "trying", "checking", "browsing",
+  "kidding", "joking", "guessing", "sorry", "fine", "good", "great", "okay", "well",
+  "back", "here", "there", "done", "finished", "busy", "happy", "glad", "excited",
+  "confused", "lost", "new", "old", "sure", "unsure", "human", "real", "afraid",
+  "tired", "serious", "kidding-me", "in", "out", "up", "down", "yes", "no",
+]);
+
+export function isMeaningfulVisitorName(name: string | null | undefined): boolean {
+  const text = (name ?? "").replace(/\s+/g, " ").trim();
+  if (text.length < 2 || text.length > 90) return false;
+  // A contact value belongs in the contact field, never in the salutation.
+  // Keep this ahead of the name-shaped character check so the rule is direct
+  // and cannot regress when accepted punctuation changes later.
+  if (extractEmail(text)) return false;
+  const contactDigits = text.replace(/\D/g, "");
+  if (contactDigits.length >= 7) return false;
+  // Has to read like a name: letters, not a number or a row of punctuation.
+  if (!/\p{L}{2}/u.test(text)) return false;
+  if (!/^[\p{L}][\p{L}'’.\- ]*$/u.test(text)) return false;
+  if (PLACEHOLDER_NAME.test(text)) return false;
+  if (CONTACT_OR_FIELD_LABEL_NAME.test(text)) return false;
+  const words = text.toLowerCase().match(/[\p{L}]+/gu) ?? [];
+  if (words.length === 0) return false;
+  // A number read out loud is a contact value, not a name - one digit word or
+  // ten of them.
+  if (words.every((word) => SPOKEN_DIGIT_NAME_WORDS.has(word))) return false;
+  if (words.every((word) => NON_NAME_WORDS.has(word))) return false;
+  // The stop words the spoken-name extractor already refuses, checked again
+  // here because a name can also arrive from a typed field or a legacy row.
+  if (text.split(" ").every((word) => NAME_STOP.test(word))) return false;
+  return true;
+}
+
+// ---------------------------------------------------------------------------
+// THE PACKAGE, AND WHEN PERMISSION BELONGS TO IT. 2026-08-30.
+//
+// What the visitor gives permission for is not "a send" in the abstract. It is
+// one PACKAGE: the name Scott will say, the job he will quote, and the contact
+// he will use. The exact-read-back rule above already binds a yes to the CONTACT
+// it was spoken over. Nothing bound it to the other two, so a visitor could say
+// yes over a confirmed address and then correct their name, or describe a
+// different job entirely, and the old yes still opened the door - Scott would be
+// mailed a package nobody had agreed to.
+//
+// The rule is chronological and it is simple: permission counts only if it was
+// given AFTER the last material change to every field of the package. A change
+// afterwards - name, intent, or contact - takes the permission down with it and
+// the visitor has to be asked again.
+//
+// MATERIAL is doing real work in that sentence. Saying the same thing again in a
+// different shape is not a change: "sgdietz@pm.me" and "SGDietz@PM.me ", "+1
+// (443) 555-0142" and "4435550142", "Mary-Anne" and "mary anne", "A pool and a
+// waterfall" and "a pool and a waterfall." are each ONE answer said twice.
+// Filling in more of the same answer is not a change either - "George" becoming
+// "George Smith", or "a pool" becoming "a pool and a waterfall", is the visitor
+// finishing a sentence, not changing their mind. Treating either as a change
+// would tear down permission the visitor genuinely gave, which is its own way of
+// losing a lead.
+// ---------------------------------------------------------------------------
+
+export type LeadPackageField = "name" | "intent" | "contact";
+
+export type LeadPackage = {
+  fullName?: string | null;
+  projectNeed?: string | null;
+  contactMethod?: "email" | "phone" | null;
+  contactValue?: string | null;
+};
+
+function normalizedPackageText(value: string | null | undefined): string | null {
+  const text = typeof value === "string" ? value : "";
+  const normalized = text
+    .replaceAll("’", "'")
+    .toLowerCase()
+    // Punctuation is how a sentence is written down, never what it says.
+    .replace(/[.,!?;:'"()\-_/\\]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return normalized ? normalized : null;
+}
+
+export function normalizedPackageName(value: string | null | undefined): string | null {
+  return normalizedPackageText(value);
+}
+
+export function normalizedPackageIntent(value: string | null | undefined): string | null {
+  return normalizedPackageText(value);
+}
+
+// Is `next` the same answer as `previous`, or the same answer with more of it
+// filled in? Compared on whole words so "george" is a completion of nothing and
+// "george smith" is a completion of "george", while "georgina" is neither.
+function isSameOrFullerAnswer(previous: string, next: string): boolean {
+  if (previous === next) return true;
+  const from = previous.split(" ");
+  const to = next.split(" ");
+  const [shorter, longer] = from.length <= to.length ? [from, to] : [to, from];
+  return shorter.every((word, index) => longer[index] === word);
+}
+
+export function leadPackageFieldChanged(
+  field: LeadPackageField,
+  previous: string | null | undefined,
+  next: string | null | undefined,
+  contactMethod?: "email" | "phone" | null,
+): boolean {
+  if (field === "contact") {
+    const method = contactMethod === "phone" ? "phone" : "email";
+    const before = normalizedContactValue(method, previous);
+    const after = normalizedContactValue(method, next);
+    if (before === null && after === null) return false;
+    if (before === null || after === null) return true;
+    return before !== after;
+  }
+  const before = normalizedPackageText(previous);
+  const after = normalizedPackageText(next);
+  if (before === null && after === null) return false;
+  if (before === null || after === null) return true;
+  return !isSameOrFullerAnswer(before, after);
+}
+
+export function materialLeadPackageChanges(
+  previous: LeadPackage,
+  next: LeadPackage,
+): LeadPackageField[] {
+  const changes: LeadPackageField[] = [];
+  if (leadPackageFieldChanged("name", previous.fullName, next.fullName)) changes.push("name");
+  if (leadPackageFieldChanged("intent", previous.projectNeed, next.projectNeed)) changes.push("intent");
+  const method = next.contactMethod ?? previous.contactMethod ?? null;
+  const methodChanged = Boolean(previous.contactMethod && next.contactMethod && previous.contactMethod !== next.contactMethod);
+  if (methodChanged || leadPackageFieldChanged("contact", previous.contactValue, next.contactValue, method)) {
+    changes.push("contact");
+  }
+  return changes;
+}
+
+// Which step of the package is still missing. Ordered the way iScott gathers, so
+// the first entry is the one thing to ask for next.
+export function missingLeadPackageFields(pkg: LeadPackage): LeadPackageField[] {
+  const missing: LeadPackageField[] = [];
+  if (!isMeaningfulVisitorName(pkg.fullName)) missing.push("name");
+  if (!isSpecificProjectNeed(pkg.projectNeed)) missing.push("intent");
+  const method = pkg.contactMethod === "email" || pkg.contactMethod === "phone" ? pkg.contactMethod : null;
+  if (!method || !(pkg.contactValue ?? "").trim()) missing.push("contact");
+  return missing;
+}
+
+export function isCompleteLeadPackage(pkg: LeadPackage): boolean {
+  return missingLeadPackageFields(pkg).length === 0;
+}
+
+export type LeadPackageChronology = {
+  // Where the visitor's permission sits in these rows, or null if no permission
+  // was ever given for the contact we hold.
+  permissionIndex: number | null;
+  // Where the package last changed under it, or null if it never did.
+  lastMaterialChangeIndex: number | null;
+  // Fields that changed at or after the permission turn. Empty when permission
+  // is still current - or when there is no permission to be stale.
+  staleFields: LeadPackageField[];
+  // Permission exists AND nothing material has changed since it was given.
+  permissionCurrent: boolean;
+  packageComplete: boolean;
+  missingFields: LeadPackageField[];
+};
+
+export function evaluateLeadPackageChronology(args: {
+  rows: TranscriptTurn[];
+  fullName?: string | null;
+  projectNeed?: string | null;
+  contactMethod?: "email" | "phone" | null;
+  contactValue?: string | null;
+}): LeadPackageChronology {
+  const method = args.contactMethod === "email" || args.contactMethod === "phone"
+    ? args.contactMethod
+    : null;
+  const contactValue = (args.contactValue ?? "").trim();
+  const packageComplete = isCompleteLeadPackage({
+    fullName: args.fullName,
+    projectNeed: args.projectNeed,
+    contactMethod: method,
+    contactValue,
+  });
+  const missingFields = missingLeadPackageFields({
+    fullName: args.fullName,
+    projectNeed: args.projectNeed,
+    contactMethod: method,
+    contactValue,
+  });
+  const consent = method && contactValue
+    ? evaluateExactContactSendConsent(args.rows, method, contactValue)
+    : null;
+  const permissionIndex = consent?.consented ? consent.acceptedIndex : null;
+
+  // The package as the TRANSCRIPT built it, turn by turn. Only the visitor's own
+  // turns move it: iScott repeating an address back is not the visitor changing
+  // it, and a lead field that was never spoken out loud (a typed correction, a
+  // legacy row) simply has no chronology here and cannot invalidate anything.
+  const changedAt: Record<LeadPackageField, number | null> = { name: null, intent: null, contact: null };
+  let heardName: string | null = null;
+  let heardIntent: string | null = null;
+
+  for (const [index, row] of args.rows.entries()) {
+    if (row.role !== "user") continue;
+    const spokenName = extractSpokenFullName(row.message);
+    if (spokenName && isMeaningfulVisitorName(spokenName)) {
+      if (heardName === null || leadPackageFieldChanged("name", heardName, spokenName)) {
+        changedAt.name = index;
+      }
+      heardName = heardName === null
+        ? spokenName
+        : (normalizedPackageText(spokenName)?.length ?? 0) > (normalizedPackageText(heardName)?.length ?? 0)
+          ? spokenName
+          : heardName;
+    }
+    const spokenIntent = extractProjectNeed(row.message);
+    if (spokenIntent && isSpecificProjectNeed(spokenIntent)) {
+      if (heardIntent === null || leadPackageFieldChanged("intent", heardIntent, spokenIntent)) {
+        changedAt.intent = index;
+      }
+      heardIntent = preferProjectNeed(heardIntent, spokenIntent);
+    }
+    if (method && contactValue) {
+      const saysCurrent = messageSpeaksContactExactly(row.message, method, contactValue);
+      const saysOther = mentionsDifferentContactValue(row.message, method, contactValue);
+      // Only a DIFFERENT value moves the contact. Saying the value we already
+      // hold - "just to be sure, my number is 443-555-0142" - is the visitor
+      // confirming, not changing, and the exact-read-back rule above already
+      // refuses a yes that was given before the current value was ever spoken.
+      if (saysOther && !saysCurrent) changedAt.contact = index;
     }
   }
-  return false;
+
+  const changeIndexes = (Object.values(changedAt).filter((value) => value !== null) as number[]);
+  const lastMaterialChangeIndex = changeIndexes.length ? Math.max(...changeIndexes) : null;
+  const staleFields = permissionIndex === null
+    ? []
+    : (Object.keys(changedAt) as LeadPackageField[]).filter((field) => {
+        const at = changedAt[field];
+        return at !== null && at >= permissionIndex;
+      });
+  return {
+    permissionIndex,
+    lastMaterialChangeIndex,
+    staleFields,
+    permissionCurrent: permissionIndex !== null && staleFields.length === 0,
+    packageComplete,
+    missingFields,
+  };
+}
+
+export type LeadSendBlocker =
+  | "missing_full_name"
+  | "generic_project_need"
+  | "missing_contact"
+  | "contact_mismatch"
+  | "consent_not_accepted"
+  | "contact_not_confirmed"
+  | "no_exact_contact_consent"
+  | "package_changed_after_permission";
+
+export type LeadSendQualification = {
+  qualified: boolean;
+  blockers: LeadSendBlocker[];
+  reason: LeadSendBlocker | "qualified";
+};
+
+const LEAD_SEND_BLOCKERS: ReadonlySet<string> = new Set<LeadSendBlocker>([
+  "missing_full_name",
+  "generic_project_need",
+  "missing_contact",
+  "contact_mismatch",
+  "consent_not_accepted",
+  "contact_not_confirmed",
+  "no_exact_contact_consent",
+  "package_changed_after_permission",
+]);
+
+export function isLeadSendBlocker(value: unknown): value is LeadSendBlocker {
+  return typeof value === "string" && LEAD_SEND_BLOCKERS.has(value);
+}
+
+// A REFUSAL IS DATA, 2026-08-29. The confirm route used to recognise a blocked
+// lead by testing whether an Error's message began with "lead_not_qualified:"
+// and slicing the reason out of the rest of the string. A visitor's HTTP status
+// - and the words they were shown - therefore hung on free-form prose: any
+// message that happened to start that way became a 409, and a reason spelled
+// even slightly differently fell through to the generic wording.
+//
+// The reason travels as a typed field now. The message keeps its exact old
+// wording so telemetry, logs and the existing checks read the same as before.
+export class LeadNotQualifiedError extends Error {
+  readonly leadNotQualified = true;
+  readonly reason: LeadSendBlocker;
+  readonly blockers: LeadSendBlocker[];
+
+  constructor(qualification: { reason: LeadSendBlocker; blockers?: LeadSendBlocker[] }) {
+    super(`lead_not_qualified:${qualification.reason}`);
+    this.name = "LeadNotQualifiedError";
+    this.reason = qualification.reason;
+    this.blockers = qualification.blockers?.length ? [...qualification.blockers] : [qualification.reason];
+  }
+}
+
+// Read structurally rather than with instanceof: a route and a library can end
+// up in two module instances of the same file, and a genuine refusal must never
+// become a 500 because two copies of one class exist. An object that carries the
+// brand but not a reason we know is NOT treated as a refusal - an unrecognised
+// reason has no visitor-safe wording behind it, so it stays a server fault.
+export function leadNotQualifiedReason(error: unknown): LeadSendBlocker | null {
+  if (!error || typeof error !== "object") return null;
+  const candidate = error as { leadNotQualified?: unknown; reason?: unknown };
+  if (candidate.leadNotQualified !== true) return null;
+  return isLeadSendBlocker(candidate.reason) ? candidate.reason : null;
+}
+
+// The one gate both send paths ask. Auto-send passes the transcript rows so the
+// read-back rule is enforced live; the confirm API passes what is STORED, so a
+// direct call can only spend consent the conversation already earned.
+export function evaluateIScottLeadSendQualification(args: {
+  fullName?: string | null;
+  projectNeed?: string | null;
+  contactMethod?: "email" | "phone" | null;
+  contactValue?: string | null;
+  requestedContactValue?: string | null;
+  consentStatus?: string | null;
+  contactConfirmedAt?: string | null;
+  rows?: TranscriptTurn[];
+}): LeadSendQualification {
+  const blockers: LeadSendBlocker[] = [];
+  // G, 2026-08-30 said a missing name must not stop a lead reaching him.
+  // It no longer does - but the answer was NOT to delete this blocker. It
+  // also drives iScott's "still needs your name" prompt and the lead-card
+  // copy, so removing it would stop him ever ASKING for a name at all.
+  // The guarantee G actually wanted lives in the partial-lead notification
+  // in iscottLeadCapture.ts: anything holding an email or a phone is mailed
+  // to him regardless of name, consent or qualification. Strict here,
+  // nothing lost there.
+  if (!isMeaningfulVisitorName(args.fullName)) blockers.push("missing_full_name");
+  if (!isSpecificProjectNeed(args.projectNeed)) blockers.push("generic_project_need");
+
+  const method = args.contactMethod === "email" || args.contactMethod === "phone"
+    ? args.contactMethod
+    : null;
+  const held = (args.contactValue ?? "").trim();
+  if (!method || !held) {
+    blockers.push("missing_contact");
+  } else if (
+    args.requestedContactValue !== undefined &&
+    args.requestedContactValue !== null &&
+    !sameContactValue(method, held, args.requestedContactValue)
+  ) {
+    // Somebody asked us to send to a value the lead does not hold.
+    blockers.push("contact_mismatch");
+  }
+
+  if (args.consentStatus !== "accepted") blockers.push("consent_not_accepted");
+  if (!(args.contactConfirmedAt ?? "").trim()) blockers.push("contact_not_confirmed");
+
+  if (args.rows && method && held) {
+    // One walk of the transcript answers both questions: was permission given
+    // for THIS contact, and was the package still this package when it was
+    // given? A lead with no permission at all is told that and nothing more -
+    // "you changed something" would be nonsense when there is nothing to change
+    // it out from under.
+    const chronology = evaluateLeadPackageChronology({
+      rows: args.rows,
+      fullName: args.fullName,
+      projectNeed: args.projectNeed,
+      contactMethod: method,
+      contactValue: held,
+    });
+    if (chronology.permissionIndex === null) blockers.push("no_exact_contact_consent");
+    else if (!chronology.permissionCurrent) blockers.push("package_changed_after_permission");
+  }
+
+  return { qualified: blockers.length === 0, blockers, reason: blockers[0] ?? "qualified" };
+}
+
+// ONE ITEM AT A TIME. G has said it on every ride: never stack two asks into one
+// question. This is the deterministic order the qualification gate needs filled
+// in, and it never asks for something already known.
+export type IScottLeadGatherStep =
+  | "full_name"
+  | "project_need"
+  | "contact_method"
+  | "contact_value"
+  | "contact_readback"
+  | "send_permission"
+  | "ready";
+
+export function iscottLeadGatherOrder(): IScottLeadGatherStep[] {
+  return ["full_name", "project_need", "contact_method", "contact_value", "contact_readback", "send_permission"];
+}
+
+export function nextIScottLeadQuestion(args: {
+  fullName?: string | null;
+  projectNeed?: string | null;
+  contactMethod?: "email" | "phone" | null;
+  contactValue?: string | null;
+  contactReadBack?: boolean;
+  consentStatus?: string | null;
+}): { step: IScottLeadGatherStep; question: string | null } {
+  const name = (args.fullName ?? "").replace(/\s+/g, " ").trim();
+  if (!isMeaningfulVisitorName(name)) {
+    return { step: "full_name", question: "What is your full name?" };
+  }
+  if (!isSpecificProjectNeed(args.projectNeed)) {
+    return {
+      step: "project_need",
+      question: `${name}, in your own words, what is the one thing you want Scott to help you with?`,
+    };
+  }
+  const method = args.contactMethod === "email" || args.contactMethod === "phone"
+    ? args.contactMethod
+    : null;
+  if (!method) {
+    return { step: "contact_method", question: "Should Scott reach you by email or by phone?" };
+  }
+  const value = (args.contactValue ?? "").trim();
+  if (!value) {
+    return {
+      step: "contact_value",
+      question: method === "email"
+        ? "What is the best email address for you?"
+        : "What is the best phone number for you?",
+    };
+  }
+  if (!args.contactReadBack) {
+    const spoken = method === "email"
+      ? formatSpokenEmailForReadback(value)
+      : formatSpokenPhoneForReadback(value);
+    return {
+      step: "contact_readback",
+      question: spoken
+        ? `I have your ${method === "email" ? "email" : "phone number"} as ${spoken}. Did I get that right?`
+        : `Would you say that ${method === "email" ? "address" : "number"} once more for me?`,
+    };
+  }
+  if (args.consentStatus !== "accepted") {
+    return { step: "send_permission", question: "May I send these details to Scott now?" };
+  }
+  return { step: "ready", question: null };
 }
 
 // G, 2026-08-19: "I definitely want to qualify leads. iScott can definitely

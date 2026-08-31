@@ -19,10 +19,13 @@ import {
   type IScottLeadState,
 } from "../../../../../src/lib/iscottLeadCapture";
 import {
+  allowedIscottSpeech,
+  mayClaimHandoffSent,
   nextFreeTranscriptTimestamp,
   prepareForwardTranscriptRows,
   sessionLooksLikeOperatorQa,
 } from "../../../../../src/lib/iscottLeadParsing";
+import { iscottSpeechClaimsSendingNow } from "../../../../../src/lib/iscottRuntimeSpeechTruth";
 import { API_KEY, API_URL } from "../../secrets";
 import { classifyTraffic,
   canDispatchFirstPublicMessageAlert,
@@ -499,6 +502,43 @@ export async function POST(request: Request) {
       });
     }
 
+    // Detection only: provider speech has already happened by the time the
+    // transcript reaches this route. This creates a privacy-safe operational
+    // diagnostic, but it is not the pre-speech guard. The staged dynamic policy
+    // in /api/start-session becomes preventive only after the separately
+    // authorized provider context installs its named placeholder.
+    const speechTruth = {
+      status: leadState?.status ?? null,
+      submittedAt: leadState?.submittedAt ?? null,
+      notificationStatus: leadState?.notificationStatus ?? null,
+      notificationOutboxId: leadState?.notificationOutboxId ?? null,
+    };
+    const falseHandoffSpeech = rows
+      .filter((row) => row.role === "assistant")
+      .filter((row) => {
+        const result = allowedIscottSpeech(row.message, speechTruth);
+        return result.reason === "false_handoff_claim"
+          || (iscottSpeechClaimsSendingNow(row.message) && !mayClaimHandoffSent(speechTruth));
+      });
+
+    if (falseHandoffSpeech.length > 0) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "iscott_false_handoff_speech_detected",
+        severity: "high",
+        provider: "liveavatar",
+        sessionId: liveAvatarSessionId,
+        route: "/api/liveavatar/session-transcript/sync",
+        statusCode: 200,
+        payload: {
+          count: falseHandoffSpeech.length,
+          leadStatus: leadState?.status ?? null,
+          notificationStatus: leadState?.notificationStatus ?? null,
+          leadCaptureError: Boolean(leadCaptureError),
+        },
+      });
+    }
+
     await logServerTelemetryEvent({
       request,
       eventType: "liveavatar_transcript_synced",
@@ -515,6 +555,7 @@ export async function POST(request: Request) {
         deduped: candidateRows.length - rows.length,
         userRows: rows.filter((row) => row.role === "user").length,
         assistantRows: rows.filter((row) => row.role === "assistant").length,
+        falseHandoffSpeechDetected: falseHandoffSpeech.length,
         leadStatus: leadState?.status ?? null,
         leadCaptureError,
         storeFailed,
@@ -531,6 +572,7 @@ export async function POST(request: Request) {
       deduped: candidateRows.length - rows.length,
       lead: leadState,
       leadCaptureError,
+      falseHandoffSpeechDetected: falseHandoffSpeech.length,
       storeFailed,
     });
   } catch (error) {

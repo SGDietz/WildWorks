@@ -1,0 +1,61 @@
+/* H391 - Make the two Wildfire punchlines land on a phone.
+   G 2026-08-30, phone screenshot of Home at 575x1280, via Grok:
+   "we just kept going and threw the first wood fire ... they just don't pop.
+    How could we make them pop"
+
+   The two lines he means are the LAST line of each block:
+     .wild-wildfire-sequence-callout__line--going   "Then We Just Kept Going."
+     .wild-wildfire-build-note__line--close         "Through the First Wood Fire."
+
+   MEASURED on :3020 at 412x915 before this file existed:
+
+     block      line                            size      colour     contrast
+     sequence   Then Came the Patio.            32.80px   #fce0ad    3.71:1
+     sequence   Then Came the Lounge.           28.48px   #edc775    2.98:1
+     sequence   Then We Just Kept Going.        27.52px   #f08c28    1.92:1
+     build      We Photographed Every Step...   20.39px   #fce0ad    3.71:1
+     build      Build, from pre-Breaking...     22.45px   #edc775    2.98:1
+     build      Through the First Wood Fire.    25.75px   #f08c28    1.92:1
+
+   Two separate faults, and only one of them is fixed here.
+
+   1. SIZE, fixed here. In the sequence block the payoff is the SMALLEST line -
+      it shrinks under the two setup lines. That is backwards for a punchline
+      and it is the half of the problem that owes nothing to the palette.
+
+   2. CONTRAST, deliberately NOT changed here. Text 3 (#f08c28) on the primary
+      background (#c44d0b) measures 1.92:1 - a bit over HALF the contrast of the
+      Text 1 line at the top of the same block. No amount of size fully rescues
+      that. But which colour sits in which slot is locked by G (2026-08-24,
+      "Lock in these"), and the Text-3-on-primary shadow in H386 is the result
+      of four separate corrections from him, two of them with "do not deviate."
+      So the colour swap is his call, not mine, and it is offered as a picture
+      rather than taken here.
+
+   Scope: max-width 719px only - the SAME breakpoint the existing rules for
+   these two lines already use, so nothing new is invented. Desktop, laptop and
+   iPad portrait (820) are untouched, and this file sets no colour and no
+   text-shadow, so H386's negotiated Text-3 treatment carries through intact.
+
+   Sizes are held under the measured wrap/overflow limits at 412, 575 and 719;
+   see scripts/check-wildfire-punchlines.mjs, which asserts the payoff is the
+   biggest line in its block AND that neither line overflows its container. */
+
+@media (max-width: 719px) {
+  /* The payoff has to be the biggest line in the block. Ceiling picked so the
+     line still fits one row at 412 (the narrowest standard phone) and stays
+     under the setup lines' own clamp ceiling at 719. */
+  body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--going {
+    font-size: clamp(2.06rem, 6.6vw, 3.95rem) !important;
+    font-weight: 900 !important;
+  }
+
+  /* The build-note closer is already the biggest of its three, so it only needs
+     the weight the other two carry plus a small lift. It is white-space:nowrap
+     and already 339.5px wide inside a 412px viewport, so the headroom here is
+     small and the clamp minimum is what does the work. */
+  body .wild-home #project-wildfire .wild-wildfire-build-note__line--close {
+    font-size: clamp(1.72rem, 5.05vw, 3.4rem) !important;
+    font-weight: 900 !important;
+  }
+}

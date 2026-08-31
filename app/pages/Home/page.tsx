@@ -2604,30 +2604,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             background-image: none !important;
           }
 
-          /* Final Home action system: flat brand material with black control ink. */
-          html:has(#top.wild-home:not(.wild-legal-home)) :is(
-            #top.wild-home :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button),
-            #footer :is(.money-cta, .wild-signup-choice-button, .wild-signup-submit, .wild-footer-top-button, .wild-footer-mobile-link)
-          ) {
-            border-color: #65381E !important;
-            background: #8B5A2B !important;
-            background-color: #8B5A2B !important;
-            background-image: none !important;
-            box-shadow: none !important;
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-          }
-
-          html:has(#top.wild-home:not(.wild-legal-home)) :is(
-            #top.wild-home :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button),
-            #footer :is(.money-cta, .wild-signup-choice-button, .wild-signup-submit, .wild-footer-top-button, .wild-footer-mobile-link)
-          ) :is(span, strong, svg) {
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-            stroke: #000000 !important;
-            filter: none !important;
-          }
-
           html:has(#top.wild-home:not(.wild-legal-home)) #footer .wild-signup-field input {
             border-color: #65381E !important;
             background: #8B5A2B !important;
@@ -2640,29 +2616,6 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             border-color: #65381E !important;
             accent-color: #8B5A2B !important;
             box-shadow: none !important;
-          }
-
-          /* Beat legacy repeated-ID control skins without changing non-controls. */
-          html:has(#top.wild-home:not(.wild-legal-home))
-            body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
-            #top#top#top#top#top#top.wild-home
-            :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button) {
-            border-color: #65381E !important;
-            background: #8B5A2B !important;
-            background-color: #8B5A2B !important;
-            background-image: none !important;
-            box-shadow: none !important;
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-          }
-
-          html:has(#top.wild-home:not(.wild-legal-home))
-            body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
-            #top#top#top#top#top#top.wild-home
-            :is(.money-cta, .wild-iscott-upload__button, .wild-card-cta, .wild-utility-button, .wildfire-phase-bar button) :is(span, strong, svg) {
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-            stroke: #000000 !important;
           }
 
           /* G 2026-08-16: Home display lettering uses the approved Services

@@ -1,6 +1,15 @@
 import { visitorChoseContactMethod } from "./iscottLeadCaptureUi";
 import { truncateUtf8String } from "./apiRouteSecurity";
-import { notifyIScottLeadByEmail } from "./voiceEmailNotifications";
+import {
+  notifyIScottLeadByEmail,
+} from "./voiceEmailNotifications";
+import type { IScottVisitorConfirmationResult } from "./voiceEmailNotifications";
+import * as voiceEmailNotifications from "./voiceEmailNotifications";
+import {
+  ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
+  ISCOTT_VISITOR_CONFIRMATION_ENABLED,
+} from "./iscottVisitorConfirmation";
+import type { IScottVisitorConfirmationStatus } from "./iscottVisitorConfirmation";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
 import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import {
@@ -8,9 +17,10 @@ import {
   collectOperatorPromptEchoEvents,
   detectsAcceptedFollowUp,
   detectsContactReadBackCorrect,
-  detectsContextualContactSendConfirmation,
   detectsFollowUpAcceptance,
   detectsSimpleAffirmation,
+  evaluateIScottLeadSendQualification,
+  evaluateLeadPackageChronology,
   extractContactPreference,
   extractEmail,
   extractLocation,
@@ -23,11 +33,16 @@ import {
   formatSpokenPhoneForReadback,
   iscottEmailReadbackPrompt,
   mergeLeadTranscriptHistory,
+  isMeaningfulVisitorName,
   isOperatorPromptEcho,
   isOperatorSalesLanguage,
   isProfanityEscalation,
   isSpecificFeedback,
+  isSpecificProjectNeed,
+  LeadNotQualifiedError,
+  leadPackageFieldChanged,
   preferProjectNeed,
+  sameContactValue,
   spokenPreferenceSignal,
   sessionLooksLikeOperatorQa,
   shouldParseLeadFacts,
@@ -96,6 +111,19 @@ type LeadRow = {
   submitted_at: string | null;
   notification_outbox_id: string | null;
   notification_status: string | null;
+  // Visitor-receipt linkage, kept entirely separate from the owner columns
+  // above so neither can be mistaken for the other. Written only by the
+  // preparation path below, and only once the migration has been applied.
+  visitor_confirmation_recipient?: string | null;
+  visitor_confirmation_outbox_id?: string | null;
+  visitor_confirmation_idempotency_key?: string | null;
+  visitor_confirmation_package_version_hash?: string | null;
+  visitor_confirmation_status?: IScottVisitorConfirmationStatus;
+  visitor_confirmation_provider_accepted_at?: string | null;
+  // Only a separately authorized, authenticated provider webhook may ever set
+  // this. Nothing in this file writes it.
+  visitor_confirmation_inbox_delivered_at?: string | null;
+  visitor_confirmation_block_reason?: string | null;
   traffic_class?: "owner" | "test" | "public" | "bot";
   traffic_reason?: string;
   traffic_confidence?: number;
@@ -123,6 +151,11 @@ type MediaRow = {
 type LeadOutboxRow = {
   id: string;
   status: "pending" | "sending" | "sent" | "failed" | "dead_letter";
+};
+
+type FailedLeadRetry = {
+  outboxId: string;
+  submittedAt: string | null;
 };
 
 type RestResult<T> = {
@@ -278,6 +311,19 @@ function sourceEventKey(
     hash = Math.imul(hash, 16777619);
   }
   return `iscott:${kind}:${sessionId}:${row.laAbsoluteTimestamp ?? "none"}:${(hash >>> 0).toString(16)}`;
+}
+
+// metadata is a free-form JSON column, so ANYTHING can be sitting in
+// last_sent_contact - a number, an object, a leftover null from an older shape.
+// It is read as a string or not at all: a value of some other type must never
+// take part in an idempotency comparison, because a comparison it silently
+// fails is a duplicate package to Scott, and one it silently passes is a lead
+// that never travels.
+function lastSentContact(metadata: Record<string, unknown> | null | undefined): string | null {
+  const value = metadata?.last_sent_contact;
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  return trimmed ? trimmed : null;
 }
 
 function preferLonger(current: string | null, next: string | null): string | null {
@@ -519,6 +565,18 @@ export async function processIScottTranscriptRows(args: {
     }> : [],
     args.rows,
   );
+  const existingTranscriptRows = mergeLeadTranscriptHistory(
+    Array.isArray(existing?.transcript_snapshot) ? existing.transcript_snapshot as Array<{
+      role?: string;
+      message?: string;
+      timestamp?: number | null;
+    }> : [],
+    [],
+  );
+  // Stored history is emitted first; only genuinely new incoming transcript
+  // rows follow it. This boundary prevents an old package's read-back and yes
+  // from becoming permission for a later changed-contact package.
+  const freshRows = rows.slice(existingTranscriptRows.length);
   const userRows = rows.filter((row) => row.role === "user" && row.message.trim());
   let fullName = existing?.full_name ?? null;
   let location = existing?.location ?? null;
@@ -550,9 +608,27 @@ export async function processIScottTranscriptRows(args: {
       if (methodOnly && methodCredible) contactMethod = methodOnly;
       continue;
     }
-    fullName = preferLonger(fullName, extractFullName(text));
+    // A CORRECTION REPLACES; A FULLER ANSWER FILLS IN. 2026-08-30.
+    //
+    // Both of these used to keep whichever value was LONGER, which is right for
+    // "George" becoming "George Smith" and wrong for "actually, my name is
+    // Gregory Vance" - a visitor who corrected themselves kept the old name on
+    // the package, and after they re-confirmed, that old name is what would
+    // have travelled to Scott. Material changes are taken; refinements still
+    // merge the way they always did.
+    const spokenName = extractFullName(text);
+    if (spokenName) {
+      fullName = isMeaningfulVisitorName(spokenName) && leadPackageFieldChanged("name", fullName, spokenName)
+        ? spokenName
+        : preferLonger(fullName, spokenName);
+    }
     location = extractLocation(text) ?? location;
-    projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
+    const spokenNeed = extractProjectNeed(text);
+    if (spokenNeed) {
+      projectNeed = isSpecificProjectNeed(spokenNeed) && leadPackageFieldChanged("intent", projectNeed, spokenNeed)
+        ? spokenNeed
+        : preferProjectNeed(projectNeed, spokenNeed);
+    }
 
     const previousEmail = email;
     const previousPhone = phone;
@@ -563,7 +639,7 @@ export async function processIScottTranscriptRows(args: {
     // should be built to be smart enough to do that." Once the visitor has
     // confirmed a spelled read-back, that address is settled. A later passing
     // mention of it must not silently replace the confirmed value - only an
-    // explicit correction can. On G's ride he confirmed sgdietz@pm.me and then
+    // explicit correction can. On G's ride he confirmed the visitor's address and then
     // kept talking ABOUT the address, and the talking overwrote the answer.
     const contactAlreadyConfirmed = Boolean(contactConfirmedAt);
     const soundsLikeCorrection =
@@ -616,9 +692,15 @@ export async function processIScottTranscriptRows(args: {
     }
     contactMethod = (methodOnly && methodCredible ? methodOnly : null) ?? contactMethod;
 
-    const contactChanged =
-      (previousEmail && email && email !== previousEmail) ||
-      (previousPhone && phone && phone !== previousPhone);
+    // CHANGED means a different way to reach the person, not a differently
+    // formatted spelling of the same one. Compared with === , a visitor who
+    // repeats "four four three, five five five, oh one four two" after giving
+    // "+1 (443) 555-0142" tore down their own confirmed consent and had to
+    // start the read-back again.
+    const contactChanged = Boolean(
+      (previousEmail && email && !sameContactValue("email", previousEmail, email)) ||
+      (previousPhone && phone && !sameContactValue("phone", previousPhone, phone)),
+    );
     if (contactChanged && existing?.status !== "confirmed" && existing?.status !== "submitted") {
       contactConfirmedAt = null;
       consentStatus = "unknown";
@@ -643,19 +725,6 @@ export async function processIScottTranscriptRows(args: {
     else if (phone && !email) contactMethod = "phone";
   }
 
-  const currentContact = contactMethod === "email" ? email : contactMethod === "phone" ? phone : null;
-  const isPostRolloutLead = !existing || Date.parse(existing.created_at) >= CONTEXTUAL_CONFIRMATION_INTRODUCED_AT;
-  if (
-    consentStatus !== "declined" &&
-    contactMethod &&
-    currentContact &&
-    isPostRolloutLead &&
-    detectsContextualContactSendConfirmation(rows, contactMethod, currentContact)
-  ) {
-    contactConfirmedAt = contactConfirmedAt ?? captureTime;
-    consentStatus = "accepted";
-  }
-
   // Grok, same forensics: the row read contact_method "phone" with phone NULL.
   // A lead must never claim a way to be reached that it does not hold - that is
   // what put an unanswerable lead in front of Scott. If the named method has no
@@ -663,13 +732,166 @@ export async function processIScottTranscriptRows(args: {
   if (contactMethod === "phone" && !phone && email) contactMethod = "email";
   if (contactMethod === "email" && !email && phone) contactMethod = "phone";
 
+  const previousPackageMethod = existing?.contact_method === "phone" || existing?.contact_method === "email"
+    ? existing.contact_method
+    : null;
+  const previousPackageContact = previousPackageMethod === "phone"
+    ? existing?.phone ?? null
+    : previousPackageMethod === "email"
+      ? existing?.email ?? null
+      : null;
+  const currentContact = contactMethod === "email" ? email : contactMethod === "phone" ? phone : null;
+  const hasSubmittedPackage = Boolean(
+    existing && (
+      existing.status === "submitted" ||
+      existing.status === "confirmed" ||
+      existing.submitted_at ||
+      existing.notification_outbox_id ||
+      existing.notification_status === "sent" ||
+      existing.notification_status === "queued"
+    ),
+  );
+  const postSubmitContactChanged = Boolean(
+    hasSubmittedPackage &&
+    contactMethod &&
+    currentContact &&
+    (
+      !previousPackageMethod ||
+      !previousPackageContact ||
+      previousPackageMethod !== contactMethod ||
+      !sameContactValue(contactMethod, previousPackageContact, currentContact)
+    ),
+  );
+  const exactFreshContactChangeIndex = postSubmitContactChanged && contactMethod && currentContact
+    ? freshRows.findIndex((row) => {
+        if (row.role !== "user") return false;
+        const mentioned = contactMethod === "phone" ? extractPhone(row.message) : extractEmail(row.message);
+        return sameContactValue(contactMethod, mentioned, currentContact);
+      })
+    : -1;
+  const freshContactChangeIndex = exactFreshContactChangeIndex >= 0
+    ? exactFreshContactChangeIndex
+    : postSubmitContactChanged
+      ? freshRows.findIndex((row) => row.role === "user")
+      : -1;
+  const existingPackageStartIndex = typeof existing?.metadata?.current_contact_package_start_index === "number" &&
+    Number.isInteger(existing.metadata.current_contact_package_start_index) &&
+    existing.metadata.current_contact_package_start_index >= 0
+    ? existing.metadata.current_contact_package_start_index
+    : null;
+  const currentPackageRows = postSubmitContactChanged && freshContactChangeIndex >= 0
+    ? freshRows.slice(freshContactChangeIndex)
+    : existingPackageStartIndex !== null && existingPackageStartIndex < rows.length
+      ? rows.slice(existingPackageStartIndex)
+      : existingPackageStartIndex !== null || postSubmitContactChanged
+      ? []
+      : rows;
+  if (postSubmitContactChanged) {
+    contactConfirmedAt = null;
+    consentStatus = userTurnTexts(currentPackageRows).some((text) => detectsDeclinedFollowUp(text))
+      ? "declined"
+      : "unknown";
+  }
+
+  const isPostRolloutLead = !existing || Date.parse(existing.created_at) >= CONTEXTUAL_CONFIRMATION_INTRODUCED_AT;
+  // WHERE THE PERMISSION SITS IN THE CONVERSATION, 2026-08-30. The yes is only
+  // permission for the package that was on the table when it was said. This walk
+  // reports both facts at once: that a yes exists for the contact we hold, and
+  // whether the name, the job or the contact moved under it afterwards.
+  const packageChronology = contactMethod && currentContact
+    ? evaluateLeadPackageChronology({
+        rows: currentPackageRows,
+        fullName,
+        projectNeed,
+        contactMethod,
+        contactValue: currentContact,
+      })
+    : null;
+  // A lead Scott already has cannot be re-opened by later turns - that was
+  // settled on ride 89c453ff and it still holds. Only a package still in flight
+  // can lose its permission.
+  const leadInFlight = existing?.status !== "confirmed" && existing?.status !== "submitted";
+  // Consent belongs to one exact contact package. After a submitted contact
+  // changes, only rows added from the change turn onward may prove the new
+  // read-back and adjacent permission; prior package truth remains historical.
+  if (
+    consentStatus !== "declined" &&
+    contactMethod &&
+    currentContact &&
+    isPostRolloutLead &&
+    packageChronology?.permissionCurrent
+  ) {
+    contactConfirmedAt = contactConfirmedAt ?? captureTime;
+    consentStatus = "accepted";
+  } else if (
+    leadInFlight &&
+    consentStatus !== "declined" &&
+    packageChronology &&
+    packageChronology.staleFields.length > 0
+  ) {
+    // The visitor gave permission and then changed the package. The row must not
+    // keep carrying a confirmation that no longer describes anything, or the
+    // panel will offer a Send for a package nobody agreed to. Cleared here, and
+    // refused again at the send gate for anything that reaches it another way.
+    contactConfirmedAt = null;
+    consentStatus = "unknown";
+  }
+
   const hasContact = Boolean(contactMethod === "phone" ? phone : contactMethod === "email" ? email : email || phone);
   let status: LeadRow["status"] = consentStatus === "declined"
     ? "declined"
     : hasContact
       ? "ready_for_confirmation"
       : "capturing";
-  if (existing?.status === "confirmed" || existing?.status === "submitted") status = existing.status;
+  if (!postSubmitContactChanged && (existing?.status === "confirmed" || existing?.status === "submitted")) {
+    status = existing.status;
+  }
+
+  const transcriptFields = leadTranscriptFields(args.rows, existing);
+  let currentPackageStartIndex = existingPackageStartIndex;
+  if (postSubmitContactChanged && contactMethod && currentContact) {
+    const snapshot = Array.isArray(transcriptFields.transcript_snapshot)
+      ? transcriptFields.transcript_snapshot as Array<{ role?: string; message?: string }>
+      : [];
+    for (let index = snapshot.length - 1; index >= 0; index -= 1) {
+      const snapshotRow = snapshot[index];
+      if (snapshotRow.role !== "user" || typeof snapshotRow.message !== "string") continue;
+      const mentioned = contactMethod === "phone"
+        ? extractPhone(snapshotRow.message)
+        : extractEmail(snapshotRow.message);
+      if (sameContactValue(contactMethod, mentioned, currentContact)) {
+        currentPackageStartIndex = index;
+        break;
+      }
+    }
+  }
+
+  let submittedAt = existing?.submitted_at ?? null;
+  let notificationOutboxId = existing?.notification_outbox_id ?? null;
+  let notificationStatus = existing?.notification_status ?? null;
+  const submittedPackageHistory = Array.isArray(existing?.metadata?.submitted_package_history)
+    ? [...existing.metadata.submitted_package_history]
+    : [];
+  if (postSubmitContactChanged) {
+    if (existing?.submitted_at || existing?.notification_outbox_id || existing?.notification_status) {
+      const priorPackage = {
+        submitted_at: existing.submitted_at ?? null,
+        notification_outbox_id: existing.notification_outbox_id ?? null,
+        notification_status: existing.notification_status ?? null,
+        contact_method: previousPackageMethod,
+      };
+      const alreadyRecorded = submittedPackageHistory.some((entry) => {
+        if (!entry || typeof entry !== "object") return false;
+        const candidate = entry as Record<string, unknown>;
+        return candidate.notification_outbox_id === priorPackage.notification_outbox_id &&
+          candidate.submitted_at === priorPackage.submitted_at;
+      });
+      if (!alreadyRecorded) submittedPackageHistory.push(priorPackage);
+    }
+    submittedAt = null;
+    notificationOutboxId = null;
+    notificationStatus = null;
+  }
 
   const now = captureTime;
   const userTexts = userTurnTexts(rows);
@@ -710,18 +932,22 @@ export async function processIScottTranscriptRows(args: {
     email,
     phone,
     contact_confirmed_at: contactConfirmedAt,
-    submitted_at: existing?.submitted_at ?? null,
-    notification_outbox_id: existing?.notification_outbox_id ?? null,
-    notification_status: existing?.notification_status ?? null,
+    submitted_at: submittedAt,
+    notification_outbox_id: notificationOutboxId,
+    notification_status: notificationStatus,
     ...trafficColumns(traffic),
-    ...leadTranscriptFields(args.rows, existing),
+    ...transcriptFields,
     media_snapshot: existing?.media_snapshot ?? [],
     metadata: {
       ...(existing?.metadata ?? {}),
+      ...(submittedPackageHistory.length > 0 ? { submitted_package_history: submittedPackageHistory } : {}),
+      ...(currentPackageStartIndex !== null
+        ? { current_contact_package_start_index: currentPackageStartIndex }
+        : {}),
       last_capture_at: now,
       latest_user_timestamp: userRows.at(-1)?.laAbsoluteTimestamp ?? null,
-      follow_up_accepted: detectsFollowUpAcceptance(rows),
-      contact_readback_correct: userTexts.some((text) => detectsContactReadBackCorrect(text)),
+      follow_up_accepted: detectsFollowUpAcceptance(currentPackageRows),
+      contact_readback_correct: userTurnTexts(currentPackageRows).some((text) => detectsContactReadBackCorrect(text)),
       contact_preference: contactPreference,
       operator_prompt_echo: rows.some((row) => row.role === "assistant" && isOperatorPromptEcho(row.message)),
       sales_language: rows.some((row) => isOperatorSalesLanguage(row.message)),
@@ -753,16 +979,37 @@ export async function processIScottTranscriptRows(args: {
   //
   // So: handled means handled FOR THIS CONTACT. If the contact that was sent is
   // not the contact we now hold, this is a fresh package.
-  const sentContact = row.metadata?.last_sent_contact ?? null;
+  const sentContact = lastSentContact(row.metadata);
   const contactHeldNow = row.contact_method === "phone" ? row.phone : row.email;
-  const contactAlreadySent = Boolean(sentContact) && sentContact === contactHeldNow;
+  // Compared on the normalized value. A re-spoken phone with different spacing,
+  // or the same address in different case, is the contact Scott ALREADY has -
+  // and comparing those literally is how he receives the same lead twice.
+  const contactAlreadySent = sameContactValue(
+    row.contact_method === "phone" ? "phone" : "email",
+    sentContact,
+    contactHeldNow,
+  );
   const alreadyHandled =
     contactAlreadySent ||
     ((row.status === "submitted" ||
       row.notification_status === "sent" ||
       row.notification_status === "queued") &&
       !sentContact);
+  // QUALIFICATION. Scott is going to ring these people. A package only leaves
+  // here carrying a name he can say, a job he can quote, and a contact the
+  // visitor read back and said yes to. Anything short of that stays on the row
+  // and keeps asking - it is never mailed as a half lead.
+  const qualified = evaluateIScottLeadSendQualification({
+    fullName: row.full_name,
+    projectNeed: row.project_need,
+    contactMethod: row.contact_method,
+    contactValue: spokenContact,
+    consentStatus: row.consent_status,
+    contactConfirmedAt: row.contact_confirmed_at,
+    rows,
+  }).qualified;
   if (
+    qualified &&
     !alreadyHandled &&
     row.consent_status === "accepted" &&
     row.contact_confirmed_at &&
@@ -779,6 +1026,52 @@ export async function processIScottTranscriptRows(args: {
     } catch {
       // An auto-send failure must never break transcript capture. The visible
       // Send control stays as the fallback path.
+    }
+  }
+
+  // NOTHING WITH A WAY TO REACH SOMEBODY IS ALLOWED TO DIE HERE.
+  //
+  // G, 2026-08-30: "all potential leads should be sent to me by email ... any
+  // and all information, an email address, a phone number, anything, that gets
+  // to me." When he said it, 11 leads holding a real email or phone had
+  // reached ready_for_confirmation and never been mailed - including two
+  // public visitors who left Baltimore phone numbers.
+  //
+  // This deliberately does NOT reuse the qualification gate above. That gate
+  // guards a COMPLETED handoff and the visitor-facing receipt, and it should
+  // stay strict. This is a different promise: if we hold a way to contact a
+  // human, Scott finds out, even when the conversation fell apart. Keyed on
+  // '#partial' so the outbox dedupes it once per session and it can never
+  // collide with the real handoff mail.
+  const partialContact = (row.email ?? "").trim() || (row.phone ?? "").trim();
+  const neverNotified = !((row.notification_status ?? "").trim());
+  if (partialContact && neverNotified && !alreadyHandled) {
+    try {
+      // Reached through the namespace on purpose: the focused tests stub this
+      // module, and an absent export must simply mean "no partial mail here"
+      // rather than an exception thrown inside transcript capture.
+      const sendPartial = voiceEmailNotifications.notifyIScottPartialLeadByEmail;
+      if (typeof sendPartial !== "function") return toState(row);
+      await sendPartial({
+        eventId: `${args.sessionId}#partial`,
+        sessionId: args.sessionId,
+        fullName: row.full_name,
+        location: row.location,
+        projectNeed: row.project_need,
+        contactMethod: row.contact_method === "phone" ? "phone" : "email",
+        email: row.email,
+        phone: row.phone,
+        transcript: formatLeadTranscript(rows).transcript_text,
+        metadata: {
+          source: "iscott_liveavatar",
+          lead_status: row.status,
+          consent_status: row.consent_status,
+          contact_confirmed: Boolean((row.contact_confirmed_at ?? "").trim()),
+        },
+      });
+    } catch {
+      // Same rule as the strict path: a notification failure must never break
+      // transcript capture. The lead row still holds everything.
     }
   }
 
@@ -898,10 +1191,73 @@ export async function confirmAndSubmitIScottLead(args: {
   if (args.contactMethod === "email" && !email) throw new Error("invalid_email");
   if (args.contactMethod === "phone" && !phone) throw new Error("invalid_phone");
 
+  // THE CONFIRM API MANUFACTURES NOTHING. It used to write consent_status
+  // "accepted" and stamp contact_confirmed_at on every call, so a POST to
+  // /api/iscott/lead/confirm could conjure permission the visitor never gave and
+  // mail a stranger's details to Scott on the strength of its own write.
+  //
+  // Permission is earned in the conversation and read here. The lead must
+  // already hold accepted consent, a confirmed contact, a name, a job Scott can
+  // act on, and the exact value this call is asking to send to.
+  const heldContact = existing.contact_method === "phone"
+    ? existing.phone
+    : existing.contact_method === "email"
+      ? existing.email
+      : null;
+  // 2026-08-29, CORRECTION. Reading consent_status and contact_confirmed_at off
+  // the row was not enough. Those two columns are the CONCLUSION the capture
+  // pipeline reached; a row written before the strict read-back rule existed
+  // carries them with no proof behind them, and a direct POST to this route
+  // could spend that stale conclusion.
+  //
+  // So the PROOF is read here, ahead of any write, and handed to the same gate:
+  // the conversation the server itself stored, plus the snapshot the lead row
+  // carries. Both are server-side truth - neither is anything this caller can
+  // supply. A row that cannot show a read-back of the value it is asking to send
+  // to, with permission attached to it, is refused before a byte is written and
+  // before the notification service is touched.
+  const transcript = await readTranscript(args.sessionId);
+  const storedSnapshot = Array.isArray(existing.transcript_snapshot)
+    ? (existing.transcript_snapshot as Array<{
+        role?: string;
+        message?: string;
+        timestamp?: number | null;
+        laAbsoluteTimestamp?: number | null;
+      }>)
+    : [];
+  const proofRows = mergeLeadTranscriptHistory(
+    storedSnapshot,
+    transcript.snapshot.map((row) => ({
+      role: row.role,
+      message: row.message,
+      laAbsoluteTimestamp: row.timestamp,
+    })),
+  );
+  const qualification = evaluateIScottLeadSendQualification({
+    fullName: existing.full_name,
+    projectNeed: existing.project_need,
+    contactMethod: existing.contact_method,
+    contactValue: heldContact,
+    requestedContactValue: args.contactMethod === "email" ? email : phone,
+    consentStatus: existing.consent_status,
+    contactConfirmedAt: existing.contact_confirmed_at,
+    rows: proofRows,
+  });
+  if (!qualification.qualified) {
+    throw new LeadNotQualifiedError({
+      reason: qualification.blockers[0],
+      blockers: qualification.blockers,
+    });
+  }
+
+  // Normalized, for the same reason every other comparison here is. This one
+  // guards the test-held short-circuit AND the submitted/outbox short-circuit
+  // below: a re-formatted phone that reads as "not the same contact" walks
+  // straight past both and mails Scott a lead he already has.
   const sameConfirmedContact = existing.contact_method === args.contactMethod && (
     args.contactMethod === "email"
-      ? existing.email === email
-      : existing.phone === phone
+      ? sameContactValue("email", existing.email, email)
+      : sameContactValue("phone", existing.phone, phone)
   );
   // G 2026-08-19: a lead parked as test_held BEFORE owner sends were allowed has
   // to get a real send on the next confirm, or G still never sees the checkmark.
@@ -922,6 +1278,7 @@ export async function confirmAndSubmitIScottLead(args: {
       detail: "test_traffic_not_sent",
     };
   }
+  let failedLeadRetry: FailedLeadRetry | null = null;
   if (existing.status === "submitted" && existing.notification_outbox_id && sameConfirmedContact) {
     const outbox = await rest<LeadOutboxRow>(
       `voice_email_outbox?id=eq.${encodeURIComponent(existing.notification_outbox_id)}&select=id,status&limit=1`,
@@ -931,17 +1288,51 @@ export async function confirmAndSubmitIScottLead(args: {
     }
     const row = outbox.rows[0];
     if (row) {
-      return {
-        lead: toState(existing),
-        queued: row.status !== "dead_letter",
-        delivered: row.status === "sent",
-        detail: row.status === "sent" ? "" : `voice_email_${row.status}`,
-      };
+      if (row.status === "failed" || row.status === "dead_letter") {
+        // A visible Retry is a deliberate visitor action, but it must stay the
+        // SAME package. Re-arm the linked row with a status CAS; the normal
+        // package-scoped notifier below will find this row by its existing
+        // idempotency key, claim it with the outbox lease, and make one real
+        // provider attempt. We keep attempt_count and the stored message intact
+        // for auditability. A competing click can win this PATCH, but then the
+        // notifier's claim CAS makes this request a harmless deduplicated read.
+        const rearmed = await rest<LeadOutboxRow>(
+          `voice_email_outbox?id=eq.${encodeURIComponent(row.id)}&status=eq.${encodeURIComponent(row.status)}&select=id,status`,
+          {
+            method: "PATCH",
+            body: {
+              status: "pending",
+              last_error: null,
+              lease_token: null,
+              lease_expires_at: null,
+              next_attempt_at: null,
+              updated_at: new Date().toISOString(),
+            },
+            prefer: "return=representation",
+          },
+        );
+        if (!rearmed.ok) {
+          throw new Error(`iscott outbox retry failed (${rearmed.status}): ${rearmed.detail}`);
+        }
+        failedLeadRetry = {
+          outboxId: row.id,
+          submittedAt: existing.submitted_at,
+        };
+      } else {
+        return {
+          lead: toState(existing),
+          queued: true,
+          delivered: row.status === "sent",
+          detail: row.status === "sent" ? "" : `voice_email_${row.status}`,
+        };
+      }
     }
   }
 
-  const now = existing.contact_confirmed_at ?? new Date().toISOString();
-  const transcript = await readTranscript(args.sessionId);
+  // The confirmation timestamp is the one the conversation already earned. This
+  // call never mints a fresh one.
+  const now = existing.contact_confirmed_at;
+  if (!now) throw new LeadNotQualifiedError({ reason: "contact_not_confirmed" });
   // G 2026-08-19: this flag still MARKS a lead as QA, but for owner sessions it no
   // longer blocks the send - see canDispatchIScottLeadNotification. Previously
   // "owner" plus a transcript full of dev phrases ("the box", "as soon as I say")
@@ -966,7 +1357,8 @@ export async function confirmAndSubmitIScottLead(args: {
     const held = await writeLead({
       ...existing,
       status: "confirmed",
-      consent_status: "accepted",
+      // Read, never written: the gate above proved this is already "accepted".
+      consent_status: existing.consent_status,
       contact_method: args.contactMethod,
       email,
       phone,
@@ -991,7 +1383,7 @@ export async function confirmAndSubmitIScottLead(args: {
   let confirmed = await writeLead({
     ...existing,
     status: "confirmed",
-    consent_status: "accepted",
+    consent_status: existing.consent_status,
     contact_method: args.contactMethod,
     email,
     phone,
@@ -1049,7 +1441,38 @@ export async function confirmAndSubmitIScottLead(args: {
     },
   });
 
-  const submittedAt = notification.queued ? now : null;
+  if (
+    failedLeadRetry &&
+    notification.outboxId !== failedLeadRetry.outboxId
+  ) {
+    throw new Error("iscott retry changed owner outbox");
+  }
+
+  let visitorConfirmation: IScottVisitorConfirmationResult = {
+    status: ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
+    outboxId: null,
+    idempotencyKey: null,
+    packageVersionHash: null,
+    recipient: null,
+    providerAccepted: false,
+    deduplicated: false,
+    blockers: ["feature_not_authorized"],
+  };
+  // A retry does not mint a new package timestamp. Even if the provider rejects
+  // this attempt, the same submitted package and its durable outbox remain the
+  // truth the visitor can intentionally retry again.
+  const submittedAt = failedLeadRetry
+    ? failedLeadRetry.submittedAt
+    : notification.queued
+      ? now
+      : null;
+  const notificationStatus = notification.delivered
+    ? "sent"
+    : notification.outboxStatus === "failed"
+      ? "failed"
+      : notification.queued
+        ? "queued"
+        : "failed";
   const sentContactValue = confirmed.contact_method === "phone" ? confirmed.phone : confirmed.email;
   const finalRow = await writeLead({
     ...confirmed,
@@ -1058,18 +1481,119 @@ export async function confirmAndSubmitIScottLead(args: {
     // of method silently never travels.
     metadata: {
       ...(confirmed.metadata ?? {}),
-      last_sent_contact: notification.queued ? sentContactValue : (confirmed.metadata?.last_sent_contact ?? null),
+      last_sent_contact: notification.queued ? sentContactValue : lastSentContact(confirmed.metadata),
     },
-    status: notification.queued ? "submitted" : "confirmed",
+    status: failedLeadRetry ? "submitted" : notification.queued ? "submitted" : "confirmed",
     submitted_at: submittedAt,
     notification_outbox_id: notification.outboxId,
-    notification_status: notification.delivered
-      ? "sent"
-      : notification.queued
-        ? "queued"
-        : "failed",
+    notification_status: notificationStatus,
     updated_at: new Date().toISOString(),
   });
+
+  // THE VISITOR RECEIPT IS BUILT FROM WHAT THE DATABASE SAYS, NOT FROM WHAT
+  // THIS FUNCTION REMEMBERS, 2026-08-29.
+  //
+  // Everything above this line is about Scott's copy, and it is already durable
+  // by now. A second, separately addressed message is a second decision, and it
+  // is taken against a fresh read: the submitted row, and the conversation the
+  // server itself stored. An in-memory `confirmed` could be a package a
+  // concurrent write has already replaced, and a receipt sent to a mailbox the
+  // visitor has since corrected goes to a stranger.
+  //
+  // While dispatch is unauthorized this block does not even read. The gate is
+  // first so the disabled build makes no extra database round trip at all.
+  if (
+    ISCOTT_VISITOR_CONFIRMATION_ENABLED &&
+    notification.queued &&
+    notification.outboxId &&
+    confirmed.contact_method === "email"
+  ) {
+    try {
+      const reread = await readLead(args.sessionId);
+      const rereadTranscript = await readTranscript(args.sessionId);
+      const rereadSnapshot = Array.isArray(reread?.transcript_snapshot)
+        ? (reread.transcript_snapshot as Array<{
+            role?: string;
+            message?: string;
+            timestamp?: number | null;
+            laAbsoluteTimestamp?: number | null;
+          }>)
+        : [];
+      const rereadProof = mergeLeadTranscriptHistory(
+        rereadSnapshot,
+        rereadTranscript.snapshot.map((row) => ({
+          role: row.role,
+          message: row.message,
+          laAbsoluteTimestamp: row.timestamp,
+        })),
+      );
+      const visitorNotifier = voiceEmailNotifications.notifyIScottVisitorConfirmationByEmail;
+      if (reread && typeof visitorNotifier === "function") {
+        visitorConfirmation = await visitorNotifier({
+          sessionId: args.sessionId,
+          ownerNotificationOutboxId: notification.outboxId,
+          // The mailbox Scott's package was addressed from. The gate refuses if
+          // the stored row no longer agrees with it.
+          sentEmail: sentContactValue,
+          lead: {
+            status: reread.status,
+            submittedAt: reread.submitted_at,
+            fullName: reread.full_name,
+            projectNeed: reread.project_need,
+            consentStatus: reread.consent_status,
+            contactConfirmedAt: reread.contact_confirmed_at,
+            contactMethod: reread.contact_method,
+            email: reread.email,
+          },
+          proofRows: rereadProof,
+        });
+      }
+    } catch {
+      // The owner row above is already durable. Visitor failure cannot undo,
+      // block, or relabel that owner handoff.
+      visitorConfirmation = {
+        status: "failed",
+        outboxId: null,
+        idempotencyKey: null,
+        packageVersionHash: null,
+        recipient: null,
+        providerAccepted: false,
+        deduplicated: false,
+        blockers: [],
+      };
+    }
+  }
+
+  // Only an outcome that actually happened is recorded. "Waiting on G" and
+  // "did not qualify" are the resting states this row already expresses through
+  // the column default, and writing them on every submit would churn the lead
+  // row for nothing.
+  if (
+    visitorConfirmation.status === "queued" ||
+    visitorConfirmation.status === "provider_accepted" ||
+    visitorConfirmation.status === "failed"
+  ) {
+    try {
+      await writeLead({
+        ...finalRow,
+        visitor_confirmation_recipient: visitorConfirmation.recipient,
+        visitor_confirmation_outbox_id: visitorConfirmation.outboxId,
+        visitor_confirmation_idempotency_key: visitorConfirmation.idempotencyKey,
+        visitor_confirmation_package_version_hash: visitorConfirmation.packageVersionHash,
+        visitor_confirmation_status: visitorConfirmation.status,
+        // Provider custody, timestamped. The inbox column beside it stays
+        // untouched: nothing here is entitled to claim delivery.
+        visitor_confirmation_provider_accepted_at: visitorConfirmation.providerAccepted
+          ? new Date().toISOString()
+          : null,
+        visitor_confirmation_block_reason: visitorConfirmation.blockers[0] ?? null,
+        updated_at: new Date().toISOString(),
+      });
+    } catch {
+      // Owner notification is already durable. Optional visitor status is a
+      // best-effort follow-up and never changes the owner result below.
+    }
+  }
 
   return {
     lead: toState(finalRow),

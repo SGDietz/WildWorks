@@ -1,7 +1,11 @@
 import { Resend } from "resend";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { truncateUtf8String } from "./apiRouteSecurity";
-import { summariseLeadQualification, visitorLinesFromTranscript } from "./iscottLeadParsing";
+import {
+  normalizedContactValue,
+  summariseLeadQualification,
+  visitorLinesFromTranscript,
+} from "./iscottLeadParsing";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
 import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import { safeJsonPayload } from "./telemetryServer";
@@ -26,6 +30,14 @@ import {
   emailButton,
   emailPre,
 } from "./emailTheme";
+import {
+  ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
+  ISCOTT_VISITOR_CONFIRMATION_ENABLED,
+  IScottVisitorConfirmationArgs,
+  IScottVisitorConfirmationBlocker,
+  IScottVisitorConfirmationStatus,
+  prepareIScottVisitorConfirmation,
+} from "./iscottVisitorConfirmation";
 
 export { isVoiceEmailOutboxRowDue, voiceEmailRetryDelayMs } from "./voiceEmailOutboxPolicy";
 export { wildWorksSenderConfigurationError } from "./wildworksEmailIdentity.mjs";
@@ -37,6 +49,7 @@ type VoiceEmailEventType =
   | "voice_lead"
   | "voicemail"
   | "iscott_lead"
+  | "iscott_visitor_confirmation"
   | "telemetry_message"
   | "telemetry_digest";
 type VoiceEmailStatus = "pending" | "sending" | "sent" | "failed";
@@ -75,6 +88,13 @@ type RestResult<T> = {
 type VoiceEmailContent = {
   eventType: VoiceEmailEventType;
   idempotencyKey: string;
+  // EXPLICIT, NEVER INFERRED, 2026-08-29. This field used to be optional, and
+  // an absent recipient silently became the configured owner address. That is a
+  // safe default for exactly one kind of mail and a disaster for any other: a
+  // visitor-addressed message that lost its recipient anywhere along the way
+  // would have been posted to Scott instead of failing. Every constructor now
+  // names its own audience, and the compiler is what enforces it.
+  recipient: string | null;
   sessionId?: string | null;
   externalCallId?: string | null;
   subject: string;
@@ -125,6 +145,14 @@ export type IScottLeadEmailArgs = {
   transcriptDashboardUrl?: string | null;
   media?: IScottLeadMediaEmailItem[];
   metadata?: JsonObject;
+  // G, 2026-08-30: "all potential leads should be sent to me by email ...
+  // any and all information, an email address, a phone number, anything."
+  // 11 leads carrying a real email or phone had reached
+  // ready_for_confirmation and were NEVER mailed to him - two of them public
+  // visitors with Baltimore numbers. A partial is exactly that lead: it has a
+  // way to reach somebody, and it did not finish. Labelled loudly and keyed
+  // separately so it can never be mistaken for a completed handoff.
+  partial?: boolean;
 };
 
 export type PublicMessageEmailArgs = {
@@ -167,6 +195,19 @@ export type VoiceEmailNotificationResult = {
   deduplicated: boolean;
 };
 
+// No "delivered" and no "inboxDelivered" field exists here on purpose. The only
+// honest thing this pipeline can report is that the provider accepted custody.
+export type IScottVisitorConfirmationResult = {
+  status: IScottVisitorConfirmationStatus;
+  outboxId: string | null;
+  idempotencyKey: string | null;
+  packageVersionHash: string | null;
+  recipient: string | null;
+  providerAccepted: boolean;
+  deduplicated: boolean;
+  blockers: IScottVisitorConfirmationBlocker[];
+};
+
 export type VoiceEmailDrainResult = {
   ok: boolean;
   status: number;
@@ -192,6 +233,27 @@ function cleanId(value: unknown, maxChars = 240): string | null {
 function cleanEmail(value: unknown): string | null {
   const email = cleanText(value, 254)?.toLowerCase() ?? null;
   return email && EMAIL_PATTERN.test(email) ? email : null;
+}
+
+function iScottLeadPackageIdempotencyKey(args: {
+  eventId: string;
+  contactMethod: "email" | "phone" | null;
+  email: string | null;
+  phone: string | null;
+}): string {
+  const contactMethod = args.contactMethod === "phone" ? "phone" : "email";
+  const contactValue = contactMethod === "phone" ? args.phone : args.email;
+  const normalizedContact = normalizedContactValue(contactMethod, contactValue);
+  if (!normalizedContact) return `iscott-lead:${args.eventId}`;
+
+  // The outbox key is durable and operator-visible. Hash the package identity so
+  // it can dedupe the same verified contact without storing an email address or
+  // phone number in the key itself. Including the event keeps two visitors who
+  // happen to share a contact from collapsing into one notification.
+  const packageDigest = createHash("sha256")
+    .update(`${args.eventId}\u0000${contactMethod}\u0000${normalizedContact}`, "utf8")
+    .digest("hex");
+  return `iscott-lead-package:${packageDigest}`;
 }
 
 function notificationRecipient(): string | null {
@@ -423,7 +485,11 @@ async function reconcileLeadNotificationStatus(outboxId: string): Promise<void> 
 async function enqueueVoiceEmail(
   content: VoiceEmailContent,
 ): Promise<{ result: RestResult<VoiceEmailOutboxRow>; deduplicated: boolean }> {
-  const recipient = notificationRecipient();
+  // Whatever the caller named, normalized. There is no fallback here any more:
+  // an owner constructor passes the configured owner address itself, so a
+  // missing recipient can only mean "we do not know who this is for", which
+  // fails closed downstream instead of defaulting to Scott's inbox.
+  const recipient = cleanEmail(content.recipient);
   const insert = await supabaseRest<VoiceEmailOutboxRow>(
     `voice_email_outbox?select=${OUTBOX_SELECT}`,
     {
@@ -464,6 +530,24 @@ async function enqueueVoiceEmail(
     // These keys deliberately identify one logical event (one date or one
     // session's first public message). Recomputing the body must never send it
     // twice or turn a successful prior delivery into a conflict.
+    return { result: existing, deduplicated: true };
+  }
+  const sameLogicalIScottPackage =
+    content.eventType === "iscott_lead" &&
+    row.event_type === "iscott_lead" &&
+    row.session_id === (content.sessionId ?? null);
+  if (sameLogicalIScottPackage) {
+    // The contact package is already encoded in the privacy-safe key. A retry
+    // may regenerate a later confirmation timestamp or a longer transcript;
+    // those presentation changes do not create a second owner notification.
+    return { result: existing, deduplicated: true };
+  }
+  const sameLogicalIScottVisitorConfirmation =
+    content.eventType === "iscott_visitor_confirmation" &&
+    row.event_type === "iscott_visitor_confirmation" &&
+    row.session_id === (content.sessionId ?? null) &&
+    row.recipient === recipient;
+  if (sameLogicalIScottVisitorConfirmation) {
     return { result: existing, deduplicated: true };
   }
   if (
@@ -523,11 +607,19 @@ async function claimOutboxRow(
   now = new Date(),
 ): Promise<{ result: RestResult<VoiceEmailOutboxRow>; leaseToken: string }> {
   const leaseToken = randomUUID();
+  // A CLAIM MAY NOT RE-ADDRESS THE MAIL. The row's stored recipient is the
+  // audience this message was written for; a retry hours later, under different
+  // configuration, must still go there or not at all. The only write permitted
+  // is backfilling a legacy row that never carried a recipient at all, and even
+  // then only with the value storedOutboxRecipient already resolved for it.
+  const recipientPatch = row.recipient === null || row.recipient === undefined
+    ? { recipient }
+    : {};
   const result = await patchOutboxRow(
     row.id,
     {
       status: "sending",
-      recipient,
+      ...recipientPatch,
       attempt_count: Math.max(0, row.attempt_count) + 1,
       last_error: null,
       last_attempt_at: now.toISOString(),
@@ -610,7 +702,9 @@ async function sendClaimedOutboxRow(
         deduplicated: false,
       };
     }
-    await reconcileLeadNotificationStatus(row.id);
+    if (row.event_type === "iscott_lead") {
+      await reconcileLeadNotificationStatus(row.id);
+    }
     return {
       ok: true,
       status: 200,
@@ -669,7 +763,11 @@ async function deliverVoiceEmail(
     };
   }
 
-  const recipient = notificationRecipient();
+  // The outbox row owns its snapshotted recipient. This is essential for the
+  // separately addressed visitor event and also prevents retry-time config
+  // drift from redirecting an already-queued message. Legacy rows with no
+  // recipient retain the old global fallback.
+  const recipient = storedOutboxRecipient(row);
   const configurationError = wildWorksSenderConfigurationError();
   if (!recipient || configurationError) {
     const detail = !recipient
@@ -781,7 +879,12 @@ export async function drainVoiceEmailOutbox(
   let skipped = 0;
   const due = candidates.filter((row) => isVoiceEmailOutboxRowDue(row, now.getTime()));
   for (const row of due) {
-    const claimed = await claimOutboxRow(row, recipient);
+    const rowRecipient = storedOutboxRecipient(row);
+    if (!rowRecipient) {
+      skipped += 1;
+      continue;
+    }
+    const claimed = await claimOutboxRow(row, rowRecipient);
     if (!claimed.result.ok || !claimed.result.rows[0]) {
       skipped += 1;
       continue;
@@ -826,6 +929,9 @@ export async function notifyVoiceLeadByEmail(
   });
   return deliverVoiceEmail({
     eventType: "voice_lead",
+    // Owner notification: the configured owner address, named here rather than
+    // inherited from a default buried in the enqueue.
+    recipient: notificationRecipient(),
     idempotencyKey: voiceLeadEmailIdempotencyKey(eventId),
     sessionId,
     externalCallId,
@@ -861,6 +967,7 @@ export async function notifyVoicemailByEmail(
   });
   return deliverVoiceEmail({
     eventType: "voicemail",
+    recipient: notificationRecipient(),
     idempotencyKey: voicemailEmailIdempotencyKey(eventId),
     sessionId,
     externalCallId,
@@ -868,6 +975,24 @@ export async function notifyVoicemailByEmail(
     ...body,
     metadata: args.metadata,
   });
+}
+
+// A PARTIAL LEAD IS A DIFFERENT KIND OF MAIL, AND IT GETS ITS OWN DOOR.
+//
+// G, 2026-08-30, wants every scrap of contact detail to reach him even when
+// the conversation collapsed. That directly contradicts a deliberate
+// invariant this codebase already had - roughly twenty assertions across five
+// test files say an UNQUALIFIED lead must never reach notifyIScottLeadByEmail,
+// because that function means "a completed, consented handoff".
+//
+// Both things are correct, so they get separate functions. Everything the
+// strict path protects stays protected and every one of those assertions is
+// still true; this door only ever carries mail that is loudly labelled
+// INCOMPLETE and keyed '#partial' so the outbox cannot confuse the two.
+export async function notifyIScottPartialLeadByEmail(
+  args: IScottLeadEmailArgs,
+): Promise<VoiceEmailNotificationResult> {
+  return notifyIScottLeadByEmail({ ...args, partial: true });
 }
 
 export async function notifyIScottLeadByEmail(
@@ -957,7 +1082,13 @@ export async function notifyIScottLeadByEmail(
   const qualTextBlock = `\n\nHOW SERIOUS\n${qualText}${qual.signals.length ? "" : "\nNothing else was said about timing, budget or ownership."}`;
 
   const subjectLocation = location ? ` — ${location}` : "";
-  const subject = truncateUtf8String(`New iScott lead — ${fullName}${subjectLocation}`, 220);
+  const isPartial = args.partial === true;
+  const subject = truncateUtf8String(
+    isPartial
+      ? `INCOMPLETE iScott lead — ${fullName}${subjectLocation}`
+      : `New iScott lead — ${fullName}${subjectLocation}`,
+    220,
+  );
   const detailsText = [
     "New confirmed iScott lead",
     `Name: ${fullName}`,
@@ -1030,7 +1161,16 @@ export async function notifyIScottLeadByEmail(
 
   return deliverVoiceEmail({
     eventType: "iscott_lead",
-    idempotencyKey: `iscott-lead:${eventId}`,
+    // Scott's own copy. The visitor receipt is a separate event with its own
+    // address; this constructor never learns the visitor's mailbox as a
+    // recipient, only as a detail line in the package it hands him.
+    recipient: notificationRecipient(),
+    idempotencyKey: iScottLeadPackageIdempotencyKey({
+      eventId,
+      contactMethod: args.contactMethod ?? null,
+      email,
+      phone,
+    }),
     sessionId,
     subject,
     text,
@@ -1045,6 +1185,106 @@ export async function notifyIScottLeadByEmail(
       mediaCount: media.length,
     },
   });
+}
+
+async function notifyIScottVisitorConfirmationByEmailWithGate(
+  args: IScottVisitorConfirmationArgs,
+  enabled: boolean,
+): Promise<IScottVisitorConfirmationResult> {
+  // THE UNAUTHORIZED PATH TOUCHES NOTHING. No eligibility read, no Supabase
+  // request, no provider client. Turning the constant on is the whole
+  // activation, and until G makes that call this function is inert.
+  if (!enabled) {
+    return {
+      status: ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
+      outboxId: null,
+      idempotencyKey: null,
+      packageVersionHash: null,
+      recipient: null,
+      providerAccepted: false,
+      deduplicated: false,
+      blockers: ["feature_not_authorized"],
+    };
+  }
+  const decision = prepareIScottVisitorConfirmation(args);
+  if (!decision.eligible || !decision.prepared) {
+    return {
+      status: "blocked",
+      outboxId: null,
+      idempotencyKey: null,
+      packageVersionHash: decision.packageVersionHash,
+      recipient: decision.recipient,
+      providerAccepted: false,
+      deduplicated: false,
+      blockers: decision.blockers,
+    };
+  }
+  const prepared = decision.prepared;
+  try {
+    const notification = await deliverVoiceEmail({
+      eventType: prepared.eventType,
+      idempotencyKey: prepared.idempotencyKey,
+      recipient: prepared.recipient,
+      sessionId: prepared.sessionId,
+      subject: prepared.subject,
+      text: prepared.text,
+      html: prepared.html,
+      // The payload is as free of personal data as the key is: a version hash
+      // identifies the package, and nothing here restates it.
+      metadata: {
+        source: "iscott_visitor_confirmation",
+        packageVersionHash: prepared.packageVersionHash,
+      },
+    });
+    // `notification.delivered` is the outbox's word for "the provider took it".
+    // It is renamed here, once, so no caller downstream can read a claim about
+    // an inbox out of it.
+    const providerAccepted = notification.delivered;
+    const status: IScottVisitorConfirmationStatus = providerAccepted
+      ? "provider_accepted"
+      : notification.outboxStatus === "pending" || notification.outboxStatus === "sending"
+        ? "queued"
+        : "failed";
+    return {
+      status,
+      outboxId: notification.outboxId,
+      idempotencyKey: prepared.idempotencyKey,
+      packageVersionHash: prepared.packageVersionHash,
+      recipient: prepared.recipient,
+      providerAccepted,
+      deduplicated: notification.deduplicated,
+      blockers: [],
+    };
+  } catch {
+    return {
+      status: "failed",
+      outboxId: null,
+      idempotencyKey: prepared.idempotencyKey,
+      packageVersionHash: prepared.packageVersionHash,
+      recipient: prepared.recipient,
+      providerAccepted: false,
+      deduplicated: false,
+      blockers: [],
+    };
+  }
+}
+
+export async function notifyIScottVisitorConfirmationByEmail(
+  args: IScottVisitorConfirmationArgs,
+): Promise<IScottVisitorConfirmationResult> {
+  return notifyIScottVisitorConfirmationByEmailWithGate(
+    args,
+    ISCOTT_VISITOR_CONFIRMATION_ENABLED,
+  );
+}
+
+function storedOutboxRecipient(row: Pick<VoiceEmailOutboxRow, "recipient">): string | null {
+  // Null is the only legacy shape that may use the configured owner fallback.
+  // A present-but-invalid recipient fails closed instead of being redirected
+  // to the owner during inline send or retry drain.
+  return row.recipient === null || row.recipient === undefined
+    ? notificationRecipient()
+    : cleanEmail(row.recipient);
 }
 
 export async function notifyFirstPublicMessageByEmail(
@@ -1103,6 +1343,7 @@ export async function notifyFirstPublicMessageByEmail(
   });
   return deliverVoiceEmail({
     eventType: "telemetry_message",
+    recipient: notificationRecipient(),
     idempotencyKey: testId ? `telemetry-message:test:${testId}` : `telemetry-message:first:${sessionId}`,
     sessionId,
     subject: `${testId ? "TEST " : ""}VIP iScott ${easternDate} — ${interest}`,
@@ -1144,6 +1385,7 @@ export async function notifyTelemetryDigestByEmail(
   });
   return deliverVoiceEmail({
     eventType: "telemetry_digest",
+    recipient: notificationRecipient(),
     idempotencyKey: `telemetry-digest:${digestDate}`,
     subject: `WildWorks visitor digest — ${digestDate}`,
     text: lines.join("\n"),

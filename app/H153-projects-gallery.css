@@ -340,6 +340,30 @@ html body#wildworks-body:has(#top.wild-home)
   transform: translateX(-50%) translateY(-2px) !important;
 }
 
+/* ...and when it adds its one-pixel press dip. Same reason as the rule above,
+   one state later: transform is a single property, so any state that restates
+   it has to restate the translateX(-50%) anchor with it or the button leaves
+   the centre line. G 2026-08-29 physically saw the miss - the press knocked
+   this button about eighty pixels right, half its own width, in the frame
+   before Talk to iScott became Finish.
+
+   The dip itself is kept, at the same 1px H106 gives every other Home control,
+   so the button still answers the thumb; only the horizontal loss is undone.
+   Placed AFTER the hover rule on purpose: a press matches :hover and :active at
+   once, both are !important and both carry the same specificity here, so source
+   order decides, and the pressed value should win - which is the order H106 uses
+   for every other button too.
+
+   No delay and no animation. This is the state that was missing an anchor, and
+   with the states in the embed anchored by the avatar route's own rule, the same
+   centre line now governs initial Talk, Finish, and returned Talk. */
+html body#wildworks-body:has(#top.wild-home)
+  #top.wild-home
+  .wild-live-avatar-frame
+  .wild-site-avatar-overlay-cta:active {
+  transform: translateX(-50%) translateY(1px) !important;
+}
+
 /* H157: Home hero button interiors only. Keep the approved 220 x 64 boxes. */
 html body#wildworks-body:has(#top.wild-home)
   #top.wild-home

@@ -9,6 +9,7 @@ import {
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
 import { assertAllowedOrigin } from "../../../src/lib/apiRouteSecurity";
 import { checkCriticalRateLimit } from "../../../src/lib/rateLimit";
+import { iscottHandoffTruthDynamicVariables } from "../../../src/lib/iscottRuntimeSpeechTruth";
 
 export const dynamic = "force-dynamic";
 
@@ -73,6 +74,12 @@ export async function POST(request: Request) {
     avatar_id: AVATAR_ID,
     max_session_duration: 20 * 60,
     avatar_persona: avatarPersona,
+    // STAGED / INERT until the stored LiveAvatar context contains
+    // ${wildworks_handoff_truth_policy}. LiveAvatar ignores extra dynamic
+    // variables, so this local half is safe to land before the separately
+    // authorized provider-context activation. Do not claim speech prevention
+    // from this source change alone.
+    dynamic_variables: iscottHandoffTruthDynamicVariables(),
   };
 
   try {
@@ -120,6 +127,8 @@ export async function POST(request: Request) {
         mode: payload.mode,
         maxSessionDuration: payload.max_session_duration,
         hasContext: Boolean(CONTEXT_ID),
+        handoffTruthPolicyVariableSupplied: true,
+        handoffTruthProviderPlaceholderActivationVerified: false,
       },
     });
     return Response.json(data.data);

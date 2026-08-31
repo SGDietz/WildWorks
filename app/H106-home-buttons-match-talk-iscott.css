@@ -100,7 +100,32 @@ html:has(#top.wild-home:not(.wild-legal-home))
     .wildfire-phase-bar button,
     .wild-footer-contact-cta__actions a,
     .wild-footer-contact-cta__actions button
-  ):active {
+  ):active:not(.wild-site-avatar-overlay-cta) {
+  /* G 2026-08-29, on the live Home page: "it jumps quickly to the right" when
+     you click Talk to iScott, just before it becomes Finish.
+
+     THIS RULE WAS THE JUMP. Every control in the list above sits in normal
+     flow, so replacing its transform with a one-pixel press dip is exactly the
+     press feel that was asked for. The avatar overlay Talk button is the one
+     member of the list that is NOT in flow: globals.css pins it
+     position:absolute; left:50%; transform:translateX(-50%) inside
+     .wild-live-avatar-frame, so its transform is not decoration, it IS half of
+     its horizontal anchor. transform is a single property - translateY(1px)
+     does not add to translateX(-50%), it REPLACES it - so on mousedown the
+     button lost its centring and snapped right by half its own width, roughly
+     eighty pixels, in one frame. Then the overlay unmounted and the iframe's
+     Finish came up centred. That is the jump, and it fires on the press, which
+     is why G sees it "before or while" the label changes.
+
+     H153 already made this exact correction for :hover and :focus-visible - the
+     comment there says so - and :active was simply never covered. Excluded here
+     rather than out-weighed, per the standing instruction to edit the real
+     authority instead of stacking another id ladder on top of it; H153 restates
+     the anchor AND the same one-pixel dip for this button immediately below its
+     hover twin, so the press feel is preserved, not removed.
+
+     Nothing else changes: every other control in the list keeps this rule
+     byte-for-byte, and no other page matches the Home gate above. */
   transform: translateY(1px) !important;
 }
 

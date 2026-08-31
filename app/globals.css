@@ -1637,6 +1637,30 @@ body .wild-footer-mobile-link:focus-visible {
   }
 }
 
+/* Compact desktop iScott layout. The lead split technically fit at 920px, but
+   its 390px card minimum plus the large Front Door copy left no visual safety
+   margin around 1059px and the right card/header read as cropped. Keep the
+   established desktop pair above 1120px; between tablet and that width, use
+   the already-proven single-column composition and suppress the horizontal
+   entrance transform so the card cannot begin a screenshot off the right edge. */
+@media (min-width: 920px) and (max-width: 1119px) {
+  #top.wild-home #iscott-sales .wild-split--lead {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 48rem;
+  }
+
+  #top.wild-home #iscott-sales .wild-copy-stack {
+    width: 100%;
+    max-width: 46rem;
+    justify-self: center;
+  }
+
+  #top.wild-home #iscott-sales #talk-to-iscott.wild-iscott-panel {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (min-width: 720px) {
   .wild-hero-copy {
     position: absolute;

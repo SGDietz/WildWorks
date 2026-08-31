@@ -340,6 +340,65 @@ const wildWorksButtonCss = `
       bottom: clamp(6.7rem, 14vh, 7.3rem) !important;
     }
 
+    /* ==================================================================
+       HOME CONTROL STAYS PUT, G 2026-08-29: "it jumps quickly to the right"
+       on the way into Finish.
+
+       Same document seam the state-shadow slice just mapped, one layer down.
+       The control G watches is drawn by two different owners:
+
+         initial Talk   .wild-site-avatar-overlay-cta, PARENT document.
+                        globals.css pins it position:absolute, left:50%,
+                        transform:translateX(-50%) inside
+                        .wild-live-avatar-frame, and H153 re-states that
+                        translateX on :hover/:focus-visible so the shared
+                        two-pixel lift cannot decentre it.
+         Finish         this document, inside .fixed.bottom-28
+         returned Talk  this document, the SAME .fixed.bottom-28
+
+       The parent's half is anchored by declaration. This document's half was
+       not: the rule above pins only the bottom, so the horizontal placement of
+       both in-frame states was left to whatever the proxied app's own utility
+       classes happen to resolve to. Nothing in WildWorks CSS held that axis,
+       which is why the seam could move sideways at all - it is an anchor that
+       was never stated, not one that was stated wrong.
+
+       Vertical is deliberately untouched. The frame is 18rem wide at 9/16, so
+       the overlay's inline bottom:22% is ~112.6px off the frame floor and the
+       clamp above is ~107.2px - about five pixels apart, and both scale
+       together under A01's zoom. G reported a sideways jump; the approved
+       "above the wrists" height stays exactly where it is.
+
+       IT LANDS ON THE SAME LINE. The iframe is absolute inset-0 inside
+       .wild-live-avatar-frame, so its viewport IS the frame's padding box -
+       the same box the parent overlay centres in. A01 zooms the panel 1.15
+       from 521px up; the frame's inner viewport lays out in its own pre-zoom
+       pixels (the measurement note below relies on the same fact), so 50% of
+       the inner viewport and 50% of the frame paint on one line.
+
+       CENTRED WITHOUT A TRANSFORM, on purpose. left/right 0 + auto inline
+       margins + a max-content width makes the row hug its button and take the
+       free space evenly, so the result does not depend on the app's own
+       justify-content, and any -translate-x-1/2 it may carry is cancelled
+       rather than doubled. No new containing block for fixed descendants.
+
+       SCOPED TO THE EMBED, same gate as the shadow block below: Home is the
+       only embedder, and a direct visit to /pages/avatar-iscott keeps the
+       app's own placement. The measured-iPad pins further down carry more
+       specificity and still win there, unchanged.
+
+       No delay and no animation - the anchor is simply stated for the states
+       that lacked one. Labels, icons, the shadow ladders, box metrics, radius,
+       fills, borders, the state machine, the Finish handler and the timing are
+       all untouched. ============================================== */
+    html[data-ww-avatar-embedded] .fixed.bottom-28:has(.btn-wood) {
+      left: 0 !important;
+      right: 0 !important;
+      margin-inline: auto !important;
+      width: max-content !important;
+      transform: none !important;
+    }
+
     .btn-wood::before {
       content: "" !important;
       display: inline-block !important;
@@ -383,6 +442,72 @@ const wildWorksButtonCss = `
         drop-shadow(rgba(25, 6, 1, 0.6) 0px 1.5px 0px) !important;
     }
 
+    /* ==================================================================
+       HOME STATE PARITY, G 2026-08-29: initial Talk -> Finish -> returned Talk.
+
+       G is looking at one control across three states and seeing two different
+       shadow languages. He is right, and the seam is a document boundary:
+
+         initial Talk   .wild-site-avatar-overlay-cta, in the PARENT document,
+                        painted by H337's Home ladder
+                        (--ww-cta-label-shadow / --ww-cta-icon-shadow)
+         Finish         this document, .btn-wood's own 3-stop ladder
+         returned Talk  this document, the SAME .btn-wood ladder
+
+       So Finish and returned Talk already match each other exactly - they are
+       the same rule - and BOTH differ from the initial Talk he clicked a
+       moment earlier. CSS variables do not cross into an iframe, so the Home
+       ladder cannot simply be inherited here; it has to be restated. These
+       are the H337 PASS 5 values copied verbatim, not re-derived.
+
+       IT LANDS AT THE SAME PIXELS. The parent's overlay Talk is font-size
+       1.12rem (H337 pins it) and .btn-wood here is font-size 1.12rem - the
+       same 17.92px - so an identical em ladder resolves to identical px in
+       both documents. Reach 0.087222em = 1.563px on both sides of the frame.
+
+       SCOPED TO THE EMBED. data-ww-avatar-embedded is set only when this
+       document is framed, and Home is its only embedder, so this is Home and
+       nothing else; a direct visit to /pages/avatar-iscott keeps the values
+       above. Scoped rather than edited in place for the same reason the
+       2026-08-23 Finish work was: .btn-wood also dresses Restart iScott, which
+       is not part of this three-state control and was not asked about.
+
+       Style only. Labels, icons, sizes, geometry, the state machine and the
+       Finish handler are all untouched. ============================== */
+    html[data-ww-avatar-embedded] [data-ww-talk],
+    html[data-ww-avatar-embedded] [data-ww-finish] {
+      text-shadow:
+        rgba(35,9,2,0.97) 0 0.008722em 0,
+        rgba(34,9,2,0.941) 0 0.017444em 0,
+        rgba(33,8,2,0.913) 0 0.026167em 0,
+        rgba(32,8,2,0.884) 0 0.034889em 0,
+        rgba(31,8,2,0.855) 0 0.043611em 0,
+        rgba(29,7,1,0.827) 0 0.052333em 0,
+        rgba(28,7,1,0.798) 0 0.061056em 0,
+        rgba(27,7,1,0.745) 0 0.069778em 0,
+        rgba(26,6,1,0.700) 0 0.078500em 0,
+        rgba(25,6,1,0.660) 0 0.087222em 0 !important;
+    }
+
+    /* Both icon shapes, because the two states draw the sparkle differently:
+       Finish and Talk take it from .btn-wood::before as a background-image,
+       and any state that ships a real svg is covered by the same value. One
+       declaration so neither can drift from the other or from the parent.
+
+       Screenshot correction, 2026-08-29: the former ten-filter chain shadowed
+       each prior shadow and turned these small outline icons into a splotch.
+       Match the parent's corrected single attached edge so the actual artwork
+       remains legible through Talk -> Finish -> returned Talk. G's 2026-08-30
+       visual pass asked for a little more depth without restoring the chain,
+       so only that one attached edge becomes slightly darker/deeper. */
+    html[data-ww-avatar-embedded] [data-ww-talk]::before,
+    html[data-ww-avatar-embedded] [data-ww-finish]::before,
+    html[data-ww-avatar-embedded] [data-ww-talk] svg,
+    html[data-ww-avatar-embedded] [data-ww-finish] svg {
+      filter:
+        drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.9px, 0.045em, 1.4px) 0.25px) !important;
+    }
+
     .btn-inset {
       min-width: 6.75rem !important;
       padding-inline: 1.4rem !important;
@@ -413,13 +538,9 @@ const wildWorksButtonCss = `
     #wildworks-lead-confirmation {
       position: fixed !important;
       top: auto !important;
-      /* G 2026-08-17 (rev 2): the box COVERS the Finish button while open —
-         Finish comes back when the box drops after the checkmark. */
-      /* G 2026-08-19: "it needs to be over the word Finish." The bottom edge was
-         always right - the card was simply TALL, so it grew upward into his chin.
-         Anchor restored; the card below is kept short instead. */
-      /* G 2026-08-19: "the box is still too high. It's like right at iScott's
-         lips, basically. It's got to be down." */
+      /* The runtime replaces this fallback with a measured position whenever
+         Finish is present. The lead card stays above that control in every
+         state so Finish remains visible and is always the hit target. */
       bottom: calc(0.55rem + env(safe-area-inset-bottom, 0px)) !important;
       left: 50% !important;
       z-index: 60 !important;
@@ -576,7 +697,14 @@ const wildWorksButtonCss = `
       width: 100% !important;
       min-height: 2.4rem !important;
       margin: 0 auto !important;
-      padding: 0.28rem 0.5rem !important;
+      /* G's physical ride, 2026-08-29: "the red LastPass box ... the email runs
+         underneath it." Password-manager badges are absolutely positioned
+         against the field's own border box, hard against one edge, and they are
+         painted by an extension we do not control. The horizontal padding is
+         SYMMETRIC and wide enough to hold one of those badges, so whichever edge
+         it picks it covers padding and not glyphs. text-align stays centre, so
+         symmetric padding also keeps the value optically centred. */
+      padding: 0.28rem 1.85rem !important;
       border: 1px solid #f08c28 !important;
       border-radius: 0.375rem !important;
       /* G 2026-08-19, from the iPad: "blue letters and the colors ... they've
@@ -609,6 +737,44 @@ const wildWorksButtonCss = `
       overflow-wrap: anywhere !important;
       text-shadow: none !important;
       outline: none !important;
+      /* Some managers paint their badge as a background-image on the field
+         itself rather than as an injected node. Nothing but the brand fill
+         belongs in here. */
+      background-image: none !important;
+    }
+
+    /* The browsers' own in-field controls sit exactly where the value ends.
+       These are the supported opt-outs for each engine. */
+    #wildworks-lead-value::-webkit-credentials-auto-fill-button,
+    #wildworks-lead-value::-webkit-contacts-auto-fill-button,
+    #wildworks-lead-value::-webkit-caps-lock-indicator {
+      visibility: hidden !important;
+      display: none !important;
+      pointer-events: none !important;
+    }
+
+    #wildworks-lead-value::-ms-clear,
+    #wildworks-lead-value::-ms-reveal {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    /* Extensions inject their badge as a sibling/descendant node inside our
+       card. We cannot uninstall them, and we do not try to interfere with a
+       password manager anywhere else on the site - but this one field holds a
+       stranger's contact details and nothing may sit on top of it. Named roots
+       only, so an unrelated node is never hidden by accident. */
+    .wildworks-lead-capture [data-lastpass-icon-root],
+    .wildworks-lead-capture [data-lastpass-root],
+    .wildworks-lead-capture [data-lastpass-infield],
+    .wildworks-lead-capture [data-dashlanecreated],
+    .wildworks-lead-capture com-1password-button,
+    .wildworks-lead-capture com-1password-op-button,
+    .wildworks-lead-capture [data-bw-inline-menu] {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
     /* iOS/Chrome autofill repaints the field and the ink. Hold the brand. */
@@ -693,9 +859,39 @@ const wildWorksButtonCss = `
       margin: 0 !important;
     }
 
-    .wildworks-lead-card[data-box-view="sending"] .wildworks-lead-capture,
+    /* G's physical ride, 2026-08-29: he said yes, iScott said it was sending and
+       that Scott had the details, and the capture box never changed - so he had
+       no way to tell a real handoff from a dead one.
+       "sending" USED to hide the capture here, on optimism, before the confirm
+       API had returned anything. It no longer does: while the request is in
+       flight the box stays exactly where it is, dimmed and locked, so the
+       visitor can still see the value that is being sent. Only a verified
+       submitted/submittedAt reply is allowed to take the capture away. */
+    .wildworks-lead-card[data-box-view="sending"] .wildworks-lead-capture {
+      opacity: 0.72 !important;
+      pointer-events: none !important;
+    }
+
+    .wildworks-lead-card[data-box-view="sending"] #wildworks-lead-value {
+      cursor: progress !important;
+    }
+
     .wildworks-lead-card[data-box-view="sent"] .wildworks-lead-capture {
       display: none !important;
+    }
+
+    /* Only verified provider success may take the capture away. A submitted
+       row whose linked outbox is still pending keeps the exact value visible
+       and read-only; its received label supplements rather than replaces it.
+       G's physical ride, 2026-08-29: the box vanished and nothing replaced it,
+       so there was no way to tell a completed handoff from a lost one. */
+    .wildworks-lead-card[data-box-view="sent"] #wildworks-lead-sent,
+    .wildworks-lead-card[data-box-view="submitted"] #wildworks-lead-sent {
+      display: flex !important;
+      visibility: visible !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.35rem !important;
     }
 
     /* G 2026-08-19: "I hope I never see this box again. All it should be is the
@@ -711,6 +907,30 @@ const wildWorksButtonCss = `
       display: none !important;
       visibility: hidden !important;
       pointer-events: none !important;
+    }
+
+    /* THE ONE EXCEPTION, and it is not a status line - it is a failure.
+       G's physical ride, 2026-08-29: iScott said Scott had the details and
+       nothing had gone anywhere. If the confirm API does not come back with a
+       real submission, the visitor is told so in plain words and given the
+       control to try again. A silent failure is how a lead disappears. */
+    .wildworks-lead-card[data-box-view="failed"] #wildworks-lead-status,
+    .wildworks-lead-card[data-box-view="failed"] .wildworks-lead-actions,
+    .wildworks-lead-card[data-box-view="failed"] #wildworks-lead-confirm {
+      display: block !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+
+    .wildworks-lead-card[data-box-view="failed"] .wildworks-lead-actions {
+      display: flex !important;
+    }
+
+    .wildworks-lead-card[data-box-view="failed"] #wildworks-lead-status {
+      margin: 0.5rem 0 0 !important;
+      font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+      font-size: clamp(0.8rem, 3.2vw, 0.98rem) !important;
+      font-weight: 700 !important;
     }
 
     /* G, ride 308c9716: "the check mark was underneath the check mark box.
@@ -751,7 +971,8 @@ const wildWorksButtonCss = `
     }
 
     @keyframes wildworks-lead-rise {
-      from { opacity: 0; transform: translate(-50%, 0.75rem) scale(0.97); }
+      /* Enter without moving down into the protected Finish clearance. */
+      from { opacity: 0; transform: translateX(-50%) scale(0.97); }
       to { opacity: 1; transform: translateX(-50%) scale(1); }
     }
 
@@ -2889,6 +3110,16 @@ const wildWorksLeadConfirmationScript = `
         lead?.consentStatus === "accepted" || Boolean(lead?.contactConfirmedAt);
       const isSendFailureStatus = (notificationStatus) =>
         notificationStatus === "failed" || notificationStatus === "dead_letter";
+      const hasSubmittedTruth = (lead) =>
+        lead?.status === "submitted" || Boolean(lead?.submittedAt);
+      // A provider status string is not success by itself. The lead must also
+      // carry server submission truth and the linked owner-notification outbox
+      // that the provider accepted. This keeps an inconsistent sent/unsubmitted
+      // or sent/unlinked row in the capture state instead of painting a lie.
+      const hasDeliveredTruth = (lead) =>
+        hasSubmittedTruth(lead)
+        && Boolean(lead?.notificationOutboxId)
+        && lead?.notificationStatus === "sent";
 
       const statusFromLead = (lead) => {
         if (!lead) return "I still need a way for Scott to reach you.";
@@ -2896,7 +3127,7 @@ const wildWorksLeadConfirmationScript = `
           return "The send failed. Scott does not have this yet. I will keep the details here.";
         }
         if (lead.notificationStatus === "test_held") return "Test session — not sent.";
-        if ((lead.status === "submitted" || lead.submittedAt) && lead.notificationStatus === "sent") {
+        if (hasDeliveredTruth(lead)) {
           return "WildWorks received the notification-service confirmation.";
         }
         if (lead.status === "submitted" || lead.submittedAt) {
@@ -2929,9 +3160,25 @@ const wildWorksLeadConfirmationScript = `
           // G, ride 308c9716: "the LastPass red box should not be in there...
           // that should be excluded." Password managers read this as a login
           // field and paint a badge over it. These are the opt-outs LastPass,
-          // 1Password, Bitwarden and Dashlane each respect. autocomplete stays
-          // email/tel so phones keep showing the right keyboard.
-          '    <input id="wildworks-lead-value" type="text" autocomplete="off" inputmode="email" spellcheck="false" placeholder="" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-form-type="other" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
+          // 1Password, Bitwarden, Dashlane and Proton Pass each respect.
+          //
+          // G's physical ride, 2026-08-29: the red LastPass control was STILL in
+          // the field and the address ran underneath it. Three things changed.
+          // (1) name= is now a neutral token: LastPass's own heuristics look at
+          //     name/id as well as the opt-out attributes, and anything reading
+          //     "email" invites the badge back even with data-lpignore set.
+          // (2) data-protonpass-ignore joins the set.
+          // (3) The field reserves symmetric horizontal padding in CSS, so an
+          //     injected badge - from these or from any extension we have never
+          //     heard of - lands over padding rather than over the address. We
+          //     cannot uninstall the visitor's extensions; we can make sure the
+          //     value stays readable when one of them paints on our field.
+          //
+          // type stays text and the keyboard is steered with inputmode, which is
+          // what keeps this out of the credential heuristics in the first place.
+          // aria-label and aria-labelledby stay: this is the only label a screen
+          // reader has for the field, and none of the above needs it removed.
+          '    <input id="wildworks-lead-value" name="wildworks-lead-value" type="text" autocomplete="off" inputmode="email" spellcheck="false" placeholder="" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-protonpass-ignore="true" data-form-type="other" aria-label="Your email address" aria-labelledby="wildworks-lead-label-text">',
           '    <p id="wildworks-lead-spoken-readback" aria-hidden="true"></p>',
           '    <div class="wildworks-lead-actions">',
           '      <button id="wildworks-lead-confirm" type="button" aria-label="Send these details to Scott">Send these details to Scott</button>',
@@ -2956,6 +3203,10 @@ const wildWorksLeadConfirmationScript = `
             button.hidden = !typed && !activeLead?.email && !activeLead?.phone;
             button.disabled = !typed;
           }
+          // G, 2026-08-29: a TYPED long address has to stay inside the box too.
+          // The fit only ever ran on the spoken reveal, so anything the visitor
+          // corrected by hand went back to full size and out of the field.
+          fitValueText(input);
         };
         input?.addEventListener("beforeinput", cancelRevealForVisitorEdit);
         input?.addEventListener("input", cancelRevealForVisitorEdit);
@@ -3015,20 +3266,55 @@ const wildWorksLeadConfirmationScript = `
       // So the field starts big and only shrinks when the text would overflow.
       // Steps down from the ideal until it fits or hits the floor, so a short
       // address like G's reads large and a long one still fits on one line.
-      const FIT_MAX_REM = 1.6;
-      const FIT_MIN_REM = 0.78;
+      // G's physical ride, 2026-08-29: his own SHORT address was already too big
+      // for the box and ran under the LastPass badge, "so longer ones will not
+      // stay legible."
+      //
+      // Two faults, both here.
+      //
+      // 1. THE MEASUREMENT WAS WRONG. clientWidth on an input is content PLUS
+      //    padding; scrollWidth is the content alone. Comparing them let the
+      //    text grow into the padding on both sides before the loop noticed, so
+      //    the value always ended up wider than the space it was allowed - hard
+      //    against the edges, which is precisely where an injected badge sits.
+      //    It now measures against the real content box.
+      // 2. 1.6rem was never a size this card could hold. The field is 19rem at
+      //    its widest and the ceiling is now 1.12rem, in line with the CSS
+      //    clamp, so a short address reads large without touching the walls.
+      //
+      // FIT_RESERVE_PX is the badge allowance ON TOP of the CSS padding, so the
+      // value stays clear of a control we do not control even when an extension
+      // paints one over the field's own padding.
+      // KEEP IN SYNC with its twin - check-iscott-lead-truth-20260829.mjs
+      // reads these three constants out of this file and fails on drift.
+      const FIT_MAX_REM = 1.12;
+      const FIT_MIN_REM = 0.62;
+      const FIT_RESERVE_PX = 6;
+      const fitContentWidth = (output) => {
+        const style = window.getComputedStyle(output);
+        const padding = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+        const border = (parseFloat(style.borderLeftWidth) || 0) + (parseFloat(style.borderRightWidth) || 0);
+        return Math.max(0, output.clientWidth - padding - border - FIT_RESERVE_PX);
+      };
       const fitValueText = (output) => {
         try {
           if (!output) return;
           let size = FIT_MAX_REM;
           output.style.setProperty("font-size", size + "rem", "important");
-          // scrollWidth beats clientWidth the moment the text no longer fits.
+          const available = fitContentWidth(output);
+          if (available <= 0) return;
           let guard = 0;
-          while (output.scrollWidth > output.clientWidth + 1 && size > FIT_MIN_REM && guard < 40) {
-            size = Math.round((size - 0.04) * 100) / 100;
+          while (output.scrollWidth > available && size > FIT_MIN_REM && guard < 60) {
+            size = Math.round((size - 0.02) * 100) / 100;
             output.style.setProperty("font-size", size + "rem", "important");
             guard += 1;
           }
+          // At the floor an extreme address can still be wider than the field.
+          // Scrolling it back to the start is the honest outcome: the visitor
+          // sees the beginning of their own address and can scroll or retype,
+          // rather than seeing a middle fragment with no way to tell what is
+          // missing.
+          output.scrollLeft = 0;
         } catch {}
       };
 
@@ -3099,28 +3385,25 @@ const wildWorksLeadConfirmationScript = `
         }
         const rect = finish && finish.getBoundingClientRect ? finish.getBoundingClientRect() : null;
         if (rect && rect.height > 0 && rect.top > 0 && rect.top < window.innerHeight) {
-          // G has now said this four times, and the old arithmetic was the exact
-          // opposite of the ask:
-          //     lift = innerHeight - rect.TOP + 12
-          // put the card's bottom edge 12px ABOVE the top of Finish, which is
-          // why his screenshot shows it floating on iScott's chest with the
-          // button clear underneath it. G, 2026-08-19: "it's not over the finish
-          // button", "it's like a cross, iScott's shoulders, it needs to be
-          // across the finish button."
-          //
-          // Anchor to the BOTTOM of Finish instead, and overhang it slightly, so
-          // the card covers the button rather than stopping short of it. The
-          // card grows upward from here, so covering the bottom edge covers the
-          // whole button. Measured live each time it is shown, so it lands right
-          // on any device instead of relying on a guessed offset.
-          const OVERHANG_PX = 6;
-          const lift = Math.round(window.innerHeight - rect.bottom - OVERHANG_PX);
+          // Every lead state shares the same exit-safe geometry. Measure the
+          // actual Finish rect (including the iPad measured-embed override),
+          // then put the panel's bottom edge at least eight pixels above it.
+          // Math.ceil preserves the full gap when the browser reports a
+          // fractional top coordinate. The card grows upward from this edge, so
+          // its z-index can never intercept a point inside Finish.
+          const FINISH_CLEARANCE_PX = 8;
+          const lift = Math.ceil(window.innerHeight - rect.top + FINISH_CLEARANCE_PX);
           panel.style.setProperty("bottom", Math.max(0, lift) + "px", "important");
         } else {
           panel.style.removeProperty("bottom");
         }
         panel.setAttribute("aria-hidden", "false");
         panel.classList.add("wildworks-lead-visible");
+        // This runs on resize and orientationchange too. The field's width is a
+        // percentage of the card, so a rotation changes how much address fits;
+        // refit here or a value that was legible in portrait runs out of the box
+        // in landscape. No-op while the typewriter reveal owns the field.
+        if (!revealingContact) fitValueText(document.getElementById("wildworks-lead-value"));
       };
 
       const hidePanel = () => {
@@ -3167,12 +3450,38 @@ const wildWorksLeadConfirmationScript = `
       const SENT_HOLD_MS = 2000;
       let sentShownAt = 0;
 
-      const setSentVisible = (visible, method) => {
+      // G's physical ride, 2026-08-29: "no clear on-screen confirmation
+      // appeared." The confirmation is now PERSISTENT - it is put up when the
+      // confirm API returns a real submission and it stays up. The hold below
+      // survives as the floor it always was: a late poll still cannot pull it
+      // down inside the first two seconds.
+      //
+      // The optional label is how the queued state stays honest. A lead whose
+      // outbox row exists but which the provider has not confirmed yet is
+      // CONFIRMED RECEIVED, not sent, and it must never borrow sentLabelFor().
+      const RECEIVED_LABEL = "Details received by WildWorks ✓";
+
+      // A failure has to OUTLIVE the repaint that follows it. confirmLead calls
+      // showLead as soon as it is done, and the poll loop calls it again a moment
+      // later; both used to walk straight into the "still asking" branch and
+      // repaint a clean capture box over the words "Scott does not have this
+      // yet". G would have seen the failure blink and vanish - which is how he
+      // ends up believing a lead travelled when it did not.
+      //
+      // The failure sticks to the exact contact it happened to, so a genuinely
+      // new value clears it and a retry of the same value does not.
+      let failedForContactKey = null;
+      const contactKeyForLead = (lead) => {
+        if (!lead) return null;
+        const method = lead.contactMethod === "phone" ? "phone" : "email";
+        return [lead.sessionId, method, method === "email" ? lead.email : lead.phone].join(":");
+      };
+      const setSentVisible = (visible, method, label) => {
         const sent = document.getElementById("wildworks-lead-sent");
         if (!sent) return;
         if (!visible && sentShownAt && Date.now() - sentShownAt < SENT_HOLD_MS) return;
         if (visible) {
-          sent.textContent = sentLabelFor(method);
+          sent.textContent = label || sentLabelFor(method);
           if (!sentShownAt) sentShownAt = Date.now();
         } else {
           sentShownAt = 0;
@@ -3180,47 +3489,24 @@ const wildWorksLeadConfirmationScript = `
         sent.setAttribute("data-visible", visible ? "true" : "false");
       };
 
-      // G 2026-08-17: after the visitor confirms, show the check mark, then
-      // the boxes drop on their own. One-way per session.
-      const dropScheduled = {};
       // G 2026-08-17 (all-verbal handoff): a spoken yes IS the send. When the
       // server-detected consent arrives on the lead state, fire the real send
       // once — no tap required. Visitor-typed edits keep the manual button.
       const autoConfirmed = {};
-      // G 2026-08-19: "it just came and went too fast ... I just looked at it
-      // and it was gone. It should be like 2 full seconds." The wait used to
-      // start the instant the state changed, so the fade-in ate part of it and
-      // he never got a full two seconds of actually SEEING the checkmark. Start
-      // counting only once the panel has painted - two frames guarantees the
-      // browser has put it on screen - so his two seconds are two real seconds.
-      const dropPanelSoon = (ms) => {
-        let dropped = false;
-        const drop = () => {
-          if (dropped) return;
-          dropped = true;
-          dismissed = true;
-          dismissedFor = activeLead
-            ? [activeLead.contactMethod, activeLead.email, activeLead.phone].join(":")
-            : null;
-          hidePanel();
-        };
-        window.requestAnimationFrame(() => {
-          window.requestAnimationFrame(() => {
-            window.setTimeout(drop, ms);
-          });
-        });
-        // BACKSTOP. The two frames above exist so the hold starts once the panel
-        // has actually painted - that is what makes G's two seconds two REAL
-        // seconds. But requestAnimationFrame DOES NOT FIRE WHILE THE TAB IS
-        // HIDDEN. If the visitor switches apps in the moment between the send
-        // and the drop, those frames never arrive, the timer is never armed, and
-        // THE BOX NEVER GOES AWAY - it is still sitting there when he comes back.
-        //
-        // So a plain timer runs in parallel, generously long, and whichever
-        // fires first wins. On screen the frames always win and nothing changes;
-        // off screen this is the only thing that closes the panel.
-        window.setTimeout(drop, ms + 1500);
-      };
+      // REMOVED 2026-08-29 (follow-up): the dropPanelSoon helper. It armed a timer -
+      // two painted frames plus a hidden-tab backstop - that set "dismissed" and
+      // called hidePanel(). Its last caller was the test-held branch below, and
+      // a held lead has NO submittedAt and was never marked submitted by the
+      // server. So the timer took the whole panel off screen a couple of seconds
+      // after a send that had not happened: the details went with it, there was
+      // nothing left to retry from, and the visitor's own value was gone.
+      //
+      // That is the same premature concealment the capture box was fixed for,
+      // one level up. Only verified submitted/submittedAt truth may take the
+      // capture away, and nothing at all may take the PANEL away on a timer -
+      // the visitor closes it (dismiss/Finish) or a settled state replaces it.
+      // The helper is deleted rather than left unused so it cannot be called
+      // back into service by the next hand that reads this file.
 
       const stopSession = async (reason) => {
         logUi(reason === "close" ? "iscott_ui_close_tap" : "iscott_ui_finish_tap", { reason }, true);
@@ -3236,7 +3522,15 @@ const wildWorksLeadConfirmationScript = `
       };
 
       const confirmLead = async () => {
-        if (!activeLead || activeLead.status === "submitted" || activeLead.submittedAt) return;
+        if (!activeLead) return;
+        const retryingFailedSubmission =
+          hasSubmittedTruth(activeLead) && isSendFailureStatus(activeLead.notificationStatus);
+        // A settled or merely queued submission cannot be sent twice from this
+        // control. A failed/dead-letter submission is the one exception: keep a
+        // deliberate manual retry/edit path. It never auto-retries below, and
+        // the server remains responsible for rejecting stale consent/package
+        // state or rebuilding it for an actually changed contact.
+        if (hasSubmittedTruth(activeLead) && !retryingFailedSubmission) return;
         if (revealingContact) return;
         const method = activeLead.contactMethod === "phone" ? "phone" : "email";
         const edited = document.getElementById("wildworks-lead-value")?.value?.trim();
@@ -3251,9 +3545,25 @@ const wildWorksLeadConfirmationScript = `
         const status = document.getElementById("wildworks-lead-status");
         if (!value || !button || !status) return;
         button.disabled = true;
-        status.textContent = "I'm sending that to Scott.";
-        setCaptureHidden(true);
+        // 2026-08-30: this used to say "I'm sending that to Scott." the instant
+        // the button was pressed - before the server had looked at the package,
+        // and most refusals ARE found at that moment. The visitor was told a
+        // send had begun and then told a step was missing; the first sentence
+        // was never true. What is true here is that the details are being
+        // checked and nothing has gone anywhere.
+        status.textContent = "Checking your details. Nothing has been sent to Scott yet.";
+        // G's physical ride, 2026-08-29: the capture box "remained unchanged" and
+        // he could not tell a live handoff from a dead one. This USED to call
+        // setCaptureHidden(true) right here, before a single byte had come back
+        // from the confirm API - the box collapsed to height 0 on optimism, and
+        // if the send then failed there was nothing on screen at all. The box now
+        // stays up, dimmed and locked by the "sending" view, until the API says
+        // in its own words that the lead is submitted.
+        setCaptureHidden(false);
         setSentVisible(false, method);
+        // This attempt gets a clean slate; only this attempt's own outcome may
+        // put the failure back.
+        failedForContactKey = null;
         document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "sending");
         document.getElementById("wildworks-lead-confirmation")?.setAttribute("data-handoff-state", "sending");
         logUi("iscott_ui_confirm_tap", { method });
@@ -3267,35 +3577,79 @@ const wildWorksLeadConfirmationScript = `
           if (!response.ok || !result?.queued) throw new Error(result?.error || "The send failed. Scott does not have this yet. I will keep the details here.");
           activeLead = result.lead || activeLead;
           const testHeld = result.detail === "test_traffic_not_sent" || result.lead?.notificationStatus === "test_held";
-          const delivered = Boolean(result.delivered) && result.lead?.notificationStatus === "sent";
+          const delivered = Boolean(result.delivered) && hasDeliveredTruth(result.lead);
           const failed = isSendFailureStatus(result.lead?.notificationStatus);
-          const sendState = testHeld ? "test_held" : delivered ? "notified" : failed ? "failed" : "queued";
+          // THE TRUTH TEST. queued:true alone is not a submission - it is the
+          // server saying it intends to try. The only thing that earns the right
+          // to take the capture box away and put a confirmation up is the confirm
+          // API returning a lead the server itself has marked submitted.
+          const submittedTruth = hasSubmittedTruth(result.lead);
+          const sendState = testHeld
+            ? "test_held"
+            : delivered
+              ? "notified"
+              : failed || !submittedTruth
+                ? "failed"
+                : "queued";
           if (testHeld) {
             // G's own sessions are classified test, so the lead is held by
-            // design. He never wants the panel to sit there explaining that, so
-            // it clears on the same 2s beat as a real send - but it deliberately
-            // does NOT show the checkmark, because nothing was actually sent.
-            setCaptureHidden(true);
+            // design and nothing was handed to Scott.
+            //
+            // 2026-08-29, CORRECTION: this used to collapse the capture box.
+            // A held lead has no submittedAt and the server never marked it
+            // submitted, so taking the box away here was the same premature
+            // collapse the failure path was fixed for - the details vanished on
+            // a send that had not happened. Only verified submitted/submittedAt
+            // truth may hide the capture, so it is passed that truth rather than
+            // a flat true.
+            //
+            // 2026-08-29 FOLLOW-UP: it then still armed the 2s delayed panel
+            // drop, which took the ENTIRE PANEL down two seconds later and
+            // marked the lead dismissed. Keeping the capture and dropping what it
+            // lives in is the same defect wearing a hat: two seconds after a
+            // send that never happened, the visitor's value was off screen with
+            // no way back to it. Nothing is scheduled here now.
+            //
+            // The box returns to the captured view: not "sending" (which dims
+            // and locks the field through pointer-events), not "failed" (a held
+            // lead is not an error the visitor caused). The value stays, the
+            // field stays editable, Send comes back, and NO tick appears -
+            // because nothing was sent.
+            setCaptureHidden(submittedTruth);
             setSentVisible(false, method);
+            document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "captured");
             status.textContent = "Test session — not sent.";
-            dropPanelSoon(2000);
-          } else if (failed) {
+            button.disabled = false;
+          } else if (failed || !submittedTruth) {
+            // Either the outbox row came back dead, or the server never marked
+            // the lead submitted. Both are failures and both are told the same
+            // honest way: the box stays, the value stays in it, the visitor is
+            // told Scott does NOT have this, and Send is live again to retry.
             setCaptureHidden(false);
             setSentVisible(false, method);
             document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "failed");
             status.textContent = "The send failed. Scott does not have this yet. I will keep the details here.";
             button.disabled = false;
+            failedForContactKey = contactKeyForLead(activeLead);
           } else if (delivered) {
+            // G's physical ride, 2026-08-29: "no clear on-screen confirmation
+            // appeared." The tick is now PERSISTENT. It used to be put up and
+            // then dropped on a 2s timer, which is a confirmation you can miss
+            // by looking away - and G did. refreshLeadPosition keeps every lead
+            // card clear of Finish, so a card that stays can no longer trap him.
             setCaptureHidden(true);
             setSentVisible(true, method);
             document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "sent");
             status.textContent = method === "phone" ? "Phone sent to Scott ✓" : "Email sent to Scott ✓";
-            dropPanelSoon(2000);  // G 2026-08-19: hold the checkmark 2s, then drop
           } else {
-            setCaptureHidden(true);
-            setSentVisible(false, method);
+            // Submitted and the outbox row exists, but the provider has not
+            // confirmed delivery. That is RECEIVED, not sent, and it must never
+            // borrow the "sent to Scott" wording. The capture stays visible and
+            // read-only so the visitor can still see exactly what is pending.
+            setCaptureHidden(false);
+            setSentVisible(true, method, RECEIVED_LABEL);
+            document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "submitted");
             status.textContent = "Your details are queued for a secure WildWorks handoff.";
-            dropPanelSoon(6000);
           }
           document.getElementById("wildworks-lead-confirmation")?.setAttribute("data-handoff-state", sendState);
           logUi("iscott_send_outcome", { sendState, delivered });
@@ -3305,6 +3659,8 @@ const wildWorksLeadConfirmationScript = `
           setSentVisible(false, method);
           status.textContent = error instanceof Error ? error.message : "The send failed. Scott does not have this yet. I will keep the details here.";
           button.disabled = false;
+          document.querySelector(".wildworks-lead-card")?.setAttribute("data-box-view", "failed");
+          failedForContactKey = contactKeyForLead(activeLead);
           document.getElementById("wildworks-lead-confirmation")?.setAttribute("data-handoff-state", "failed");
           logUi("iscott_send_outcome", { sendState: "failed" });
         }
@@ -3316,7 +3672,7 @@ const wildWorksLeadConfirmationScript = `
           activeLead = null;
           return;
         }
-        const submitted = lead.status === "submitted" || lead.submittedAt;
+        const submitted = hasSubmittedTruth(lead);
         const method = lead.contactMethod === "phone" ? "phone" : lead.contactMethod === "email" ? "email" : lead.email ? "email" : lead.phone ? "phone" : null;
         const value = method === "email" ? lead.email : method === "phone" ? lead.phone : null;
         if (!method) return;
@@ -3338,6 +3694,7 @@ const wildWorksLeadConfirmationScript = `
         const output = panel.querySelector("#wildworks-lead-value");
         const status = panel.querySelector("#wildworks-lead-status");
         const button = panel.querySelector("#wildworks-lead-confirm");
+        const card = panel.querySelector(".wildworks-lead-card");
         const dismiss = panel.querySelector("#wildworks-lead-dismiss");
         const close = panel.querySelector("#wildworks-lead-close");
         if (!label || !output || !status || !button) return;
@@ -3403,37 +3760,58 @@ const wildWorksLeadConfirmationScript = `
         output.setAttribute("aria-label", aria);
         output.placeholder = "";
         output.disabled = false;
-        output.readOnly = Boolean(submitted);
+        const failed = isSendFailureStatus(lead.notificationStatus);
+        output.readOnly = Boolean(submitted) && !failed;
         const contactKey = [lead.sessionId, method, value].join(":");
         if (contactKey !== revealedContactKey) {
           revealedContactKey = contactKey;
           userEditedContact = false;
         }
         const permitted = hasSendPermission(lead) || userEditedContact;
-        const delivered = lead.notificationStatus === "sent";
-        const failed = isSendFailureStatus(lead.notificationStatus);
-        button.hidden = Boolean(submitted) || !permitted || delivered;
-        button.disabled = Boolean(submitted) || !permitted || delivered;
+        const delivered = hasDeliveredTruth(lead);
+        // A send that just failed for THIS contact keeps the box in the failed
+        // view until the value changes or a retry succeeds.
+        const stickyFailure = failedForContactKey !== null && failedForContactKey === contactKey;
+        const retryableFailure = failed || stickyFailure;
+        button.hidden = (Boolean(submitted) && !retryableFailure) || !permitted || delivered;
+        button.disabled = (Boolean(submitted) && !retryableFailure) || !permitted || delivered;
+        // Every visible capture state owns the exact formatted value. Pending
+        // submissions used to skip this because their capture was hidden; now
+        // that pending/failed truth stays visible, populate it through the same
+        // readback-preserving path as an ordinary capture.
+        revealCapturedContact(output, displayContact(method, visible));
         const spoken = panel.querySelector("#wildworks-lead-spoken-readback");
         if (spoken) spoken.textContent = typeof lead.spokenReadback === "string" ? lead.spokenReadback : "";
-        if (delivered) {
+        if (failed || stickyFailure) {
+          // A failure that arrives on a poll is still a failure. Put the box
+          // back so the visitor can retry, and never leave a tick standing over
+          // a lead that did not travel.
+          setCaptureHidden(false);
+          setSentVisible(false, method);
+          card?.setAttribute("data-box-view", "failed");
+        } else if (delivered) {
           setCaptureHidden(true);
           setSentVisible(true, method);
-          if (!dropScheduled[contactKey]) {
-            dropScheduled[contactKey] = true;
-            dropPanelSoon(2000);  // G 2026-08-19: same 2s beat on the typed path
-          }
-        } else if (submitted && !failed) {
-          setCaptureHidden(true);
-          setSentVisible(false, method);
+          card?.setAttribute("data-box-view", "sent");
+        } else if (submitted) {
+          // Submitted per the server, provider not confirmed. Persistent, and
+          // worded as received rather than sent. Keep the captured value visible
+          // and read-only while the linked outbox is pending.
+          setCaptureHidden(false);
+          setSentVisible(true, method, RECEIVED_LABEL);
+          card?.setAttribute("data-box-view", "submitted");
         } else {
           setCaptureHidden(false);
           setSentVisible(false, method);
-          revealCapturedContact(output, displayContact(method, visible));
+          // Still asking. Clear any earlier view so a stale "sending"/"failed"
+          // cannot dress up a fresh capture.
+          card?.setAttribute("data-box-view", "captured");
         }
         status.textContent = delivered
           ? sentLabelFor(method)
-          : statusFromLead(lead);
+          : stickyFailure
+            ? "The send failed. Scott does not have this yet. I will keep the details here."
+            : statusFromLead(lead);
         status.hidden = !status.textContent;
         const media = panel.querySelector("#wildworks-lead-media");
         const mediaCount = typeof lead.mediaCount === "number" ? lead.mediaCount : 0;
@@ -3445,11 +3823,11 @@ const wildWorksLeadConfirmationScript = `
         }
         panel.setAttribute(
           "data-handoff-state",
-          lead.notificationStatus === "sent" ? "notified" : submitted ? "queued" : "awaiting",
+          retryableFailure ? "failed" : delivered ? "notified" : submitted ? "queued" : "awaiting",
         );
         panel.setAttribute(
           "data-ui-state",
-          delivered ? "sent" : failed ? "failed" : submitted ? "pending" : "captured",
+          delivered ? "sent" : failed || stickyFailure ? "failed" : submitted ? "pending" : "captured",
         );
         logUi("iscott_lead_state", { status: lead.status, notificationStatus: lead.notificationStatus });
         button.onclick = confirmLead;
