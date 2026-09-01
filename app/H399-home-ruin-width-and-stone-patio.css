@@ -1,0 +1,50 @@
+/* H399 - Home: the ruin heading stops spilling right, and Stone Patio goes up
+   one size. Claude, 2026-08-31, from G's screenshot of the Tree of Life block.
+
+   G: "what could be cooler is to the right. It's not centered. Work on that."
+   G: "stone patio can be a little bit bigger, just like one font size larger."
+
+   Import AFTER H398/H397, BEFORE H232. Home only.
+   ===================================================================== */
+
+/* =====================================================================
+   1. THE RUIN HEADING IS NOT MISCENTRED - IT OVERFLOWS.
+
+   Measured across nine widths. At 1536 and below every row is centred to
+   the pixel (gapL == gapR). At 1920 it breaks:
+
+       row 1  "What Could Be Cooler"   gapL 0   gapR -100   <- 100px off the right
+       row 2  "Than Having A Ruin"     gapL 0   gapR   -7
+       row 3  "Of Your Own?"           gapL 3   gapR    3
+
+   The rows are still being centred; there is just no room. The heading's
+   own box is `.wild-section-heading`, capped at max-width 928px, while the
+   widest row needs 1029px at that font size. Content wider than its box
+   pins to the left and spills right - which is exactly what G is seeing,
+   and why it reads as "pushed to the right" rather than "off centre".
+
+   So the fix is the box, not the alignment. The section itself has 1792px
+   of room at 1920 (64px padding each side), so 72rem is safe and still
+   leaves a wide margin. Below ~1536 the rows already fit inside 928px, and
+   the box stays centred either way, so nothing moves at the widths G has
+   already approved. Type size is untouched.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home) #signature-work > .wild-section-heading {
+  max-width: min(100%, 72rem) !important;
+  margin-inline: auto !important;
+}
+
+/* =====================================================================
+   2. STONE PATIO, ONE SIZE UP.
+
+   All three Tree of Life rows currently render at the same size. G asked
+   for the third one only - "Stone Patio" - to go up one step. 1.12 is one
+   step on this page's scale, applied in em so it holds at every width, and
+   the row is allowed to stay on one line so the bump cannot fold it in two.
+   Colour and shadow are not touched here; the shadow is handled in H386.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home)
+  #wildworks-proof .wild-tree-title .wild-line-title__line--three {
+  font-size: 1.12em !important;
+  white-space: nowrap !important;
+}
