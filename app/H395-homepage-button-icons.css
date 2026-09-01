@@ -51,7 +51,19 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     .wild-home-phone-iscott-test__button
   )
   svg {
-  fill: currentColor;
+  /* H398 (Claude, 2026-08-31): was "fill: currentColor". Every one of the
+     22 icons inside buttons on Home is line art that ships fill="none" as
+     its own attribute (lucide sparkles / phone / images / flame / compass /
+     mail / message-square-text / send, plus the footer double-rise). CSS
+     beats the presentation attribute, so filling them with currentColor -
+     the same colour as their own stroke - flooded each icon into a solid
+     silhouette, and a 0.75px drop-shadow cannot read against a blob.
+     G 2026-08-31: "the icons in the buttons have no shadow effect.
+     They are smudgy. What the fuck happened to them?"
+     Rendered both candidate fixes offline at 12x before changing this:
+     removing the blur left it a blob, fill:none restored the line art with
+     the attached edge visible. The filter above is untouched. */
+  fill: none;
   stroke: currentColor;
 }
 
