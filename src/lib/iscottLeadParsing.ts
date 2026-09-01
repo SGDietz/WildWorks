@@ -1,6 +1,37 @@
 import { iscottSalesCopyContextBlock } from "./iscottSalesCopy";
 
-const PROJECT_NEED_PATTERN = /\b(?:i|we)\s+(?:want|wanted|need|needed|would like|am looking|are looking)\s+(?:to\s+)?([^.!?]{3,260})/i;
+// HOW PEOPLE ACTUALLY ANSWER "what do you need?", 2026-08-31.
+//
+// This used to be one pattern: I/we + want|need|would like|am looking. It threw
+// away most of a real conversation. Measured against G's own rides:
+//
+//   "I'd like to have him build one for me."       -> null   (contraction)
+//   "I'm interested in a website."                 -> null   (contraction)
+//   "Him to build my brand and website"            -> null   (bare answer)
+//   "Build me a website and a logo."               -> null   (imperative)
+//
+// Two of his four rides on 2026-08-31 captured his address, locked consent, and
+// still could not qualify because the job was never extracted from sentences
+// that plainly stated it. G: "yes, loosen it."
+//
+// The contraction gap was the biggest single hole. "I'd" and "I'm" are how
+// almost everyone says this out loud, and neither was listed.
+//
+// Loosening the EXTRACTOR is safe in a way that loosening the gate would not
+// be: isSpecificProjectNeed still runs on whatever comes out, and still refuses
+// generic text, coaching/persona answers, contact mechanics and operator sales
+// language. This only decides which words to hand it.
+const PROJECT_NEED_PATTERNS: RegExp[] = [
+  // I want / I need / I'd like / I'm looking for / I'm interested in / we ...
+  /\b(?:i|we)\s*(?:'|’)?\s*(?:want|wanted|need|needed|would\s+like|d\s+like|am\s+looking|m\s+looking|are\s+looking|re\s+looking|am\s+interested|m\s+interested|am\s+after|m\s+after|ve\s+been\s+wanting)\b\s*(?:to\s+|for\s+|in\s+)?([^.!?]{3,260})/i,
+  // "Him to build my brand" / "Scott to redo the patio" - the bare answer to
+  // iScott's own question, where the subject is him and not the visitor.
+  /\b(?:him|scott|iscott|you)\s+to\s+((?:build|make|design|create|do|redo|rebuild|help)[^.!?]{3,260})/i,
+  // Straight imperative: "Build me a website and a logo."
+  /\b(?:build|make|design|create|do)\s+(?:me|us)\s+([^.!?]{3,260})/i,
+  // "Can you build me a site" / "could you design a logo"
+  /\b(?:can|could|would)\s+(?:you|he|scott)\s+((?:build|make|design|create|do|redo)[^.!?]{3,260})/i,
+];
 
 // G, 2026-08-23, looking at a real lead: the summary line just quoted his own
 // spoken disfluency verbatim ("a cascading, you know, I want like a stream
@@ -26,9 +57,16 @@ const CONTACT_MECHANICS_NEED =
   /\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i;
 
 export function extractProjectNeed(text: string): string | null {
-  const match = text.match(PROJECT_NEED_PATTERN);
-  if (!match?.[1]) return null;
-  const candidate = stripSpokenProjectFiller(match[1].replace(/\s+/g, " ").trim());
+  let captured: string | null = null;
+  for (const pattern of PROJECT_NEED_PATTERNS) {
+    const match = text.match(pattern);
+    if (match?.[1]) {
+      captured = match[1];
+      break;
+    }
+  }
+  if (!captured) return null;
+  const candidate = stripSpokenProjectFiller(captured.replace(/\s+/g, " ").trim());
   if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
   if (isCoachingOrPersonaNeed(candidate)) return null;
   if (CONTACT_MECHANICS_NEED.test(candidate)) return null;

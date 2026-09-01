@@ -1063,6 +1063,7 @@ export async function processIScottTranscriptRows(args: {
   const partialContact = (row.email ?? "").trim() || (row.phone ?? "").trim();
   const neverNotified = !((row.notification_status ?? "").trim());
   if (partialContact && neverNotified && !alreadyHandled) {
+    let partialOutcome: Record<string, unknown> = { attempted_at: new Date().toISOString() };
     try {
       // Reached through the namespace on purpose: the focused tests stub this
       // module, and an absent export must simply mean "no partial mail here"
@@ -1086,9 +1087,37 @@ export async function processIScottTranscriptRows(args: {
           contact_confirmed: Boolean((row.contact_confirmed_at ?? "").trim()),
         },
       });
-    } catch {
+      partialOutcome = { ...partialOutcome, result: "sent" };
+    } catch (error) {
       // Same rule as the strict path: a notification failure must never break
       // transcript capture. The lead row still holds everything.
+      partialOutcome = {
+        ...partialOutcome,
+        result: "failed",
+        error: String(error).slice(0, 300),
+      };
+    }
+    // G, 2026-09-01: "Any potential leads I want to know about."
+    // This send used to be the one promise in the pipeline with no record of
+    // whether it was kept: the catch above swallowed the failure, and the
+    // partial mail is keyed '#partial' in the outbox so it never touches
+    // notification_status on the row either. When G asked tonight whether he
+    // had been told about three stalled leads, there was no way to answer from
+    // the data - and Resend's list endpoint refuses the sending key we hold, so
+    // there was no way to answer from outside either.
+    // Recorded on the row now, success or failure, so the question is always
+    // answerable. Wrapped itself, because bookkeeping must never be the thing
+    // that breaks capture.
+    try {
+      // Not reassigned into `row`: the caller's state does not need the note,
+      // only the table does, and `row` is const by design here.
+      await writeLead({
+        session_id: args.sessionId,
+        metadata: { ...(row.metadata ?? {}), partial_notification: partialOutcome },
+      });
+    } catch {
+      // The mail either went or it did not; losing the note about it is not
+      // worth failing the capture that holds the lead.
     }
   }
 
