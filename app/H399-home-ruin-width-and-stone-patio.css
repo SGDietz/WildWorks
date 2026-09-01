@@ -38,13 +38,37 @@
    2. STONE PATIO, ONE SIZE UP.
 
    All three Tree of Life rows currently render at the same size. G asked
-   for the third one only - "Stone Patio" - to go up one step. 1.12 is one
-   step on this page's scale, applied in em so it holds at every width, and
-   the row is allowed to stay on one line so the bump cannot fold it in two.
+   for the third one only - "Stone Patio" - to go up.
+
+   FIRST TRY WAS 1.12 AND IT WAS TOO BIG. G: "stone patio is too big... take
+   it back a little bit, maybe half of a font size." Measured why it read big:
+   at 1920 its ink filled the heading box edge to edge, 0px clear on both
+   sides, while the two lines above it had 23px and 15px. Touching both edges
+   is what made the whole block look oversized and shoved right. 1.06 is half
+   the original step and puts real air back on both sides.
    Colour and shadow are not touched here; the shadow is handled in H386.
    ===================================================================== */
 #top.wild-home:not(.wild-legal-home)
   #wildworks-proof .wild-tree-title .wild-line-title__line--three {
-  font-size: 1.12em !important;
+  font-size: 1.06em !important;
   white-space: nowrap !important;
+}
+
+/* =====================================================================
+   3. THE TREE OF LIFE HEADING - CENTRE IT PROPERLY IN ITS OWN COLUMN.
+   G: "Is the tree of a little to the right? I think it needs to be
+   centered... make them centered nicely."
+
+   He is right, though only just. Each of the three rows is already centred
+   inside the heading box, but the BOX itself is not centred in its column:
+   measured at 1920 the heading sits 1209-1662 inside a 1203-1664 column,
+   so 6px clear on the left and 2px on the right - 4px adrift, and leaning
+   the way he said. Giving the heading the full column width and centring
+   its text removes the offset at every width instead of nudging it.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home) #wildworks-proof .wild-tree-title {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+  text-align: center !important;
 }
