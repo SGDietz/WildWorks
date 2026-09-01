@@ -66,9 +66,24 @@
    the way he said. Giving the heading the full column width and centring
    its text removes the offset at every width instead of nudging it.
    ===================================================================== */
-#top.wild-home:not(.wild-legal-home) #wildworks-proof .wild-tree-title {
+#top.wild-home:not(.wild-legal-home) #wildworks-proof .wild-tree-title,
+#top.wild-home:not(.wild-legal-home) #wildworks-proof .wild-tree-title
+  .wild-line-title__line {
   width: 100% !important;
   max-width: 100% !important;
-  margin-inline: auto !important;
-  text-align: center !important;
+  margin-inline: 0 !important;
+  text-align: left !important;
 }
+
+/* G 2026-09-01, with a blue line drawn down his screenshot: "looks right
+   centred but not left, make the lines all on that approx blue line."
+   The line he drew is the body copy's left edge. Centring reversed to left so
+   all three rows and the paragraphs below share one edge.
+
+   This rule said `center` an hour earlier, because he had asked for that. It
+   is his page and his eye; latest word wins.
+
+   The `__line` children are named explicitly. The heading element alone was not
+   enough - they are display:block and carry their own alignment, so aligning
+   only the parent left the rows centred inside full-width blocks, which is
+   exactly what he was still looking at. */
