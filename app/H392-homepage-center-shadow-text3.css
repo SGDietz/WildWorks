@@ -136,9 +136,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     0 0.05022em 0 rgba(28, 7, 1, 0.46),
     0 0.06695em 0 rgba(25, 6, 1, 0.396);
   --ww-color3-full-shadow:
-    var(--ww-color3-original-shadow),
-    0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
-    0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34);
+    var(--ww-color3-original-shadow);
   text-shadow: var(--ww-color3-full-shadow) !important;
 }
 
@@ -161,9 +159,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     0 0.05022em 0 rgba(28, 7, 1, 0.46),
     0 0.06695em 0 rgba(25, 6, 1, 0.396);
   --ww-color3-full-shadow:
-    var(--ww-color3-original-shadow),
-    0 calc(-1 * clamp(0.5px, 0.024em, 0.65px)) 0 rgba(0, 0, 0, 0.5),
-    0 calc(-1 * clamp(0.75px, 0.037em, 1px)) clamp(0.2px, 0.011em, 0.34px) rgba(0, 0, 0, 0.34);
+    var(--ww-color3-original-shadow);
   text-shadow: var(--ww-color3-full-shadow) !important;
 }
 

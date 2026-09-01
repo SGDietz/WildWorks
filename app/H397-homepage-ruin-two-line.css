@@ -1,0 +1,90 @@
+/* H397 — Homepage: ruin heading back to its earlier line grouping, and the
+   last "formerly Text 3" heading stops carrying the heavy display depth.
+
+   Grok wrote the draft (handoff 2026-08-31 4:58 PM ET). Claude inspected it
+   against the live markup before installing and changed what follows — the
+   intent below is G's, unchanged.
+
+   G 2026-08-31, Telegram photos 779577962 / 779577963 / 779577965:
+     "these formerly #3 tecxt colors are still often too heavy on the shadow
+      effect"
+     "what could be cooler was on one line. than having a ruin also its own
+      line. take it back to where itw as earlier today"
+
+   WHAT THE DRAFT ASSUMED vs WHAT IS ON THE PAGE
+   ---------------------------------------------
+   The draft rebuilt .wild-signature-title as a flex row and gave __one
+   flex:0 0 100% to make line 1. The real heading is five .__line wrappers:
+
+     .__line > .__one   "What Could"
+     .__line > .__one   "Be Cooler"
+     .__line > .__two   "Than Having"
+     .__line > .__two   "A Ruin"
+     .__line > .__three "Of Your Own?"
+
+   __one and __two each appear TWICE, and the flex items are the .__line
+   wrappers — so flex:0 0 100% on __one would never have applied, and the
+   two-line result the draft described could not come out of that markup.
+
+   It also did not need to. globals.css:4524 (@media min-width: 720px)
+   already groups the rows exactly as G describes, with a "\A" break after
+   rows 2 and 4. That rule was live this morning. H394 then set
+   display:block + width:100% on every span in the title at 22 ids and beat
+   it, which is what stacked the heading. So "take it back to where it was
+   earlier today" is a DELETION, not a new layout — done in H394 itself.
+   Nothing about the ruin layout belongs in this file.
+
+   Same for the shadows: the leftover top dash on "Of Your Own?" and on
+   "Website Like This?" lives in H392 at 22 ids, so restating it here at 2
+   ids would have lost. Both were retired in H392 instead.
+
+   That leaves ONE heading this file has to fix.
+
+   Scope: Home only. Not legal, Wildfire, Projects, Ruins, Bio, the stair
+   hero, button text, the Talk button / 521px gate, or iScott.
+   Palette untouched — H393 cream stays.
+   Import AFTER H396 and BEFORE H232.
+   ===================================================================== */
+
+/* =====================================================================
+   "is Known for:" — #services heading, second line.
+
+   This is the last of the three headings G photographed. Its shadow comes
+   from the inline block in app/pages/Home/page.tsx (~line 2662), which
+   paints text-shadow: var(--ww-home-display-depth-strong) on
+   #services > .wild-section-heading > .wild-section-title and its
+   children. On this page that variable is the down-and-right double
+   (clamp 2–3.5px twice, alpha .9 / .72) — heavy under Text 3 orange, and
+   heavier still now that H393 has made the line cream.
+
+   Two ways in, and this rule takes both: it re-points the variable ON the
+   element (the winning rule reads var(), so feeding it is enough) and also
+   states the text-shadow directly. The direct statement carries 2 ids +
+   4 classes against the inline rule's 2 ids + 3 classes, so it wins
+   without an id ladder.
+
+   Value = the H386 four-stop, bottom only, unscaled — the same ladder H396
+   put on the iScott title. "is Known for:" was never one of the +10%
+   lines, so it does not get the +10% numbers.
+
+   Only the second line moves. "What WildWorks" is Text 1 and G did not
+   name it.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home)
+  :is(
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two,
+    #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two *
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396);
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow);
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow);
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+}

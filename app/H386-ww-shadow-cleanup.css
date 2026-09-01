@@ -78,8 +78,18 @@
   .wild-subpage--wildfire .wildfire-hero-summary__line--c3,
   .wild-subpage--projects .wild-projects-page-intro__line--three,
   #wildworks-proof .wild-tree-title .wild-line-title__line--three,
-  #signature-work .wild-signature-title__three,
-  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
+  /* H397, 2026-08-31: "#signature-work .wild-signature-title__three"
+     ("Of Your Own?") and
+     "#services > .wild-section-heading > .wild-section-title
+      .wild-line-title__line--two" ("is Known for:") used to sit here.
+     They are NOT Text 3 any more - H393 repainted both to Text 2
+     #edc775 (measured on the served page, 2026-08-31). This list is the
+     "Text 3 on the primary background" list, so keeping them in it kept
+     a Text-3-only treatment on two lines that stopped being Text 3.
+     G 2026-08-31: "these formerly #3 tecxt colors are still often too
+     heavy on the shadow effect".
+     G's 2026-08-28 order below is UNTOUCHED - every element still in
+     this list is genuinely Text 3 and still gets its top dash. */
 ):not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_) {
   /* G 2026-08-28, with screenshots: "This is ridiculously huge. Shadows make it
      more like the other colored texts... everywhere on the site that color 3
@@ -134,8 +144,18 @@
   .wild-subpage--wildfire .wildfire-hero-summary__line--c3,
   .wild-subpage--projects .wild-projects-page-intro__line--three,
   #wildworks-proof .wild-tree-title .wild-line-title__line--three,
-  #signature-work .wild-signature-title__three,
-  #services > .wild-section-heading > .wild-section-title .wild-line-title__line--two
+  /* H397, 2026-08-31: "#signature-work .wild-signature-title__three"
+     ("Of Your Own?") and
+     "#services > .wild-section-heading > .wild-section-title
+      .wild-line-title__line--two" ("is Known for:") used to sit here.
+     They are NOT Text 3 any more - H393 repainted both to Text 2
+     #edc775 (measured on the served page, 2026-08-31). This list is the
+     "Text 3 on the primary background" list, so keeping them in it kept
+     a Text-3-only treatment on two lines that stopped being Text 3.
+     G 2026-08-31: "these formerly #3 tecxt colors are still often too
+     heavy on the shadow effect".
+     G's 2026-08-28 order below is UNTOUCHED - every element still in
+     this list is genuinely Text 3 and still gets its top dash. */
 ) {
   /* G 2026-08-26, phone audit: "everywhere on the site where it's text colour
      number three and it's on top of the primary background colour, it should
