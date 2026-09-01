@@ -62,31 +62,24 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      shadows the result of the one before it - so ten equal steps land at
      0.078500em total, matching the text. Rising offsets would smear.
 
-     x1.35 ON THE STEP, and that multiplier was chosen by looking, not by
-     arithmetic. Matched 1:1 the icon measured identical to the text - 1.4067px
-     against 1.40668px - and still read LIGHTER, because a 2px line carries far
-     less mass than a bold glyph stem, so the same shadow under it registers as
-     less. Rendered 1.0 / 1.35 / 1.7 at 10x beside the label: 1.0 was visibly
-     weaker than the text, 1.7 began to read as a dark outline and close up the
-     icon's counters, 1.35 sits where the text sits.
+     ONE shadow, not a chain. G, seeing the ten-layer version: "they are
+     hideous" - and he was right. Chained drop-shadows COMPOUND: each one
+     shadows the result of the one before it, so ten sub-pixel copies on thin
+     line art stop reading as depth and start reading as a dark keyline traced
+     right around the glyph, top and sides included. Text-shadow layers do not
+     do that - each is an independent copy of the letter - which is why the
+     same ten numbers look correct on the label and awful on the icon.
+     Proved it by rendering the 52px sparkles icon with the chain and with
+     nothing: the rim was the chain.
 
-     In em, so it tracks every button size on the page automatically: the svg
-     inherits the button's font-size, which is the same basis the label ladder
-     uses. A 52px Talk control and a 16px footer link stay in proportion.
+     A single offset copy is what the label's ladder actually resolves to at
+     this scale - a solid dark shape sitting below - so that is what the icon
+     gets, at the same total depth the label reaches: 0.078500em.
 
      Stroke-width is deliberately NOT set here. Thickening the strokes was the
      wrong read of "smudgy" and G confirmed the natural weight looks better. */
   filter:
-    drop-shadow(0 0.010597em 0 rgba(35,9,2,0.97))
-    drop-shadow(0 0.010597em 0 rgba(34,9,2,0.941))
-    drop-shadow(0 0.010597em 0 rgba(33,8,2,0.913))
-    drop-shadow(0 0.010597em 0 rgba(32,8,2,0.884))
-    drop-shadow(0 0.010597em 0 rgba(31,8,2,0.855))
-    drop-shadow(0 0.010597em 0 rgba(29,7,1,0.827))
-    drop-shadow(0 0.010597em 0 rgba(28,7,1,0.798))
-    drop-shadow(0 0.010597em 0 rgba(27,7,1,0.745))
-    drop-shadow(0 0.010597em 0 rgba(26,6,1,0.700))
-    drop-shadow(0 0.010597em 0 rgba(25,6,1,0.660)) !important;
+    drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93)) !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
@@ -205,14 +198,26 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      Stroke-width is deliberately NOT set here. Thickening the strokes was the
      wrong read of "smudgy" and G confirmed the natural weight looks better. */
   filter:
-    drop-shadow(0 0.010597em 0 rgba(35,9,2,0.97))
-    drop-shadow(0 0.010597em 0 rgba(34,9,2,0.941))
-    drop-shadow(0 0.010597em 0 rgba(33,8,2,0.913))
-    drop-shadow(0 0.010597em 0 rgba(32,8,2,0.884))
-    drop-shadow(0 0.010597em 0 rgba(31,8,2,0.855))
-    drop-shadow(0 0.010597em 0 rgba(29,7,1,0.827))
-    drop-shadow(0 0.010597em 0 rgba(28,7,1,0.798))
-    drop-shadow(0 0.010597em 0 rgba(27,7,1,0.745))
-    drop-shadow(0 0.010597em 0 rgba(26,6,1,0.700))
-    drop-shadow(0 0.010597em 0 rgba(25,6,1,0.660)) !important;
+    drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93)) !important;
+}
+
+
+/* =====================================================================
+   THE 52px TALK CONTROL, on the large ladder.
+
+   H337 puts .wild-home-phone-iscott-test__button's LABEL on
+   --ww-cta-label-shadow-lg, a deliberately lighter em basis for big type
+   (H337:122). Its icon has to follow the same split or it sits 60% deeper
+   than the label right beside it - measured 4.08px against 2.55px.
+
+   Fed as a VARIABLE, not fought as a rule. The filter above reads
+   --ww-icon-shadow-depth, so setting that variable ON the element beats the
+   inherited default no matter how many ids the rule above carries. Two
+   attempts at out-specifying it lost silently first - one at 2 ids, and one
+   that tried to rebuild this file's own selector prefix and produced
+   malformed CSS that matched nothing.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home) .wild-home-phone-iscott-test__button
+  :is(svg, .wild-iscott-upload__icon) {
+  --ww-icon-shadow-depth: 0.049064em;
 }
