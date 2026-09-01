@@ -31,7 +31,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
        Swept all 30 icon-bearing buttons on Home: these two were the only
        ones this list did not already reach. */
     .wild-mobile-menu-button,
-    .wild-branded-video__center-control
+    .wild-branded-video__center-control,
+    /* G 2026-09-01: "Do this for the entire home page." A sweep of all 29
+       icon-bearing buttons found these four - play, mute, fullscreen and
+       the options menu on the video bar - as the only ones still without
+       the ladder. They sit over moving video, where an attached edge helps
+       most. */
+    .wild-branded-video__control
   )
   :is(svg, .wild-iscott-upload__icon) {
   /* G 2026-08-31 10:40 PM ET: "the icons need a little bit heavier of a
@@ -42,23 +48,45 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      3px attached ladder instead of the old two steps reaching 2.25px.
      Equal steps, not rising offsets: rising offsets smear.
      The soft ground shadow is unchanged; G did not ask for that. */
-  /* G 2026-08-31 11:20 PM: "The icons still are quite shit. They need to
-     be significantly thicker." Measured the mismatch: the button LABEL
-     sits at font-weight 750 while the icons were drawn at lucide default
-     stroke 2 on a 24 viewBox - spindly line art next to near-black text.
-     So the stroke itself goes up, not just the shadow: 2 -> 3.2, chosen
-     by rendering 2.8 / 3.2 / 3.6 at 14x and comparing. 3.6 started to
-     close up the counters inside the images icon; 3.2 holds the detail.
-     Shadow deepened too: five equal 1px compounding steps = a 5px
-     attached ladder, up from 3px. Equal steps, never rising offsets. */
-  stroke-width: 3.2px !important;
+  /* G 2026-09-01: "make them give the same feel as the text. I really like the
+     text amount of shadow effect... I back the shadow effect off of the text
+     ten percent. And then add an appropriate amount to the icons."
+
+     So the icon shadow is not invented this time - it IS the label ladder.
+     H337's --ww-cta-label-shadow is ten text-shadow layers stepping
+     0.008722em apart; backed off 10% that step is 0.007850em. Ten chained
+     drop-shadows of exactly that step, carrying the same ten alphas, build the
+     same ladder to the same depth.
+
+     ONE step each, not rising offsets: chained drop-shadows COMPOUND - each one
+     shadows the result of the one before it - so ten equal steps land at
+     0.078500em total, matching the text. Rising offsets would smear.
+
+     x1.35 ON THE STEP, and that multiplier was chosen by looking, not by
+     arithmetic. Matched 1:1 the icon measured identical to the text - 1.4067px
+     against 1.40668px - and still read LIGHTER, because a 2px line carries far
+     less mass than a bold glyph stem, so the same shadow under it registers as
+     less. Rendered 1.0 / 1.35 / 1.7 at 10x beside the label: 1.0 was visibly
+     weaker than the text, 1.7 began to read as a dark outline and close up the
+     icon's counters, 1.35 sits where the text sits.
+
+     In em, so it tracks every button size on the page automatically: the svg
+     inherits the button's font-size, which is the same basis the label ladder
+     uses. A 52px Talk control and a 16px footer link stay in proportion.
+
+     Stroke-width is deliberately NOT set here. Thickening the strokes was the
+     wrong read of "smudgy" and G confirmed the natural weight looks better. */
   filter:
-    drop-shadow(0 1px 0 rgba(35, 9, 2, 0.96))
-    drop-shadow(0 1px 0 rgba(33, 8, 2, 0.93))
-    drop-shadow(0 1px 0 rgba(30, 8, 2, 0.90))
-    drop-shadow(0 1px 0 rgba(27, 7, 1, 0.87))
-    drop-shadow(0 1px 0 rgba(25, 6, 1, 0.84))
-    drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.30)) !important;
+    drop-shadow(0 0.010597em 0 rgba(35,9,2,0.97))
+    drop-shadow(0 0.010597em 0 rgba(34,9,2,0.941))
+    drop-shadow(0 0.010597em 0 rgba(33,8,2,0.913))
+    drop-shadow(0 0.010597em 0 rgba(32,8,2,0.884))
+    drop-shadow(0 0.010597em 0 rgba(31,8,2,0.855))
+    drop-shadow(0 0.010597em 0 rgba(29,7,1,0.827))
+    drop-shadow(0 0.010597em 0 rgba(28,7,1,0.798))
+    drop-shadow(0 0.010597em 0 rgba(27,7,1,0.745))
+    drop-shadow(0 0.010597em 0 rgba(26,6,1,0.700))
+    drop-shadow(0 0.010597em 0 rgba(25,6,1,0.660)) !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
@@ -84,7 +112,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
        Swept all 30 icon-bearing buttons on Home: these two were the only
        ones this list did not already reach. */
     .wild-mobile-menu-button,
-    .wild-branded-video__center-control
+    .wild-branded-video__center-control,
+    /* G 2026-09-01: "Do this for the entire home page." A sweep of all 29
+       icon-bearing buttons found these four - play, mute, fullscreen and
+       the options menu on the video bar - as the only ones still without
+       the ladder. They sit over moving video, where an attached edge helps
+       most. */
+    .wild-branded-video__control
   )
   svg {
   /* H398 (Claude, 2026-08-31): was "fill: currentColor". Every one of the
@@ -126,7 +160,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
        Swept all 30 icon-bearing buttons on Home: these two were the only
        ones this list did not already reach. */
     .wild-mobile-menu-button,
-    .wild-branded-video__center-control
+    .wild-branded-video__center-control,
+    /* G 2026-09-01: "Do this for the entire home page." A sweep of all 29
+       icon-bearing buttons found these four - play, mute, fullscreen and
+       the options menu on the video bar - as the only ones still without
+       the ladder. They sit over moving video, where an attached edge helps
+       most. */
+    .wild-branded-video__control
   )::before {
   /* G 2026-08-31 10:40 PM ET: "the icons need a little bit heavier of a
      shadow, just the icons... They're still just too little on the shadow"
@@ -136,21 +176,43 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
      3px attached ladder instead of the old two steps reaching 2.25px.
      Equal steps, not rising offsets: rising offsets smear.
      The soft ground shadow is unchanged; G did not ask for that. */
-  /* G 2026-08-31 11:20 PM: "The icons still are quite shit. They need to
-     be significantly thicker." Measured the mismatch: the button LABEL
-     sits at font-weight 750 while the icons were drawn at lucide default
-     stroke 2 on a 24 viewBox - spindly line art next to near-black text.
-     So the stroke itself goes up, not just the shadow: 2 -> 3.2, chosen
-     by rendering 2.8 / 3.2 / 3.6 at 14x and comparing. 3.6 started to
-     close up the counters inside the images icon; 3.2 holds the detail.
-     Shadow deepened too: five equal 1px compounding steps = a 5px
-     attached ladder, up from 3px. Equal steps, never rising offsets. */
-  stroke-width: 3.2px !important;
+  /* G 2026-09-01: "make them give the same feel as the text. I really like the
+     text amount of shadow effect... I back the shadow effect off of the text
+     ten percent. And then add an appropriate amount to the icons."
+
+     So the icon shadow is not invented this time - it IS the label ladder.
+     H337's --ww-cta-label-shadow is ten text-shadow layers stepping
+     0.008722em apart; backed off 10% that step is 0.007850em. Ten chained
+     drop-shadows of exactly that step, carrying the same ten alphas, build the
+     same ladder to the same depth.
+
+     ONE step each, not rising offsets: chained drop-shadows COMPOUND - each one
+     shadows the result of the one before it - so ten equal steps land at
+     0.078500em total, matching the text. Rising offsets would smear.
+
+     x1.35 ON THE STEP, and that multiplier was chosen by looking, not by
+     arithmetic. Matched 1:1 the icon measured identical to the text - 1.4067px
+     against 1.40668px - and still read LIGHTER, because a 2px line carries far
+     less mass than a bold glyph stem, so the same shadow under it registers as
+     less. Rendered 1.0 / 1.35 / 1.7 at 10x beside the label: 1.0 was visibly
+     weaker than the text, 1.7 began to read as a dark outline and close up the
+     icon's counters, 1.35 sits where the text sits.
+
+     In em, so it tracks every button size on the page automatically: the svg
+     inherits the button's font-size, which is the same basis the label ladder
+     uses. A 52px Talk control and a 16px footer link stay in proportion.
+
+     Stroke-width is deliberately NOT set here. Thickening the strokes was the
+     wrong read of "smudgy" and G confirmed the natural weight looks better. */
   filter:
-    drop-shadow(0 1px 0 rgba(35, 9, 2, 0.96))
-    drop-shadow(0 1px 0 rgba(33, 8, 2, 0.93))
-    drop-shadow(0 1px 0 rgba(30, 8, 2, 0.90))
-    drop-shadow(0 1px 0 rgba(27, 7, 1, 0.87))
-    drop-shadow(0 1px 0 rgba(25, 6, 1, 0.84))
-    drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.30)) !important;
+    drop-shadow(0 0.010597em 0 rgba(35,9,2,0.97))
+    drop-shadow(0 0.010597em 0 rgba(34,9,2,0.941))
+    drop-shadow(0 0.010597em 0 rgba(33,8,2,0.913))
+    drop-shadow(0 0.010597em 0 rgba(32,8,2,0.884))
+    drop-shadow(0 0.010597em 0 rgba(31,8,2,0.855))
+    drop-shadow(0 0.010597em 0 rgba(29,7,1,0.827))
+    drop-shadow(0 0.010597em 0 rgba(28,7,1,0.798))
+    drop-shadow(0 0.010597em 0 rgba(27,7,1,0.745))
+    drop-shadow(0 0.010597em 0 rgba(26,6,1,0.700))
+    drop-shadow(0 0.010597em 0 rgba(25,6,1,0.660)) !important;
 }

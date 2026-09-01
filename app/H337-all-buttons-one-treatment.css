@@ -741,33 +741,38 @@ html:has(#top.wild-home) body#wildworks-body :is(
 
      Ink, geometry, stop count, blur and em basis are all unchanged, so every
      button still scales with its own font-size and nothing moves off Home. */
+  /* G 2026-09-01: "I back the shadow effect off of the text ten percent."
+     Every offset below is the H337 ladder x0.9. Alphas untouched - he asked for
+     less depth, not different colour. The icon ladder in H395 is built from
+     these same numbers so the two read as one treatment, which is the actual
+     request: "make them give the same feel as the text". */
   --ww-cta-label-shadow:
-    rgba(35,9,2,0.97) 0 0.008722em 0,
-    rgba(34,9,2,0.941) 0 0.017444em 0,
-    rgba(33,8,2,0.913) 0 0.026167em 0,
-    rgba(32,8,2,0.884) 0 0.034889em 0,
-    rgba(31,8,2,0.855) 0 0.043611em 0,
-    rgba(29,7,1,0.827) 0 0.052333em 0,
-    rgba(28,7,1,0.798) 0 0.061056em 0,
-    rgba(27,7,1,0.745) 0 0.069778em 0,
-    rgba(26,6,1,0.700) 0 0.078500em 0,
-    rgba(25,6,1,0.660) 0 0.087222em 0;
+    rgba(35,9,2,0.97) 0 0.007850em 0,
+    rgba(34,9,2,0.941) 0 0.015700em 0,
+    rgba(33,8,2,0.913) 0 0.023549em 0,
+    rgba(32,8,2,0.884) 0 0.031399em 0,
+    rgba(31,8,2,0.855) 0 0.039249em 0,
+    rgba(29,7,1,0.827) 0 0.047099em 0,
+    rgba(28,7,1,0.798) 0 0.054949em 0,
+    rgba(27,7,1,0.745) 0 0.062798em 0,
+    rgba(26,6,1,0.700) 0 0.070648em 0,
+    rgba(25,6,1,0.660) 0 0.078498em 0;
   /* The 52px Talk control on its own lighter em basis, taking the SAME move so
      Home reads as one system: +5% on the offsets (0.051920em -> 0.054516em,
      2.70px -> 2.84px on 52px type) and the same three tail alphas coming down.
      Its icon is moving with everything else below, so leaving this label where
      it was is what would have broken its balance, not what would have kept it. */
   --ww-cta-label-shadow-lg:
-    rgba(35,9,2,0.97) 0 0.005452em 0,
-    rgba(34,9,2,0.941) 0 0.010903em 0,
-    rgba(33,8,2,0.913) 0 0.016355em 0,
-    rgba(32,8,2,0.884) 0 0.021806em 0,
-    rgba(31,8,2,0.855) 0 0.027258em 0,
-    rgba(29,7,1,0.827) 0 0.032710em 0,
-    rgba(28,7,1,0.798) 0 0.038161em 0,
-    rgba(27,7,1,0.745) 0 0.043613em 0,
-    rgba(26,6,1,0.700) 0 0.049064em 0,
-    rgba(25,6,1,0.660) 0 0.054516em 0;
+    rgba(35,9,2,0.97) 0 0.004907em 0,
+    rgba(34,9,2,0.941) 0 0.009814em 0,
+    rgba(33,8,2,0.913) 0 0.014720em 0,
+    rgba(32,8,2,0.884) 0 0.019627em 0,
+    rgba(31,8,2,0.855) 0 0.024534em 0,
+    rgba(29,7,1,0.827) 0 0.029441em 0,
+    rgba(28,7,1,0.798) 0 0.034348em 0,
+    rgba(27,7,1,0.745) 0 0.039254em 0,
+    rgba(26,6,1,0.700) 0 0.044161em 0,
+    rgba(25,6,1,0.660) 0 0.049068em 0;
 }
 
 /* Home owns the corrected icon edge at page scope. Every H337 icon consumer
