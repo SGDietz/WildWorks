@@ -1536,6 +1536,36 @@ const wildWorksButtonCss = `
         font-size: 1.15rem !important;
       }
     }
+
+    /* THE AVATAR PAGE'S OWN BUTTON ICONS.
+       G 2026-09-01: "buttons icons all look GREAT on home page, do them all
+       over site, all sub pages and legal pages" and "include all the avatar
+       buttons when they are in motion and stopped, everywhere on the site".
+
+       This route serves its own HTML and links ZERO app stylesheets - checked
+       over raw HTTP, 0 of them - so H400 cannot reach a single button here.
+       Every avatar control G named lives on this page, so the same rule has to
+       be restated inside this block or the one page he asked about by name
+       would be the only page without it.
+
+       Same value as H400 and H395: ONE drop-shadow at the button label ladder's
+       total depth, 0.078500em, in em so it holds at every control size. Not a
+       chain - chained drop-shadows compound and turn line art into a dark rim.
+       See app/H395-homepage-button-icons.css for the full reasoning.
+
+       Covers both avatar states: the overlay CTA shown on a stopped avatar, and
+       the restart and send-details controls shown while it is live and after it
+       ends. */
+    :is(
+      #wildworks-avatar-restart,
+      #wildworks-lead-confirm,
+      .btn-wood,
+      .wild-site-avatar-overlay-cta,
+      .money-cta,
+      .wildworks-lead-label-icon
+    ) :is(svg, img, .icon, .ww-mail, .ww-phone) {
+      filter: drop-shadow(0 0.078500em 0 rgba(30, 8, 2, 0.93));
+    }
   </style>
 `;
 

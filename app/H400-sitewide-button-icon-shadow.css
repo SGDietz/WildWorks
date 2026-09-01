@@ -1,0 +1,61 @@
+/* H400 - the approved Home button-icon shadow, applied to the whole site.
+
+   G 2026-09-01: "buttons icons all look GREAT on home page, do them all over
+   site, all sub pages and legal pages" and "include all the avatar buttons when
+   they are in motion and stopped, everywhere on the site".
+
+   Same treatment H395 landed on Home, with the Home scope removed. See H395 for
+   the reasoning; the short version is that it is ONE drop-shadow, not a chain,
+   because chained drop-shadows compound and turn thin line art into a dark
+   keyline instead of depth.
+
+   Depth is the button label's own ladder total, in em, so it tracks every
+   button size on every page automatically:
+
+       --ww-cta-label-shadow  ->  0.078500em
+
+   Imported BEFORE H395 on purpose. H395 refines Home - notably the 52px Talk
+   control, which rides the lighter --ww-cta-label-shadow-lg basis - and must
+   stay the last word there.
+   ===================================================================== */
+
+:is(
+  a.money-cta,
+  button.money-cta,
+  a.wild-iscott-action-button,
+  button.wild-iscott-action-button,
+  a[aria-label="Talk to iScott"],
+  button[aria-label="Talk to iScott"],
+  .wild-iscott-upload__button,
+  .wild-card-cta,
+  .wild-sell-feature-cta,
+  .wild-utility-button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  .wild-footer-top-button,
+  .wild-footer-top-button--closing,
+  .wild-footer-mobile-link,
+  .wild-home-phone-iscott-test__button,
+  .wild-mobile-menu-button,
+  .wild-branded-video__center-control,
+  .wild-branded-video__control,
+  .wild-project-lightbox__control,
+  .wild-gallery-control,
+  /* THE AVATAR CONTROLS, both states. G asked for these by name: "all the
+     avatar buttons when they are in motion and stopped". The overlay CTA is
+     what shows on a stopped avatar; the restart and the send-details controls
+     are what the live and ended states show. */
+  .wild-site-avatar-overlay-cta,
+  #wildworks-avatar-restart,
+  #wildworks-lead-confirm,
+  .btn-wood
+)
+:is(svg, img, i, .icon, .wild-iscott-upload__icon, .ww-mail, .ww-phone) {
+  filter: drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93));
+}
+
+/* The lead card's own label icons sit outside any button but belong to the same
+   family - G sees them in the same panel as the send control. */
+.wildworks-lead-label-icon :is(svg, .ww-mail, .ww-phone) {
+  filter: drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93));
+}
