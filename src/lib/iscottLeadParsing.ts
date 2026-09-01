@@ -618,6 +618,22 @@ export function extractContactPreference(text: string): "sms" | "voice" | "email
  * cross. Widened to the ordinary ways people say "you got it", with the refusal
  * check FIRST so a correction can never be read as a confirmation.
  */
+// Did this turn tell us the read-back was WRONG? Deliberately narrow, and only
+// consulted while a read-back is the freshest thing that happened (see the call
+// site), so an unrelated "no" later in the ride - "no, I don't have photos" -
+// can never reach it.
+//
+// Why it exists: before 2026-08-31 a visitor could answer "Did I hear that
+// exactly right?" with "No, that's not right at all", and the send prompt two
+// turns later would still anchor to that dead read-back and take a yes. The
+// lead went to Scott carrying an address its owner had just disowned.
+export function deniesContactReadBack(text: string): boolean {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (!normalized) return false;
+  if (/^(?:no|nope|nah)\b/i.test(normalized)) return true;
+  return /\b(?:not (?:right|correct|it|quite)|isn't (?:right|correct|it)|that's wrong|incorrect|you got (?:that|it) wrong|wrong (?:email|address|number)|not my (?:email|address|number))\b/i.test(normalized);
+}
+
 export function detectsContactReadBackCorrect(text: string): boolean {
   const normalized = text.replace(/\s+/g, " ").trim();
   if (!normalized) return false;
@@ -1797,7 +1813,55 @@ export function evaluateExactContactSendConsent(
 
     if (row.role !== "user") continue;
     if (isUiOnlyAffirmation(row.message)) continue;
+    // Whether the read-back is the freshest thing that has happened, captured
+    // BEFORE the step below moves it. The denial check further down needs to
+    // know this turn is the answer to the read-back question, not a stray "no"
+    // from later in the ride.
+    const answeringTheReadback = sinceReadback === 0;
     stepAwayFromReadback();
+    // THE VISITOR RE-CONFIRMING THE READ-BACK RE-ANCHORS IT.
+    // G's rides 13:19 and 17:32 on 2026-08-31 both died here, and both were
+    // his fault in no way at all:
+    //
+    //   [ 9] ASSISTANT  That's S-G-D-I-E-T-Z at P-M dot M-E. Did I hear that
+    //                   exactly right?
+    //   [10] USER       You did, and you said it perfectly. That's great. But
+    //                   the lettering is so small...
+    //   [11..15] USER   (six more turns about how the box should size text)
+    //   [16] USER       Yes, that is correct, iScott.
+    //   [17] ASSISTANT  Just to confirm, may I send these details to Scott now?
+    //   [18] USER       Yes.
+    //
+    // Every one of those middle turns stepped the read-back one further away,
+    // so by the time the send question arrived sinceReadback was 8, the prompt
+    // was never anchored, and the answer at [18] was discarded:
+    // readback_too_far_from_prompt. Scott never got the lead, and G told us so
+    // in the same session - "I did not receive a confirmation email."
+    //
+    // Distance from the read-back is a proxy for one thing: could the value
+    // have gone stale between iScott saying it and the visitor agreeing to
+    // send it. When the visitor states outright that we said it correctly,
+    // that proxy has been answered directly and the distance is zero again.
+    // So a confirmation re-anchors, exactly as a fresh read-back would.
+    //
+    // This can only ever re-anchor a read-back that already happened for the
+    // value we are holding right now. A bare yes with no read-back behind it
+    // still anchors nothing, and any turn naming a DIFFERENT value clears
+    // consent, the read-back and the prompt at the top of this loop before
+    // reaching here.
+    if (sinceReadback !== null && detectsContactReadBackCorrect(row.message)) {
+      sinceReadback = 0;
+    } else if (answeringTheReadback && deniesContactReadBack(row.message)) {
+      // The visitor answered the read-back question with "no". The value we
+      // hold is not the value they gave, so there is nothing here for a send
+      // prompt to anchor to and nothing a later yes may agree to. Only a fresh
+      // read-back of a corrected value can open this again.
+      // Guarded on answeringTheReadback so this only ever reads the answer to
+      // a read-back that just happened, never an unrelated "no" later on.
+      sinceReadback = null;
+      clearPrompt();
+      continue;
+    }
     if (promptOpen) userTurnsSincePrompt += 1;
 
     const command = isSendCommandConsent(row.message);
