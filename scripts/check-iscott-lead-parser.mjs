@@ -1521,6 +1521,45 @@ assert.equal(
 }
 
 // Q5. A READ-BACK THAT DRIFTED TOO FAR FROM THE QUESTION cannot be spent on it.
+//
+// UPDATED 2026-08-31. This case used to end in "Yes, that's right." followed by
+// small talk and expect a refusal. It now consents, deliberately, and the
+// original sequence is kept below as Q5b to show why.
+//
+// "Yes, that's right." is the visitor confirming the read-back, and a
+// confirmation re-anchors it - distance from a read-back is only a proxy for
+// "could this value have gone stale", and the visitor answering that directly
+// settles it. Three of G's four rides on 2026-08-31 died on the old rule while
+// he confirmed his address and then talked about the UI; he told us so in the
+// session: "I did not receive a confirmation email which you were supposed to
+// send." See scripts/check-iscott-readback-reanchor.mjs.
+//
+// Q5a. DRIFT WITH NO CONFIRMATION still cannot be spent. Nobody ever said the
+//      address was right, so there is nothing to re-anchor and the read-back
+//      ages out exactly as before.
+assert.equal(
+  evaluateExactContactSendConsent(
+    [
+      { role: "assistant", message: QREADBACK, laAbsoluteTimestamp: 10 },
+      { role: "user", message: "Scott has done work near me.", laAbsoluteTimestamp: 12 },
+      { role: "assistant", message: "He has, all over Baltimore.", laAbsoluteTimestamp: 14 },
+      { role: "user", message: "That sounds good.", laAbsoluteTimestamp: 16 },
+      { role: "user", message: "How long has he been at it?", laAbsoluteTimestamp: 18 },
+      { role: "user", message: "And does he travel?", laAbsoluteTimestamp: 20 },
+      { role: "user", message: "What about winter work?", laAbsoluteTimestamp: 22 },
+      { role: "user", message: "Interesting.", laAbsoluteTimestamp: 24 },
+      { role: "user", message: "Alright then.", laAbsoluteTimestamp: 26 },
+      { role: "assistant", message: QASK, laAbsoluteTimestamp: 28 },
+      { role: "user", message: "Yes.", laAbsoluteTimestamp: 30 },
+    ],
+    "email",
+    QEMAIL,
+  ).reason,
+  "readback_too_far_from_prompt",
+);
+
+// Q5b. THE SAME DRIFT, but the visitor confirmed the read-back first. This is
+//      the shape that lost G three leads, and it must now go through.
 assert.equal(
   evaluateExactContactSendConsent(
     [
@@ -1533,8 +1572,8 @@ assert.equal(
     ],
     "email",
     QEMAIL,
-  ).reason,
-  "readback_too_far_from_prompt",
+  ).consented,
+  true,
 );
 
 // Q6. A CHANGED CONTACT kills the read-back and the consent that stood on it.

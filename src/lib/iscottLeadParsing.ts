@@ -1462,8 +1462,21 @@ function mentionsDifferentContactValue(
   const found = contactMethod === "email"
     ? message.toLowerCase().match(LITERAL_EMAIL_RE) ?? []
     : message.match(LITERAL_PHONE_RE) ?? [];
-  return found.some((candidate) => {
+  if (found.some((candidate) => {
     const value = normalizedContactValue(contactMethod, candidate);
+    return value !== null && value !== target;
+  })) {
+    return true;
+  }
+  // A number can be CHANGED in words as easily as it can be read back in them.
+  // Once spokenDigitRuns taught the read-back check to hear "four four three,
+  // seven nine seven...", this had to learn the same alphabet or the two would
+  // disagree: a visitor correcting their number out loud would have been heard
+  // as saying nothing, and the consent given for the OLD number would have
+  // survived a correction and mailed Scott the wrong one.
+  if (contactMethod !== "phone") return false;
+  return spokenDigitRuns(message).some((run) => {
+    const value = normalizedContactValue("phone", run);
     return value !== null && value !== target;
   });
 }
@@ -1648,7 +1661,30 @@ export function detectsContextualContactSendConfirmation(
 // How far the read-back may sit from the send question. Zero means the question
 // follows it directly; two allows the visitor's "yes, that's right" in between,
 // which is the shape of every real ride.
-const READBACK_TO_PROMPT_MAX_TURNS = 2;
+// How many visitor turns may sit between iScott reading the contact back and
+// the moment permission is given. Raised from 2 to 6 on 2026-08-31.
+//
+// Two was too tight for how anyone actually talks. G's ride 15:20 measured:
+//
+//   [6] ASSISTANT  ...four four three, seven nine seven, two one six six.
+//                  Did I hear that exactly right?
+//   [7] USER       You did.
+//   [8] USER       The text is super small though. It's like midget size...
+//   [9] USER       God damn it.
+//   [10] USER      Yes, send that to Scott. You have my permission.
+//
+// A UI complaint and a swear were enough to age the read-back out, so an
+// explicit "you have my permission" was thrown away and Scott never got the
+// lead. Neither turn touches the contact, and neither could.
+//
+// This counter is not what keeps consent honest, and it never was. Three other
+// guards do that, and all of them stay: any turn naming a DIFFERENT value
+// clears consent, the read-back and the prompt outright; an explicit denial of
+// the read-back clears it; and evaluateLeadPackageChronology invalidates
+// permission if the name, the job or the contact moves after it was given. Six
+// turns of digression is still bounded, and it matches how G speaks - which is
+// the only speech we have real transcripts of.
+const READBACK_TO_PROMPT_MAX_TURNS = 6;
 
 const CONTACT_READBACK_SHAPE =
   /\b(?:i have your|your (?:email|phone|number)|read (?:that|it) back|reading (?:that|it) back|spell (?:that|it) out|spelled (?:that|it) out|did i (?:get|hear) (?:that|it)|is that (?:the )?right|does that look right|is that correct)\b/i;
@@ -1657,6 +1693,93 @@ const CONTACT_READBACK_SHAPE =
 // email form, or - the case messageMentionsContact alone cannot see - a phone
 // number spoken in groups, "4-4-3, 5-5-5, 0-1-4-2", where the commas he pauses
 // on sit between the digits. The digits themselves still have to match exactly.
+// SPOKEN NUMBER WORDS -> DIGITS.
+//
+// G's ride 2026-08-31 15:20 died here and it is worth spelling out, because
+// nobody did anything wrong:
+//
+//   [5] USER      Yes. 443-797-2166.
+//   [6] ASSISTANT Got it. That's four four three, seven nine seven, two one
+//                 six six. Did I hear that exactly right?
+//   [7] USER      You did.
+//
+// messageSpeaksContactExactly compares digits, and strips everything that is
+// not one - so that read-back reduced to an empty string, no read-back was
+// ever registered, and the consent walk refused with no_exact_contact_readback.
+// The lead sat in the table holding his phone number and Scott was never told.
+//
+// The system prompt tells iScott exactly how to speak an EMAIL back ("say each
+// character with dashes between letters, say at for @") and there is a
+// collapser for that form above. It says nothing at all about phone numbers,
+// so iScott improvises words and nothing downstream can read them. Rather than
+// dictate a format to the model - which only holds until it drifts - this
+// reads whatever it says.
+//
+// Returns the digit RUNS found in the text. Runs, not one string: an unknown
+// word ends a run, so "four four three" in one sentence and "seven nine seven"
+// in the next never fuse into a number nobody said.
+const SPOKEN_DIGIT_WORDS: Record<string, string> = {
+  zero: "0", oh: "0", o: "0", nought: "0", naught: "0",
+  one: "1", won: "1",
+  two: "2", to: "2", too: "2",
+  three: "3", four: "4", for: "4", fore: "4",
+  five: "5", six: "6", seven: "7", eight: "8", ate: "8", nine: "9",
+};
+// Words that may sit inside a spoken number without breaking it.
+const SPOKEN_NUMBER_FILLER: ReadonlySet<string> = new Set([
+  "um", "uh", "er", "and", "dash", "hyphen", "comma", "dot", "point",
+  "thats", "that", "s", "is", "it", "its", "the", "number", "area", "code",
+]);
+const SPOKEN_TENS: Record<string, string> = {
+  ten: "10", eleven: "11", twelve: "12", thirteen: "13", fourteen: "14",
+  fifteen: "15", sixteen: "16", seventeen: "17", eighteen: "18", nineteen: "19",
+  twenty: "2", thirty: "3", forty: "4", fourty: "4", fifty: "5",
+  sixty: "6", seventy: "7", eighty: "8", ninety: "9",
+};
+
+const SPOKEN_REPEATERS: Record<string, number> = { double: 2, triple: 3, tripple: 3 };
+
+export function spokenDigitRuns(text: string): string[] {
+  const tokens = String(text || "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+  const runs: string[] = [];
+  let current = "";
+  let repeat = 1;
+  const flush = () => {
+    if (current) runs.push(current);
+    current = "";
+    repeat = 1;
+  };
+  for (const token of tokens) {
+    if (/^[0-9]+$/.test(token)) {
+      current += token.repeat(repeat);
+      repeat = 1;
+      continue;
+    }
+    const digit = SPOKEN_DIGIT_WORDS[token];
+    if (digit !== undefined) {
+      current += digit.repeat(repeat);
+      repeat = 1;
+      continue;
+    }
+    if (SPOKEN_REPEATERS[token] !== undefined) {
+      repeat = SPOKEN_REPEATERS[token];
+      continue;
+    }
+    // "four hundred forty three" -> 443. Only the shapes a person actually
+    // speaks a phone number in; this is not a general number parser.
+    if (token === "hundred" || token === "thousand") continue;
+    if (SPOKEN_TENS[token] !== undefined) {
+      current += SPOKEN_TENS[token];
+      repeat = 1;
+      continue;
+    }
+    if (SPOKEN_NUMBER_FILLER.has(token)) continue;
+    flush();
+  }
+  flush();
+  return runs;
+}
+
 function messageSpeaksContactExactly(
   message: string,
   contactMethod: "email" | "phone",
@@ -1666,7 +1789,9 @@ function messageSpeaksContactExactly(
   if (contactMethod !== "phone") return false;
   const target = phoneDigits(contactValue);
   if (!target) return false;
-  return message.replace(/\D/g, "").includes(target);
+  if (message.replace(/\D/g, "").includes(target)) return true;
+  // iScott often reads a number back in words. See spokenDigitRuns above.
+  return spokenDigitRuns(message).some((run) => run.includes(target));
 }
 
 // An assistant turn that repeats the CURRENT contact and asks the visitor to
