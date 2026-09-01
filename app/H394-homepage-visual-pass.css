@@ -161,7 +161,13 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     .wild-home-phone-iscott-test__button
   )
   :is(svg, .wild-iscott-upload__icon) {
-  filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32)) !important;
+  /* G 2026-08-31 11:45 PM: "Go back to before Grok put these up" - the
+     whole homepage icon pass from today (H394 #5, H395, H396 #4) made
+     the icons progressively heavier and he called every version
+     smudgy. Neutralised so the icons render the way they did before
+     2026-08-31 16:20. Filter left OFF deliberately; do not re-add
+     without him asking. */
+  filter: none !important;
 }
 
 
