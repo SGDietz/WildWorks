@@ -45,6 +45,8 @@ const qualifies = (sentence) => {
 
 /* ---- MUST QUALIFY. Every one is a real way someone says this out loud. ---- */
 for (const sentence of [
+  // G's first substantive line in f1163ff3, directly answering iScott's ask.
+  "To build brands.",
   // G's own words, ride 2026-08-31 15:20 - the one that lost his phone number.
   "So Scott builds brands and digital websites for people. I'd like to have him build one for me.",
   "I'd like to have him build one for me.",

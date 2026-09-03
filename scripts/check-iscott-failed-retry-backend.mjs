@@ -88,6 +88,7 @@ await write("stub-route-telemetry", `export const events = [];
 export async function logServerTelemetryEvent(event) {
   events.push({ ...event, request: undefined, payload: structuredClone(event.payload) });
 }
+export async function logIScottOriginRejection() {}
 `);
 await transpile("app/api/iscott/lead/confirm/route.ts", "confirmRoute", [
   ['from "../../../../../src/lib/apiRouteSecurity"', 'from "./stub-security.mjs"'],
@@ -95,6 +96,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", "confirmRoute", [
   ['from "../../../../../src/lib/iscottLeadParsing"', 'from "./iscottLeadParsing.mjs"'],
   ['from "../../../../../src/lib/rateLimit"', 'from "./stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./stub-route-telemetry.mjs"'],
 ]);
 
 const Capture = await import(url("iscottLeadCapture"));

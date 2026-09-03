@@ -26,9 +26,11 @@ import {
   emailShell,
   emailSubheading,
   emailCallout,
+  emailSection,
   emailRows,
   emailButton,
   emailPre,
+  emailPaintedCopy,
 } from "./emailTheme";
 import {
   ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
@@ -160,6 +162,12 @@ export type IScottLeadEmailArgs = {
   // way to reach somebody, and it did not finish. Labelled loudly and keyed
   // separately so it can never be mistaken for a completed handoff.
   partial?: boolean;
+  // G 2026-09-03 11:18 ET, ride 6dd3ca7d: a lead Scott already has came back
+  // with a new need ("I need a waterfall out back"). iScott is told to say
+  // "I'm going to send Scott a follow-up email saying you're also interested
+  // in landscaping" - this is that mail. Same package, marked UPDATE, new need
+  // first. The caller keys it by session + need so it goes once.
+  followUp?: { previousNeed?: string | null };
 };
 
 export type PublicMessageEmailArgs = {
@@ -548,6 +556,19 @@ async function enqueueVoiceEmail(
     // The contact package is already encoded in the privacy-safe key. A retry
     // may regenerate a later confirmation timestamp or a longer transcript;
     // those presentation changes do not create a second owner notification.
+    // A newly confirmed read-back may promote the same partial package from its
+    // ten-minute holding period to immediate delivery. The status/update CAS
+    // keeps two transcript polls from both claiming that promotion.
+    if (!content.deferUntil && row.status === "pending" && row.next_attempt_at) {
+      const accelerated = await patchOutboxRow(
+        row.id,
+        { next_attempt_at: null },
+        { status: "pending", updatedAt: row.updated_at },
+      );
+      if (accelerated.ok && accelerated.rows[0]) {
+        return { result: accelerated, deduplicated: true };
+      }
+    }
     return { result: existing, deduplicated: true };
   }
   const sameLogicalIScottVisitorConfirmation =
@@ -1117,8 +1138,14 @@ export async function notifyIScottLeadByEmail(
   const summaryWant = projectNeed
     ? `wants ${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`
     : "did not say what the project is yet";
-  const summary =
-    `${fullName}${summaryWhere} ${summaryWant}.` +
+  const isFollowUp = Boolean(args.followUp);
+  const previousNeed = cleanText(args.followUp?.previousNeed, 400);
+  const summary = isFollowUp
+    ? `${fullName} came back with something new: ${projectNeed ?? "a new project"}.` +
+      (previousNeed ? ` You already have their first request (${previousNeed}).` : " You already have their first request.") +
+      (summaryReach ? ` Same contact: ${summaryReach}.` : "") +
+      ` ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`
+    : `${fullName}${summaryWhere} ${summaryWant}.` +
     (summaryReach ? ` Reach them on ${summaryReach}.${summaryPrefers}` : " No contact details were captured.") +
     summaryMedia +
     ` Confirmed ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`;
@@ -1159,14 +1186,17 @@ export async function notifyIScottLeadByEmail(
   const subject = truncateUtf8String(
     isPartial
       ? `INCOMPLETE iScott lead — ${fullName}${subjectLocation}`
-      : `New iScott lead — ${fullName}${subjectLocation}`,
+      : isFollowUp
+        ? `UPDATE iScott lead — ${fullName}: also ${projectNeed ?? "a new project"}`
+        : `New iScott lead — ${fullName}${subjectLocation}`,
     220,
   );
   const detailsText = [
-    "New confirmed iScott lead",
+    isFollowUp ? "Follow-up on a lead you already have" : "New confirmed iScott lead",
+    isFollowUp && previousNeed ? `Previously: ${previousNeed}` : null,
     `Name: ${fullName}`,
     location ? `Location: ${location}` : null,
-    projectNeed ? `Project: ${projectNeed}` : null,
+    `Project: ${projectNeed || "not stated yet"}`, // G, 2026-09-02 16:47 ET, chose (a) to "(a) Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
     `Preferred contact: ${contactMethod}`,
     email ? `Email: ${email}` : null,
     phone ? `Phone: ${phone}` : null,
@@ -1188,7 +1218,7 @@ export async function notifyIScottLeadByEmail(
   const detailRows = [
     ["Name", fullName],
     ["Location", location],
-    ["Project", projectNeed],
+    ["Project", projectNeed || "not stated yet"],
     ["Preferred contact", contactMethod],
     ["Email", email],
     ["Phone", phone],
@@ -1209,21 +1239,21 @@ export async function notifyIScottLeadByEmail(
           ? `<a href="${escapeHtml(item.signedUrl)}" style="color:${EMAIL_THEME.text1};font-weight:700;text-decoration:underline">Open file</a>`
           : "Stored privately in Supabase";
         const preview = item.signedUrl && item.mimeType.startsWith("image/")
-          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid ${EMAIL_THEME.text3}"></a></div>`
+          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid ${EMAIL_THEME.text1}"></a></div>`
           : "";
         return `<li style="margin:0 0 16px;color:${EMAIL_THEME.text1}"><strong>${escapeHtml(item.name)}</strong><br><span style="color:${EMAIL_THEME.text2}">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
       }).join("")
     : "<li>None.</li>";
   const qualLive = qualRows.filter(([, v]) => Boolean(v));
   const html = emailShell({
-    title: "New Confirmed Lead",
-    heading: "New Confirmed Lead",
+    title: isFollowUp ? "Lead Update" : "New Confirmed Lead",
+    heading: isFollowUp ? "Lead Update: something new" : "New Confirmed Lead",
     eyebrow: "WildWorks · iScott",
     maxWidth: 760,
     bodyHtml: [
-      emailCallout({ label: "Summary", html: escapeHtml(summary) }),
+      emailCallout({ label: "Summary", html: emailPaintedCopy(summary) }),
       qualLive.length
-        ? `<div style="margin:0 0 22px;padding:16px 18px;background:${EMAIL_THEME.pageBg};border:1px solid ${EMAIL_THEME.text3};border-radius:8px"><p style="margin:0 0 10px;color:${EMAIL_THEME.text2};font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">How serious</p>${emailRows(qualLive as Array<[string, string | null | undefined]>)}</div>`
+        ? emailSection({ label: "How serious", html: emailRows(qualLive as Array<[string, string | null | undefined]>) })
         : "",
       emailRows(detailRows as Array<[string, string | null | undefined]>),
       linksHtml,
@@ -1248,8 +1278,10 @@ export async function notifyIScottLeadByEmail(
     subject,
     text,
     html,
-    // An incomplete alert is PARKED, not sent. It only becomes mail if the
-    // conversation never produces a real package - see PARTIAL_LEAD_DELAY_MS.
+    // An incomplete alert is ALWAYS parked. Confirming that iScott heard the
+    // address is not permission to transmit it. A completed, consented package
+    // supersedes this row; only an abandoned conversation lets the ten-minute
+    // recovery timer deliver it.
     deferUntil: isPartial
       ? new Date(Date.now() + PARTIAL_LEAD_DELAY_MS).toISOString()
       : null,

@@ -1,0 +1,156 @@
+/* H421 - the heading colour swaps G has asked for repeatedly.
+
+   G 2026-09-01, verbatim, in four messages:
+     "Wild works projects. Text card number two, wild by design. Text card
+      number one. Just fucking do it."
+     "services, I think should be color number one. And then what WildWorks is
+      known for all color number two, text only, of course."
+     "AI needed websites color number one. Want a website like this all color
+      number two."
+
+   The pattern he is describing is consistent: the small kicker label goes
+   TEXT 1, and the big heading under it goes ALL TEXT 2 - no two-tone split.
+
+   WHY THESE KEPT NOT LANDING: the rules that actually paint these headings do
+   not carry a literal colour. They read var(--ww-home-hdr-text-1) and
+   var(--ww-home-hdr-text-2). Overriding the property loses to their ladders;
+   FEEDING THE VARIABLE wins outright, because the winning rule resolves
+   whatever the variable says. Both variables are set to the same target here,
+   so it does not matter which of the two that element happens to read.
+
+   Colour only. No size, weight, shadow or spacing. Home only.
+   Import BEFORE H232. */
+/* "WildWorks Projects" -> Text 2 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects .wild-home-projects__title-wildworks,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects .wild-home-projects__title-projects,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects .wild-home-projects__title-wildworks *,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects .wild-home-projects__title-projects * {
+  --ww-home-hdr-text-1: #edc775 !important;
+  --ww-home-hdr-text-2: #edc775 !important;
+  --ww-home-hdr-text-3: #edc775 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* "Wild by design" -> Text 1 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects > .wild-home-projects__tagline > span,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects > .wild-home-projects__tagline,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects > .wild-home-projects__tagline > span *,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #projects > .wild-home-projects__tagline * {
+  --ww-home-hdr-text-1: #fce0ad !important;
+  --ww-home-hdr-text-2: #fce0ad !important;
+  --ww-home-hdr-text-3: #fce0ad !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* "SERVICES" kicker -> Text 1 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading > .wild-kicker,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services .wild-kicker-frame,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading > .wild-kicker *,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services .wild-kicker-frame * {
+  --ww-home-hdr-text-1: #fce0ad !important;
+  --ww-home-hdr-text-2: #fce0ad !important;
+  --ww-home-hdr-text-3: #fce0ad !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* "What WildWorks is Known for:" -> all Text 2 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading > .wild-section-title,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading > .wild-section-title * {
+  --ww-home-hdr-text-1: #edc775 !important;
+  --ww-home-hdr-text-2: #edc775 !important;
+  --ww-home-hdr-text-3: #edc775 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* "AI-NATIVE WEBSITES" kicker -> Text 1 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-site-offer-heading > .wild-kicker,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-kicker-frame,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-site-offer-heading > .wild-kicker *,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-kicker-frame * {
+  --ww-home-hdr-text-1: #fce0ad !important;
+  --ww-home-hdr-text-2: #fce0ad !important;
+  --ww-home-hdr-text-3: #fce0ad !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* "Want a Website Like This?" -> all Text 2 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-site-offer-heading > .wild-section-title,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home:not(.wild-legal-home) #ai-websites .wild-site-offer-heading > .wild-section-title * {
+  --ww-home-hdr-text-1: #edc775 !important;
+  --ww-home-hdr-text-2: #edc775 !important;
+  --ww-home-hdr-text-3: #edc775 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+
+/* =====================================================================
+   HOME ONLY - hide the duplicate footer iScott panel.
+
+   G 2026-09-01, verbatim:
+     "When I hover over the talk to i Scott button down there, it moves to the
+      right. Then when I clicked on it, it sent me to the avatar up top, and
+      this happened."
+     "you fix that yourself, the iscott on Homepage. I checked. Most of the
+      other pages, they don't have the same issue. None of the pages have the
+      same issue. It's only that avatar at the bottom of the home page."
+
+   He is exactly right, and the reason is measurable: Home is the ONLY page with
+   two iScott avatar frames.
+
+     Home 2 | Wildfire 1 | Projects 1 | The-ruins 1 | who-is-g 1 | Wildworks 0
+
+   The second one is `FooterIScottPanel` (app/components/FooterIScottPanel.tsx),
+   which is NOT a live avatar - it is a still image of iScott whose Talk control
+   is a plain link:
+
+     href="/pages/Home?wake-iscott=1#talk-to-iscott"
+
+   On every other page that link is correct and necessary: it is the only route
+   to iScott, so it takes you to Home and wakes him. ON HOME it is wrong - you
+   are standing in front of a picture of iScott, you press Talk, and it scrolls
+   you away to the real avatar further up the same page. That is precisely "it
+   sent me to the avatar up top", and it is why no other page shows it.
+
+   Hiding it on Home only. Every other page keeps it untouched. This also
+   removes a duplicate Talk target on the page that has the real one.
+
+   Revert = delete this block. Nothing else depends on it. */
+/* CORRECTED 2026-09-01: the first version of this rule was scoped
+     `#top.wild-home ... .wild-iscott-panel--footer` and could never match - the
+     footer panel sits OUTSIDE #top in the DOM, so the descendant combinator
+     never applied and the panel stayed fully visible (measured h=734). Caught
+     by re-measuring instead of trusting the build. :has() on <html> identifies
+     the Home page without needing the footer to be inside #top. */
+html:has(#top.wild-home:not(.wild-legal-home)) .wild-iscott-panel--footer {
+  display: none !important;
+}

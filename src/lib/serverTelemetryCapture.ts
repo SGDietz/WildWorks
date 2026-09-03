@@ -50,6 +50,7 @@ export async function logServerTelemetryEvent(args: {
     route: row.route,
     statusCode: row.status_code,
     sessionId: row.session_id ?? row.anonymous_visitor_id,
+    failStreak: (() => { const value = (row.payload as Record<string, unknown>).failStreak; return typeof value === "number" && Number.isFinite(value) ? value : null; })(),
   });
 
   // 2026-08-24: the raw copy used to be written on EVERY event, before the

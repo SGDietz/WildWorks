@@ -1,0 +1,17 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+const source = readFileSync(new URL("../app/pages/avatar-iscott/route.ts", import.meta.url), "utf8");
+assert.match(source, /logUi\("iscott_control_paint"/);
+for (const key of ["card_show", "finish_tap", "textShadowFirstTwo", "textShadowStopCount", "beforeFilterFirstDropShadow", "beforeFilterDropShadowCount", "fontSize", "letterSpacing", "position", "bottom", "left", "transform", "finishReturned"]) assert.match(source, new RegExp(key));
+assert.match(source, /document\.querySelector\("\[data-ww-finish\]"\)/);
+assert.match(source, /document\.querySelector\("\[data-ww-talk\]"\)/);
+assert.match(source, /paintLoggedForCardSession/);
+assert.match(source, /paintLoggedForFinishSession/);
+assert.match(source, /depth \+= 1/);
+assert.match(source, /depth = Math\.max\(0, depth - 1\)/);
+const click = source.slice(source.indexOf('if (!\/^finish\$\/i.test'), source.indexOf('}, true);', source.indexOf('if (!\/^finish\$\/i.test')));
+assert.ok(click.indexOf('data-ww-finish-inert') < click.indexOf('logControlPaint("finish_tap")'));
+assert.ok(click.indexOf('logControlPaint("finish_tap")') < click.indexOf('stopSession("finish")'));
+const paint = source.slice(source.indexOf("const logControlPaint"), source.indexOf("const hasSendPermission"));
+assert.doesNotMatch(paint, /email|phone|contact|transcript|fullName|projectNeed/i);
+console.log("iScott control-paint telemetry checks passed");

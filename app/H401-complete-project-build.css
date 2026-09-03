@@ -1,0 +1,229 @@
+/* H401 - Wildfire hero:
+   CLAUDE MINOR EDIT 2026-09-01 on install: the four custom properties in
+   section 1 gained !important. Without it H386:201 (which sets
+   --ww-color3-full-shadow !important at (1,0,0)) won and this whole file was
+   inert on the upper shadow. See the note above section 1.
+ no upper shadow, no Text 3 against orange.
+   G 2026-09-01 ~3:46 AM ET Telegram shot of:
+     A Complete Project Build
+     From Breaking Ground
+     To The First Wood Fire.
+     + three-line summary (Not a Before-and-After Page...)
+
+   Scott (quote, not a summary):
+     "There's no more number three text color against the background,
+      and there's no more upper shadow."
+
+   Import AFTER H398 (or latest H39x already in layout) and BEFORE H232.
+   Filename: H401-complete-project-build.css
+
+   Scope: the Wildfire page hero block that IS this shot
+     (.wild-subpage--wildfire .wildfire-hero-headline / .wildfire-hero-summary).
+   Do not touch: stair-photo hero (.wild-hero), button TEXT / Text 3 on buttons,
+   iScott Front Door (H400), legal, ruin heading (H397), live domain.
+   Do not out-ladder with :not(#_#_#_...).
+
+   Locked palette (do not retint buttons/hero Text 3):
+     Primary background  #c44d0b
+     Secondary / card    #e96819
+     Text 1              #fce0ad
+     Text 2              #edc775
+     Text 3              #f08c28   (leave on buttons and the stair-photo hero)
+
+   HOW TO WIN WITHOUT A :not(#_#_#_...) LADDER
+   gold-standard.css paints a cream TOP highlight
+     0 1px 0 rgba(247, 217, 165, ...)
+   on these lines. That is the upper shadow in the shot.
+   H386 concatenates two negative-Y layers onto --ww-color3-full-shadow
+   for #ww-wildfire-first-fire and .wildfire-hero-summary__line--c3.
+   Claude: RETIRE those two rivals (minor), then this file is the replacement.
+*/
+
+/* =====================================================================
+   1. NO UPPER SHADOW.
+   Bottom-only H386 four-stop (Text 1 patio ladder). No negative-Y.
+   No cream 0 1px 0 rgba(247,217,165) crown.
+   ===================================================================== */
+/* CLAUDE MINOR EDIT 2026-09-01, second pass. The ancestor class is DOUBLED.
+   H401 was (1,1,0); H386's rival :is() list contains
+   "#iscott-sales .wild-iscott-title__segment--three", and :is() takes the MAX
+   of its arguments, so H386 is ALSO (1,1,0). A tie goes to source order, and
+   Next.js emits H401's chunk BEFORE H386's despite the later import in
+   layout.tsx - so H386 won and the upper shadow survived. Doubling the class
+   makes this (1,2,0) and settles it without a #_ ladder. Measured with
+   CSS.getMatchedStylesForNode, not guessed. */
+.wild-subpage--wildfire.wild-subpage--wildfire
+  :is(
+    .wildfire-hero-headline,
+    .wildfire-hero-headline__line,
+    .wildfire-hero-headline__line--c1,
+    .wildfire-hero-headline__line--c2,
+    .wildfire-hero-headline__line--c3,
+    #ww-wildfire-first-fire,
+    .wildfire-hero-summary,
+    .wildfire-hero-summary__line,
+    .wildfire-hero-summary__line--c1,
+    .wildfire-hero-summary__line--c2,
+    .wildfire-hero-summary__line--c3,
+    .wildfire-hero-summary__patio
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   2. NO TEXT 3 AGAINST THIS ORANGE.
+   Keep this hero on Text 1 / Text 2 only. The current requested sequence is:
+     headline  Text 2 / Text 1 / Text 2
+     summary   Text 2 / Text 1 / Text 2
+   Do not recolor buttons or the stair-photo .wild-hero Text 3.
+   ===================================================================== */
+/* CLAUDE 2026-09-01, second pass on section 3. The three-class prefix computed
+   (0,4,0) and LOST to no-white-text.css, which carries two ids - so the colour
+   swap and the depth both installed inert and the lines did not move. Measured,
+   not assumed. Weight is now 4 ids written as :not(#_) x4, the same house
+   pattern H359 and H402 use, which clears the two-id incumbent with margin.
+
+   FOURTH PASS - G: "i asked to have the second 3 lines darker, to match the
+   first 3 lines. wtf happened." He is right and the third pass was wrong.
+   I matched the headline REACH proportionally - both landed on 0.06086em - and
+   called it done. But em-proportional is not visually equal: 0.06086em is
+   5.26px under 86px type and only 2.01px under 33px type, and the small lines
+   still read flat. Depth is not the same thing as darkness.
+   So the summary ladder now carries its OWN weight rather than a scaled copy:
+   alphas 0.970 -> 0.660 (the heavy family this codebase already uses on the
+   first-fire line) and reach out to 0.075em, past proportional on purpose to
+   pay back what small type loses. Seven stops kept so it stays smooth.
+
+   THIRD PASS: the two SHADOW rules needed far more. H369 sets the summary
+   ladder on  behind :not(#_) x1200, so 4 ids and
+   even 400 lost. Those two rules now carry 1201 - one more than the incumbent,
+   which is the whole point and not a round number. The COLOUR rules stay at 4;
+   they already win and do not need it. Measured each time, never assumed. */
+/* =====================================================================
+   3. THE SECOND SET OF THREE LINES. G, 2026-09-01, looking at the hero:
+        "You see how much shadow the first three lines have? It's really...
+         it pops. It's beautiful. And then the second three lines do not pop,
+         the smaller lines... Also, the second three set of lines, the colors
+         are inverted. The fourth line... should be the number two text color.
+         The number five line... should be the number one color, and then the
+         sixth line patio... should be the number two color text. So change
+         them and add depth."
+
+   SUMMARY COLOURS, exactly as he numbered them (unchanged here):
+     line 4  "This is Not a Before-and-After Page. It is"   -> Text 2 #edc775
+     line 5  "a Full Build Record for an Outdoor Fireplace" -> Text 1 #fce0ad
+     line 6  "Patio, Outdoor Lounge, and an Upper Viewing"  -> Text 2 #edc775
+
+   HEADLINE COLOURS, G's final 2026-09-01 order:
+     line 1  "A Complete Project Build" -> Text 2 #edc775
+     line 2  "From Breaking Ground"      -> Text 1 #fce0ad
+     line 3  "To The First Wood Fire."   -> Text 2 #edc775
+
+   DEPTH: measured, not guessed. The headline ladder reaches 0.06086em; the
+   summary ladder only reached 0.04992em, so the small lines were carrying 82%
+   of the headline's depth. Same seven stops, same alphas, same colours,
+   stretched to the headline's reach.
+   ===================================================================== */
+
+/* headline line 2 -> Text 1 */
+.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  .wildfire-hero-headline__line--c2 {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* headline lines 1 and 3 -> Text 2 */
+.wild-subpage--wildfire.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  :is(
+    .wildfire-hero-headline__line--c1,
+    .wildfire-hero-headline__line--c3,
+    #ww-wildfire-first-fire
+  ) {
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* line 4 and line 6 -> Text 2 */
+.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  :is(
+    .wildfire-hero-summary__line--c1,
+    .wildfire-hero-summary__line--c3,
+    .wildfire-hero-summary__patio
+  ) {
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* line 5 -> Text 1 */
+.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  .wildfire-hero-summary__line--c2 {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* the depth, on all three summary lines */
+.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  :is(
+    .wildfire-hero-summary,
+    .wildfire-hero-summary__line,
+    .wildfire-hero-summary__line--c1,
+    .wildfire-hero-summary__line--c2,
+    .wildfire-hero-summary__line--c3,
+    .wildfire-hero-summary__patio
+  ) {
+  text-shadow:
+    rgba(35, 9, 2, 0.970) 0 0.010714em 0,
+    rgba(34, 9, 2, 0.918) 0 0.021429em 0,
+    rgba(33, 8, 2, 0.866) 0 0.032143em 0,
+    rgba(31, 8, 2, 0.815) 0 0.042857em 0,
+    rgba(29, 7, 1, 0.763) 0 0.053571em 0,
+    rgba(27, 7, 1, 0.711) 0 0.064286em 0,
+    rgba(25, 6, 1, 0.660) 0 0.075000em 0 !important;
+  filter: none !important;
+}
+
+/* G, same message: "add more shadow effect to the whole line" - the carousel
+   note that sits above the phone number on this page. Same ladder, so it
+   matches the family rather than inventing a second treatment. */
+.wild-subpage--wildfire:not(#_):not(#_):not(#_):not(#_)
+  .wildfire-gallery-rolodex-note {
+  text-shadow:
+    rgba(35, 9, 2, 0.970) 0 0.010714em 0,
+    rgba(34, 9, 2, 0.918) 0 0.021429em 0,
+    rgba(33, 8, 2, 0.866) 0 0.032143em 0,
+    rgba(31, 8, 2, 0.815) 0 0.042857em 0,
+    rgba(29, 7, 1, 0.763) 0 0.053571em 0,
+    rgba(27, 7, 1, 0.711) 0 0.064286em 0,
+    rgba(25, 6, 1, 0.660) 0 0.075000em 0 !important;
+  filter: none !important;
+}

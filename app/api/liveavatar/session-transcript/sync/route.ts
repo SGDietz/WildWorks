@@ -1,3 +1,18 @@
+// H473c: Node raises Error("aborted") from abortIncoming/socketOnClose when the
+// CLIENT closes the connection mid-request. On this page that is routine - the
+// avatar tears down on Finish and takes its in-flight requests with it. It is
+// not a server fault and must not be logged as one, or the alert channel fills
+// with noise that hides real faults.
+const isClientDisconnect = (error: unknown): boolean => {
+  if (!(error instanceof Error)) return false;
+  const name = error.name;
+  const message = error.message || "";
+  return name === "AbortError"
+    || message === "aborted"
+    || message.includes("ECONNRESET")
+    || message.includes("aborted");
+};
+
 import { createHash } from "node:crypto";
 import {
   MAX_TRANSCRIPTION_TEXT_CHARS,
@@ -5,6 +20,7 @@ import {
   isSafeTranscriptionSessionId,
   truncateUtf8String,
 } from "../../../../../src/lib/apiRouteSecurity";
+import { logIScottOriginRejection } from "../../../../../src/lib/iscottOriginTelemetry";
 import { checkRateLimit } from "../../../../../src/lib/rateLimit";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../../src/lib/supabaseAdmin";
 import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
@@ -21,11 +37,15 @@ import {
 import {
   allowedIscottSpeech,
   mayClaimHandoffSent,
+  isRepeatedTranscriptMoment,
   nextFreeTranscriptTimestamp,
   prepareForwardTranscriptRows,
   sessionLooksLikeOperatorQa,
 } from "../../../../../src/lib/iscottLeadParsing";
-import { iscottSpeechClaimsSendingNow } from "../../../../../src/lib/iscottRuntimeSpeechTruth";
+import {
+  iscottSpeechClaimsSendingNow,
+  iscottSpeechClaimsVisibleNow,
+} from "../../../../../src/lib/iscottRuntimeSpeechTruth";
 import { API_KEY, API_URL } from "../../secrets";
 import { classifyTraffic,
   canDispatchFirstPublicMessageAlert,
@@ -50,6 +70,22 @@ function cleanOptionalString(value: unknown, maxChars: number): string | null {
   if (typeof value !== "string") return null;
   const cleaned = value.replace(/\s+/g, " ").trim();
   return cleaned ? truncateUtf8String(cleaned, maxChars) : null;
+}
+
+function compactClientDevice(value: unknown, requestUserAgent: string | null): Record<string, string> {
+  const input = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  const device = {
+    deviceKind: cleanOptionalString(input.deviceKind, 40),
+    os: cleanOptionalString(input.osName, 80),
+    browser: cleanOptionalString(input.browserName, 80),
+    screen: cleanOptionalString(input.screen, 60),
+    userAgent: cleanOptionalString(input.userAgent, 400) ?? cleanOptionalString(requestUserAgent, 400),
+  };
+  return Object.fromEntries(
+    Object.entries(device).filter((entry): entry is [string, string] => entry[1] !== null),
+  );
 }
 
 function cleanSessionToken(value: unknown): string | null {
@@ -150,8 +186,16 @@ function isLiveAvatarResponseSuccess(json: unknown, httpOk: boolean): boolean {
 }
 
 export async function POST(request: Request) {
-  const originErr = assertAllowedOrigin(request);
-  if (originErr) return originErr;
+  const originErr = assertAllowedOrigin(request, {
+    trustedSameOriginMarker: {
+      name: "x-wildworks-avatar-request",
+      value: "same-origin-v1",
+    },
+  });
+  if (originErr) {
+    await logIScottOriginRejection(request, "/api/liveavatar/session-transcript/sync").catch(() => undefined);
+    return originErr;
+  }
   const rateLimitErr = await checkRateLimit(request);
   if (rateLimitErr) return rateLimitErr;
 
@@ -164,6 +208,7 @@ export async function POST(request: Request) {
     const route = cleanOptionalString(body?.route, 180);
     const viewport = cleanOptionalString(body?.viewport, 40);
     const reason = cleanOptionalString(body?.reason, 80);
+    const clientDevice = compactClientDevice(body?.device, request.headers.get("user-agent"));
     const traffic = await classifyTraffic({
       anonymousVisitorId,
       userAgent: request.headers.get("user-agent"),
@@ -335,10 +380,29 @@ export async function POST(request: Request) {
         .filter((row) => Boolean(row.message)),
     );
 
-    const existingKeys = new Set<string>();
+    // G's desktop rides 1cc18a84 (15:46 ET) and f2815084 (16:30 ET), 2026-09-03.
+    // Both died at the permission step with NO answer in the transcript while
+    // the avatar plainly heard one (it said the send line six seconds later).
+    // The provider's own transcript for f2815084 carries the second "Yes." -
+    // this route threw it away: the dedupe key was role + words only, so any
+    // line a visitor says twice in a session ("Yes." to the read-back, then
+    // "Yes." to the permission question) was treated as a repeat of the first
+    // and never stored. His phone and iPad rides the same hour passed only
+    // because he happened to use different words ("Yes." then "Sure.";
+    // "You did." then "Yes."). A repeat is only a repeat at the SAME MOMENT:
+    // the key keeps role + words, and the provider's own absolute timestamp
+    // decides, with a two-second tolerance for the provider re-stamping a
+    // line between syncs. Helper + tolerance live in iscottLeadParsing so
+    // check-iscott-transcript-repeat-yes.mjs can prove them.
+    const existingMoments = new Map<string, number[]>();
     const takenTimestamps = new Set<number>();
+    const rememberMoment = (key: string, at: number | null) => {
+      const list = existingMoments.get(key);
+      if (list) list.push(at ?? Number.NaN);
+      else existingMoments.set(key, [at ?? Number.NaN]);
+    };
     const existingResponse = await fetch(
-      `${url}/rest/v1/conversation_messages?select=role,message,la_absolute_timestamp&session_id=eq.${encodeURIComponent(liveAvatarSessionId)}&source=not.in.(app_event,telemetry_fallback)&limit=700`,
+      `${url}/rest/v1/conversation_messages?select=role,message,la_absolute_timestamp,metadata&session_id=eq.${encodeURIComponent(liveAvatarSessionId)}&source=not.in.(app_event,telemetry_fallback)&limit=700`,
       { method: "GET", headers: supabaseHeaders(serviceRoleKey) },
     );
     if (existingResponse.ok) {
@@ -346,24 +410,30 @@ export async function POST(request: Request) {
         role?: unknown;
         message?: unknown;
         la_absolute_timestamp?: unknown;
+        metadata?: unknown;
       }>;
       for (const row of existingRows) {
         if (row.role !== "user" && row.role !== "assistant") continue;
         if (typeof row.message !== "string" || !row.message.trim()) continue;
-        existingKeys.add(transcriptDedupeKey(row.role, row.message));
-        if (typeof row.la_absolute_timestamp === "number" && Number.isFinite(row.la_absolute_timestamp)) {
-          takenTimestamps.add(Math.floor(row.la_absolute_timestamp));
-        }
+        const stamped = typeof row.la_absolute_timestamp === "number" && Number.isFinite(row.la_absolute_timestamp)
+          ? Math.floor(row.la_absolute_timestamp)
+          : null;
+        const meta = row.metadata && typeof row.metadata === "object" ? row.metadata as Record<string, unknown> : {};
+        const original = typeof meta.original_absolute_timestamp === "number" && Number.isFinite(meta.original_absolute_timestamp)
+          ? Math.floor(meta.original_absolute_timestamp)
+          : stamped;
+        rememberMoment(transcriptDedupeKey(row.role, row.message), original);
+        if (stamped !== null) takenTimestamps.add(stamped);
       }
     }
 
     const rows = candidateRows.flatMap((row) => {
       const key = transcriptDedupeKey(row.role, row.message);
       if (!normalizeTranscriptLineForDedupe(row.message)) return [];
-      if (existingKeys.has(key)) return [];
-      existingKeys.add(key);
-
       const originalTimestamp = row.la_absolute_timestamp;
+      if (isRepeatedTranscriptMoment(existingMoments.get(key), originalTimestamp)) return [];
+      rememberMoment(key, originalTimestamp);
+
       // Legacy uniqueness offset only. Canonical/consent time stays original_absolute_timestamp
       // until 202608170001_iscott120_transcript_arrival_index.sql is applied by Chief.
       // Unique across the session clock, not per role, so user+assistant same-second rows do not 500.
@@ -474,6 +544,7 @@ export async function POST(request: Request) {
             sessionId: liveAvatarSessionId,
             anonymousVisitorId,
             route,
+            clientDevice,
             rows: rows.map((row) => ({
               role: row.role,
               message: row.message,
@@ -513,12 +584,19 @@ export async function POST(request: Request) {
       notificationStatus: leadState?.notificationStatus ?? null,
       notificationOutboxId: leadState?.notificationOutboxId ?? null,
     };
+    // The provider cannot observe the visitor's browser, so an on-screen /
+    // visible-now claim is a false claim regardless of persisted delivery
+    // truth. Gating it on mayClaimHandoffSent would let the exact ride phrase
+    // through the moment a real handoff succeeded. The sending-now claim,
+    // by contrast, becomes truthful once the visitor's details are actually
+    // delivered, so that gate stays.
     const falseHandoffSpeech = rows
       .filter((row) => row.role === "assistant")
       .filter((row) => {
         const result = allowedIscottSpeech(row.message, speechTruth);
         return result.reason === "false_handoff_claim"
-          || (iscottSpeechClaimsSendingNow(row.message) && !mayClaimHandoffSent(speechTruth));
+          || (iscottSpeechClaimsSendingNow(row.message) && !mayClaimHandoffSent(speechTruth))
+          || iscottSpeechClaimsVisibleNow(row.message);
       });
 
     if (falseHandoffSpeech.length > 0) {
@@ -577,13 +655,24 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Error syncing LiveAvatar transcript:", error);
+    const clientHungUp = isClientDisconnect(error);
     await logServerTelemetryEvent({
       request,
-      eventType: "liveavatar_transcript_sync_failed",
-      severity: "high",
+      eventType: clientHungUp
+        ? "liveavatar_transcript_sync_client_disconnected"
+        : "liveavatar_transcript_sync_failed",
+      severity: clientHungUp ? "low" : "high",
       provider: "liveavatar",
       route: "/api/liveavatar/session-transcript/sync",
-      statusCode: 500,
+      statusCode: clientHungUp ? 499 : 500,
+      payload: {
+        // H471 2026-09-02: this block used to log a bare 500. Two stop failures
+        // during G's 20:52 ride were therefore undiagnosable. Error name,
+        // message and a short stack are bounded and carry no secrets.
+        errorName: error instanceof Error ? error.name : typeof error,
+        errorMessage: (error instanceof Error ? error.message : String(error)).slice(0, 400),
+        errorStack: (error instanceof Error && error.stack ? error.stack : "").slice(0, 600),
+      },
     });
     return Response.json({ error: "Failed to sync LiveAvatar transcript" }, { status: 500 });
   }

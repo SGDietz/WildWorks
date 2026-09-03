@@ -1,0 +1,100 @@
+/* H426b — companion to H426 part 2, by Claude (installer), 2026-09-02 ~04:1x ET.
+   G (word for word, from the H426 HANDOFF):
+     "First, do all of the color fixes, all of the shade, all of the
+      fixes that I asked, then get to the emails."
+   Inspection finding: H426's legal-icon scope
+   `html:has(.wild-legal-home) .wild-home.wild-legal-home ...` matches ZERO
+   buttons on the served legal pages — every candidate svg (Talk to iScott,
+   Return to WildWorks, Join the List, Call/Text/Email, Back to top) sits in
+   footer#footer, which is a SIBLING of main.wild-legal-home, not inside it.
+   Measured on /pages/privacy-policy: all 8 svgs inMain:false, filters
+   1.26-2.67px, shape-rendering auto. Home footer's same svgs already read
+   1.5px via H419.
+   H426 is installed byte-exact (SHA 8e57e0...) and left untouched — this file
+   only adds the same var feed for the legal pages' footer so the icons match
+   Home H419, exactly as the HANDOFF intended. The :has(main.wild-legal-home)
+   guard means NO other page is affected; Home has no .wild-legal-home. */
+
+@layer ww-h426-text3-legal-icons {
+  html:has(main.wild-legal-home)
+    footer#footer
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    ) {
+    --ww-icon-shadow-depth: 1.5px !important;
+    --ww-cta-icon-shadow: drop-shadow(0 1.5px 0 rgba(30, 8, 2, 0.93)) !important;
+  }
+
+  html:has(main.wild-legal-home)
+    footer#footer
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    )
+    :is(svg, .wild-iscott-upload__icon) {
+    --ww-icon-shadow-depth: 1.5px !important;
+    --ww-cta-icon-shadow: drop-shadow(0 1.5px 0 rgba(30, 8, 2, 0.93)) !important;
+    filter: drop-shadow(0 1.5px 0 rgba(30, 8, 2, 0.93)) !important;
+    shape-rendering: geometricPrecision !important;
+    overflow: visible !important;
+  }
+
+  html:has(main.wild-legal-home)
+    footer#footer
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    )
+    svg * {
+    vector-effect: non-scaling-stroke !important;
+  }
+}

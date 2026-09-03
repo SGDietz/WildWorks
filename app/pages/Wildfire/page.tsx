@@ -141,8 +141,14 @@ export default function Wildfire() {
               </span>
             </span>
             <span className="wildfire-hero-summary__group">
+              {/* G 2026-09-03 11:08 ET (phone only): his second box ends after
+                  "a Full Build Record for an" and his third starts at "Outdoor
+                  Fireplace," - the middle of this span. The two inner spans let
+                  H481 colour those phone lines Text 1 / Text 2. They inherit
+                  c2's colour everywhere else, so desktop is unchanged. */}
               <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c2">
-                a Full Build Record for an Outdoor Fireplace,
+                <span className="wildfire-hero-summary__m1">a Full Build Record for an</span>{" "}
+                <span className="wildfire-hero-summary__m2">Outdoor Fireplace,</span>
               </span>{" "}
               <span className="wildfire-hero-summary__line wildfire-hero-summary__line--c3">
                 <span className="wildfire-hero-summary__patio">Patio</span>, Outdoor Lounge, and an Upper Viewing Deck.

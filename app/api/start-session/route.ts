@@ -7,15 +7,26 @@ import {
   VOICE_ID,
 } from "../liveavatar/secrets";
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
+import { logIScottOriginRejection } from "../../../src/lib/iscottOriginTelemetry";
 import { assertAllowedOrigin } from "../../../src/lib/apiRouteSecurity";
 import { checkCriticalRateLimit } from "../../../src/lib/rateLimit";
 import { iscottHandoffTruthDynamicVariables } from "../../../src/lib/iscottRuntimeSpeechTruth";
 
 export const dynamic = "force-dynamic";
+const WILDWORKS_AVATAR_REQUEST_HEADER = "x-wildworks-avatar-request";
+const WILDWORKS_AVATAR_REQUEST_VALUE = "same-origin-v1";
 
 export async function POST(request: Request) {
-  const originError = assertAllowedOrigin(request);
-  if (originError) return originError;
+  const originError = assertAllowedOrigin(request, {
+    trustedSameOriginMarker: {
+      name: WILDWORKS_AVATAR_REQUEST_HEADER,
+      value: WILDWORKS_AVATAR_REQUEST_VALUE,
+    },
+  });
+  if (originError) {
+    await logIScottOriginRejection(request, "/api/start-session").catch(() => undefined);
+    return originError;
+  }
 
   // Money ceiling, set deliberately 2026-08-24 (G: "what safeguards can we put
   // in to not burn money?"). These were running on library defaults
@@ -33,10 +44,21 @@ export async function POST(request: Request) {
   //
   // This limiter fails CLOSED: any Supabase error returns unavailable rather
   // than minting. That is the correct trade for a paid endpoint.
+  //
+  // perDay 6 -> 30, Claude (bridge/installer) 2026-09-02 ~19:0x ET. G, by
+  // voice, on the red "too many requests" painted over the avatar during his
+  // iPad smoke rides: "We've dealt with this a dozen plus times. There's
+  // plenty of credits there in liveavatar.com. It's a bug. Needs to be fixed
+  // in the code." The block was never provider credits: G's own smoke testing
+  // (5+ session starts today from one IP) burned the per-IP 6/day cap and the
+  // raw 429 string painted over iScott. All current traffic IS G (standing
+  // fact, 2026-09-01), so the per-IP cap must never interrupt a test day.
+  // The real money ceiling is globalPerDay=40, and it is UNCHANGED - worst
+  // possible spend day stays exactly where the 2026-08-24 decision put it.
   const rateLimitError = await checkCriticalRateLimit(request, {
     eventType: "rate_limit_liveavatar_session",
     perMinute: 2,
-    perDay: 6,
+    perDay: 30,
     globalPerDay: 40,
   });
   if (rateLimitError) return rateLimitError;

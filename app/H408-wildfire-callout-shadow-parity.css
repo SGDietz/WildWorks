@@ -1,0 +1,137 @@
+/* H408 - one shadow for the Wildfire callout + build-note stacks.
+
+   G 2026-09-01, on the mobile shot, exact:
+     "We photographed every step of the build from pre-breaking ground. That's
+      great. Through the first wood fire should have that much shadow, and also,
+      then came the patio, then came the lounge, then we just kept going. That
+      should all have the same amount of shadow as we photographed every step of
+      the build from pre-breaking ground."
+     "Go through the whole site and just do it. Do it all."
+
+   AUDITED FIRST, not guessed. Every display line on Home was measured and its
+   shadow reach expressed as a fraction of its OWN font-size - px is meaningless
+   across sizes, which is exactly how these drifted apart:
+
+     REFERENCE (he called this good)
+       build-note --lead    "We Photographed Every Step of the"   0.08747em  6 layers
+       build-note --middle  "Build, from pre-Breaking Ground"     0.08747em  6 layers
+
+     OFF, and named by him
+       build-note --close   "Through the First Wood Fire."        0.06086em  4 layers
+       callout --patio      "Then Came the Patio."                0.04058em  6 layers
+       callout --lounge     "Then Came the Lounge."               0.04058em  5 layers
+       callout --going      "Then We Just Kept Going."            0.06086em  4 layers
+
+   Three different reaches and three different layer counts across six lines
+   that are meant to read as one voice. This file puts all four onto the
+   reference: the same six layers, the same alphas, the same colours, the same
+   0.087474em reach. In em, so it holds at every one of the five viewports and
+   on the phone where he spotted it.
+
+   HOW THIS WINS - and two failed attempts before it, recorded so nobody repeats
+   them. Setting `text-shadow` directly LOST twice, first at 20 ids and then at
+   100, and both installed inert. The reason is that these lines never take a
+   direct text-shadow: H386 paints them with
+       text-shadow: var(--ww-patio-shadow, var(--ww-color3-original-shadow))
+   behind a very heavy selector, and feeds the VALUE from per-element variables
+   set at only (1,1,0):
+       #project-wildfire .wild-wildfire-sequence-callout__line--going { ... }
+   So the property was never the lever. This file feeds the VARIABLES instead -
+   pin the variable, not the property - and feeding the variable clears the (1,1,0)
+   setters, which is what finally moved --close and --going.
+
+   --patio and --lounge needed more, and this is why: they do NOT read the
+   variable. H372-home-desktop-edge.css:20 and H374-home-shadow-opacity.css:90
+   paint them with a LITERAL text-shadow behind :not(#_) x800 plus #top. So the
+   weight here is 900 - counted out of those files, not guessed, after 20 and
+   then 100 both installed inert. Generated, never hand-typed.
+
+   Bottom-only, no upper layer; he has said twice today there is no top dash.
+
+   Import AFTER H407, BEFORE H232.
+   ===================================================================== */
+
+/* SCOPED TO >=521px, 2026-09-01. The mobile reference is DEEPER than the
+   desktop one - build-note runs 0.109343em at 412 versus 0.08747em above it -
+   and G called the mobile rendering great, so mobile must not be flattened to
+   the desktop figure. H371-home-edge-mobile.css carries the matching mobile
+   ladders; this file governs 521px and up only. */
+@media (min-width: 521px) {
+.wild-wildfire-build-note__line--close:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
+.wild-wildfire-sequence-callout__line--patio:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
+.wild-wildfire-sequence-callout__line--lounge:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
+.wild-wildfire-sequence-callout__line--going:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  --ww-color3-original-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+  --ww-patio-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+  --ww-color3-full-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+  text-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+  filter: none !important;
+}
+}
+
+/* =====================================================================
+   MOBILE COUNTERPART, <=520px. H371 carries the mobile ladders for --patio and
+   --lounge, but --close and --going take their value from
+   --ww-color3-original-shadow, and once this file was scoped to >=521px they
+   fell back to H386's 0.06086em while their four siblings sat at 0.109343em.
+   Same reference, same six layers, fed the same way - the variable, not the
+   property. Measured at 412 after each pass, never assumed.
+   ===================================================================== */
+@media (max-width: 520px) {
+  .wild-wildfire-build-note__line--close:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
+  .wild-wildfire-sequence-callout__line--going:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+    --ww-color3-original-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+    --ww-patio-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+    --ww-color3-full-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+    text-shadow:
+    rgba(35, 9, 2, 0.467) 0 0.014579em 0,
+    rgba(33, 8, 2, 0.435) 0 0.029158em 0,
+    rgba(31, 8, 2, 0.408) 0 0.043737em 0,
+    rgba(29, 7, 1, 0.376) 0 0.058316em 0,
+    rgba(27, 7, 1, 0.345) 0 0.072895em 0,
+    rgba(25, 6, 1, 0.318) 0 0.087474em 0 !important;
+    filter: none !important;
+  }
+}

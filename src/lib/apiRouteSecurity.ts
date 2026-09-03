@@ -10,6 +10,17 @@ const ALLOWED_ORIGINS = new Set([
   "https://mission-control.tail00dfe0.ts.net:8443",
 ]);
 
+export const WILDWORKS_AVATAR_REQUEST_HEADER = "x-wildworks-avatar-request";
+export const WILDWORKS_AVATAR_REQUEST_VALUE = "same-origin-v1";
+
+type AllowedOriginOptions = {
+  allowDirectNavigation?: boolean;
+  trustedSameOriginMarker?: {
+    name: string;
+    value: string;
+  };
+};
+
 function isLoopbackHostname(hostname: string): boolean {
   return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1" || hostname === "[::1]";
 }
@@ -43,11 +54,16 @@ function isAllowedRequestOrigin(value: string, request: Request): boolean {
   return ALLOWED_ORIGINS.has(value) || originMatchesRequestHost(value, request);
 }
 
-export function assertAllowedOrigin(request: Request, options: { allowDirectNavigation?: boolean } = {}): Response | null {
+export function assertAllowedOrigin(request: Request, options: AllowedOriginOptions = {}): Response | null {
   if (process.env.NODE_ENV !== "production") return null;
 
   const origin = request.headers.get("origin");
-  if (origin !== null) {
+  // Safari may send the literal opaque origin "null" (or omit Origin and
+  // Referer) for a same-origin POST made by an iframe after an iPadOS
+  // lifecycle/reload transition. Treat a real URL origin as authoritative,
+  // including an explicitly foreign one. Only the opaque/missing branch may
+  // fall through to the route-scoped same-origin marker below.
+  if (origin !== null && origin !== "null") {
     if (isAllowedRequestOrigin(origin, request)) return null;
     return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { "Content-Type": "application/json" } });
   }
@@ -62,6 +78,9 @@ export function assertAllowedOrigin(request: Request, options: { allowDirectNavi
     }
     return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { "Content-Type": "application/json" } });
   }
+
+  const marker = options.trustedSameOriginMarker;
+  if (marker && request.headers.get(marker.name) === marker.value) return null;
 
   if (options.allowDirectNavigation && request.method === "GET") return null;
   return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { "Content-Type": "application/json" } });

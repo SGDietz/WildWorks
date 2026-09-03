@@ -66,6 +66,8 @@ await transpile("src/lib/iscottLeadParsing.ts", "iscottLeadParsing", [
   ['from "./iscottSalesCopy"', 'from "./iscottSalesCopy.mjs"'],
 ]);
 const visitorSource = await transpile("src/lib/iscottVisitorConfirmation.ts", "iscottVisitorConfirmation", [
+  ['from "./emailTheme"', 'from "./stub-theme.mjs"'], // CLAUDE 2026-09-02 (H443): the receipt now imports the theme; stub it like the notifications module
+
   ['from "./iscottLeadParsing"', 'from "./iscottLeadParsing.mjs"'],
   // 2026-08-30: the SHIPPED constant is now true - G authorized the receipt
   // and the migration was applied the same night. This module is forced back
@@ -83,6 +85,8 @@ assert.ok(
   "activation is a source constant, not an environment toggle",
 );
 await transpile("src/lib/iscottVisitorConfirmation.ts", "iscottVisitorConfirmationEnabled", [
+  ['from "./emailTheme"', 'from "./stub-theme.mjs"'], // CLAUDE 2026-09-02 (H443): the receipt now imports the theme; stub it like the notifications module
+
   ['from "./iscottLeadParsing"', 'from "./iscottLeadParsing.mjs"'],
 ]);
 
@@ -125,6 +129,13 @@ export const emailCallout = ({ html }) => html;
 export const emailRows = (rows) => JSON.stringify(rows);
 export const emailButton = (href, label) => label + ":" + href;
 export const emailPre = (value) => value;
+export const emailParagraph = (html) => html;
+export const escapeHtml = (value) => String(value);
+// CLAUDE 2026-09-02 (H433): the real theme grew these helpers; the stub must export them too.
+export const emailSection = ({ html }) => html;
+export const emailPaintedCopy = (value) => value;
+export const emailMailto = (address) => address;
+export const emailLink = (href, label) => label + ":" + href;
 `);
 await write("stub-capture-ui", `export function visitorChoseContactMethod(text) { return /email/i.test(text) ? "email" : null; }
 `);
@@ -248,12 +259,70 @@ const visitorContent = [
   qualified.prepared.text,
   qualified.prepared.html,
 ].join("\n");
+// CLAUDE 2026-09-02 (H443, on G's order): the receipt is no longer a frozen
+// three-line note. G, 11:57 ET: "this email should have a lot more to it...
+// a brief conversation summary." The allowlist now polices the words the APP
+// writes (subject + text, with the visitor's own project need removed - that
+// text is theirs, echoed back on purpose). The themed HTML is covered by the
+// forbidden list below (contact value, name, session id, dates, promises), not
+// by the allowlist - a table/inline-style shell is hundreds of harmless tokens.
 const ALLOWED_WORDS = new Set([
-  "wildworks", "received", "your", "request", "this", "note", "confirms",
-  "that", "was", "submitted", "no", "reply", "is", "needed", "h1", "p",
+  // H443b (Grok) list, applied by Claude 2026-09-02 on G's order for fuller receipt copy
+  "wildworks",
+  "received",
+  "your",
+  "request",
+  "this",
+  "note",
+  "confirms",
+  "that",
+  "was",
+  "submitted",
+  "no",
+  "reply",
+  "is",
+  "needed",
+  "h1",
+  "p",
+  "from",
+  "scott",
+  "will",
+  "be",
+  "reaching",
+  "out",
+  "to",
+  "you",
+  "regarding",
+  "what",
+  "talked",
+  "about",
+  "with",
+  "iscott",
+  "sent",
+  "by",
+  "email",
+  "phone",
+  "read",
+  "told",
+  "and",
+  "reach",
+  "next",
+  "number",
+  "the",
+  "site",
+  "https",
+  "ai",
+  "s",
+  "443",
+  "797",
+  "2166",
 ]);
-const words = visitorContent
-  .replace(/<[^>]*>/g, (tag) => ` ${tag.replace(/[<>/]/g, " ")} `)
+const dynamicNeed = String(submittedLead.projectNeed || "");
+const policedText = [qualified.prepared.subject, qualified.prepared.text]
+  .join("\n")
+  .split(dynamicNeed)
+  .join(" ");
+const words = policedText
   .toLowerCase()
   .split(/[^a-z0-9]+/)
   .filter(Boolean);
@@ -261,7 +330,9 @@ for (const word of words) {
   assert.ok(ALLOWED_WORDS.has(word), `visitor copy contains unapproved word: ${word}`);
 }
 for (const forbidden of [
-  VISITOR_EMAIL, "Solveig", "Hansen", "pool", "waterfall", SESSION, SUBMITTED_AT,
+  // CLAUDE 2026-09-02 (H443): "pool"/"waterfall" removed - the project need is echoed
+  // to the visitor by G's order. Contact value, name, session, dates stay forbidden.
+  VISITOR_EMAIL, "Solveig", "Hansen", SESSION, SUBMITTED_AT,
   "transcript", "supabase", "dashboard", "media", "photo", "delivered", "inbox",
   "hour", "day", "week", "soon", "shortly", "call", "book", "appointment",
   "schedule", "quote", "estimate", "price", "free", "guarantee",
@@ -279,7 +350,6 @@ const refusals = [
   ["not_submitted", { lead: { ...submittedLead, status: "confirmed" } }],
   ["missing_submitted_at", { lead: { ...submittedLead, submittedAt: null } }],
   ["missing_full_name", { lead: { ...submittedLead, fullName: "there" } }],
-  ["generic_project_need", { lead: { ...submittedLead, projectNeed: "landscaping" } }],
   ["consent_not_accepted", { lead: { ...submittedLead, consentStatus: "unknown" } }],
   ["contact_not_confirmed", { lead: { ...submittedLead, contactConfirmedAt: null } }],
   ["contact_method_not_email", { lead: { ...submittedLead, contactMethod: "phone" } }],
@@ -288,6 +358,12 @@ const refusals = [
   ["no_exact_contact_consent", { proofRows: [] }],
   ["missing_owner_notification", { ownerNotificationOutboxId: "" }],
 ];
+// G, 2026-09-02 16:47 ET chose (a): "Send anyway. Email says project need: not stated yet." His word, verbatim: "a". iPad ride fa6b1fe5 was refused for a missing need after name + email + "Yes". A receipt goes out with or without a stated need.
+for (const need of [null, "landscaping"]) {
+  const d = Visitor.prepareIScottVisitorConfirmation({ ...qualifiedArgs, lead: { ...submittedLead, projectNeed: need } });
+  assert.equal(d.eligible, true, `need ${JSON.stringify(need)} must not block the receipt`);
+  assert.equal(d.blockers.includes("generic_project_need"), false);
+}
 for (const [blocker, override] of refusals) {
   const decision = Visitor.prepareIScottVisitorConfirmation({ ...qualifiedArgs, ...override });
   assert.equal(decision.eligible, false, `${blocker} must block preparation`);
@@ -758,7 +834,7 @@ try {
     // The owner package still carries the details Scott needs; the receipt does
     // not, and neither one borrowed the other's audience.
     assert.match(ownerRow.text_body, /Solveig Hansen/);
-    assert.doesNotMatch(visitorRow.text_body, /Solveig|Hansen|waterfall/i);
+    assert.doesNotMatch(visitorRow.text_body, /Solveig|Hansen/i /* CLAUDE 2026-09-02 (H443): project need may be echoed now */);
 
     // Lead linkage: separate columns, provider acceptance only, delivery never.
     assert.equal(state.lead.status, "submitted");

@@ -45,6 +45,23 @@ assert.equal(visitorChoseContactMethod("just call me"), "phone");
 assert.equal(visitorChoseContactMethod("How should Scott reach out to you - email or phone?"), null);
 assert.equal(visitorChoseContactMethod("Would you like me to reach out by email?"), null);
 assert.equal(visitorChoseContactMethod("look at this stupid fucking goddamn email box"), null);
+assert.equal(
+  visitorChoseContactMethod("Okay, the box, the— your phone. I did— what the fuck? Where did your phone come from?"),
+  null,
+  "f1163ff3 UI complaint must not flip the capture to phone",
+);
+assert.equal(visitorChoseContactMethod("Your phone, the words your phone still have a glow on the screen."), null);
+assert.equal(visitorChoseContactMethod("Phone. My number is on the screen."), "phone");
+assert.equal(visitorChoseContactMethod("I'm throwing my phone against the wall."), null);
+// G's desktop ride 1cc18a84, 2026-09-03 15:46 ET: "Um, can I call you Scott?"
+// opened the YOUR PHONE box before any contact talk. Calling someone something,
+// or asking what to call them, is not asking to be phoned.
+assert.equal(visitorChoseContactMethod("Um, can I call you Scott?"), null, "asking what to call iScott is not a phone choice");
+assert.equal(visitorChoseContactMethod("What should I call you?"), null);
+assert.equal(visitorChoseContactMethod("Call me Scott."), null, "a name introduction is not a phone choice");
+assert.equal(visitorChoseContactMethod("Scott can call me."), "phone");
+assert.equal(visitorChoseContactMethod("give me a call"), "phone");
+assert.equal(visitorChoseContactMethod("call you on the phone"), "phone", "the word phone still wins");
 assert.equal(methodChoiceFromUtterance({ role: "user", text: "email's fine" }), "email");
 
 assert.equal(nextLeadCaptureUi({

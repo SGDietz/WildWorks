@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import {
   classifyOperationalTelemetryEvent,
   classifySupabaseOperationalFailure,
+  createConnectivityMissGate,
   compactSafeText,
   correlationId,
   formatOperationalAlert,
@@ -27,6 +28,7 @@ const DEDUPE_MS = 10 * 60 * 1000;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 6;
 let configPromise: Promise<{ token: string; chatId: string } | null> | null = null;
+const admitConnectivity = createConnectivityMissGate({ threshold: 2, windowMs: 60_000 });
 
 async function loadAlertConfig() {
   if (!configPromise) {
@@ -107,6 +109,7 @@ export function queueOperationalAlertFromTelemetry(args: {
   route?: string | null;
   statusCode?: number | null;
   sessionId?: string | null;
+  failStreak?: number | null;
 }) {
   const alert = classifyOperationalTelemetryEvent(args);
   if (alert) queueWildWorksOperationalAlert(alert);
@@ -135,5 +138,11 @@ export function queueSupabaseOperationalAlert(args: {
   correlationSource?: unknown;
   failureKind?: "configuration" | "connectivity";
 }) {
-  queueWildWorksOperationalAlert(classifySupabaseOperationalFailure(args));
+  const alert = classifySupabaseOperationalFailure(args);
+  if (!alert) return;
+  if (alert.category === "supabase_connectivity" && !admitConnectivity({
+    key: args.correlationSource ?? `${args.component}:${args.operation}`,
+    connectivity: true,
+  })) return;
+  queueWildWorksOperationalAlert(alert);
 }

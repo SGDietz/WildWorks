@@ -28,6 +28,7 @@ for (const realName of ["Solveig Hansen", "Cher Bono", "Li Wei", "Jo March", "Sa
 }
 
 const invalidNames = [
+  "Thinking",
   "Email Address",
   "My Email Address",
   "Phone Number",
@@ -204,7 +205,7 @@ for (const oneWordName of ["Solveig", "Cher", "Li", "Jo", "Saoirse", "Jean-Luc"]
 // same slot and are not one.
 for (const notAName of [
   "test", "visitor", "guest", "unknown", "n/a", "none", "idk", "hello",
-  "asdf", "qwerty", "xyz", "name", "email", "phone", "four", "ready", "here",
+  "asdf", "qwerty", "xyz", "name", "email", "phone", "four", "ready", "here", "thinking",
 ]) {
   assert.equal(
     Parsing.isMeaningfulVisitorName(notAName),
@@ -213,6 +214,90 @@ for (const notAName of [
   );
   const blocked = await captureWithName(notAName);
   assert.equal(blocked.notifyCalls.length, 0, `"${notAName}" must remain in the name gather step`);
+}
+
+// 2026-09-02 b0c50885: iScott asked for the missing name after contact
+// confirmation. The visitor answered with a legitimate one-word name, then
+// continued with an iPad UI complaint in the same STT turn. The name must be
+// recovered only because the immediately preceding assistant turn asked for it.
+const nameQuestion = "I haven't captured your name yet. Could you please share your name with me?";
+assert.equal(
+  Parsing.extractSpokenFullName("Scott. And the box? was off the screen for— was there any kind of confirmation?", nameQuestion),
+  "Scott",
+  "b0c50885 bare name survives trailing UI commentary",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("Scott and the box is still low.", nameQuestion),
+  "Scott",
+  "a conjunction can separate the bare answer from the UI complaint",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("It's Scott.", nameQuestion),
+  "Scott",
+  "a visitor can answer a name question with the common It's <name> form",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("It is Scott.", nameQuestion),
+  "Scott",
+  "a visitor can answer a name question with the expanded It is <name> form",
+);
+for (const contextualJunk of ["It's low.", "It's dark.", "It's perfect.", "It's small.", "It's broken.", "It's Tuesday."]) {
+  assert.equal(
+    Parsing.extractSpokenFullName(contextualJunk),
+    null,
+    `${contextualJunk} is not a context-free visitor name`,
+  );
+}
+assert.equal(
+  Parsing.extractSpokenFullName("It's low.", nameQuestion),
+  null,
+  "a UI complaint after a name question is not manufactured into a name",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("Scott builds beautiful things."),
+  null,
+  "a person's name at the start of ordinary prose is not the visitor's name",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("Yes, and the box is low.", nameQuestion),
+  null,
+  "an acknowledgement after the name question is not manufactured into a name",
+);
+assert.equal(
+  Parsing.extractSpokenFullName("The box is low.", nameQuestion),
+  null,
+  "a UI complaint after the name question is not manufactured into a name",
+);
+
+// Run the same shape through the production capture path. The name is kept,
+// after the visitor's earlier permission. Permission belongs to the confirmed
+// contact, so learning the missing name completes and releases that package.
+{
+  const initial = leadRow(null);
+  initial.transcript_snapshot = [
+    ...persistedProof,
+    { role: "assistant", message: nameQuestion, timestamp: 18 },
+  ];
+  const backend = localBackend(initial);
+  Notify.notifyCalls.length = 0;
+  globalThis.fetch = backend.fetchImpl;
+  try {
+    await Capture.processIScottTranscriptRows({
+      sessionId: SESSION,
+      route: "/pages/avatar-iscott",
+      rows: [{
+        role: "user",
+        message: "Scott. And the box? was off the screen for— was there any kind of confirmation?",
+        laAbsoluteTimestamp: 20,
+      }],
+    });
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+  assert.equal(backend.store.row.full_name, "Scott", "b0c50885 production capture persists the contextual name");
+  assert.equal(backend.store.row.consent_status, "accepted", "a name added after permission keeps contact consent");
+  assert.ok(backend.store.row.contact_confirmed_at, "the confirmed contact remains confirmed");
+  assert.equal(Notify.notifyCalls.length, 1, "the newly complete authorized package reaches Scott once");
 }
 
 console.log("iScott meaningful visitor-name check OK.");

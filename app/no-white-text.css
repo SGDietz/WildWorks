@@ -144,7 +144,14 @@ html body#wildworks-body#wildworks-body :is(
 
 html body#wildworks-body#wildworks-body :is(
   .ww-c3,
-  [class*="--c3"],
+  /* CLAUDE 2026-09-01. This substring match is why the Wildfire hero heading
+     stayed orange through four separate fixes: it claims any class CONTAINING
+     "--c3" without ever naming it, so no name-based grep could find it.
+     Only CSS.getMatchedStylesForNode did. G: "There is no more number three
+     text color against the background." The two Wildfire hero lines are
+     excluded here so H401 can paint them Text 1; every other --c3 element on
+     the site is untouched and still Text 3. */
+  [class*="--c3"]:not(.wildfire-hero-headline__line--c3):not(.wildfire-hero-summary__line--c3),
   .wild-signature-title__three
 ) {
   color: #f08c28 !important;

@@ -1,0 +1,130 @@
+/* H426 — Going Text 1 + legal-page icons match Home H419.
+   ONE file. Rewrite after bounce: prior disk was @media all without
+   !important on var feeds; HANDOFF described @layer. This file IS the layer.
+
+   Scott (word for word):
+     "First, do all of the color fixes, all of the shade, all of the
+      fixes that I asked, then get to the emails."
+     "Anything you send, any fix, anywhere, to anyone, should have
+      exactly what I asked for. Exactly word for word. Not your
+      interpretation of what I asked for."
+     "Then We Just Kept Going. is Text 1, not Text 3. No Text 3 as
+      text on the primary background #c44d0b."
+     "Primary background #c44d0b, Secondary/card #e96819, Text 1
+      #fce0ad, Text 2 #edc775, Text 3 #f08c28. Do not invent other
+      colors on homepage work."
+
+   Live: Going computed T2 #edc775 via H393 literal (chunk
+   5a60f68287385ee5.css). Beat like H422: @layer + same H393 selector
+   house. No new :not ladder. Not H420. Leave .wild-hero T3 and button
+   labels T3.
+
+   Legal icons vs Home H419: H337 reads --ww-cta-icon-shadow (literal
+   .0785em). Feed that var 1.5px 0-blur + depth + geometricPrecision.
+   html:has(.wild-legal-home) only. Do not restyle H419 Home.
+
+   Import AFTER current tail BEFORE H232. H232 last.
+   Filename: H426-text3-legal-icons.css
+   iScott, never "high Scott". Visual only.
+*/
+
+@layer ww-h426-text3-legal-icons {
+  /* 1. Going -> Text 1 #fce0ad. Same H393 house as H422. Literal beat. */
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:not(#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_):has(#top.wild-home:not(.wild-legal-home)) #top.wild-home
+  :is(
+    #project-wildfire .wild-wildfire-sequence-callout__line--going,
+    #project-wildfire .wild-wildfire-sequence-callout__line--going *
+  ) {
+    /* CLAUDE 2026-09-02: was #fce0ad (Text 1). G REVERSED this himself on the
+       evening of 09-01, after the earlier "keep it white" call:
+         "Text color number two is then we just kept going, and then keep that
+          text color number two."
+       Latest signal wins. I had set it to Text 2 in H393; this packet was
+       written against the older instruction and put it back to Text 1, which
+       is how it regressed overnight. Corrected here so the two agree. */
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
+  }
+
+  /* 2. Legal button icons: feed the vars H337 already reads. */
+  html:has(.wild-legal-home)
+    .wild-home.wild-legal-home
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    ) {
+    --ww-icon-shadow-depth: 1.5px !important;
+    --ww-cta-icon-shadow: drop-shadow(0 1.5px 0 rgba(30, 8, 2, 0.93)) !important;
+  }
+
+  html:has(.wild-legal-home)
+    .wild-home.wild-legal-home
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    )
+    :is(svg, .wild-iscott-upload__icon) {
+    --ww-icon-shadow-depth: 1.5px !important;
+    --ww-cta-icon-shadow: drop-shadow(0 1.5px 0 rgba(30, 8, 2, 0.93)) !important;
+    shape-rendering: geometricPrecision !important;
+    overflow: visible !important;
+  }
+
+  html:has(.wild-legal-home)
+    .wild-home.wild-legal-home
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a.wild-iscott-action-button,
+      button.wild-iscott-action-button,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control,
+      .wild-home-phone-iscott-test__button
+    )
+    svg * {
+    vector-effect: non-scaling-stroke !important;
+  }
+}

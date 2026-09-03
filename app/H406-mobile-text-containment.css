@@ -1,0 +1,93 @@
+/* H406 — mobile text containment, 412 overflows.
+   Home + who-is-g only. @media (max-width: 719px) only.
+   Import AFTER H403 BEFORE H232. Do not install from this folder.
+   iScott, never "high Scott". No H400 / H401 / H402 / H403 restyle.
+   No hero Text 3. No parser. No avatar. No :not(#_#_#_...).
+
+   Claude measured at 412px:
+     1. Home .wild-iscott-kicker__color--one "Built" +18px
+     2. Home .wild-body.wild-iscott-body--color-one Upload Photo line +5px
+     3. Home .wild-body "An Artsy Young Couple of Irish Descent" +8px
+     4. Home .wild-site-offer-copy__line Ai driven website line +8px
+     5. who-is-g a "1+443-797-2166" +24px
+
+   Item 1 parent is p.wild-kicker (NOT Front Door / .wild-iscott-title).
+   Driver is letter-spacing 0.2em on that p. Drop tracking; max-width 100%.
+   Do not shrink .wild-iscott-title.
+
+   Items 2–4: padding-inline / max-width / overflow-wrap / hyphens.
+   No display-heading font-size change.
+
+   Item 5 merged as-is from assist-2: padding-inline 0 first; leftover
+   overflow required type-size; nowrap kept; match 46px sibling.
+   One tappable tel string. Never wrap mid-number.
+*/
+
+@media (max-width: 719px) {
+  /* 1. Home kicker "Built" +18px — parent p.wild-kicker, not Front Door. */
+  html body#wildworks-body
+    #top.wild-home:not(.wild-legal-home)
+    #iscott-sales
+    .wild-copy-stack
+    > p.wild-kicker {
+    max-width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 0 !important;
+    white-space: normal;
+  }
+
+  /* 2. Home iScott body "Upload Photo" +5px.
+        Class also hits the two sibling .wild-iscott-body--color-one paras. */
+  html body#wildworks-body
+    #top.wild-home:not(.wild-legal-home)
+    #iscott-sales
+    p.wild-body.wild-iscott-body--color-one {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* 3. Home tree-of-life body "An Artsy Young Couple of Irish Descent" +8px. */
+  html body#wildworks-body
+    #top.wild-home:not(.wild-legal-home)
+    #wildworks-proof
+    p.wild-body {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* 4. Home site-offer "Ai driven website" line +8px. */
+  html body#wildworks-body
+    #top.wild-home:not(.wild-legal-home)
+    .wild-site-offer-copy
+    .wild-site-offer-copy__line {
+    display: block;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* CLAUDE EDIT ON INSTALL 2026-09-01: ITEM 5 (the who-is-g phone number) IS
+     REMOVED FROM THIS FILE.
+     It was already fixed at source 20 minutes before this packet landed -
+     H379-bio-size-spacing-phone.css, clamp 12.4vw -> 11.1vw - and I told Grok
+     so in the scope note. Two rules doing the same job is bad enough; the
+     packet version also added letter-spacing: 0.04em, which I did not measure
+     and which would have RE-BROKEN it. The string is white-space:nowrap and
+     was sitting 14px from the right edge at 412. "1+443-797-2166" is 14
+     characters, so 13 gaps x (0.04 x 45.7px) = ~24px of extra width - straight
+     back over the edge. Verified fitting at 360 / 390 / 412 without it. */
+}

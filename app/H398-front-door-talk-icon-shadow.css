@@ -1,0 +1,146 @@
+/* H398 - Front Door: Talk back on the iScott avatar + un-smudge button icons.
+   G 2026-08-31 Telegram (quote, not a summary):
+     "Okay, now, the only things I see wrong here are, there's no Talk to
+     iScott button on this iScott avatar. The, in the button, the icons in
+     the buttons have no shadow effect. They're smudgy. What the fuck
+     happened to them? Those are the main things."
+     "Do not invent a bunch of shit that does not need to be fixed"
+   Import AFTER H396 (and after H397 if that file is already imported) BEFORE H232.
+
+   Scope: Home #top.wild-home:not(.wild-legal-home) ONLY.
+   Two jobs. Nothing else.
+   1. Show Talk to iScott on the iScott avatar photo again (H396 hid it).
+   2. Restore a HARD attached drop-shadow on homepage button ICONS
+      (H394's 0.38rem/0.58rem blur is the smudge).
+   Do not: move the top pill, rewrite copy, restyle Upload beyond its icon
+   shadow, invent contrast/a11y, touch #talk-to-iscott product panel,
+   legal, live domain, or H397.
+
+   HOW TO WIN WITHOUT A :not(#_#_#_...) LADDER
+   H396's three display:none overlay-hide rules beat this file on
+   specificity. Claude: RETIRE those three H396 hides (minor). This file
+   is the replacement show. Same for H394's blur-only icon filter.
+*/
+
+/* =====================================================================
+   1. Talk to iScott BACK on the iScott avatar photo.
+   H396 hid .wild-site-avatar-overlay-cta and money-cta inside the
+   #iscott-sales media column. Restore visibility. Do not hide or move
+   the top --hero-compact pill. Do not open #talk-to-iscott.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home) #iscott-sales .wild-site-avatar-overlay-cta {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#top.wild-home:not(.wild-legal-home) #iscott-sales
+  :is(.wild-media, .wild-visual, .wild-figure, .wild-iscott-media, .wild-split-media, .wild-split__media, figure)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    .wild-site-avatar-overlay-cta
+  ):not(#talk-to-iscott):not(#talk-to-iscott *) {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#top.wild-home:not(.wild-legal-home) #iscott-sales .wild-split--lead > :not(.wild-copy-stack)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    .wild-site-avatar-overlay-cta
+  ):not(#talk-to-iscott):not(#talk-to-iscott *) {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Overlay inner Talk pill — keep it a pill, not a column */
+#top.wild-home:not(.wild-legal-home) #iscott-sales .wild-site-avatar-overlay-cta
+  :is(a, button, a.money-cta, button.money-cta, a.wild-iscott-action-button, button.wild-iscott-action-button) {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* =====================================================================
+   2. Button ICONS — hard attached drop-shadow, not the H394 smudge.
+   H394: filter: drop-shadow(0 0.38rem 0.58rem rgba(74, 31, 9, 0.32))
+   That blur is what G called smudgy / "no shadow effect".
+   Restore the H395 attached edge (0.75px + 1.5px) plus a tiny ground
+   shadow. Icons only. Do not filter the button or the label.
+   Beat H106 filter:none on svg.
+   ===================================================================== */
+#top.wild-home:not(.wild-legal-home)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wild-home-phone-iscott-test__button,
+    .wild-site-avatar-overlay-cta
+  )
+  :is(svg, img, i, .icon, .wild-iscott-upload__icon) {
+  filter:
+    drop-shadow(0 0.75px 0 rgba(35, 9, 2, 0.92))
+    drop-shadow(0 1.5px 0 rgba(25, 6, 1, 0.78))
+    drop-shadow(0 2px 2px rgba(74, 31, 9, 0.22)) !important;
+  -webkit-filter:
+    drop-shadow(0 0.75px 0 rgba(35, 9, 2, 0.92))
+    drop-shadow(0 1.5px 0 rgba(25, 6, 1, 0.78))
+    drop-shadow(0 2px 2px rgba(74, 31, 9, 0.22)) !important;
+}
+
+#top.wild-home:not(.wild-legal-home)
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wild-home-phone-iscott-test__button,
+    .wild-site-avatar-overlay-cta
+  )::before {
+  filter:
+    drop-shadow(0 0.75px 0 rgba(35, 9, 2, 0.92))
+    drop-shadow(0 1.5px 0 rgba(25, 6, 1, 0.78))
+    drop-shadow(0 2px 2px rgba(74, 31, 9, 0.22)) !important;
+  -webkit-filter:
+    drop-shadow(0 0.75px 0 rgba(35, 9, 2, 0.92))
+    drop-shadow(0 1.5px 0 rgba(25, 6, 1, 0.78))
+    drop-shadow(0 2px 2px rgba(74, 31, 9, 0.22)) !important;
+}

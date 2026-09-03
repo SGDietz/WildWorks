@@ -338,7 +338,12 @@ html:has(#top.wild-home:not(.wild-legal-home))
   --ww-home-heading-color-3: #e96819 !important;
 }
 
-html body#wildworks-body#wildworks-body :is(.ww-c3, .wildfire-hero-headline__line--c3) {
+/* CLAUDE 2026-09-01: .wildfire-hero-headline__line--c3 removed from this list.
+   G: "There is no more number three text color against the background." On the
+   Wildfire hero that line is Text 1 #fce0ad via H401. This rule (2 ids) was
+   beating H401 (1,1,0) and painting it #e96819 - proven with
+   CSS.getMatchedStylesForNode. .ww-c3 is untouched everywhere else. */
+html body#wildworks-body#wildworks-body :is(.ww-c3) {
   color: #e96819 !important;
   -webkit-text-fill-color: #e96819 !important;
 }

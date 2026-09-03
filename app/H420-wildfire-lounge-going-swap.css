@@ -1,0 +1,44 @@
+/* H420 - Wildfire callout: swap Lounge and Going only.
+
+   G 2026-09-01, verbatim, on the screenshot:
+     "then came the patio. Text colon number one. Then came the lounge. Change
+      that to text color number one. Text color number two is then we just kept
+      going, and then keep that text color number two. We photographed every
+      step of the... and then the last two are fine. So in other words, then
+      came the patio, then came the lounge, are all text color number one. Then
+      we just kept going. We photographed every step of the text color number
+      two. And then build from preexisting ground stays the same through the
+      first wood fire stays the same."
+
+   Measured before this file, at 412:
+     patio   Text 1   already correct, untouched
+     lounge  Text 2   -> TEXT 1   (this file)
+     going   Text 1   -> TEXT 2   (this file)
+     lead    Text 2   already correct, untouched
+     middle  Text 1   "stays the same", untouched
+     close   Text 2   "stays the same", untouched
+
+   NOTE, a reversal G made himself and I am following: earlier this evening he
+   said of Going "keep it white. Keep it the number one text collar." This
+   screenshot pass moves it to Text 2. Latest signal wins.
+
+   WHY A NEW FILE RATHER THAN AN EDIT: H168 assigns these colours in GROUPS -
+   lounge shares its rule with build-note__line--middle, and going shares its
+   rule with build-note__line--close. G explicitly said middle and close stay
+   the same, so editing those group rules would have dragged two lines he did
+   not ask to change. This file touches exactly the two lines named.
+
+   Import BEFORE H232. */
+/* "Then Came the Lounge." -> Text 1 */
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home) #project-wildfire .wild-wildfire-sequence-callout__line--lounge,
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home) #project-wildfire .wild-wildfire-sequence-callout__line--lounge * {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+/* The Going rule that used to live here was INERT - H393 holds that value at
+   a higher weight and won. Fixed in H393 itself instead. Lounge below did win
+   and stays. */

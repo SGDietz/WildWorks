@@ -1,0 +1,170 @@
+/* H403 - Home button icons + button text-shadow, rest of the site.
+   Scott 2026-09-01 ~4:16 AM ET, exact words:
+   "Claude nailed the homepage icons and text shadow in the buttons. He needs to finish that throughout the website. Help him with that if need be."
+
+   LOCK is Home as Claude nailed it (screenshot 4:16 AM ET):
+     - button TEXT-SHADOW = H337 --ww-cta-label-shadow after Scott's 10% backoff
+     - button ICONS = H395 one attached drop-shadow (not a chain; chains smear)
+   Do NOT restyle homepage. Home already owns these values.
+   Do NOT touch legal (.wild-legal-home) or H402 legal-header 20%.
+   Do NOT steal H400 iScott framing or H401 heading.
+   Do NOT change Text 3 #f08c28 on buttons. No palette drift:
+     Primary #c44d0b / Secondary #e96819 / Text 1 #fce0ad / Text 2 #edc775 / Text 3 #f08c28
+
+   Why vars, not another id ladder:
+     H337 already applies sitewide
+       text-shadow: var(--ww-cta-label-shadow, OLD_FALLBACK) !important
+       filter:      var(--ww-cta-icon-shadow,  OLD_FALLBACK) !important
+     at thousands of ids. Home sets the vars on html:has(#top.wild-home).
+     Subpages still consume the old fallbacks. This file sets the Home vars
+     on public subpage documents so H337 consumes them. No :not(#_#_#_...).
+
+   Import AFTER H401, BEFORE H232. Do not edit H395/H397/H400-homepage-high-scott
+   / H400-sitewide-button-icon-shadow / H401 / H402.
+
+   Checkout already has app/H400-sitewide-button-icon-shadow.css (icon filter
+   only, no !important, imported BEFORE H395). Leave that file. This packet
+   is the text-shadow finish plus the Home icon lock on subpages. Grok's H400
+   framing packet (H400-homepage-high-scott) is a different file; do not rewrite it.
+   ===================================================================== */
+
+/* Public subpages only. Home is #top.wild-home with no .wild-subpage.
+   Legal is .wild-legal-home. Footer sits outside the subpage div, so
+   html:has(...) is required to reach shared header/footer CTAs. */
+html:is(:has(.wild-subpage):not(:has(#top.wild-home)), :has(.wild-legal-home)) {
+  --ww-cta-label-shadow:
+    rgba(35,9,2,0.97) 0 0.007850em 0,
+    rgba(34,9,2,0.941) 0 0.015700em 0,
+    rgba(33,8,2,0.913) 0 0.023549em 0,
+    rgba(32,8,2,0.884) 0 0.031399em 0,
+    rgba(31,8,2,0.855) 0 0.039249em 0,
+    rgba(29,7,1,0.827) 0 0.047099em 0,
+    rgba(28,7,1,0.798) 0 0.054949em 0,
+    rgba(27,7,1,0.745) 0 0.062798em 0,
+    rgba(26,6,1,0.700) 0 0.070648em 0,
+    rgba(25,6,1,0.660) 0 0.078498em 0;
+  --ww-cta-label-shadow-lg:
+    rgba(35,9,2,0.97) 0 0.004907em 0,
+    rgba(34,9,2,0.941) 0 0.009814em 0,
+    rgba(33,8,2,0.913) 0 0.014720em 0,
+    rgba(32,8,2,0.884) 0 0.019627em 0,
+    rgba(31,8,2,0.855) 0 0.024534em 0,
+    rgba(29,7,1,0.827) 0 0.029441em 0,
+    rgba(28,7,1,0.798) 0 0.034348em 0,
+    rgba(27,7,1,0.745) 0 0.039254em 0,
+    rgba(26,6,1,0.700) 0 0.044161em 0,
+    rgba(25,6,1,0.660) 0 0.049068em 0;
+  --ww-icon-shadow-depth: 0.078500em;
+  --ww-cta-icon-shadow:
+    drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93));
+}
+
+/* 52px Talk control: same split as H395 on Home (--ww-cta-label-shadow-lg). */
+html:is(:has(.wild-subpage):not(:has(#top.wild-home)), :has(.wild-legal-home))
+  .wild-home-phone-iscott-test__button {
+  --ww-icon-shadow-depth: 0.049064em;
+}
+
+/* Direct icon lock matching H395, for consumers that do not read the var.
+   Button list = Home H395 + overlay CTA + the matching sitewide CTAs Claude
+   already listed in checkout H400-sitewide-button-icon-shadow.css. */
+html:is(:has(.wild-subpage):not(:has(#top.wild-home)), :has(.wild-legal-home))
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wild-home-phone-iscott-test__button,
+    .wild-mobile-menu-button,
+    .wild-branded-video__center-control,
+    .wild-branded-video__control,
+    .wild-project-lightbox__control,
+    .wild-gallery-control,
+    .wild-site-avatar-overlay-cta,
+    #wildworks-avatar-restart,
+    #wildworks-lead-confirm,
+    .btn-wood
+  )
+  :is(svg, img, i, .icon, .wild-iscott-upload__icon, .ww-mail, .ww-phone) {
+  filter: drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Lucide line art on matching CTAs. fill:currentColor floods the glyph and
+   hides the attached edge. Same as H395 on Home. Color is not set here. */
+html:is(:has(.wild-subpage):not(:has(#top.wild-home)), :has(.wild-legal-home))
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wild-home-phone-iscott-test__button,
+    .wild-mobile-menu-button,
+    .wild-branded-video__center-control,
+    .wild-branded-video__control,
+    .wild-project-lightbox__control,
+    .wild-gallery-control,
+    .wild-site-avatar-overlay-cta,
+    #wildworks-avatar-restart,
+    #wildworks-lead-confirm,
+    .btn-wood
+  )
+  svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* ::before kept as its own rule: :is() rejects pseudo-elements. */
+html:is(:has(.wild-subpage):not(:has(#top.wild-home)), :has(.wild-legal-home))
+  :is(
+    a.money-cta,
+    button.money-cta,
+    a.wild-iscott-action-button,
+    button.wild-iscott-action-button,
+    a[aria-label="Talk to iScott"],
+    button[aria-label="Talk to iScott"],
+    .wild-iscott-upload__button,
+    .wild-card-cta,
+    .wild-sell-feature-cta,
+    .wild-utility-button,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-footer-top-button,
+    .wild-footer-top-button--closing,
+    .wild-footer-mobile-link,
+    .wild-home-phone-iscott-test__button,
+    .wild-mobile-menu-button,
+    .wild-branded-video__center-control,
+    .wild-branded-video__control,
+    .wild-project-lightbox__control,
+    .wild-gallery-control,
+    .wild-site-avatar-overlay-cta,
+    #wildworks-avatar-restart,
+    #wildworks-lead-confirm,
+    .btn-wood
+  )::before {
+  filter: drop-shadow(0 var(--ww-icon-shadow-depth, 0.078500em) 0 rgba(30, 8, 2, 0.93)) !important;
+}

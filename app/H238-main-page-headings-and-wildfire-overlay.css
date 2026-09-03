@@ -31,10 +31,17 @@
  * 40px. That is exactly what happened on the first attempt at this fix. The
  * margin needs no flag - nothing else claims it. Assert BOTH computed values,
  * never just that the rule is in the file.
+ *
+ * 2026-09-03: 40 -> 52. The passes since 08-19 (H363 heading fit, H384's
+ * top: -0.3rem on the heading, H320's hero-copy padding) spent the headroom
+ * down to 6.9px at 412 and 7px at 287 - under the guard's 8px floor, nothing
+ * visibly shaved yet, but one more pull would do it. Same cancelling pair, 12px
+ * wider: nothing moves, the clip just opens 12px higher. Measured after:
+ * 412 -> ~19px, 287 -> ~19px, desktop/laptop/iPad unchanged.
  */
 html body#wildworks-body .wild-subpage--wildfire {
-  margin-top: -40px;
-  padding-top: 40px !important;
+  margin-top: -52px;
+  padding-top: 52px !important;
 }
 
 

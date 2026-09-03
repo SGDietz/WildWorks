@@ -856,6 +856,43 @@ assert.match(overlayCss, /aria-hidden", "false"/, "WW-57 shown state");
 assert.match(overlayCss, /role="status"/, "WW-57 status live region");
 assert.match(overlayCss, /id="wildworks-lead-confirm"[\s\S]*Send these details to Scott/, "WW-57 named send control");
 assert.match(overlayCss, /aria-labelledby="wildworks-lead-label-text"/, "WW-57 value labelled by contact label");
+
+// H434, G's 2026-09-02 10:31 phone screenshots. The accepted card geometry
+// stays fixed while the email parts split into their requested palette roles;
+// returned Talk uses the initial Home overlay's exact 22%-of-frame anchor.
+assert.match(
+  overlayCss,
+  /#wildworks-lead-confirmation\[data-contact-method="email"\] #wildworks-lead-label-text,[\s\S]{0,260}color: #fce0ad !important/,
+  "H434 YOUR EMAIL uses Text 1",
+);
+assert.match(
+  overlayCss,
+  /#wildworks-lead-confirmation\[data-contact-method="email"\] #wildworks-lead-value \{[\s\S]{0,120}color: #edc775 !important/,
+  "H434 email address uses Text 2",
+);
+assert.match(overlayCss, /#wildworks-lead-label-text \{\s*white-space: nowrap !important;/, "H434 YOUR EMAIL stays on one line");
+assert.match(
+  overlayCss,
+  /:not\(\[data-ww-embed-measured\]\)\[data-ww-finish-returned\][\s\S]{0,180}bottom: 22% !important/,
+  "H434 phone returned Talk uses the initial 22% anchor",
+);
+assert.match(overlayCss, /--ww-embed-initial-talk-bottom", \(frameHeight \* 0\.22\)/, "H434 measured iPad publishes the same initial anchor");
+assert.match(
+  overlayCss,
+  /\[data-ww-finish-returned\] \[data-ww-talk\]::before \{[\s\S]{0,160}width: 1\.48em !important;[\s\S]{0,500}0\.011512em/,
+  "H434 returned Talk icon is modestly larger with a stronger attached shadow",
+);
+assert.match(
+  overlayCss,
+  /\[data-ww-avatar-embedded\]\[data-ww-embed-measured\] \[data-ww-finish\] \{[\s\S]{0,700}calc\(100dvh - var\(--ww-embed-h\) \+ var\(--ww-embed-initial-talk-bottom\)\)/,
+  "H435 measured iPad Finish uses the initial 22% anchor",
+);
+assert.match(
+  overlayCss,
+  /html \[data-ww-finish\]::before,[\s\S]{0,650}width: 1\.48em !important;[\s\S]{0,650}0 0\.58px/, // CLAUDE 2026-09-02: H437 (Grok) lengthened the Finish icon ladder 0.25px -> 0.58px a step on G's "no long shadow effect"; glyph stays 1.48em
+
+  "H435 Finish icon is 10% larger with a 10% longer attached shadow",
+);
 assert.match(overlayCss, /button\.onclick = confirmLead/, "WW-57 confirm is the focused action control");
 
 assert.equal(FIVE_STANDARD_VIEWPORTS.length, 5, "L79 five standards");
@@ -1712,8 +1749,6 @@ assert.equal(evaluateIScottLeadSendQualification(qualifiedBase).qualified, true,
 for (const [override, blocker] of [
   [{ fullName: null }, "missing_full_name"],
   [{ fullName: "   " }, "missing_full_name"],
-  [{ projectNeed: null }, "generic_project_need"],
-  [{ projectNeed: "Landscaping" }, "generic_project_need"],
   [{ contactValue: null }, "missing_contact"],
   [{ contactMethod: null }, "missing_contact"],
   [{ consentStatus: "unknown" }, "consent_not_accepted"],
@@ -1724,6 +1759,12 @@ for (const [override, blocker] of [
   const result = evaluateIScottLeadSendQualification({ ...qualifiedBase, ...override });
   assert.equal(result.qualified, false, `${blocker} must block the send`);
   assert.ok(result.blockers.includes(blocker), `expected blocker ${blocker}, got ${result.blockers.join(",")}`);
+}
+// G, 2026-09-02 16:47 ET chose (a): "Send anyway. Email says project need: not stated yet." His word, verbatim: "a". iPad ride fa6b1fe5 was refused for a missing need after name + email + "Yes".
+for (const need of [null, "", "Landscaping"]) {
+  const r = evaluateIScottLeadSendQualification({ ...qualifiedBase, projectNeed: need });
+  assert.equal(r.qualified, true, `a missing or generic need no longer blocks the send (need=${JSON.stringify(need)})`);
+  assert.equal(r.blockers.includes("generic_project_need"), false);
 }
 assert.equal(
   evaluateIScottLeadSendQualification({ ...qualifiedBase, requestedContactValue: QEMAIL.toUpperCase() }).qualified,
@@ -1909,4 +1950,17 @@ assert.match(
   "the confirm path must never mint a contact confirmation",
 );
 
+// H453 (2026-09-02): project_need is the visitor's wording, never the synthesized service label.
+{
+  const brandWords = visitorProjectNeedFromRows(["Can he help me build my brand?"]);
+  assert.notEqual(brandWords.projectNeed, "Website and branding makeover", "H453: the canned label must never be the job");
+  assert.ok(brandWords.projectNeed && /build my brand/i.test(brandWords.projectNeed), `H453: visitor words survive (got ${brandWords.projectNeed})`);
+  const landWords = visitorProjectNeedFromRows(["I want to sell land, landscaping, me, my work."]);
+  assert.ok(landWords.projectNeed && /sell land/i.test(landWords.projectNeed), `H453: visitor words survive (got ${landWords.projectNeed})`);
+  const scriptOnly = visitorProjectNeedFromRows(["You need to say Scott can build your brand.", "Build your logo."]);
+  // Operator scripting: the synthesized label must never be the job; a line that reads as a plain
+  // visitor request ("Build your logo.") keeps the pre-H453 behaviour (accumulated visitor wording).
+  assert.notEqual(scriptOnly.projectNeed, "Website and branding makeover", "H453: canned label never the job under scripting");
+  assert.match(scriptOnly.operatorServiceScript ?? "", /brand|logo/i, "H453: the script still lands in operator_service_script");
+}
 console.log("iScott lead parser check OK.");

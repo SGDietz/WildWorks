@@ -14,9 +14,14 @@ const shim = route.slice(shimStart, shimEnd);
 
 // The remote bundle marks its chunks async, so the shim only helps if it is
 // injected ahead of the first remote script rather than late in the head.
+// 2026-09-02: pinned too literally AGAIN, exactly as the note above warns.
+// A second LOCAL script (wildWorksAvatarOriginBridgeScript) now sits between
+// the shim and the remote tag. The shim still LEADS, which is the whole
+// point, so assert that instead of the exact string: shim first, any of our
+// own scripts after it, the remote <script> last.
 assert.match(
   route,
-  /\.replace\(\/<script\\b\/i, `\$\{wildWorksMicrophoneSafetyScript\}<script`\)/,
+  /\.replace\(\/<script\\b\/i, `\$\{wildWorksMicrophoneSafetyScript\}[^`]*<script`\)/,
   "shim is injected before the first remote script tag",
 );
 

@@ -1,0 +1,30 @@
+/* G 2026-09-02 superseding result after the color trial: "the menu bar, I
+   don't like it yellow. Change that back to white on everywhere."
+
+   The complete logo ::after FACE returns to Text Color 1 (#fce0ad). The
+   ::before shadow layer is not selected and does not change. Desktop and
+   mobile menu labels are also Text Color 1 (#fce0ad); their shadows, active
+   box, borders, geometry, and behavior are not selected.
+
+   CLAUDE light edit 2026-09-02 09:12 ET on Codex's packet: the unlayered
+   1-id version was INERT. The face is painted by H115-canonical-landscaping-
+   logo.css `.wild-top-logo.wild-top-logo::after { background: #fce0ad
+   !important }` behind a 36-id body# ladder, and an unlayered 1-id !important
+   cannot beat a 36-id !important. A layered !important beats every unlayered
+   !important regardless of specificity, so this rule lives in its own layer.
+   No other layer touches .wild-top-logo (grepped). Same house as H422/H426/H428. */
+@layer ww-h430-main-page-logo-menu-colors {
+  html body#wildworks-body .wild-top-logo-band:not(.wild-top-logo-band--subpage) .wild-top-logo::after {
+    background: #fce0ad !important;
+  }
+
+  html body#wildworks-body:has(.wild-top-logo-band:not(.wild-top-logo-band--subpage))
+    header.wild-site-header :is(a.wild-nav-link, a.wild-mobile-nav-link) {
+    color: #fce0ad !important;
+    /* CLAUDE light edit 09:25 ET: H114-four-sided-desktop-nav-tabs.css and
+       H351-five-color-return.css pin -webkit-text-fill-color #fce0ad !important
+       on these links. text-fill-color beats color, so color alone would still
+       paint Text 1. Same value, both properties. */
+    -webkit-text-fill-color: #fce0ad !important;
+  }
+}

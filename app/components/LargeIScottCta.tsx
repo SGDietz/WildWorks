@@ -1,5 +1,5 @@
+import TalkArcClusterIcon from "./TalkArcClusterIcon";
 import type { MouseEventHandler } from "react";
-import { Sparkles } from "lucide-react";
 
 type LargeIScottCtaProps = {
   className?: string;
@@ -22,7 +22,7 @@ export default function LargeIScottCta({
         onClick={onClick}
         aria-label={label}
       >
-        <Sparkles aria-hidden />
+        <TalkArcClusterIcon />
         <span>{label}</span>
       </a>
     </div>

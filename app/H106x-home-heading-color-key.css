@@ -1276,24 +1276,38 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   }
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+/* CLAUDE 2026-09-01, mobile pass. G numbered the second three lines himself:
+   line 4 -> Text 2, line 5 -> Text 1, line 6 -> Text 2. G's later final order
+   makes headline lines 1 and 3 Text 2, with line 2 Text 1. This max-width:
+   719px authority must carry the same 2 / 1 / 2 / 2 / 1 / 2 sequence as desktop. */
+
     .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
-    :is(.wildfire-hero-headline__line--c1, .wildfire-hero-summary__line--c1) {
+    :is(.wildfire-hero-headline__line--c2, .wildfire-hero-summary__line--c2) {
     color: #fce0ad !important;
     -webkit-text-fill-color: #fce0ad !important;
   }
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
     .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
-    :is(.wildfire-hero-headline__line--c2, .wildfire-hero-summary__line--c2) {
+    .wildfire-hero-summary__line--c1 {
     color: #edc775 !important;
     -webkit-text-fill-color: #edc775 !important;
   }
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
     .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
-    :is(.wildfire-hero-headline__line--c3, .wildfire-hero-summary__line--c3) {
-    color: #f08c28 !important;
-    -webkit-text-fill-color: #f08c28 !important;
+    /* This rule outranks H401 below 720px, so it carries G's final Text 2
+       assignments for headline lines 1 and 3 on phone. */
+    :is(.wildfire-hero-headline__line--c1, .wildfire-hero-headline__line--c3) {
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
+  }
+
+  html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-subpage--wildfire)
+    .wild-subpage--wildfire.wild-subpage--wildfire .wildfire-hero-copy
+    .wildfire-hero-summary__line--c3 {
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
   }
 }
 

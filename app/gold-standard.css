@@ -818,7 +818,6 @@ html body .wild-subpage--wildfire .wildfire-hero-summary__line {
   background-clip: border-box !important;
   filter: none !important;
   text-shadow:
-    0 1px 0 rgba(247, 217, 165, 0.28),
     0 2px 3px rgba(54, 20, 5, 0.86),
     0 4px 8px rgba(54, 20, 5, 0.62) !important;
 }
@@ -841,7 +840,6 @@ html body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
 html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
   .wildfire-hero-headline__line--c3 {
   text-shadow:
-    0 1px 0 rgba(247, 217, 165, 0.28),
     0 2px 3px rgba(54, 20, 5, 0.86),
     0 4px 8px rgba(54, 20, 5, 0.62) !important;
   filter: none !important;
@@ -850,7 +848,6 @@ html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
 html body .wild-subpage--wildfire .wildfire-hero-copy h1.wildfire-hero-headline
   :is(.wildfire-hero-headline__line--c1, .wildfire-hero-headline__line--c2) {
   text-shadow:
-    0 1px 0 rgba(247, 217, 165, 0.22),
     0 2px 3px rgba(54, 20, 5, 0.8),
     0 4px 10px rgba(54, 20, 5, 0.55) !important;
 }

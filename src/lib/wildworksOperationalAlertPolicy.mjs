@@ -53,6 +53,9 @@ export function correlationId(value) {
 
 export function classifyOperationalTelemetryEvent(args) {
   const eventType = String(args?.eventType ?? "");
+  if (eventType === "liveavatar_transcript_sync_failed"
+    && Number(args?.statusCode) === 404
+    && Number(args?.failStreak ?? 0) < 3) return null;
   const match = TELEMETRY_FAILURES.get(eventType);
   if (!match) return null;
   const [category, component] = match;
@@ -83,6 +86,9 @@ export function classifySupabaseOperationalFailure(args) {
   const statusCode = Number.isInteger(args?.statusCode) ? Number(args.statusCode) : 0;
   const operation = compactSafeText(args?.operation, 80);
   const component = compactSafeText(args?.component, 80);
+  if (statusCode === 409
+    && /voice email outbox/i.test(component)
+    && /^POST voice_email_outbox\b/i.test(operation)) return null;
   const category = args?.failureKind === "configuration"
     ? "supabase_configuration"
     : statusCode === 401 || statusCode === 403
@@ -100,5 +106,24 @@ export function classifySupabaseOperationalFailure(args) {
     route: "/internal/supabase",
     correlationId: correlationId(args?.correlationSource ?? `${component}:${operation}:${statusCode}`),
     summary: `Supabase ${operation}; ${statusCode ? `HTTP ${statusCode}` : "unavailable"}`,
+  };
+}
+
+export function createConnectivityMissGate({ threshold = 2, windowMs = 60_000 } = {}) {
+  const misses = new Map();
+  return (args, now = Date.now()) => {
+    const key = compactSafeText(args?.key ?? "supabase-connectivity", 160);
+    if (!args?.connectivity) {
+      misses.delete(key);
+      return true;
+    }
+    const previous = misses.get(key);
+    const count = previous && now - previous.at <= windowMs ? previous.count + 1 : 1;
+    if (count >= threshold) {
+      misses.delete(key);
+      return true;
+    }
+    misses.set(key, { count, at: now });
+    return false;
   };
 }

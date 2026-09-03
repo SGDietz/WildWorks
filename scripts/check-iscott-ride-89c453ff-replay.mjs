@@ -58,6 +58,8 @@ await fs.writeFile(
 // Transpile the whole local chain, rewriting every relative import to its
 // transpiled twin. Anything that only does I/O at runtime resolves to the stub.
 const LOCAL = [
+  // CLAUDE 2026-09-02 (H443): the visitor receipt now renders through the pure email theme.
+  "emailTheme",
   "iscottSalesCopy",
   "iscottLeadParsing",
   "iscottLeadCaptureUi",

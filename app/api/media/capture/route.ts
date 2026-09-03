@@ -1,4 +1,5 @@
 import { assertAllowedOrigin, truncateUtf8String } from "../../../../src/lib/apiRouteSecurity";
+import { logIScottOriginRejection } from "../../../../src/lib/iscottOriginTelemetry";
 import { checkRateLimit } from "../../../../src/lib/rateLimit";
 import { logServerTelemetryEvent } from "../../../../src/lib/serverTelemetryCapture";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../src/lib/supabaseAdmin";
@@ -94,8 +95,16 @@ async function ensurePrivateMediaBucket(url: string, serviceRoleKey: string) {
 }
 
 export async function POST(request: Request) {
-  const originErr = assertAllowedOrigin(request);
-  if (originErr) return originErr;
+  const originErr = assertAllowedOrigin(request, {
+    trustedSameOriginMarker: {
+      name: "x-wildworks-avatar-request",
+      value: "same-origin-v1",
+    },
+  });
+  if (originErr) {
+    await logIScottOriginRejection(request, "/api/media/capture").catch(() => undefined);
+    return originErr;
+  }
   const rateLimitErr = await checkRateLimit(request);
   if (rateLimitErr) return rateLimitErr;
 

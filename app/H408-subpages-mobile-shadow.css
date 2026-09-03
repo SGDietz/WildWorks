@@ -1,0 +1,112 @@
+/* H408 - Subpages: transpose desktop bottom-only shadow to mobile.
+   Packet: H408-mobile-shadow-transpose. Shadows only. No fill restyle.
+   H407 color HOLD still stands. Do not restyle Projects intro line 3 fill,
+   Bio mindset, or Home #services / #ai-websites.
+
+   Scott (quote, not a summary):
+     "where Text 3 color was changed, the shadow is still wrong on mobile.
+      Transpose desktop bottom-only shadow to mobile. Work with Claude.
+      Do not override him. You write CSS for inspect."
+
+   Proven stack = H401 Complete Project Build (installed, Claude minor:
+   variables !important + doubled page class). Bottom-only four-stop.
+   No negative-Y. No calc(-1). No cream 0 1px 0 rgba(247,217,165) crown.
+   No --ww-color3-full-shadow top dash. Stroke off.
+
+     0 0.01522em 0 rgba(35, 9, 2, 0.58),
+     0 0.03043em 0 rgba(32, 8, 2, 0.52),
+     0 0.04565em 0 rgba(28, 7, 1, 0.46),
+     0 0.06086em 0 rgba(25, 6, 1, 0.396)
+
+   Import AFTER H406 BEFORE H232.
+   Filename: H408-subpages-mobile-shadow.css
+
+   Slice: Projects, Ruins, Bio, Services, AI websites SUBPAGES.
+   Assist-1 owns Home / Wildfire. Do not touch those.
+
+   THIS FILE PAINTS:
+     Projects former-Text-3 intro / kicker lines, desktop AND mobile.
+     Those lines still sit in H386's color3 :is() family, which concatenates
+     two calc(-1) UPPER layers onto --ww-color3-full-shadow at EVERY width,
+     plus a 0.009em black rim (inherited by .wild-projects-page-intro__three-ink)
+     and a 0.03em stroke on kicker nth-child(3).
+
+   THIS FILE DOES NOT PAINT:
+     .wild-hero, buttons, H400, H406 overflow / who-is-g phone,
+     H407 iScott lower, Home, Wildfire, legal body/white, parser.
+     Bio mindset fill. Projects intro line 3 FILL (already Text 1).
+     Home #services / #ai-websites.
+
+   HOW TO WIN WITHOUT A :not(#_#_#_...) LADDER
+   Same house move as installed H401: double the page class, pin the
+   variables with !important, restate the four-stop on text-shadow.
+   Claude: MINOR retire the H386 rivals listed in HANDOFF-subpages.md.
+   If a retire is a large rewrite, bounce to Grok. Do not out-ladder.
+*/
+
+/* =====================================================================
+   1. PROJECTS — former Text 3 intro + kicker line 3.
+   Fill already Text 1 #fce0ad (H339). Shadow still the Text 3 full stack
+   with UPPER layers (H386). Kill upper. Bottom-only H401 four-stop.
+   All breakpoints: Grok called H339/H386 calc(-1) wrong on desktop AND mobile.
+   ===================================================================== */
+.wild-subpage--projects.wild-subpage--projects
+  :is(
+    .wild-projects-page-intro__line--three,
+    .wild-projects-page-intro__line--three *,
+    .wild-projects-page-intro__three-ink,
+    .wild-projects-page-kicker__line:nth-child(3)
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0 !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: fill !important;
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   2. SAME STACK AT max-width 719px.
+   Transpose the desktop bottom-only stack onto mobile for the same
+   selectors. Beats any @media (max-width: 719px) leftover that still
+   applies --ww-color3-full-shadow or a top dash on these orange-field
+   headings. No fill declarations.
+   ===================================================================== */
+@media (max-width: 719px) {
+  .wild-subpage--projects.wild-subpage--projects
+    :is(
+      .wild-projects-page-intro__line--three,
+      .wild-projects-page-intro__line--three *,
+      .wild-projects-page-intro__three-ink,
+      .wild-projects-page-kicker__line:nth-child(3)
+    ) {
+    --ww-color3-original-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+    --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-color3-rim-width: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    paint-order: fill !important;
+    text-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    filter: none !important;
+  }
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import TalkArcClusterIcon from "../../components/TalkArcClusterIcon";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView, type Variants } from "framer-motion";
@@ -326,8 +327,8 @@ const showISellFeature = false;
 
 const wildfireNightImages = [
   {
-    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
-    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
+    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
+    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
     className: "wild-wildfire-photo--hero",
   },
   {
@@ -336,8 +337,8 @@ const wildfireNightImages = [
     className: "wild-wildfire-photo--deck",
   },
   {
-    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
-    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
+    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
+    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
     className: "wild-wildfire-photo--garden",
   },
   {
@@ -473,7 +474,7 @@ function IScottSection({
               aria-label="Talk to iScott"
               style={{ pointerEvents: "auto", bottom: "22%" }}
             >
-              <Sparkles aria-hidden className="h-5 w-5" />
+              <TalkArcClusterIcon />
               <span>Talk to iScott</span>
             </button>
           ) : null}
@@ -702,7 +703,7 @@ function TalkToIScottButton({
       onClick={onClick}
       aria-label="Talk to iScott"
     >
-      <Sparkles aria-hidden className="h-5 w-5" />
+      <TalkArcClusterIcon />
       <span>Talk to iScott</span>
     </a>
   );
@@ -2461,8 +2462,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             </span>
           </motion.p>
           <motion.div className="wild-cta-row" variants={fadeInUp}>
-            <a href="#talk-to-iscott" className="money-cta money-cta--primary wild-iscott-action-button" onClick={handleIScottCtaClick}>
-              <Sparkles aria-hidden className="h-5 w-5" />
+            <a href="#talk-to-iscott" className="money-cta money-cta--primary wild-iscott-action-button" onClick={handleIScottCtaClick} aria-label="Talk to iScott">
+              <TalkArcClusterIcon />
               <span>Talk to iScott</span>
             </a>
             <span
@@ -3371,7 +3372,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               Wanted a Natural Stone Patio. I had Always Been Fascinated by the
               Celtic Tree of Life, so I Asked What They Thought about Building
               One in Their Back Yard. They Loved the Idea, and I am Still
-              Grateful They Let Us Build This Work of Art.
+              Grateful They Let Us Build This Work of&nbsp;Art.
             </motion.p>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
               The People I Love Working With Look at a Space and Ask, “What’s the

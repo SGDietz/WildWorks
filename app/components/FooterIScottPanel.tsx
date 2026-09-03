@@ -1,3 +1,4 @@
+import TalkArcClusterIcon from "./TalkArcClusterIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
@@ -33,7 +34,7 @@ export default function FooterIScottPanel() {
             aria-label="Talk to iScott"
             style={{ pointerEvents: "auto", bottom: "22%" }}
           >
-            <Sparkles aria-hidden className="h-5 w-5" />
+            <TalkArcClusterIcon />
             <span>Talk to iScott</span>
           </a>
         </div>

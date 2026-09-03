@@ -78,6 +78,41 @@ const ride1319 = [
 assert.equal(m.evaluateExactContactSendConsent(ride1319, "email", EMAIL).consented, true,
   "ride 13:19 must consent");
 
+/* ---- G's ride f1163ff3, 2026-09-02. ----
+ * The first affirmative re-anchors the exact read-back. The later explicit
+ * command remains attached to that undenied read-back without an arbitrary
+ * turn cap; confirming spelling alone still is not permission to transmit.
+ */
+const rideF1163 = [
+  u("sgdietz@pm.me."),
+  READBACK,
+  u("Yes, perfect. And you sent it back. Perfect."),
+  a("How should Scott reach out to you? Would you prefer email or a phone call?"),
+  u("Yes, email."),
+  a("Understood. I have your email."),
+  u("The email box is still up."),
+  u("The envelope needs to be bigger."),
+  u("No glow."),
+  u("The box needs to be shorter."),
+  u("Reduce the shadow on Finish."),
+  u("Send the email to Scott."),
+];
+const f1163 = m.evaluateExactContactSendConsent(rideF1163, "email", EMAIL);
+assert.equal(f1163.consented, true, `f1163ff3 must consent, got ${f1163.reason}`);
+assert.ok(
+  m.evaluateExactContactSendConsent(rideF1163.slice(0, 2), "email", EMAIL).consented === false,
+  "f1163ff3 must not consent before the visitor affirms the read-back",
+);
+assert.equal(m.detectsContactReadBackCorrect("Yes, perfect. And you sent it back. Perfect."), true);
+
+const agedCommand = m.evaluateExactContactSendConsent([
+  READBACK,
+  u("You did."),
+  ...Array.from({ length: 12 }, (_, index) => u(`Unrelated layout comment ${index}.`)),
+  u("Send the email to Scott."),
+], "email", EMAIL);
+assert.equal(agedCommand.consented, true, "explicit send command must not expire after an undenied read-back");
+
 /* ---- THE SAFETY SIDE. Re-anchoring must never invent permission. ---- */
 
 // 1. A confirmation with no read-back behind it anchors nothing.

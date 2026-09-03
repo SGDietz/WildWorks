@@ -87,6 +87,9 @@ export type IScottLeadState = {
   submittedAt: string | null;
   notificationStatus: string | null;
   notificationOutboxId: string | null;
+  partialNotificationStatus: LeadOutboxRow["status"] | null;
+  partialNotificationOutboxId: string | null;
+  partialNotificationProviderAccepted: boolean;
   mediaCount: number;
   displayValue: string | null;
   maskedValue: string | null;
@@ -248,8 +251,8 @@ function extractPhone(text: string): string | null {
   return null;
 }
 
-function extractFullName(text: string): string | null {
-  return extractSpokenFullName(text);
+function extractFullName(text: string, previousAssistantText?: string | null): string | null {
+  return extractSpokenFullName(text, previousAssistantText);
 }
 
 function userTurnTexts(rows: IScottTranscriptRow[]): string[] {
@@ -357,6 +360,14 @@ function toState(row: LeadRow): IScottLeadState {
   const method = row.contact_method === "phone" || row.contact_method === "email" ? row.contact_method : null;
   const raw = method === "phone" ? row.phone : method === "email" ? row.email : null;
   const display = method && raw ? formatLeadContactDisplay(method, raw) : null;
+  const partial = row.metadata?.partial_notification;
+  const partialRecord = partial && typeof partial === "object"
+    ? partial as Record<string, unknown>
+    : {};
+  const partialStatus = typeof partialRecord.outbox_status === "string" &&
+      ["pending", "sending", "sent", "failed", "dead_letter"].includes(partialRecord.outbox_status)
+    ? partialRecord.outbox_status as LeadOutboxRow["status"]
+    : null;
   return {
     sessionId: row.session_id,
     status: row.status,
@@ -371,6 +382,11 @@ function toState(row: LeadRow): IScottLeadState {
     submittedAt: row.submitted_at,
     notificationStatus: row.notification_status,
     notificationOutboxId: row.notification_outbox_id,
+    partialNotificationStatus: partialStatus,
+    partialNotificationOutboxId: typeof partialRecord.outbox_id === "string"
+      ? partialRecord.outbox_id
+      : null,
+    partialNotificationProviderAccepted: partialRecord.provider_accepted === true,
     mediaCount: Array.isArray(row.media_snapshot) ? row.media_snapshot.length : 0,
     displayValue: display?.checkable ?? raw,
     maskedValue: display?.visible ?? null,
@@ -379,6 +395,19 @@ function toState(row: LeadRow): IScottLeadState {
       : method === "phone" && raw ? formatSpokenPhoneForReadback(raw) || null : null,
     spokenReadbackPrompt: method === "email" && raw ? iscottEmailReadbackPrompt(raw) : null,
   };
+}
+
+async function hydratedLeadState(row: LeadRow): Promise<IScottLeadState> {
+  const state = toState(row);
+  if (!state.partialNotificationOutboxId) return state;
+  const outbox = await rest<LeadOutboxRow>(
+    `voice_email_outbox?id=eq.${encodeURIComponent(state.partialNotificationOutboxId)}&select=id,status&limit=1`,
+  );
+  const current = outbox.ok ? outbox.rows[0] : null;
+  if (!current) return state;
+  state.partialNotificationStatus = current.status;
+  state.partialNotificationProviderAccepted = current.status === "sent";
+  return state;
 }
 
 export function leadStateForDisplay(row: LeadRow): IScottLeadState {
@@ -491,7 +520,9 @@ async function insertExtractionEvents(
       }, "feedback"),
       session_id: sessionId,
       anonymous_visitor_id: anonymousVisitorId ?? null,
-      sentiment: "neutral",
+      // 2026-09-02 ride 1eac57a2: "neutral" violates feedback_events_sentiment_check
+      // (negative|positive only) - every sync 502'd and the send failed. A site note is a complaint.
+      sentiment: "negative",
       severity: "low",
       phrase: truncateUtf8String(siteNote, 1_000),
       mode: "iscott-operator-site-note",
@@ -546,7 +577,12 @@ async function insertExtractionEvents(
   ]);
   const failed = results.find((result) => result && !result.ok);
   if (failed) {
-    throw new Error(`iscott extraction event write failed (${failed.status}): ${failed.detail}`);
+    // 2026-09-02 ride 1eac57a2 (G's phone): a feedback_events check-constraint
+    // rejection threw here on EVERY sync for two minutes, the confirm path
+    // inherited the throw, and a complete, consented package was REFUSED
+    // ("sendState failed") over a coaching-analytics row. Side tables never
+    // outrank the lead. Log it, keep going.
+    console.error(`iscott extraction event write failed (${failed.status}): ${failed.detail}`);
   }
 }
 
@@ -554,6 +590,7 @@ export async function processIScottTranscriptRows(args: {
   sessionId: string;
   anonymousVisitorId?: string | null;
   route?: string | null;
+  clientDevice?: Record<string, string>;
   rows: IScottTranscriptRow[];
 }): Promise<IScottLeadState | null> {
   const existing = await readLead(args.sessionId);
@@ -578,7 +615,9 @@ export async function processIScottTranscriptRows(args: {
   // from becoming permission for a later changed-contact package.
   const freshRows = rows.slice(existingTranscriptRows.length);
   const userRows = rows.filter((row) => row.role === "user" && row.message.trim());
-  let fullName = existing?.full_name ?? null;
+  // Legacy/broken rides can already hold a parser artifact such as "Thinking".
+  // Do not preserve it merely because it reached the table first.
+  let fullName = isMeaningfulVisitorName(existing?.full_name) ? existing?.full_name ?? null : null;
   let location = existing?.location ?? null;
   let projectNeed = existing?.project_need ?? null;
   let email = existing?.email ?? null;
@@ -587,6 +626,26 @@ export async function processIScottTranscriptRows(args: {
   let consentStatus = existing?.consent_status ?? "unknown";
   let contactConfirmedAt = existing?.contact_confirmed_at ?? null;
   const captureTime = new Date().toISOString();
+
+  // A visitor can answer a direct name question with the name alone. Keep the
+  // assistant cue attached to that answer before the user-only pass below
+  // removes conversational context. This is deliberately separate from the
+  // general extractor: "Scott should call me" is not a name answer unless
+  // iScott just asked for the visitor's name.
+  let previousAssistantText: string | null = null;
+  for (const row of rows) {
+    if (row.role === "assistant") {
+      previousAssistantText = row.message;
+      continue;
+    }
+    const contextualName = extractFullName(row.message, previousAssistantText);
+    if (contextualName && isMeaningfulVisitorName(contextualName)) {
+      fullName = !fullName || leadPackageFieldChanged("name", fullName, contextualName)
+        ? contextualName
+        : preferLonger(fullName, contextualName);
+    }
+    previousAssistantText = null;
+  }
 
   // Grok's forensics on ride 89c453ff, 2026-08-19: after the contact was settled,
   // G kept SAYING the words "email" and "phone" while talking about the screen -
@@ -637,7 +696,11 @@ export async function processIScottTranscriptRows(args: {
         isMeaningfulVisitorName(spokenName) &&
         leadPackageFieldChanged("name", fullName, spokenName) &&
         (!fullName || introducesName);
-      fullName = mayReplace ? spokenName : preferLonger(fullName, spokenName);
+      fullName = mayReplace
+        ? spokenName
+        : isMeaningfulVisitorName(spokenName)
+          ? preferLonger(fullName, spokenName)
+          : fullName;
     }
     location = extractLocation(text) ?? location;
     const spokenNeed = extractProjectNeed(text);
@@ -659,9 +722,35 @@ export async function processIScottTranscriptRows(args: {
     // explicit correction can. On G's ride he confirmed the visitor's address and then
     // kept talking ABOUT the address, and the talking overwrote the answer.
     const contactAlreadyConfirmed = Boolean(contactConfirmedAt);
+    // G's ride cea22329, 2026-09-03 12:18 ET. His address was captured, read
+    // back, and confirmed ("That's correct."). Then he read the box aloud -
+    // "Okay, so there's no confirmation on the screen. It just says your
+    // email, SGD@pm.me." - and the speech-to-text heard his "sgdietz" as
+    // "SGD". That sentence carries "no", so it counted as a correction, the
+    // confirmed address was overwritten with sgd@pm.me, the package changed,
+    // the confirmation was cleared, and the lead died at ready_for_confirmation.
+    //
+    // Two things are therefore NOT corrections of a confirmed contact:
+    //   1. talking ABOUT the screen ("it says", "the box", "on the screen",
+    //      "shows", "populating", "confirmation") - that is a description of
+    //      what he sees, not a new address;
+    //   2. a "new" value that is only a chopped copy of the confirmed one -
+    //      same domain, local part a strict prefix (sgd@pm.me vs
+    //      sgdietz@pm.me). Speech recognition drops letters; it does not add
+    //      them, so the longer, confirmed value is the real one.
+    const describesTheScreen =
+      /\b(?:it (?:just )?says|on (?:the|my) screen|the box|the field|shows|showing|populat\w*|confirmation|check ?mark|the text|(?:it|and it) has my (?:email|number|phone)|has my email)\b/i.test(text);
+    const chopOf = (candidate: string | null, confirmed: string | null): boolean => {
+      if (!candidate || !confirmed || candidate === confirmed) return false;
+      const [cLocal, cDomain] = candidate.toLowerCase().split("@");
+      const [kLocal, kDomain] = confirmed.toLowerCase().split("@");
+      return Boolean(cDomain) && cDomain === kDomain && kLocal.startsWith(cLocal) && cLocal.length < kLocal.length;
+    };
     const soundsLikeCorrection =
       isOperatorCorrection(text) ||
-      /\b(?:no|not|nope|actually|i said|it'?s|that'?s|should be|correction|wrong|instead)\b/i.test(text);
+      (!describesTheScreen &&
+        !chopOf(nextEmail, email) &&
+        /\b(?:no|not|nope|actually|i said|it'?s|that'?s|should be|correction|wrong|instead)\b/i.test(text));
     // REGRESSION FIX, 2026-08-19, and the regression was mine from earlier the
     // same night. Making a confirmed contact sticky ALSO blocked a legitimate
     // change of method. On G's ride he gave an email, confirmed it, then said
@@ -676,8 +765,18 @@ export async function processIScottTranscriptRows(args: {
     // confirmed on its own, and drops the abandoned method's value so it cannot
     // ride along on the lead.
     const methodSwitched = Boolean(methodOnly) && methodCredible && methodOnly !== contactMethod;
+    // G's ride cad6a3dd, 2026-09-03 13:12 ET - the 12:18 chop guard above only
+    // protected a CONFIRMED address, and this ride never reached confirmation
+    // (consent parse missed "That's fantastic"), so when G read the box aloud -
+    // "And it has my email, sgd@pm.me." - the chopped hearing replaced the full
+    // sgdietz@pm.me he had spoken and the avatar had spelled back. G: "this bug
+    // is still going." The chop rule holds REGARDLESS of confirmation state:
+    // speech recognition drops letters, it does not add them, so a strict-prefix
+    // chop of the value already held is never an update. An explicit operator
+    // correction still wins.
+    const emailChopped = chopOf(nextEmail, email) && !isOperatorCorrection(text);
     if (!contactAlreadyConfirmed || soundsLikeCorrection || methodSwitched) {
-      email = nextEmail ?? email;
+      email = emailChopped ? email : (nextEmail ?? email);
       phone = nextPhone ?? phone;
     }
     // G's ride 89c453ff, 2026-08-19 12:23. The lead row came out with BOTH
@@ -846,7 +945,10 @@ export async function processIScottTranscriptRows(args: {
     packageChronology &&
     packageChronology.staleFields.length > 0
   ) {
-    // The visitor gave permission and then changed the package. The row must not
+    // The visitor gave permission and then changed a consent-material part of
+    // the package (intent or contact). A late/corrected name is intentionally
+    // excluded: permission is to use the confirmed contact, not a name string.
+    // The row must not
     // keep carrying a confirmation that no longer describes anything, or the
     // panel will offer a Send for a package nobody agreed to. Cleared here, and
     // refused again at the send gate for anything that reaches it another way.
@@ -957,6 +1059,9 @@ export async function processIScottTranscriptRows(args: {
     media_snapshot: existing?.media_snapshot ?? [],
     metadata: {
       ...(existing?.metadata ?? {}),
+      ...(existing?.metadata?.client_device || !args.clientDevice || Object.keys(args.clientDevice).length === 0
+        ? {}
+        : { client_device: args.clientDevice }),
       ...(submittedPackageHistory.length > 0 ? { submitted_package_history: submittedPackageHistory } : {}),
       ...(currentPackageStartIndex !== null
         ? { current_contact_package_start_index: currentPackageStartIndex }
@@ -978,6 +1083,57 @@ export async function processIScottTranscriptRows(args: {
   });
 
   await insertExtractionEvents(args.sessionId, rows, args.anonymousVisitorId, args.route);
+
+  // G 2026-09-03 11:18 ET, ride 6dd3ca7d, after the email had already gone and
+  // he then asked for a waterfall: "you already took my name. You already took
+  // my email. And just say... I'm going to send Scott a follow-up email saying
+  // you're also interested in landscaping."
+  //
+  // For that sentence to be TRUE, the follow-up has to exist. When a lead that
+  // Scott already has comes back with a new, specific need, Scott gets one more
+  // mail: same package, subject marked UPDATE, the new need up front. Keyed by
+  // session + need, so the same need never mails twice and every later sync of
+  // the same conversation is a no-op. Best-effort: it can never fail the sync.
+  try {
+    const wasAlreadySent =
+      existing?.status === "submitted" && Boolean((existing?.submitted_at ?? "").trim());
+    const needIsNew =
+      Boolean(projectNeed) &&
+      isSpecificProjectNeed(projectNeed) &&
+      leadPackageFieldChanged("intent", existing?.project_need ?? null, projectNeed);
+    const sendFollowUp = voiceEmailNotifications.notifyIScottLeadByEmail;
+    if (wasAlreadySent && needIsNew && typeof sendFollowUp === "function") {
+      // Deterministic per need text, no crypto import needed here: the outbox
+      // key is derived from this eventId, so the same need can only mail once.
+      const needDigest = Buffer.from(String(projectNeed).toLowerCase().replace(/\s+/g, " ").trim(), "utf8")
+        .toString("base64url")
+        .slice(0, 24);
+      const urls = dashboardUrls(args.sessionId);
+      await sendFollowUp({
+        eventId: `${args.sessionId}#followup-${needDigest}`,
+        sessionId: args.sessionId,
+        fullName: row.full_name,
+        location: row.location,
+        projectNeed: row.project_need,
+        contactMethod: row.contact_method === "phone" ? "phone" : "email",
+        email: row.email,
+        phone: row.phone,
+        receivedAt: now,
+        transcript: transcriptFields.transcript_text,
+        leadDashboardUrl: urls.lead,
+        transcriptDashboardUrl: urls.transcript,
+        followUp: { previousNeed: existing?.project_need ?? null },
+        metadata: {
+          source: "iscott_liveavatar",
+          follow_up: true,
+          previous_need: existing?.project_need ?? null,
+        },
+      });
+    }
+  } catch {
+    // A missed follow-up is Scott reading it in Supabase instead; a thrown one
+    // would take the whole transcript sync down with it.
+  }
 
   // G 2026-08-19: "There is no tap." The visitor says yes out loud and the send
   // has to actually fire. Verbal consent used to only RECORD permission and then
@@ -1062,6 +1218,11 @@ export async function processIScottTranscriptRows(args: {
   // collide with the real handoff mail.
   const partialContact = (row.email ?? "").trim() || (row.phone ?? "").trim();
   const neverNotified = !((row.notification_status ?? "").trim());
+  let partialNotification: {
+    status: LeadOutboxRow["status"] | null;
+    outboxId: string | null;
+    providerAccepted: boolean;
+  } | null = null;
   if (partialContact && neverNotified && !alreadyHandled) {
     let partialOutcome: Record<string, unknown> = { attempted_at: new Date().toISOString() };
     try {
@@ -1070,7 +1231,7 @@ export async function processIScottTranscriptRows(args: {
       // rather than an exception thrown inside transcript capture.
       const sendPartial = voiceEmailNotifications.notifyIScottPartialLeadByEmail;
       if (typeof sendPartial !== "function") return toState(row);
-      await sendPartial({
+      const partialDelivery = await sendPartial({
         eventId: `${args.sessionId}#partial`,
         sessionId: args.sessionId,
         fullName: row.full_name,
@@ -1087,7 +1248,19 @@ export async function processIScottTranscriptRows(args: {
           contact_confirmed: Boolean((row.contact_confirmed_at ?? "").trim()),
         },
       });
-      partialOutcome = { ...partialOutcome, result: "sent" };
+      partialNotification = {
+        status: partialDelivery.outboxStatus,
+        outboxId: partialDelivery.outboxId,
+        providerAccepted: partialDelivery.delivered,
+      };
+      partialOutcome = {
+        ...partialOutcome,
+        result: partialDelivery.delivered ? "sent" : partialDelivery.queued ? "queued" : "failed",
+        outbox_id: partialDelivery.outboxId,
+        outbox_status: partialDelivery.outboxStatus,
+        provider_accepted: partialDelivery.delivered,
+        detail: partialDelivery.detail || null,
+      };
     } catch (error) {
       // Same rule as the strict path: a notification failure must never break
       // transcript capture. The lead row still holds everything.
@@ -1121,12 +1294,18 @@ export async function processIScottTranscriptRows(args: {
     }
   }
 
-  return toState(row);
+  const state = toState(row);
+  if (partialNotification) {
+    state.partialNotificationStatus = partialNotification.status;
+    state.partialNotificationOutboxId = partialNotification.outboxId;
+    state.partialNotificationProviderAccepted = partialNotification.providerAccepted;
+  }
+  return state;
 }
 
 export async function getIScottLeadState(sessionId: string): Promise<IScottLeadState | null> {
   const row = await readLead(sessionId);
-  return row ? toState(row) : null;
+  return row ? hydratedLeadState(row) : null;
 }
 
 // Failed app_events inserts fall back into conversation_messages as role "user"

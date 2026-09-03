@@ -1,0 +1,80 @@
+/* H418 — beat the four 412 HOLDING winners. Visual only.
+   Same selectors as the 412 winners. 1920 HOLDING em recipes.
+   No NEW :not ladders. Phone reuses H368 L165's existing 500 :not
+   so later import ties specificity and wins by source order.
+   Do not edit live H384/H368. Import AFTER H416 BEFORE H232.
+
+   Scott (word for word):
+     "Crawl the site. What is not done that still needs to be done? Crawl
+      it again. Crawl mobile. Crawl everything."
+
+   412 winners (V1-FOUR.md):
+     1. H384-mobile-only-pass.css L48–49 @media max 599 #ww-bio-primary-heading
+     2. H384 L52–53 .wild-bio-reinvention-heading  (do not skip)
+     3. H384 L31–32 #projects > .wild-home-projects__tagline > span
+     4. H368-home-page-complete.css L165–172 .wild-phone-number-line--home-hero > a
+   Leave tree phone. Leave Going. Leave video timestamp.
+   Unlayered so H418 beats @layer ww-mobile-only-pass.
+*/
+
+@media (max-width: 599px) {
+  /* 1. Same selector as H384 L48–49. 1920 10-stop 0.005349–0.053486 α 0.58–0.396 */
+  #ww-bio-primary-heading {
+    text-shadow:
+    0 0.005349em 0 rgba(35, 9, 2, 0.58),
+    0 0.010697em 0 rgba(34, 9, 2, 0.56),
+    0 0.016046em 0 rgba(33, 8, 2, 0.54),
+    0 0.021394em 0 rgba(32, 8, 2, 0.52),
+    0 0.026743em 0 rgba(31, 8, 2, 0.498),
+    0 0.032091em 0 rgba(29, 7, 1, 0.48),
+    0 0.037440em 0 rgba(28, 7, 1, 0.46),
+    0 0.042789em 0 rgba(27, 7, 1, 0.435),
+    0 0.048137em 0 rgba(26, 6, 1, 0.416),
+    0 0.053486em 0 rgba(25, 6, 1, 0.396) !important;
+  }
+
+  /* 2. Same selector as H384 L52–53. Same 1920 10-stop. Do not skip. */
+  .wild-bio-reinvention-heading {
+    text-shadow:
+    0 0.005349em 0 rgba(35, 9, 2, 0.58),
+    0 0.010697em 0 rgba(34, 9, 2, 0.56),
+    0 0.016046em 0 rgba(33, 8, 2, 0.54),
+    0 0.021394em 0 rgba(32, 8, 2, 0.52),
+    0 0.026743em 0 rgba(31, 8, 2, 0.498),
+    0 0.032091em 0 rgba(29, 7, 1, 0.48),
+    0 0.037440em 0 rgba(28, 7, 1, 0.46),
+    0 0.042789em 0 rgba(27, 7, 1, 0.435),
+    0 0.048137em 0 rgba(26, 6, 1, 0.416),
+    0 0.053486em 0 rgba(25, 6, 1, 0.396) !important;
+  }
+
+  /* 3. Same selector as H384 L31–32. SPAN only. 1920 7-stop 0.007386–0.051700 */
+  #projects > .wild-home-projects__tagline > span {
+    text-shadow:
+    0 0.007386em 0 rgba(35, 9, 2, 0.58),
+    0 0.014771em 0 rgba(33, 8, 2, 0.553),
+    0 0.022157em 0 rgba(32, 8, 2, 0.52),
+    0 0.029543em 0 rgba(30, 8, 2, 0.49),
+    0 0.036929em 0 rgba(28, 7, 1, 0.46),
+    0 0.044314em 0 rgba(27, 6, 1, 0.427),
+    0 0.051700em 0 rgba(25, 6, 1, 0.396) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  /* 4. Same selector as H368 L165 (existing 500 :not, not a new ladder).
+     1920 7-stop 0.006367–0.044571 α 0.58–0.396. Not --home-tree. */
+  /* CLAUDE 2026-09-01: delivered with a doubled brace on this selector line
+     ("{ {"), which made the whole file an unclosed block and failed the
+     Turbopack build outright. One character removed, nothing else touched. */
+  .wild-phone-number-line--home-hero > a[href^="tel:"]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+    text-shadow:
+    0 0.006367em 0 rgba(35, 9, 2, 0.58),
+    0 0.012735em 0 rgba(33, 8, 2, 0.553),
+    0 0.019102em 0 rgba(32, 8, 2, 0.52),
+    0 0.025469em 0 rgba(30, 8, 2, 0.49),
+    0 0.031836em 0 rgba(28, 7, 1, 0.46),
+    0 0.038204em 0 rgba(27, 6, 1, 0.427),
+    0 0.044571em 0 rgba(25, 6, 1, 0.396) !important;
+  }
+}

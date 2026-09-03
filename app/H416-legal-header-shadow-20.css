@@ -1,0 +1,82 @@
+/* H416 - Legal header top-word shadow, backed off 20% of the LIVE winner.
+   G 2026-09-01 ~7:31 PM ET Communications Policy on orange:
+   huge hard black offset text-shadow (duplicate letters, little blur).
+   White serif on orange.
+
+   Scott (quote, not a summary):
+     "How the fuck is this not fixed? Oh, the fuck, I gave this to you
+      before? I gave this to Claude before. Nobody fucking fixed this.
+      Back that off 20% all the legal pages. Send that fucking code
+      over to Claude."
+
+   Palette lock, no drifting (fills unchanged — title is white serif,
+   not Text 3 on #c44d0b):
+     Primary background  #c44d0b
+     Secondary / card    #e96819
+     Text 1              #fce0ad
+     Text 2              #edc775
+     Text 3              #f08c28
+
+   LIVE WINNER ranked 2026-09-01 on Mission-Control checkout + :3020
+   (UP, listening). Route /pages/communications.
+   Title element:
+     h1.wild-section-title.wild-line-title.wild-legal-title
+     inside .wild-home.wild-legal-home .wild-legal-hero
+     (LegalPage.tsx; BrandText is a fragment, text is on the h1).
+
+   Rank (specificity + layout.tsx order; H232 last, no text-shadow):
+     1. WINNER  app/H402-legal-header-shadow.css:30
+        html:has(.wild-legal-home) :is(.wild-legal-title,
+          .wild-section-title.wild-line-title,
+          .wild-legal-hero .wild-legal-title) + 400 x :not(#_)
+        (400, 3, 1)  import before H406-H409 / H232
+        declared 13-stop 0-blur +Y:
+          #23090294 0 0.004800em 0  through  #19060165 0 0.062400em 0
+        first stop is the hard near-black 0-blur duplicate-letter look.
+     2. RIVAL   app/H370-home-last-stripers.css:38
+        .wild-section-title.wild-line-title + 400 x :not(#_)
+        (400, 2, 0)  earlier import  — sitewide, no legal exclusion
+        13-stop 0.006857em .. 0.089143em  (live H402 is 70 percent of this)
+        H402 beats it via html:has extra class/type, later source.
+     3. large-letter-effect-lock.css:5  (1, 1, 2)
+        var(--ww-home-wordmark-text-effect)  3-stop hard #000
+        Original Grok H402 restated this and never reached H370.
+     H409 after H402 does NOT match legal (requires #top.wild-home;
+     legal pages have no #top). H408-subpages doubled class is not legal.
+     H232 last: color/fill only.
+
+   20 percent math: offsets * 0.8. Ink / alpha / 0-blur / +Y unchanged.
+     0.004800em -> 0.003840em
+     0.062400em -> 0.049920em
+
+   Beat H402 with same :is() family + 400 :not + H401 house move
+   (doubled .wild-legal-home) + later import than H402, BEFORE H232.
+   Measured: 400 is enough. Do NOT raise a 6000-id ladder.
+
+   Import AFTER H409-projects-intro-colors.css BEFORE H232.
+   H232 stays LAST. H402 file may stay.
+   Filename: H416-legal-header-shadow-20.css
+
+   Scope: every LegalPage orange header (Communications Policy,
+   Disclaimer, Terms, Privacy, Accessibility, Ai Disclosure, Wildworks).
+   Leave legal body / H232 white zone. Leave Home Going.
+   No Text 3 on primary. iScott not high Scott.
+*/
+
+html:has(.wild-legal-home) .wild-home.wild-legal-home.wild-legal-home .wild-legal-hero :is(.wild-legal-title, .wild-section-title.wild-line-title):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_)  {
+  text-shadow:
+    #23090294 0 0.003840em 0,
+    #22090290 0 0.007680em 0,
+    #2108028d 0 0.011520em 0,
+    #20080288 0 0.015360em 0,
+    #20080285 0 0.019200em 0,
+    #1f080281 0 0.023040em 0,
+    #1e08027d 0 0.026880em 0,
+    #1d070179 0 0.030720em 0,
+    #1c070175 0 0.034560em 0,
+    #1c070171 0 0.038400em 0,
+    #1b06016d 0 0.042240em 0,
+    #1a060169 0 0.046080em 0,
+    #19060165 0 0.049920em 0 !important;
+  filter: none !important;
+}

@@ -13,7 +13,10 @@ const files = [
 ];
 for (const rel of files) {
   const text = await fs.readFile(path.resolve(rel), "utf8");
-  assert.doesNotMatch(text, /iSolveUrProblems|apps\/demo\/src|LiveAvatarSession/, `${rel} stays WW-only`);
+  // \b on LiveAvatarSession: without it this matched inside legitimate WW
+  // field names like previousLiveAvatarSessionId (the 2026-09-02 silent-drop
+  // telemetry), which are not an iSolve import and should not fail this guard.
+  assert.doesNotMatch(text, /iSolveUrProblems|apps\/demo\/src|\bLiveAvatarSession\b/, `${rel} stays WW-only`);
   assert.doesNotMatch(text, /from ["'][^"']*isolve/i, `${rel} has no iSolve import`);
 }
 console.log("iScott iSolve isolation checks passed");

@@ -22,6 +22,9 @@ import { iscottSalesCopyContextBlock } from "./iscottSalesCopy";
 // generic text, coaching/persona answers, contact mechanics and operator sales
 // language. This only decides which words to hand it.
 const PROJECT_NEED_PATTERNS: RegExp[] = [
+  // Direct answer to "what are you looking to accomplish?": "To build
+  // brands." There is no subject because the question already supplied it.
+  /^((?:to\s+)?(?:build|make|design|create|redo|rebuild|launch)\s+[^.!?]{3,260})[.!?]*$/i,
   // I want / I need / I'd like / I'm looking for / I'm interested in / we ...
   /\b(?:i|we)\s*(?:'|’)?\s*(?:want|wanted|need|needed|would\s+like|d\s+like|am\s+looking|m\s+looking|are\s+looking|re\s+looking|am\s+interested|m\s+interested|am\s+after|m\s+after|ve\s+been\s+wanting)\b\s*(?:to\s+|for\s+|in\s+)?([^.!?]{3,260})/i,
   // "Him to build my brand" / "Scott to redo the patio" - the bare answer to
@@ -30,7 +33,12 @@ const PROJECT_NEED_PATTERNS: RegExp[] = [
   // Straight imperative: "Build me a website and a logo."
   /\b(?:build|make|design|create|do)\s+(?:me|us)\s+([^.!?]{3,260})/i,
   // "Can you build me a site" / "could you design a logo"
-  /\b(?:can|could|would)\s+(?:you|he|scott)\s+((?:build|make|design|create|do|redo)[^.!?]{3,260})/i,
+  // 2026-09-01. "help" was missing here, and it is the single most common verb
+  // a visitor reaches for. G opened ride 3414643a with "can he help me build my
+  // brand?" - his answer, in his first breath - and this pattern did not hear
+  // it, which is WHY the project need was still empty later when the error echo
+  // walked in and took the slot. The sibling pattern above has always had it.
+  /\b(?:can|could|would)\s+(?:you|he|scott)\s+((?:build|make|design|create|do|redo|rebuild|redesign|help)[^.!?]{3,260})/i,
 ];
 
 // G, 2026-08-23, looking at a real lead: the summary line just quoted his own
@@ -43,6 +51,9 @@ function stripSpokenProjectFiller(text: string): string {
     .replace(/,?\s*\byou know\b,?\s*/gi, " ")
     .replace(/\b(?:um+|uh+|er|ah)\b,?\s*/gi, " ")
     .replace(/\bi(?:'d| would)?\s+(?:want|wanted|need|needed|would like)\s+(?:to\s+)?like\b\s*(?:an?\s+)?/gi, "")
+    // H453 (Codex spec, applied by Claude 2026-09-02): "a website and then I What type..." (89c453ff) is
+    // the visitor's "a website" plus a restarted clause welded across a transcript break. Cut the tail.
+    .replace(/\s+\band then i\b.*$/i, "")
     .replace(/\s+,/g, ",")
     .replace(/,\s*,+/g, ",")
     .replace(/\s+/g, " ")
@@ -56,7 +67,76 @@ function stripSpokenProjectFiller(text: string): string {
 const CONTACT_MECHANICS_NEED =
   /\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i;
 
+// 2026-09-01. THE ECHO TRAP - the fault that cost G's ride 3414643a and locked
+// the lead box in a loop no visitor could ever escape.
+//
+// The confirm route refused the send and put its OWN words on screen:
+//   "Nothing has been sent. iScott still needs to hear, in your own words, what
+//    you want Scott to help with - say that, then choose Send to Scott again."
+//
+// G did the most natural thing a confused person does with a box they do not
+// understand. He READ IT OUT LOUD, and asked what it meant.
+//
+// PROJECT_NEED_PATTERNS then matched its own copy inside his reading of it -
+// "Scott to help with, say that, then choose Send to Scott again" - and stored
+// THAT as project_need. The gate refused it as generic, printed the same box
+// again, and the trap closed: every attempt to ask about the error re-armed the
+// error. His real answer, given in his first breath, was already gone.
+//
+// A visitor reading our own screen back to us is never a visitor describing
+// their project, granting permission, or giving their name. This is the
+// visitor-side twin of isOperatorPromptEcho, and it is deliberately built from
+// distinctive multi-word phrases that only ever appear in OUR copy, so ordinary
+// speech cannot trip it.
+const APP_SCREEN_COPY_FRAGMENTS: string[] = [
+  // the 409 missing-step panel, every branch
+  "nothing has been sent",
+  "nothing has been sent to scott yet",
+  "iscott still needs",
+  "in your own words what you want scott to help with",
+  "then choose send to scott",
+  "choose send to scott again",
+  "say it then choose send to scott",
+  "does not match the contact iscott has",
+  "let iscott read it back",
+  "let iscott read the new details back",
+  "has not read that back to you",
+  "does not have your permission to send this yet",
+  "say yes when iscott asks",
+  "still needs a way for scott to reach you",
+  "your details changed after you gave permission",
+  // delivery failure and validation copy
+  "the send failed",
+  "scott does not have this yet",
+  "i will keep the details here",
+  "does not look complete please correct it",
+  "that email address does not look complete",
+  "that phone number does not look complete",
+  // in-flight status copy
+  "checking your details",
+  "saved the conversation but could not finish the handoff",
+];
+
+function normaliseForScreenCopy(text: string): string {
+  return text
+    .toLowerCase()
+    .replaceAll("’", "'")
+    .replace(/[‐-―]/g, " ")
+    .replace(/[^\p{L}\p{N}']+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// True when this turn is quoting the app's own on-screen words back at us.
+export function isAppScreenCopyEcho(text: string): boolean {
+  const normalised = normaliseForScreenCopy(text ?? "");
+  if (!normalised) return false;
+  return APP_SCREEN_COPY_FRAGMENTS.some((fragment) => normalised.includes(fragment));
+}
+
 export function extractProjectNeed(text: string): string | null {
+  // The screen's own words are not the visitor's project. See the trap above.
+  if (isAppScreenCopyEcho(text)) return null;
   let captured: string | null = null;
   for (const pattern of PROJECT_NEED_PATTERNS) {
     const match = text.match(pattern);
@@ -143,30 +223,75 @@ export function extractSpokenNameAndPlace(text: string): { name: string | null; 
   return { name: titleNameWords(name), location: titleLocationWords(place) };
 }
 
-export function extractSpokenFullName(text: string): string | null {
+export function extractSpokenFullName(text: string, previousAssistantText?: string | null): string | null {
   const fromPlace = extractSpokenNameAndPlace(text).name;
   if (fromPlace) return fromPlace;
+  const askedForName = typeof previousAssistantText === "string" &&
+    /\b(?:what(?:'s| is)\s+your\s+(?:full\s+)?name|(?:could|can|would)\s+you\s+(?:please\s+)?(?:share|tell\s+me)\s+(?:your\s+)?(?:full\s+)?name|please\s+(?:share|tell\s+me)\s+(?:your\s+)?(?:full\s+)?name)\b/i
+      .test(previousAssistantText.replace(/\s+/g, " ").trim());
   const named = text.match(
     /\b(?:my name is|my name's|call me)\s+([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})/iu,
   );
+  const directSpoken = text.match(
+    /\b(?:i(?:'m| am))\s+([\p{L}][\p{L}'-]*)(?=\s*(?:,|and\b|in\b|from\b|[.!?]|$)|\s*$)/iu,
+  )?.[1];
+  const contextualSpoken = askedForName
+    ? text.match(/\bit(?:'s| is)\s+([\p{L}][\p{L}'-]*)(?=\s*(?:,|and\b|in\b|from\b|[.!?]|$)|\s*$)/iu)?.[1]
+    : null;
   const spoken = named
     ? named[1]
-    : text.match(/\b(?:i(?:'m| am))\s+([\p{L}][\p{L}'-]*)(?=\s*(?:,|and\b|in\b|from\b|[.!?]|$)|\s*$)/iu)?.[1];
-  if (!spoken) return null;
-  const candidate = spoken
+    : directSpoken ?? contextualSpoken;
+  // G's 2026-09-02 vertical-iPad ride answered iScott's direct name question
+  // with "Scott. And the box? ...". A bare answer is not an introduction, so
+  // the old cue-only extractor discarded it and the complete handoff remained
+  // blocked on full_name. Bare leading words count only when the immediately
+  // preceding assistant turn actually asks for the visitor's name. This keeps
+  // normal sentences beginning with a person's name out of the name field.
+  const bareAnswer = !spoken && askedForName
+    ? text.replace(/^(?:(?:um+|uh+|well|okay|ok|all\s*right|alright)[,.]?\s+)*/i, "").match(
+        /^([\p{L}][\p{L}'’.-]*(?:\s+(?!(?:and|but)\b)[\p{L}][\p{L}'’.-]*){0,3})(?=\s*(?:[.!?;,]|\b(?:and|but)\b|$))/iu,
+      )?.[1] ?? null
+    : null;
+  if (bareAnswer && /\b(?:box|button|screen|field|label|finish|upload|email|phone|number|off[- ]?screen)\b/i.test(bareAnswer)) {
+    return null;
+  }
+  if (contextualSpoken && /\b(?:low|dark|perfect|small|broken|off|box|button|screen|field|label|finish|upload|email|phone|number)\b/i.test(contextualSpoken)) {
+    return null;
+  }
+  const candidate = (spoken ?? bareAnswer)
+    ?.split(/\b(?:and|but|from|in)\b/i)[0]
+    .replace(/[.,!?;:]+$/g, "")
+    .trim();
+  if (!candidate) return null;
+  const cleanedCandidate = candidate
     .split(/\b(?:and|but|from|in)\b/i)[0]
     .replace(/[.,!?;:]+$/g, "")
     .trim();
-  if (candidate.length < 2 || candidate.length > 90) return null;
-  if (NAME_STOP.test(candidate)) {
+  if (cleanedCandidate.length < 2 || cleanedCandidate.length > 90) return null;
+  if (NAME_STOP.test(cleanedCandidate)) {
     return null;
   }
-  return titleNameWords(candidate);
+  const titled = titleNameWords(cleanedCandidate);
+  return isMeaningfulVisitorName(titled) ? titled : null;
 }
 
 export function preferProjectNeed(current: string | null, next: string | null): string | null {
   if (!next) return current;
   if (!current) return next;
+  // 2026-09-01. Our own screen copy is never a project need, wherever it
+  // reaches this function from - including a value already POISONED in the
+  // database by an earlier ride, which is how G's row still held
+  // "...then choose Send to Scott again" this morning.
+  if (isAppScreenCopyEcho(next)) return current;
+  if (isAppScreenCopyEcho(current)) return next;
+  // 2026-09-01. Before today the ONLY test below was length, so the longest
+  // string won outright. That is how a visitor reading our own refusal box out
+  // loud could overwrite a real answer with our own copy. A need that qualifies
+  // is never traded for one that does not, whatever its length.
+  const currentQualifies = isSpecificProjectNeed(current);
+  const nextQualifies = isSpecificProjectNeed(next);
+  if (currentQualifies && !nextQualifies) return current;
+  if (!currentQualifies && nextQualifies) return next;
   const currentLooksIncomplete = /(?:[,;:\-]|\b(?:a|an|and|my|or|the|to|uh|um))\s*$/i.test(current);
   const currentLooksGeneric = /^(?:some\s+)?(?:landscap(?:e|ing)|yard\s+work|outdoor\s+work|work\s+(?:outside|outdoors)|a\s+project)$/i
     .test(current.trim());
@@ -185,6 +310,20 @@ export function detectsAcceptedFollowUp(text: string): boolean {
 
 export function detectsSimpleAffirmation(text: string): boolean {
   const t = text.trim();
+  // 2026-09-01. THE NINE-WORD LIST THAT ATE THREE LEADS.
+  //
+  // iScott asked G "May Scott contact you at that email address?" and he said
+  // "Perfect. Yes." - as clean a yes as English has. It registered as nothing,
+  // because the filler list below was nine words long and "perfect" was not one
+  // of them, so the yes never sat at the start of the turn. Three of his last
+  // four leads died holding his real address for exactly this reason.
+  //
+  // People do not answer a yes/no question with a bare yes. They answer with a
+  // reaction and THEN the yes. Every word added here is pure acknowledgement -
+  // it carries no agreement of its own, so it cannot manufacture a consent that
+  // was not given. It is widened in ALL THREE regexes on purpose: the negation
+  // guard and the reversal guard have to see exactly what the yes matcher sees,
+  // or "Perfect. Yeah, but hold on" would become consent.
   // NEGATION WINS, AND IT IS CHECKED FIRST.
   //
   // This guard exists because of what the next block had to accept. "yet" is
@@ -193,7 +332,7 @@ export function detectsSimpleAffirmation(text: string): boolean {
   // manufacturing consent out of a plain no - far worse than the bug it
   // repairs. Same for "don't send that yet" and "hold on".
   if (
-    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:no|nope|nah|not|don'?t|do not|hold on|hang on|wait|stop)\b/i.test(t)
+    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so|perfect|great|awesome|excellent|cool|nice|sweet|fantastic|wonderful|brilliant|lovely|beautiful|gotcha|got\s+it|sounds\s+good|very\s+good|thanks|thank\s+you)[,.!]?\s+)*(?:no|nope|nah|not|don'?t|do not|hold on|hang on|wait|stop)\b/i.test(t)
   ) {
     return false;
   }
@@ -224,15 +363,27 @@ export function detectsSimpleAffirmation(text: string): boolean {
   // Ordering matters: this runs AFTER the yes matched, so "And, but yes, that
   // email is correct." survives - its "but" sits in the filler BEFORE the yes,
   // and the remainder carries no reversal.
-  if (/^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:yes|yeah|yep|yup|yet|ya|yah|sure|absolutely|definitely|affirmative|of\s+course|correct|right|exactly)\b[\s\S]*\b(?:but|wait|hold\s+on|hang\s+on|later|actually|unless|though|only\s+if|as\s+long\s+as|no|not|don'?t|never|stop)\b/i.test(t)) {
+  if (/^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so|perfect|great|awesome|excellent|cool|nice|sweet|fantastic|wonderful|brilliant|lovely|beautiful|gotcha|got\s+it|sounds\s+good|very\s+good|thanks|thank\s+you)[,.!]?\s+)*(?:yes|yeah|yep|yup|yet|ya|yah|sure|absolutely|definitely|affirmative|of\s+course|correct|right|exactly)\b[\s\S]*\b(?:but|wait|hold\s+on|hang\s+on|later|actually|unless|though|only\s+if|as\s+long\s+as|no|not|don'?t|never|stop)\b/i.test(t)) {
     return false;
   }
   if (
-    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so)[,.]?\s+)*(?:yes|yeah|yep|yup|yet|ya(?!\s*know)|yah|sure|absolutely|definitely|affirmative|of\s+course|go\s+ahead|do\s+it|please\s+do|send\s+it|correct|right|that(?:'s| is) right|you got it|exactly)\b/i.test(t)
+    /^(?:(?:and|but|um+|uh|okay|ok|all\s?right|alright|well|good|so|perfect|great|awesome|excellent|cool|nice|sweet|fantastic|wonderful|brilliant|lovely|beautiful|gotcha|got\s+it|sounds\s+good|very\s+good|thanks|thank\s+you)[,.!]?\s+)*(?:yes|yeah|yep|yup|yet|ya(?!\s*know)|yah|sure|absolutely|definitely|affirmative|of\s+course|go\s+ahead|do\s+it|please\s+do|send\s+it|correct|right|that(?:'s| is) right|you got it|exactly)\b/i.test(t)
   ) {
     return true;
   }
-  return /\b(?:that(?:'s| is)?\s+(?:email|number|phone)?\s*(?:is\s+)?correct\b|i\s+(?:already\s+)?confirmed(?:\s+it)?\b|it(?:'s| is)\s+confirmed\b)/i.test(t);
+  if (/\b(?:that(?:'s| is)?\s+(?:email|number|phone)?\s*(?:is\s+)?correct\b|i\s+(?:already\s+)?confirmed(?:\s+it)?\b|it(?:'s| is)\s+confirmed\b)/i.test(t)) {
+    return true;
+  }
+  // G live ride cad6a3dd, 2026-09-03 13:11 ET. THIS COST THE SEND.
+  // iScott asked "May Scott contact you at that email address?" and G answered
+  // "That's fantastic." Every word above treats those positives as FILLER that
+  // must be followed by a yes-core, so a purely enthusiastic answer registered
+  // nothing: consent froze at unknown, no confirmation ever appeared ("dead
+  // air"), while the avatar still said "Okay, I'm sending that email to Scott."
+  // A whole turn that is NOTHING BUT positive exclamation, in the consent-answer
+  // slot, is a yes. The negation and reversal guards above have already run,
+  // and the $ anchor means one trailing doubt-word breaks the match.
+  return /^(?:(?:and|but|um+|uh|oh|okay|ok|all\s?right|alright|well|so|wow)[,.!]?\s+)*(?:that(?:'s| is|\s+sounds?|\s+would\s+be)\s+)?(?:fantastic|great|awesome|perfect|wonderful|excellent|brilliant|beautiful|lovely|amazing|terrific|sweet|cool|love\s+it|i(?:'d| would)\s+love\s+(?:it|that))[,.!\s]*$/i.test(t);
 }
 
 const AVATAR_STUB_RE =
@@ -255,6 +406,20 @@ export function isIncompleteAvatarUtterance(text: string): boolean {
   if (/[,:]\s*$/.test(trimmed) && trimmed.split(/\s+/).length <= 8 && /^(?:i understand|it seems|it sounds)\b/i.test(trimmed)) {
     return true;
   }
+  // 2026-09-01. G's 14:06 ride cut iScott off three times: "Got", "I", and
+  // "Absolutely! Scott can create stunning landscapes,". The first two are
+  // caught by AVATAR_STUB_RE. The third was NOT: the trailing-comma rule above
+  // only fires for utterances that OPEN with "i understand" / "it seems" /
+  // "it sounds", so a normal sentence chopped mid-clause scored as complete and
+  // never raised a barge-in event.
+  //
+  // An assistant turn that ends on a comma, colon or semicolon is unfinished
+  // regardless of how it started - the avatar does not close a turn on a
+  // dangling clause. Detection only: this raises an `iscott_barge_in` telemetry
+  // event, it does not change what iScott says or does. The word-count and
+  // opener limits are deliberately NOT applied here, since the whole failure
+  // was a long, ordinary sentence.
+  if (/[,:;]\s*$/.test(trimmed)) return true;
   return false;
 }
 
@@ -372,6 +537,29 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   // KEEP IN SYNC with its twin - check-iscott-method-choice.mjs fails on drift.
   if (/\?\s*$/.test(normalized)
     && /\b(?:how should|how would|would you like|should scott|which do you prefer|best way)\b/i.test(normalized)) {
+    return null;
+  }
+  // Talking about the visible field is not choosing a contact method. Keep
+  // this before the broad phone/email branches: f1163ff3 said "the box ...
+  // your phone" while correcting the UI and briefly flipped the live field.
+  if (/\b(?:email|phone|capture)\s+box\b|\bbox\b[\s\S]{0,40}\b(?:email|phone)\b|\b(?:email|phone)\b[\s\S]{0,40}\b(?:box|words?|label|glow)\b/i.test(normalized)) {
+    return null;
+  }
+  // A physical-phone complaint is also not a contact-method choice. Keep the
+  // phrase narrow so "Phone. My number is on the screen." remains a valid
+  // answer; the screen alone is not evidence of UI commentary.
+  if (/\b(?:throw(?:ing)?|threw|drop(?:ped|ping)?|broke|broken|lost|where did)\b[\s\S]{0,40}\bphone\b/i.test(normalized)) {
+    return null;
+  }
+  // G's desktop ride 1cc18a84, 2026-09-03 15:46 ET: "Um, can I call you Scott?"
+  // opened the YOUR PHONE box two minutes before any contact talk - "I haven't
+  // said anything about wanting to do phone number or email" / "take the box
+  // down. Because we haven't gotten there yet." Calling SOMEONE something, or
+  // asking what to call them, is not asking to be phoned. A bare "call me" is
+  // still a phone choice; "call me Scott" is a name.
+  if (!/\b(?:phone|telephone|sms|text\s+me|by\s+text|or\s+text)\b/i.test(normalized)
+    && (/\b(?:call|calling|called)\s+(?:you|him|her|it|them|this|that|yourself|himself|herself|iscott|scott)\b|\bwhat\s+(?:do|should|can|would)\s+i\s+call\b/i.test(normalized)
+      || /\b[Cc]all me [A-Z][a-z]+\b/.test(normalized))) {
     return null;
   }
   if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
@@ -706,8 +894,15 @@ export function detectsContactReadBackCorrect(text: string): boolean {
   if (/^(?:\s*(?:yes|yeah|yep|yup|ok|okay)[,.\s]+)*you (?:did|do|have)\b/i.test(normalized)) {
     return true;
   }
+  // G, ride f1163ff3: "Yes, perfect. And you sent it back. Perfect."
+  // This directly answered iScott's exact-address read-back. "sent/spelled/
+  // repeated" are common descriptions of that act; an affirmative followed by
+  // perfect/great/correct is the equally ordinary short form.
+  if (/^(?:yes|yeah|yep|yup|ok|okay)[,.!\s]+(?:perfect|great|correct)\b/i.test(normalized)) {
+    return true;
+  }
   // How people actually answer "did I hear that right?"
-  return /\b(?:that(?:'s| is) (?:it|right|correct)|you (?:said|got|read|have|heard) (?:it|that|them)?\s*(?:right|correct|correctly)|said it correctly|got it right|read it right|heard it right|exactly right|perfectly|spot on|correct|right)\b/i.test(
+  return /\b(?:that(?:'s| is) (?:it|right|correct)|you (?:said|got|read|have|heard|sent|spelled|repeated) (?:it|that|them)?\s*(?:right|correct|correctly|perfectly)?|said it correctly|got it right|read it right|heard it right|exactly right|perfectly|spot on|correct|right)\b/i.test(
     normalized,
   );
 }
@@ -804,7 +999,7 @@ export function visitorProjectNeedFromRows(
   texts: string[],
 ): { projectNeed: string | null; operatorServiceScript: string | null } {
   const operatorTexts = texts.filter((text) => isOperatorSalesLanguage(text) || isCoachingOrPersonaNeed(text));
-  const visitorTexts = texts.filter((text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text));
+  const visitorTexts = texts.filter((text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text) && !isAppScreenCopyEcho(text));
   let projectNeed: string | null = null;
   for (const text of visitorTexts) {
     projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
@@ -832,17 +1027,18 @@ export function visitorProjectNeedFromRows(
   //                               his own words. That is G's ride 89c453ff, and
   //                               there the distilled answer must survive.
   const operatorIsScripting = operatorTexts.length > 0;
-  if (sessionLooksLikeOperatorQa(texts) || operatorIsScripting) {
-    return {
-      projectNeed: operatorIsScripting
-        ? projectNeed
-        : distillVisitorProjectOffer(visitorTexts) ?? projectNeed,
-      operatorServiceScript: distillVisitorProjectOffer(texts),
-    };
-  }
+  // H453 (Codex spec, applied by Claude 2026-09-02). G, three rides on 09-02 (b0c50885, 90328d60,
+  // 8e110daa) were mailed the synthesized label "Website and branding makeover" instead of his words.
+  // project_need is the visitor's extracted wording ONLY. The synthesized service summary belongs in
+  // operator_service_script and must never replace the words used in the lead row or owner email.
+  // If no visitor wording was extracted, stay null so qualification fails closed.
+  const operatorServiceScript =
+    sessionLooksLikeOperatorQa(texts) || operatorIsScripting
+      ? distillVisitorProjectOffer(texts)
+      : null;
   return {
-    projectNeed: distillVisitorProjectOffer(visitorTexts) ?? projectNeed,
-    operatorServiceScript: null,
+    projectNeed,
+    operatorServiceScript,
   };
 }
 
@@ -1067,6 +1263,16 @@ export function isSendCommandConsent(text: string): boolean {
   if (!normalized || isUiOnlyAffirmation(normalized)) return false;
   // Negation wins: "don't send my info" is never consent.
   if (/\b(?:don'?t|do not|never|stop)\b[^.!?]{0,30}\bsend\b/i.test(normalized)) return false;
+  // Explaining the permission rule is not granting permission. G's vertical-
+  // iPad ride 6db41665 said "People have to give their permission first, then
+  // that fires the send to Scott." The broad imperative detector below saw
+  // "send ... to Scott" and treated that policy explanation as the command,
+  // four seconds before G's actual yes. Keep first-person permission and real
+  // imperatives valid; reject only general/second-person prerequisite talk.
+  const explainsPermissionPrerequisite =
+    /\b(?:people|visitors?|customers?|they)\b[^.!?]{0,80}\b(?:permission|consent)\b/i.test(normalized)
+    || /\byou\s+(?:need|must|have to)\b[^.!?]{0,60}\b(?:permission|consent)\b/i.test(normalized);
+  if (explainsPermissionPrerequisite && /\bsend\b/i.test(normalized)) return false;
   // G live ride 2026-08-17 ("Okay, yeah, send it, send that, send my
   // information to the WildWorks team." registered NO consent): accept
   // wildworks-team targets, filler before the yes, and the plain imperative.
@@ -1111,6 +1317,29 @@ export function mayClaimHandoffSent(args: {
     && hasLinkedOutbox;
 }
 
+// A SPOKEN LINE IS A MOMENT, NOT A STRING. G's desktop rides 1cc18a84 and
+// f2815084, 2026-09-03: the transcript sync deduped incoming rows by role +
+// words alone, so the second "Yes." of a session (the one answering "May Scott
+// contact you...") was discarded as a repeat of the first (the one answering
+// "Did I hear that exactly right?"), the permission never reached the lead,
+// and the send never happened - while the avatar, which heard it, said the
+// send line. The same words at a DIFFERENT time are a different line. The
+// provider's absolute timestamp decides; the tolerance absorbs the provider
+// re-stamping a line by a second or two between two syncs.
+export const TRANSCRIPT_REPEAT_TOLERANCE_SECONDS = 2;
+
+export function isRepeatedTranscriptMoment(
+  seenAt: number[] | undefined,
+  at: number,
+  toleranceSeconds: number = TRANSCRIPT_REPEAT_TOLERANCE_SECONDS,
+): boolean {
+  if (!seenAt || seenAt.length === 0) return false;
+  // A candidate with no clock cannot be placed in time; the only safe reading
+  // of "same words, no time" is the old one - a repeat.
+  if (!Number.isFinite(at)) return true;
+  return seenAt.some((seen) => !Number.isFinite(seen) || Math.abs(seen - at) <= toleranceSeconds);
+}
+
 export function mergeLeadTranscriptHistory(
   existing: Array<{ role?: string; message?: string; timestamp?: number | null; laAbsoluteTimestamp?: number | null }>,
   incoming: Array<{ role: string; message: string; laAbsoluteTimestamp?: number | null }>,
@@ -1130,7 +1359,52 @@ export function mergeLeadTranscriptHistory(
     if (typeof row.message !== "string") continue;
     push(String(row.role ?? "user"), row.message, row.timestamp ?? row.laAbsoluteTimestamp ?? null);
   }
+  // G's ride 0bd3227a, 2026-09-03 13:31 ET. THIS COST THE SEND, and it is the
+  // "it was working earlier" bug G has hit over and over: the stored snapshot
+  // is COMPACTED (consecutive visitor fragments joined into one row, filler and
+  // cut-off avatar lines dropped), while the incoming rows are the raw
+  // transcript. A raw fragment never matches its compacted row's key, so every
+  // fragment spoken BEFORE the permission was appended AFTER the whole stored
+  // history - behind the yes. On that ride "And, uh, you know, I want him to
+  // build up- I want him to help me build" (spoken 43 seconds before the
+  // permission) landed at index 33 behind the yes at index 19, parsed as a new
+  // project need, and the send was refused as package_changed_after_permission.
+  // 65ac1618 an hour earlier carried nine such ghosts and passed only because
+  // none of them happened to parse as a need. Replayed with the real code
+  // (scripts/check-iscott-ride-0bd3227a-replay.mjs).
+  //
+  // A raw row that is already REPRESENTED in the stored history is not new:
+  // same role, its time falls inside a stored row's span (that row's timestamp
+  // up to the next stored row's), and the stored text contains it. Filler and
+  // cut-off avatar lines that compaction dropped on purpose are old for the
+  // same reason - their time sits inside history - and stay dropped instead of
+  // being resurrected behind the permission. The last stored row has no known
+  // end, so only its own second counts as its span: anything later is new and
+  // goes where it always went, after history.
+  const stored = out.slice();
+  const flat = (value: string) => value.replace(/\s+/g, "").toLowerCase();
+  const spanEnd = (index: number): number => {
+    for (let next = index + 1; next < stored.length; next += 1) {
+      const at = stored[next].laAbsoluteTimestamp;
+      if (at !== null) return at;
+    }
+    return (stored[index].laAbsoluteTimestamp ?? 0) + 1;
+  };
+  const alreadyRepresented = (role: "user" | "assistant", text: string, timestamp: number | null): boolean => {
+    if (timestamp === null) return false;
+    const needle = flat(text);
+    if (!needle) return true;
+    for (let index = 0; index < stored.length; index += 1) {
+      const start = stored[index].laAbsoluteTimestamp;
+      if (start === null || timestamp < start || timestamp >= spanEnd(index)) continue;
+      if (stored[index].role === role && flat(stored[index].message).includes(needle)) return true;
+      if (role === "user" ? isPureFillerUtterance(text) : isIncompleteAvatarUtterance(text)) return true;
+    }
+    return false;
+  };
   for (const row of incoming) {
+    const role = row.role === "assistant" ? "assistant" : "user";
+    if (alreadyRepresented(role, row.message, row.laAbsoluteTimestamp ?? null)) continue;
     push(row.role, row.message, row.laAbsoluteTimestamp ?? null);
   }
   return out;
@@ -2036,9 +2310,10 @@ export function evaluateExactContactSendConsent(
     //   1. it answers a send question that was itself anchored to the read-back
     //   2. it is an explicit command sitting immediately on the read-back
     const answersAnchoredPrompt = promptOpen && promptAnchored && userTurnsSincePrompt === 1;
-    const commandsOnTheReadback =
-      command && sinceReadback !== null && sinceReadback <= READBACK_TO_PROMPT_MAX_TURNS;
-
+    // An explicit command does not become ambiguous with age. It remains tied
+    // to the last undenied exact read-back; a changed contact or a denial clears
+    // sinceReadback above. Only bare affirmations retain the adjacency window.
+    const commandsOnTheReadback = command && sinceReadback !== null;
     if (!answersAnchoredPrompt && !commandsOnTheReadback) {
       // A contact change is the most specific thing that can be wrong here and
       // it must not be overwritten by a vaguer reason further down the ride.
@@ -2401,7 +2676,10 @@ export function evaluateLeadPackageChronology(args: {
 
   for (const [index, row] of args.rows.entries()) {
     if (row.role !== "user") continue;
-    const spokenName = extractSpokenFullName(row.message);
+    const previousAssistantText = args.rows[index - 1]?.role === "assistant"
+      ? args.rows[index - 1].message
+      : null;
+    const spokenName = extractSpokenFullName(row.message, previousAssistantText);
     if (spokenName && isMeaningfulVisitorName(spokenName)) {
       if (heardName === null || leadPackageFieldChanged("name", heardName, spokenName)) {
         changedAt.name = index;
@@ -2414,7 +2692,11 @@ export function evaluateLeadPackageChronology(args: {
     }
     const spokenIntent = extractProjectNeed(row.message);
     if (spokenIntent && isSpecificProjectNeed(spokenIntent)) {
-      if (heardIntent === null || leadPackageFieldChanged("intent", heardIntent, spokenIntent)) {
+      // G, 2026-09-02 16:47 ET, chose (a) to "(a) Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
+      // The FIRST time a need is heard is a fill, not a change: permission given
+      // before it stays current. Only a need that REPLACES an earlier one is
+      // material.
+      if (heardIntent !== null && leadPackageFieldChanged("intent", heardIntent, spokenIntent)) {
         changedAt.intent = index;
       }
       heardIntent = preferProjectNeed(heardIntent, spokenIntent);
@@ -2430,11 +2712,18 @@ export function evaluateLeadPackageChronology(args: {
     }
   }
 
-  const changeIndexes = (Object.values(changedAt).filter((value) => value !== null) as number[]);
+  // Consent authorizes Scott to contact the visitor at the confirmed method
+  // and value. Learning or correcting the visitor's name later improves the
+  // owner package but does not change what contact the visitor authorized.
+  // Intent and contact changes remain material and still require fresh consent.
+  const consentMaterialFields: LeadPackageField[] = ["intent", "contact"];
+  const changeIndexes = consentMaterialFields
+    .map((field) => changedAt[field])
+    .filter((value): value is number => value !== null);
   const lastMaterialChangeIndex = changeIndexes.length ? Math.max(...changeIndexes) : null;
   const staleFields = permissionIndex === null
     ? []
-    : (Object.keys(changedAt) as LeadPackageField[]).filter((field) => {
+    : consentMaterialFields.filter((field) => {
         const at = changedAt[field];
         return at !== null && at >= permissionIndex;
       });
@@ -2536,7 +2825,12 @@ export function evaluateIScottLeadSendQualification(args: {
   // to him regardless of name, consent or qualification. Strict here,
   // nothing lost there.
   if (!isMeaningfulVisitorName(args.fullName)) blockers.push("missing_full_name");
-  if (!isSpecificProjectNeed(args.projectNeed)) blockers.push("generic_project_need");
+  // G, 2026-09-02 16:47 ET, chose (a) to "(a) Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
+  // iPad ride fa6b1fe5: name + email + "Yes" and the send was REFUSED for a
+  // missing project need, while the brain spoke the permitted sending line.
+  // The need is optional now: consent + confirmed contact sends. The owner
+  // email says "Project: not stated yet" and iScott still asks by voice.
+  // ("generic_project_need" stays in the type: old rows and receipts name it.)
 
   const method = args.contactMethod === "email" || args.contactMethod === "phone"
     ? args.contactMethod

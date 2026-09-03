@@ -7,6 +7,7 @@ import {
   normalizedPackageIntent,
   normalizedPackageName,
 } from "./iscottLeadParsing";
+import { emailLink, emailParagraph, emailShell, escapeHtml } from "./emailTheme";
 
 // PREPARATION ONLY, 2026-08-29. Nothing in this file is authorized to send.
 //
@@ -75,7 +76,7 @@ export type IScottVisitorConfirmationArgs = {
   // The address the owner package was actually addressed from. It must match
   // the stored one; a request to receipt some other mailbox is refused.
   sentEmail?: string | null;
-  lead: IScottVisitorConfirmationLeadReread;
+  lead?: IScottVisitorConfirmationLeadReread | null;
   proofRows?: ProofTurn[];
 };
 
@@ -100,34 +101,242 @@ export type IScottVisitorConfirmationDecision = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// PRIVACY-MINIMAL COPY. The visitor already knows what they said; repeating it
-// back to an address that could be mistyped, shared, or forwarded is how a
-// receipt becomes a leak. No transcript, no contact value, no free-form project
-// text, no media or internal links, no timing, no booking, no outcome, and no
-// price. Frozen as data so a test can compare the whole body word for word.
+// H443b visitor receipt. Scott 2026-09-02 11:57 AM ET: look beautiful and say
+// more. From WildWorks, received your request, Scott will be reaching out
+// regarding a BRIEF of what was talked about, then no reply is needed.
+// Claude 12:12 ET: owner-outbox retire was a Codex test-fake race, not this
+// file. Do not rewrite retire. Builders stay defensive: lead may be missing,
+// projectNeed may be null, 400-char need is clipped, never throw.
+// NO SMS. Phone = email-only (contact_method_not_email stays). Twilio is voice.
 export const ISCOTT_VISITOR_CONFIRMATION_SUBJECT = "WildWorks received your request";
-export const ISCOTT_VISITOR_CONFIRMATION_LINES: readonly string[] = [
-  "WildWorks received your request.",
-  "This note confirms that your request was submitted.",
-  "No reply is needed.",
-];
+export const ISCOTT_VISITOR_CONFIRMATION_HEADING = "WildWorks received your request.";
+export const ISCOTT_VISITOR_CONFIRMATION_NO_REPLY = "No reply is needed.";
+export const ISCOTT_VISITOR_CONFIRMATION_FROM = "From WildWorks";
+export const ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF = "what you talked about with iScott";
+export const SCOTT_PUBLIC_PHONE = "443-797-2166";
+export const SCOTT_PUBLIC_PHONE_TEL = "tel:+14437972166";
+export const SCOTT_PUBLIC_SITE = "https://wildworks.ai";
+export const SCOTT_PUBLIC_SITE_LABEL = "wildworks.ai";
 
-function visitorConfirmationText(): string {
-  return ISCOTT_VISITOR_CONFIRMATION_LINES.join("\n\n");
+const BRIEF_SUMMARY_MAX = 400;
+
+function asText(value: unknown): string {
+  if (typeof value === "string") return value.replace(/\s+/g, " ").trim();
+  if (value == null) return "";
+  try {
+    return String(value).replace(/\s+/g, " ").trim();
+  } catch {
+    return "";
+  }
 }
 
-function visitorConfirmationHtml(): string {
-  // Built from the same frozen lines, so the two bodies cannot drift apart and
-  // let something into the HTML that the text review never saw.
-  const [heading, ...rest] = ISCOTT_VISITOR_CONFIRMATION_LINES;
-  return [
-    `<h1>${heading}</h1>`,
-    ...rest.map((line) => `<p>${line}</p>`),
-  ].join("");
+function safeEscape(value: unknown): string {
+  const s = asText(value);
+  try {
+    return escapeHtml(s);
+  } catch {
+    return s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
 }
 
 function cleanedText(value: unknown): string {
-  return typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
+  return asText(value);
+}
+
+export function briefVisitorSummary(projectNeed: unknown): string {
+  try {
+    const cleaned = asText(projectNeed);
+    if (!cleaned) return ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+    if (cleaned.length <= BRIEF_SUMMARY_MAX) return cleaned;
+    const cut = cleaned.slice(0, BRIEF_SUMMARY_MAX);
+    const lastSpace = cut.lastIndexOf(" ");
+    const clipped = (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:]$/, "");
+    return `${clipped}...`;
+  } catch {
+    return ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+  }
+}
+
+// G 2026-09-03 11:4x ET, reading his own receipt for the long-email ride:
+// "instead of it saying 'what you talked about with iScott'... it should have a
+// little summary of what the user actually talked to iScott about. 'You sent
+// this by email.' Why is that there?"
+//
+// The summary is the visitor's OWN words, read off the proof rows (the same
+// transcript walk the send had to pass), never a model's guess: the first two
+// substantive things they said, minus the yes/okay/name/address turns. When
+// there is a specific project need it leads instead. And the pointless method
+// line becomes the one useful fact it was hiding: which address Scott will
+// use.
+const VISITOR_QUOTE_MAX = 220;
+// A line that OPENS with an acknowledgement ("You did. That's great.") is
+// still an acknowledgement, so this matches the start, not the whole line.
+const VISITOR_QUOTE_SKIP = /^(?:yes|yeah|yep|no|nope|okay|ok|alright|all right|great|got it|correct|you did|that'?s|thank(?:s| you)|hi|hello|hey|um|uh|so yes|awesome|wow|perfect|sure)\b/i;
+const VISITOR_QUOTE_CONTACTISH = /@|\d[\d\s().-]{6,}\d|\bmy name is\b|\bmy email\b|\bemail'?s\b|\bphone'?s\b|\breach out to me\b|\bsend (?:him|scott|me) an? email\b|\bspell\b/i;
+
+export function visitorQuoteFromProof(rows: unknown): string {
+  try {
+    if (!Array.isArray(rows)) return "";
+    const picked: string[] = [];
+    for (const row of rows) {
+      const role = row && typeof row === "object" ? (row as { role?: unknown }).role : null;
+      if (role !== "user") continue;
+      const text = asText((row as { message?: unknown }).message);
+      if (!text) continue;
+      if (text.split(/\s+/).length < 4) continue;
+      if (VISITOR_QUOTE_SKIP.test(text)) continue;
+      if (VISITOR_QUOTE_CONTACTISH.test(text)) continue;
+      picked.push(text.replace(/\s+/g, " ").trim());
+      if (picked.length === 2) break;
+    }
+    const joined = picked.join(" ");
+    if (!joined) return "";
+    if (joined.length <= VISITOR_QUOTE_MAX) return joined;
+    const cut = joined.slice(0, VISITOR_QUOTE_MAX);
+    const lastSpace = cut.lastIndexOf(" ");
+    return `${(lastSpace > 60 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:]$/, "")}...`;
+  } catch {
+    return "";
+  }
+}
+
+export type VisitorReceiptCopy = {
+  brief: string;
+  regarding: string;
+  next: string;
+  reach: string;
+  noReply: string;
+};
+
+export function visitorReceiptCopy(args?: {
+  projectNeed?: unknown;
+  contactMethod?: unknown;
+  proofRows?: unknown;
+} | null): VisitorReceiptCopy {
+  try {
+    const need = asText(args?.projectNeed);
+    const quote = need ? "" : visitorQuoteFromProof(args?.proofRows);
+    const brief = need ? briefVisitorSummary(need) : quote || ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+    const regarding = need
+      ? `Scott will be reaching out to you regarding: ${brief}.`
+      : quote
+        ? `Here is what you told iScott: "${quote}"`
+        : "Scott will be reaching out to you about your project.";
+    // The receipt only ever goes to an email lead, and it never echoes the
+    // address itself (check-iscott-visitor-confirmation-prep forbids the
+    // contact value in the copy: a receipt that repeats your address is the
+    // shape of a phishing mail, and it leaks on a misdelivery).
+    const next = "Scott will read what you told iScott and reach out by email.";
+    return {
+      brief,
+      regarding,
+      next,
+      reach: `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
+      noReply: ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+    };
+  } catch {
+    const brief = ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+    return {
+      brief,
+      regarding: "Scott will be reaching out to you about your project.",
+      next: "Scott will read what you told iScott and reach out next.",
+      reach: `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
+      noReply: ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+    };
+  }
+}
+
+export function iscottVisitorConfirmationLines(projectNeed?: unknown): readonly string[] {
+  const copy = visitorReceiptCopy({ projectNeed });
+  return [
+    ISCOTT_VISITOR_CONFIRMATION_HEADING,
+    copy.regarding,
+    copy.next,
+    copy.reach,
+    copy.noReply,
+  ];
+}
+
+// Static frame so module load cannot throw. Live mail uses visitorReceiptCopy.
+export const ISCOTT_VISITOR_CONFIRMATION_LINES: readonly string[] = [
+  ISCOTT_VISITOR_CONFIRMATION_HEADING,
+  "Scott will be reaching out to you about your project.",
+  "Scott will read what you told iScott and reach out by email.",
+  `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
+  ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+];
+
+export function visitorConfirmationText(input?: {
+  projectNeed?: unknown;
+  contactMethod?: unknown;
+  proofRows?: unknown;
+} | null): string {
+  try {
+    const copy = visitorReceiptCopy(input);
+    return [
+      ISCOTT_VISITOR_CONFIRMATION_FROM,
+      ISCOTT_VISITOR_CONFIRMATION_HEADING,
+      copy.regarding,
+      copy.next,
+      copy.reach,
+      copy.noReply,
+    ].join("\n\n");
+  } catch {
+    return [
+      ISCOTT_VISITOR_CONFIRMATION_FROM,
+      ...ISCOTT_VISITOR_CONFIRMATION_LINES,
+    ].join("\n\n");
+  }
+}
+
+const FALLBACK_HTML =
+  "<p>WildWorks received your request. No reply is needed.</p>";
+
+export function visitorConfirmationHtml(input?: {
+  projectNeed?: unknown;
+  contactMethod?: unknown;
+  proofRows?: unknown;
+} | null): string {
+  try {
+    const copy = visitorReceiptCopy(input);
+    const reachHtml =
+      `Scott's number is ${emailLink(SCOTT_PUBLIC_PHONE_TEL, SCOTT_PUBLIC_PHONE)}. ` +
+      `The site is ${emailLink(SCOTT_PUBLIC_SITE, SCOTT_PUBLIC_SITE_LABEL)}.`;
+    return emailShell({
+      title: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
+      heading: ISCOTT_VISITOR_CONFIRMATION_HEADING,
+      eyebrow: ISCOTT_VISITOR_CONFIRMATION_FROM,
+      bodyHtml: [
+        emailParagraph(safeEscape(copy.regarding)),
+        emailParagraph(safeEscape(copy.next)),
+        emailParagraph(reachHtml),
+        emailParagraph(safeEscape(copy.noReply)),
+      ].join(""),
+    });
+  } catch {
+    try {
+      return emailShell({
+        title: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
+        heading: ISCOTT_VISITOR_CONFIRMATION_HEADING,
+        eyebrow: ISCOTT_VISITOR_CONFIRMATION_FROM,
+        bodyHtml: emailParagraph(safeEscape(ISCOTT_VISITOR_CONFIRMATION_NO_REPLY)),
+      });
+    } catch {
+      return FALLBACK_HTML;
+    }
+  }
+}
+
+function leadFrom(args: IScottVisitorConfirmationArgs | null | undefined): IScottVisitorConfirmationLeadReread {
+  if (!args || typeof args !== "object") return {};
+  const nested = args.lead;
+  if (nested && typeof nested === "object") return nested;
+  return {};
 }
 
 // THE VERSION HASH, AND WHY IT IS A HASH.
@@ -152,13 +361,13 @@ export function iscottVisitorConfirmationPackageVersionHash(args: {
 }): string {
   const canonical = JSON.stringify([
     "iscott_visitor_confirmation/v1",
-    cleanedText(args.sessionId),
-    normalizedPackageName(args.fullName) ?? "",
-    normalizedPackageIntent(args.projectNeed) ?? "",
+    cleanedText(args?.sessionId),
+    normalizedPackageName(args?.fullName) ?? "",
+    normalizedPackageIntent(args?.projectNeed) ?? "",
     "email",
-    normalizedContactValue("email", args.email) ?? "",
-    cleanedText(args.submittedAt),
-    cleanedText(args.contactConfirmedAt),
+    normalizedContactValue("email", args?.email) ?? "",
+    cleanedText(args?.submittedAt),
+    cleanedText(args?.contactConfirmedAt),
   ]);
   return createHash("sha256").update(canonical, "utf8").digest("hex");
 }
@@ -173,12 +382,13 @@ export function iscottVisitorConfirmationIdempotencyKey(packageVersionHash: stri
 // written to the lead row is the one an operator reads later, and "we stopped at
 // the first no" hides the rest of the picture from them.
 export function evaluateIScottVisitorConfirmationEligibility(
-  args: IScottVisitorConfirmationArgs,
+  args: IScottVisitorConfirmationArgs | null | undefined,
 ): { blockers: IScottVisitorConfirmationBlocker[]; recipient: string | null } {
   const blockers: IScottVisitorConfirmationBlocker[] = [];
-  const lead = args.lead ?? {};
-  if (!cleanedText(args.sessionId)) blockers.push("missing_session");
-  if (!cleanedText(args.ownerNotificationOutboxId)) blockers.push("missing_owner_notification");
+  const a = args && typeof args === "object" ? args : ({} as IScottVisitorConfirmationArgs);
+  const lead = leadFrom(a);
+  if (!cleanedText(a.sessionId)) blockers.push("missing_session");
+  if (!cleanedText(a.ownerNotificationOutboxId)) blockers.push("missing_owner_notification");
 
   if (lead.status !== "submitted") blockers.push("not_submitted");
   if (!cleanedText(lead.submittedAt)) blockers.push("missing_submitted_at");
@@ -191,20 +401,20 @@ export function evaluateIScottVisitorConfirmationEligibility(
   // to him regardless of name, consent or qualification. Strict here,
   // nothing lost there.
   if (!isMeaningfulVisitorName(lead.fullName)) blockers.push("missing_full_name");
-  if (!isSpecificProjectNeed(lead.projectNeed)) blockers.push("generic_project_need");
+  // G, 2026-09-02 16:47 ET, chose (a) to "(a) Send anyway. Email says project need: not stated yet." His word, verbatim: "a". A receipt goes out with or without a stated need.
   if (lead.consentStatus !== "accepted") blockers.push("consent_not_accepted");
   if (!cleanedText(lead.contactConfirmedAt)) blockers.push("contact_not_confirmed");
 
   // A receipt is an email-only object. A phone lead has no mailbox that the
   // visitor confirmed, and inventing one from anywhere else is exactly the
-  // failure this whole gate exists to prevent.
+  // failure this whole gate exists to prevent. NO SMS. Twilio is voice only.
   if (lead.contactMethod !== "email") blockers.push("contact_method_not_email");
 
   const storedEmail = normalizedContactValue("email", lead.email ?? null);
   const recipient = storedEmail && EMAIL_PATTERN.test(storedEmail) ? storedEmail : null;
   if (!recipient) blockers.push("missing_stored_email");
-  else if (args.sentEmail !== undefined && args.sentEmail !== null) {
-    const sent = normalizedContactValue("email", args.sentEmail);
+  else if (a.sentEmail !== undefined && a.sentEmail !== null) {
+    const sent = normalizedContactValue("email", a.sentEmail);
     if (sent !== recipient) blockers.push("sent_contact_mismatch");
   }
 
@@ -213,7 +423,7 @@ export function evaluateIScottVisitorConfirmationEligibility(
   // changed is not permission for this one.
   if (recipient) {
     const chronology = evaluateLeadPackageChronology({
-      rows: args.proofRows ?? [],
+      rows: a.proofRows ?? [],
       fullName: lead.fullName ?? null,
       projectNeed: lead.projectNeed ?? null,
       contactMethod: "email",
@@ -227,37 +437,55 @@ export function evaluateIScottVisitorConfirmationEligibility(
 }
 
 export function prepareIScottVisitorConfirmation(
-  args: IScottVisitorConfirmationArgs,
+  args: IScottVisitorConfirmationArgs | null | undefined,
 ): IScottVisitorConfirmationDecision {
-  const { blockers, recipient } = evaluateIScottVisitorConfirmationEligibility(args);
-  const sessionId = cleanedText(args.sessionId);
-  const packageVersionHash = recipient && sessionId
-    ? iscottVisitorConfirmationPackageVersionHash({
-        sessionId,
-        fullName: args.lead?.fullName ?? null,
-        projectNeed: args.lead?.projectNeed ?? null,
-        email: args.lead?.email ?? null,
-        submittedAt: args.lead?.submittedAt ?? null,
-        contactConfirmedAt: args.lead?.contactConfirmedAt ?? null,
-      })
-    : null;
-  if (blockers.length || !recipient || !packageVersionHash) {
-    return { eligible: false, blockers, prepared: null, packageVersionHash, recipient };
-  }
-  return {
-    eligible: true,
-    blockers: [],
-    packageVersionHash,
-    recipient,
-    prepared: {
-      eventType: "iscott_visitor_confirmation",
-      idempotencyKey: iscottVisitorConfirmationIdempotencyKey(packageVersionHash),
-      packageVersionHash,
-      sessionId,
-      recipient,
-      subject: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
-      text: visitorConfirmationText(),
-      html: visitorConfirmationHtml(),
-    },
+  const empty: IScottVisitorConfirmationDecision = {
+    eligible: false,
+    blockers: ["missing_session"],
+    prepared: null,
+    packageVersionHash: null,
+    recipient: null,
   };
+  try {
+    const { blockers, recipient } = evaluateIScottVisitorConfirmationEligibility(args);
+    const a = args && typeof args === "object" ? args : ({} as IScottVisitorConfirmationArgs);
+    const lead = leadFrom(a);
+    const sessionId = cleanedText(a.sessionId);
+    const packageVersionHash = recipient && sessionId
+      ? iscottVisitorConfirmationPackageVersionHash({
+          sessionId,
+          fullName: lead.fullName ?? null,
+          projectNeed: lead.projectNeed ?? null,
+          email: lead.email ?? null,
+          submittedAt: lead.submittedAt ?? null,
+          contactConfirmedAt: lead.contactConfirmedAt ?? null,
+        })
+      : null;
+    if (blockers.length || !recipient || !packageVersionHash) {
+      return { eligible: false, blockers, prepared: null, packageVersionHash, recipient };
+    }
+    const bodies = {
+      projectNeed: lead.projectNeed ?? null,
+      contactMethod: lead.contactMethod ?? null,
+      proofRows: a.proofRows ?? [],
+    };
+    return {
+      eligible: true,
+      blockers: [],
+      packageVersionHash,
+      recipient,
+      prepared: {
+        eventType: "iscott_visitor_confirmation",
+        idempotencyKey: iscottVisitorConfirmationIdempotencyKey(packageVersionHash),
+        packageVersionHash,
+        sessionId,
+        recipient,
+        subject: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
+        text: visitorConfirmationText(bodies),
+        html: visitorConfirmationHtml(bodies),
+      },
+    };
+  } catch {
+    return empty;
+  }
 }

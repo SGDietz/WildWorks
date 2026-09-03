@@ -92,8 +92,25 @@ try {
   function assertSyncDetectionContract(source) {
     assert.match(source, /allowedIscottSpeech/);
     assert.match(source, /result\.reason === "false_handoff_claim"/);
-    assert.match(source, /iscottSpeechClaimsSendingNow/);
-    assert.match(source, /!mayClaimHandoffSent\(speechTruth\)/);
+    assert.match(source, /iscottSpeechClaimsSendingNow\(row\.message\)/);
+    assert.match(source, /iscottSpeechClaimsVisibleNow\(row\.message\)/);
+    // The sending-now detector still consults the persisted handoff truth,
+    // because the phrase becomes truthful the instant the visitor's details
+    // are actually delivered. The visible-now detector is different: the
+    // provider cannot observe the browser UI, so it can never truthfully
+    // assert that the confirmation card is up right this instant. Gating
+    // visible-now on mayClaimHandoffSent would let the exact ride phrase
+    // through after a real handoff, which is the bug this file exists to
+    // prevent from returning.
+    assert.match(
+      source,
+      /iscottSpeechClaimsSendingNow\(row\.message\) && !mayClaimHandoffSent\(speechTruth\)/,
+    );
+    assert.doesNotMatch(
+      source,
+      /iscottSpeechClaimsVisibleNow\(row\.message\) && !mayClaimHandoffSent\(speechTruth\)/,
+      "visible-now must not be gated on persisted truth - provider cannot see the browser",
+    );
     assert.match(source, /eventType: "iscott_false_handoff_speech_detected"/);
     assert.match(source, /falseHandoffSpeechDetected: falseHandoffSpeech\.length/);
     assert.doesNotMatch(
@@ -186,8 +203,22 @@ try {
   rejects("sync route stops consulting the progressive-send detector", () =>
     assertSyncDetectionContract(mutate(
       syncSource,
-      "          || (iscottSpeechClaimsSendingNow(row.message) && !mayClaimHandoffSent(speechTruth));",
+      "          || (iscottSpeechClaimsSendingNow(row.message) && !mayClaimHandoffSent(speechTruth))\n",
+      "",
+    )));
+
+  rejects("sync route stops consulting the on-screen/visible-now detector", () =>
+    assertSyncDetectionContract(mutate(
+      syncSource,
+      "          || iscottSpeechClaimsVisibleNow(row.message);",
       "          ;",
+    )));
+
+  rejects("sync route re-adds a persisted-truth gate on the visible-now claim", () =>
+    assertSyncDetectionContract(mutate(
+      syncSource,
+      "|| iscottSpeechClaimsVisibleNow(row.message);",
+      "|| (iscottSpeechClaimsVisibleNow(row.message) && !mayClaimHandoffSent(speechTruth));",
     )));
 
   rejects("sync route stops reporting detections", () =>
@@ -237,6 +268,56 @@ try {
   assert.equal(policy.iscottSpeechClaimsSendingNow("I'm sending that to Scott now."), true);
   assert.equal(policy.iscottSpeechClaimsSendingNow("I am not sending that to Scott."), false);
 
+  // Focused positive/negative coverage for the on-screen/visible-now claim.
+  // G's 2026-09-02 ride surfaced the recency phrasing; the other positives
+  // are the shapes iScott has produced when narrating a card that had
+  // already transitioned away.
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Perfect—it's on my screen now."),
+    true,
+    "the exact ride phrase must be flagged",
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Got it—it's on my screen now. How should Scott reach out?"),
+    true,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("I have your email on my screen, and it will be passed."),
+    true,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("I'm seeing a confirmation on screen right now."),
+    true,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Your phone number is on my screen."),
+    true,
+  );
+  // Ordinary conversation must not be swept in - the guard exists to stop
+  // one false claim, not to mute iScott.
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Tell me about your project."),
+    false,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("I can see you're excited about the branding."),
+    false,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Would you like to leave a way for Scott to reach you?"),
+    false,
+  );
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("Scott's landscape work is on display in Timonium."),
+    false,
+  );
+  // A visitor's own remark echoed back is never the false claim - iScott
+  // does not say "my number is on the screen" about themselves.
+  assert.equal(
+    policy.iscottSpeechClaimsVisibleNow("My number is on the screen."),
+    false,
+  );
+
   // ---------------------------------------------------------------------
   // 4. The route really does hand the variables to the provider, and really
   //    does refuse to represent provider activation as verified.
@@ -244,7 +325,7 @@ try {
 
   const stubs = {
     secrets: `export const API_KEY="test-key"; export const API_URL="https://provider.invalid"; export const AVATAR_ID="avatar-id"; export const CONTEXT_ID="context-id"; export const LANGUAGE="en"; export const VOICE_ID="voice-id";`,
-    telemetry: `export async function logServerTelemetryEvent(event){ globalThis.__speechTruthTelemetry.push(event); }`,
+    telemetry: `export async function logServerTelemetryEvent(event){ globalThis.__speechTruthTelemetry.push(event); } export async function logIScottOriginRejection(){}`,
     security: `export function assertAllowedOrigin(){ return null; }`,
     rateLimit: `export async function checkCriticalRateLimit(){ return null; }`,
   };
@@ -255,6 +336,7 @@ try {
   const routeOutput = transpile(routeSource)
     .replace('from "../liveavatar/secrets"', `from "${fileUrl("secrets.mjs")}"`)
     .replace('from "../../../src/lib/serverTelemetryCapture"', `from "${fileUrl("telemetry.mjs")}"`)
+    .replace('from "../../../src/lib/iscottOriginTelemetry"', `from "${fileUrl("telemetry.mjs")}"`)
     .replace('from "../../../src/lib/apiRouteSecurity"', `from "${fileUrl("security.mjs")}"`)
     .replace('from "../../../src/lib/rateLimit"', `from "${fileUrl("rateLimit.mjs")}"`)
     .replace('from "../../../src/lib/iscottRuntimeSpeechTruth"', `from "${fileUrl("policy.mjs")}"`);
@@ -424,6 +506,37 @@ try {
   }
 
   assertMatrix(policy.iscottSpeechClaimsSendingNow);
+
+  // Focused visible-now behaviour: the provider cannot observe the browser,
+  // so a visible-now claim is a false claim regardless of delivery truth.
+  // The composite mirrors the shipping sync route exactly - visible-now is
+  // ungated, sending-now still consults the persisted truth.
+  const visibleNowComposite = (text, truth) =>
+    allowedIscottSpeech(text, truth).reason === "false_handoff_claim"
+    || (policy.iscottSpeechClaimsSendingNow(text) && !mayClaimHandoffSent(truth))
+    || policy.iscottSpeechClaimsVisibleNow(text);
+
+  const visibleNowPhrases = [
+    "Perfect—it's on my screen now.",
+    "I have your email on my screen.",
+    "I'm seeing a confirmation on screen right now.",
+    "Your phone number is on my screen.",
+  ];
+
+  for (const phrase of visibleNowPhrases) {
+    for (const [name, truth] of Object.entries(unauthorizedTruth)) {
+      assert.equal(
+        visibleNowComposite(phrase, truth),
+        true,
+        `visible-now must be rejected BEFORE delivery ("${name}"): "${phrase}"`,
+      );
+    }
+    assert.equal(
+      visibleNowComposite(phrase, deliveredTruth),
+      true,
+      `visible-now must remain rejected AFTER delivery truth: "${phrase}"`,
+    );
+  }
 
   // 2026-08-30. The progressive form was folded into the canonical
   // avatarSpeechClaimsHandoffSent in src/lib/iscottLeadParsing.ts, so the

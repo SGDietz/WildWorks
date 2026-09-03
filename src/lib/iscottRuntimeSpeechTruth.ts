@@ -41,3 +41,40 @@ export function iscottSpeechClaimsSendingNow(text: string): boolean {
   return /\b(?:i(?:'|’)?m|i am|we(?:'|’)?re|we are) sending\b[\s\S]{0,100}\b(?:scott|wildworks|your details|the details|information)\b/i
     .test(normalized);
 }
+
+/**
+ * Second progressive-form gap that mirrors the sending-now shape. G's ride
+ * on 2026-09-02: after the visitor consented and the confirmation overlay
+ * had already transitioned away, iScott said "Perfect—it's on my screen
+ * now." G's reaction: "It was already off your screen, so you shouldn't
+ * have said it then." The provider cannot see the visitor's browser, so
+ * any positive assertion that the confirmation surface is up right this
+ * instant must be rejected: persisted delivery truth cannot prove browser
+ * visibility. The sending-now rule remains separately gated by delivery.
+ * Kept next to iscottSpeechClaimsSendingNow so this staged lane stays
+ * parallel and does not collide with the canonical parser hardening.
+ */
+export function iscottSpeechClaimsVisibleNow(text: string): boolean {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  // "on my/the screen now" / "on my/the screen right now" - the explicit
+  // recency form that made "it's on my screen now" land on a card that
+  // had already transitioned away.
+  if (/\b(?:on (?:my|the|your) screen|on[- ]screen)\b[^.!?]{0,20}\b(?:right )?now\b/i.test(normalized)) {
+    return true;
+  }
+  // "it's on my screen" / "that's on my screen" - present-tense contraction
+  // asserting the confirmation surface is up this instant.
+  if (/\b(?:it|that)(?:'|’)?s\b[^.!?]{0,30}\b(?:on (?:my|the|your) screen|on[- ]screen)\b/i.test(normalized)) {
+    return true;
+  }
+  // "I have your email on my screen" / "I'm seeing a confirmation on
+  // screen" / "showing you ... on my screen" - a positive holding claim.
+  if (/\b(?:i(?:'|’)?ve got|i have|i(?:'|’)?m seeing|showing you|pulled up)\b[^.!?]{0,80}\b(?:on (?:my|the|your) screen|on[- ]screen)\b/i.test(normalized)) {
+    return true;
+  }
+  // "your phone number is on my screen" - present-tense possessive claim.
+  if (/\byour (?:phone(?:\s+number)?|number|email|confirmation|details|information|contact)\b[^.!?]{0,30}\bis\b[^.!?]{0,10}\bon (?:my|the|your) screen\b/i.test(normalized)) {
+    return true;
+  }
+  return false;
+}

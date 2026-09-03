@@ -1,4 +1,5 @@
 import { assertAllowedOrigin, isSafeTranscriptionSessionId } from "../../../../../src/lib/apiRouteSecurity";
+import { logIScottOriginRejection } from "../../../../../src/lib/iscottOriginTelemetry";
 import { confirmAndSubmitIScottLead } from "../../../../../src/lib/iscottLeadCapture";
 import { changedPackageStatusCopy, leadNotQualifiedReason } from "../../../../../src/lib/iscottLeadParsing";
 import { checkRateLimit } from "../../../../../src/lib/rateLimit";
@@ -8,8 +9,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const originError = assertAllowedOrigin(request);
-  if (originError) return originError;
+  const originError = assertAllowedOrigin(request, {
+    trustedSameOriginMarker: {
+      name: "x-wildworks-avatar-request",
+      value: "same-origin-v1",
+    },
+  });
+  if (originError) {
+    await logIScottOriginRejection(request, "/api/iscott/lead/confirm").catch(() => undefined);
+    return originError;
+  }
   const rateLimitError = await checkRateLimit(request, {
     prefix: "iscott-lead-confirm",
     perMinute: 12,

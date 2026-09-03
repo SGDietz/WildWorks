@@ -98,9 +98,11 @@ assert.match(
   /if \(testHeld\) \{[\s\S]{0,1800}button\.disabled = false/,
   "and Send comes back, so a held lead stays retryable",
 );
-// Window widened 2026-08-29 only because the branch carries a longer comment
-// now; the assertion itself is unchanged - the tick still requires delivery.
-assert.match(confirm, /else if \(delivered\) \{[\s\S]{0,800}setSentVisible\(true, method\)/, "checked sent state requires real delivery");
+// Window widened 2026-08-29, then again 2026-09-03 (the squeeze-order fix
+// added two more comment blocks ahead of setSentVisible) only because the
+// branch carries a longer comment now; the assertion itself is unchanged -
+// the tick still requires delivery.
+assert.match(confirm, /else if \(delivered\) \{[\s\S]{0,1500}setSentVisible\(true, method\)/, "checked sent state requires real delivery");
 assert.match(route, /Email sent to Scott ✓/, "terminal email label names Scott");
 assert.match(route, /Phone sent to Scott ✓/, "terminal phone label names Scott");
 assert.doesNotMatch(route, /Confirm the details before Scott gets them/, "L22 hated confirm copy is gone");

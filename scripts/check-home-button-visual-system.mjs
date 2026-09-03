@@ -41,18 +41,31 @@ requireText(treatment, "--ww-cta-icon-shadow:", "shared icon depth");
 requireText(treatment, "filter: var(--ww-cta-icon-shadow,", "icon depth consumer");
 requireText(treatment, "stroke: #e96819", "orange icon ink");
 requireText(treatment, "gap: 0.55rem !important", "avatar icon-label gap");
+// 2026-09-03: these two needles were written 08-29 for the single-stop icon
+// edge. G then approved a different icon shadow and it went sitewide in
+// commits d566e06 ("one shadow on the icons, not ten - the ten were the
+// 'hideous'") and 7334130 ("the approved icon shadow across the whole site,
+// avatar controls included"). The guard kept asserting the retired value and
+// has been red since, in a file nobody had touched. It now asserts the
+// APPROVED ladder: three short stops on Home, and pins the count at exactly 3
+// so a fourth (or a return to ten) still bites.
 requireText(treatment,
-  "drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.9px, 0.045em, 1.4px) 0.25px)",
-  "shape-preserving icon edge");
-assert.equal((treatment.match(/--ww-cta-icon-shadow:[\s\S]*?\n}/)?.[0].match(/drop-shadow\(/g) || []).length, 1,
-  "the Home icon variable must not compound multiple SVG shadows");
+  "drop-shadow(rgba(35, 9, 2, 0.92) 0 clamp(0.5px, 0.033em, 0.68px) 0.12px)",
+  "approved icon edge, first stop");
+assert.equal((treatment.match(/--ww-cta-icon-shadow:[\s\S]*?\n}/)?.[0].match(/drop-shadow\(/g) || []).length, 3,
+  "the Home icon variable is the approved three-stop ladder, nothing more");
 
 // Talk -> Finish -> returned Talk keeps the same label/icon ladder in the embed.
+// The embed's approved icon shadow is its own two-stop pixel ladder (route.ts
+// L399/L422/L563/L582), not Home's clamp() ladder.
 for (const token of [
   "html[data-ww-avatar-embedded] [data-ww-talk]",
   "html[data-ww-avatar-embedded] [data-ww-finish]",
-  "rgba(25,6,1,0.660) 0 0.087222em 0",
-  "drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.9px, 0.045em, 1.4px) 0.25px)",
+  // Final stop of the shared Talk/Finish label ladder (route.ts L619 block).
+  // 0.660 was the 08-29 value; G had the label shadow brought down twice
+  // (alphas x0.81, then H475 "too dark", x0.65) - 0.385 is what ships.
+  "rgba(25,6,1,0.385) 0 0.087220em 0",
+  "drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)",
 ]) {
   requireText(avatar, token, "embedded state parity");
 }
@@ -265,15 +278,25 @@ const dropShadowBlurPx = (argumentText) => {
   return Number(blur[1]);
 };
 
+// 2026-09-03: was "exactly one". G's approved icon shadow (commit 7334130,
+// 2026-09-01, "the approved icon shadow across the whole site") is a ladder of
+// THREE sub-pixel stops (0.5-0.68px offsets, 0.12px blur) - a hugging edge, not
+// the ten-stop "hideous" chain this guard was written against. The ceiling is
+// now 3 and EVERY stop must stay shape-preserving, so a return to ten, or any
+// soft stop, still bites.
+const MAX_ATTACHED_STOPS = 3;
 const assertSingleAttachedShadow = (value, label) => {
   const shadows = dropShadowArguments(value);
-  assert.equal(shadows.length, 1,
-    `${label}: resolves to ${shadows.length} drop-shadow() functions. A chain shadows the previous shadow, `
-    + `which is what turned these 20-28px Lucide outlines into dashes and blobs. Use one attached edge.`);
-  const blur = dropShadowBlurPx(shadows[0]);
-  assert.ok(blur <= SHAPE_PRESERVING_BLUR_LIMIT_PX,
-    `${label}: blur ${blur}px exceeds the ${SHAPE_PRESERVING_BLUR_LIMIT_PX}px shape-preserving limit, `
-    + `so the shadow spreads past the stroke instead of hugging it`);
+  assert.ok(shadows.length >= 1 && shadows.length <= MAX_ATTACHED_STOPS,
+    `${label}: resolves to ${shadows.length} drop-shadow() functions; the approved edge is 1-${MAX_ATTACHED_STOPS} `
+    + `sub-pixel stops. A long chain shadows the previous shadow, which is what turned these 20-28px Lucide `
+    + `outlines into dashes and blobs.`);
+  for (const shadow of shadows) {
+    const blur = dropShadowBlurPx(shadow);
+    assert.ok(blur <= SHAPE_PRESERVING_BLUR_LIMIT_PX,
+      `${label}: blur ${blur}px exceeds the ${SHAPE_PRESERVING_BLUR_LIMIT_PX}px shape-preserving limit, `
+      + `so the shadow spreads past the stroke instead of hugging it`);
+  }
 };
 
 const selectorForDeclarationAt = (css, declarationIndex) => {

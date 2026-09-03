@@ -1,0 +1,374 @@
+/* H415 — Subpages thick-shadow 20% back-off. Visual only.
+   Slice: Wildfire, Projects, Ruins, Bio. Avatars on those four routes too.
+   Legal h1 / .wild-legal-title / Communications Policy = H416. Not this file.
+   Home = Assist-1 (Front Door, Start with iScott, patio-lounge, Going, homepage
+   bottom). H408-home VOID. No parser. No LiveAvatar. No keep-going.
+
+   Scott 2026-09-01 (quotes, never summaries):
+   > Then came the patio, then came the lounge. Has huge shadow effect.
+   > Then we just kept going. It's great. All the other three lines are great.
+   > Who's writing this huge fucking goddamn shadow effect? That needs to be
+   > fixed. That, you need to look at the entire website everywhere. And when
+   > shit is too thick, it needs to be redone. Crawl the site.
+
+   > iScott is the front door. Too fucking much goddamn shadow effect.
+   > Start with iScott. Too much shadow effect. Look over the entire site.
+   > It's just too much. It's got to be, you know, back 20%. Look at all
+   > the avatars.
+
+   Going is the GOOD lock (H394 four-stop, thickness cap). Do not thicken
+   anything. Too-thick = max Y > 0.06086em OR last-stop alpha > 0.396.
+   Messy thicker 6/7/8/10-stop → restate Going four-stop.
+   Otherwise scale CURRENT winning offsets+alphas * 0.8.
+   Already-at-Going: skip (listed in HANDOFF-subpages.md).
+
+   Going four-stop:
+     0 0.01522em 0 rgba(35, 9, 2, 0.58),
+     0 0.03043em 0 rgba(32, 8, 2, 0.52),
+     0 0.04565em 0 rgba(28, 7, 1, 0.46),
+     0 0.06086em 0 rgba(25, 6, 1, 0.396)
+
+   em ladders hold at all five standards (1920, 1366, 1180x820, 820x1180,
+   412x915). Unbounded rules + a 719px restatement of the same stacks so
+   globals.css's max-width 719px 3px blanket cannot return after rivals
+   are retired. No 6000-id :not ladder.
+
+   House move: doubled page class, pin text-shadow !important, variables
+   !important, no top dash. Claude: MINOR retire the rivals in
+   HANDOFF-subpages.md. Do not rewrite H339's 6000-id ladders (major → bounce).
+
+   Import AFTER H409-projects-intro-colors.css BEFORE H232.
+   Do not delete H407 / H408-subpages / H409 / H402.
+   Filename kept as asked. This file has ZERO .wild-legal-title rules.
+
+   No color. No font-size. No button-icon H403. No Text 3 as text on
+   primary #c44d0b. H409 fills: leave. H401 Complete Project Build: leave
+   (already Going). H408-subpages intro --three + kicker nth-child(3): leave
+   (already Going).
+*/
+
+/* Shared Going four-stop (messy thicker 6/7/8/10-stop replacement). */
+/* Shared 80% of H358 Ruins 10-stop (Y already under Going; last alpha 0.66). */
+
+/* =====================================================================
+   1. WILDFIRE — Project Wildfire title.
+   Live winner H320 ~45 body-ids, 10-stop max Y 0.090700em last A 0.66.
+   Messy thicker 10-stop → Going four-stop. Do not paint H401 Complete
+   Project Build (already Going). Do not paint Home #project-wildfire.
+   ===================================================================== */
+.wild-subpage--wildfire.wild-subpage--wildfire
+  :is(
+    .wildfire-page-heading,
+    .wildfire-page-heading__project,
+    .wildfire-page-heading__wildfire,
+    .wildfire-hero-kicker__cap
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0 !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: fill !important;
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   2. PROJECTS — intro lines 1–2 and kicker 1/2/4.
+   Live winner H339 8-stop max Y 0.071314em last A 0.396. Messy thicker
+   8-stop → Going four-stop.
+   SKIP (already Going, H408-subpages): intro --three / __three-ink and
+   kicker nth-child(3). H409 fills: leave.
+   ===================================================================== */
+.wild-subpage--projects.wild-subpage--projects
+  :is(
+    .wild-projects-page-intro__line--one,
+    .wild-projects-page-intro__line--one *,
+    .wild-projects-page-intro__part--a,
+    .wild-projects-page-intro__part--b,
+    .wild-projects-page-intro__and-builds,
+    .wild-projects-page-intro__line--two,
+    .wild-projects-page-intro__line--two *,
+    .wild-projects-page-kicker__line:nth-child(1),
+    .wild-projects-page-kicker__line:nth-child(2),
+    .wild-projects-page-kicker__line:nth-child(4)
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0 !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: fill !important;
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   3. RUINS — h1 "The Ruins" + the five section h2s.
+   Live winner H358 400-id 10-stop max Y 0.045350em (UNDER Going) last A
+   0.66 (THICK). Restating Going would RAISE Y 0.045 → 0.061. Forbidden.
+   Scale CURRENT * 0.8. Keep 10 stops so large type does not comb.
+   ===================================================================== */
+.wild-subpage--ruins.wild-subpage--ruins
+  :is(
+    h1,
+    .wild-subpage-section h2
+  ) {
+  --ww-color3-original-shadow:
+    rgba(35, 9, 2, 0.776) 0 0.003628em 0,
+    rgba(34, 9, 2, 0.749) 0 0.007256em 0,
+    rgba(33, 8, 2, 0.721) 0 0.010884em 0,
+    rgba(32, 8, 2, 0.694) 0 0.014512em 0,
+    rgba(31, 8, 2, 0.666) 0 0.018140em 0,
+    rgba(29, 7, 1, 0.638) 0 0.021768em 0,
+    rgba(28, 7, 1, 0.610) 0 0.025396em 0,
+    rgba(27, 7, 1, 0.583) 0 0.029024em 0,
+    rgba(26, 6, 1, 0.555) 0 0.032652em 0,
+    rgba(25, 6, 1, 0.528) 0 0.036280em 0 !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0 !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: fill !important;
+  text-shadow:
+    rgba(35, 9, 2, 0.776) 0 0.003628em 0,
+    rgba(34, 9, 2, 0.749) 0 0.007256em 0,
+    rgba(33, 8, 2, 0.721) 0 0.010884em 0,
+    rgba(32, 8, 2, 0.694) 0 0.014512em 0,
+    rgba(31, 8, 2, 0.666) 0 0.018140em 0,
+    rgba(29, 7, 1, 0.638) 0 0.021768em 0,
+    rgba(28, 7, 1, 0.610) 0 0.025396em 0,
+    rgba(27, 7, 1, 0.583) 0 0.029024em 0,
+    rgba(26, 6, 1, 0.555) 0 0.032652em 0,
+    rgba(25, 6, 1, 0.528) 0 0.036280em 0 !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   4. BIO — h1 "Who is Scott G. Dietz?" only.
+   Live winner H373 400-id 10-stop max Y 0.089143em last A 0.66. Messy
+   thicker 10-stop → Going four-stop. H385 @layer 0.053486/0.396 on
+   #ww-bio-primary-heading loses to H373's 400 ids.
+   SKIP Bio h2 .wild-bio-reinvention-heading (H385 / H409-mobile 520px
+   already 0.0535em / last A 0.396 — at or under Going). Do not thicken.
+   ===================================================================== */
+.wild-subpage--bio.wild-subpage--bio
+  :is(
+    h1,
+    #ww-bio-primary-heading
+  ) {
+  --ww-color3-original-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+  --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-color3-rim-width: 0 !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: fill !important;
+  text-shadow:
+    0 0.01522em 0 rgba(35, 9, 2, 0.58),
+    0 0.03043em 0 rgba(32, 8, 2, 0.52),
+    0 0.04565em 0 rgba(28, 7, 1, 0.46),
+    0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   5. AVATARS on the four subpage routes (footer panel included via :has).
+   Live winner H334 ~90 body-ids. Start-title 10-stop max Y 0.038400em
+   (UNDER Going) last A 0.68 (THICK) — 80% current; Going would raise Y.
+   Kicker 3-stop+blur last A 0.78 — 80% current.
+   Disclosure max Y 0.09143em last A 0.78 — 80% current (keep blur recipe).
+   Home avatars are Assist-1. Do not paint .wild-home.
+   ===================================================================== */
+html:has(.wild-subpage--wildfire) .money-panel.wild-iscott-panel .money-panel-kicker,
+html:has(.wild-subpage--projects) .money-panel.wild-iscott-panel .money-panel-kicker,
+html:has(.wild-subpage--ruins) .money-panel.wild-iscott-panel .money-panel-kicker,
+html:has(.wild-subpage--bio) .money-panel.wild-iscott-panel .money-panel-kicker {
+  text-shadow:
+    rgb(35, 9, 2) 0 0.022424em 0,
+    rgb(30, 8, 2) 0 0.034560em 0.006528em,
+    rgba(25, 6, 1, 0.624) 0 0.046616em 0.020968em !important;
+  filter: none !important;
+}
+
+html:has(.wild-subpage--wildfire) .money-panel.wild-iscott-panel
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name),
+html:has(.wild-subpage--projects) .money-panel.wild-iscott-panel
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name),
+html:has(.wild-subpage--ruins) .money-panel.wild-iscott-panel
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name),
+html:has(.wild-subpage--bio) .money-panel.wild-iscott-panel
+  :is(.wild-start-title__start, .wild-start-title__with, .wild-start-title__name) {
+  text-shadow:
+    rgba(35, 9, 2, 0.736) 0 0.003072em 0,
+    rgba(34, 9, 2, 0.714) 0 0.006144em 0,
+    rgba(33, 8, 2, 0.694) 0 0.009216em 0,
+    rgba(32, 8, 2, 0.672) 0 0.012288em 0,
+    rgba(31, 8, 2, 0.650) 0 0.015360em 0,
+    rgba(29, 7, 1, 0.630) 0 0.018432em 0,
+    rgba(28, 7, 1, 0.608) 0 0.021504em 0,
+    rgba(27, 7, 1, 0.586) 0 0.024576em 0,
+    rgba(26, 6, 1, 0.566) 0 0.027648em 0,
+    rgba(25, 6, 1, 0.544) 0 0.030720em 0 !important;
+  filter: none !important;
+}
+
+html:has(.wild-subpage--wildfire) .money-panel.wild-iscott-panel .wild-iscott-disclosure,
+html:has(.wild-subpage--projects) .money-panel.wild-iscott-panel .wild-iscott-disclosure,
+html:has(.wild-subpage--ruins) .money-panel.wild-iscott-panel .wild-iscott-disclosure,
+html:has(.wild-subpage--bio) .money-panel.wild-iscott-panel .wild-iscott-disclosure {
+  text-shadow:
+    rgb(35, 9, 2) 0 0.034744em 0,
+    rgb(30, 8, 2) 0 0.053032em 0.009144em,
+    rgba(25, 6, 1, 0.624) 0 0.073144em 0.029256em !important;
+  filter: none !important;
+}
+
+/* =====================================================================
+   6. SAME STACKS AT max-width 719px.
+   Transpose so globals.css's 719px 3px black blanket cannot return on
+   these orange-field headings after the 400-id rivals are retired.
+   Same declarations. No fill. No legal-title.
+   ===================================================================== */
+@media (max-width: 719px) {
+  .wild-subpage--wildfire.wild-subpage--wildfire
+    :is(
+      .wildfire-page-heading,
+      .wildfire-page-heading__project,
+      .wildfire-page-heading__wildfire,
+      .wildfire-hero-kicker__cap
+    ) {
+    --ww-color3-original-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+    --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-color3-rim-width: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    paint-order: fill !important;
+    text-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    filter: none !important;
+  }
+
+  .wild-subpage--projects.wild-subpage--projects
+    :is(
+      .wild-projects-page-intro__line--one,
+      .wild-projects-page-intro__line--one *,
+      .wild-projects-page-intro__part--a,
+      .wild-projects-page-intro__part--b,
+      .wild-projects-page-intro__and-builds,
+      .wild-projects-page-intro__line--two,
+      .wild-projects-page-intro__line--two *,
+      .wild-projects-page-kicker__line:nth-child(1),
+      .wild-projects-page-kicker__line:nth-child(2),
+      .wild-projects-page-kicker__line:nth-child(4)
+    ) {
+    --ww-color3-original-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+    --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-color3-rim-width: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    paint-order: fill !important;
+    text-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    filter: none !important;
+  }
+
+  .wild-subpage--ruins.wild-subpage--ruins
+    :is(
+      h1,
+      .wild-subpage-section h2
+    ) {
+    --ww-color3-original-shadow:
+      rgba(35, 9, 2, 0.776) 0 0.003628em 0,
+      rgba(34, 9, 2, 0.749) 0 0.007256em 0,
+      rgba(33, 8, 2, 0.721) 0 0.010884em 0,
+      rgba(32, 8, 2, 0.694) 0 0.014512em 0,
+      rgba(31, 8, 2, 0.666) 0 0.018140em 0,
+      rgba(29, 7, 1, 0.638) 0 0.021768em 0,
+      rgba(28, 7, 1, 0.610) 0 0.025396em 0,
+      rgba(27, 7, 1, 0.583) 0 0.029024em 0,
+      rgba(26, 6, 1, 0.555) 0 0.032652em 0,
+      rgba(25, 6, 1, 0.528) 0 0.036280em 0 !important;
+    --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+    --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-color3-rim-width: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    paint-order: fill !important;
+    text-shadow:
+      rgba(35, 9, 2, 0.776) 0 0.003628em 0,
+      rgba(34, 9, 2, 0.749) 0 0.007256em 0,
+      rgba(33, 8, 2, 0.721) 0 0.010884em 0,
+      rgba(32, 8, 2, 0.694) 0 0.014512em 0,
+      rgba(31, 8, 2, 0.666) 0 0.018140em 0,
+      rgba(29, 7, 1, 0.638) 0 0.021768em 0,
+      rgba(28, 7, 1, 0.610) 0 0.025396em 0,
+      rgba(27, 7, 1, 0.583) 0 0.029024em 0,
+      rgba(26, 6, 1, 0.555) 0 0.032652em 0,
+      rgba(25, 6, 1, 0.528) 0 0.036280em 0 !important;
+    filter: none !important;
+  }
+
+  .wild-subpage--bio.wild-subpage--bio
+    :is(
+      h1,
+      #ww-bio-primary-heading
+    ) {
+    --ww-color3-original-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-home-display-depth-strong: var(--ww-color3-original-shadow) !important;
+    --ww-patio-shadow: var(--ww-color3-original-shadow) !important;
+    --ww-color3-rim-width: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    paint-order: fill !important;
+    text-shadow:
+      0 0.01522em 0 rgba(35, 9, 2, 0.58),
+      0 0.03043em 0 rgba(32, 8, 2, 0.52),
+      0 0.04565em 0 rgba(28, 7, 1, 0.46),
+      0 0.06086em 0 rgba(25, 6, 1, 0.396) !important;
+    filter: none !important;
+  }
+}

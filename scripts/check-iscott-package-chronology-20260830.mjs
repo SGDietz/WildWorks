@@ -1,11 +1,9 @@
 // THE PACKAGE, AND WHEN THE PERMISSION BELONGS TO IT. 2026-08-30.
 //
-// A visitor does not give permission to "a send". They give it to one PACKAGE:
-// the name Scott will say, the job he will quote, and the way he will reach
-// them. The read-back rule already bound a yes to the CONTACT. Nothing bound it
-// to the other two, so a visitor could agree over a confirmed address and then
-// correct their name, or describe a different job entirely, and the old yes
-// still opened the door.
+// A visitor does not give permission to "a send". They authorize Scott to use
+// one confirmed CONTACT about the project they described. A later or corrected
+// name improves that owner package without changing the authorized contact.
+// Changing the project intent or the contact still requires fresh permission.
 //
 // This file drives the REAL code for all of it: the real parsing library, the
 // real capture pipeline, and the real confirm route handler. Supabase is an
@@ -181,15 +179,17 @@ const chronology = (rows, over = {}) => P.evaluateLeadPackageChronology({
   assert.deepEqual(result.staleFields, []);
 }
 
-// C3. Name and intent, changed after the yes, take the permission down with
-//     them - and the chronology says which one moved.
-for (const [field, turn] of [
-  ["name", { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 }],
-  ["intent", { role: "user", message: "Actually, I want a retaining wall by the driveway.", laAbsoluteTimestamp: 24 }],
-]) {
-  const result = chronology([...SETTLED, turn]);
-  assert.deepEqual(result.staleFields, [field], `a ${field} change after the yes is the field that went stale`);
-  assert.equal(result.permissionCurrent, false, "and the permission no longer covers the package");
+// C3. A later name improves the package without changing permission to use the
+//     confirmed contact. A changed project intent still requires fresh consent.
+{
+  const result = chronology([...SETTLED, { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 }]);
+  assert.deepEqual(result.staleFields, [], "a changed name is not consent-material");
+  assert.equal(result.permissionCurrent, true, "permission still covers the confirmed contact");
+}
+{
+  const result = chronology([...SETTLED, { role: "user", message: "Actually, I want a retaining wall by the driveway.", laAbsoluteTimestamp: 24 }]);
+  assert.deepEqual(result.staleFields, ["intent"], "a changed intent is stale");
+  assert.equal(result.permissionCurrent, false, "permission no longer covers the changed project package");
 }
 
 // C3b. A CHANGED CONTACT loses the permission outright rather than holding a
@@ -231,7 +231,7 @@ for (const [field, turn] of [
       ...base,
       rows: [...SETTLED, { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 }],
     }).blockers,
-    ["package_changed_after_permission"],
+    [],
   );
   assert.deepEqual(
     P.evaluateIScottLeadSendQualification({ ...base, rows: [NAME_TURN, PROJECT_TURN, EMAIL_TURN] }).blockers,
@@ -364,7 +364,6 @@ const ride = (rows) => withBackend(null, () =>
 //     contact confirmation both cleared, and the capture keeps everything the
 //     visitor gave so they can finish from where they are.
 for (const [field, turn, expectation] of [
-  ["name", { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 }, "a different person"],
   ["intent", { role: "user", message: "Actually, I want a retaining wall by the driveway.", laAbsoluteTimestamp: 24 }, "a different job"],
   ["contact", { role: "user", message: `Use ${OTHER_EMAIL} instead.`, laAbsoluteTimestamp: 24 }, "a different address"],
 ]) {
@@ -376,6 +375,20 @@ for (const [field, turn, expectation] of [
   assert.ok(backend.store.row.email, "and the capture keeps the contact on screen and editable");
   assert.ok(backend.store.row.full_name, "and the name");
   assert.ok(backend.store.row.project_need, "and the job");
+}
+
+// D3a. A late or corrected name is package information, not a change to the
+// visitor's permission to use the confirmed contact.
+{
+  const { backend } = await ride([
+    NAME_TURN, PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES,
+    { role: "assistant", message: "What is your name?", laAbsoluteTimestamp: 23 },
+    { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 },
+  ]);
+  assert.equal(backend.store.row.full_name, "Gregory Vance", "the owner package uses the corrected name");
+  assert.equal(backend.store.row.consent_status, "accepted", "the corrected name keeps contact permission");
+  assert.ok(backend.store.row.contact_confirmed_at, "the confirmed contact stays confirmed");
+  assert.equal(Notify.notifyCalls.length, 1, "the corrected-name package reaches Scott exactly once");
 }
 
 // D4. AND A FRESH CONFIRMATION OF THE CHANGED PACKAGE TRAVELS. The visitor
@@ -401,17 +414,25 @@ for (const [field, turn, expectation] of [
   assert.equal(Notify.notifyCalls.length, 1, "and that package goes, exactly once");
 }
 
+// D4b. A JOB NOBODY CAN QUOTE STILL GOES. G, 2026-09-02 16:47 ET chose (a): "Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
+//      A vague need is not a missing package: consent + confirmed contact sends,
+//      Scott's email says "Project: not stated yet".
+{
+  const { backend } = await ride([
+    NAME_TURN,
+    { role: "user", message: "I need some help with a project.", laAbsoluteTimestamp: 12 },
+    EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES,
+  ]);
+  assert.equal(Notify.notifyCalls.length, 1, "a vague need reaches Scott (G: a)");
+  assert.equal(backend.store.row.status, "submitted");
+}
+
 // D5. INCOMPLETE PACKAGES FAIL CLOSED TOO - zero notify, everything kept.
 for (const [label, rows] of [
   ["no name at all", [PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES]],
   ["a placeholder name", [
     { role: "user", message: "My name is Test.", laAbsoluteTimestamp: 10 },
     PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES,
-  ]],
-  ["a job nobody can quote", [
-    NAME_TURN,
-    { role: "user", message: "I need some help with a project.", laAbsoluteTimestamp: 12 },
-    EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES,
   ]],
   ["no contact", [NAME_TURN, PROJECT_TURN]],
 ]) {
@@ -433,6 +454,7 @@ export function isSafeTranscriptionSessionId(id) { return typeof id === "string"
 await stub("stub-route-rate", "export async function checkRateLimit() { return null; }\n");
 await stub("stub-route-telemetry", `export const telemetry = [];
 export async function logServerTelemetryEvent(event) { telemetry.push(event); }
+export async function logIScottOriginRejection() {}
 `);
 await transpile("app/api/iscott/lead/confirm/route.ts", [
   ['from "../../../../../src/lib/apiRouteSecurity"', 'from "./pc-stub-route-security.mjs"'],
@@ -440,6 +462,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", [
   ['from "../../../../../src/lib/iscottLeadParsing"', 'from "./pc-iscottLeadParsing.mjs"'],
   ['from "../../../../../src/lib/rateLimit"', 'from "./pc-stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./pc-stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./pc-stub-route-telemetry.mjs"'],
 ]);
 const Route = await import(url("route"));
 
@@ -476,7 +499,7 @@ const PERMISSIONED_ROW = {
   updated_at: "2026-08-30T15:00:00.000Z",
 };
 
-const NAME_CHANGE = { role: "user", message: "Actually, my name is Gregory Vance.", laAbsoluteTimestamp: 24 };
+const INTENT_CHANGE = { role: "user", message: "Actually, I want a retaining wall by the driveway.", laAbsoluteTimestamp: 24 };
 
 // E1. THE STALE DIRECT CONFIRM. The row's own columns still say "accepted" -
 //     they are a conclusion the pipeline reached before the package moved. The
@@ -496,7 +519,7 @@ const NAME_CHANGE = { role: "user", message: "Actually, my name is Gregory Vance
       assert.doesNotMatch(body.error, /error|invalid|failed|sorry/i, "and never as the visitor's fault");
       return body;
     },
-    persisted([...[NAME_TURN, PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES], NAME_CHANGE]),
+    persisted([...[NAME_TURN, PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES], INTENT_CHANGE]),
   );
   assert.equal(Notify.notifyCalls.length, 0, "a stale package never reaches the notification service");
   assert.equal(backend.writes.length, 0, "and nothing is written on the way to refusing it");
@@ -516,7 +539,7 @@ const NAME_CHANGE = { role: "user", message: "Actually, my name is Gregory Vance
     },
     persisted([
       NAME_TURN, PROJECT_TURN, EMAIL_TURN, READBACK, CONFIRM_READBACK, ASK, YES,
-      NAME_CHANGE,
+      INTENT_CHANGE,
       { ...READBACK, laAbsoluteTimestamp: 26 },
       { role: "user", message: "Yes, that's right.", laAbsoluteTimestamp: 28 },
       { ...ASK, laAbsoluteTimestamp: 30 },
@@ -591,4 +614,4 @@ assert.match(confirmBlock, /catch \(error\) \{[\s\S]{0,600}button\.disabled = fa
 assert.doesNotMatch(routeSource, /nextIScottLeadQuestion/, "no test-only question helper is wired into the page");
 assert.doesNotMatch(routeSource, /iscottLeadGatherOrder/, "nor the gather order");
 
-console.log("iScott package-chronology check OK - permission belongs to one package, and a changed or incomplete one fails closed with nothing sent.");
+console.log("iScott package-chronology check OK - late names keep contact consent; changed intent/contact and incomplete leads still fail closed.");

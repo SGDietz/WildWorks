@@ -1,0 +1,100 @@
+/* H424 - Home #project-wildfire colors. COLOR ONLY.
+   Packet: H424-wildfire-home-colors.
+   Do not touch text-shadow, size, weight, padding, H421-h384, Proton,
+   brain/avatar, /pages/Wildfire, Going, patio, lounge, buttons, H401.
+
+   Scott (word for word):
+     "Wasn't this one of the things I asked to change project wildfire
+      should be color number two? Text color number two. It started with
+      the fireplace and all the dots as text color number one. What is
+      left to do of these text color changes that I have asked a million
+      fucking times to do?"
+
+   Scott typed palette, no drifting:
+     Primary background  #c44d0b
+     Secondary / card    #e96819
+     Text 1              #fce0ad
+     Text 2              #edc775
+     Text 3              #f08c28
+
+   TRAP: /pages/Wildfire already measures Text 2 / Text 1. This packet
+   is Home #project-wildfire only (the block in HIS shot).
+
+   Markup (app/pages/Home/page.tsx ~3050):
+     1. "Project Wildfire"
+        .wild-wildfire-flame-title__text
+        LIVE winner color: H168 L287 :is(.wild-wildfire-flame-title__text)
+        reads var(--ww-home-hdr-text-1) → currently Text 1 #fce0ad
+        page.tsx L2009 also paints literal #fce0ad (loses to H168 on color)
+        CHANGE to Text 2 #edc775
+     2. "It Started with a Fireplace....."
+        (the dots are the trailing periods on THIS line, not gallery dots)
+        .wild-wildfire-title .wild-line-title__line
+        LIVE winner color: H193 L9–16
+        reads var(--ww-home-hdr-text-2, #edc775) → currently Text 2
+        CHANGE to Text 1 #fce0ad
+
+   Method (same as installed H421): the rules that actually paint these
+   lines do not carry a literal. They read --ww-home-hdr-text-1 / -2.
+   Overriding color loses to their ladders. FEEDING THE VARIABLE on the
+   element wins, because the winning rule resolves whatever the var says.
+   All three vars are set to the same target so it does not matter which
+   one the winner reads. Also pin color + -webkit-text-fill-color.
+
+   No new :not(#_) ladder. Same H193 selector house (12 body ids, 30 #top,
+   #project-wildfire). Import AFTER H420-tell-iscott-line BEFORE H232.
+
+   Leave decorative .wild-wildfire-flame / .wild-wildfire-flames.
+   Leave sequence patio/lounge/going. Leave build-note lead/middle/close.
+   Leave Text 3 on hero/buttons.
+*/
+
+/* =====================================================================
+   1. "Project Wildfire" → Text 2 #edc775
+   Winner: H168 L287 var(--ww-home-hdr-text-1). Feed that var.
+   ===================================================================== */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire
+  :is(
+    .wild-wildfire-flame-title__text,
+    .wild-wildfire-flame-title__text *
+  ) {
+  --ww-home-hdr-text-1: #edc775 !important;
+  --ww-home-hdr-text-2: #edc775 !important;
+  --ww-home-hdr-text-3: #edc775 !important;
+  --ww-home-heading-color-1: #edc775 !important;
+  --ww-home-heading-color-2: #edc775 !important;
+  color: #edc775 !important;
+  -webkit-text-fill-color: #edc775 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* =====================================================================
+   2. "It Started with a Fireplace....." → Text 1 #fce0ad
+   Winner: H193 L9–16 var(--ww-home-hdr-text-2, #edc775).
+   Exact H193 selector. Feed that var to Text 1. The dots live on this
+   same line — do not hunt gallery pagination.
+   ===================================================================== */
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
+  #project-wildfire
+  .wild-wildfire-title
+  :is(.wild-line-title__line, .wild-line-title__line *) {
+  --ww-home-hdr-text-1: #fce0ad !important;
+  --ww-home-hdr-text-2: #fce0ad !important;
+  --ww-home-hdr-text-3: #fce0ad !important;
+  --ww-home-heading-color-1: #fce0ad !important;
+  --ww-home-heading-color-2: #fce0ad !important;
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}

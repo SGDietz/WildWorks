@@ -1,0 +1,312 @@
+/* H457 - Home only. Two items. Not H452 (speech guard). Not H453 (Claude canned-label). Not H454 (WO5 device stamp).
+   Scott 2026-09-02 (quote, not a summary):
+     "Okay, here we have to drift. Okay, so I don't think that that looks
+      like it, the the icon. It does not. It's more like a throwing star,
+      like a Chinese throwing star. The, the one that you gave me has
+      nice arcing. I mean, look at it. I'm gonna, yeah, just put a I'm
+      gonna do a second screenshot here. Look at the arcs, okay? now,
+      you see the drift? iScot is the front door, has incredible shadow
+      effect. While I'm works concierge and start with iScot, has no
+      fucking goddamn shadow effect. Needs you back on there. Oh my
+      fucking god, that fucking pisses me off. Alright, just do it.
+      Send it to Claude."
+
+   Earlier in the same thread (quote, not a summary):
+     "Give me something more interesting. Send everything to Claude."
+     "In this thread, don't write any code. Five options. Mockups.
+      Leave Talk to iScott exactly the same."
+     "Do number two, just the icon itself with sharp edges. Then let
+      me see a mock-up of it. Keep the button the same."
+   Latest message is the drift: NOT sharp throwing-star. YES arcing
+   option-2 cluster. YES Front Door heading shadow on concierge
+   Start with iScott.
+
+   Homepage only: #top.wild-home:not(.wild-legal-home)
+   Import AFTER the last app/H*.css already imported, BEFORE H232.
+   H232 stays LAST. Filename: H457-home-icon-shadow.css
+   iScott, never "high Scott".
+   Palette lock: Primary #c44d0b / Secondary #e96819
+     Text 1 #fce0ad / Text 2 #edc775 / Text 3 #f08c28
+   Do not restyle Finish, Upload, footer chrome, legal, Projects, Wildfire.
+   Do not use filter: drop-shadow (H417 killed that smudge).
+   Do not invent a 22-id / 1500-:not ladder. Concierge heading copies
+   H415's 801 :not prefix (same count, later import wins). Talk fill
+   uses !important against H417 fill:none (H417 fill is not important).
+*/
+
+/* =====================================================================
+   A. Talk to iScott icon — keep button body / gradient / size / rounding
+   / the words "Talk to iScott". Replace only the left icon via inline
+   SVG wrap (see HANDOFF). Glyph = three filled four-point SPARKLES,
+   one large + two smaller, concave arcing sides (option 2). currentColor
+   matches the letters (Text 3). Attached edge = H417 ww-home-btn-icon
+   duplicate-glyph wrap, not a CSS filter.
+   ===================================================================== */
+
+/* CLAUDE light edit 2026-09-02 15:12: the Front Door heading PAINTS a 6-stop
+   ladder (measured 1366x900: 0.906px steps on 101.6px type, alphas .518->.36),
+   not the H415 4-stop this packet named. G: "iScot is the front door, has
+   incredible shadow effect" -> copy the painted one. Same em ladder here.
+   Also: the footer phone-test Talk button sits OUTSIDE #top (FOOTER#footer),
+   so the scope prefix now also reaches #footer on the Home page.
+   15:40: measured - #top is only the hero; most Talk buttons live outside it,
+   so the prefix is the house form html:has(#top.wild-home:not(.wild-legal-home))
+   body#wildworks-body (Home-only, whole page).
+   15:46: the hero Talk button (a.wild-iscott-action-button, page.tsx ~2464) has NO
+   aria-label, so the control list also names the two classes. */
+/* CLAUDE rewrite 2026-09-02 15:31 of section A (same values, layered).
+   Measured on :3020: the unlayered rules above this line LOST - the wrap
+   painted 20x40 (display:block from the H395/H403 button-icon house beat
+   inline-grid, so shadow + face stacked into a "#"), and the path fill
+   computed none (H403 fill:none is !important after all). Layered
+   !important beats unlayered !important regardless of id count, so the
+   whole icon block lives in one layer with its own !important. */
+/* CLAUDE 2026-09-02 17:05: G via Grok - "This double is on the projects page. Check for doubles, and clean them up. Make them all nice, everywhere." The icon component renders on every page (shared LargeIScottCta / IScottActionButton), so the stacking layer is SITEWIDE now; only the concierge heading stays Home-only. */
+@layer ww-h457-icon {
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon {
+    display: inline-grid !important;
+    place-items: center !important;
+    line-height: 0 !important;
+    overflow: visible !important;
+    flex-shrink: 0 !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon > :is(.ww-home-btn-icon__shadow, .ww-home-btn-icon__face) {
+    grid-area: 1 / 1 !important;
+    display: block !important;
+    line-height: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    height: 100% !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon > .ww-home-btn-icon__shadow {
+    transform: translateY(0.0785em) !important;
+    color: rgba(30, 8, 2, 0.93) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+  html body#wildworks-body
+    .wild-home-phone-iscott-test__button
+    .ww-home-btn-icon > .ww-home-btn-icon__shadow {
+    transform: translateY(0.049064em) !important;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon > .ww-home-btn-icon__face {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    svg.ww-talk-arc-cluster {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    fill: currentColor !important;
+    stroke: none !important;
+    color: inherit;
+    overflow: visible !important;
+    flex-shrink: 0 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    shape-rendering: geometricPrecision;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    svg.ww-talk-arc-cluster :is(g, path) {
+    fill: currentColor !important;
+    stroke: none !important;
+    filter: none !important;
+  }
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon > .ww-home-btn-icon__shadow svg.ww-talk-arc-cluster,
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    .ww-home-btn-icon > .ww-home-btn-icon__shadow svg.ww-talk-arc-cluster :is(g, path) {
+    color: rgba(30, 8, 2, 0.93) !important;
+    fill: rgba(30, 8, 2, 0.93) !important;
+  }
+  /* H458 (Grok 16:10) spliced by Claude 18:14 - same 0.72em Claude measured, plus the legal-return exclusion + font-size inherit + svg rule. (1,3,3) beats the wrap rule's (1,2,3). */
+/* H458 — ONLY the new rules. Paste at the END of @layer ww-h457-icon
+   (before that named layer's closing brace) in app/H457-home-icon-shadow.css.
+   Layer name: ww-h457-icon
+   Do not wrap these rules in a second @layer. Do not add a new import.
+   Do not write a style closer in this file. Do not rewrite H457 glyph/paths/heading.
+   iScott, never high Scott.
+*/
+
+  /* =====================================================================
+     H458 (Grok 2026-09-02 ~4:10 PM ET) — BIG Talk ICON SIZE only.
+     Paste at END of @layer ww-h457-icon (this layer). Do not open another
+     layer. Do not add a new import. Do not rewrite glyph / paths / heading.
+     Scott (quote, not a summary):
+       "Okay, it looks like the small boxes are okay. But the big, I'm sorry,
+        the small buttons, but the big buttons are not. So, this has got to
+        be an appropriate size. Do a visual inspection. Do a great job.
+        And send it to Claude."
+     Live wrap is 1.25rem (20px) from the first rule in this layer; the SVG
+     also ships Tailwind h-5 w-5 (20px). Big Talk type is 52px desktop /
+     34px phone, so 20px is tiny. 0.72em of the button type = 37px / 24px
+     (Claude measured). em (not rem) tracks the big button font, including
+     Projects. House prefix is html body#wildworks-body (same as this
+     layer's sitewide doubles fix) — html:has(#top.wild-home) would miss
+     Projects. Match by class, not only aria-label. Legal-return excluded.
+     Small overlay Talk, card money-cta, sparkles-only small Talk stay
+     1.25rem (this selector does not name them). !important stays in this
+     named layer. iScott never high Scott.
+     ===================================================================== */
+  html body#wildworks-body
+    .wild-home-phone-iscott-test:not(.wild-home-phone-iscott-test--legal-return)
+    > a.wild-home-phone-iscott-test__button
+    .ww-home-btn-icon {
+    font-size: inherit !important;
+    width: 0.72em !important;
+    height: 0.72em !important;
+    flex-shrink: 0 !important;
+  }
+  html body#wildworks-body
+    .wild-home-phone-iscott-test:not(.wild-home-phone-iscott-test--legal-return)
+    > a.wild-home-phone-iscott-test__button
+    .ww-home-btn-icon svg.ww-talk-arc-cluster {
+    width: 0.72em !important;
+    height: 0.72em !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* =====================================================================
+   B. Concierge "Start with iScott" heading — copy live Front Door
+   "iScott is the Front Door" text-shadow. Live winner is H415
+   (chunk f9c51cc4378d815d.css) four-stop, 0-blur:
+     0 0.012176em 0 rgba(35, 9, 2, 0.58)
+     0 0.024344em 0 rgba(32, 8, 2, 0.52)
+     0 0.036520em 0 rgba(28, 7, 1, 0.46)
+     0 0.048688em 0 rgba(25, 6, 1, 0.396)
+   Same stack as H415-home-shadow-20.css Front Door block (80% of Going
+   four-stop 0.06086). H446 @layer ww-h446-concierge-heading painted a
+   faint 3-stop on this title AND the kicker; unlayered later import
+   beats the layer. 801 :not copied from H415's start-title leaves so
+   this four-stop also beats H415's own 6-stop on .wild-start-title.
+   Do not restyle color, font, size, copy, photo, or the
+   WILDWORKS CONCIERGE kicker.
+   ===================================================================== */
+
+/* CLAUDE light edit 2026-09-02 15:24: measured with CSS.getMatchedStylesForNode -
+   an older unlayered !important six-stop (3212 ids, H368/H374/H415 family) beats
+   this rule's 806 ids, so the concierge heading never took the Front Door ladder.
+   Layered !important beats unlayered !important regardless of id count (same
+   trick that made H446 paint this morning), so the heading rule lives in a layer. */
+@layer ww-h457-concierge-heading {
+html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body #talk-to-iscott :is(
+  .wild-start-title,
+  .wild-start-title__start,
+  .wild-start-title__with,
+  .wild-start-title__name,
+  h2[aria-label="Start with iScott"]
+):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  --ww-color3-original-shadow:
+    0 0.00892em 0 rgba(35, 9, 2, 0.518),
+    0 0.01784em 0 rgba(33, 8, 2, 0.486),
+    0 0.02676em 0 rgba(31, 8, 2, 0.455),
+    0 0.03568em 0 rgba(29, 7, 1, 0.424),
+    0 0.04460em 0 rgba(27, 7, 1, 0.392),
+    0 0.05352em 0 rgba(25, 6, 1, 0.36);
+  --ww-color3-full-shadow: var(--ww-color3-original-shadow) !important;
+  --ww-home-display-depth-medium:
+    0 0.00892em 0 rgba(35, 9, 2, 0.518),
+    0 0.01784em 0 rgba(33, 8, 2, 0.486),
+    0 0.02676em 0 rgba(31, 8, 2, 0.455),
+    0 0.03568em 0 rgba(29, 7, 1, 0.424),
+    0 0.04460em 0 rgba(27, 7, 1, 0.392),
+    0 0.05352em 0 rgba(25, 6, 1, 0.36);
+  text-shadow:
+    0 0.00892em 0 rgba(35, 9, 2, 0.518),
+    0 0.01784em 0 rgba(33, 8, 2, 0.486),
+    0 0.02676em 0 rgba(31, 8, 2, 0.455),
+    0 0.03568em 0 rgba(29, 7, 1, 0.424),
+    0 0.04460em 0 rgba(27, 7, 1, 0.392),
+    0 0.05352em 0 rgba(25, 6, 1, 0.36) !important;
+  filter: none !important;
+}
+}
+
+/* CLAUDE light edit 2026-09-02 15:16: H403 line 100 puts
+   filter: drop-shadow(...) !important on every button svg. The unlayered
+   filter:none !important above LOSES to it on id count (measured: the new
+   icon painted the wrap shadow AND a 1.5px drop-shadow = a doubled rim).
+   Layered !important beats unlayered !important regardless of ids, so the
+   filter kill lives in its own layer. Nothing else in this layer. */
+@layer ww-h457-icon-filter-kill {
+  html body#wildworks-body
+    :is(
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-home-phone-iscott-test__button,
+      .wild-iscott-action-button,
+      .wild-site-avatar-overlay-cta
+    )
+    :is(svg.ww-talk-arc-cluster, .ww-home-btn-icon, .ww-home-btn-icon__shadow, .ww-home-btn-icon__face) {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+}

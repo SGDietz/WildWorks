@@ -1,3 +1,11 @@
+/* CLAUDE 2026-09-01. The Wildfire hero c1/c2/c3 lines are REMOVED from every
+   selector list below. G: "There is no more number three text color against
+   the background" - on this heading c3 becomes Text 1 #fce0ad via H401.
+   THIS FILE WAS THE REAL WINNER. H401 could never have worked while these two
+   entries stayed here: this ladder is 12x #wildworks-body + 12x #top and paints
+   #f08c28 !important, so H401 at (1,1,0) lost every time. Proven with
+   CSS.getMatchedStylesForNode, not guessed.
+   Every OTHER selector in these lists is untouched and still Text 3. */
 /* G 2026-08-10: promote the approved Home treatment across the public site.
    Every semantic large Color-3 display line uses Wildfire's exact solid
    #f08c28 face, with no gradient clipping and no smoke/haze filter. */
@@ -14,8 +22,6 @@ html body#wildworks-body#wildworks-body#wildworks-body
     .wild-wildfire-build-note__line--close,
     .wild-line-title__line--three,
     .wild-signature-title__three,
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-sell-feature-title__period,
     :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
   ),
@@ -32,8 +38,6 @@ html body#wildworks-body#wildworks-body#wildworks-body
     .wild-wildfire-build-note__line--close,
     .wild-line-title__line--three,
     .wild-signature-title__three,
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-sell-feature-title__period,
     :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
   ) * {
@@ -58,8 +62,6 @@ html body#wildworks-body#wildworks-body#wildworks-body
     .wild-wildfire-build-note__line--close,
     .wild-line-title__line--three,
     .wild-signature-title__three,
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-sell-feature-title__period,
     :is(h1, h2, h3, h4, h5, h6, .wild-section-title) .ww-c3
   ) {
@@ -80,8 +82,6 @@ html body#wildworks-body#wildworks-body#wildworks-body
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-subpage.wild-subpage
   :is(
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-line-title__line--three,
     .wild-signature-title__three,
     .wild-sell-feature-title__period,
@@ -90,8 +90,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-subpage.wild-subpage
   :is(
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-line-title__line--three,
     .wild-signature-title__three,
     .wild-sell-feature-title__period,
@@ -108,8 +106,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-subpage.wild-subpage
   :is(
-    .wildfire-hero-headline__line--c3,
-    .wildfire-hero-summary__line--c3,
     .wild-line-title__line--three,
     .wild-signature-title__three,
     .wild-sell-feature-title__period,

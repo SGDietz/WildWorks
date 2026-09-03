@@ -189,9 +189,10 @@ export default function TheRuins() {
               {/* G 2026-08-28: "Take out his client asked, what do you see
                   here. Delete that." The ask stays, recoloured to Text 2 and
                   forced onto one line - see H391. */}
+              {/* G 2026-09-03 11:5x ET: "take out that period after yours." */}
               <IScottPromptLines
                 className="wild-iscott-prompt--ruins-single"
-                ask={"Now Tell iScott What You See on Yours."}
+                ask={"Now Tell iScott\nWhat You See on Yours"}
               />
               <LargeIScottCta href="/pages/Home?wake-iscott=1#talk-to-iscott" />
             </div>

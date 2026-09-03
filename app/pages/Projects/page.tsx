@@ -33,7 +33,9 @@ export default function ProjectsPage() {
             same shape that already works for "and Builds". The global variable
             and the iScott sales title are untouched. */}
         <span className="wild-projects-page-intro__line wild-projects-page-intro__line--three">
-          <span className="wild-projects-page-intro__three-ink">and How its Owners Want to Live.</span>
+          {/* G 2026-09-03 11:5x ET: "does not sound very personal... take out
+              its and put in how the owners." */}
+          <span className="wild-projects-page-intro__three-ink">and How the Owners Want to Live.</span>
         </span>
       </p>
       {/* 2026-08-24 (G): Projects had two lines of copy and nothing telling a
@@ -86,10 +88,24 @@ export default function ProjectsPage() {
             no-wrap that holds these breaks on every device live in H339 - an
             inline colour cannot win here, a sitewide rule forces
             -webkit-text-fill-color cream over every span. */}
-        <span className="wild-projects-page-kicker__line">These Are Finished Spaces.</span>
-        <span className="wild-projects-page-kicker__line">Stone, Fire, Water &amp; Garden.</span>
-        <span className="wild-projects-page-kicker__line">Open Any Picture, Then Tell iScott</span>
-        <span className="wild-projects-page-kicker__line">Which Feeling You Want on Your Land.</span>
+        {/* G 2026-09-03 11:09 ET, phone screenshot: "these are finished, and
+            then that's the first line. And then spaces, stone, fire is the
+            second line, then water and garden the third line. And then the
+            second set is open any picture first line, then tell iScott second
+            line, which feeling you third line, then want on your land fourth
+            line. Keep all the text colors the same here." And: "see it's off
+            to the right" - the fourth span was nowrap and wider than a phone.
+            The FOUR spans and their H339 colours are untouched for desktop
+            (brs hidden from 521px, H441b). On phones H481 makes the spans
+            inline so "Spaces." can share a line with "Stone, Fire,", and the
+            phone-only brs below put every break exactly where he said. Each
+            phone line is one span, or two spans of the same colour. */}
+        <span className="wild-projects-page-kicker__line">These Are Finished<br className="ww-phone-br" /> Spaces.</span>{" "}
+        <span className="wild-projects-page-kicker__line">Stone, Fire,<br className="ww-phone-br" /> Water &amp; Garden.</span>
+        <br className="ww-phone-br" />
+        <span className="wild-projects-page-kicker__line">Open Any Picture,<br className="ww-phone-br" /> Then Tell iScott</span>
+        <br className="ww-phone-br" />
+        <span className="wild-projects-page-kicker__line">Which Feeling You<br className="ww-phone-br" /> Want on Your Land.</span>
       </p>
       <div className="wild-projects-home-contact">
         <PhoneNumberLine

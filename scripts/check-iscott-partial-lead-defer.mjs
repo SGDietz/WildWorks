@@ -24,12 +24,13 @@ assert.ok(
   `the partial delay must outlast a capture sequence; the observed gap was 65s, got ${delayMs}ms`,
 );
 
-// 2. The partial DEFERS and the complete one does not.
+// 2. Every partial DEFERS. Read-back confirms accuracy, not permission.
 assert.match(
   src,
   /deferUntil: isPartial\s*\n?\s*\?\s*new Date\(Date\.now\(\) \+ PARTIAL_LEAD_DELAY_MS\)\.toISOString\(\)\s*\n?\s*:\s*null/,
-  "the partial must be deferred by PARTIAL_LEAD_DELAY_MS and the complete package must not be",
+  "every partial must wait; only the complete consented package may send immediately",
 );
+assert.doesNotMatch(src, /partialSendImmediately/, "read-back must not release a parked partial");
 
 // 3. deferUntil actually reaches the row, or the delay is decoration.
 assert.match(

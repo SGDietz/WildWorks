@@ -28,6 +28,8 @@ await transpile("src/lib/iscottLeadParsing.ts", "iscottLeadParsing", [
   ['from "./iscottSalesCopy"', 'from "./iscottSalesCopy.mjs"'],
 ]);
 await transpile("src/lib/iscottVisitorConfirmation.ts", "iscottVisitorConfirmation", [
+  ['from "./emailTheme"', 'from "./stub-theme.mjs"'], // CLAUDE 2026-09-02 (H443): the receipt now imports the theme; stub it like the notifications module
+
   ['from "./iscottLeadParsing"', 'from "./iscottLeadParsing.mjs"'],
 ]);
 
@@ -75,6 +77,13 @@ export const emailCallout = ({ html }) => html;
 export const emailRows = (rows) => JSON.stringify(rows);
 export const emailButton = (url, label) => label + ":" + url;
 export const emailPre = (value) => value;
+export const emailParagraph = (html) => html;
+export const escapeHtml = (value) => String(value);
+// CLAUDE 2026-09-02 (H433): the real theme grew these helpers; the stub must export them too.
+export const emailSection = ({ html }) => html;
+export const emailPaintedCopy = (value) => value;
+export const emailMailto = (address) => address;
+export const emailLink = (href, label) => label + ":" + href;
 `);
 
 await transpile("src/lib/voiceEmailNotifications.ts", "voiceEmailNotifications", [
@@ -107,6 +116,11 @@ function queryValue(resource, name) {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
+function queryLikeValue(resource, name) {
+  const match = resource.match(new RegExp(`(?:[?&])${name}=like\\.([^&]+)`));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 function publicRow(body) {
   return {
     id: `outbox-${nextId++}`,
@@ -124,7 +138,7 @@ function publicRow(body) {
     updated_at: new Date().toISOString(),
     lease_token: null,
     lease_expires_at: null,
-    next_attempt_at: null,
+    next_attempt_at: body.next_attempt_at ?? null,
     last_attempt_at: null,
   };
 }
@@ -154,18 +168,26 @@ globalThis.fetch = async (target, init = {}) => {
 
   if (method === "PATCH") {
     const id = queryValue(resource, "id");
+    const sessionId = queryValue(resource, "session_id");
+    const subjectLike = queryLikeValue(resource, "subject");
     const expectedStatus = queryValue(resource, "status");
     const expectedUpdatedAt = queryValue(resource, "updated_at");
     const expectedLease = queryValue(resource, "lease_token");
-    const row = rows.find((candidate) => candidate.id === id);
-    if (!row ||
-        (expectedStatus && row.status !== expectedStatus) ||
-        (expectedUpdatedAt && row.updated_at !== expectedUpdatedAt) ||
-        (expectedLease && row.lease_token !== expectedLease)) {
+    const prefix = subjectLike?.endsWith("*") ? subjectLike.slice(0, -1) : subjectLike;
+    const matching = rows.filter((candidate) =>
+      (!id || candidate.id === id) &&
+      (!sessionId || candidate.session_id === sessionId) &&
+      (!prefix || String(candidate.subject ?? "").startsWith(prefix)) &&
+      (!expectedStatus || candidate.status === expectedStatus) &&
+      (!expectedUpdatedAt || candidate.updated_at === expectedUpdatedAt) &&
+      (!expectedLease || candidate.lease_token === expectedLease)
+    );
+    if (!matching.length) {
       return response(200, []);
     }
-    Object.assign(row, JSON.parse(init.body));
-    return response(200, [{ ...row }]);
+    const patch = JSON.parse(init.body);
+    matching.forEach((row) => Object.assign(row, patch));
+    return response(200, matching.map((row) => ({ ...row })));
   }
 
   return response(405, "unsupported local test operation");
@@ -255,6 +277,53 @@ try {
   assert.equal(Provider.sendCalls.length - sendsBeforePhone, 1);
   assert.ok(phoneA.deduplicated || phoneB.deduplicated,
     "one concurrent retry must be reported as deduplicated");
+
+  // A recovery-only package stays parked even when reissued after an exact
+  // read-back. Read-back confirms accuracy, not permission to transmit.
+  const sendsBeforePartial = Provider.sendCalls.length;
+  const partialBase = {
+    ...base,
+    eventId: "confirmed-partial-session#partial",
+    sessionId: "confirmed-partial-session",
+    fullName: null,
+    projectNeed: null,
+    email: "recoverable@example.com",
+    partial: true,
+  };
+  const parked = await Notifications.notifyIScottPartialLeadByEmail(partialBase);
+  assert.equal(parked.delivered, false);
+  assert.equal(parked.outboxStatus, "pending");
+  assert.equal(Provider.sendCalls.length, sendsBeforePartial);
+  const partialRow = rows.find((row) => row.id === parked.outboxId);
+  assert.ok(partialRow?.next_attempt_at, "unconfirmed partial must have a due time");
+
+  const stillParked = await Notifications.notifyIScottPartialLeadByEmail(partialBase);
+  assert.equal(stillParked.outboxId, parked.outboxId);
+  assert.equal(stillParked.delivered, false);
+  assert.equal(stillParked.outboxStatus, "pending");
+  assert.equal(rows.filter((row) => row.session_id === partialBase.sessionId).length, 1);
+  assert.equal(Provider.sendCalls.length, sendsBeforePartial);
+
+  // The same conversation now finishes normally. Exactly one provider call is
+  // allowed: the completed, permissioned package. The parked incomplete row
+  // remains in the audit but is retired before the outbox drain can deliver it.
+  const completed = await Notifications.notifyIScottLeadByEmail({
+    ...partialBase,
+    eventId: "confirmed-partial-session",
+    fullName: "Example Visitor",
+    projectNeed: "A landscape design",
+    partial: false,
+  });
+  assert.equal(completed.delivered, true);
+  assert.equal(completed.outboxStatus, "sent");
+  assert.equal(Provider.sendCalls.length, sendsBeforePartial + 1,
+    "a completed conversation sends exactly one owner email");
+  assert.equal(rows.filter((row) => row.session_id === partialBase.sessionId).length, 2,
+    "the audit retains one partial row and one completed row");
+  assert.equal(partialRow.status, "dead_letter",
+    "the completed package must retire the parked incomplete row");
+  assert.equal(partialRow.last_error, "superseded_by_complete_lead");
+  assert.equal(partialRow.next_attempt_at, null);
 
   assert.ok(requests.some(({ method }) => method === "POST"));
   assert.ok(requests.some(({ method, resource }) => method === "GET" && resource.includes("idempotency_key=eq.")));

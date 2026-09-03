@@ -1,0 +1,66 @@
+/* H481 - Claude, 2026-09-03 11:0x-11:1x ET. Two phone screenshots from G.
+   PHONE ONLY - both blocks stay exactly as they are from 521px / 600px up.
+
+   1. Wildfire hero, G: "this is mobile only... make those first three lines
+      text color number two, second three lines text color number one, third
+      three lines text color number two... I just drew the boxes to denote
+      groupings."
+      His boxes are VISUAL lines on his phone, and the second box cuts through
+      the middle of the c2 span ("a Full Build Record for an" | "Outdoor
+      Fireplace,"), so page.tsx now carries two inner spans (__m1 / __m2) on
+      c2. Desktop never sees a difference: the inner spans inherit c2's colour
+      there. Painted before, at 412 (measured): headline c1 T2, c2 T1, c3 T2;
+      summary c1 T2, c2 T1, c3 T2. After: headline all T2; summary c1 + m1 T1;
+      m2 + c3 T2.
+
+   2. Projects "These Are Finished Spaces" kicker, G: "these are finished, and
+      then that's the first line. And then spaces, stone, fire is the second
+      line, then water and garden the third line. And then the second set is
+      open any picture first line, then tell iScott second line, which feeling
+      you third line, then want on your land fourth line. Keep all the text
+      colors the same here." Also: "see it's off to the right" - the fourth
+      span was nowrap and wider than the phone.
+      The four spans (desktop lock 08-25, H339) become INLINE on phones so a
+      break can land inside "Finished Spaces." and "Spaces." can share a line
+      with "Stone, Fire,". The breaks themselves are br.ww-phone-br in
+      page.tsx (hidden from 521px up, H441b). Colours untouched: each span
+      keeps its H339 colour, and every new visual line is one span or two
+      spans of the same colour.
+
+   Layered: a layered !important beats the unlayered ladders that paint these
+   (H127 / H168 / H339 / H441b) without another id race. */
+@layer ww-phone-wildfire-groups {
+  @media (max-width: 599px) {
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-headline__line--c2 {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+    }
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c1,
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m1 {
+      color: #fce0ad !important;
+      -webkit-text-fill-color: #fce0ad !important;
+    }
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m2,
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+    }
+  }
+}
+
+@layer ww-phone-projects-kicker {
+  @media (max-width: 520px) {
+    /* H441b makes the paragraph a flex COLUMN on phones, and a flex item is
+       blockified no matter what display it asks for - measured 2026-09-03:
+       even an appended layered "display: inline !important" on the spans
+       stayed block until the parent stopped being flex. So the parent goes
+       back to a block here; its H441b centring, size and 1.14 line-height are
+       untouched, and no gap was ever set, so the rhythm does not change. */
+    html body#wildworks-body .wild-projects-page-kicker {
+      display: block !important;
+    }
+    html body#wildworks-body .wild-projects-page-kicker__line {
+      display: inline !important;
+    }
+  }
+}

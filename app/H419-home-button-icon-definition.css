@@ -1,0 +1,130 @@
+/* H419 - Home button icons: definition, not deletion.
+
+   G 2026-09-01, verbatim, on the smudgy icons:
+     "This is another thing. You can work on all the buttons. They're just not
+      beautiful. They have no, there's like smudges. They're just like, like
+      that icon. It's just like, it's just all a smudge. Now you smudge these up
+      pretty bad, so I want you to fucking fix this shit. Add some definition.
+      Talk to iScott. Looks clean, crisp. The icon looks fucked. All the icons
+      on the site, pretty fucking much, man. Look like shit. They look like
+      smudgy shit. They're not impressive at all. Write some code for the
+      homepage for the icons to look gorgeous, have definition, have clean cut
+      lines, not fuzzy edges. Just do, just do the homepage, that's it. Write
+      the, and, and just the icons inside the buttons, that's it. Just the icons
+      inside the buttons. They just look, they're just shit."
+
+   and, on Grok's H417 answer:
+     "Check the code that he handed you. See if he like it. And then... and we
+      can try it on the home page. Or if you have a better idea, let's try your
+      idea. Keep the shadow effect."
+
+   H417 IS NOT INSTALLED. It de-smudges by deleting the shadow outright -
+   `filter: none`, `--ww-icon-shadow-depth: 0`, `--ww-cta-icon-shadow: none`.
+   G said KEEP the shadow effect, so that trade is the wrong one. Its diagnosis
+   was also off: it blames a CSS filter rasterising the SVG, and blames H398's
+   0.58rem blur. Measured live, H398 does not win and the winning filter already
+   has ZERO blur:
+
+     winner   H403/H395 rule, ...:is(svg, .wild-iscott-upload__icon)
+              filter: drop-shadow(0 var(--ww-icon-shadow-depth, .0785em) 0 #1e0802ed)
+     computed drop-shadow(rgba(30, 8, 2, 0.93) 0px 0.91845px 0px)
+
+   THE ACTUAL CAUSE, measured on the Talk-to-iScott button at 412x915:
+
+     icon box          14 x 14 px
+     stroke-width      2 on a 24-unit viewBox  ->  painted stroke 1.17px
+     shadow offset     0.91845px   (0.0785em of an 11.7px font-size)
+
+   The offset is SMALLER than the stroke it is meant to sit under. So the shadow
+   lands almost exactly on top of the line and thickens it into a ~2px blob
+   instead of reading as an edge below it. That is the smudge - not blur, not
+   rasterisation. It is a sub-pixel shadow on a hairline stroke.
+
+   THE FIX
+   1. Push the offset clear of the stroke: 1.5px, still ZERO blur, so there is a
+      clean cut line of dark under the glyph rather than a halo around it. In px
+      deliberately, NOT em - the em was tied to an 11.7px font-size that has
+      nothing to do with the icon's 14px box, which is how it ended up sub-pixel.
+   2. `shape-rendering: geometricPrecision` - the icons render at `auto` today,
+      which lets the engine trade curve accuracy for speed at small sizes.
+   3. `vector-effect: non-scaling-stroke` keeps the stroke a true width whatever
+      the SVG is scaled to.
+
+   The shadow is KEPT, exactly as G asked. Only its depth and the render hints
+   change. No stroke-width change, no colour change, no button shape, gradient,
+   border or label touched. Home only.
+
+   WHY THIS WINS WITHOUT A LADDER: the winning rule already reads
+   `var(--ww-icon-shadow-depth)`. Feeding the variable beats fighting the
+   property, so there is no specificity arms race here at all.
+
+   Import BEFORE H232. */
+
+@media all {
+  html body
+    #top.wild-home:not(.wild-legal-home)
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control
+    ) {
+    --ww-icon-shadow-depth: 1.5px;
+  }
+
+  html body
+    #top.wild-home:not(.wild-legal-home)
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control
+    ) :is(svg, .wild-iscott-upload__icon) {
+    shape-rendering: geometricPrecision !important;
+    overflow: visible !important;
+  }
+
+  html body
+    #top.wild-home:not(.wild-legal-home)
+    :is(
+      a.money-cta,
+      button.money-cta,
+      a[aria-label="Talk to iScott"],
+      button[aria-label="Talk to iScott"],
+      .wild-iscott-upload__button,
+      .wild-card-cta,
+      .wild-sell-feature-cta,
+      .wild-utility-button,
+      .wild-signup-choice-button,
+      .wild-signup-submit,
+      .wild-footer-top-button,
+      .wild-footer-mobile-link,
+      .wild-mobile-menu-button,
+      .wild-branded-video__center-control,
+      .wild-branded-video__control
+    ) svg * {
+    vector-effect: non-scaling-stroke !important;
+  }
+}

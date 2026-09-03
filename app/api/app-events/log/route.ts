@@ -3,6 +3,7 @@ import {
   isSafeTranscriptionSessionId,
   truncateUtf8String,
 } from "../../../../src/lib/apiRouteSecurity";
+import { logIScottOriginRejection } from "../../../../src/lib/iscottOriginTelemetry";
 import { checkRateLimit } from "../../../../src/lib/rateLimit";
 import { queueOperationalAlertFromTelemetry } from "../../../../src/lib/wildworksOperationalAlerts";
 import { isSupabaseAdminConfigured } from "../../../../src/lib/supabaseAdmin";
@@ -149,8 +150,16 @@ async function storeWithConversationFallback(args: {
 }
 
 export async function POST(request: Request) {
-  const originErr = assertAllowedOrigin(request);
-  if (originErr) return originErr;
+  const originErr = assertAllowedOrigin(request, {
+    trustedSameOriginMarker: {
+      name: "x-wildworks-avatar-request",
+      value: "same-origin-v1",
+    },
+  });
+  if (originErr) {
+    await logIScottOriginRejection(request, "/api/app-events/log").catch(() => undefined);
+    return originErr;
+  }
   const rateLimitErr = await checkRateLimit(request);
   if (rateLimitErr) return rateLimitErr;
   if (!isSupabaseAdminConfigured()) {
@@ -471,6 +480,7 @@ export async function POST(request: Request) {
       route: row.route,
       statusCode: row.status_code,
       sessionId: row.session_id ?? row.anonymous_visitor_id,
+      failStreak: (() => { const value = (row.payload as Record<string, unknown>).failStreak; return typeof value === "number" && Number.isFinite(value) ? value : null; })(),
     });
     const err = await storeWithConversationFallback({
       table: "app_events",

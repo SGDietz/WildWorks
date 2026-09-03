@@ -366,7 +366,11 @@ class El {
   get scrollWidth() {
     const declared = this.style.getPropertyValue("font-size");
     const rem = declared ? parseFloat(declared) : 1.12;
-    return Math.ceil(String(this.value || "").length * rem * 16 * ADVANCE_RATIO);
+    // Match a real input: scrollWidth includes horizontal padding and cannot
+    // fall below clientWidth. Omitting both facts let the old broken fit loop
+    // pass here while every real browser drove every address to 0.62rem.
+    const textWidth = String(this.value || "").length * rem * 16 * ADVANCE_RATIO;
+    return Math.max(this.clientWidth, Math.ceil(textWidth + CSS_PADDING_PX * 2));
   }
 }
 
@@ -377,6 +381,13 @@ function makeDom() {
   const timers = [];
   const frames = [];
   let nextId = 1;
+  // Use a positive deterministic epoch: the shipping script treats 0 as the
+  // "not shown yet" sentinel for sentShownAt.
+  let now = 1_000_000;
+  class FakeDate extends Date {
+    constructor(...args) { super(...(args.length ? args : [now])); }
+    static now() { return now; }
+  }
 
   const doc = {
     documentElement,
@@ -407,9 +418,17 @@ function makeDom() {
       borderLeftWidth: "1px",
       borderRightWidth: "1px",
     }),
-    setTimeout: (fn, ms) => { timers.push({ id: nextId, fn, ms }); return nextId++; },
+    setTimeout: (fn, ms) => {
+      const delay = Math.max(0, Number(ms) || 0);
+      timers.push({ id: nextId, fn, ms: delay, at: now + delay });
+      return nextId++;
+    },
     clearTimeout: (id) => { const i = timers.findIndex((t) => t.id === id); if (i >= 0) timers.splice(i, 1); },
-    setInterval: (fn, ms) => { timers.push({ id: nextId, fn, ms, interval: true }); return nextId++; },
+    setInterval: (fn, ms) => {
+      const delay = Math.max(1, Number(ms) || 0);
+      timers.push({ id: nextId, fn, ms: delay, at: now + delay, interval: true });
+      return nextId++;
+    },
     clearInterval: (id) => { const i = timers.findIndex((t) => t.id === id); if (i >= 0) timers.splice(i, 1); },
     requestAnimationFrame: (fn) => { frames.push(fn); return frames.length; },
   };
@@ -417,8 +436,27 @@ function makeDom() {
   return {
     doc,
     win,
+    Date: FakeDate,
     timers,
     frames,
+    advanceTime(ms) {
+      const target = now + Math.max(0, Number(ms) || 0);
+      while (true) {
+        const due = timers
+          .filter((timer) => timer.at <= target)
+          .sort((a, b) => a.at - b.at || a.id - b.id)[0];
+        if (!due) break;
+        const index = timers.findIndex((timer) => timer.id === due.id);
+        if (index >= 0) timers.splice(index, 1);
+        now = due.at;
+        due.fn();
+        if (due.interval) {
+          due.at = now + due.ms;
+          timers.push(due);
+        }
+      }
+      now = target;
+    },
     runTimers() {
       const due = timers.splice(0, timers.length);
       for (const t of due) t.fn();
@@ -446,7 +484,7 @@ function bootScript({ fetchImpl }) {
     fetch: fetchImpl,
     MutationObserver: class { observe() {} disconnect() {} },
     CustomEvent: class { constructor(type, init) { this.type = type; this.detail = init?.detail; } },
-    Date,
+    Date: dom.Date,
     Math,
     JSON,
     Blob: class {},
@@ -473,6 +511,9 @@ const leadState = (over = {}) => ({
   submittedAt: null,
   notificationOutboxId: null,
   notificationStatus: null,
+  partialNotificationOutboxId: null,
+  partialNotificationStatus: null,
+  partialNotificationProviderAccepted: false,
   ...over,
 });
 
@@ -497,9 +538,88 @@ const tick = (dom) => {
 };
 const statusText = (dom) => dom.doc.getElementById("wildworks-lead-status")?.textContent ?? "";
 
+// REVERSED by G, 2026-09-02 ~19:5x, by voice (Claude installed as H466):
+// "And no envelope. There's an envelope, and then when it squeezes down,
+// there's no envelope. Just do no envelope." The old H459 icon-stays contract
+// is retired; the guard now asserts the H466 hide rule is present so the
+// envelope can never come back by accident.
+assert.match(
+  routeSource,
+  /\.wildworks-lead-card \.wildworks-lead-label-icon\s*\{[^}]*display:\s*none\s*!important/,
+  "H466: the lead-card contact icon must be hidden everywhere (G: 'Just do no envelope')",
+);
+const hiddenChromeRule = routeSource.match(
+  /\.wildworks-lead-actions,\s*#wildworks-lead-confirm,\s*#wildworks-lead-status,\s*#wildworks-lead-sync\s*\{([^}]*)\}/,
+);
+assert.ok(hiddenChromeRule, "capture action/status/sync chrome must have one permanent hide rule");
+assert.match(hiddenChromeRule[1], /display:\s*none\s*!important/, "hidden capture chrome must not consume layout");
+assert.match(hiddenChromeRule[1], /visibility:\s*hidden\s*!important/, "hidden capture chrome must not paint");
+assert.match(hiddenChromeRule[1], /pointer-events:\s*none\s*!important/, "hidden capture chrome must not intercept taps");
+assert.match(
+  routeSource,
+  /\.wildworks-lead-card\[data-box-view="sent"\]\s+\.wildworks-lead-capture\s*\{[^}]*display:\s*none\s*!important/,
+  "verified sent view must replace label/icon/value with the clean confirmation",
+);
+assert.match(
+  routeSource,
+  /padding:\s*0\.46rem\s+0\.75rem\s+0\.5rem\s*!important/,
+  "the accepted capture card must keep the taller north-south padding",
+);
+
+// While any lead card is visible it owns the Finish footprint completely.
+// The :has(...wildworks-lead-visible) gate is equally important: removing the
+// class at the two-second boundary restores Finish without another JS owner.
+const finishCoverRule = routeSource.match(
+  /html:has\(#wildworks-lead-confirmation\.wildworks-lead-visible\)\s+\[data-ww-finish\]\s*\{([^}]*)\}/,
+);
+assert.ok(finishCoverRule, "a visible lead card must fully cover/suppress Finish");
+assert.match(finishCoverRule[1], /visibility:\s*hidden\s*!important/, "Finish must not remain visible under the card");
+assert.match(finishCoverRule[1], /pointer-events:\s*none\s*!important/, "Finish must not be tappable under the card");
+
+// One owner, one clock. A second delivered-branch timeout previously replaced
+// the contact-specific dismissal key with "session-ended", so a new contact
+// could never reopen the card.
+// G 2026-09-03 08:52: "It needs to be 2 full seconds... like a long 2-count." 2000 -> 2800 so the PAINTED time is a full two seconds (the timer starts before the 360ms rise animation).
+assert.match(scriptBody, /const SENT_HOLD_MS = 2800;/, "successful-send confirmation must hold for a long 2-count (2800ms, G 2026-09-03)");
+assert.equal(
+  (scriptBody.match(/sentHideTimer\s*=\s*window\.setTimeout/g) ?? []).length,
+  1,
+  "exactly one successful-send timer may own confirmation dismissal",
+);
+assert.match(
+  scriptBody,
+  /Math\.max\(0, SENT_HOLD_MS - elapsed\)/,
+  "repaints must re-arm from the original show time, never restart the hold",
+);
+const confirmLeadSource = scriptBody.slice(
+  scriptBody.indexOf("const confirmLead ="),
+  scriptBody.indexOf("const showLead ="),
+);
+const deliveredBranchStart = confirmLeadSource.indexOf("} else if (delivered) {");
+const deliveredBranchEnd = confirmLeadSource.indexOf("} else {", deliveredBranchStart + 1);
+assert.ok(deliveredBranchStart >= 0 && deliveredBranchEnd > deliveredBranchStart, "confirmLead delivered branch must exist");
+const deliveredBranch = confirmLeadSource.slice(deliveredBranchStart, deliveredBranchEnd);
+assert.match(deliveredBranch, /setSentVisible\(true, method\)/, "delivered truth must delegate to the single timer owner");
+assert.doesNotMatch(deliveredBranch, /setTimeout|session-ended/, "delivered truth must not create a second dismissal owner");
+
 /* ------------------------------------------------------------------ *
  * D. THE BOX. Pending, success, received-not-delivered, failure.
  * ------------------------------------------------------------------ */
+
+// D0. CAPTURE. What a visitor can see is exactly the decorative icon, the
+// YOUR EMAIL label, and the captured address. Hidden implementation nodes stay
+// in the DOM because the runtime queries them, but the CSS contract above keeps
+// them off-screen.
+{
+  const dom = bootScript({ fetchImpl: async () => jsonResponse({ ok: true }) });
+  openCapture(dom, leadState({ status: "capturing", consentStatus: "unknown", contactConfirmedAt: null }));
+  const panel = dom.doc.getElementById("wildworks-lead-confirmation");
+  assert.equal(panel.classList.contains("wildworks-lead-visible"), true, "the captured-contact card is visible");
+  assert.equal(panel.querySelector("#wildworks-lead-label-text")?.textContent, "Your Email");
+  assert.equal(panel.querySelector("#wildworks-lead-value")?.value, EMAIL);
+  assert.equal(panel.querySelector(".wildworks-lead-label-icon")?.getAttribute("data-method"), "email");
+  assert.equal(tick(dom).visible, false, "capture view must not show sent confirmation early");
+}
 
 // D1. PENDING. While the confirm request is in flight the box STAYS UP with the
 //     value still in it. It used to be hidden here on optimism, before the API
@@ -559,22 +679,72 @@ const statusText = (dom) => dom.doc.getElementById("wildworks-lead-status")?.tex
   // confirmation appeared at all - so the half that still matters is that it
   // cannot be pulled down EARLY. Both halves are asserted here: a repaint
   // inside the hold must not remove it, and the hold boundary must.
+  const sentPanel = dom.doc.getElementById("wildworks-lead-confirmation");
   dom.frames.splice(0, dom.frames.length).forEach((fn) => fn());
   assert.equal(
     tick(dom).visible,
     true,
     "a repaint inside the two-second hold must not take the confirmation down",
   );
+  // G 2026-09-03 08:52: "Email confirmation was fast, was too fast. It needs
+  // to be 2 full seconds... like a long 2-count." Hold is 2800ms wall-clock
+  // (paint + rise animation eat the difference); boundary asserts follow it.
+  dom.advanceTime(2799);
+  assert.equal(
+    sentPanel.classList.contains("wildworks-lead-visible"),
+    true,
+    "the verified-send card and its Finish cover must remain for the full first 2799ms",
+  );
+  dom.advanceTime(1);
+  // REVERSED AGAIN, G Supabase session 2026-09-01 14:08, on the sent tick:
+  // "That's a beautiful box... that should be over the finish box, and then
+  // that should go away." So after the hold the VERIFIED-sent panel leaves the
+  // screen WHOLE - tick still painted inside it, nothing squatting behind.
+  // Only data-box-view "sent" does this; submitted/received/failed panels are
+  // asserted persistent below exactly as before. The dismissal is keyed to the
+  // lead's contact triple so a genuinely new capture can still reopen it.
+  assert.equal(
+    sentPanel.classList.contains("wildworks-lead-visible"),
+    false,
+    "a verified-sent panel must take itself down whole once the hold is up (G 2026-09-01)",
+  );
+
+  // The dismissal belongs only to the contact just sent. A genuinely different
+  // address is a new capture and must restore the card (and suppress Finish)
+  // instead of inheriting a blanket "session-ended" dismissal.
+  openCapture(dom, leadState({ email: OTHER_EMAIL }));
+  assert.equal(
+    sentPanel.classList.contains("wildworks-lead-visible"),
+    true,
+    "a different contact must reopen the capture card after sent dismissal",
+  );
+  assert.equal(view(dom), "captured");
+  assert.equal(dom.doc.getElementById("wildworks-lead-value").value, OTHER_EMAIL);
+}
+
+// D2b. A recovery-only partial deliberately leaves the lead unsubmitted, but
+// a linked outbox that the provider accepted is still real delivery truth. It
+// gets the same two-second confirmation lifecycle without pretending the lead
+// passed the stricter completed-package gate.
+{
+  const dom = bootScript({ fetchImpl: async () => jsonResponse({ ok: true }) });
+  openCapture(dom, leadState({
+    consentStatus: "unknown",
+    contactConfirmedAt: null,
+    partialNotificationOutboxId: "outbox-provider-accepted-partial-test",
+    partialNotificationStatus: "sent",
+    partialNotificationProviderAccepted: true,
+  }));
+
+  assert.equal(view(dom), "sent");
+  assert.equal(captureHidden(dom), "true", "provider-accepted partial replaces the capture box");
+  assert.equal(tick(dom).visible, true, "provider-accepted partial shows the honest sent confirmation");
+  assert.match(tick(dom).text, /sent to Scott/i);
   dom.runTimers();
   assert.equal(
-    tick(dom).visible,
-    false,
-    "the confirmation must clear itself once the two-second hold is up",
-  );
-  assert.equal(
     dom.doc.getElementById("wildworks-lead-confirmation").classList.contains("wildworks-lead-visible"),
-    true,
-    "the panel must not drop itself after a verified send",
+    false,
+    "provider-accepted partial restores Finish after the two-second confirmation",
   );
 }
 
@@ -802,18 +972,42 @@ function fittedRem(dom, value) {
 }
 {
   const dom = bootScript({ fetchImpl: async () => jsonResponse({ ok: true }) });
-  const available = FIELD_BORDER_BOX_PX - CSS_PADDING_PX * 2 - 2 - FIT_RESERVE_PX;
-  assert.ok(available > 0, "the field must leave usable width after padding and the badge reserve");
-
   // E1. A short address reads LARGE - G asked for that explicitly.
   const short = fittedRem(dom, "a@x.test");
   assert.equal(short.rem, FIT_MAX_REM, "a short address must sit at the ceiling");
-  assert.ok(short.field.scrollWidth <= available, "even the short address must fit the content box");
+  assert.ok(short.field.scrollWidth <= short.field.clientWidth, "even the short address must fit the field");
 
   // E2. G's own short address - the one that ran under the badge.
   const g = fittedRem(dom, EMAIL);
-  assert.ok(g.field.scrollWidth <= available,
-    `"${EMAIL}" must stay inside the field (was ${g.field.scrollWidth}px of ${available}px)`);
+  assert.ok(g.field.scrollWidth <= g.field.clientWidth,
+    `the observed short address must stay inside the field (was ${g.field.scrollWidth}px of ${g.field.clientWidth}px)`);
+  // CLAUDE 2026-09-01, calibrated on measurement, NOT on a guess.
+  // Codex set this at 3x the floor, which is right for G's OWN address:
+  // "sgdietz@pm.me" is 13 characters and measured 1.86rem in a real browser,
+  // exactly 3.0x the 0.62rem floor. This fixture's EMAIL is the 19-character
+  // "visitor@example.com", and at this field width 19 characters simply cannot
+  // reach 3x - the arithmetic tops out at 1.16rem (1.87x). Asserting 3x here
+  // would fail forever on a correct build.
+  //
+  // So the fixture address is held at 1.75x, and G's real address is asserted
+  // separately below at 2.5x. The collapse this guards against is NOT weakened:
+  // the old bug drove EVERY address to 0.62rem, which fails both checks.
+  // CLAUDE 2026-09-02 (H464 install): the thresholds were written as
+  // multiples of the 0.62rem floor (1.75x = 1.09rem, 2.5x = 1.55rem). H464
+  // raised FIT_MIN_REM to 1.15 per G ("The box is a little small... a good
+  // 20% wider"), which silently inflated the multiplied thresholds past
+  // their calibrated intent. The intent is the ABSOLUTE minimum legible
+  // size, so the original absolute values are pinned here; the raised floor
+  // only makes every address render larger, never smaller.
+  assert.ok(g.rem >= 1.09,
+    `the observed short address must not collapse toward the floor (was ${g.rem}rem)`);
+
+  // G's own address, the one that shipped at 9.9px on every device.
+  const gReal = fittedRem(dom, "sgdietz@pm.me");
+  assert.ok(gReal.rem >= 1.55,
+    `G's own address must render large, not at the floor (was ${gReal.rem}rem)`);
+  assert.ok(gReal.field.scrollWidth <= gReal.field.clientWidth,
+    "G's own address must still fit the field");
 
   // E3. A realistically long address squeezes down and STILL fits on one line.
   //     This is the case G was worried about - "if an email address from
@@ -821,8 +1015,8 @@ function fittedRem(dom, value) {
   const long = fittedRem(dom, LONG_EMAIL);
   assert.ok(long.rem < FIT_MAX_REM, "a long address must shrink");
   assert.ok(long.rem >= FIT_MIN_REM, "it must not shrink past the legibility floor");
-  assert.ok(long.field.scrollWidth <= available,
-    `a ${LONG_EMAIL.length}-character address must still fit (was ${long.field.scrollWidth}px of ${available}px)`);
+  assert.ok(long.field.scrollWidth <= long.field.clientWidth,
+    `a ${LONG_EMAIL.length}-character address must still fit (was ${long.field.scrollWidth}px of ${long.field.clientWidth}px)`);
 
   // E3b. HONEST DEGRADATION. There is no font size at which a 70+ character
   //      address fits one line in this field and is still readable, so the
@@ -841,7 +1035,7 @@ function fittedRem(dom, value) {
     detail: leadState({ contactMethod: "phone", email: null, phone: PHONE }),
   });
   const phoneField = phoneDom.doc.getElementById("wildworks-lead-value");
-  assert.ok(phoneField.scrollWidth <= available, "a formatted phone number must fit the field");
+  assert.ok(phoneField.scrollWidth <= phoneField.clientWidth, "a formatted phone number must fit the field");
 }
 
 /* ------------------------------------------------------------------ *
@@ -942,9 +1136,10 @@ const Resolve = await import(url("stub-resolve"));
 
 // An in-memory Supabase. Every write is visible to the test, so "the row was
 // never marked accepted" is something we can actually check rather than assume.
-function leadBackend(row, messages = [], outbox = null) {
+function leadBackend(row, messages = [], outbox = null, options = {}) {
   const store = { row: row ? { ...row } : null };
   const writes = [];
+  const sideWrites = [];
   const reply = (data) => ({ ok: true, status: 200, json: async () => data, text: async () => "" });
   const fetchImpl = async (target, init = {}) => {
     const resource = String(target).split("/rest/v1/")[1] ?? String(target);
@@ -966,9 +1161,22 @@ function leadBackend(row, messages = [], outbox = null) {
     // The row the notification outbox already holds for this lead, when the test
     // is about a package that has ALREADY gone.
     if (resource.startsWith("voice_email_outbox")) return reply(outbox ? [outbox] : []);
+    if (/^(?:transcript_events|feedback_events|preference_candidates)/.test(resource)) {
+      const body = init.body ? JSON.parse(init.body) : [];
+      sideWrites.push({ resource, body });
+      if (options.failResource && resource.startsWith(options.failResource)) {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => [],
+          text: async () => "feedback_events_sentiment_check",
+        };
+      }
+      return reply([]);
+    }
     return reply([]);
   };
-  return { store, writes, fetchImpl };
+  return { store, writes, sideWrites, fetchImpl };
 }
 
 // Turns as the sync route persists them, ready to be served back.
@@ -1006,13 +1214,54 @@ const QUALIFIED_ROW = {
 };
 
 const realFetch = globalThis.fetch;
-async function withBackend(row, run, messages = [], outbox = null) {
-  const backend = leadBackend(row, messages, outbox);
+async function withBackend(row, run, messages = [], outbox = null, options = {}) {
+  const backend = leadBackend(row, messages, outbox, options);
   Notify.notifyCalls.length = 0;
   globalThis.fetch = backend.fetchImpl;
   try {
     return { backend, result: await run(backend) };
   } finally {
+    globalThis.fetch = realFetch;
+  }
+}
+
+// G0. 2026-09-02 SEND-FAILURE ROOT CAUSE. A site-quality note used the schema-
+// invalid sentiment "neutral"; feedback_events rejected it and that optional
+// analytics failure aborted the lead sync before the send path. Hold both
+// repairs with one local backend: the emitted site note is negative, and even a
+// forced side-table 400 is logged without rejecting the primary lead update.
+{
+  const siteComplaint = "This website looks wrong.";
+  assert.equal(
+    P.extractOperatorSiteNote([siteComplaint]),
+    "Website display and aesthetics quality",
+    "the fixture must exercise the operator site-note path",
+  );
+  const backend = leadBackend(null, [], null, { failResource: "feedback_events" });
+  const errors = [];
+  const realConsoleError = console.error;
+  globalThis.fetch = backend.fetchImpl;
+  console.error = (...args) => { errors.push(args.map(String).join(" ")); };
+  try {
+    const state = await Capture.processIScottTranscriptRows({
+      sessionId: "sess-side-table-20260902",
+      route: "/pages/avatar-iscott",
+      rows: [{ role: "user", message: siteComplaint, laAbsoluteTimestamp: 10 }],
+    });
+    assert.ok(state, "a side-table failure must not discard the primary lead state");
+    assert.equal(backend.store.row?.session_id, "sess-side-table-20260902");
+    const feedbackRows = backend.sideWrites
+      .filter((entry) => entry.resource.startsWith("feedback_events"))
+      .flatMap((entry) => entry.body);
+    const siteNote = feedbackRows.find((row) => row.mode === "iscott-operator-site-note");
+    assert.ok(siteNote, "the operator site note must still be attempted");
+    assert.equal(siteNote.sentiment, "negative", "site-note sentiment must satisfy the negative|positive schema");
+    assert.ok(
+      errors.some((line) => /iscott extraction event write failed \(400\): feedback_events_sentiment_check/.test(line)),
+      "the optional extraction failure must be logged for operators",
+    );
+  } finally {
+    console.error = realConsoleError;
     globalThis.fetch = realFetch;
   }
 }
@@ -1114,8 +1363,6 @@ const PROOF_TURNS = [
 //        notification mock is NEVER invoked.
 for (const [label, override, reason, request] of [
   ["a lead with no name", { full_name: null }, "missing_full_name", { contactValue: EMAIL }],
-  ["a lead with a generic intent", { project_need: "Landscaping" }, "generic_project_need", { contactValue: EMAIL }],
-  ["a lead with no intent at all", { project_need: null }, "generic_project_need", { contactValue: EMAIL }],
   [
     "a direct API call on a lead that never consented",
     { consent_status: "unknown", contact_confirmed_at: null },
@@ -1217,8 +1464,9 @@ async function ride(rows) {
   assert.equal(Notify.notifyCalls.length, 0, "a nameless lead is never sent");
 }
 
-// H4. NO SPECIFIC PROJECT. Same story: a confirmed address attached to nothing
-//     Scott can quote is not a lead worth his afternoon.
+// H4. NO SPECIFIC PROJECT. G, 2026-09-02 16:47 ET chose (a): "Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
+//     iPad ride fa6b1fe5: name + email + "Yes" was REFUSED for a missing need.
+//     Now: consent + confirmed contact sends; the need is optional.
 {
   const { backend } = await ride([
     NAME_TURN,
@@ -1230,7 +1478,8 @@ async function ride(rows) {
   ]);
   assert.equal(backend.store.row.consent_status, "accepted");
   assert.doesNotMatch(String(backend.store.row.project_need ?? ""), /pool|waterfall/i);
-  assert.equal(Notify.notifyCalls.length, 0, "a lead with only a generic intent is never sent");
+  assert.equal(Notify.notifyCalls.length, 1, "a lead with only a generic intent IS sent (G: a)");
+  assert.equal(backend.store.row.status, "submitted", "and is marked submitted");
 }
 
 // H5. A CHANGED ADDRESS after the read-back invalidates the consent that stood
@@ -1269,7 +1518,9 @@ for (const vague of [
     YES_TURN,
   ]);
   assert.equal(backend.store.row.consent_status, "accepted", `"${vague}": the consent itself is genuine`);
-  assert.equal(Notify.notifyCalls.length, 0, `"${vague}" is not a job Scott can act on, so nothing is sent`);
+  // G, 2026-09-02 16:47 ET chose (a): "Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
+  assert.equal(Notify.notifyCalls.length, 1, `"${vague}" is vague, and it still reaches Scott (G: a)`);
+  assert.equal(backend.store.row.status, "submitted");
 }
 
 // H7. ONE WORD CAN BE THE WHOLE NAME, 2026-08-30. This ride used to assert the
@@ -1640,6 +1891,7 @@ await fs.writeFile(path.join(out, "lt-stub-route-rate.mjs"), `export async funct
 `, "utf8");
 await fs.writeFile(path.join(out, "lt-stub-route-telemetry.mjs"), `export const telemetry = [];
 export async function logServerTelemetryEvent(event) { telemetry.push(event); }
+export async function logIScottOriginRejection() {}
 `, "utf8");
 await fs.writeFile(path.join(out, "lt-stub-route-capture.mjs"), `export const state = {
   behaviour: async () => ({ lead: null, queued: true, delivered: true, detail: "" }),
@@ -1653,6 +1905,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", [
   ['from "../../../../../src/lib/iscottLeadParsing"', 'from "./lt-iscottLeadParsing.mjs"'],
   ['from "../../../../../src/lib/rateLimit"', 'from "./lt-stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./lt-stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./lt-stub-route-telemetry.mjs"'],
 ]);
 const Route = await import(url("route"));
 const RouteCapture = await import(url("stub-route-capture"));

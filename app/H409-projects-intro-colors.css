@@ -1,0 +1,92 @@
+/* H409 - Projects intro visual lines 3 and 4. COLOR ONLY.
+   Packet: H409-projects-intro-colors.
+   No text-shadow. No --ww-color3-full-shadow. No stroke. No filter.
+   No font-size. No padding. H408-subpages already owns those shadows.
+
+   Scott (quote, not a summary):
+     "Okay, so Codex is sending you stuff. I think Claude, you know,
+      whatever, right, may be sending you stuff. okay, so the number
+      three and four lines there, each project is shaped around land.
+      Instead of the number two text color, it should be the number one
+      text color. And the and how its owners want to live should be the
+      number two text color."
+
+   Scott typed palette, no drifting:
+     Primary background  #c44d0b
+     Secondary / card    #e96819
+     Text 1              #fce0ad
+     Text 2              #edc775
+     Text 3              #f08c28
+
+   CLASS NAMES DO NOT MATCH VISUAL LINE NUMBERS. Do not retint by CSS
+   class number as if it were Scott's line number.
+
+     Visual 1  "WildWorks Designs and Builds"
+               .wild-projects-page-intro__line--one / __part--a
+               Text 2 (owned by H364)
+     Visual 2  "Complete Outdoor Environments."
+               same --one / __part--b
+               Text 2 (owned by H364)
+     Visual 3  "Each Project is Shaped Around the Land"
+               .wild-projects-page-intro__line--two
+               currently Text 2 #edc775 → CHANGE to Text 1 #fce0ad
+     Visual 4  "and How its Owners Want to Live."
+               .wild-projects-page-intro__line--three
+               + inner .wild-projects-page-intro__three-ink
+               Text 1 #fce0ad
+
+   --two is visual line 3. --three is visual line 4.
+
+   Kicker pair mapping is owned by H339: lines 1-2 Text 2, lines 3-4 Text 1.
+
+   H407 color HOLD does not apply — this is a new explicit Scott color
+   ask for these two intro lines only.
+
+   Import AFTER H408-subpages BEFORE H232.
+   Filename: H409-projects-intro-colors.css
+
+   Scope: /pages/Projects orange-field intro, visual lines 3 and 4 only.
+   Do not touch: .wild-hero, buttons, H400, Home, Wildfire, Bio, legal,
+   parser, iScott Front Door, H406 overflow, kicker, intro lines 1-2 fill,
+   shadows.
+   Do not restyle Home #services / #ai-websites. Do not restyle Bio mindset.
+   Write iScott not high Scott.
+   Do not out-ladder with :not(#_#_#_...).
+
+   HOW TO WIN WITHOUT A :not(#_#_#_...) LADDER
+   Same house move as installed H401 / H408: double the page class,
+   pin color + -webkit-text-fill-color with !important.
+   Claude: MINOR retire the rival FILL rules listed in HANDOFF.md
+   (H339 --two Text 2, H339 --three Text 1, H359 --two Text 2).
+   Do not rewrite H339's 6000-id ladders (major → bounce Grok).
+   If a retire is a large rewrite, bounce to Grok.
+*/
+
+/* =====================================================================
+   1. VISUAL LINE 3 — "Each Project is Shaped Around the Land"
+   Class is --two. Currently Text 2 #edc775. Scott: number one text color.
+   Text 1 #fce0ad. COLOR ONLY.
+   ===================================================================== */
+.wild-subpage--projects.wild-subpage--projects
+  :is(
+    .wild-projects-page-intro__line--two,
+    .wild-projects-page-intro__line--two *
+  ) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}
+
+/* =====================================================================
+   2. VISUAL LINE 4 — "and How its Owners Want to Live."
+   Class is --three + inner __three-ink. Text 1 #fce0ad. COLOR ONLY.
+   Do not paint .wild-projects-page-kicker__line:nth-child(3).
+   ===================================================================== */
+.wild-subpage--projects.wild-subpage--projects
+  :is(
+    .wild-projects-page-intro__line--three,
+    .wild-projects-page-intro__line--three *,
+    .wild-projects-page-intro__three-ink
+  ) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}

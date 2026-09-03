@@ -10,4 +10,5 @@ export function safeRoute(value: unknown): string;
 export function correlationId(value: unknown): string;
 export function classifyOperationalTelemetryEvent(args: Record<string, unknown>): OperationalAlert | null;
 export function formatOperationalAlert(args: OperationalAlert, timestamp?: string): string;
-export function classifySupabaseOperationalFailure(args: Record<string, unknown>): OperationalAlert;
+export function classifySupabaseOperationalFailure(args: Record<string, unknown>): OperationalAlert | null;
+export function createConnectivityMissGate(options?: { threshold?: number; windowMs?: number }): (args: { key?: unknown; connectivity?: boolean }, now?: number) => boolean;

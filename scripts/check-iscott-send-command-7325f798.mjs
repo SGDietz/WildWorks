@@ -72,4 +72,12 @@ const bare = [turn("assistant", "Scott has built gardens all over Baltimore."), 
 assert.equal(P.detectsContextualContactSendConfirmation(bare, "email", VALUE), false,
   "a plain yes with no question asked must still not grant consent");
 
+// Explaining the permission process is not the permission itself.
+assert.equal(P.isSendCommandConsent("People have to give their permission first, then that fires the send to Scott."), false,
+  "a policy explanation must not be mistaken for the visitor's command");
+assert.equal(P.isSendCommandConsent("You need my permission before you send it to Scott."), false,
+  "stating the prerequisite must not satisfy it");
+assert.equal(P.isSendCommandConsent("You have my permission. Send it to Scott."), true,
+  "an actual first-person permission plus command must remain consent");
+
 console.log("OK - the command is the consent; refusals and bare affirmations unchanged.");

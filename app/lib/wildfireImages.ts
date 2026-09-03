@@ -11,8 +11,8 @@ export const WILDFIRE_CONSTRUCTION_IMAGE_COUNT = 93;
 
 export const wildfireFinishedImages: WildfireFinishedImage[] = [
   {
-    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
-    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
+    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
+    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
     className: "wild-wildfire-photo--hero",
   },
   {
@@ -21,8 +21,8 @@ export const wildfireFinishedImages: WildfireFinishedImage[] = [
     className: "wild-wildfire-photo--deck",
   },
   {
-    src: "/ww-wildfire-night-04-garden-fireplace.jpg",
-    alt: "Project Wildfire garden, boulders, rooftop lounge, and fireplace lighting",
+    src: "/ww-wildfire-night-01-fireplace-patio-lights-off-dark-20260801.png",
+    alt: "Project Wildfire outdoor fireplace, Celtic cross patio, and stonework lit at night",
     className: "wild-wildfire-photo--garden",
   },
   {

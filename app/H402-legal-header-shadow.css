@@ -1,0 +1,46 @@
+/* H402 - legal page top heading, shadow cut 30%.
+
+   G 2026-09-01, looking at the Communications Policy header:
+     "the big text ... this needs to be cut down by thirty percent the shadow
+      effect to go through all the legal pages and just the ... just on the top.
+      That's it. Cut that shadow effect down."
+
+   He said 20% at 4:15 AM and THIRTY percent this morning. Latest wins: 30%.
+
+   CLAUDE REWROTE GROK'S PACKET, and this is why. H402 as delivered restated a
+   three-stop BLACK shadow it believed legal titles inherited from :root in
+   sitewide-black-text-depth.css. MEASURED on the served page with
+   CSS.getMatchedStylesForNode, the winner is something else entirely: a
+   THIRTEEN-stop BROWN ladder reaching 0.089143em, carried by
+   `.wild-section-title.wild-line-title` behind a 400-id :not(#_) chain.
+   Grok's selector computes (1,4,2) and could never have reached it - the file
+   would have installed green and painted nothing, or swapped a brown ladder
+   for a black one. Neither is a 30% cut.
+
+   So this is the SAME ladder, same thirteen stops, same colours and alphas,
+   with every offset multiplied by 0.70. Reach 0.089143em -> 0.062400em.
+   Direction unchanged. No recolor. Fills untouched.
+
+   Weight is 400 ids written as :not(#_) x400 - the house pattern H359 already
+   uses and its own comment endorses - because that is what the incumbent
+   carries. Scoped to html:has(.wild-legal-home) so ONLY legal pages move.
+
+   Import AFTER H232 so it wins on legal titles.
+   ===================================================================== */
+html:has(.wild-legal-home) :is(.wild-legal-title, .wild-section-title.wild-line-title,
+  .wild-legal-hero .wild-legal-title):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+  text-shadow:
+    #23090294 0 0.004800em 0,
+    #22090290 0 0.009600em 0,
+    #2108028d 0 0.014400em 0,
+    #20080288 0 0.019200em 0,
+    #20080285 0 0.024000em 0,
+    #1f080281 0 0.028800em 0,
+    #1e08027d 0 0.033600em 0,
+    #1d070179 0 0.038400em 0,
+    #1c070175 0 0.043200em 0,
+    #1c070171 0 0.048000em 0,
+    #1b06016d 0 0.052800em 0,
+    #1a060169 0 0.057600em 0,
+    #19060165 0 0.062400em 0 !important;
+}

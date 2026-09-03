@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   classifyOperationalTelemetryEvent,
   classifySupabaseOperationalFailure,
+  createConnectivityMissGate,
   compactSafeText,
   formatOperationalAlert,
 } from "../src/lib/wildworksOperationalAlertPolicy.mjs";
@@ -11,6 +12,10 @@ assert.equal(classifyOperationalTelemetryEvent({ eventType: "iscott_lead_email_s
 assert.equal(classifyOperationalTelemetryEvent({ eventType: "iscott_lead_test_held" }), null);
 assert.equal(classifyOperationalTelemetryEvent({ eventType: "validation_error", statusCode: 400 }), null);
 assert.equal(classifyOperationalTelemetryEvent({ eventType: "expected_user_cancellation" }), null);
+assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 1 }), null);
+assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 2 }), null);
+assert.ok(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 3 }));
+assert.ok(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 503, failStreak: 1 }));
 
 const alert = classifyOperationalTelemetryEvent({
   eventType: "iscott_media_store_failed",
@@ -44,5 +49,14 @@ assert.equal(classifySupabaseOperationalFailure({ component: "jobs", operation: 
 assert.equal(classifySupabaseOperationalFailure({ component: "jobs", operation: "RPC cleanup" }).category, "supabase_connectivity");
 assert.equal(classifySupabaseOperationalFailure({ component: "jobs", operation: "RPC cleanup", failureKind: "configuration" }).category, "supabase_configuration");
 assert.equal(classifySupabaseOperationalFailure({ component: "database", operation: "POST row", statusCode: 409 }).category, "supabase_database");
+assert.equal(classifySupabaseOperationalFailure({ component: "voice email outbox", operation: "POST voice_email_outbox", statusCode: 409 }), null);
+assert.ok(classifySupabaseOperationalFailure({ component: "other database", operation: "POST other_table", statusCode: 409 }));
+
+const gate = createConnectivityMissGate({ threshold: 2, windowMs: 60_000 });
+assert.equal(gate({ key: "outbox-read", connectivity: true }, 1_000), false);
+assert.equal(gate({ key: "outbox-read", connectivity: true }, 2_000), true);
+assert.equal(gate({ key: "expired", connectivity: true }, 1_000), false);
+assert.equal(gate({ key: "expired", connectivity: true }, 62_000), false);
+assert.equal(gate({ key: "auth", connectivity: false }, 1_000), true);
 
 console.log("WildWorks operational alert policy checks passed.");
