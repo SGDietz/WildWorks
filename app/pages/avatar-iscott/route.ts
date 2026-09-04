@@ -161,6 +161,7 @@ const wildWorksAvatarOriginBridgeScript = `
         "/api/media/capture",
       ]);
       const originalFetch = window.fetch.bind(window);
+      let latestStartFailureClass = "";
 
       window.__wildworksClientDevice = () => {
         try {
@@ -202,8 +203,10 @@ const wildWorksAvatarOriginBridgeScript = `
 
       window.fetch = async (input, init) => {
         let isMarkedSameOriginRequest = false;
+        let requestPath = "";
         try {
           const url = new URL(requestUrl(input), window.location.href);
+          requestPath = url.pathname;
           isMarkedSameOriginRequest = url.origin === window.location.origin
             && markerPaths.has(url.pathname);
         } catch (error) {}
@@ -218,6 +221,9 @@ const wildWorksAvatarOriginBridgeScript = `
         }
         headers.set(markerName, markerValue);
         const response = await originalFetch(input, { ...(init || {}), headers });
+        if (requestPath === "/api/v1/sessions/start" && !response.ok) {
+          latestStartFailureClass = response.headers.get("x-wildworks-liveavatar-error-class") || "provider_rejected_request";
+        }
         if (response.status === 401 || response.status === 403 || response.status === 429) {
           window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
         }
@@ -234,7 +240,10 @@ const wildWorksAvatarOriginBridgeScript = `
             if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEMPLATE" || tag === "NOSCRIPT") {
               return NodeFilter.FILTER_REJECT;
             }
-            return /^\\s*(?:Forbidden|Too many requests)\\.?\\s*$/i.test(candidate.data || "")
+            const text = candidate.data || "";
+            const isRawStartError = /^\\s*(?:Forbidden|Too many requests|API request failed)\\.?\\s*$/i.test(text);
+            const isGenericCreditAdvice = /Add credits to your LiveAvatar account/i.test(text);
+            return (isRawStartError || isGenericCreditAdvice)
               ? NodeFilter.FILTER_ACCEPT
               : NodeFilter.FILTER_REJECT;
           },
@@ -246,7 +255,16 @@ const wildWorksAvatarOriginBridgeScript = `
           node = walker.nextNode();
         }
         if (!rawNodes.length) return;
-        for (const rawNode of rawNodes) rawNode.data = "";
+        const explicitCreditFailure = latestStartFailureClass === "account_credit_exhausted";
+        let replacementWritten = false;
+        for (const rawNode of rawNodes) {
+          const isCreditAdvice = /Add credits to your LiveAvatar account/i.test(rawNode.data || "");
+          if (isCreditAdvice && explicitCreditFailure) continue;
+          rawNode.data = replacementWritten
+            ? ""
+            : "iScott couldn't start. Tap Talk to try again.";
+          replacementWritten = true;
+        }
         window.dispatchEvent(new CustomEvent("wildworks:avatar-start-failed"));
       };
 

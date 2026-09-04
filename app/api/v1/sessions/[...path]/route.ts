@@ -11,6 +11,10 @@ import {
   clearLiveAvatarIdleSession,
 } from "../../../../../src/lib/liveAvatarIdleSessions";
 import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
+import {
+  classifyLiveAvatarProviderError,
+  readLiveAvatarProviderError,
+} from "../../../../../src/lib/liveAvatarProviderErrors";
 
 // H473c: Node raises Error("aborted") from abortIncoming/socketOnClose when the
 // CLIENT closes the connection mid-request. On this page that is routine - the
@@ -90,6 +94,7 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
 
     const action = path.join("/");
     let failureBody: string | null = null;
+    let failureClass: ReturnType<typeof classifyLiveAvatarProviderError> | null = null;
     if (!response.ok && action !== "stop") {
       // 2026-09-02 (Codex H460 / Claude): production wildworks.ai start returned 400
       // at 21:37Z with an empty telemetry payload, so nobody could see WHY the
@@ -100,6 +105,8 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
       } catch {
         failureBody = null;
       }
+      const providerError = readLiveAvatarProviderError(failureBody ?? "");
+      failureClass = classifyLiveAvatarProviderError(response.status, providerError);
       await logServerTelemetryEvent({
         request,
         eventType: "liveavatar_session_proxy_failed",
@@ -107,7 +114,11 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
         provider: "liveavatar",
         route: `/api/v1/sessions/${action}`,
         statusCode: response.status,
-        payload: { vendorBody: (failureBody ?? "").slice(0, 600) },
+        payload: {
+          failureClass,
+          providerCode: providerError.providerCode,
+          providerMessage: providerError.providerMessage,
+        },
       });
     }
     if (response.ok && action === "start") {
@@ -122,6 +133,9 @@ async function proxyAvatarSessionRequest(request: Request, { params }: Params) {
       headers: {
         "Cache-Control": "no-store",
         "Content-Type": contentType,
+        ...(failureClass
+          ? { "X-WildWorks-LiveAvatar-Error-Class": failureClass }
+          : {}),
       },
     });
   } catch (error) {

@@ -620,6 +620,8 @@ export default function RootLayout({
     // cannot apply until <body> starts parsing.
     <html lang="en" style={{ backgroundColor: "#c44d0b" }}>
       <head>
+        <link rel="preconnect" href="https://api.liveavatar.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://api.liveavatar.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

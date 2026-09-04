@@ -6,6 +6,7 @@ import {
   LANGUAGE,
   VOICE_ID,
 } from "../liveavatar/secrets";
+import { after } from "next/server";
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
 import { logIScottOriginRejection } from "../../../src/lib/iscottOriginTelemetry";
 import { assertAllowedOrigin } from "../../../src/lib/apiRouteSecurity";
@@ -105,6 +106,7 @@ export async function POST(request: Request) {
   };
 
   try {
+    const tokenRequestStartedAt = Date.now();
     const res = await fetch(`${API_URL.replace(/\/$/, "")}/v1/sessions/token`, {
       method: "POST",
       headers: {
@@ -137,21 +139,25 @@ export async function POST(request: Request) {
       );
     }
 
-    await logServerTelemetryEvent({
-      request,
-      eventType: "liveavatar_token_created",
-      severity: "low",
-      provider: "liveavatar",
-      sessionId: data?.data?.session_id,
-      route: "/api/start-session",
-      statusCode: 200,
-      payload: {
-        mode: payload.mode,
-        maxSessionDuration: payload.max_session_duration,
-        hasContext: Boolean(CONTEXT_ID),
-        handoffTruthPolicyVariableSupplied: true,
-        handoffTruthProviderPlaceholderActivationVerified: false,
-      },
+    const tokenRequestMs = Date.now() - tokenRequestStartedAt;
+    after(async () => {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_token_created",
+        severity: "low",
+        provider: "liveavatar",
+        sessionId: data?.data?.session_id,
+        route: "/api/start-session",
+        statusCode: 200,
+        payload: {
+          mode: payload.mode,
+          tokenRequestMs,
+          maxSessionDuration: payload.max_session_duration,
+          hasContext: Boolean(CONTEXT_ID),
+          handoffTruthPolicyVariableSupplied: true,
+          handoffTruthProviderPlaceholderActivationVerified: false,
+        },
+      }).catch(() => undefined);
     });
     return Response.json(data.data);
   } catch (error) {
