@@ -342,3 +342,70 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   -webkit-text-fill-color: #edc775 !important;
   opacity: 1 !important;
 }
+
+/* Legal signup surfaces follow the same flat orange treatment as the legal
+   cards. Keep this scoped to a rendered legal route so the shared signup on
+   Home and the main project pages retains its approved palette. */
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-signup-panel,
+    .wild-signup-choice,
+    .wild-signup-field input,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-signup-consent input[type="checkbox"]
+  ) {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+  background-image: none !important;
+}
+
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-signup-panel,
+    .wild-signup-panel *,
+    .wild-signup-field input,
+    .wild-signup-choice-button,
+    .wild-signup-choice-button *,
+    .wild-signup-submit,
+    .wild-signup-submit *
+  ) {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-signup-field input::placeholder {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Terminal legal-only winner over the global fidelity lock, whose deliberate
+   repeated-ID specificity otherwise restores gold button surfaces later in
+   the cascade. */
+html:has(.wild-legal-home) body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  :is(
+    .wild-signup-panel,
+    .wild-signup-choice,
+    .wild-signup-field input,
+    .wild-signup-choice-button,
+    .wild-signup-submit,
+    .wild-signup-consent input[type="checkbox"]
+  ) {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+  background-image: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+html:has(.wild-legal-home) body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-signup-field input::placeholder {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+}

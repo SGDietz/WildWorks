@@ -1,0 +1,12 @@
+/* G, 2026-09-04: Projects only. The Email Address field is a card surface,
+   so it uses the approved Secondary/Card orange without changing its text,
+   geometry, validation, focus, or form behavior. The repeated footer ID is
+   deliberate: it clears the existing sitewide fidelity lock. */
+html:has(.wild-subpage--projects)
+  body#wildworks-body
+  footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
+  .wild-signup-field input[type="email"] {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+  background-image: none !important;
+}
