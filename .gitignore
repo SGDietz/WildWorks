@@ -14,6 +14,10 @@
 
 # testing
 /coverage
+/.codex-checkpoints/
+/_analysis/
+/work/
+/UserssgdieAppDataLocalTemp*/
 
 # next.js
 /.next/
@@ -31,6 +35,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+/*.log
+/*.stdout.log
+/*.stderr.log
+*.orig
+*.bak-*
+
+# local operational handoffs and generated CLI state
+/HANDOFF-CODEX-*.md
+/RESTART-WILDWORKS-*.md
+/WHERE-WERE-WE-WILDWORKS-*.md
+/CLAUDE-SHADOW-HANDOFF.md
+/supabase/.temp/
 
 # env files (can opt-in for committing if needed)
 .env*
