@@ -785,7 +785,7 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
-  scrollbar-color: #e96819 #c44d0b !important;
+  scrollbar-color: #edc775 #c44d0b !important;
   --ww-home-original-spirit-button: var(--ww-approved-button-material);
 }
 
@@ -809,8 +809,8 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover {
-  background: #e96819 !important;
-  background-color: #e96819 !important;
+  background: #edc775 !important;
+  background-color: #edc775 !important;
   background-image: none !important;
   border-color: #6f2a10 !important;
 }
@@ -1335,9 +1335,9 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
 @media (max-width: 719px) {
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     .wild-mobile-menu-button.wild-mobile-menu-trigger {
-    border: 2px solid #edc775 !important;
+    border: 1px solid #8f3a14 !important;
     border-radius: 9999px !important;
-    outline: 2px solid #edc775 !important;
+    outline: 2px solid #8f3a14 !important;
     outline-offset: -2px !important;
     background: var(--ww-approved-button-material) !important;
     background-color: #e8ad59 !important;

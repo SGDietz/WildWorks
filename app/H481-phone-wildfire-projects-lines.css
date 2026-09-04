@@ -28,22 +28,67 @@
       spans of the same colour.
 
    Layered: a layered !important beats the unlayered ladders that paint these
-   (H127 / H168 / H339 / H441b) without another id race. */
+   (H127 / H168 / H339 / H441b) without another id race.
+
+   REVISED same day, 2026-09-03 (G, second look at the same two screenshots -
+   these supersede the two "After" lines above, and add a third block):
+   1. the whole Wildfire summary paragraph is Text 1 (#fce0ad) on phones, not
+      c1+m1 Text 1 / m2+c3 Text 2. The headline rule is unchanged.
+   2. Ruins small copy drops 22.4px -> 20px on phones.
+   3. the whole Projects intro paragraph AND the whole kicker paragraph are
+      Text 2 (#edc775) on phones, not each span on its own H339 colour.
+   Colour and one font-size only - no wording, size ladder, placement, break
+   or layout moves, and every one of these is inside a phone media query. */
 @layer ww-phone-wildfire-groups {
   @media (max-width: 599px) {
     html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-headline__line--c2 {
       color: #edc775 !important;
       -webkit-text-fill-color: #edc775 !important;
     }
-    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c1,
-    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m1 {
+    /* G, 2026-09-03 (revision of the 11:08 call): the WHOLE summary paragraph
+       is Text 1 on phones now - c1, both halves of c2 (m1 + m2), c3 and the
+       "Patio" span. One subtree rule replaces the earlier c1+m1 / m2+c3
+       two-colour split, so nothing inside this paragraph can drift. Wording,
+       size, weight, line-height and the group structure are untouched, and
+       nothing here applies from 600px up. */
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary,
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary * {
       color: #fce0ad !important;
       -webkit-text-fill-color: #fce0ad !important;
     }
-    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m2,
-    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
-      color: #edc775 !important;
-      -webkit-text-fill-color: #edc775 !important;
+  }
+}
+
+/* The one span the layer above cannot reach: H384-mobile-only-pass L151-154
+   paints .wildfire-hero-summary__patio Text 2 with a layered !important at
+   max-width 599. For IMPORTANT declarations the layer order is reversed, so
+   the EARLIER layer wins - ww-mobile-only-pass (layout.tsx L329) beats
+   ww-phone-wildfire-groups (L375) no matter how many ids I stack. The house
+   answer is H421's: reopen that same layer from this file. Same layer, later
+   source, higher specificity, so this is the last word on "Patio" - and the
+   layer's own 600px+ freeze still holds. */
+@layer ww-mobile-only-pass {
+  @media (max-width: 599px) {
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__patio {
+      color: #fce0ad !important;
+      -webkit-text-fill-color: #fce0ad !important;
+    }
+  }
+}
+
+/* G 2026-09-03, Ruins on the phone: the small copy reads one step too large.
+   20px flat, phone only. The selector is the same pair H380 L70-71 sized to
+   1.4rem/22.4px (unlayered, so a layered !important takes it): every p and li
+   inside a .wild-subpage-section on this page - 30 nodes, the uniform body
+   copy in all six sections. Headings are h1/h2 and the phone line, iScott
+   prompt and the site footer live outside .wild-subpage-section, so none of
+   them move. Font family, line-height, spacing, shadow and colour untouched,
+   and 600px+ keeps 22.4px. */
+@layer ww-phone-ruins-copy {
+  @media (max-width: 599px) {
+    html body#wildworks-body .wild-subpage--ruins .wild-subpage-section p,
+    html body#wildworks-body .wild-subpage--ruins .wild-subpage-section li {
+      font-size: 20px !important;
     }
   }
 }
@@ -61,6 +106,23 @@
     }
     html body#wildworks-body .wild-projects-page-kicker__line {
       display: inline !important;
+    }
+
+    /* G, 2026-09-03 (revision of "keep all the text colors the same here"):
+       on phones both blocks go one colour - the intro paragraph and the kicker
+       paragraph, every child span included, Text 2. Subtree rules so no span
+       is left on its old H339 / H409 colour. Only colour changes here; the
+       sizes, the flex-to-block above, the four spans and their breaks stay
+       exactly as they are, and 521px+ keeps the desktop colour scheme.
+       H384 L104-108 already paints __and-builds and __part--b this same
+       #edc775 in an earlier layer at max-width 599 - same value, so its win
+       over this layer changes nothing on the phone. */
+    html body#wildworks-body .wild-subpage--projects .wild-projects-page-intro,
+    html body#wildworks-body .wild-subpage--projects .wild-projects-page-intro *,
+    html body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker,
+    html body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker * {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
     }
   }
 }

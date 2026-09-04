@@ -11982,6 +11982,12 @@ body .wild-home-hero-stonework-note {
   transition: color 160ms ease, text-decoration-color 160ms ease, transform 160ms ease;
 }
 
+#footer .wild-footer-aiasap-link .wild-footer-aiasap-wordmark {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font-style: italic;
+}
+
 #footer .wild-footer-aiasap-link:hover {
   color: var(--ww-color-1, #fce0ad) !important;
   -webkit-text-fill-color: var(--ww-color-1, #fce0ad) !important;
@@ -13467,7 +13473,7 @@ html,
 body,
 * {
   scrollbar-width: thin;
-  scrollbar-color: #c76830 #a3471c;
+  scrollbar-color: #edc775 #a3471c;
 }
 
 html::-webkit-scrollbar,
@@ -13489,7 +13495,7 @@ body::-webkit-scrollbar-thumb,
 *::-webkit-scrollbar-thumb {
   border: 2px solid #a3471c !important;
   border-radius: 999px !important;
-  background: linear-gradient(180deg, rgba(199, 104, 48, 0.98) 0%, rgba(190, 94, 42, 0.98) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+  background: #edc775 !important;
   box-shadow: inset 0 1px 0 rgba(255, 243, 213, 0.18) !important;
 }
 

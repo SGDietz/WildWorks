@@ -24,8 +24,8 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-h175-ring#ww-h175-ring#ww
   #top.wild-home
   .wild-branded-video
   .wild-branded-video__center-control {
-  border: 2px solid #8b3d16 !important;
-  border: 2px solid var(--ww-h175-video-ring, #8b3d16) !important;
+  border: 1px solid #8b3d16 !important;
+  border: 1px solid var(--ww-h175-video-ring, #8b3d16) !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))

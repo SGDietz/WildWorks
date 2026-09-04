@@ -1,0 +1,67 @@
+/* H482/H483: accepted warm-orange button rim, now site-wide.
+   The prior #6f2a10 -> #7f3212 step was RGB (+16,+8,+2); repeating that exact
+   vector yields #8f3a14, still well short of the unchanged #e96819 card fill.
+   G accepted this exact Home result on 2026-09-04 and requested the same clean
+   one-pixel construction on every main and legal page. Geometry, fills, labels,
+   destinations, ordinary text links and non-button borders stay unchanged. */
+
+:root {
+  --ww-button-rim-color: #8f3a14;
+  --ww-button-inset-top: transparent;
+  --ww-button-inset-bottom: transparent;
+}
+
+/* Actual buttons plus the canonical link-rendered button family. Merely setting
+   border width does not create a line where border-style is none. */
+body#wildworks-body :is(
+  button,
+  [role="button"],
+  .money-cta,
+  .wild-card-cta,
+  .wild-footer-mobile-link,
+  .wild-footer-top-button,
+  .wild-home-phone-iscott-test__button,
+  .wild-iscott-action-button,
+  .wild-iscott-upload__button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  .wild-site-avatar-overlay-cta,
+  .wild-story-action,
+  .wild-utility-button
+) {
+  border-color: #8f3a14 !important;
+  border-width: 1px !important;
+}
+
+/* Keep keyboard focus visible on controls only; ordinary text links and form
+   fields retain their established focus treatment. */
+body#wildworks-body :is(
+  button,
+  [role="button"],
+  .money-cta,
+  .wild-card-cta,
+  .wild-footer-mobile-link,
+  .wild-footer-top-button,
+  .wild-home-phone-iscott-test__button,
+  .wild-iscott-action-button,
+  .wild-iscott-upload__button,
+  .wild-signup-choice-button,
+  .wild-signup-submit,
+  .wild-site-avatar-overlay-cta,
+  .wild-story-action,
+  .wild-utility-button
+):focus-visible {
+  outline-color: #8f3a14 !important;
+}
+
+/* Gallery thumbnails use an inset focus ring so their dimensions never move. */
+body#wildworks-body .wild-home-projects__link:focus-visible {
+  outline-color: #8f3a14 !important;
+}
+
+/* Project Wildfire and Projects share these lightbox controls. */
+body#wildworks-body :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
+  border-color: #8f3a14 !important;
+  border-width: 1px !important;
+  box-shadow: 0 8px 18px var(--ww-card-rim-glow) !important;
+}

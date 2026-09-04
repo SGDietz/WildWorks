@@ -137,7 +137,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
     .wild-mobile-menu-button.wild-mobile-menu-button {
-    border: 2px solid #fff4d2 !important;
+    border: 1px solid #8f3a14 !important;
     border-radius: 9999px !important;
     background: linear-gradient(135deg, var(--ww-legal-primary-card) 0 50%, var(--ww-legal-primary-field) 50% 100%) !important;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.35) !important;
@@ -183,7 +183,7 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   --ww-card-finish: #e96819 !important;
   --ww-card-rim: #fff !important;
   --ww-legal-original-spirit-button: var(--ww-approved-button-material);
-  scrollbar-color: #e96819 #c44d0b !important;
+  scrollbar-color: #edc775 #c44d0b !important;
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
@@ -221,8 +221,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
     .wild-footer-mobile-strip,
     .wild-mobile-menu > div
   ) {
-  background: #e96819 !important;
-  background-color: #e96819 !important;
+  background: #edc775 !important;
+  background-color: #edc775 !important;
   background-image: none !important;
 }
 
@@ -284,8 +284,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-thumb,
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) body::-webkit-scrollbar-thumb {
   border-color: #fff !important;
-  background: #e96819 !important;
-  background-color: #e96819 !important;
+  background: #edc775 !important;
+  background-color: #edc775 !important;
 }
 
 /* Legal-print authority, superseded on 2026-08-10: the base legal copy now

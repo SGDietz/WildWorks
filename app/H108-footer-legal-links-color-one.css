@@ -6,10 +6,18 @@ html
   footer#footer#footer
   :is(
     .wild-footer-closing > span,
-    .wild-footer-closing > span *,
+    .wild-footer-closing > span *:not(.wild-footer-aiasap-wordmark),
     .wild-footer-legal-links,
     .wild-footer-legal-links *
   ) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
+}
+
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  .wild-footer-aiasap-link .wild-footer-aiasap-wordmark {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
 }

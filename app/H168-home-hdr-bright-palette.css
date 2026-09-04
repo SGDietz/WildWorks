@@ -230,7 +230,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
 }
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
-  scrollbar-color: var(--ww-home-hdr-secondary) var(--ww-home-hdr-primary) !important;
+  scrollbar-color: #edc775 var(--ww-home-hdr-primary) !important;
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-track,
@@ -240,7 +240,7 @@ html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-track {
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb {
-  background-color: var(--ww-home-hdr-secondary) !important;
+  background-color: #edc775 !important;
   border-color: #a74322 !important;
 }
 

@@ -50,15 +50,15 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   background-image:
     radial-gradient(circle at 50% -30%, rgba(255, 250, 232, var(--ww-target-button-center-glow, 0.95)), rgba(0, 0, 0, 0) 52%),
     linear-gradient(#fce0ad 0%, #edc775 38%, #f08c28 72%, #c44d0b 100%) !important;
-  border-color: #fce0ad !important;
+  border-color: var(--ww-button-rim-color, #fce0ad) !important;
   color: #e96819 !important;
   -webkit-text-fill-color: #e96819 !important;
   box-shadow: var(
     --ww-large-cta-shadow,
     rgba(58, 33, 8, 0.44) 0px 16px 42px 0px,
     rgba(240, 140, 40, 0.22) 0px 0px 24px 0px,
-    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
-    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset
+    var(--ww-button-inset-top, rgba(252, 224, 173, 0.78)) 0px 1px 0px 0px inset,
+    var(--ww-button-inset-bottom, rgba(196, 77, 11, 0.46)) 0px -1px 0px 0px inset
   ) !important;
   /* G: "even out the brightnesses". No button is dampened relative to another. */
   filter: brightness(var(--ww-large-cta-brightness, 1)) !important;
@@ -570,8 +570,8 @@ html body#wildworks-body :is(
   --ww-large-cta-shadow:
     rgba(58, 33, 8, 0.44) 0px 16px 42px 0px,
     rgba(240, 140, 40, 0.22) 0px 0px 24px 0px,
-    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
-    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
+    var(--ww-button-inset-top, rgba(252, 224, 173, 0.78)) 0px 1px 0px 0px inset,
+    var(--ww-button-inset-bottom, rgba(196, 77, 11, 0.46)) 0px -1px 0px 0px inset !important;
 }
 
 /* G: keep the closing Talk control at its approved level. Signup Email/SMS,
@@ -600,8 +600,8 @@ html body#wildworks-body#wildworks-body#wildworks-body .wild-site-avatar-overlay
   --ww-large-cta-shadow:
     rgba(58, 33, 8, 0.396) 0px 14.4px 37.8px 0px,
     rgba(240, 140, 40, 0.198) 0px 0px 21.6px 0px,
-    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
-    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
+    var(--ww-button-inset-top, rgba(252, 224, 173, 0.78)) 0px 1px 0px 0px inset,
+    var(--ww-button-inset-bottom, rgba(196, 77, 11, 0.46)) 0px -1px 0px 0px inset !important;
   --ww-mobile-talk-font-size: 1.12rem;
   --ww-mobile-talk-icon-size: 1.25rem;
   --ww-mobile-talk-padding: 0.85rem 1rem;
@@ -648,8 +648,8 @@ html:has(#top.wild-home) body#wildworks-body :is(
   --ww-large-cta-shadow:
     rgba(58, 33, 8, 0.396) 0px 14.4px 37.8px 0px,
     rgba(240, 140, 40, 0.198) 0px 0px 21.6px 0px,
-    rgba(252, 224, 173, 0.78) 0px 1px 0px 0px inset,
-    rgba(196, 77, 11, 0.46) 0px -1px 0px 0px inset !important;
+    var(--ww-button-inset-top, rgba(252, 224, 173, 0.78)) 0px 1px 0px 0px inset,
+    var(--ww-button-inset-bottom, rgba(196, 77, 11, 0.46)) 0px -1px 0px 0px inset !important;
   /* -15% on the icons, G 2026-08-28 evening, looking at real screenshots:
      "all the icons are a little too much. Back off the icons, fifteen percent."
      Every alpha and every offset x0.85 off the value above:

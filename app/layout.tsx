@@ -373,6 +373,7 @@ import "./H440-desktop-wildfire-colors.css";
 import "./H441b-mobile-crawl.css";
 import "./H457-home-icon-shadow.css";
 import "./H481-phone-wildfire-projects-lines.css";
+import "./H482-home-button-dark-rims.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";

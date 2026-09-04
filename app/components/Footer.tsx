@@ -461,7 +461,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {"Discover What’s Possible With aiASAP"}
+            {"Discover What’s Possible With "}
+            <span className="wild-footer-aiasap-wordmark">aiASAP</span>
           </a>
           <span
             className="wild-footer-copyright"

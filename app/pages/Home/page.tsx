@@ -3220,7 +3220,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               We Photographed Every Step of the
             </span>
             <span className="wild-wildfire-build-note__line wild-wildfire-build-note__line--middle">
-              Build, from pre-Breaking Ground
+              Build, from Breaking Ground
             </span>
             <span className="wild-wildfire-build-note__line wild-wildfire-build-note__line--close">
               Through the First Wood Fire.

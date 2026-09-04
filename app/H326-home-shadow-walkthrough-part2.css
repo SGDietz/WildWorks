@@ -136,7 +136,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
    G: "I think one font size larger. I don't know. There's something wrong with
    it. I think all the small text should be the number two color." */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home) #projects p:not(.wild-home-projects__tagline):not([class*="title"]):not(#_):not(#_):not(#_) {
-  font-size: 1.125em !important;
+  font-size: 1em !important;
   color: #edc775 !important;
   -webkit-text-fill-color: #edc775 !important;
 }
