@@ -210,10 +210,6 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
-    .wild-legal-card,
-    .wild-legal-index-card,
-    .wild-legal-topbar,
-    .wild-legal-meta-row span,
     .wild-footer-contact-cta,
     .wild-signup-panel,
     .wild-signup-choice,
@@ -223,6 +219,17 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   ) {
   background: #edc775 !important;
   background-color: #edc775 !important;
+  background-image: none !important;
+}
+
+/* Legal content panels are cards, not controls. Keep their established flat
+   copper surface separate from the Color 2 treatment used by the controls in
+   the rule above. */
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(.wild-legal-card, .wild-legal-index-card, .wild-legal-topbar, .wild-legal-meta-row span) {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
   background-image: none !important;
 }
 
