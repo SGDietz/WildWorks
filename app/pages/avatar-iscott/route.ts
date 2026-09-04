@@ -326,7 +326,7 @@ const wildWorksButtonCss = `
       white-space: nowrap !important;
       opacity: 1 !important;
       pointer-events: none !important;
-      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.72), 0 0.38rem 0.58rem rgba(0, 0, 0, 0.3) !important;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.72), 0 0.25rem 0.46rem rgba(0, 0, 0, 0.3) !important;
     }
 
     /* On a phone, use the frame's height to give the loading name a clean
@@ -2629,6 +2629,20 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
       overflow: visible !important;
     }
 
+    /* H483 - G's 2026-09-04 physical laptop/desktop comparison. Desktop is
+       accepted; only the laptop address is too small. The address fit loop
+       shrinks against the input's usable width, and the embedded frame can be
+       narrower in the 1366-class Home layout even though the card geometry is
+       correct. Give only that parent-laptop range 0.4rem more room per side.
+       The fit loop still owns the final size and still shrinks long addresses,
+       so this cannot overflow. Card, field, label and every other breakpoint
+       keep their established geometry. */
+    html[data-ww-parent-laptop]
+      #wildworks-lead-confirmation[data-contact-method="email"]
+      #wildworks-lead-value {
+      padding-inline: 0.55rem !important;
+    }
+
     /* G 2026-09-03 10:5x ET, two screenshots of the YOUR EMAIL box, empty and
        filled: "when it's just your email... it's tucked up against the line on
        the top, though. The second screenshot, that's where it should be before
@@ -2761,6 +2775,18 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
       transform-origin: center center !important;
     }
 
+    /* H482: only the Home iframe gets the repeated two-step orange rim.
+       Standalone iScott retains its existing treatment. No sizing changes. */
+    html[data-ww-avatar-embedded] :is(.btn-inset, [data-ww-talk], [data-ww-finish]) {
+      border-color: #8f3a14 !important;
+      box-shadow: 0 12px 28px rgba(53, 17, 4, 0.28) !important;
+    }
+
+    html[data-ww-avatar-embedded]
+      :is(button, a, input, select, textarea, [role="button"]):focus-visible {
+      outline-color: #8f3a14 !important;
+    }
+
   </style>
 `;
 
@@ -2770,6 +2796,20 @@ const wildWorksLegalBandScript = `
       if (window.parent !== window) {
         document.documentElement.setAttribute("data-ww-avatar-embedded", "true");
       }
+      const syncParentLaptopClass = () => {
+        try {
+          const parentWidth = Number(window.parent.innerWidth);
+          if (window.parent !== window && parentWidth >= 1280 && parentWidth <= 1599) {
+            document.documentElement.setAttribute("data-ww-parent-laptop", "true");
+          } else {
+            document.documentElement.removeAttribute("data-ww-parent-laptop");
+          }
+        } catch (error) {
+          document.documentElement.removeAttribute("data-ww-parent-laptop");
+        }
+      };
+      syncParentLaptopClass();
+      window.addEventListener("resize", syncParentLaptopClass);
       // G's iPad, 2026-08-20: inside an iPadOS frame the inner viewport can
       // be laid out against expanded content, so inner percentages and inner
       // media queries cannot place the video reliably. The parent page is

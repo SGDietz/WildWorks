@@ -62,7 +62,7 @@ for (const field of [
 ]) requireTruth(geometry.includes(field), `iPad geometry telemetry missing: ${field}`);
 
 const finishComment = source.lastIndexOf("Finish has no shadow effect");
-const finishEnd = source.indexOf("/* H458", finishComment);
+const finishEnd = source.indexOf("/* H464", finishComment);
 const finish = source.slice(finishComment, finishEnd);
 const expectedFinishStops = [
   "0 0.01731em 0 rgba(35, 9, 2, 0.518)",
@@ -72,6 +72,7 @@ const expectedFinishStops = [
   "0 0.08654em 0 rgba(27, 7, 1, 0.392)",
   "0 0.10384em 0 rgba(25, 6, 1, 0.36)",
 ];
+requireTruth(finishComment >= 0 && finishEnd >= 0, "Finish shadow authority boundary is missing");
 requireTruth((finish.match(/rgba\(/g) ?? []).length === 6, "Finish six-stop count changed");
 for (const stop of expectedFinishStops) requireTruth(finish.includes(stop), `Finish stop changed: ${stop}`);
 requireTruth(finish.includes("-webkit-text-stroke: 0 !important"), "Finish crispness declaration changed");
