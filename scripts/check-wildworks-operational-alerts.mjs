@@ -16,6 +16,22 @@ assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcri
 assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 2 }), null);
 assert.ok(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 3 }));
 assert.ok(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 503, failStreak: 1 }));
+assert.ok(classifyOperationalTelemetryEvent({ eventType: "voice_email_drain_unavailable", statusCode: 503 }));
+assert.ok(classifyOperationalTelemetryEvent({ eventType: "voice_transcription_fallback_failed", statusCode: 503 }));
+for (const eventType of [
+  "liveavatar_transcript_owner_check_unavailable",
+  "liveavatar_transcript_owner_mismatch",
+  "liveavatar_origin_rejected",
+  "iscott_false_handoff_speech_detected",
+]) {
+  assert.ok(classifyOperationalTelemetryEvent({ eventType, route: "/pages/avatar-iscott", sessionId: "private-session" }),
+    `${eventType} must produce an actionable WildWorks incident`);
+}
+// The duplicate server-side observation defers to the client streak and never
+// raises its own 404 alert, but non-404 server failures still classify.
+assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, deferToClientStreak: true }), null);
+assert.equal(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 404, failStreak: 9, deferToClientStreak: true }), null);
+assert.ok(classifyOperationalTelemetryEvent({ eventType: "liveavatar_transcript_sync_failed", statusCode: 500, deferToClientStreak: true }));
 
 const alert = classifyOperationalTelemetryEvent({
   eventType: "iscott_media_store_failed",
@@ -36,12 +52,67 @@ const text = formatOperationalAlert({
 }, "2026-08-21T12:00:00.000Z");
 assert.doesNotMatch(text, /secret-token|visitor@example\.com|555-1212|secret=yes/);
 assert.match(text, /\[redacted\]|\[email\]|\[phone\]|\[url\]/);
+assert.match(text, /company: WildWorks/);
+assert.match(text, /environment: runtime/);
+assert.match(text, /severity: high/);
+assert.match(text, /stage: iScott media storage/);
 assert.equal(compactSafeText("expected cancellation"), "expected cancellation");
 
-const alertSource = await import("node:fs").then(({ readFileSync }) => readFileSync(new URL("../src/lib/wildworksOperationalAlerts.ts", import.meta.url), "utf8"));
+const { readFileSync } = await import("node:fs");
+const readSource = (relativePath) => readFileSync(new URL(relativePath, import.meta.url), "utf8");
+
+const alertSource = readSource("../src/lib/wildworksOperationalAlerts.ts");
 assert.match(alertSource, /process\.env\.TELEGRAM_ALERT_BOT_TOKEN/);
 assert.match(alertSource, /process\.env\.TELEGRAM_ALERT_CHAT_ID/);
 assert.doesNotMatch(alertSource, /NEXT_PUBLIC_TELEGRAM/);
+// Dispatch admission wiring: the miss gate is bounded, is consulted only for the
+// connectivity category, and the 10-minute dedupe stays in front of every send.
+assert.match(alertSource, /createConnectivityMissGate\(\{\s*threshold:\s*2,\s*windowMs:\s*60_000\s*\}\)/);
+assert.match(alertSource, /alert\.category === "supabase_connectivity" && !admitConnectivity\(/);
+assert.match(alertSource, /const DEDUPE_MS = 10 \* 60 \* 1000;/);
+assert.match(alertSource, /failStreak\?: number \| null;/);
+assert.match(alertSource, /deferToClientStreak\?: boolean;/);
+
+// Both telemetry entry points must forward the streak, and the duplicate
+// server-side sync observation must mark itself as deferring to the client.
+for (const relativePath of ["../app/api/app-events/log/route.ts", "../src/lib/serverTelemetryCapture.ts"]) {
+  const source = readSource(relativePath);
+  assert.match(source, /queueOperationalAlertFromTelemetry\(\{/, relativePath);
+  assert.match(source, /failStreak:[\s\S]{0,240}Number\.isFinite\(value\)/, relativePath);
+}
+const captureSource = readSource("../src/lib/serverTelemetryCapture.ts");
+assert.match(captureSource, /deferToClientStreak: args\.deferToClientStreak === true/);
+// Admission-only: the marker must never reach the stored app_events row.
+const rowStart = captureSource.indexOf("const row = {");
+assert.notEqual(rowStart, -1);
+const rowLiteral = captureSource.slice(rowStart, captureSource.indexOf("\n  };", rowStart));
+assert.doesNotMatch(rowLiteral, /deferToClientStreak/);
+const syncSource = readSource("../app/api/liveavatar/session-transcript/sync/route.ts");
+assert.match(syncSource, /eventType: "liveavatar_transcript_sync_failed"[\s\S]{0,800}deferToClientStreak: true/);
+const healthSource = readSource("../app/api/cron/health/route.ts");
+assert.match(healthSource, /\/v1\/\$\{resourcePath\}\/\$\{encodeURIComponent\(id\)\}/,
+  "health watcher uses exact read-only LiveAvatar resource GET paths");
+assert.match(healthSource, /body\?\.data\?\.id === id/,
+  "a provider 200 is insufficient unless the exact configured ID resolves");
+assert.match(healthSource, /AbortController\(\)[\s\S]{0,500}8_000/,
+  "provider health lookups are time bounded");
+assert.doesNotMatch(healthSource, /payload:[\s\S]{0,120}(LIVEAVATAR_AVATAR_ID|LIVEAVATAR_CONTEXT_ID|LIVEAVATAR_VOICE_ID)/,
+  "configured provider IDs must not enter health telemetry payloads");
+assert.match(healthSource, /status=eq\.dead_letter&last_error=neq\.superseded_by_complete_lead/,
+  "expected retired partial leads do not create noisy Telegram incidents");
+assert.match(healthSource, /notification_status=neq\.sent/,
+  "submitted owner-notification drift is monitored");
+assert.match(healthSource, /visitor_confirmation_status=in\.\(failed,blocked\)/,
+  "partial owner/visitor delivery is monitored rather than silently called success");
+assert.match(healthSource, /visitor_confirmation_status=eq\.queued/,
+  "stale visitor receipt queues are monitored");
+const drainSource = readSource("../app/api/internal/voice-email-drain/route.ts");
+assert.match(drainSource, /result\.failed > 0/,
+  "actual email failures are distinguished from a drain that could not run");
+assert.match(drainSource, /voice_email_drain_unavailable/,
+  "zero-delivery-failure drain outages must not masquerade as rejected email");
+assert.match(drainSource, /voice_transcription_fallback_failed/,
+  "transcription fallback failures retain their own actionable signal");
 
 assert.equal(classifySupabaseOperationalFailure({ component: "leads", operation: "POST table", statusCode: 401 }).category, "supabase_auth");
 assert.equal(classifySupabaseOperationalFailure({ component: "uploads", operation: "storage object", statusCode: 503 }).category, "supabase_storage");

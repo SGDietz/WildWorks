@@ -5,6 +5,10 @@ const TELEMETRY_FAILURES = new Map([
   ["liveavatar_transcript_sync_failed", ["avatar_provider", "iScott transcript sync"]],
   ["liveavatar_session_store_failed", ["supabase_database", "iScott session store"]],
   ["liveavatar_transcript_store_failed", ["supabase_database", "iScott transcript store"]],
+  ["liveavatar_transcript_owner_check_unavailable", ["supabase_database", "iScott transcript ownership check"]],
+  ["liveavatar_transcript_owner_mismatch", ["security", "iScott transcript ownership"]],
+  ["liveavatar_origin_rejected", ["security", "iScott origin guard"]],
+  ["iscott_false_handoff_speech_detected", ["lead_delivery", "iScott handoff truth"]],
   ["public_message_notification_failed", ["lead_delivery", "iScott notification"]],
   ["iscott_lead_capture_failed", ["supabase_database", "iScott lead capture"]],
   ["iscott_lead_confirmation_failed", ["lead_delivery", "iScott lead confirmation"]],
@@ -17,6 +21,8 @@ const TELEMETRY_FAILURES = new Map([
   ["marketing_signup_delivery_failed", ["lead_delivery", "marketing signup"]],
   ["marketing_signup_exception", ["lead_submission", "marketing signup"]],
   ["voice_email_drain_failed", ["background_job", "voice email drain"]],
+  ["voice_email_drain_unavailable", ["background_job", "voice email drain availability"]],
+  ["voice_transcription_fallback_failed", ["background_job", "voice transcription fallback"]],
   ["telemetry_digest_failed", ["background_job", "telemetry digest"]],
   ["liveavatar_transcript_sync_skipped_supabase_missing", ["supabase_configuration", "iScott transcript storage"]],
   ["supabase_configuration_failed", ["supabase_configuration", "Supabase"]],
@@ -53,9 +59,12 @@ export function correlationId(value) {
 
 export function classifyOperationalTelemetryEvent(args) {
   const eventType = String(args?.eventType ?? "");
+  // H455: the client owns the authoritative consecutive-failure streak. The sync
+  // route observes the same provider 404 server-side, so that duplicate marks
+  // itself deferToClientStreak and never dispatches its own alert.
   if (eventType === "liveavatar_transcript_sync_failed"
     && Number(args?.statusCode) === 404
-    && Number(args?.failStreak ?? 0) < 3) return null;
+    && (args?.deferToClientStreak === true || Number(args?.failStreak ?? 0) < 3)) return null;
   const match = TELEMETRY_FAILURES.get(eventType);
   if (!match) return null;
   const [category, component] = match;
@@ -64,6 +73,9 @@ export function classifyOperationalTelemetryEvent(args) {
   return {
     category,
     component,
+    severity: category === "security" || category === "supabase_configuration" ? "critical" : "high",
+    environment: compactSafeText(args?.environment ?? "runtime", 32),
+    stage: compactSafeText(args?.stage ?? component, 80),
     route: safeRoute(args?.route),
     correlationId: correlationId(args?.sessionId ?? `${eventType}:${args?.route ?? "unknown"}`),
     summary: `${eventType}; ${provider}; ${status}`,
@@ -74,6 +86,10 @@ export function formatOperationalAlert(args, timestamp = new Date().toISOString(
   return [
     "WildWorks operational failure",
     `time: ${timestamp}`,
+    "company: WildWorks",
+    `environment: ${compactSafeText(args.environment ?? "runtime", 32)}`,
+    `severity: ${compactSafeText(args.severity ?? "high", 16)}`,
+    `stage: ${compactSafeText(args.stage ?? args.component, 80)}`,
     `category: ${compactSafeText(args.category, 60)}`,
     `component: ${compactSafeText(args.component, 80)}`,
     `route: ${safeRoute(args.route)}`,
@@ -103,6 +119,9 @@ export function classifySupabaseOperationalFailure(args) {
   return {
     category,
     component,
+    severity: category === "supabase_configuration" || category === "supabase_auth" ? "critical" : "high",
+    environment: compactSafeText(args?.environment ?? "runtime", 32),
+    stage: compactSafeText(args?.stage ?? operation, 80),
     route: "/internal/supabase",
     correlationId: correlationId(args?.correlationSource ?? `${component}:${operation}:${statusCode}`),
     summary: `Supabase ${operation}; ${statusCode ? `HTTP ${statusCode}` : "unavailable"}`,

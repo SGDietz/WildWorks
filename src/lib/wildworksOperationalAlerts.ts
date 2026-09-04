@@ -16,6 +16,9 @@ import {
 type OperationalAlert = {
   category: string;
   component: string;
+  severity?: string;
+  environment?: string;
+  stage?: string;
   route: string;
   correlationId: string;
   summary: string;
@@ -72,6 +75,9 @@ export async function sendWildWorksOperationalAlert(alert: OperationalAlert) {
   const normalized = {
     category: compactSafeText(alert.category, 60),
     component: compactSafeText(alert.component, 80),
+    severity: compactSafeText(alert.severity ?? "high", 16),
+    environment: compactSafeText(alert.environment ?? process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "local", 32),
+    stage: compactSafeText(alert.stage ?? alert.component, 80),
     route: safeRoute(alert.route),
     correlationId: compactSafeText(alert.correlationId, 40),
     summary: compactSafeText(alert.summary, 180),
@@ -110,6 +116,7 @@ export function queueOperationalAlertFromTelemetry(args: {
   statusCode?: number | null;
   sessionId?: string | null;
   failStreak?: number | null;
+  deferToClientStreak?: boolean;
 }) {
   const alert = classifyOperationalTelemetryEvent(args);
   if (alert) queueWildWorksOperationalAlert(alert);

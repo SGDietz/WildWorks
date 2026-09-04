@@ -74,14 +74,24 @@ async function handle(request: Request): Promise<Response> {
   }
   const ok = result.ok && transcriptionFallbackErrors === 0;
   if (!ok) {
+    const actualDeliveryFailure = result.failed > 0;
+    const transcriptionFallbackFailure = !actualDeliveryFailure && transcriptionFallbackErrors > 0;
     await logServerTelemetryEvent({
       request,
-      eventType: "voice_email_drain_failed",
+      eventType: actualDeliveryFailure
+        ? "voice_email_drain_failed"
+        : transcriptionFallbackFailure
+          ? "voice_transcription_fallback_failed"
+          : "voice_email_drain_unavailable",
       severity: "high",
-      provider: "resend",
+      provider: actualDeliveryFailure ? "resend" : "local",
       route: "/api/internal/voice-email-drain",
       statusCode: 503,
-      payload: { failed: result.failed, transcriptionFallbackErrors },
+      payload: actualDeliveryFailure
+        ? { failed: result.failed }
+        : transcriptionFallbackFailure
+          ? { transcriptionFallbackErrors }
+          : { reason: result.detail || "drain_unavailable" },
     });
   }
   return Response.json(

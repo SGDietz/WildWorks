@@ -2,6 +2,13 @@ import { authorizeVoiceEmailDrainRequest } from "@/src/lib/voiceCronAuthorizatio
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "@/src/lib/supabaseAdmin";
 import { sendWildWorksOperationalAlert } from "@/src/lib/wildworksOperationalAlerts";
 import { logServerTelemetryEvent } from "@/src/lib/serverTelemetryCapture";
+import {
+  API_KEY as LIVEAVATAR_API_KEY,
+  API_URL as LIVEAVATAR_API_URL,
+  AVATAR_ID as LIVEAVATAR_AVATAR_ID,
+  CONTEXT_ID as LIVEAVATAR_CONTEXT_ID,
+  VOICE_ID as LIVEAVATAR_VOICE_ID,
+} from "@/app/api/liveavatar/secrets";
 
 /**
  * THE CLOUD WATCHER for WildWorks. Added 2026-08-24 on G's instruction:
@@ -37,6 +44,36 @@ const OUTBOX_STUCK_MINUTES = 20;
 
 type Finding = { headline: string; detail: string };
 
+type LiveAvatarResource = "avatar" | "context" | "voice";
+
+async function configuredLiveAvatarResourceResolves(
+  resource: LiveAvatarResource,
+  id: string,
+): Promise<boolean> {
+  if (!LIVEAVATAR_API_KEY || !LIVEAVATAR_API_URL || !id) return false;
+  const resourcePath = resource === "avatar" ? "avatars" : resource === "context" ? "contexts" : "voices";
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+  timeout.unref?.();
+  try {
+    const response = await fetch(
+      `${LIVEAVATAR_API_URL.replace(/\/$/, "")}/v1/${resourcePath}/${encodeURIComponent(id)}`,
+      {
+        headers: { "X-API-KEY": LIVEAVATAR_API_KEY },
+        cache: "no-store",
+        signal: controller.signal,
+      },
+    );
+    if (!response.ok) return false;
+    const body = await response.json().catch(() => null);
+    return body?.data?.id === id;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function countRows(pathAndQuery: string): Promise<number | null> {
   if (!isSupabaseAdminConfigured()) return null;
   try {
@@ -71,6 +108,37 @@ export async function GET(request: Request) {
   const stuckSince = new Date(Date.now() - OUTBOX_STUCK_MINUTES * 60_000).toISOString();
   const since = new Date(Date.now() - LOOKBACK_MINUTES * 60_000).toISOString();
 
+  // Read-only provider guard. These documented GETs do not mint a session or
+  // change provider state; they only prove the exact configured records still
+  // resolve. IDs and provider bodies never enter findings, telemetry, or alerts.
+  const configuredResources = [
+    ["avatar", LIVEAVATAR_AVATAR_ID],
+    ["context", LIVEAVATAR_CONTEXT_ID],
+    ["voice", LIVEAVATAR_VOICE_ID],
+  ] as const;
+  const resourceResults = await Promise.all(
+    configuredResources.map(async ([resource, id]) => ({
+      resource,
+      configured: Boolean(id),
+      resolves: await configuredLiveAvatarResourceResolves(resource, id),
+    })),
+  );
+  for (const result of resourceResults) {
+    if (!result.configured) {
+      findings.push({
+        headline: `LiveAvatar ${result.resource} is not configured`,
+        detail: `The cloud watcher cannot verify the ${result.resource} required by iScott.`,
+      });
+    } else if (!result.resolves) {
+      findings.push({
+        headline: `Configured LiveAvatar ${result.resource} does not resolve`,
+        detail: `The provider's read-only lookup did not return the exact configured ${result.resource}.`,
+      });
+    } else {
+      notes.push(`Configured LiveAvatar ${result.resource} resolves.`);
+    }
+  }
+
   // 1. THE MONEY PATH. A lead that reached the outbox and never left it is a
   //    customer who contacted G and got silence.
   const stuck = await countRows(
@@ -97,7 +165,47 @@ export async function GET(request: Request) {
   if (failed && failed > 0) {
     findings.push({
       headline: `${failed} lead email${failed === 1 ? "" : "s"} failed to send`,
-      detail: "The provider rejected them. These will not retry on their own.",
+      detail: "The last provider attempt failed. The retry worker should recover these; continued failures require attention.",
+    });
+  }
+
+  const deadLetter = await countRows(
+    `voice_email_outbox?select=id&status=eq.dead_letter&last_error=neq.superseded_by_complete_lead&updated_at=gte.${encodeURIComponent(since)}`,
+  );
+  if (deadLetter && deadLetter > 0) {
+    findings.push({
+      headline: `${deadLetter} notification${deadLetter === 1 ? "" : "s"} exhausted retries`,
+      detail: "A non-superseded dead-letter row needs review; the retry worker will not send it again automatically.",
+    });
+  }
+
+  const ownerDrift = await countRows(
+    "iscott_leads?select=session_id&status=eq.submitted&notification_status=neq.sent",
+  );
+  if (ownerDrift && ownerDrift > 0) {
+    findings.push({
+      headline: `${ownerDrift} submitted lead${ownerDrift === 1 ? "" : "s"} lack a sent owner notification`,
+      detail: "Lead state and owner-delivery state disagree and require reconciliation.",
+    });
+  }
+
+  const visitorPairFailures = await countRows(
+    "iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=in.(failed,blocked)",
+  );
+  if (visitorPairFailures && visitorPairFailures > 0) {
+    findings.push({
+      headline: `${visitorPairFailures} visitor receipt${visitorPairFailures === 1 ? "" : "s"} failed after owner submission`,
+      detail: "The paired owner and visitor notification package is only partially complete.",
+    });
+  }
+
+  const staleVisitorQueue = await countRows(
+    `iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=eq.queued&submitted_at=lt.${encodeURIComponent(stuckSince)}`,
+  );
+  if (staleVisitorQueue && staleVisitorQueue > 0) {
+    findings.push({
+      headline: `${staleVisitorQueue} visitor receipt${staleVisitorQueue === 1 ? "" : "s"} stuck queued`,
+      detail: `The visitor side of a submitted package has remained queued for more than ${OUTBOX_STUCK_MINUTES} minutes.`,
     });
   }
 

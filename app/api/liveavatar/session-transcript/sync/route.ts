@@ -313,6 +313,10 @@ export async function POST(request: Request) {
         route: "/api/liveavatar/session-transcript/sync",
         statusCode: liveAvatarResponse.status,
         payload: { startTimestamp, reason, response: liveAvatarJson },
+        // H455: this is the same provider failure the browser already counts.
+        // The client streak decides whether a startup 404 is worth an alert, so
+        // this duplicate observation stays silent. Non-404 statuses still alert.
+        deferToClientStreak: true,
       });
       return Response.json(
         { error: "Failed to fetch LiveAvatar transcript", status: liveAvatarResponse.status },

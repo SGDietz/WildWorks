@@ -20,6 +20,8 @@ export async function logServerTelemetryEvent(args: {
   statusCode?: number | null;
   userVisibleState?: string | null;
   payload?: Record<string, unknown>;
+  // H455: alert-dispatch admission only. Never written to the stored row.
+  deferToClientStreak?: boolean;
 }) {
   const server = getRequestTelemetryContext(args.request);
   const sessionId = cleanString(args.sessionId, 160);
@@ -51,6 +53,7 @@ export async function logServerTelemetryEvent(args: {
     statusCode: row.status_code,
     sessionId: row.session_id ?? row.anonymous_visitor_id,
     failStreak: (() => { const value = (row.payload as Record<string, unknown>).failStreak; return typeof value === "number" && Number.isFinite(value) ? value : null; })(),
+    deferToClientStreak: args.deferToClientStreak === true,
   });
 
   // 2026-08-24: the raw copy used to be written on EVERY event, before the
