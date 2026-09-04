@@ -17,6 +17,12 @@ const module = { exports: {} };
 vm.runInNewContext(compiled, {
   module,
   exports: module.exports,
+  process: {
+    env: {
+      WILDWORKS_SECURE_TAILNET_HOST: "wildworks-device.example.ts.net",
+      WILDWORKS_TAILNET_IP: "192.0.2.10",
+    },
+  },
   URL,
   require: (specifier) => {
     assert.equal(specifier, "next/server");
@@ -34,24 +40,25 @@ const request = ({ host, forwardedProto, path = "/pages/Home?ride=1" }) => ({
 });
 
 assert.deepEqual(
-  middleware(request({ host: "mission-control.tail00dfe0.ts.net" })),
+  middleware(request({ host: "wildworks-device.example.ts.net" })),
   {
     kind: "redirect",
-    location: "https://mission-control.tail00dfe0.ts.net/pages/Home?ride=1",
+    location: "https://wildworks-device.example.ts.net/pages/Home?ride=1",
     status: 308,
   },
 );
 assert.deepEqual(
-  middleware(request({ host: "100.96.131.75:80", path: "/api/start-session" })),
+  middleware(request({ host: "192.0.2.10:80", path: "/api/start-session" })),
   {
     kind: "redirect",
-    location: "https://mission-control.tail00dfe0.ts.net/api/start-session",
+    location: "https://wildworks-device.example.ts.net/api/start-session",
     status: 308,
   },
 );
-assert.equal(middleware(request({ host: "mission-control.tail00dfe0.ts.net", forwardedProto: "https" })).kind, "next");
+assert.equal(middleware(request({ host: "wildworks-device.example.ts.net", forwardedProto: "https" })).kind, "next");
 assert.equal(middleware(request({ host: "localhost:3020" })).kind, "next");
 assert.equal(middleware(request({ host: "wildworks.live", forwardedProto: "https" })).kind, "next");
 
 assert.match(source, /_next\/static\|_next\/image\|favicon\.ico/);
+assert.doesNotMatch(source, /mission-control|100\.96\./);
 console.log("iScott HTTP-to-HTTPS Tailnet redirect checks passed.");
