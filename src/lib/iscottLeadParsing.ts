@@ -22,6 +22,11 @@ import { iscottSalesCopyContextBlock } from "./iscottSalesCopy";
 // generic text, coaching/persona answers, contact mechanics and operator sales
 // language. This only decides which words to hand it.
 const PROJECT_NEED_PATTERNS: RegExp[] = [
+  // Fragmented LiveAvatar speech can put a sentence stop after a contact
+  // preface: "I want Scott to reach out. to me to help me build a digital
+  // company...". Recover the substantive clause instead of treating the
+  // contact action as the job.
+  /\bhelp\s+(?:me|us)\s+((?:build|make|design|create|redo|rebuild|launch)\s+[^.!?]{3,260})/i,
   // Direct answer to "what are you looking to accomplish?": "To build
   // brands." There is no subject because the question already supplied it.
   /^((?:to\s+)?(?:build|make|design|create|redo|rebuild|launch)\s+[^.!?]{3,260})[.!?]*$/i,
@@ -51,6 +56,7 @@ function stripSpokenProjectFiller(text: string): string {
     .replace(/,?\s*\byou know\b,?\s*/gi, " ")
     .replace(/\b(?:um+|uh+|er|ah)\b,?\s*/gi, " ")
     .replace(/\bi(?:'d| would)?\s+(?:want|wanted|need|needed|would like)\s+(?:to\s+)?like\b\s*(?:an?\s+)?/gi, "")
+    .replace(/^(?:like|so|well)\b[\s,.-]*/i, "")
     // H453 (Codex spec, applied by Claude 2026-09-02): "a website and then I What type..." (89c453ff) is
     // the visitor's "a website" plus a restarted clause welded across a transcript break. Cut the tail.
     .replace(/\s+\band then i\b.*$/i, "")
@@ -65,7 +71,7 @@ function stripSpokenProjectFiller(text: string): string {
 // project, and Scott would have opened that lead to read it as the job.
 // Anything that is only about the mechanics of being contacted is not a need.
 const CONTACT_MECHANICS_NEED =
-  /\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|reach me|get in touch|call me|text me)\b/i;
+  /\b(?:phone number|email address|e-?mail|contact (?:info|information|details)|contact me|reach me|reach out|get in touch|call me|text me)\b/i;
 
 // 2026-09-01. THE ECHO TRAP - the fault that cost G's ride 3414643a and locked
 // the lead box in a loop no visitor could ever escape.
@@ -137,20 +143,18 @@ export function isAppScreenCopyEcho(text: string): boolean {
 export function extractProjectNeed(text: string): string | null {
   // The screen's own words are not the visitor's project. See the trap above.
   if (isAppScreenCopyEcho(text)) return null;
-  let captured: string | null = null;
+  let best: string | null = null;
   for (const pattern of PROJECT_NEED_PATTERNS) {
     const match = text.match(pattern);
-    if (match?.[1]) {
-      captured = match[1];
-      break;
-    }
+    if (!match?.[1]) continue;
+    const candidate = stripSpokenProjectFiller(match[1].replace(/\s+/g, " ").trim());
+    if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) continue;
+    if (isCoachingOrPersonaNeed(candidate)) continue;
+    if (CONTACT_MECHANICS_NEED.test(candidate)) continue;
+    const normalized = candidate.charAt(0).toUpperCase() + candidate.slice(1);
+    best = preferProjectNeed(best, normalized);
   }
-  if (!captured) return null;
-  const candidate = stripSpokenProjectFiller(captured.replace(/\s+/g, " ").trim());
-  if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) return null;
-  if (isCoachingOrPersonaNeed(candidate)) return null;
-  if (CONTACT_MECHANICS_NEED.test(candidate)) return null;
-  return candidate.charAt(0).toUpperCase() + candidate.slice(1);
+  return best;
 }
 
 export function isCoachingOrPersonaNeed(candidate: string): boolean {
@@ -230,7 +234,7 @@ export function extractSpokenFullName(text: string, previousAssistantText?: stri
     /\b(?:what(?:'s| is)\s+your\s+(?:full\s+)?name|(?:could|can|would)\s+you\s+(?:please\s+)?(?:share|tell\s+me)\s+(?:your\s+)?(?:full\s+)?name|please\s+(?:share|tell\s+me)\s+(?:your\s+)?(?:full\s+)?name)\b/i
       .test(previousAssistantText.replace(/\s+/g, " ").trim());
   const named = text.match(
-    /\b(?:my name is|my name's|call me)\s+([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})/iu,
+    /\b(?:my name is|my name's|call me)\s+(?:(?:um+|uh+|erm+|hmm+|well|okay|ok|yeah|yes)[,.!?;:\s-]+)*([\p{L}][\p{L}'-]*(?:\s+[\p{L}][\p{L}'-]*){0,3})/iu,
   );
   const directSpoken = text.match(
     /\b(?:i(?:'m| am))\s+([\p{L}][\p{L}'-]*)(?=\s*(?:,|and\b|in\b|from\b|[.!?]|$)|\s*$)/iu,
@@ -451,7 +455,17 @@ export function normalizeSpokenEmail(text: string): string {
     .replace(new RegExp("\\s*" + SPOKEN_AT + "\\s*", "g"), "@")
     .replace(new RegExp("\\s*" + SPOKEN_DOT + "\\s*", "g"), ".")
     .replace(new RegExp("\\s*" + SPOKEN_UNDERSCORE + "\\s*", "g"), "_")
-    .replace(new RegExp("\\s*" + SPOKEN_DASH + "\\s*", "g"), "-");
+    .replace(new RegExp("\\s*" + SPOKEN_DASH + "\\s*", "g"), "-")
+    // A deliberately spelled address arrives as isolated letters or read-back
+    // dashes. Collapse only the three runs touching @ and dot; a preceding
+    // one-letter prose word (or the "s" in "that's") must not join the local
+    // part.
+    .replace(/(?<!['’])\b[a-z0-9]\b(?:[\s,-]+\b[a-z0-9]\b)+(?=\s*@)/gi, (run) =>
+      (run.match(/[a-z0-9]/gi) ?? []).join(""))
+    .replace(/(?<=@)\s*\b[a-z0-9]\b(?:[\s,-]+\b[a-z0-9]\b)+(?=\s*\.)/gi, (run) =>
+      (run.match(/[a-z0-9]/gi) ?? []).join(""))
+    .replace(/(?<=\.)\s*\b[a-z0-9]\b(?:[\s,-]+\b[a-z0-9]\b)+/gi, (run) =>
+      (run.match(/[a-z0-9]/gi) ?? []).join(""));
 }
 
 // Words that only ever appear as a TLD because a sentence carried on. G's ride
@@ -1040,6 +1054,69 @@ export function visitorProjectNeedFromRows(
     projectNeed,
     operatorServiceScript,
   };
+}
+
+export function visitorProjectAreaFromRows(texts: string[]): string | null {
+  const safe = texts.filter(
+    (text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text) && !isAppScreenCopyEcho(text),
+  );
+  let area: string | null = null;
+  for (const text of safe) {
+    const match = text.match(/\b(back\s*yard|front\s*yard|side\s*yard|whole property|entire property|garden|patio)\b/i);
+    if (!match) continue;
+    const normalized = match[1].replace(/\s+/g, " ").toLowerCase();
+    area = normalized === "back yard" ? "backyard"
+      : normalized === "front yard" ? "front yard"
+        : normalized === "side yard" ? "side yard"
+          : normalized;
+  }
+  return area;
+}
+
+function projectDetailKey(value: string): string {
+  return value.toLowerCase()
+    .replace(/\b(?:a|an|the|to|for|me|us|my|our|make|build|create|design|do|help)\b/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function visitorProjectDetailsFromRows(texts: string[]): string[] {
+  const safe = texts.filter(
+    (text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text) && !isAppScreenCopyEcho(text),
+  );
+  const details: string[] = [];
+  for (const text of safe) {
+    const pieces = text.split(/[.!?]+/).map((piece) => piece.trim()).filter(Boolean);
+    for (const piece of pieces) {
+      const followUp = piece.match(/\b(?:like\s+)?with\s+([^.!?]{3,260})/i)?.[1] ?? null;
+      const followUpDetail = followUp
+        ? stripSpokenProjectFiller(followUp.replace(/\s+/g, " ").trim())
+        : null;
+      const detail = extractProjectNeed(piece) ?? (
+        followUpDetail && isSpecificProjectNeed(followUpDetail) && !CONTACT_MECHANICS_NEED.test(followUpDetail)
+          ? followUpDetail.charAt(0).toUpperCase() + followUpDetail.slice(1)
+          : null
+      );
+      if (!detail || !isSpecificProjectNeed(detail)) continue;
+      const cleaned = detail
+        .replace(/\bscott\b/gi, "Scott")
+        .replace(/\ba ruins\b/gi, "ruins")
+        .replace(/\s+/g, " ")
+        .trim();
+      const key = projectDetailKey(cleaned);
+      if (!key) continue;
+      if (details.some((existing) => {
+        const existingKey = projectDetailKey(existing);
+        if (existingKey === key || existingKey.includes(key) || key.includes(existingKey)) return true;
+        const words = key.split(" ");
+        return words.length <= 2 && words.every((word) => existingKey.split(" ").includes(word));
+      })) continue;
+      details.push(cleaned);
+      if (details.length === 8) return details;
+    }
+  }
+  return details;
 }
 
 export function prepareForwardTranscriptRows<T extends {
@@ -2120,6 +2197,37 @@ export function isExactContactReadback(
   return CONTACT_READBACK_SHAPE.test(message.replace(/\s+/g, " ").trim());
 }
 
+/** A confirmed assistant read-back outranks an earlier chopped STT fragment. */
+export function confirmedEmailCandidateFromReadBack(rows: TranscriptTurn[]): string | null {
+  let pending: string | null = null;
+  let confirmed: string | null = null;
+  for (const row of rows) {
+    if (row.role === "assistant") {
+      const candidate = extractEmail(row.message);
+      pending = candidate && CONTACT_READBACK_SHAPE.test(row.message.replace(/\s+/g, " ").trim())
+        ? candidate
+        : null;
+      continue;
+    }
+    if (row.role !== "user") continue;
+    const userEmail = extractEmail(row.message);
+    if (confirmed && userEmail && !sameContactValue("email", confirmed, userEmail)) {
+      confirmed = null;
+    }
+    if (!pending) continue;
+    if (deniesContactReadBack(row.message)) {
+      if (confirmed && sameContactValue("email", confirmed, pending)) confirmed = null;
+      pending = null;
+      continue;
+    }
+    if (detectsContactReadBackCorrect(row.message)) {
+      confirmed = pending;
+    }
+    pending = null;
+  }
+  return confirmed;
+}
+
 // THE ONE DEFINITION OF "the same way to reach this person", 2026-08-29.
 //
 // Every idempotency comparison in the lead pipeline has to agree on this, and
@@ -2479,8 +2587,16 @@ const NON_NAME_WORDS = new Set([
   "tired", "serious", "kidding-me", "in", "out", "up", "down", "yes", "no",
 ]);
 
+const NAME_FILLER_WORDS = new Set([
+  "um", "umm", "uh", "uhh", "erm", "hmm", "hm", "well", "okay", "ok",
+  "yeah", "yep", "yes", "no", "nope", "alright", "right", "so", "like",
+]);
+
 export function isMeaningfulVisitorName(name: string | null | undefined): boolean {
-  const text = (name ?? "").replace(/\s+/g, " ").trim();
+  const text = (name ?? "")
+    .replace(/^[\s.,!?;:'"“”‘’…-]+|[\s.,!?;:'"“”‘’…-]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
   if (text.length < 2 || text.length > 90) return false;
   // A contact value belongs in the contact field, never in the salutation.
   // Keep this ahead of the name-shaped character check so the rule is direct
@@ -2495,6 +2611,7 @@ export function isMeaningfulVisitorName(name: string | null | undefined): boolea
   if (CONTACT_OR_FIELD_LABEL_NAME.test(text)) return false;
   const words = text.toLowerCase().match(/[\p{L}]+/gu) ?? [];
   if (words.length === 0) return false;
+  if (words.every((word) => NAME_FILLER_WORDS.has(word))) return false;
   // A number read out loud is a contact value, not a name - one digit word or
   // ten of them.
   if (words.every((word) => SPOKEN_DIGIT_NAME_WORDS.has(word))) return false;

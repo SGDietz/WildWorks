@@ -47,6 +47,11 @@ const {
 const stored = "abc@example.com";
 assert.equal(extractEmail(stored), stored);
 assert.equal(formatSpokenEmailForReadback(stored), "a-b-c at e-x-a-m-p-l-e dot c-o-m");
+assert.equal(
+  formatSpokenEmailForReadback("alexsmith@pm.me"),
+  "a-l-e-x-s-m-i-t-h at p-m dot m-e",
+  "letter runs use dashed spoken forms without changing the stored email",
+);
 assert.equal(extractEmail(stored), stored, "stored email is not mutated by readback");
 assert.equal(
   formatSpokenEmailForReadback("sg-dietz@example.com"),
@@ -86,6 +91,7 @@ assert.match(overlay, /setCaptureHidden\(true\)/);
 assert.match(overlay, /setCaptureHidden\(false\)/);
 assert.match(overlay, /setSentVisible\(true, method\)/);
 assert.match(overlay, /#wildworks-lead-spoken-readback/);
+assert.match(overlay, /id="wildworks-lead-spoken-readback" aria-hidden="true"/);
 // Shape updated 2026-08-19, intent unchanged. G asked for dashes in the
 // displayed phone number ("443-797-2166 ... just visually"), so the confirmed
 // captured value now passes through displayContact() on its way to the field.

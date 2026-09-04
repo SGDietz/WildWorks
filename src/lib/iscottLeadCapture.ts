@@ -15,6 +15,7 @@ import { queueSupabaseOperationalAlert } from "./wildworksOperationalAlerts";
 import {
   collectBargeInEvents,
   collectOperatorPromptEchoEvents,
+  confirmedEmailCandidateFromReadBack,
   detectsAcceptedFollowUp,
   detectsContactReadBackCorrect,
   detectsFollowUpAcceptance,
@@ -47,6 +48,8 @@ import {
   sessionLooksLikeOperatorQa,
   shouldParseLeadFacts,
   visitorProjectNeedFromRows,
+  visitorProjectAreaFromRows,
+  visitorProjectDetailsFromRows,
 } from "./iscottLeadParsing";
 import { classifyTraffic, trafficColumns } from "./trafficClassification";
 import {
@@ -831,6 +834,15 @@ export async function processIScottTranscriptRows(args: {
     }
     if (isOperatorCorrection(text) || !hasCurrentContact) continue;
   }
+  // Android ride 2026-09-04: the card held a chopped address after a user STT
+  // turn even though iScott later read the complete address back and the
+  // visitor confirmed it. Synchronize that visitor-approved assistant candidate
+  // before chronology and visible lead state are derived.
+  const confirmedReadBackEmail = confirmedEmailCandidateFromReadBack(rows);
+  if (confirmedReadBackEmail && contactMethod !== "phone") {
+    email = confirmedReadBackEmail;
+    contactMethod = "email";
+  }
   const capturedNeed = visitorProjectNeedFromRows(userTurnTexts(rows));
   if (projectNeed && (isOperatorSalesLanguage(projectNeed) || /salesman|super positive/i.test(projectNeed))) {
     projectNeed = null;
@@ -1014,6 +1026,7 @@ export async function processIScottTranscriptRows(args: {
 
   const now = captureTime;
   const userTexts = userTurnTexts(rows);
+  const projectDetails = visitorProjectDetailsFromRows(userTexts);
   let contactPreference: "sms" | "voice" | "email" | null = null;
   for (const text of userTexts) {
     contactPreference = extractContactPreference(text) ?? contactPreference;
@@ -1068,12 +1081,18 @@ export async function processIScottTranscriptRows(args: {
         : {}),
       last_capture_at: now,
       latest_user_timestamp: userRows.at(-1)?.laAbsoluteTimestamp ?? null,
-      follow_up_accepted: detectsFollowUpAcceptance(currentPackageRows),
-      contact_readback_correct: userTurnTexts(currentPackageRows).some((text) => detectsContactReadBackCorrect(text)),
+      // These flags describe the accepted contact package, not the visitor's
+      // answer to a later conversational question such as "anything else?".
+      // Once the state machine has accepted consent for an exactly read-back
+      // contact, a later unrelated "No" cannot erase that event.
+      follow_up_accepted: consentStatus === "accepted" && Boolean(contactConfirmedAt),
+      contact_readback_correct: Boolean(contactConfirmedAt),
       contact_preference: contactPreference,
       operator_prompt_echo: rows.some((row) => row.role === "assistant" && isOperatorPromptEcho(row.message)),
       sales_language: rows.some((row) => isOperatorSalesLanguage(row.message)),
       operator_service_script: capturedNeed.operatorServiceScript,
+      project_area: visitorProjectAreaFromRows(userTexts),
+      project_details: projectDetails,
       operator_site_note: extractOperatorSiteNote(userTexts),
       operator_qa: operatorQa,
       frustration_escalation: userTexts.some((text) => isProfanityEscalation(text)),
@@ -1115,6 +1134,9 @@ export async function processIScottTranscriptRows(args: {
         fullName: row.full_name,
         location: row.location,
         projectNeed: row.project_need,
+        projectDetails: Array.isArray(row.metadata?.project_details)
+          ? row.metadata.project_details.filter((value): value is string => typeof value === "string")
+          : [],
         contactMethod: row.contact_method === "phone" ? "phone" : "email",
         email: row.email,
         phone: row.phone,
@@ -1237,6 +1259,9 @@ export async function processIScottTranscriptRows(args: {
         fullName: row.full_name,
         location: row.location,
         projectNeed: row.project_need,
+        projectDetails: Array.isArray(row.metadata?.project_details)
+          ? row.metadata.project_details.filter((value): value is string => typeof value === "string")
+          : [],
         contactMethod: row.contact_method === "phone" ? "phone" : "email",
         email: row.email,
         phone: row.phone,
@@ -1652,6 +1677,10 @@ export async function confirmAndSubmitIScottLead(args: {
     fullName: confirmed.full_name,
     location: confirmed.location,
     projectNeed: confirmed.project_need,
+    projectArea: typeof confirmed.metadata?.project_area === "string" ? confirmed.metadata.project_area : null,
+    projectDetails: Array.isArray(confirmed.metadata?.project_details)
+      ? confirmed.metadata.project_details.filter((value): value is string => typeof value === "string")
+      : [],
     contactMethod: confirmed.contact_method,
     email: confirmed.email,
     phone: confirmed.phone,
@@ -1707,6 +1736,10 @@ export async function confirmAndSubmitIScottLead(args: {
     metadata: {
       ...(confirmed.metadata ?? {}),
       last_sent_contact: notification.queued ? sentContactValue : lastSentContact(confirmed.metadata),
+      // A submitted package has passed the exact read-back and permission
+      // chronology. Keep the convenience flags aligned with that authority.
+      contact_readback_correct: confirmed.consent_status === "accepted" && Boolean(confirmed.contact_confirmed_at),
+      follow_up_accepted: confirmed.consent_status === "accepted" && Boolean(confirmed.contact_confirmed_at),
     },
     status: failedLeadRetry ? "submitted" : notification.queued ? "submitted" : "confirmed",
     submitted_at: submittedAt,
@@ -1765,6 +1798,16 @@ export async function confirmAndSubmitIScottLead(args: {
             submittedAt: reread.submitted_at,
             fullName: reread.full_name,
             projectNeed: reread.project_need,
+            metadata: reread.metadata,
+            mediaCount: Array.isArray(reread.media_snapshot) ? reread.media_snapshot.length : 0,
+            mediaTypes: Array.isArray(reread.media_snapshot)
+              ? [...new Set(reread.media_snapshot.map((item) => {
+                  const mime = item && typeof item === "object" && typeof (item as { mime_type?: unknown }).mime_type === "string"
+                    ? (item as { mime_type: string }).mime_type.toLowerCase()
+                    : "";
+                  return mime.startsWith("image/") ? "photo" : mime.startsWith("video/") ? "video" : "document";
+                }))]
+              : [],
             consentStatus: reread.consent_status,
             contactConfirmedAt: reread.contact_confirmed_at,
             contactMethod: reread.contact_method,

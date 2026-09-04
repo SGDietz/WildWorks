@@ -3,6 +3,8 @@ import { createHash, randomUUID } from "node:crypto";
 import { truncateUtf8String } from "./apiRouteSecurity";
 import {
   normalizedContactValue,
+  isMeaningfulVisitorName,
+  isSpecificProjectNeed,
   summariseLeadQualification,
   visitorLinesFromTranscript,
 } from "./iscottLeadParsing";
@@ -31,6 +33,7 @@ import {
   emailButton,
   emailPre,
   emailPaintedCopy,
+  emailParagraph,
 } from "./emailTheme";
 import {
   ISCOTT_VISITOR_CONFIRMATION_DEFAULT_STATUS,
@@ -145,6 +148,8 @@ export type IScottLeadEmailArgs = {
   fullName?: string | null;
   location?: string | null;
   projectNeed?: string | null;
+  projectArea?: string | null;
+  projectDetails?: string[] | null;
   contactMethod?: "email" | "phone" | null;
   email?: string | null;
   phone?: string | null;
@@ -666,11 +671,16 @@ async function sendClaimedOutboxRow(
   leaseToken: string,
 ): Promise<VoiceEmailNotificationResult> {
   const recipient = cleanEmail(row.recipient);
+  // Visitor confirmations explicitly invite a reply. Route only that event
+  // back to the configured WildWorks team address; owner mail remains unchanged.
+  const replyTo = row.event_type === "iscott_visitor_confirmation"
+    ? cleanEmail(notificationRecipient())
+    : null;
   const configurationError = wildWorksSenderConfigurationError();
-  if (!recipient || configurationError) {
+  if (!recipient || configurationError || (row.event_type === "iscott_visitor_confirmation" && !replyTo)) {
     const detail = !recipient
       ? "voice_email_recipient_not_configured"
-      : configurationError!;
+      : configurationError ?? "visitor_reply_to_not_configured";
     const failed = await patchOutboxRow(
       row.id,
       voiceEmailConfigurationFailurePatch(row.attempt_count, detail),
@@ -696,6 +706,7 @@ async function sendClaimedOutboxRow(
         {
           from: process.env.RESEND_FROM_EMAIL!,
           to: recipient,
+          ...(replyTo ? { replyTo } : {}),
           subject: row.subject,
           text: row.text_body,
           ...(row.html_body ? { html: row.html_body } : {}),
@@ -1089,6 +1100,71 @@ export async function notifyIScottPartialLeadByEmail(
   return notifyIScottLeadByEmail({ ...args, partial: true });
 }
 
+function polishedProjectNeed(value: string | null): string | null {
+  if (!value || !isSpecificProjectNeed(value)) return null;
+  const cleaned = value
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\bscott\b/gi, "Scott")
+    .replace(/\b(?:and\s+)?everything else\b[.!]?$/i, "with broader landscaping still to be defined")
+    .replace(/[.!]+$/, "");
+  if (!cleaned || /[<>\[\]{}\x00-\x1f]|\b(?:assistant|developer|system|tool call|transcript|supabase)\b/i.test(cleaned)) return null;
+  return truncateUtf8String(cleaned, 240);
+}
+
+function normalizedProjectArea(value: string | null | undefined): string | null {
+  const area = cleanText(value, 80)?.toLowerCase() ?? null;
+  return area && /^(?:backyard|front yard|side yard|whole property|entire property|garden|patio)$/.test(area)
+    ? area
+    : null;
+}
+
+function subjectProjectSummary(projectDetails: string[], projectArea: string | null): string {
+  const need = projectDetails[0]
+    ?.replace(/^a\s+/i, "")
+    .replace(/\s+with broader landscaping still to be defined$/i, "")
+    .replace(/\band an?\s+/gi, "and ")
+    .trim();
+  const more = projectDetails.slice(1, 2).map((detail) => detail
+    .replace(/^(?:a|an|the)\s+/i, "")
+    .replace(/[.!]+$/, "")
+    .trim());
+  const base = [projectArea ? projectArea.replace(/\b\w/g, (letter) => letter.toUpperCase()) : null, need]
+    .filter(Boolean)
+    .join(" ");
+  const summary = `${base}${more.length ? `; ${more.join("; ")}` : ""}`;
+  return truncateUtf8String(summary || "Project details", 80);
+}
+
+function cleanProjectDetails(primary: string | null, values: string[] | null | undefined): string[] {
+  const details = [primary, ...(Array.isArray(values) ? values : [])]
+    .map((value) => polishedProjectNeed(cleanText(value, 400)))
+    .filter((value): value is string => Boolean(value));
+  const unique: string[] = [];
+  for (const detail of details) {
+    const key = detail.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+    if (!key || unique.some((item) => item.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim() === key)) continue;
+    unique.push(detail);
+    if (unique.length === 8) break;
+  }
+  return unique;
+}
+
+function polishedCapturedFact(value: string | null | undefined): string | null {
+  const fact = cleanText(value, 320)
+    ?.replace(/^(?:(?:so|well|um+|uh+|you know|like)[,\s-]*)+/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!fact || /[<>\[\]{}\x00-\x1f]|\b(?:assistant|developer|system|tool call|transcript|supabase)\b/i.test(fact)) return null;
+  return fact;
+}
+
+function safeLeadName(value: string | null | undefined): string {
+  const candidate = cleanText(value, 180);
+  if (!candidate || !isMeaningfulVisitorName(candidate)) return "Visitor";
+  return candidate.replace(/\bscott\b/gi, "Scott");
+}
+
 export async function notifyIScottLeadByEmail(
   args: IScottLeadEmailArgs,
 ): Promise<VoiceEmailNotificationResult> {
@@ -1099,9 +1175,17 @@ export async function notifyIScottLeadByEmail(
     return outboxFailure({ ok: false, status: 0, detail: "invalid_iscott_lead_email", rows: [] });
   }
 
-  const fullName = cleanText(args.fullName, 180) ?? "Name not provided";
+  const fullName = safeLeadName(args.fullName);
   const location = cleanText(args.location, 240);
-  const projectNeed = cleanText(args.projectNeed, 2_000);
+  const projectNeed = polishedProjectNeed(cleanText(args.projectNeed, 2_000));
+  const projectArea = normalizedProjectArea(args.projectArea);
+  const projectDetails = cleanProjectDetails(projectNeed, args.projectDetails);
+  const broaderScope = projectNeed && /\s+with broader landscaping still to be defined$/i.test(projectNeed)
+    ? "Additional landscaping desired; details not discussed"
+    : "Not discussed";
+  const requestedFeatures = projectDetails.length
+    ? projectDetails.map((detail) => detail.replace(/\s+with broader landscaping still to be defined$/i, "")).join("; ")
+    : null;
   const email = cleanEmail(args.email);
   const phone = cleanText(args.phone, 80);
   const contactMethod = args.contactMethod === "phone" ? "Phone call" : "Email";
@@ -1134,10 +1218,16 @@ export async function notifyIScottLeadByEmail(
   const summaryMedia = media.length
     ? ` They uploaded ${media.length} file${media.length === 1 ? "" : "s"} - links below.`
     : "";
-  const summaryWhere = location ? ` in ${location}` : "";
-  const summaryWant = projectNeed
-    ? `wants ${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`
-    : "did not say what the project is yet";
+  const projectSentence = projectNeed
+    ? `${projectArea ? `${projectArea} landscape centered on ` : ""}${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`
+    : null;
+  const projectWithArticle = projectSentence
+    ? /^(?:a|an|the)\b/i.test(projectSentence) ? projectSentence : `a ${projectSentence}`
+    : null;
+  const additionalProjectDetails = projectDetails.slice(1);
+  const summaryDetails = additionalProjectDetails.length
+    ? ` Additional details: ${additionalProjectDetails.join("; ")}.`
+    : "";
   const isFollowUp = Boolean(args.followUp);
   const previousNeed = cleanText(args.followUp?.previousNeed, 400);
   const summary = isFollowUp
@@ -1145,10 +1235,12 @@ export async function notifyIScottLeadByEmail(
       (previousNeed ? ` You already have their first request (${previousNeed}).` : " You already have their first request.") +
       (summaryReach ? ` Same contact: ${summaryReach}.` : "") +
       ` ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`
-    : `${fullName}${summaryWhere} ${summaryWant}.` +
+    : projectWithArticle
+      ? `${fullName} would like help with ${projectWithArticle}.${summaryDetails}`
+      : `${fullName} asked the WildWorks team to follow up, but project details were not discussed.` +
     (summaryReach ? ` Reach them on ${summaryReach}.${summaryPrefers}` : " No contact details were captured.") +
     summaryMedia +
-    ` Confirmed ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`;
+    ` Contact permission is ${args.partial ? "not yet confirmed" : "confirmed"}. Full conversation is behind Open Transcript.`;
 
   // G, 2026-08-19: "I definitely want to qualify leads... he can further probe
   // people with questions on how serious they are, and then you guys can put that
@@ -1163,23 +1255,38 @@ export async function notifyIScottLeadByEmail(
     { hasRealProject: Boolean(projectNeed) },
   );
   const READINESS_COPY: Record<string, string> = {
-    ready: "READY NOW - they asked to get moving",
-    planning: "PLANNING - real project, no date named",
-    early: "EARLY - looking around, not ready",
-    unknown: "NOT ESTABLISHED - iScott did not get a read",
+    ready: "Ready to move forward",
+    early: "Early exploration",
+    planning: "Not discussed",
+    unknown: "Not discussed",
   };
+  const ownership = qual.ownership && /\b(?:i own|we own|my own|rent|lease)\b/i.test(qual.ownership)
+    ? polishedCapturedFact(qual.ownership)
+    : null;
   const qualRows: Array<[string, string | null]> = [
-    ["Readiness", READINESS_COPY[qual.readiness] ?? READINESS_COPY.unknown],
-    ["Timeline", qual.timeline],
-    ["Budget talk", qual.budget],
-    ["Property", qual.ownership],
-    ["Other contractors", qual.competing],
+    ["Readiness", qual.readiness === "ready" || qual.readiness === "early" ? READINESS_COPY[qual.readiness] : null],
+    ["Timing", polishedCapturedFact(qual.timeline)],
+    ["Budget", polishedCapturedFact(qual.budget)],
+    ["Property ownership", ownership],
+    ["Other contractors", polishedCapturedFact(qual.competing)],
   ];
-  const qualText = qualRows
+  const projectRows: Array<[string, string | null]> = [
+    ["Area", projectArea ? projectArea.replace(/\b\w/g, (letter) => letter.toUpperCase()) : null],
+    ["Requested features", requestedFeatures],
+    ["Broader scope", broaderScope === "Not discussed" ? null : broaderScope],
+    ["Location", location],
+    ...qualRows,
+  ];
+  const missingProjectLabels = projectRows.filter(([, value]) => !value).map(([label]) => label);
+  const compactProjectRows: Array<[string, string | null]> = [
+    ...projectRows.filter(([, value]) => Boolean(value)),
+    ["Not discussed", missingProjectLabels.join(", ") || null],
+  ];
+  const qualText = compactProjectRows
     .filter(([, v]) => Boolean(v))
     .map(([k, v]) => `${k}: ${v}`)
     .join("\n");
-  const qualTextBlock = `\n\nHOW SERIOUS\n${qualText}${qual.signals.length ? "" : "\nNothing else was said about timing, budget or ownership."}`;
+  const qualTextBlock = `\n\nPROJECT DETAILS\n${qualText}`;
 
   const subjectLocation = location ? ` — ${location}` : "";
   const isPartial = args.partial === true;
@@ -1188,28 +1295,27 @@ export async function notifyIScottLeadByEmail(
       ? `INCOMPLETE iScott lead — ${fullName}${subjectLocation}`
       : isFollowUp
         ? `UPDATE iScott lead — ${fullName}: also ${projectNeed ?? "a new project"}`
-        : `New iScott lead — ${fullName}${subjectLocation}`,
+        : `New WildWorks inquiry — ${fullName} — ${subjectProjectSummary(projectDetails, projectArea)}`,
     220,
   );
   const detailsText = [
-    isFollowUp ? "Follow-up on a lead you already have" : "New confirmed iScott lead",
+    isFollowUp ? "Follow-up on a lead you already have" : "New WildWorks inquiry",
     isFollowUp && previousNeed ? `Previously: ${previousNeed}` : null,
     `Name: ${fullName}`,
-    location ? `Location: ${location}` : null,
-    `Project: ${projectNeed || "not stated yet"}`, // G, 2026-09-02 16:47 ET, chose (a) to "(a) Send anyway. Email says project need: not stated yet." His word, verbatim: "a".
     `Preferred contact: ${contactMethod}`,
     email ? `Email: ${email}` : null,
     phone ? `Phone: ${phone}` : null,
-    receivedAt ? `Confirmed: ${receivedAt}` : null,
+    `Permission: ${isPartial ? "Not confirmed" : `Confirmed — ${fullName} authorized the WildWorks team to make contact by ${contactMethod.toLowerCase()} about this project.`}`,
+    ...compactProjectRows.map(([label, value]) => `${label}: ${value}`),
     `Session: ${sessionId}`,
     leadDashboardUrl ? `Complete lead: ${leadDashboardUrl}` : null,
     transcriptDashboardUrl ? `Transcript in Supabase: ${transcriptDashboardUrl}` : null,
   ].filter((line): line is string => Boolean(line));
   const mediaText = media.length
-    ? `\n\nUPLOADED PHOTOS AND VIDEOS\n${media.map((item, index) =>
+    ? `\n\nUPLOADED PHOTOS, VIDEOS, AND FILES\n${media.map((item, index) =>
         `${index + 1}. ${item.name} (${item.mimeType}, ${item.sizeBytes} bytes)${item.signedUrl ? `\n   ${item.signedUrl}` : ""}`,
       ).join("\n")}`
-    : "\n\nUPLOADED PHOTOS AND VIDEOS\nNone.";
+    : "\n\nPhotos, videos, or files: None provided.";
   // Transcript is deliberately NOT inlined any more. G: "I shouldn't need the
   // full transcript in the email. That button open transcript, as long as it
   // works, is great." The dashboard link is still in the details above.
@@ -1217,13 +1323,10 @@ export async function notifyIScottLeadByEmail(
 
   const detailRows = [
     ["Name", fullName],
-    ["Location", location],
-    ["Project", projectNeed || "not stated yet"],
     ["Preferred contact", contactMethod],
     ["Email", email],
     ["Phone", phone],
-    ["Confirmed", receivedAt],
-    ["Session", sessionId],
+    ["Permission", isPartial ? "Not confirmed" : `Confirmed — ${fullName} authorized contact by ${contactMethod.toLowerCase()} about this project.`],
   ].filter((row): row is [string, string] => Boolean(row[1]));
   const linksHtml = [
     leadDashboardUrl
@@ -1237,28 +1340,23 @@ export async function notifyIScottLeadByEmail(
     ? media.map((item) => {
         const link = item.signedUrl
           ? `<a href="${escapeHtml(item.signedUrl)}" style="color:${EMAIL_THEME.text1};font-weight:700;text-decoration:underline">Open file</a>`
-          : "Stored privately in Supabase";
-        const preview = item.signedUrl && item.mimeType.startsWith("image/")
-          ? `<div style="margin-top:8px"><a href="${escapeHtml(item.signedUrl)}"><img src="${escapeHtml(item.signedUrl)}" alt="${escapeHtml(item.name)}" style="display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid ${EMAIL_THEME.text1}"></a></div>`
-          : "";
-        return `<li style="margin:0 0 16px;color:${EMAIL_THEME.text1}"><strong>${escapeHtml(item.name)}</strong><br><span style="color:${EMAIL_THEME.text2}">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}${preview}</li>`;
+          : "Secure link unavailable — use Open Complete Lead";
+        return `<li style="margin:0 0 16px;color:${EMAIL_THEME.text1}"><strong>${escapeHtml(item.name)}</strong><br><span style="color:${EMAIL_THEME.text2}">${escapeHtml(item.mimeType)} · ${item.sizeBytes.toLocaleString("en-US")} bytes</span><br>${link}</li>`;
       }).join("")
-    : "<li>None.</li>";
-  const qualLive = qualRows.filter(([, v]) => Boolean(v));
+    : "";
   const html = emailShell({
     title: isFollowUp ? "Lead Update" : "New Confirmed Lead",
     heading: isFollowUp ? "Lead Update: something new" : "New Confirmed Lead",
     eyebrow: "WildWorks · iScott",
     maxWidth: 760,
     bodyHtml: [
-      emailCallout({ label: "Summary", html: emailPaintedCopy(summary) }),
-      qualLive.length
-        ? emailSection({ label: "How serious", html: emailRows(qualLive as Array<[string, string | null | undefined]>) })
-        : "",
-      emailRows(detailRows as Array<[string, string | null | undefined]>),
+      emailCallout({ label: "Project summary", html: emailPaintedCopy(summary) }),
+      emailSection({ label: "Contact", html: emailRows(detailRows as Array<[string, string | null | undefined]>) }),
+      emailSection({ label: "Project", html: emailRows(compactProjectRows) }),
       linksHtml,
-      emailSubheading("Photos, Videos and Files"),
-      `<ol style="padding-left:22px;color:${EMAIL_THEME.text1}">${mediaHtml}</ol>`,
+      media.length
+        ? `${emailSubheading("Photos, Videos and Files — secure links expire after 12 hours")}<ol style="padding-left:22px;color:${EMAIL_THEME.text1}">${mediaHtml}</ol>`
+        : emailParagraph("Photos, videos, or files: None provided."),
     ].join(""),
   });
 

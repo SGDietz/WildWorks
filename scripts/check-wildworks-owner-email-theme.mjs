@@ -67,7 +67,7 @@ for (const eventType of ["iscott_lead", "voice_lead", "voicemail", "telemetry_me
   assert.match(voiceSource, new RegExp(`eventType:\\s*["']${eventType}["']|event_type:\\s*["']${eventType}["']`), `${eventType} remains represented`);
 }
 assert.match(voiceSource, /emailPaintedCopy\(summary\)/, "iScott summary contact values use explicit painted links");
-assert.match(voiceSource, /emailSection\(\{ label: "How serious"/, "qualification panel uses the shared flat section");
+assert.match(voiceSource, /label: "Project"/, "structured project facts use the shared flat section");
+assert.doesNotMatch(voiceSource, /<img src=.*item\.signedUrl/, "owner email uses secure media links, never embedded images");
 
 console.log("WildWorks owner-email H433 theme guard OK.");
-

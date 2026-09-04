@@ -7,7 +7,7 @@ import {
   normalizedPackageIntent,
   normalizedPackageName,
 } from "./iscottLeadParsing";
-import { emailLink, emailParagraph, emailShell, escapeHtml } from "./emailTheme";
+import { emailLink, emailParagraph, emailSection, emailShell, escapeHtml } from "./emailTheme";
 
 // PREPARATION ONLY, 2026-08-29. Nothing in this file is authorized to send.
 //
@@ -68,6 +68,9 @@ export type IScottVisitorConfirmationLeadReread = {
   contactConfirmedAt?: string | null;
   contactMethod?: "email" | "phone" | null;
   email?: string | null;
+  metadata?: Record<string, unknown> | null;
+  mediaCount?: number | null;
+  mediaTypes?: string[] | null;
 };
 
 export type IScottVisitorConfirmationArgs = {
@@ -108,17 +111,21 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // file. Do not rewrite retire. Builders stay defensive: lead may be missing,
 // projectNeed may be null, 400-char need is clipped, never throw.
 // NO SMS. Phone = email-only (contact_method_not_email stays). Twilio is voice.
-export const ISCOTT_VISITOR_CONFIRMATION_SUBJECT = "WildWorks received your request";
-export const ISCOTT_VISITOR_CONFIRMATION_HEADING = "WildWorks received your request.";
-export const ISCOTT_VISITOR_CONFIRMATION_NO_REPLY = "No reply is needed.";
-export const ISCOTT_VISITOR_CONFIRMATION_FROM = "From WildWorks";
-export const ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF = "what you talked about with iScott";
+export const ISCOTT_VISITOR_CONFIRMATION_SUBJECT = "WildWorks received your request.";
+export const ISCOTT_VISITOR_CONFIRMATION_HEADING = "Thanks for reaching out.";
+export const ISCOTT_VISITOR_CONFIRMATION_FROM = "FROM WILDWORKS";
+export const ISCOTT_VISITOR_CONFIRMATION_OPENING = "We received your request and contact information.";
+export const ISCOTT_VISITOR_CONFIRMATION_FOLLOW_UP = "The WildWorks team will review the details and follow up with you by email.";
+export const ISCOTT_VISITOR_CONFIRMATION_REPLY = "You can reply to this email to send a message to the WildWorks team.";
 export const SCOTT_PUBLIC_PHONE = "443-797-2166";
 export const SCOTT_PUBLIC_PHONE_TEL = "tel:+14437972166";
 export const SCOTT_PUBLIC_SITE = "https://wildworks.ai";
 export const SCOTT_PUBLIC_SITE_LABEL = "wildworks.ai";
 
-const BRIEF_SUMMARY_MAX = 400;
+const BRIEF_SUMMARY_MAX = 220;
+const UNSAFE_PROJECT_SUMMARY = /[<>\[\]{}\x00-\x1f]|\b(?:assistant|developer|system|tool(?:[_ -]?call)?|transcript|supabase|dashboard|ignore (?:all |any )?(?:previous|prior)|here is what you told|iscott said|user said)\b/i;
+const NOISY_PROJECT_SUMMARY = /^(?:(?:um+|uh+|erm+|hmm+|like|okay|ok|so|well|yeah|yes|no)[\s,.!?-]*){3,}$/i;
+const GENERIC_PROJECT_SUMMARY = /^(?:not stated(?: yet)?|no project(?: stated)?|unknown|unsure|nothing(?: yet)?|n\/?a)$/i;
 
 function asText(value: unknown): string {
   if (typeof value === "string") return value.replace(/\s+/g, " ").trim();
@@ -150,15 +157,21 @@ function cleanedText(value: unknown): string {
 
 export function briefVisitorSummary(projectNeed: unknown): string {
   try {
-    const cleaned = asText(projectNeed);
-    if (!cleaned) return ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+    const cleaned = asText(projectNeed)
+      .replace(/\b(?:and\s+)?everything else\b[.!]?$/i, "plus additional landscaping to shape the whole space")
+      .replace(/\bscott\b/gi, "Scott")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!cleaned || !isSpecificProjectNeed(cleaned)) return "";
+    if (UNSAFE_PROJECT_SUMMARY.test(cleaned) || NOISY_PROJECT_SUMMARY.test(cleaned) || GENERIC_PROJECT_SUMMARY.test(cleaned)) return "";
+    if (!/[a-z]/i.test(cleaned) || /(?:\b(?:um+|uh+|erm+|hmm+)\b[\s,.!?-]*){3,}/i.test(cleaned)) return "";
     if (cleaned.length <= BRIEF_SUMMARY_MAX) return cleaned;
     const cut = cleaned.slice(0, BRIEF_SUMMARY_MAX);
     const lastSpace = cut.lastIndexOf(" ");
     const clipped = (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:]$/, "");
     return `${clipped}...`;
   } catch {
-    return ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
+    return "";
   }
 }
 
@@ -206,47 +219,70 @@ export function visitorQuoteFromProof(rows: unknown): string {
 }
 
 export type VisitorReceiptCopy = {
-  brief: string;
-  regarding: string;
-  next: string;
-  reach: string;
-  noReply: string;
+  opening: string;
+  uploads: string | null;
+  projectSummary: string | null;
+  followUp: string;
+  contact: string;
+  reply: string;
 };
 
 export function visitorReceiptCopy(args?: {
   projectNeed?: unknown;
+  projectArea?: unknown;
+  projectDetails?: unknown;
+  mediaCount?: unknown;
+  mediaTypes?: unknown;
   contactMethod?: unknown;
   proofRows?: unknown;
 } | null): VisitorReceiptCopy {
   try {
-    const need = asText(args?.projectNeed);
-    const quote = need ? "" : visitorQuoteFromProof(args?.proofRows);
-    const brief = need ? briefVisitorSummary(need) : quote || ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
-    const regarding = need
-      ? `Scott will be reaching out to you regarding: ${brief}.`
-      : quote
-        ? `Here is what you told iScott: "${quote}"`
-        : "Scott will be reaching out to you about your project.";
-    // The receipt only ever goes to an email lead, and it never echoes the
-    // address itself (check-iscott-visitor-confirmation-prep forbids the
-    // contact value in the copy: a receipt that repeats your address is the
-    // shape of a phishing mail, and it leaks on a misdelivery).
-    const next = "Scott will read what you told iScott and reach out by email.";
+    // proofRows is intentionally ignored. Visitor mail may summarize only the
+    // validated structured project field, never conversation or tool output.
+    const details = [args?.projectNeed, ...(Array.isArray(args?.projectDetails) ? args.projectDetails : [])]
+      .map((value) => briefVisitorSummary(value))
+      .filter(Boolean)
+      .filter((value, index, all) => all.findIndex((item) => item.toLowerCase() === value.toLowerCase()) === index)
+      .slice(0, 6);
+    const need = details[0] ?? "";
+    const area = asText(args?.projectArea);
+    const safeArea = /^(?:backyard|front yard|side yard|whole property|entire property|garden|patio)$/i.test(area)
+      ? area.toLowerCase()
+      : "";
+    const needLower = need ? need.charAt(0).toLowerCase() + need.slice(1) : "";
+    const detailTail = details.slice(1).map((detail) => detail
+      .replace(/^(?:a|an|the)\s+/i, "")
+      .replace(/[.!]+$/, "")
+      .trim());
+    const subjectDetails = [need, ...detailTail].filter(Boolean).join("; ");
+    const projectSummary = need
+      ? safeArea
+        ? `Subject: ${safeArea.charAt(0).toUpperCase()}${safeArea.slice(1)} landscape with ${needLower}${detailTail.length ? `; ${detailTail.join("; ")}` : ""}.`
+        : `Subject: ${subjectDetails.charAt(0).toUpperCase()}${subjectDetails.slice(1)}.`
+      : null;
+    const rawMediaCount = Number(args?.mediaCount);
+    const mediaCount = Number.isFinite(rawMediaCount) ? Math.max(0, Math.floor(rawMediaCount)) : 0;
+    const mediaTypes = Array.isArray(args?.mediaTypes)
+      ? [...new Set(args.mediaTypes.map((value) => asText(value).toLowerCase()).filter((value) => /^(?:photo|video|document)$/.test(value)))]
+      : [];
     return {
-      brief,
-      regarding,
-      next,
-      reach: `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
-      noReply: ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+      opening: ISCOTT_VISITOR_CONFIRMATION_OPENING,
+      uploads: mediaCount > 0
+        ? `We also received ${mediaCount} uploaded file${mediaCount === 1 ? "" : "s"}${mediaTypes.length ? ` (${mediaTypes.join(", ")})` : ""}.`
+        : null,
+      projectSummary,
+      followUp: ISCOTT_VISITOR_CONFIRMATION_FOLLOW_UP,
+      contact: `Call ${SCOTT_PUBLIC_PHONE} or visit ${SCOTT_PUBLIC_SITE_LABEL}.`,
+      reply: ISCOTT_VISITOR_CONFIRMATION_REPLY,
     };
   } catch {
-    const brief = ISCOTT_VISITOR_CONFIRMATION_FALLBACK_BRIEF;
     return {
-      brief,
-      regarding: "Scott will be reaching out to you about your project.",
-      next: "Scott will read what you told iScott and reach out next.",
-      reach: `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
-      noReply: ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+      opening: ISCOTT_VISITOR_CONFIRMATION_OPENING,
+      uploads: null,
+      projectSummary: null,
+      followUp: ISCOTT_VISITOR_CONFIRMATION_FOLLOW_UP,
+      contact: `Call ${SCOTT_PUBLIC_PHONE} or visit ${SCOTT_PUBLIC_SITE_LABEL}.`,
+      reply: ISCOTT_VISITOR_CONFIRMATION_REPLY,
     };
   }
 }
@@ -255,24 +291,30 @@ export function iscottVisitorConfirmationLines(projectNeed?: unknown): readonly 
   const copy = visitorReceiptCopy({ projectNeed });
   return [
     ISCOTT_VISITOR_CONFIRMATION_HEADING,
-    copy.regarding,
-    copy.next,
-    copy.reach,
-    copy.noReply,
+    copy.opening,
+    ...(copy.uploads ? [copy.uploads] : []),
+    ...(copy.projectSummary ? ["YOUR PROJECT", copy.projectSummary] : []),
+    copy.followUp,
+    copy.contact,
+    copy.reply,
   ];
 }
 
 // Static frame so module load cannot throw. Live mail uses visitorReceiptCopy.
 export const ISCOTT_VISITOR_CONFIRMATION_LINES: readonly string[] = [
   ISCOTT_VISITOR_CONFIRMATION_HEADING,
-  "Scott will be reaching out to you about your project.",
-  "Scott will read what you told iScott and reach out by email.",
-  `Scott's number is ${SCOTT_PUBLIC_PHONE}. The site is ${SCOTT_PUBLIC_SITE}.`,
-  ISCOTT_VISITOR_CONFIRMATION_NO_REPLY,
+  ISCOTT_VISITOR_CONFIRMATION_OPENING,
+  ISCOTT_VISITOR_CONFIRMATION_FOLLOW_UP,
+  `Call ${SCOTT_PUBLIC_PHONE} or visit ${SCOTT_PUBLIC_SITE_LABEL}.`,
+  ISCOTT_VISITOR_CONFIRMATION_REPLY,
 ];
 
 export function visitorConfirmationText(input?: {
   projectNeed?: unknown;
+  projectArea?: unknown;
+  projectDetails?: unknown;
+  mediaCount?: unknown;
+  mediaTypes?: unknown;
   contactMethod?: unknown;
   proofRows?: unknown;
 } | null): string {
@@ -281,10 +323,12 @@ export function visitorConfirmationText(input?: {
     return [
       ISCOTT_VISITOR_CONFIRMATION_FROM,
       ISCOTT_VISITOR_CONFIRMATION_HEADING,
-      copy.regarding,
-      copy.next,
-      copy.reach,
-      copy.noReply,
+      copy.opening,
+      ...(copy.uploads ? [copy.uploads] : []),
+      ...(copy.projectSummary ? ["YOUR PROJECT", copy.projectSummary] : []),
+      copy.followUp,
+      copy.contact,
+      copy.reply,
     ].join("\n\n");
   } catch {
     return [
@@ -295,27 +339,35 @@ export function visitorConfirmationText(input?: {
 }
 
 const FALLBACK_HTML =
-  "<p>WildWorks received your request. No reply is needed.</p>";
+  "<p>Thanks for reaching out. We received your request and contact information.</p>";
 
 export function visitorConfirmationHtml(input?: {
   projectNeed?: unknown;
+  projectArea?: unknown;
+  projectDetails?: unknown;
+  mediaCount?: unknown;
+  mediaTypes?: unknown;
   contactMethod?: unknown;
   proofRows?: unknown;
 } | null): string {
   try {
     const copy = visitorReceiptCopy(input);
-    const reachHtml =
-      `Scott's number is ${emailLink(SCOTT_PUBLIC_PHONE_TEL, SCOTT_PUBLIC_PHONE)}. ` +
-      `The site is ${emailLink(SCOTT_PUBLIC_SITE, SCOTT_PUBLIC_SITE_LABEL)}.`;
+    const contactHtml =
+      `Call ${emailLink(SCOTT_PUBLIC_PHONE_TEL, SCOTT_PUBLIC_PHONE)} or visit ` +
+      `${emailLink(SCOTT_PUBLIC_SITE, SCOTT_PUBLIC_SITE_LABEL)}.`;
     return emailShell({
       title: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
       heading: ISCOTT_VISITOR_CONFIRMATION_HEADING,
       eyebrow: ISCOTT_VISITOR_CONFIRMATION_FROM,
       bodyHtml: [
-        emailParagraph(safeEscape(copy.regarding)),
-        emailParagraph(safeEscape(copy.next)),
-        emailParagraph(reachHtml),
-        emailParagraph(safeEscape(copy.noReply)),
+        emailParagraph(safeEscape(copy.opening)),
+        copy.uploads ? emailParagraph(safeEscape(copy.uploads)) : "",
+        copy.projectSummary
+          ? emailSection({ label: "YOUR PROJECT", html: emailParagraph(safeEscape(copy.projectSummary)) })
+          : "",
+        emailParagraph(safeEscape(copy.followUp)),
+        emailParagraph(contactHtml),
+        emailParagraph(safeEscape(copy.reply)),
       ].join(""),
     });
   } catch {
@@ -324,7 +376,11 @@ export function visitorConfirmationHtml(input?: {
         title: ISCOTT_VISITOR_CONFIRMATION_SUBJECT,
         heading: ISCOTT_VISITOR_CONFIRMATION_HEADING,
         eyebrow: ISCOTT_VISITOR_CONFIRMATION_FROM,
-        bodyHtml: emailParagraph(safeEscape(ISCOTT_VISITOR_CONFIRMATION_NO_REPLY)),
+        bodyHtml: [
+          emailParagraph(safeEscape(ISCOTT_VISITOR_CONFIRMATION_OPENING)),
+          emailParagraph(safeEscape(ISCOTT_VISITOR_CONFIRMATION_FOLLOW_UP)),
+          emailParagraph(safeEscape(ISCOTT_VISITOR_CONFIRMATION_REPLY)),
+        ].join(""),
       });
     } catch {
       return FALLBACK_HTML;
@@ -355,6 +411,7 @@ export function iscottVisitorConfirmationPackageVersionHash(args: {
   sessionId: string;
   fullName?: string | null;
   projectNeed?: string | null;
+  projectDetails?: string[] | null;
   email?: string | null;
   submittedAt?: string | null;
   contactConfirmedAt?: string | null;
@@ -364,6 +421,7 @@ export function iscottVisitorConfirmationPackageVersionHash(args: {
     cleanedText(args?.sessionId),
     normalizedPackageName(args?.fullName) ?? "",
     normalizedPackageIntent(args?.projectNeed) ?? "",
+    (args?.projectDetails ?? []).map((value) => normalizedPackageIntent(value) ?? "").filter(Boolean),
     "email",
     normalizedContactValue("email", args?.email) ?? "",
     cleanedText(args?.submittedAt),
@@ -456,6 +514,9 @@ export function prepareIScottVisitorConfirmation(
           sessionId,
           fullName: lead.fullName ?? null,
           projectNeed: lead.projectNeed ?? null,
+          projectDetails: Array.isArray(lead.metadata?.project_details)
+            ? lead.metadata.project_details.filter((value): value is string => typeof value === "string")
+            : [],
           email: lead.email ?? null,
           submittedAt: lead.submittedAt ?? null,
           contactConfirmedAt: lead.contactConfirmedAt ?? null,
@@ -466,6 +527,10 @@ export function prepareIScottVisitorConfirmation(
     }
     const bodies = {
       projectNeed: lead.projectNeed ?? null,
+      projectArea: lead.metadata?.project_area ?? null,
+      projectDetails: lead.metadata?.project_details ?? [],
+      mediaCount: lead.mediaCount ?? 0,
+      mediaTypes: lead.mediaTypes ?? [],
       contactMethod: lead.contactMethod ?? null,
       proofRows: a.proofRows ?? [],
     };

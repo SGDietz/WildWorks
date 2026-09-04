@@ -1225,6 +1225,47 @@ async function withBackend(row, run, messages = [], outbox = null, options = {})
   }
 }
 
+// Android ride 2026-09-04: speech recognition first left a chopped address in
+// the visible box, then iScott spoke the complete address and the visitor
+// affirmed that the read-back was right while complaining that the box had not
+// updated. Exercise the real transcript processor and then feed its serialized
+// state through the real page script, so this is not only a parser-unit test.
+{
+  const rows = [
+    { role: "user", message: "I T H at P M dot M E", laAbsoluteTimestamp: 10 },
+    { role: "assistant", message: "I have your email as A-L-E-X-S-M-I-T-H at P-M dot M-E. Did I get that right?", laAbsoluteTimestamp: 12 },
+    { role: "user", message: "You just said it perfectly, but it didn't come up in the box.", laAbsoluteTimestamp: 14 },
+  ];
+  const { result, backend } = await withBackend(
+    null,
+    () => Capture.processIScottTranscriptRows({
+      sessionId: "sess-android-readback-repaint-20260904",
+      route: "/pages/avatar-iscott",
+      rows,
+    }),
+  );
+  assert.ok(result, "the real transcript processor must return visible lead state");
+  assert.equal(result.email, "alexsmith@pm.me", "confirmed assistant read-back becomes the canonical stored email");
+  assert.equal(result.contactMethod, "email");
+  assert.equal(backend.store.row?.email, "alexsmith@pm.me", "the serialized sync row stores the canonical address");
+
+  const dom = bootScript({ fetchImpl: async () => jsonResponse({ ok: true }) });
+  openCapture(dom, leadState({
+    sessionId: result.sessionId,
+    contactMethod: result.contactMethod,
+    email: result.email,
+    phone: result.phone,
+    status: result.status,
+    consentStatus: result.consentStatus,
+    contactConfirmedAt: result.contactConfirmedAt,
+  }));
+  assert.equal(
+    dom.doc.getElementById("wildworks-lead-value").value,
+    "alexsmith@pm.me",
+    "the shipped DOM repaint replaces the chopped visible value with the confirmed full address",
+  );
+}
+
 // G0. 2026-09-02 SEND-FAILURE ROOT CAUSE. A site-quality note used the schema-
 // invalid sentiment "neutral"; feedback_events rejected it and that optional
 // analytics failure aborted the lead sync before the send path. Hold both

@@ -328,6 +328,7 @@ try {
     telemetry: `export async function logServerTelemetryEvent(event){ globalThis.__speechTruthTelemetry.push(event); } export async function logIScottOriginRejection(){}`,
     security: `export function assertAllowedOrigin(){ return null; }`,
     rateLimit: `export async function checkCriticalRateLimit(){ return null; }`,
+    nextServer: `export function after(task){ globalThis.__speechTruthAfterTasks.push(task); }`,
   };
   for (const [name, source] of Object.entries(stubs)) {
     await fs.writeFile(path.join(temp, `${name}.mjs`), source, "utf8");
@@ -339,10 +340,12 @@ try {
     .replace('from "../../../src/lib/iscottOriginTelemetry"', `from "${fileUrl("telemetry.mjs")}"`)
     .replace('from "../../../src/lib/apiRouteSecurity"', `from "${fileUrl("security.mjs")}"`)
     .replace('from "../../../src/lib/rateLimit"', `from "${fileUrl("rateLimit.mjs")}"`)
+    .replace('from "next/server"', `from "${fileUrl("nextServer.mjs")}"`)
     .replace('from "../../../src/lib/iscottRuntimeSpeechTruth"', `from "${fileUrl("policy.mjs")}"`);
   await fs.writeFile(path.join(temp, "route.mjs"), routeOutput, "utf8");
 
   globalThis.__speechTruthTelemetry = [];
+  globalThis.__speechTruthAfterTasks = [];
   let providerPayload = null;
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (_url, init) => {
@@ -359,6 +362,9 @@ try {
       headers: { origin: "https://wildworks.ai" },
     }));
     assert.equal(response.status, 200);
+    assert.equal(globalThis.__speechTruthTelemetry.length, 0,
+      "success telemetry must not hold the mint response open");
+    await Promise.all(globalThis.__speechTruthAfterTasks.map((task) => task()));
   } finally {
     globalThis.fetch = originalFetch;
   }

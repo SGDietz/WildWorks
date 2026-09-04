@@ -27,6 +27,7 @@ const {
   extractSpokenFullName,
   formatLeadTranscript,
   evaluateIScottCaptureSlice,
+  evaluateLeadPackageChronology,
   allowedAvatarHandoffSpeech,
   isSendConfirmationReply,
   isSendCommandConsent,
@@ -54,6 +55,8 @@ const {
   VISIBLE_UPLOAD_CONTROL_LABEL,
   prepareForwardTranscriptRows,
   visitorProjectNeedFromRows,
+  visitorProjectAreaFromRows,
+  visitorProjectDetailsFromRows,
   collectOperatorPromptEchoEvents,
   formatLeadContactDisplay,
   FIVE_STANDARD_VIEWPORTS,
@@ -76,6 +79,7 @@ const {
   providerConfidenceFromRow,
   originalTranscriptTimestamp,
   normalizeSpokenEmail,
+  confirmedEmailCandidateFromReadBack,
   confirmingHandoffStatusCopy,
   leadHasSendPermission,
   capturedAwaitingPermissionCopy,
@@ -634,6 +638,13 @@ assert.equal(extractProjectNeed("No, I want you to be like a super positive sale
 assert.equal(w2Slice.projectNeed, null, "WW-23 operator sales script is not visitor project_need");
 assert.doesNotMatch(w2Slice.projectNeed ?? "", /salesman|branding/i, "WW-23 coaching excluded from project need");
 const needSplit = visitorProjectNeedFromRows(compacted.filter((row) => row.role === "user").map((row) => row.message));
+assert.equal(
+  visitorProjectAreaFromRows(["So I, you know, my backyard, I want a pool and a waterfall and everything else."]),
+  "backyard",
+  "explicit project area becomes a structured fact without preserving filler",
+);
+assert.equal(visitorProjectAreaFromRows(["I need a pool and waterfall."]), null,
+  "project area is not invented when it was not discussed");
 assert.equal(needSplit.projectNeed, null, "WW-23 production splitter keeps visitor need empty");
 assert.match(needSplit.operatorServiceScript ?? "", /logo|artwork|branding/i, "WW-23 script stays in operator lane");
 assert.equal(
@@ -1050,6 +1061,44 @@ assert.match(
 assert.match(syncSrc, /original_absolute_timestamp/, "L18/33 capture uses original event time");
 assert.match(syncSrc, /Legacy uniqueness offset only/, "L19 uniqueness increment is labeled leftover");
 assert.equal(normalizeSpokenEmail("name dash test at example dot com").includes("name-test@example.com"), true);
+assert.equal(extractEmail("A L E X S M I T H at P M dot M E"), "alexsmith@pm.me");
+assert.equal(extractEmail("A-L-E-X-S-M-I-T-H at P-M dot M-E"), "alexsmith@pm.me");
+assert.equal(
+  confirmedEmailCandidateFromReadBack([
+    { role: "user", message: "I T H at P M dot M E", laAbsoluteTimestamp: 1 },
+    { role: "assistant", message: "That's A-L-E-X-S-M-I-T-H at P-M dot M-E. Did I hear that exactly right?", laAbsoluteTimestamp: 2 },
+    { role: "user", message: "Perfect. Yes, that is exactly right.", laAbsoluteTimestamp: 3 },
+  ]),
+  "alexsmith@pm.me",
+  "affirmed full read-back supersedes the partial STT/display fragment",
+);
+assert.equal(
+  confirmedEmailCandidateFromReadBack([
+    { role: "assistant", message: "That's A-L-E-X-S-M-I-T-H at P-M dot M-E. Did I hear that exactly right?", laAbsoluteTimestamp: 1 },
+    { role: "user", message: "No, that is wrong.", laAbsoluteTimestamp: 2 },
+  ]),
+  null,
+  "a denied read-back never becomes canonical",
+);
+assert.equal(
+  confirmedEmailCandidateFromReadBack([
+    { role: "assistant", message: "I have your email as old@example.com. Did I get that right?", laAbsoluteTimestamp: 1 },
+    { role: "user", message: "Yes, that's right.", laAbsoluteTimestamp: 2 },
+    { role: "user", message: "Actually use new@example.com instead.", laAbsoluteTimestamp: 3 },
+  ]),
+  null,
+  "a later materially different visitor email invalidates an older confirmed candidate",
+);
+assert.equal(
+  confirmedEmailCandidateFromReadBack([
+    { role: "assistant", message: "I have your email as old@example.com. Did I get that right?", laAbsoluteTimestamp: 1 },
+    { role: "user", message: "Yes, that's right.", laAbsoluteTimestamp: 2 },
+    { role: "assistant", message: "I have your email as old@example.com. Is that right?", laAbsoluteTimestamp: 3 },
+    { role: "user", message: "No, that is wrong.", laAbsoluteTimestamp: 4 },
+  ]),
+  null,
+  "a later denial of the same read-back invalidates its older confirmation",
+);
 
 const replayRows = replay76.turns.map((row) => ({
   role: row.role,
@@ -1448,6 +1497,7 @@ for (const placeholder of [
   null, undefined, "", "   ", "a", "N/A", "n/a", "none", "unknown", "test", "Testing",
   "visitor", "Guest", "anonymous", "someone", "no name", "First Last", "my name",
   "asdf", "qwerty", "xxx", "1234", "???", "idk",
+  "Um", "um,", "UH!", "erm", "hmm", "well", "okay", "ok", "yeah", "yes",
 ]) {
   assert.equal(
     isMeaningfulVisitorName(placeholder),
@@ -1480,6 +1530,16 @@ assert.equal(
   nextIScottLeadQuestion({ fullName: "N/A", projectNeed: "A pool and a waterfall out back" }).step,
   "full_name",
   "iScott asks again rather than accepting a placeholder",
+);
+assert.equal(
+  nextIScottLeadQuestion({ fullName: "Um", projectNeed: "A big swimming pool" }).step,
+  "full_name",
+  "iScott asks again instead of accepting conversational filler as a name",
+);
+assert.equal(
+  extractSpokenFullName("But yeah, my name is Um, Scott, and my email address is visitor@example.com."),
+  "Scott",
+  "the exact fragmented smoke skips the interjection and captures the supplied real name",
 );
 
 // Q2. THE READ-BACK. Exact means exact - the stored value, literally or in
@@ -1962,5 +2022,53 @@ assert.match(
   // visitor request ("Build your logo.") keeps the pre-H453 behaviour (accumulated visitor wording).
   assert.notEqual(scriptOnly.projectNeed, "Website and branding makeover", "H453: canned label never the job under scripting");
   assert.match(scriptOnly.operatorServiceScript ?? "", /brand|logo/i, "H453: the script still lands in operator_service_script");
+}
+
+// 2026-09-03 smoke e6f752d7: LiveAvatar split one answer after "reach out."
+// The contact preface must lose to the substantive project clause that follows.
+{
+  const fragmentedSmoke = [
+    "Yeah, I, um, I want Scott to reach out. to me to help me build a digital company that I have some ideas for.",
+    "Yes.",
+  ];
+  const extracted = visitorProjectNeedFromRows(fragmentedSmoke);
+  assert.equal(extracted.projectNeed, "Build a digital company that I have some ideas for");
+  assert.equal(extractProjectNeed("I want Scott to reach out."), null,
+    "contact action alone is never a project topic");
+}
+
+{
+  const details = visitorProjectDetailsFromRows([
+    "I want a big swimming pool.",
+    "I want like a Roman bath style. Like with hot tubs to make it look like a ruins. Can Scott make ruins?",
+    "Yeah, my name is Um, Scott, and my email address is visitor@example.com.",
+    "Yes.",
+  ]);
+  assert.deepEqual(details, [
+    "A big swimming pool",
+    "A Roman bath style",
+    "Hot tubs to make it look like ruins",
+  ], "distinct substantive project details survive while contact/name filler stays out");
+}
+
+{
+  const rows = [
+    { role: "assistant", message: "Your email address is v-i-s-i-t-o-r at e-x-a-m-p-l-e dot c-o-m. Did I hear that exactly right?", laAbsoluteTimestamp: 1 },
+    { role: "user", message: "You did.", laAbsoluteTimestamp: 2 },
+    { role: "assistant", message: "May Scott contact you at that email address about this project?", laAbsoluteTimestamp: 3 },
+    { role: "user", message: "Yes.", laAbsoluteTimestamp: 4 },
+    { role: "assistant", message: "Is there anything else I can help you with today?", laAbsoluteTimestamp: 5 },
+    { role: "user", message: "No, I'm good. Thank you.", laAbsoluteTimestamp: 6 },
+  ];
+  const chronology = evaluateLeadPackageChronology({
+    rows,
+    fullName: "Scott",
+    projectNeed: "A big swimming pool",
+    contactMethod: "email",
+    contactValue: "visitor@example.com",
+  });
+  assert.notEqual(chronology.permissionIndex, null);
+  assert.equal(chronology.permissionCurrent, true,
+    "a later no to anything-else never revokes the earlier event-scoped contact consent");
 }
 console.log("iScott lead parser check OK.");

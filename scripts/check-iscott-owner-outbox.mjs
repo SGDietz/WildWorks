@@ -210,11 +210,21 @@ try {
     sessionId: "same-session",
     fullName: "Sample Visitor",
     location: "Northlake",
-    projectNeed: "A pool and a waterfall",
+    projectNeed: "A pool and a waterfall and everything else",
+    projectArea: "backyard",
+    projectDetails: ["A pool and a waterfall and everything else", "A stone firepit", "A covered dining area"],
     contactMethod: "email",
     email: "Visitor@Example.com",
     receivedAt: "2026-08-29T14:00:00.000Z",
     transcript: "Initial verified package",
+    leadDashboardUrl: "https://supabase.example/lead/same-session",
+    transcriptDashboardUrl: "https://supabase.example/transcript/same-session",
+    media: [{
+      name: "yard-plan.jpg",
+      mimeType: "image/jpeg",
+      sizeBytes: 2048,
+      signedUrl: "https://storage.example/signed/yard-plan.jpg",
+    }],
   };
 
   const first = await Notifications.notifyIScottLeadByEmail(base);
@@ -222,6 +232,19 @@ try {
   assert.equal(rows.length, 1);
   assert.equal(Provider.sendCalls.length, 1);
   const firstRow = { ...rows[0] };
+  assert.equal(firstRow.subject, "New WildWorks inquiry — Sample Visitor — Backyard pool and waterfall; stone firepit");
+  assert.match(firstRow.text_body, /Sample Visitor would like help with a backyard landscape centered on a pool and a waterfall with broader landscaping still to be defined\./);
+  assert.match(firstRow.text_body, /Permission: Confirmed — Sample Visitor authorized the WildWorks team to make contact by email about this project\./);
+  assert.match(firstRow.text_body, /Area: Backyard/);
+  assert.match(firstRow.text_body, /Additional details: A stone firepit; A covered dining area\./);
+  assert.match(firstRow.text_body, /Requested features: .*A stone firepit; A covered dining area/);
+  assert.match(firstRow.text_body, /Not discussed: Readiness, Timing, Budget, Property ownership, Other contractors/);
+  assert.doesNotMatch(firstRow.text_body, /Timing: Not discussed|Budget: Not discussed|Property ownership: Not discussed/);
+  assert.doesNotMatch(firstRow.text_body, /PLANNING|Property:|So I, you know/i);
+  assert.match(firstRow.text_body, /yard-plan\.jpg \(image\/jpeg, 2048 bytes\)/);
+  assert.match(firstRow.text_body, /https:\/\/storage\.example\/signed\/yard-plan\.jpg/);
+  assert.doesNotMatch(firstRow.html_body, /<img\b|attachment/i, "media is link-only, never embedded or attached");
+  assert.equal("replyTo" in Provider.sendCalls[0].message, false, "owner email routing is unchanged");
   assert.match(firstRow.idempotency_key, /^iscott-lead-package:[a-f0-9]{64}$/);
   assert.doesNotMatch(firstRow.idempotency_key, /visitor|example|same-session|@/i,
     "the durable idempotency key must not expose contact or session text");
@@ -324,6 +347,45 @@ try {
     "the completed package must retire the parked incomplete row");
   assert.equal(partialRow.last_error, "superseded_by_complete_lead");
   assert.equal(partialRow.next_attempt_at, null);
+
+  const smokeRegression = await Notifications.notifyIScottLeadByEmail({
+    ...base,
+    eventId: "fragmented-smoke-session",
+    sessionId: "fragmented-smoke-session",
+    fullName: "scott",
+    projectNeed: "Build a digital company that I have some ideas for",
+    projectDetails: ["Build a digital company that I have some ideas for"],
+    projectArea: null,
+    media: [],
+  });
+  assert.equal(smokeRegression.delivered, true);
+  const smokeRow = rows.find((row) => row.id === smokeRegression.outboxId);
+  assert.equal(smokeRow?.subject,
+    "New WildWorks inquiry — Scott — Build a digital company that I have some ideas for");
+  assert.doesNotMatch(`${smokeRow?.subject}\n${smokeRow?.text_body}\n${smokeRow?.html_body}`, /\bscott\b/,
+    "lower-case scott must never appear in generated owner copy");
+  assert.doesNotMatch(`${smokeRow?.subject}\n${smokeRow?.text_body}`, /Scott to reach out/i,
+    "contact action must never replace the substantive owner-email topic");
+
+  const fillerNameRegression = await Notifications.notifyIScottLeadByEmail({
+    ...base,
+    eventId: "filler-name-smoke-session",
+    sessionId: "filler-name-smoke-session",
+    fullName: "Um,",
+    projectNeed: "A big swimming pool",
+    projectDetails: ["A big swimming pool", "A Roman bath style", "Hot tubs to make it look like ruins"],
+    projectArea: null,
+    media: [],
+  });
+  assert.equal(fillerNameRegression.delivered, true);
+  const fillerRow = rows.find((row) => row.id === fillerNameRegression.outboxId);
+  const fillerCopy = `${fillerRow?.subject}\n${fillerRow?.text_body}\n${fillerRow?.html_body}`;
+  assert.equal(fillerRow?.subject, "New WildWorks inquiry — Visitor — big swimming pool; Roman bath style");
+  assert.match(fillerRow?.text_body ?? "", /Visitor would like help with a big swimming pool\. Additional details: A Roman bath style; Hot tubs to make it look like ruins\./);
+  assert.match(fillerRow?.text_body ?? "", /Name: Visitor/);
+  assert.match(fillerRow?.text_body ?? "", /Visitor authorized the WildWorks team/);
+  assert.doesNotMatch(fillerCopy, /\bUm\b|\ba a\b|\ban an\b|\ba an\b|\ban a\b/i,
+    "invalid filler identity and duplicate articles never render in owner mail");
 
   assert.ok(requests.some(({ method }) => method === "POST"));
   assert.ok(requests.some(({ method, resource }) => method === "GET" && resource.includes("idempotency_key=eq.")));
