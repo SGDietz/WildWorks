@@ -59,6 +59,10 @@ for (const sentence of [
   "I want a website.",
   "I need a new website for my landscaping business.",
   "I want him to build me a brand.",
+  "I, I'm just— does Scott do problem solving? We have some problem areas in my yard that need help.",
+  "So, you know, I've got an area that just holds water and the grass is just dead.",
+  "Can't get anything to grow there.",
+  "Our patio floods every time it rains.",
 ]) {
   assert.ok(qualifies(sentence), `should qualify: ${sentence}`);
 }
@@ -71,8 +75,22 @@ for (const sentence of [
   "I need to give you my phone number.",   // contact mechanics
   "I'd like to know more about you.",      // asking, not a job
   "I want to ask a question.",
+  "My yard does not hold water.",
+  "The email box holds my information.",
+  "What should you say about drainage?",
 ]) {
   assert.equal(qualifies(sentence), false, `must NOT qualify: ${sentence}`);
 }
+
+const drainage = [
+  "We have some problem areas in my yard that need help.",
+  "So, you know, I've got an area that just holds water and the grass is just dead.",
+  "Can't get anything to grow there.",
+];
+assert.match(m.visitorProjectNeedFromRows(drainage).projectNeed ?? "", /holds water|problem areas/);
+assert.match(m.visitorProjectDetailsFromRows(drainage).join(" "), /holds water.*grass is.*dead/i);
+assert.match(m.visitorProjectDetailsFromRows(drainage).join(" "), /grow there/i);
+assert.equal(m.isSpecificFeedback("My name is Morgan and my email is visitor@example.com."), false);
+assert.equal(m.isSpecificFeedback("No, that's not my email. Let me correct it."), true);
 
 console.log("check-iscott-project-need-forms: OK");

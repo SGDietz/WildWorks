@@ -23,7 +23,7 @@ const stagger = {
   },
 };
 
-const wildfireHeroImageIndex = 2;
+const wildfireHeroImageIndex = 0;
 const wildfireHeroImage = wildfireFinishedImages[wildfireHeroImageIndex];
 
 export default function Wildfire() {

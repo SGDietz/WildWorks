@@ -3,6 +3,7 @@ import { logIScottOriginRejection } from "../../../../src/lib/iscottOriginTeleme
 import { checkRateLimit } from "../../../../src/lib/rateLimit";
 import { logServerTelemetryEvent } from "../../../../src/lib/serverTelemetryCapture";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "../../../../src/lib/supabaseAdmin";
+import { refreshIScottLeadMedia } from "../../../../src/lib/iscottLeadCapture";
 
 const INTAKE_MEDIA_BUCKET = process.env.SUPABASE_INTAKE_MEDIA_BUCKET || "wildworks-intake-media";
 const MAX_MEDIA_BYTES = Number(process.env.WILDWORKS_MAX_MEDIA_BYTES || 50 * 1024 * 1024);
@@ -277,12 +278,28 @@ export async function POST(request: Request) {
       );
     }
 
+    let leadLinked = false;
+    let followUpStatus: string | null = null;
+    if (liveAvatarSessionId) {
+      try {
+        const result = await refreshIScottLeadMedia({ sessionId: liveAvatarSessionId, anonymousVisitorId, uploadId });
+        leadLinked = result.linked;
+        followUpStatus = result.followUpStatus;
+      } catch {
+        followUpStatus = "failed";
+        await logServerTelemetryEvent({ request, eventType: "iscott_media_follow_up_failed",
+          severity: "high", provider: "supabase", sessionId: liveAvatarSessionId,
+          anonymousVisitorId, route, payload: { uploadId } });
+      }
+    }
     return Response.json({
       ok: true,
       fileName: originalName,
       mediaType: media.type.startsWith("video/") ? "video" : "photo",
       sizeBytes: media.size,
       uploadId,
+      leadLinked,
+      followUpStatus,
     });
   } catch (error) {
     console.error("Error saving iScott media:", error instanceof Error ? error.message : "unknown error");

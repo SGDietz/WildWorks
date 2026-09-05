@@ -3,6 +3,7 @@ import {
   evaluateLeadPackageChronology,
   isMeaningfulVisitorName,
   isSpecificProjectNeed,
+  summariseProjectForEmail,
   normalizedContactValue,
   normalizedPackageIntent,
   normalizedPackageName,
@@ -244,22 +245,12 @@ export function visitorReceiptCopy(args?: {
       .filter(Boolean)
       .filter((value, index, all) => all.findIndex((item) => item.toLowerCase() === value.toLowerCase()) === index)
       .slice(0, 6);
-    const need = details[0] ?? "";
     const area = asText(args?.projectArea);
     const safeArea = /^(?:backyard|front yard|side yard|whole property|entire property|garden|patio)$/i.test(area)
       ? area.toLowerCase()
       : "";
-    const needLower = need ? need.charAt(0).toLowerCase() + need.slice(1) : "";
-    const detailTail = details.slice(1).map((detail) => detail
-      .replace(/^(?:a|an|the)\s+/i, "")
-      .replace(/[.!]+$/, "")
-      .trim());
-    const subjectDetails = [need, ...detailTail].filter(Boolean).join("; ");
-    const projectSummary = need
-      ? safeArea
-        ? `Subject: ${safeArea.charAt(0).toUpperCase()}${safeArea.slice(1)} landscape with ${needLower}${detailTail.length ? `; ${detailTail.join("; ")}` : ""}.`
-        : `Subject: ${subjectDetails.charAt(0).toUpperCase()}${subjectDetails.slice(1)}.`
-      : null;
+    const subject = summariseProjectForEmail(details, safeArea);
+    const projectSummary = subject ? `Subject: ${subject}.` : null;
     const rawMediaCount = Number(args?.mediaCount);
     const mediaCount = Number.isFinite(rawMediaCount) ? Math.max(0, Math.floor(rawMediaCount)) : 0;
     const mediaTypes = Array.isArray(args?.mediaTypes)

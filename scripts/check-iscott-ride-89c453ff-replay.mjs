@@ -99,8 +99,8 @@ const T = {
 };
 
 // ---------------------------------------------------------------------------
-// 1. The bug was real. These two turns still flip the method in opposite
-//    directions - which, under the old code, destroyed one value each.
+// 1. A real phone choice still works. Screen commentary no longer chooses
+//    email even before the separate confirmed-contact preservation guard.
 // ---------------------------------------------------------------------------
 assert.equal(
   extractContactMethod(T.offeredPhoneAlso),
@@ -109,8 +109,8 @@ assert.equal(
 );
 assert.equal(
   extractContactMethod(T.shouldSayBoth),
-  "email",
-  'the "it should say phone and email sent" turn reads as a switch back to email - under the old rule this destroyed the phone',
+  null,
+  'the "it should say phone and email sent" turn is screen commentary, not a contact choice',
 );
 
 // ---------------------------------------------------------------------------

@@ -40,6 +40,13 @@ assert.equal(
 );
 assert.equal(visitorChoseContactMethod("Scott can reach out by phone"), "phone");
 assert.equal(visitorChoseContactMethod("email works for me"), "email");
+for (const text of [
+  "should be a follow-up email with the information. If, you know, if there's anything like that says, you know, a picture information was saved to this Lead.",
+  "I have not received an email.",
+  "Did the email with my photo get sent?",
+  "You should send Scott a follow-up email.",
+]) assert.equal(visitorChoseContactMethod(text), null, "notification talk must not open contact capture: " + text);
+assert.equal(visitorChoseContactMethod("Please email me a follow-up email about my photo."), "email");
 assert.equal(visitorChoseContactMethod("just call me"), "phone");
 // iScott's own question must still never open the box.
 assert.equal(visitorChoseContactMethod("How should Scott reach out to you - email or phone?"), null);

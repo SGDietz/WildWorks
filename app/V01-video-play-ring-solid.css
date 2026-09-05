@@ -1,3 +1,4 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
 /* V01: G 2026-08-17 — the center play control on the Home craftsmanship
    video reads as two colors: a reddish-brown outer ring around a darker
    brown body. G: keep the cream triangle and the brown circular button,
@@ -17,6 +18,20 @@
    Focus is unaffected: the visible focus ring is H159's outline, not this
    border. Scoped to the Home craftsmanship card's center control only. */
 
+@media (width < 600px) {
+
+html:has(#top.wild-home:not(.wild-legal-home))
+  body#wildworks-body#wildworks-body
+  #top.wild-home
+  .wild-home-craftsmanship-card
+  .wild-branded-video
+  .wild-branded-video__center-control {
+  --ww-h175-video-ring: transparent !important;
+}
+}
+
+@media (width >= 600px) {
+
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body
   #top.wild-home
@@ -27,4 +42,5 @@ html:has(#top.wild-home:not(.wild-legal-home))
      accepted site-wide one-pixel warm-orange rim. Its disc, triangle, size and
      player geometry remain unchanged. */
   --ww-h175-video-ring: #8f3a14 !important;
+}
 }

@@ -6,6 +6,7 @@ import {
   isMeaningfulVisitorName,
   isSpecificProjectNeed,
   summariseLeadQualification,
+  summariseProjectForEmail,
   visitorLinesFromTranscript,
 } from "./iscottLeadParsing";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "./supabaseAdmin";
@@ -172,7 +173,7 @@ export type IScottLeadEmailArgs = {
   // "I'm going to send Scott a follow-up email saying you're also interested
   // in landscaping" - this is that mail. Same package, marked UPDATE, new need
   // first. The caller keys it by session + need so it goes once.
-  followUp?: { previousNeed?: string | null };
+  followUp?: { previousNeed?: string | null; kind?: "media"; addedFacts?: string[] };
 };
 
 export type PublicMessageEmailArgs = {
@@ -1103,6 +1104,8 @@ export async function notifyIScottPartialLeadByEmail(
 function polishedProjectNeed(value: string | null): string | null {
   if (!value || !isSpecificProjectNeed(value)) return null;
   const cleaned = value
+    .replace(/,\s*well,\s*/gi, " ")
+    .replace(/,?\s*\byou know\b,?\s*/gi, " ")
     .replace(/\s+/g, " ")
     .trim()
     .replace(/\bscott\b/gi, "Scott")
@@ -1120,20 +1123,7 @@ function normalizedProjectArea(value: string | null | undefined): string | null 
 }
 
 function subjectProjectSummary(projectDetails: string[], projectArea: string | null): string {
-  const need = projectDetails[0]
-    ?.replace(/^a\s+/i, "")
-    .replace(/\s+with broader landscaping still to be defined$/i, "")
-    .replace(/\band an?\s+/gi, "and ")
-    .trim();
-  const more = projectDetails.slice(1, 2).map((detail) => detail
-    .replace(/^(?:a|an|the)\s+/i, "")
-    .replace(/[.!]+$/, "")
-    .trim());
-  const base = [projectArea ? projectArea.replace(/\b\w/g, (letter) => letter.toUpperCase()) : null, need]
-    .filter(Boolean)
-    .join(" ");
-  const summary = `${base}${more.length ? `; ${more.join("; ")}` : ""}`;
-  return truncateUtf8String(summary || "Project details", 80);
+  return summariseProjectForEmail(projectDetails, projectArea) ?? "Project consultation";
 }
 
 function cleanProjectDetails(primary: string | null, values: string[] | null | undefined): string[] {
@@ -1182,7 +1172,9 @@ export async function notifyIScottLeadByEmail(
   const projectDetails = cleanProjectDetails(projectNeed, args.projectDetails);
   const broaderScope = projectNeed && /\s+with broader landscaping still to be defined$/i.test(projectNeed)
     ? "Additional landscaping desired; details not discussed"
-    : "Not discussed";
+    : /\beverything around (?:my|our) (?:house|home)\b/i.test(projectNeed ?? "")
+      ? "Landscaping around the house"
+      : "Not discussed";
   const requestedFeatures = projectDetails.length
     ? projectDetails.map((detail) => detail.replace(/\s+with broader landscaping still to be defined$/i, "")).join("; ")
     : null;
@@ -1219,25 +1211,41 @@ export async function notifyIScottLeadByEmail(
     ? ` They uploaded ${media.length} file${media.length === 1 ? "" : "s"} - links below.`
     : "";
   const projectSentence = projectNeed
-    ? `${projectArea ? `${projectArea} landscape centered on ` : ""}${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`
+    ? `${projectArea ? `${projectArea} landscape centered on ` : ""}${projectNeed.charAt(0).toLowerCase()}${projectNeed.slice(1)}`.replace(/\b(?:my|our)\b/gi, "their")
     : null;
   const projectWithArticle = projectSentence
-    ? /^(?:a|an|the)\b/i.test(projectSentence) ? projectSentence : `a ${projectSentence}`
+    ? projectArea && !/^(?:a|an|the)\b/i.test(projectSentence) ? `a ${projectSentence}` : projectSentence
     : null;
   const additionalProjectDetails = projectDetails.slice(1);
   const summaryDetails = additionalProjectDetails.length
     ? ` Additional details: ${additionalProjectDetails.join("; ")}.`
     : "";
   const isFollowUp = Boolean(args.followUp);
-  const previousNeed = cleanText(args.followUp?.previousNeed, 400);
-  const summary = isFollowUp
-    ? `${fullName} came back with something new: ${projectNeed ?? "a new project"}.` +
+  const isMediaUpdate = args.followUp?.kind === "media";
+  const previousNeed = polishedProjectNeed(cleanText(args.followUp?.previousNeed, 400));
+  const addedFacts = (args.followUp?.addedFacts ?? []).map((fact) => polishedCapturedFact(fact)).filter(Boolean);
+  const qual = summariseLeadQualification(
+    visitorLinesFromTranscript(args.transcript ?? ""),
+    { hasRealProject: Boolean(projectNeed) },
+  );
+  const summaryQualification = [
+    location ? `Location: ${location}.` : null,
+    qual.budget ? `Budget: ${polishedCapturedFact(qual.budget)?.replace(/[.!]+$/, "")}.` : null,
+    qual.timeline ? `Timing: ${polishedCapturedFact(qual.timeline)?.replace(/[.!]+$/, "")}.` : null,
+  ].filter(Boolean).join(" ");
+  const summary = isMediaUpdate
+    ? `${fullName} uploaded ${media.length} photo or video file${media.length === 1 ? "" : "s"} for the inquiry you already have. Secure links are below.`
+    : isFollowUp
+    ? `${fullName} added to the inquiry: ${addedFacts.length ? addedFacts.join("; ") : projectNeed ?? "a new project"}.` +
       (previousNeed ? ` You already have their first request (${previousNeed}).` : " You already have their first request.") +
       (summaryReach ? ` Same contact: ${summaryReach}.` : "") +
       ` ${receivedAt || "just now"}. Full conversation is behind Open Transcript.`
-    : projectWithArticle
-      ? `${fullName} would like help with ${projectWithArticle}.${summaryDetails}`
-      : `${fullName} asked the WildWorks team to follow up, but project details were not discussed.` +
+    : (projectWithArticle
+      ? /^(?:i\b|we\b|can(?:'|’)t\b|cannot\b)/i.test(projectNeed ?? "")
+        ? `${fullName} described the project: ${projectNeed}.${summaryDetails}`
+        : `${fullName} would like help with ${projectWithArticle}.${summaryDetails}`
+      : `${fullName} asked the WildWorks team to follow up. No specific project details were captured.`) +
+    (summaryQualification ? ` ${summaryQualification}` : "") +
     (summaryReach ? ` Reach them on ${summaryReach}.${summaryPrefers}` : " No contact details were captured.") +
     summaryMedia +
     ` Contact permission is ${args.partial ? "not yet confirmed" : "confirmed"}. Full conversation is behind Open Transcript.`;
@@ -1250,10 +1258,6 @@ export async function notifyIScottLeadByEmail(
   // they said nothing, it says so. Scott is going to ring these people, and a
   // lead marked hot on a hunch wastes his afternoon worse than one marked
   // unknown honestly.
-  const qual = summariseLeadQualification(
-    visitorLinesFromTranscript(args.transcript ?? ""),
-    { hasRealProject: Boolean(projectNeed) },
-  );
   const READINESS_COPY: Record<string, string> = {
     ready: "Ready to move forward",
     early: "Early exploration",
@@ -1280,7 +1284,7 @@ export async function notifyIScottLeadByEmail(
   const missingProjectLabels = projectRows.filter(([, value]) => !value).map(([label]) => label);
   const compactProjectRows: Array<[string, string | null]> = [
     ...projectRows.filter(([, value]) => Boolean(value)),
-    ["Not discussed", missingProjectLabels.join(", ") || null],
+    ["Not captured", missingProjectLabels.join(", ") || null],
   ];
   const qualText = compactProjectRows
     .filter(([, v]) => Boolean(v))
@@ -1293,9 +1297,11 @@ export async function notifyIScottLeadByEmail(
   const subject = truncateUtf8String(
     isPartial
       ? `INCOMPLETE iScott lead — ${fullName}${subjectLocation}`
+      : isMediaUpdate
+        ? `UPDATE iScott lead — ${fullName}: photos or videos added`
       : isFollowUp
-        ? `UPDATE iScott lead — ${fullName}: also ${projectNeed ?? "a new project"}`
-        : `New WildWorks inquiry — ${fullName} — ${subjectProjectSummary(projectDetails, projectArea)}`,
+        ? `UPDATE iScott lead — ${fullName}: ${addedFacts.length ? addedFacts.join("; ") : `also ${projectNeed ?? "a new project"}`}`
+        : `New WildWorks inquiry — ${fullName}${subjectLocation} — ${subjectProjectSummary(projectDetails, projectArea)}`,
     220,
   );
   const detailsText = [
@@ -1345,8 +1351,8 @@ export async function notifyIScottLeadByEmail(
       }).join("")
     : "";
   const html = emailShell({
-    title: isFollowUp ? "Lead Update" : "New Confirmed Lead",
-    heading: isFollowUp ? "Lead Update: something new" : "New Confirmed Lead",
+    title: isPartial ? "Incomplete Lead" : isFollowUp ? "Lead Update" : "New Confirmed Lead",
+    heading: isPartial ? "Incomplete Lead — Permission Not Confirmed" : isMediaUpdate ? "Lead Update: Photos or Videos Added" : isFollowUp ? "Lead Update: something new" : "New Confirmed Lead",
     eyebrow: "WildWorks · iScott",
     maxWidth: 760,
     bodyHtml: [

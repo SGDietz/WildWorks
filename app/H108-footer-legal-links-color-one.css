@@ -1,6 +1,8 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
 /* G 2026-08-09: footer legal navigation uses the same exact Color 1 as the
    copyright line on every route. Legal-page policy and disclosure copy remains
    white; this changes only the shared footer's legal-link row. */
+@media (width >= 600px) {
 html
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer
@@ -13,6 +15,8 @@ html
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
 }
+}
+@media (width >= 600px) {
 
 html
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -20,4 +24,19 @@ html
   .wild-footer-aiasap-link .wild-footer-aiasap-wordmark {
   color: inherit !important;
   -webkit-text-fill-color: inherit !important;
+}
+}
+@media (width < 600px) {
+html
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  footer#footer#footer
+  :is(
+    .wild-footer-closing > span,
+    .wild-footer-closing > span *,
+    .wild-footer-legal-links,
+    .wild-footer-legal-links *
+  ) {
+  color: #fce0ad !important;
+  -webkit-text-fill-color: #fce0ad !important;
+}
 }

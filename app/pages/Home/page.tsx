@@ -663,7 +663,7 @@ function renderSignatureStoryLine(
         aria-label="Talk to iScott"
         style={storyInlineActionStyle}
       >
-        <Sparkles aria-hidden className="wild-story-contact-icon" />
+        <TalkArcClusterIcon />
         <span>{iScottText}</span>
       </a>
       <BrandText>{line.slice(iScottIndex + iScottText.length)}</BrandText>
@@ -836,11 +836,17 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
   }, []);
 
   const openIScottMediaPicker = useCallback(() => {
+    // Native phone pickers briefly hide the document. Tell the same-origin
+    // frame before opening it so that hide is not treated as leaving the site.
+    const frame = document.querySelector<HTMLIFrameElement>(".wild-live-avatar-frame iframe");
+    try { frame?.contentWindow?.dispatchEvent(new CustomEvent("wildworks:media-picker", { detail: { open: true } })); } catch {}
     iScottMediaInputRef.current?.click();
   }, []);
 
   const handleIScottMediaChange = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
+      const frame = document.querySelector<HTMLIFrameElement>(".wild-live-avatar-frame iframe");
+      try { frame?.contentWindow?.dispatchEvent(new CustomEvent("wildworks:media-picker", { detail: { open: false } })); } catch {}
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file) return;
@@ -851,7 +857,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       }
 
       const uploadId = crypto.randomUUID?.() || `${Date.now()}-${file.lastModified}-${file.size}`;
-      setIScottMediaStatus(`Saving ${file.name || "Your Media"} Securely for iScott...`);
+      setIScottMediaStatus("Saving Your Photo or Video Securely...");
 
       try {
         const formData = new FormData();
@@ -859,18 +865,24 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         formData.append("uploadId", uploadId);
         formData.append("anonymousVisitorId", getAnonymousVisitorId());
         formData.append("clientSessionId", getClientSessionId());
+        // Capture ownership before opening/uploading can change the frame.
+        formData.append("liveAvatarSessionId", localStorage.getItem("wildworks.liveAvatarSessionId") || "");
         formData.append("route", window.location.pathname);
         formData.append("viewport", `${window.innerWidth}x${window.innerHeight}`);
 
         const response = await fetch("/api/media/capture", { method: "POST", body: formData });
-        const result = (await response.json().catch(() => null)) as { error?: string } | null;
+        const result = (await response.json().catch(() => null)) as { error?: string; followUpStatus?: string | null } | null;
         if (!response.ok) {
           throw new Error(result?.error || "iScott Could Not Save That Media Right Now.");
         }
 
         setPendingIScottMedia({ id: uploadId, file });
-        setIScottMediaStatus(`${file.name || "Your Media"} is Saved. Handing It to iScott...`);
-        wakeIScottAvatar();
+        setIScottMediaStatus(result?.followUpStatus === "failed"
+          ? "Your Photo or Video is Saved. The Follow-Up Notification Could Not Be Completed."
+          : "Your Photo or Video is Saved with Your Inquiry.");
+        // Changing wakeKey remounts the iframe and ends an active conversation.
+        // Mount only when no frame exists; deliver to the existing frame otherwise.
+        setAvatarWakeKey((current) => current > 0 ? current : 1);
       } catch (error) {
         setPendingIScottMedia(null);
         setIScottMediaStatus(
@@ -878,12 +890,12 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         );
       }
     },
-    [wakeIScottAvatar],
+    [],
   );
 
-  const handleIScottMediaAccepted = useCallback((fileName: string) => {
+  const handleIScottMediaAccepted = useCallback((_fileName: string) => {
     setPendingIScottMedia(null);
-    setIScottMediaStatus(`${fileName} is with iScott. He is Looking at It Now.`);
+    // Delivery to the demo's file input is not proof of vision or email delivery.
   }, []);
 
   const handleIScottMediaError = useCallback((message: string) => {
@@ -2535,7 +2547,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         desktopCallText="Call WildWorks Today!"
       />
 
-      <LargeIScottCta
+      <LargeIScottCta referenceIcon
         className="wild-home-phone-iscott-test--hero-compact"
         onClick={handleIScottCtaClick}
       />
@@ -3341,7 +3353,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
 
       <motion.section
         id="wildworks-proof"
@@ -3664,7 +3676,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
 
       <motion.section
         id="projects"
@@ -3758,7 +3770,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             className="wild-phone-number-line--home-video"
             showCallToday={false}
           />
-          <LargeIScottCta
+          <LargeIScottCta referenceIcon
             className="wild-home-phone-iscott-test--video"
             onClick={handleIScottCtaClick}
           />
@@ -3978,7 +3990,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
     </div>
   );
 }

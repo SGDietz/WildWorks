@@ -1,3 +1,4 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
 /* Exact Home semantic lines mapped to the Tree of Life Color 1 / 2 / 3 key. */
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -6,7 +7,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   --ww-home-heading-color-2: #edc775;
   --ww-home-heading-color-3: #f08c28;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -27,7 +27,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   color: var(--ww-home-heading-color-1) !important;
   -webkit-text-fill-color: var(--ww-home-heading-color-1) !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -48,7 +47,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   color: var(--ww-home-heading-color-2) !important;
   -webkit-text-fill-color: var(--ww-home-heading-color-2) !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -68,7 +66,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   color: var(--ww-home-heading-color-3) !important;
   -webkit-text-fill-color: var(--ww-home-heading-color-3) !important;
 }
-
 /* Hero copy is two complete Color 1 / 2 / 3 runs.  The lock includes inline
    emphasis so an italic word can never drift to another color on mobile. */
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -85,7 +82,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background: none !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -100,7 +96,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background: none !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -115,7 +110,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background: none !important;
   background-image: none !important;
 }
-
 /* The fixed phone contact bar belongs to the Home card system, not the
    orange footer treatment. Keep it on the exact card surface. */
 html:has(#top.wild-home:not(.wild-legal-home))
@@ -126,13 +120,11 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background-image: none !important;
   box-shadow: none !important;
 }
-
 /* Every Home scroll surface uses the current field and card colors.  This
    intentionally replaces the former orange/red scroll rail and thumb. */
 html:has(#top.wild-home:not(.wild-legal-home)) {
   scrollbar-color: #c44d0b #c44d0b !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar {
@@ -140,14 +132,12 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar {
   height: 12px !important;
   background-color: #c44d0b !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-track,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-track,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-track {
   background: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb {
@@ -157,20 +147,17 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb {
   border: 1px solid #6f2a10 !important;
   box-shadow: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb:hover,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover {
   background: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-corner,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
   background: #c44d0b !important;
 }
-
 /* On phones, the menu must read as a control rather than disappear into the
    field.  Black face, card-color rim: no red treatment. */
 @media (max-width: 500px) {
@@ -277,7 +264,6 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
     stroke: #fce0ad !important;
   }
 }
-
 /* Final cascade authority: no tablet/desktop card. Text sits directly on the
    hero photograph; the under-photo card treatment remains mobile-only. */
 @media (min-width: 720px) {
@@ -339,7 +325,6 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
     padding-bottom: 0.45rem !important;
   }
 }
-
 /* Home actions use only the two primary surfaces: card and field.  The former
    gold-to-red button skin, red outlines, and copper shadows are deliberately
    removed.  The mobile menu control is intentionally excluded: it is black. */
@@ -370,7 +355,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
     inset 0 -1px 0 rgba(118, 86, 43, 0.72) !important;
   filter: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -391,7 +375,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   -webkit-text-fill-color: #fce0ad !important;
   stroke: currentColor !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -399,7 +382,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   border-color: #c44d0b !important;
   box-shadow: 0 0 0 1px #c44d0b !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #footer#footer#footer#footer
@@ -420,7 +402,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
     inset 0 1px 0 rgba(139, 90, 43, 0.44),
     inset 0 -1px 0 rgba(118, 86, 43, 0.72) !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #footer#footer#footer#footer
@@ -436,7 +417,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   -webkit-text-fill-color: #fce0ad !important;
   stroke: currentColor !important;
 }
-
 /* Final two-primary action lock.  Older Home action skins are loaded after
    general styles, so this has one stronger Home identity match and wins only
    here—not on legal pages or the black mobile menu control. */
@@ -477,7 +457,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     inset 0 -1px 0 rgba(118, 86, 43, 0.72) !important;
   filter: none !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
@@ -505,14 +484,12 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   -webkit-text-fill-color: #fce0ad !important;
   stroke: currentColor !important;
 }
-
 /* G 2026-08-08: restore the original WildWorks button character without
    returning to red.  A French-vanilla highlight and the Color 1/2 face sit
    over the current card/field bevel, so these read as crafted controls. */
 html:has(#top#top#top.wild-home:not(.wild-legal-home)) {
   --ww-home-original-spirit-button: var(--ww-approved-button-material);
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
@@ -552,7 +529,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     inset 0 -1px 0 rgba(72, 28, 6, 0.46) !important;
   filter: none !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(#top#top#top#top#top#top#top#top#top#top#top#top.wild-home, #footer#footer#footer#footer)
@@ -580,7 +556,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   -webkit-text-fill-color: #7d2f20 !important;
   stroke: currentColor !important;
 }
-
 /* Project Wildfire's portal lightbox sits outside the Home wrapper, so its
    former orange field and three image controls need their own Home-scoped
    palette lock. */
@@ -592,7 +567,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     linear-gradient(90deg, #c44d0b 0%, #c44d0b 50%, #c44d0b 100%) !important;
   background-color: #c44d0b !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox) .wildfire-lightbox-bar.wildfire-lightbox-bar {
@@ -603,7 +577,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     0 0.65rem 1.45rem rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 245, 0.46) !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox) .wildfire-lightbox-image.wildfire-lightbox-image {
@@ -616,7 +589,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     inset 0 1px 0 rgba(255, 255, 245, 0.24),
     0 1.1rem 2.5rem rgba(0, 0, 0, 0.3) !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox)
@@ -633,7 +605,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
     inset 0 1px 0 rgba(255, 255, 245, 0.9),
     inset 0 -2px 0 rgba(118, 86, 43, 0.72) !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox)
@@ -642,7 +613,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   -webkit-text-fill-color: #3c2a16 !important;
   stroke: currentColor !important;
 }
-
 /* G 2026-08-08: Oxblood owns every Home field and band while the next
    secondary color is being selected. */
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
@@ -652,7 +622,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* The fixed mobile contact tray is the deep Crimson reference. Match Home footer,
    signup, and contact surfaces that render outside the #top wrapper to it. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -662,7 +631,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* The lower Home content is rendered outside #top and follows the same
    primary Oxblood field. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -672,7 +640,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top.wild-home
@@ -681,7 +648,6 @@ html:has(#top#top#top.wild-home:not(.wild-legal-home))
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* The older Home card lock uses repeated IDs.  Keep this Home-only secondary
    override more specific so its former brown cannot leak back through. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -692,7 +658,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* G 2026-08-08: limited Copper Flame audition on three Home sections only.
    Keep every other secondary surface Oxblood for an immediate comparison. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -709,7 +674,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #e96819 !important;
   background-image: none !important;
 }
-
 /* G 2026-08-08: Russet Flame test on the actual top third of mobile Home.
    The one-third mark lands inside Project Wildfire, so finish that section
    cleanly; everything after it remains Imperial Crimson. */
@@ -726,7 +690,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* Oxblood comparison at the very top for easy refresh testing. Copper
    Flame remains on the hero card itself; Services returns to Oxblood. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -736,7 +699,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 /* G 2026-08-08: final Home-only two-color decision.
    Russet Flame is the primary field; Copper Flame is every secondary surface. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -754,14 +716,12 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body {
   background: #c44d0b !important;
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -783,12 +743,20 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #e96819 !important;
   background-image: none !important;
 }
+@media (width < 600px) {
+
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  scrollbar-color: #e96819 #c44d0b !important;
+  --ww-home-original-spirit-button: var(--ww-approved-button-material);
+}
+}
+@media (width >= 600px) {
 
 html:has(#top.wild-home:not(.wild-legal-home)) {
   scrollbar-color: #edc775 #c44d0b !important;
   --ww-home-original-spirit-button: var(--ww-approved-button-material);
 }
-
+}
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar,
 html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar,
@@ -802,6 +770,21 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-corner {
   background-color: #c44d0b !important;
   background-image: none !important;
 }
+@media (width < 600px) {
+
+html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
+html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb,
+html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb,
+html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb:hover,
+html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb:hover,
+html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+  background-image: none !important;
+  border-color: #6f2a10 !important;
+}
+}
+@media (width >= 600px) {
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb,
@@ -814,13 +797,12 @@ html:has(#top.wild-home:not(.wild-legal-home)) *::-webkit-scrollbar-thumb:hover 
   background-image: none !important;
   border-color: #6f2a10 !important;
 }
-
+}
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-wildfire-photo-button {
   border-color: #6f2a10 !important;
 }
-
 /* Match the older repeated-ID Home card locks so every in-page secondary
    surface actually resolves to Copper Flame. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -843,7 +825,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #e96819 !important;
   background-image: none !important;
 }
-
 /* Dark russet is the neutral rim only; it is not a third brand field color. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -885,7 +866,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   ) {
   border-color: #6f2a10 !important;
 }
-
 /* The Project Wildfire viewer is mounted outside the Home wrapper. */
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -894,7 +874,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox) :is(.wildfire-lightbox-bar, .wildfire-lightbox-image) {
@@ -903,20 +882,17 @@ html:has(#top.wild-home:not(.wild-legal-home))
   background-color: #e96819 !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox)
   :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
   border-color: #6f2a10 !important;
 }
-
 /* Canonical final lock: outrank the older audition rules without changing
    their history. Russet + Copper are the only Home fields; rims stay dark. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home)) {
   --ww-home-original-spirit-button: var(--ww-approved-button-material);
 }
-
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body,
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
@@ -926,7 +902,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -957,7 +932,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #e8ad59 !important;
   background-image: var(--ww-home-original-spirit-button) !important;
 }
-
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox.wildfire-lightbox:not(.wild-projects-lightbox) {
@@ -965,7 +939,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #c44d0b !important;
   background-image: none !important;
 }
-
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wildfire-lightbox:not(.wild-projects-lightbox)
@@ -978,7 +951,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-image: none !important;
   box-shadow: none !important;
 }
-
 /* Keep the tablet/desktop hero lockup inside its Copper card. The old negative
    wordmark margin pulled WildWorks above the top rim. Mobile has its own stack. */
 @media (min-width: 720px) {
@@ -998,7 +970,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     margin-bottom: 0 !important;
   }
 }
-
 /* Final hero split clarified by G: tablet/desktop copy overlays the photograph
    directly with no card. Only mobile keeps photo and copy in separate rows. */
 @media (min-width: 720px) {
@@ -1059,7 +1030,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     padding-bottom: 0.45rem !important;
   }
 }
-
 /* G 2026-08-08: the Copper hero card never belongs on top of the photograph.
    Tablet and desktop now use the same clear sequence as mobile: photo, then card. */
 @media (min-width: 720px) {
@@ -1118,7 +1088,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     display: none !important;
   }
 }
-
 /* Absolute final hero authority: overlay copy with no card at 720px+. */
 @media (min-width: 720px) {
   html:has(#top.wild-home:not(.wild-legal-home))
@@ -1180,7 +1149,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     padding-bottom: 0.45rem !important;
   }
 }
-
 /* Upload uses the exact avatar Talk-to-iScott material. */
 html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -1190,7 +1158,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   background-color: #e8ad59 !important;
   background-image: var(--ww-home-talk-exact-gold) !important;
 }
-
 /* G 2026-08-08: phone-only Project Wildfire intro cleanup. The copy remains
    left aligned inside one centered column. The first three lines and the
    three summary thoughts keep the permanent exact Color 1/2/3 sequence. */
@@ -1310,7 +1277,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     -webkit-text-fill-color: #edc775 !important;
   }
 }
-
 /* The older first-fire emphasis lock carries a deliberately heavy selector.
    This phone refinement matches that authority so the cleaned six-line rhythm
    is the rendered result, not merely the intended rule. */
@@ -1329,10 +1295,28 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
     line-height: 1.2 !important;
   }
 }
-
 /* Mobile menu trigger: Color 1 interior, Color 2 ring and hamburger strokes,
    with a dark exterior keyline/shadow for depth. */
 @media (max-width: 719px) {
+  @media (width < 600px) {
+  html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+    .wild-mobile-menu-button.wild-mobile-menu-trigger {
+    border: 2px solid #edc775 !important;
+    border-radius: 9999px !important;
+    outline: 2px solid #edc775 !important;
+    outline-offset: -2px !important;
+    background: var(--ww-approved-button-material) !important;
+    background-color: #e8ad59 !important;
+    background-image: var(--ww-approved-button-material) !important;
+    color: #edc775 !important;
+    -webkit-text-fill-color: #edc775 !important;
+    box-shadow:
+      0 0 0 1px #4b1908,
+      0 7px 18px rgba(30, 8, 2, 0.52),
+      inset 0 1px 0 rgba(255, 248, 224, 0.7) !important;
+  }
+  }
+  @media (width >= 600px) {
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
     .wild-mobile-menu-button.wild-mobile-menu-trigger {
     border: 1px solid #8f3a14 !important;
@@ -1348,6 +1332,7 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
       0 0 0 1px #4b1908,
       0 7px 18px rgba(30, 8, 2, 0.52),
       inset 0 1px 0 rgba(255, 248, 224, 0.7) !important;
+  }
   }
 
   html:root body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -1377,7 +1362,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
 }
-
 /* Beat the older per-word semantic key: each requested line is one solid color. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -1390,7 +1374,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   background: none !important;
   background-image: none !important;
 }
-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
   #iscott-sales#iscott-sales#iscott-sales#iscott-sales
@@ -1401,7 +1384,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   background: none !important;
   background-image: none !important;
 }
-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
   #iscott-sales#iscott-sales#iscott-sales#iscott-sales
@@ -1411,7 +1393,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   background: none !important;
   background-image: none !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -1430,7 +1411,6 @@ html:has(#top.wild-home:not(.wild-legal-home))
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
 }
-
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top.wild-home
@@ -1470,8 +1450,6 @@ html:has(#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#to
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
 }
-
-
 /* ============ PHONE STORY COPY (<=599px) — Chief's mobile packet, corrected ============
    Additive on purpose: the 719 group above stays whole, so 600-719 is frozen.
    Cap is 1.9rem, not the drafted 1.95rem — the 21.75rem column above makes

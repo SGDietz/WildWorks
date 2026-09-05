@@ -1,3 +1,5 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
+
 @import "tailwindcss";
 
 :root {
@@ -173,6 +175,7 @@ body {
 }
 
 /* Home page CTA animations */
+
 @keyframes home-cta-glow {
   0%, 100% { text-shadow: 0 0 20px rgba(232, 182, 109, 0.18); }
   50% { text-shadow: 0 0 34px rgba(246, 211, 154, 0.38); }
@@ -619,6 +622,7 @@ body {
 
 /* Home only: visually center the logo between the fixed menu and hero without
    moving either neighboring element. */
+
 body:has(#top.wild-home) .wild-top-logo {
   transform: translateY(clamp(1rem, 2vw, 2rem));
 }
@@ -634,6 +638,7 @@ body:has(#top.wild-home) .wild-top-logo {
 }
 
 /* G 2026-07-11: keep the browser scrollbar inside the WildWorks palette. */
+
 html {
   scrollbar-color: var(--ww-muted) var(--ww-brown);
   scrollbar-width: thin;
@@ -769,6 +774,7 @@ footer.discordSection .wild-footer-attribution-title {
    frame - no outer border, background or box-shadow. The two buttons stay their
    own size, equal width, evenly spaced and centred as a pair under the title
    rather than stretched across the panel. */
+
 .wild-signup-choice {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1643,6 +1649,7 @@ body .wild-footer-mobile-link:focus-visible {
    established desktop pair above 1120px; between tablet and that width, use
    the already-proven single-column composition and suppress the horizontal
    entrance transform so the card cannot begin a screenshot off the right edge. */
+
 @media (min-width: 920px) and (max-width: 1119px) {
   #top.wild-home #iscott-sales .wild-split--lead {
     grid-template-columns: minmax(0, 1fr);
@@ -2331,6 +2338,7 @@ body .wild-footer-mobile-link:focus-visible {
 
 /* The three Ai website capability cards read as compact icon-and-title
    headers, with the explanatory copy beginning cleanly beneath each row. */
+
 .wild-site-offer-card__heading {
   display: flex;
   align-items: center;
@@ -4465,7 +4473,6 @@ body .wild-footer-mobile-link:focus-visible {
   }
 }
 
-
 .btn-inset {
   background: rgba(80, 80, 80, 0.55);
   color: white;
@@ -4476,10 +4483,12 @@ body .wild-footer-mobile-link:focus-visible {
     0 1px 0 rgba(0, 0, 0, 0.4),
     0 -1px 0 rgba(255, 255, 255, 0.06);
 }
+
 .btn-inset:hover:not(:disabled) {
   background: rgba(90, 90, 90, 0.6);
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
 }
+
 .btn-inset:disabled {
   opacity: 0.7;
 }
@@ -4521,6 +4530,7 @@ body .wild-footer-mobile-link:focus-visible {
 
 /* The Ruins headline stays as five intentional rows on a phone. From portrait
    tablet upward, pair those rows into the three intentional color groups. */
+
 @media (min-width: 720px) {
   body .wild-home #signature-work .wild-signature-title__line {
     display: inline !important;
@@ -4549,6 +4559,7 @@ body .wild-footer-mobile-link:focus-visible {
 
 /* G 2026-07-26: one intentional vertical rhythm across the visitor site.
    Related content stays close; a true section change keeps a larger pause. */
+
 body .wild-home > .wild-section {
   padding-block: clamp(1.65rem, 3.2vw, 2.85rem) !important;
 }
@@ -4637,6 +4648,7 @@ body .wild-subpage .wild-final-cta {
 /* 2026-07-25 visitor visual system: warm copper fields and solid, readable
    type. Scoped to public visual surfaces; avatar route handlers/API markup are
    deliberately outside these selectors. */
+
 :is(.wild-subpage, .wild-home.wild-legal-home) {
   --ww-visitor-copper-field: var(--ww-page-background);
   background: transparent !important;
@@ -4663,10 +4675,13 @@ body .wild-subpage .wild-final-cta {
 
 /* Intentional three-color line systems, including Project Wildfire's photo
    overlay and story sequence. */
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c1,
 .wildfire-hero-headline__line--c1 { color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c2,
 .wildfire-hero-headline__line--c2 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c3,
 .wildfire-hero-headline__line--c3 { color: #f08c28 !important; -webkit-text-fill-color: #f08c28 !important; }
 
@@ -4847,6 +4862,7 @@ body .wild-subpage .wild-final-cta {
 }
 
 /* Keep icon colors readable when parents use gradient text */
+
 .discordSection svg {
   color: rgba(246, 211, 154, 0.92) !important;
   filter: drop-shadow(0 0 10px rgba(185, 145, 67, 0.3));
@@ -5647,6 +5663,7 @@ body .wild-subpage .wild-final-cta {
 
 /* Preserve the desktop story hierarchy on portrait tablets: the three
    "Then Came" payoff lines lead, while the build-record note supports them. */
+
 @media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
   body .wild-home #project-wildfire .wild-wildfire-sequence-callout__line--patio {
     font-size: 4.5rem !important;
@@ -6164,6 +6181,7 @@ body .wild-subpage .wild-final-cta {
 }
 
 /* Home hero typography: elegant serif display type with the WildWorks light-to-deep-gold letter fade. */
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy :where(
     .wild-hero-headline__line,
     .wild-hero-headline__line em,
@@ -6268,6 +6286,7 @@ body .wild-home #ai-websites .wild-site-offer-copy {
 }
 
 /* Keep the full-photo enlarge control usable without letting it cover the hero CTAs. */
+
 .wild-home .wild-hero-media .wild-zoom-hit-area {
   z-index: 1;
 }
@@ -6536,6 +6555,7 @@ body .wild-home #ai-websites .wild-site-offer-copy {
 }
 
 /* iScott media intake: desktop/landscape placement and mobile/portrait handoff. */
+
 .wild-home #iscott-sales .wild-iscott-upload__input {
   display: none !important;
 }
@@ -6960,6 +6980,7 @@ body .wild-subpage--wildfire .wildfire-journal-head .wild-kicker.wild-kicker--fr
 }
 
 /* Shared WildWorks hairline motif: elegant dividers without changing copy. */
+
 .wild-home,
 .wild-subpage,
 footer.discordSection {
@@ -7027,6 +7048,7 @@ footer.discordSection .wild-footer-quote-wrap::after {
 }
 
 /* G 2026-06-23: remove the hairline "line spacer" above/below home section headings */
+
 .wild-home .wild-section-heading::before,
 .wild-home .wild-section-heading::after {
   content: none !important;
@@ -7364,6 +7386,7 @@ footer.discordSection .wild-footer-quote-wrap::after,
 }
 
 /* Sitewide WildWorks button material, based on G's approved gallery button. */
+
 :where(
     .money-cta,
     .wild-signup-choice-button,
@@ -7552,6 +7575,7 @@ footer.discordSection .wild-footer-quote-wrap::after,
 }
 
 /* Icon buttons keep their purpose-built shape, now in the same approved material. */
+
 :where(
     .wild-mobile-menu-button,
     .wild-footer-icon-button,
@@ -7645,6 +7669,7 @@ footer.discordSection .wild-footer-quote-wrap::after,
 }
 
 /* Image buttons remain photographic, with the same luminous gold edge. */
+
 :where(
     .wildfire-photo-card,
     .wild-inspiration-thumbnail,
@@ -7682,6 +7707,7 @@ footer.discordSection .wild-footer-quote-wrap::after,
 }
 
 /* Footer policy links intentionally stay plain text. */
+
 .wild-footer-legal-link {
   border: 0 !important;
   background: none !important;
@@ -8021,6 +8047,7 @@ body {
 }
 
 /* G 2026-06-23: photos show bright (scrims lightened); hero text stays legible via its own dark halo */
+
 .wildfire-hero-copy .wild-kicker,
 .wildfire-hero-copy h1,
 .wildfire-hero-copy .wild-body {
@@ -8038,34 +8065,43 @@ body {
 }
 
 /* G 2026-06-23: Wildfire hero title â€” solid per-line colors (1/2/3), NO blend. Kicker = solid color 3. */
+
 .wildfire-hero-copy .wild-kicker {
   background-image: none !important;
   color: #d2934a !important;
   -webkit-text-fill-color: #d2934a !important;
 }
+
 .wildfire-hero-copy h1 .wildfire-hero-headline__line {
   display: block;
   white-space: normal;
   background-image: none !important;
 }
+
 .wildfire-hero-copy h1 .wildfire-hero-headline__line--c1 { color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; }
+
 .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #f08c28 !important; -webkit-text-fill-color: #f08c28 !important; }
 
 /* G 2026-06-23: balance the subpage header â€” equal air above the menu bar and below
    the logo, with a clean gap between menu and logo, and an even gap down to the first
    pic. Scoped to subpages only via :has(.wild-subpage) so the Home hero is untouched. */
+
 body:has(.wild-subpage) .wild-site-header div.flex-col {
   padding-top: 3.75rem !important;   /* air above the menu == the ~70px gaps around the logo */
 }
+
 body:has(.wild-subpage) .wild-site-header nav {
   padding-top: 0.75rem !important;   /* was sm:pt-12 (3rem) */
   padding-bottom: 0.5rem !important;
 }
+
 body:has(.wild-subpage) .wild-top-logo-band {
   margin-top: 0.5rem !important;     /* was negative â€” give the menu real breathing room */
   padding-bottom: 0.45rem !important; /* tighten logo->pic so it equals the air above the menu */
 }
+
 @media (min-width: 501px) {
   body:has(.wild-subpage) .wild-top-logo-band {
     margin-top: 0.5rem !important;   /* override the desktop negative pull */
@@ -8078,6 +8114,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* 1) WildWorks display lettering: light at the crown, deep gold at the foot.
    Keep paragraphs and legal copy solid for readability. */
+
 .discordSection :where(
     h1, h2, h3, h4, h5, h6,
     .wild-section-title, .wild-hero-copy h1, .wild-final-cta h2,
@@ -8096,6 +8133,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   background-clip: text !important;
   text-shadow: 0 2px 14px rgba(16, 6, 1, 0.58) !important;
 }
+
 .discordSection :where(
     .wild-brand-name, .wild-brand-subtitle, .wild-kicker, .money-panel-kicker,
     .wild-card h3, .wild-project-card h3, .wild-process-step h3, .wild-answer-card h3
@@ -8110,6 +8148,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   -webkit-background-clip: text !important;
   background-clip: text !important;
 }
+
 .wild-sell-hero-title span,
 .wild-subpage-section :where(h2).wild-sell-break-heading {
   color: transparent !important;
@@ -8124,6 +8163,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* 2) Remove the leftover horizontal hairline dividers on subpages. */
+
 .wild-subpage .wild-section-heading::before,
 .wild-subpage .wild-section-heading::after,
 .wild-subpage :where(.money-panel, .wild-card, .wild-answer-card)::before,
@@ -8134,14 +8174,17 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* 3) Tighten the air above the "origin" poem now that it sits under the gallery â€”
    the gallery's bottom padding + the poem's top padding were stacking. */
+
 .wildfire-principles {
   padding-top: clamp(0.5rem, 1.2vw, 1rem) !important;
 }
+
 .wildfire-journal {
   padding-bottom: clamp(1.25rem, 3vw, 2.5rem) !important;
 }
 
 /* 4) Brand the X button â€” gold-amber, dark glyph. */
+
 .wild-brand-social-link {
   border-color: rgba(120, 70, 28, 0.5) !important;
   background:
@@ -8150,10 +8193,12 @@ body:has(.wild-subpage) .wild-top-logo-band {
   color: #a94f24 !important;
   -webkit-text-fill-color: #a94f24 !important;
 }
+
 .wild-brand-social-link svg {
   color: #a94f24 !important;
   filter: none !important;
 }
+
 .wild-brand-social-link:hover,
 .wild-brand-social-link:focus-visible {
   color: #a94f24 !important;
@@ -8162,6 +8207,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* 5) Big "Call or Text Scott" on the bio page (beats the subpage-section p clamp). */
+
 .wild-subpage-section p.wild-brand-cta-big {
   color: #f1cf93 !important;
   -webkit-text-fill-color: #f1cf93 !important;
@@ -8174,6 +8220,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* 6) "reach out to me on X" link in the gallery intro. */
+
 .wildfire-journal-x-link {
   color: #f1cf93 !important;
   -webkit-text-fill-color: #f1cf93 !important;
@@ -8181,6 +8228,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   text-decoration-color: rgba(232, 182, 109, 0.7);
   text-underline-offset: 3px;
 }
+
 .wildfire-journal-x-link:hover {
   color: #ffe7b5 !important;
   -webkit-text-fill-color: #ffe7b5 !important;
@@ -8189,6 +8237,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 /* G 2026-06-23: restore the I-Sell feature headline "My Work Sells People's Homes. Period."
    â€” solid, BOLD, fully visible. The transparent-fill spans were rendering dark; force a
    clean solid gold fill (border-box clip) so it reads as the strong headline G wants. */
+
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title,
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
   background: none !important;
@@ -8200,20 +8249,25 @@ body:has(.wild-subpage) .wild-top-logo-band {
     0 0.16rem 0.5rem rgba(5, 2, 0, 0.92),
     0 0 1.2rem rgba(6, 3, 1, 0.55) !important;
 }
+
 /* G 2026-06-23: 3 tones, one per line â€” My Work / Sells People's / Homes. Period.
    (span modifier class is wild-sell-feature-title__line--one/two/three). */
+
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--one {
   color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important;
 }
+
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--two {
   color: #edc775 !important; -webkit-text-fill-color: #edc775 !important;
 }
+
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title__line--three {
   color: #d2934a !important; -webkit-text-fill-color: #d2934a !important;
 }
 
 /* G 2026-06-23: 3 tones, one per Ruins-card paragraph â€” high specificity to beat the
    global ".discordSection :where(... .wild-story-card p ...)" color override. */
+
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title,
 .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-line-title__line {
   font-weight: 800 !important;
@@ -8284,9 +8338,11 @@ body:has(.wild-subpage) .wild-top-logo-band {
 .wild-home #signature-work .wild-story-card--feature p.ww-c1 {
   color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
+
 .wild-home #signature-work .wild-story-card--feature p.ww-c2 {
   color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
+
 .wild-home #signature-work .wild-story-card--feature p.ww-c3 {
   color: #d2934a !important; -webkit-text-fill-color: #d2934a !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important;
 }
@@ -8376,14 +8432,17 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* G 2026-06-23 (Herm TASK_019 #3): make the X-trail card read as clickable + a11y focus. */
+
 .wild-card--link {
   cursor: pointer;
   text-decoration: none;
 }
+
 .wild-card--link:focus-visible {
   outline: 2px solid rgba(247, 217, 165, 0.9);
   outline-offset: 4px;
 }
+
 .wild-card-cta {
   display: inline-flex;
   margin-top: 1rem;
@@ -8398,6 +8457,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   letter-spacing: 0.02em;
   text-shadow: none !important;
 }
+
 .wild-card--link:hover .wild-card-cta,
 .wild-card--link:focus-visible .wild-card-cta {
   color: #fce0ad !important;
@@ -8405,6 +8465,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* G 2026-06-23: whole hero lede in the bright accent gold (match "Beautiful Things" / "Feel Finished"). */
+
 .wild-home .wild-hero.discordSection .wild-hero-copy .wild-lede {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
@@ -8416,6 +8477,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* G 2026-06-23: images shouldn't run edge-to-edge â€” give the Home hero a little
    side breathing room so it's framed like the rest of the contained layout. */
+
 .wild-home .wild-hero.discordSection {
   width: calc(100% - clamp(1.5rem, 5vw, 4.5rem));
   margin-inline: auto;
@@ -8424,6 +8486,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* G 2026-06-23: visible, tappable hero phone number (taps to call on phones,
    copies on desktop via JS). */
+
 .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-callnum {
   justify-self: start;
   margin-top: clamp(0.55rem, 1.2vw, 0.95rem);
@@ -8439,6 +8502,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
   cursor: pointer;
   transition: color 0.18s ease;
 }
+
 .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-callnum:hover,
 .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-callnum:focus-visible {
   color: #ffe7b5 !important;
@@ -8447,17 +8511,25 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* G 2026-06-23: 3-tone line colors for the Wildfire poem + Build-Journal heading. */
+
 .discordSection .ww-c1 { color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; }
+
 .discordSection .ww-c2 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; }
+
 .discordSection .ww-c3 { color: #f08c28 !important; -webkit-text-fill-color: #f08c28 !important; background-image: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; }
+
 /* Build-Journal heading: each line its own block so the three colors read per line. */
+
 .wildfire-journal-head h2 .ww-c1,
 .wildfire-journal-head h2 .ww-c2,
 .wildfire-journal-head h2 .ww-c3 { display: block; }
+
 /* space between the wife's quote and the "Then Came" lines in the poem. */
+
 .wildfire-origin-title .ww-gap { display: block; margin-top: 0.7em; }
 
 /* G 2026-06-23: Build Journal kicker â€” bigger. */
+
 .wildfire-journal-head .wild-kicker {
   font-size: clamp(1.05rem, 2.1vw, 1.6rem) !important;
   letter-spacing: 0.2em;
@@ -8465,6 +8537,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* G 2026-06-23: Ruins subpage section headings — big like the I-Sell page.
    2026-08-04: rem-only sizing so browser zoom does not couple heading scale to vw. */
+
 .wild-subpage--ruins .wild-subpage-section :where(h2) {
   font-size: 2.15rem !important;
   line-height: 0.98 !important;
@@ -8473,6 +8546,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* G 2026-06-24: compact the Services cards. They were reading like oversized
    feature panels; this makes them scan like service cards again. */
+
 .wild-home #services .wild-card-grid {
   max-width: 78rem !important;
   gap: clamp(0.55rem, 1vw, 0.85rem) !important;
@@ -8545,6 +8619,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 }
 
 /* G 2026-06-27: rebuild the I-Sell feature card as an editorial photo panel. */
+
 .wild-home #signature-work .wild-story-card--featureSell {
   position: relative !important;
   display: block !important;
@@ -8774,6 +8849,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
    Grok handoff H7: Ruins reading rail (2026-08-04)
    Full-width color bands with one stable rem-based centered reading column.
    ============================================================================= */
+
 body .wild-subpage.wild-subpage--ruins.wild-subpage--ruins {
   width: 100% !important;
   max-width: none !important;
@@ -8856,6 +8932,7 @@ body .wild-subpage--ruins.wild-subpage--ruins
 }
 
 /* Grok handoff H8: Upper Viewing Deck occupies its own Color 3 line. */
+
 .wild-subpage--wildfire .wildfire-hero-copy p.wildfire-hero-summary .wildfire-hero-summary__line--c3 {
   color: #f08c28 !important;
   -webkit-text-fill-color: #f08c28 !important;
@@ -8865,6 +8942,7 @@ body .wild-subpage--ruins.wild-subpage--ruins
 /* =============================================================================
    Grok handoff H9b: disperse the center page glow and remove the hot spine.
    ============================================================================= */
+
 html,
 body {
   background: var(--ww-page-background) !important;
@@ -8877,6 +8955,7 @@ body {
 /* =============================================================================
    Grok handoff H10: brand-colored scrollbar.
    ============================================================================= */
+
 html,
 body,
 * {
@@ -8938,6 +9017,7 @@ body::-webkit-scrollbar-corner,
    Grok handoff H11c: hot brilliant B orange with readable cream text.
    Supersedes the earlier H11 and H11b drafts.
    ============================================================================= */
+
 :root {
   --ww-b: #f07018;
   --ww-b-mid: #ff8428;
@@ -9072,6 +9152,7 @@ html body .wild-subpage--ruins .wild-subpage-section.discordSection :is(p, li) {
    Grok handoff H12: soften legal-card interiors and remove the thick left rail.
    This deliberately follows H11c so legal cards retain the later soft-copper direction.
    ============================================================================= */
+
 .wild-home.wild-legal-home,
 .wild-home.wild-legal-home.wild-legal-page--privacy-policy {
   --ww-legal-ink: #fff6e4;
@@ -9160,6 +9241,7 @@ html body .wild-subpage--ruins .wild-subpage-section.discordSection :is(p, li) {
 }
 
 /* Grok handoff H13: even copper-glass fill for the Home statement card. */
+
 body #top.wild-home .wild-home-statement {
   border: 1px solid rgba(255, 228, 180, 0.42) !important;
   border-radius: 0.95rem !important;
@@ -9187,6 +9269,7 @@ body #top.wild-home .wild-home-statement__line--four {
 }
 
 /* Grok handoff H14: deep burnt-orange card rims instead of pale borders. */
+
 :root {
   --ww-card-rim: #8f3612;
   --ww-card-rim-mid: #a84418;
@@ -9375,6 +9458,7 @@ body .wild-home.wild-legal-home.wild-legal-page--privacy-policy .wild-legal-sect
 
 /* Final display lock: major lettering carries the WildWorks light-to-deep-gold fade,
    including headings built from individually colored spans. */
+
 body .discordSection.discordSection :where(h1, h2, h3, h4, h5, h6),
 body .discordSection.discordSection :where(h1, h2, h3, h4, h5, h6) :where(span, em) {
   color: transparent !important;
@@ -9390,6 +9474,7 @@ body .discordSection.discordSection :where(h1, h2, h3, h4, h5, h6) :where(span, 
 
 /* The Ruins is intentionally exempt from the gradient system: three solid brand
    colors and a more characterful editorial serif. */
+
 body .wild-home #signature-work .wild-signature-title,
 body .wild-home #signature-work .wild-signature-title span,
 body .wild-home #signature-work .wild-story-card--feature h3,
@@ -9431,6 +9516,7 @@ body .wild-home #signature-work .wild-signature-title__three {
 }
 
 /* Tree of Life uses G's permanent line-by-line Color 1 / 2 / 3 key. */
+
 body .wild-home #wildworks-proof .wild-copy-stack > .wild-section-title,
 body .wild-home #wildworks-proof .wild-copy-stack > .wild-section-title .wild-line-title__line {
   background: none !important;
@@ -9460,6 +9546,7 @@ body .wild-home #wildworks-proof .wild-tree-title .wild-line-title__line--three 
 
 /* Permanent WildWorks three-color key, taken directly from the three Ruins
    headline lines: Color 1 #fce0ad, Color 2 #edc775, Color 3 #d2934a. */
+
 body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--one,
 body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__line--two,
 body .wild-home #signature-work .wild-story-card--featureSell .wild-sell-feature-title .wild-sell-feature-title__period {
@@ -9497,6 +9584,7 @@ body .wild-home #signature-work .wild-story-card--feature h3 .wild-line-title__l
 }
 
 /* Final cascade lock: the approved gallery-button material wins over legacy page overrides. */
+
 body .money-cta.money-cta,
 body .discordSection .money-cta.money-cta,
 body .wild-home#top .money-cta.money-cta,
@@ -9563,6 +9651,7 @@ body :where(.wild-footer-legal-link) {
 }
 
 /* Mobile Home hero lock: near-edge wordmark, contained copy, and matched CTAs. */
+
 @media (max-width: 500px) {
   body .wild-top-logo-band {
     padding-inline: 0.35rem !important;
@@ -9587,30 +9676,38 @@ body :where(.wild-footer-legal-link) {
 
 /* Final visitor-surface type reset: must follow the legacy display-gradient
    rules above so live text is always a solid, readable brand color. */
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, p, li, .wild-kicker, .wild-card-cta, .wild-line-title__line, .wildfire-hero-headline__line, .wildfire-origin-title > span) {
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
   background-image: none !important;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(p, li, .wild-legal-copy, .wild-legal-copy span, .wild-card-cta) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
   text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
   text-shadow: 0 1px 2px rgba(57, 20, 3, 0.5) !important;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c1,
 .wildfire-hero-headline__line--c1 { color: #fce0ad !important; -webkit-text-fill-color: #fce0ad !important; }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c2,
 .wildfire-hero-headline__line--c2 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) .ww-c3,
 .wildfire-hero-headline__line--c3 { color: #f08c28 !important; -webkit-text-fill-color: #f08c28 !important; }
+
 .wildfire-hero-copy {
   background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
 }
+
 .wildfire-hero-copy :is(h1, p, .wildfire-hero-headline__line) {
   background-image: none !important;
   -webkit-background-clip: border-box !important;
@@ -9619,6 +9716,7 @@ body :where(.wild-footer-legal-link) {
 }
 
 /* G 2026-07-11: match every word in the small Home hero lede to its bright accents. */
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy
   .wild-hero-lede-line:not(.wild-hero-lede-unforgettable),
 body .wild-home .wild-hero.discordSection .wild-hero-copy
@@ -9633,6 +9731,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy
 
 /* Approved WildWorks signature-card treatment: darker copper/walnut inside
    the card against the brighter copper page field. */
+
 #top.wild-home #signature-work .wild-story-card--feature {
   --ww-box-gradient: var(--ww-signature-card-gradient);
 }
@@ -9666,6 +9765,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy
 }
 
 /* The Ruins actions hug their labels and sit directly beneath the content. */
+
 .wild-home #signature-work .wild-story-actions {
   display: grid;
   box-sizing: border-box;
@@ -9782,6 +9882,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy
 
 /* G 2026-07-11: warmer amber tone pass. Keep the brown WildWorks identity,
    but lift the field, cards, and forms out of the heavy dark treatment. */
+
 :root {
   --ww-line: rgba(255, 217, 154, 0.42);
   --ww-panel: rgba(108, 53, 17, 0.58);
@@ -9894,6 +9995,7 @@ body {
 
 /* Legal/detail pages share the same bright copper system as every public
    WildWorks subpage; they no longer keep a separate dark walnut material. */
+
 .wild-home.wild-legal-home {
   --ww-legal-ink: #fce0ad;
   --ww-legal-muted: #fce0ad;
@@ -9984,6 +10086,7 @@ body {
 }
 
 /* G 2026-07-11: Home hero text reset. Solid stepped colors, no muddy letter blends. */
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy {
   isolation: isolate;
   gap: clamp(0.34rem, 0.72vw, 0.62rem) !important;
@@ -10118,6 +10221,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:n
 
 /* Desktop-only: raise the final hero supporting line about two type steps
    without changing the approved tablet or phone hierarchy. */
+
 @media (min-width: 1101px) {
   body .wild-home .wild-hero.discordSection .wild-hero-copy .wild-hero-lede-line:nth-child(3) {
     font-size: clamp(2.2rem, 3.05vw, 2.8rem) !important;
@@ -10191,6 +10295,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 }
 
 /* G 2026-07-12: on phones, show the full WildWorks hero photo side-to-side before text. */
+
 @media (max-width: 719px) {
   body .wild-home .wild-hero.discordSection {
     display: flex !important;
@@ -10242,20 +10347,24 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 }
 
 /* Final public-route override, intentionally after historical theme rules. */
+
 :is(.wild-subpage, .wild-home.wild-legal-home) {
   background: transparent !important;
   color: #fce0ad;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, p, li, .wild-kicker, .wild-card-cta, .wild-line-title__line, .wildfire-hero-headline__line, .wildfire-origin-title > span) {
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
   background-image: none !important;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(p, li, .wild-legal-copy, .wild-legal-copy span, .wild-card-cta) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
   text-shadow: 0 1px 2px rgba(57, 20, 3, 0.48) !important;
 }
+
 :is(.wild-subpage, .wild-home.wild-legal-home) :is(h1, h2, h3, h4, .wild-kicker, .wild-line-title__line, .ww-c1, .ww-c2, .ww-c3) {
   color: #edc775 !important;
   -webkit-text-fill-color: #edc775 !important;
@@ -10265,12 +10374,17 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
   background-clip: border-box !important;
   text-shadow: none !important;
 }
+
 .wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c1 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 .wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c2 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 .wild-subpage--wildfire .wildfire-hero-copy h1 .wildfire-hero-headline__line--c3 { color: #edc775 !important; -webkit-text-fill-color: #edc775 !important; }
+
 .wild-subpage--wildfire .wildfire-hero-copy {
   background: linear-gradient(90deg, rgba(81, 29, 5, 0.7) 0%, rgba(102, 42, 10, 0.52) 54%, rgba(102, 42, 10, 0.08) 100%) !important;
 }
+
 .wild-subpage--wildfire .wildfire-hero-copy :is(h1, .wildfire-hero-headline__line) {
   background-image: none !important;
   -webkit-background-clip: border-box !important;
@@ -10279,6 +10393,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 }
 
 /* Shared signup and Home concierge type are content, not a logo treatment. */
+
 :is(.wild-home, .wild-subpage) .wild-signup-title,
 .wild-home :is(.wild-iscott-title__row, .wild-iscott-body, .wild-start-title, .wild-live-avatar-loading__name) {
   color: #fce0ad !important;
@@ -10296,6 +10411,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 }
 
 /* Keep the iScott introduction legible against its copper field, especially on phones. */
+
 .wild-home #iscott-sales :is(
   .wild-kicker,
   .wild-iscott-title__segment,
@@ -10312,6 +10428,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 }
 
 /* G 2026-07-26: signup typography and controls use only the permanent 1 / 2 / 3 brand colors. */
+
 #footer .wild-signup-title {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
@@ -10347,6 +10464,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 
 /* Keep the signup response as a copper call-to-action card. The broader
    paragraph reset intentionally strips decorative backgrounds elsewhere. */
+
 #footer .wild-signup-status {
   border-color: rgba(255, 226, 174, 0.58) !important;
   background:
@@ -10358,6 +10476,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 
 /* G 2026-07-26: signup actions use the approved Upload Photos or Videos
    gold material with its legible dark-ink label and icon treatment. */
+
 #footer :is(
     .wild-signup-choice-button,
     .wild-signup-choice-button span,
@@ -10393,6 +10512,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy > .wild-cta-row {
 /* G 2026-07-25: Home hero uses the permanent Color 1 / 2 / 3 key twice.
    Big lines: WildWorks / Makes Your Home / Legendary.
    Small lines: By Creating / And Solving / Anywhere on Planet Earth. */
+
 body .wild-home .wild-hero.discordSection .wild-hero-copy
   :where(.wild-hero-wordmark-text, .wild-hero-wordmark-text-orange) {
   color: #fce0ad !important;
@@ -10436,6 +10556,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy
 
 /* G 2026-07-26: phone hero gaps use the same universal copper canvas. There
    is no phone-only brown/black background exception. */
+
 @media (max-width: 719px) {
   body .wild-home .wild-hero.discordSection,
   body .wild-home .wild-hero.discordSection .wild-hero-media,
@@ -10472,6 +10593,7 @@ body .wild-home .wild-hero.discordSection .wild-hero-copy
    standard device formats. Page and section wrappers stay transparent so the
    fixed center glimmer is continuous from top to bottom. Cards, controls,
    photographs, and image overlays retain their intentional materials. */
+
 html,
 body,
 body .wild-site-backdrop {
@@ -10498,6 +10620,7 @@ body footer.discordSection {
 
 /* G 2026-07-25: phone Home surfaces stay in the WildWorks gold/amber family.
    Remove the near-black falloff that was muddying the bottom of the iScott card. */
+
 @media (max-width: 719px) {
   body #top#top.wild-home {
     --ww-box-gradient:
@@ -10531,6 +10654,7 @@ body #top#top.wild-home #iscott-sales
 
 /* Shared WildWorks card language: the iScott panel's clear gold-to-copper
    surface now carries the site's other reading cards as well. */
+
 body :is(.wild-home, .wild-subpage) :is(
   .money-panel,
   .wild-card,
@@ -10554,6 +10678,7 @@ body :is(.wild-home, .wild-subpage) :is(
 
 /* Project Wildfire's story sequence keeps the Color 1 / 2 / 3 hierarchy;
    contrast comes from the shared shadow, not from turning every line white. */
+
 body .wild-home #project-wildfire :is(
   .wild-wildfire-sequence-callout__line,
   .wild-wildfire-build-note__line
@@ -10588,6 +10713,7 @@ body .wild-home #project-wildfire :is(
 }
 
 /* The footer closes with an invitation to act, not a generic contact list. */
+
 footer.discordSection .wild-footer-main {
   display: flex;
   flex-direction: column;
@@ -10721,6 +10847,7 @@ footer.discordSection .wild-footer-social-cta {
 
 /* Color 3 remains the Home-only accent. Visitor subpages use solid Color 2
    for all display lines. */
+
 body :is(
   .ww-c3,
   .wild-line-title__line--three,
@@ -10738,6 +10865,7 @@ body :is(
 
 /* Color 1 is the universal reading color. Small copy must never compete with
    the copper canvas through a darker decorative shade. */
+
 body :is(.wild-home, .wild-subpage) :is(
   p,
   li,
@@ -10765,6 +10893,7 @@ body :is(.wild-home, .wild-subpage) :is(
 
 /* Final iScott reading lock: every small word in this high-traffic section
    uses Color 1, including step numbers and concierge/disclosure copy. */
+
 body .wild-home #iscott-sales :is(
   .wild-kicker,
   p,
@@ -10790,6 +10919,7 @@ footer.discordSection :is(p, label, .wild-footer-legal-link) {
 }
 
 /* Gold controls use one shared walnut-copper ink, never black. */
+
 body :is(.wild-home, .wild-subpage, footer.discordSection) :is(
   .money-cta,
   .wild-mobile-menu-button,
@@ -10822,12 +10952,14 @@ body :is(.wild-home, .wild-subpage, footer.discordSection) :is(
 }
 
 /* The iScott panel stays consistently in its deep copper material. */
+
 body #top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
   background:
     linear-gradient(145deg, rgba(190, 96, 43, 0.98) 0%, rgba(186, 93, 41, 0.98) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
 }
 
 /* Mobile navigation belongs to the same copper world as the rest of the site. */
+
 body .wild-mobile-menu {
   background:
     radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.1), transparent 48%),
@@ -10847,6 +10979,7 @@ body .wild-mobile-menu .wild-mobile-nav-link {
 }
 
 /* One shared WildWorks card material: rich copper with a restrained glimmer. */
+
 body :is(.wild-home, .wild-subpage) :is(
   .money-panel,
   .wild-card,
@@ -10942,6 +11075,7 @@ footer.discordSection .wild-footer-contact-cta {
 /* Every expanded-image view—Bio, The Ruins, I Sell, Wildfire, and galleries—
    shares the same bright copper field. This late lock prevents an older
    lightbox material from quietly returning to muddy brown on a subpage. */
+
 body :is(.wild-image-lightbox, .wildfire-lightbox, .wild-branded-lightbox).discordSection--lightbox {
   background:
     radial-gradient(ellipse 118% 82% at 50% 18%, rgba(255, 211, 139, 0.22) 0%, rgba(255, 154, 72, 0.12) 46%, transparent 72%),
@@ -10966,6 +11100,7 @@ body :is(.wild-image-lightbox__bar, .wildfire-lightbox-bar, .wild-branded-lightb
 
 /* Legal pages are public subpages too: use the shared copper material rather
    than the retired dark walnut panels. Color 1 remains the reading color. */
+
 body .wild-home.wild-legal-home {
   --ww-legal-ink: #fce0ad;
   --ww-legal-muted: #fce0ad;
@@ -11007,6 +11142,7 @@ body .wild-home.wild-legal-home .wild-legal-meta-row span {
    supplies a saved value. WebKit otherwise paints an opaque light autofill
    rectangle over the field, even though the normal and focused states are
    already branded. */
+
 body:has(#top.wild-home) #footer .wild-signup-field input {
   appearance: none;
   -webkit-appearance: none;
@@ -11061,6 +11197,7 @@ body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:activ
 /* Project Wildfire follows the same clear photo-then-copper-content rhythm
    as the rest of the site. The night image stays a photograph, never a
    tinted text backdrop. */
+
 .wild-subpage--wildfire .wildfire-hero {
   display: block;
   min-height: 0;
@@ -11097,6 +11234,7 @@ body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:activ
 /* Project Wildfire's photograph now hands off directly to the shared copper
    field. The old full-width dark overlay left a large empty right half and
    visually pulled the Build Journal up into the hero. */
+
 .wild-subpage--wildfire .wildfire-hero-copy {
   top: auto !important;
   bottom: auto !important;
@@ -11174,6 +11312,7 @@ body:has(#top.wild-home) #footer .wild-signup-field input:-webkit-autofill:activ
 /* Signup fields are shared footer controls, not Home-only controls. Keep both
    typed and browser-autofilled values inside the WildWorks copper material on
    every route. */
+
 footer#footer .wild-signup-field input {
   appearance: none;
   -webkit-appearance: none;
@@ -11228,6 +11367,7 @@ footer#footer .wild-signup-field input:-webkit-autofill:active {
 /* Final Project Wildfire desktop/mobile handoff: keep the completed-night
    photo clear, then continue in the approved warm copper field rather than
    creating a dark, half-empty hero panel. */
+
 .wild-subpage--wildfire .wildfire-hero-copy {
   position: relative !important;
   top: auto !important;
@@ -11269,6 +11409,7 @@ footer#footer .wild-signup-field input:-webkit-autofill:active {
 /* Large narrative-subpage display lines use solid Color 2.
    Keep this route-scoped so body copy, cards, buttons, legal pages, and the
    rest of the site retain their established treatments. */
+
 body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section.wild-subpage-section :is(h1, h2),
 body .wild-subpage--sell.wild-subpage--sell .wild-subpage-section.wild-subpage-section :is(h1, h2),
 body .wild-subpage--bio.wild-subpage--bio .wild-subpage-section.wild-subpage-section :is(h1, h2),
@@ -11292,6 +11433,7 @@ body .wild-subpage--ruins.wild-subpage--ruins
 /* The Ruins uses only two background treatments. Numbered areas 1/3/5/7/9
    use the established page field; 2/4/6/8 use one subtly lighter overlay of
    that same copper field. */
+
 body .wild-subpage--ruins .ruins-color-band {
   color: #edc775 !important;
   isolation: isolate;
@@ -11312,6 +11454,7 @@ body:has(:is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio)) {
 
 /* Main project subpages: remove the transparent air baked around the shared
    logo lockup without changing Home or the legal pages. */
+
 @media (min-width: 501px) {
   body:has(:is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio, .wild-subpage--wildfire))
     .wild-site-header > div.flex-col {
@@ -11342,6 +11485,7 @@ body .wild-subpage--ruins .ruins-tone--b {
 }
 
 /* I Sell and Bio use the same A/B field and typography rhythm as Ruins. */
+
 body :is(.wild-subpage--sell, .wild-subpage--bio) .wild-ab-band {
   isolation: isolate;
   width: 100vw !important;
@@ -11436,6 +11580,7 @@ body .wild-subpage--ruins .ruins-color-band--frame {
 }
 
 /* Keep the A field beneath the image, with a compact step down to the title. */
+
 body .wild-subpage--ruins .ruins-color-band--intro {
   margin-top: clamp(0.75rem, 1.3vw, 1.15rem) !important;
 }
@@ -11467,6 +11612,7 @@ body .wild-subpage--ruins .ruins-color-band .wild-subpage-section + .wild-subpag
    out by the shared viewport-width type rules. At laptop/desktop widths, rem
    values follow Ctrl +/- proportionally; the existing phone rules still own
    the genuinely narrow layout. */
+
 @media (min-width: 720px) {
   body .wild-subpage--ruins .ruins-color-band .wild-subpage-section :where(h1) {
     font-size: 5.15rem !important;
@@ -11482,6 +11628,7 @@ body .wild-subpage--ruins .ruins-color-band .wild-subpage-section + .wild-subpag
 }
 
 /* Solid Color 2/3 fields use deep walnut ink for readable contrast. */
+
 html body .wild-subpage--ruins .ruins-color-band .wild-subpage-section.discordSection :is(p, li, strong, em, i) {
   color: #351507 !important;
   -webkit-text-fill-color: #351507 !important;
@@ -11526,6 +11673,7 @@ body .wild-subpage--ruins .ruins-color-band--frame :is(h1, h2) {
 /* The shared subpage display rule above is intentionally very specific. Keep
    the field study at least as specific so each field retains its contrasting
    display text at every viewport. */
+
 html body .wild-subpage--ruins.wild-subpage--ruins
   .ruins-color-band--two .wild-subpage-section.wild-subpage-section :is(h1, h2) {
   color: #57270d !important;
@@ -11564,6 +11712,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins
 }
 
 /* Ruins A fields use Type Colors 1 and 2. */
+
 html body .wild-subpage--ruins.wild-subpage--ruins
   .ruins-tone--a
   .wild-subpage-section.wild-subpage-section :is(h1, h2) {
@@ -11580,6 +11729,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins
 }
 
 /* Ruins B fields use Type Colors 2 and 3. */
+
 html body .wild-subpage--ruins.wild-subpage--ruins
   .ruins-tone--b
   .wild-subpage-section.wild-subpage-section :is(h1, h2) {
@@ -11598,6 +11748,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins
 /* Bio only: crop the source image's dark edge strips without changing the
    image asset or the surrounding subpage layout. The second editorial
    heading intentionally matches the Bio h1's established display scale. */
+
 body .wild-subpage--bio .wild-subpage-hero > .wild-zoomable-image img {
   object-fit: cover !important;
   transform: scale(1.04) !important;
@@ -11611,6 +11762,7 @@ body .wild-subpage--bio .wild-subpage-section .wild-bio-reinvention-heading {
 /* Keep each narrative subpage's closing invitation visually attached to the
    shared contact card. The card itself stays unchanged; only the stacked
    page/footer gap is collapsed. */
+
 body .wild-subpage--ruins.wild-subpage--ruins,
 body .wild-subpage--sell.wild-subpage--sell,
 body .wild-subpage--bio.wild-subpage--bio {
@@ -11637,6 +11789,7 @@ body footer#footer.wild-footer--bio.wild-footer--bio .wild-footer-main.wild-foot
 
 /* A/B narrative pages keep the contact card and closing footer on A, with the
    signup system on B. */
+
 .wild-footer-contact-region {
   display: contents;
 }
@@ -11696,6 +11849,7 @@ body:has(:is(.wild-subpage--ruins, .wild-subpage--sell, .wild-subpage--bio))
 
 /* Keep the editorial contact close consistent on the three narrative
    subpages. */
+
 .wild-subpage-iscott-cta {
   display: flex;
   justify-content: center;
@@ -11712,6 +11866,7 @@ body .wild-subpage .wild-brand-phone {
 }
 
 /* Home statement between the visual hero and the iScott concierge. */
+
 body #top.wild-home .wild-home-statement {
   position: relative;
   display: grid;
@@ -11797,6 +11952,7 @@ body #top.wild-home .wild-home-statement__line--four {
 
 /* Match the approved top-logo cream-and-gold treatment across the entire
    mid-page WildWorks wordmark and flourish. */
+
 body #top.wild-home .wild-home-statement__brand-lockup {
   --ww-brand-lockup-scale: 1.133;
   --ww-brand-lockup-shadow-scale: 1.138;
@@ -11847,6 +12003,7 @@ body #top.wild-home .wild-home-statement__brand-lockup::after {
 
 /* Keep the statement comfortably framed on portrait tablets. The four
    headline lines breathe evenly, and the wordmark no longer grazes the card. */
+
 @media (min-width: 720px) and (max-width: 1100px) and (orientation: portrait) {
   body #top.wild-home .wild-home-statement__line--one,
   body #top.wild-home .wild-home-statement__line--two {
@@ -11940,6 +12097,7 @@ body .wild-home-hero-stonework-note {
 
 /* The authenticity line is a visible trust statement on every nonlegal page,
    directly above the WildWorks copyright. */
+
 #footer .wild-footer-closing {
   width: 100%;
   max-width: none;
@@ -11963,6 +12121,7 @@ body .wild-home-hero-stonework-note {
 
 /* Home-only acceptance slice: a plain cross-site path between the unchanged
    stonework attribution and the existing copyright/legal footer. */
+
 #footer .wild-footer-aiasap-link {
   display: inline-block;
   max-width: 100%;
@@ -11982,10 +12141,13 @@ body .wild-home-hero-stonework-note {
   transition: color 160ms ease, text-decoration-color 160ms ease, transform 160ms ease;
 }
 
+@media (width >= 600px){
+
 #footer .wild-footer-aiasap-link .wild-footer-aiasap-wordmark {
   color: inherit !important;
   -webkit-text-fill-color: inherit !important;
   font-style: italic;
+}
 }
 
 #footer .wild-footer-aiasap-link:hover {
@@ -12029,6 +12191,7 @@ body .wild-home-hero-stonework-note {
 
 /* Project Wildfire introduction: two centered three-line systems that grow
    wider as they descend, using the permanent Color 1 / 2 / 3 sequence. */
+
 .wild-subpage--wildfire .wildfire-hero-copy {
   width: min(100%, 92rem) !important;
   margin-inline: auto !important;
@@ -12149,6 +12312,7 @@ body .wild-home-hero-stonework-note {
    correction. The outer copper now carries almost edge-to-edge, with only a
    broad smidgen of lift in the middle on every route.
    ============================================================================= */
+
 html,
 body,
 body .wild-site-backdrop {
@@ -12206,6 +12370,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins
 }
 
 /* H12 final cascade position: soft copper legal cards and no left rail. */
+
 .wild-home.wild-legal-home .wild-legal-card::before,
 .wild-home.wild-legal-home.wild-legal-page--privacy-policy .wild-legal-card::before {
   content: none !important;
@@ -12243,6 +12408,7 @@ body .wild-home.wild-legal-home.wild-legal-page--privacy-policy .wild-legal-copy
 }
 
 /* H13 final cascade position: statement card stays close to the darker page field. */
+
 body #top.wild-home .wild-home-statement {
   border: 1px solid rgba(143, 54, 18, 0.82) !important;
   background:
@@ -12266,6 +12432,7 @@ body #top.wild-home .wild-home-statement__line--four {
 }
 
 /* H14 final cascade position: burnt-orange rims, never chalk white. */
+
 body :is(.wild-stat, .wild-card, .wild-project-card, .wild-story-card, .wild-process-step, .wild-answer-card, .wild-site-offer-card) {
   border-color: #8f3612 !important;
 }
@@ -12280,6 +12447,7 @@ body #top.wild-home #signature-work :is(.wild-story-card, .wild-story-card--feat
 
 /* G 2026-08-04: one quiet, near-canvas material for every content card.
    The dark ember edge replaces the pale orange outline without creating a ring. */
+
 :root {
   --ww-card-rim: #6f2a10;
   --ww-card-rim-mid: #7f3212;
@@ -12312,6 +12480,7 @@ body :is(
 }
 
 /* Preserve photo-led project cards while giving their shells the same ember edge. */
+
 body #top.wild-home #signature-work :is(.wild-story-card, .wild-story-card--feature, .wild-story-card--featureSell) {
   border-color: var(--ww-card-rim) !important;
   box-shadow:
@@ -12320,6 +12489,7 @@ body #top.wild-home #signature-work :is(.wild-story-card, .wild-story-card--feat
 }
 
 /* The iScott portrait card is the reference implementation for the system. */
+
 html body #top#top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-iscott-panel {
   border: 1px solid var(--ww-card-rim) !important;
   background: var(--ww-card-material) !important;
@@ -12330,6 +12500,7 @@ html body #top#top#top.wild-home #iscott-sales #talk-to-iscott.money-panel.wild-
 
 /* Home's page-level material rules are injected after globals.css, so these
    intentionally strong selectors keep every named card on the shared system. */
+
 html body #top#top#top.wild-home :is(
   #signature-work .wild-story-card--feature,
   #services .wild-card,
@@ -12354,6 +12525,7 @@ html body footer.discordSection.discordSection.discordSection
 
 /* G 2026-08-04: the Design-at-the-Limits statement gets one brighter copper
    step, referenced from the warm iScott sparkle treatment. Canvas unchanged. */
+
 html body #top#top#top.wild-home .wild-home-statement.wild-home-statement {
   border-color: var(--ww-card-rim) !important;
   background:
@@ -12365,6 +12537,7 @@ html body #top#top#top.wild-home .wild-home-statement.wild-home-statement {
 }
 
 /* Grok H15: Home Project Wildfire subtitle, four type steps larger. */
+
 .wild-home #project-wildfire :is(.wild-wildfire-title, h3.wild-wildfire-title) {
   max-width: min(100%, 36ch) !important;
   font-size: clamp(2.32rem, calc(4.65vw - 0.08rem), 3.62rem) !important;
@@ -12390,6 +12563,7 @@ html body #top#top#top.wild-home .wild-home-statement.wild-home-statement {
 
 /* Grok H16r: Privacy chrome must match the current Terms chrome exactly.
    The superseded H16 palette is intentionally not installed. */
+
 body .wild-home.wild-legal-home.wild-legal-page--privacy-policy .wild-legal-section {
   background:
     linear-gradient(180deg, rgba(247, 217, 165, 0.06), rgba(52, 22, 7, 0)),
@@ -12418,6 +12592,7 @@ body .wild-home.wild-legal-home.wild-legal-page--privacy-policy .wild-legal-meta
 }
 
 /* Grok H17: every visible word on every legal page is unambiguous white. */
+
 .wild-home.wild-legal-home,
 .wild-home.wild-legal-home[class*="wild-legal-page--"] {
   --ww-legal-ink: #ffffff;
@@ -12450,6 +12625,7 @@ body:has(.wild-legal-home) footer.discordSection :where(
 }
 
 /* Grok H19: balanced Wildfire hero stack and brand colors. */
+
 .wild-subpage--wildfire .wildfire-hero-copy .wild-kicker {
   color: #edc775 !important;
   -webkit-text-fill-color: #edc775 !important;
@@ -12502,6 +12678,7 @@ body:has(.wild-legal-home) footer.discordSection :where(
 }
 
 /* Grok H20: one smidge more air below the Living line on every page. */
+
 .wild-top-logo-band,
 body:has(.wild-subpage) .wild-top-logo-band {
   margin-bottom: 0 !important;
@@ -12510,6 +12687,7 @@ body:has(.wild-subpage) .wild-top-logo-band {
 
 /* Final H17 cascade position: white wins over every older legal type rule
    without touching the copper chrome behind it. */
+
 html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time,
@@ -12523,6 +12701,7 @@ html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
 }
 
 /* Final H33-H35 specificity guards for the Ruins page. */
+
 body .wild-top-logo-band {
   margin-bottom: -0.55rem !important;
   padding-bottom: 0.22rem !important;
@@ -12560,6 +12739,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins.wild-subpage--ruins.wild-subp
 
 /* Grok H29: preserve the dimensional gold crown while replacing muddy brown
    button bases with the approved copper family. */
+
 :root {
   --ww-button-ink: #7d2f20;
   --ww-button-gradient: var(--ww-approved-button-material);
@@ -12598,6 +12778,7 @@ html body :is(.wild-footer-icon-button, .wild-footer-top-button, .wild-footer-to
 }
 
 /* Grok H30/H31: the two iScott kickers are intentionally more prominent. */
+
 html body #top.wild-home #iscott-sales .wild-copy-stack > .wild-kicker,
 html body #top.wild-home #iscott-sales .wild-kicker,
 html body .wild-home #iscott-sales .wild-kicker {
@@ -12615,6 +12796,7 @@ html body .wild-home #talk-to-iscott > p.money-panel-kicker {
 }
 
 /* Grok H33: a smidge less air on both sides of the logo lockup. */
+
 body:has(.wild-subpage) .wild-site-header nav {
   padding-bottom: 0.35rem !important;
 }
@@ -12640,6 +12822,7 @@ body:has(#top.wild-home) .wild-top-logo-band {
 
 /* Grok H34/H35: Ruins-specific width, title balance, and glossy B bands.
    Their experimental sitewide card recolor is superseded by H26r/H38/H39. */
+
 body:has(.wild-subpage--ruins) .wild-site-header nav {
   padding-bottom: 0.28rem !important;
 }
@@ -12698,6 +12881,7 @@ html body .wild-subpage--ruins .ruins-tone--b .wild-subpage-section :is(p, li, s
 }
 
 /* Grok H36: Color 1 is the navigation and small-copy baseline. */
+
 :root {
   --ww-color-1: #fce0ad;
   --ww-title-1: #fce0ad;
@@ -12731,17 +12915,29 @@ html body .wild-home .wild-site-offer-card p {
 }
 
 /* Grok H37: rem-based image floors keep media and type scaling together. */
+
 html body .wild-wildfire-photo { min-height: 16rem !important; }
+
 html body .wild-wildfire-photo--hero { min-height: 22rem !important; }
+
 html body :is(.wild-wildfire-photo--detail, .wild-wildfire-photo--deck, .wild-wildfire-photo--garden) { min-height: 16rem !important; }
+
 html body .wild-wildfire-photo--patio { min-height: 18rem !important; }
+
 html body .wild-identity-media { min-height: 18rem !important; }
+
 html body .wild-home #signature-work .wild-story-card--featureSell { min-height: 28rem !important; }
+
 html body .wild-site-avatar-frame { width: min(20rem, 100%) !important; max-width: 100% !important; }
+
 html body .wild-live-avatar-loading { padding: 1.25rem !important; }
+
 html body .wild-live-avatar-frame { min-height: 0 !important; }
+
 html body :is(.wild-story-media--sell, .wild-story-media) { min-height: 18rem !important; }
+
 html body .wild-subpage-hero { min-height: 0 !important; }
+
 html body .wild-home .wild-hero.discordSection,
 html body .wild-hero.discordSection {
   min-height: 0 !important;
@@ -12749,8 +12945,11 @@ html body .wild-hero.discordSection {
   aspect-ratio: 3 / 2 !important;
   width: 100% !important;
 }
+
 html body .wild-home .wild-live-avatar-frame { width: 100% !important; max-width: 18rem !important; margin-inline: auto !important; }
+
 html body #project-wildfire .wild-wildfire-photo { min-height: 14rem !important; }
+
 html body #project-wildfire .wild-wildfire-photo--hero { min-height: 18rem !important; }
 
 @media (min-width: 900px) {
@@ -12769,6 +12968,7 @@ html body #project-wildfire .wild-wildfire-photo--hero { min-height: 18rem !impo
 
 /* Grok H38/H39: statement-level type on every card. No dim Color 3 body
    remains on a copper card. */
+
 html body :is(
   .money-panel, .wild-card, .wild-answer-card, .wild-site-offer-card,
   .wild-story-card, .wild-story-card--feature, .wild-story-card--featureSell,
@@ -12811,6 +13011,7 @@ html body #top#top#top.wild-home #signature-work .wild-story-card--feature :is(p
 }
 
 /* Retain the statement's slight type hierarchy. */
+
 html body #top#top#top#top.wild-home .wild-home-statement__line--one {
   color: #fff0d4 !important;
   -webkit-text-fill-color: #fff0d4 !important;
@@ -12822,6 +13023,7 @@ html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-
 }
 
 /* Existing legal lock remains authoritative over H36/H38. */
+
 html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time
@@ -12861,6 +13063,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
 /* Final card-material lock: one clean original copper, without a gradient.
    The repeated roots intentionally outrank page-local experiment styles. */
+
 html body #top#top#top#top.wild-home :is(
   .money-panel,
   .wild-card,
@@ -12913,6 +13116,7 @@ html body .wild-subpage.wild-subpage.wild-subpage :is(
 
 /* G 2026-08-06: the original clean copper is the one card material.
    Cards are deliberately flat: no glow layer, radial highlight, or blended fill. */
+
 :root {
   --ww-card-solid: #ba4f1b;
   --ww-card-material: var(--ww-card-solid);
@@ -12951,7 +13155,9 @@ html body :is(
 }
 
 /* H29-H39 final cascade: latest Grok/user decisions beat the earlier trials. */
+
 body:has(.wild-subpage) .wild-site-header nav { padding-bottom: 0.35rem !important; }
+
 body:has(.wild-subpage) .wild-top-logo-band,
 body:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio)) .wild-top-logo-band {
   margin-top: 0.22rem !important;
@@ -12959,6 +13165,7 @@ body:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
   padding-top: 0 !important;
   padding-bottom: 0.22rem !important;
 }
+
 body:has(.wild-subpage--ruins) .wild-top-logo-band {
   margin-top: 0.12rem !important;
   margin-bottom: -0.85rem !important;
@@ -12971,23 +13178,28 @@ html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-hero {
   margin-inline: auto !important;
   margin-top: 0.15rem !important;
 }
+
 html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section .wild-ruins-rail :where(h1) {
   font-size: clamp(2.75rem, 5vw, 4.15rem) !important;
   line-height: 0.98 !important;
 }
+
 html body .wild-subpage--ruins.wild-subpage--ruins .wild-subpage-section .wild-ruins-rail :where(h2) {
   font-size: clamp(2.35rem, 4.2vw, 3.55rem) !important;
   line-height: 1.02 !important;
 }
+
 html body .wild-subpage--ruins.wild-subpage--ruins .ruins-tone--b {
   background: linear-gradient(180deg, rgba(255, 245, 220, 0.32) 0%, rgba(255, 200, 120, 0.1) 22%, transparent 48%), linear-gradient(165deg, #d87830 0%, #c86828 42%, #b85a22 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.4), inset 0 -1px 0 rgba(80, 28, 6, 0.15) !important;
 }
+
 html body .wild-subpage--ruins .ruins-tone--b .wild-subpage-section :is(h1, h2, h3) {
   color: #fffaf0 !important;
   -webkit-text-fill-color: #fffaf0 !important;
   text-shadow: 0 1px 2px rgba(40, 12, 2, 0.45) !important;
 }
+
 html body .wild-subpage--ruins .ruins-tone--b .wild-subpage-section :is(p, li, strong, em, i, span, a) {
   color: #fff8ec !important;
   -webkit-text-fill-color: #fff8ec !important;
@@ -13014,6 +13226,7 @@ html body :is(
   opacity: 1 !important;
   text-shadow: 0 1px 2px rgba(40, 12, 2, 0.35) !important;
 }
+
 html body :is(
   .money-panel, .wild-card, .wild-answer-card, .wild-site-offer-card,
   .wild-story-card, .wild-story-card--feature, .wild-story-card--featureSell,
@@ -13031,6 +13244,7 @@ html body #top#top#top#top.wild-home #services .wild-card :is(h3, h3 .wild-line-
   color: #fffaf0 !important;
   -webkit-text-fill-color: #fffaf0 !important;
 }
+
 html body #top#top#top#top.wild-home #services .wild-card :is(p, li, span, em, strong),
 html body #top#top#top#top.wild-home #signature-work .wild-story-card--feature :is(p, li, span, em, strong, a) {
   color: #fce0ad !important;
@@ -13043,12 +13257,14 @@ html body #top#top#top#top.wild-home .wild-home-statement__line--one {
   color: #fff0d4 !important;
   -webkit-text-fill-color: #fff0d4 !important;
 }
+
 html body #top#top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home-statement__line--four) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
 }
 
 /* Legal words stay pure white after the general Color 1 card rule. */
+
 html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time
@@ -13062,6 +13278,7 @@ body #footer#footer.wild-footer--legal :is(
 }
 
 /* Final specificity guards for page-injected styles that load after globals. */
+
 html body #top#top#top#top.wild-home .wild-home-statement.wild-home-statement {
   border-color: var(--ww-card-rim) !important;
   background: var(--ww-card-love-fill) !important;
@@ -13091,6 +13308,7 @@ html body:has(.wild-legal-home) footer.discordSection.discordSection.discordSect
 }
 
 /* Final H19 cascade position: the new hierarchy beats the older hero halo. */
+
 html body .wild-subpage--wildfire.wild-subpage--wildfire
   .wildfire-hero-copy .wild-kicker.wild-kicker {
   color: #edc775 !important;
@@ -13107,6 +13325,7 @@ html body .wild-subpage--wildfire.wild-subpage--wildfire
 
 /* Page-level style tags load after globals.css. Repeating the real page ID is
    deliberate here: it lets these final user directives win without inline CSS. */
+
 html body #top#top#top.wild-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time,
@@ -13152,6 +13371,7 @@ html body #footer#footer#footer.wild-footer--legal :where(
 /* Color 3 remains on the Ai-Native Websites kicker. The later framed-title
    trial was removed so the three capability headings retain their original
    plain-text treatment beside the copper icon tiles. */
+
 body .wild-home #ai-websites :is(.wild-kicker--framed, .wild-site-offer-heading .wild-kicker--framed) {
   color: #f08c28 !important;
   -webkit-text-fill-color: #f08c28 !important;
@@ -13160,6 +13380,7 @@ body .wild-home #ai-websites :is(.wild-kicker--framed, .wild-site-offer-heading 
 }
 
 /* Grok H23 supersedes H20: bottom air matches the liked menu-to-logo air. */
+
 .wild-top-logo-band,
 body:has(.wild-subpage) .wild-top-logo-band {
   margin-bottom: -0.35rem !important;
@@ -13174,6 +13395,7 @@ body:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--bio))
 }
 
 /* Grok H24: final Wildfire hierarchy and copy treatment. */
+
 html body #top#top#top.wild-subpage--wildfire
   .wildfire-hero-copy h1.wildfire-hero-headline
   .wildfire-hero-headline__line--c1 {
@@ -13241,6 +13463,7 @@ html body #top#top#top.wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
 
 /* Grok H25 typography only: wider Ruins rail and large left-aligned titles.
    Its temporary hot-card palette is superseded by H26 below. */
+
 body .wild-subpage--ruins .wild-ruins-rail {
   width: min(100% - 2rem, 54rem) !important;
   max-width: 54rem !important;
@@ -13288,6 +13511,7 @@ body .wild-subpage--ruins.wild-subpage--ruins
 /* Grok H26: the lighter Design-at-the-Limits material is now the single card
    fill everywhere. G's dark ember edge remains in place instead of the old
    pale ring. The universal page canvas remains untouched. */
+
 :root {
   --ww-card-love-fill:
     radial-gradient(ellipse at 22% 4%, rgba(255, 220, 160, 0.12), transparent 48%),
@@ -13355,6 +13579,7 @@ html body .wild-subpage--ruins.wild-subpage--ruins .ruins-tone--b {
 }
 
 /* H17 remains the last word on legal typography: every word is pure white. */
+
 html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time
@@ -13373,6 +13598,7 @@ body #footer#footer.wild-footer--legal :is(
 
 /* Grok H26r: final universal statement-card material lock. This supersedes
    every earlier experimental card fill while retaining G's dark ember edge. */
+
 :root {
   --ww-card-love-top: rgba(199, 104, 48, 0.95);
   --ww-card-love-mid: rgba(190, 94, 42, 0.97);
@@ -13458,6 +13684,7 @@ html body :is(
 }
 
 /* Retain the statement's gentle brand hierarchy rather than flattening it. */
+
 html body #top#top#top.wild-home .wild-home-statement__line--one {
   color: #fff0d4 !important;
   -webkit-text-fill-color: #fff0d4 !important;
@@ -13469,11 +13696,23 @@ html body #top#top#top.wild-home :is(.wild-home-statement__line--two, .wild-home
 }
 
 /* H27: scrollbar belongs to the card family instead of reading as a gold rail. */
+
+@media (width < 600px){
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c76830 #a3471c;
+}
+}
+
+@media (width >= 600px){
 html,
 body,
 * {
   scrollbar-width: thin;
   scrollbar-color: #edc775 #a3471c;
+}
 }
 
 html::-webkit-scrollbar,
@@ -13490,6 +13729,20 @@ body::-webkit-scrollbar-track,
   border-left: 1px solid rgba(111, 42, 16, 0.72) !important;
 }
 
+@media (width < 600px){
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  border: 2px solid #a3471c !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, rgba(199, 104, 48, 0.98) 0%, rgba(190, 94, 42, 0.98) 52%, rgba(183, 91, 40, 0.98) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 243, 213, 0.18) !important;
+}
+}
+
+@media (width >= 600px){
+
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb,
 *::-webkit-scrollbar-thumb {
@@ -13498,8 +13751,10 @@ body::-webkit-scrollbar-thumb,
   background: #edc775 !important;
   box-shadow: inset 0 1px 0 rgba(255, 243, 213, 0.18) !important;
 }
+}
 
 /* H28: Project Wildfire uses permanent Color 1. */
+
 html body #top#top#top.wild-home #project-wildfire :is(.wild-wildfire-flame-title, .wild-wildfire-flame-title__text) {
   color: #fce0ad !important;
   -webkit-text-fill-color: #fce0ad !important;
@@ -13512,6 +13767,7 @@ html body #top#top#top.wild-home #project-wildfire :is(.wild-wildfire-flame-titl
 }
 
 /* H17 remains authoritative on legal pages: every visible word is pure white. */
+
 html body .wild-home.wild-home.wild-legal-home.wild-legal-home :where(
   h1, h2, h3, h4, h5, h6,
   p, li, span, a, strong, em, b, i, small, label, time
@@ -13525,6 +13781,7 @@ body #footer#footer.wild-footer--legal :is(
 }
 
 /* Absolute final H35/H36/H38 lock after H26r. */
+
 html body .wild-subpage--ruins.wild-subpage--ruins .ruins-tone--b {
   background: linear-gradient(180deg, rgba(255, 245, 220, 0.32) 0%, rgba(255, 200, 120, 0.1) 22%, transparent 48%), linear-gradient(165deg, #d87830 0%, #c86828 42%, #b85a22 100%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.4), inset 0 -1px 0 rgba(80, 28, 6, 0.15) !important;

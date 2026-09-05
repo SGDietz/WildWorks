@@ -1,3 +1,4 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
 /* H481 - Claude, 2026-09-03 11:0x-11:1x ET. Two phone screenshots from G.
    PHONE ONLY - both blocks stay exactly as they are from 521px / 600px up.
 
@@ -51,14 +52,29 @@
        two-colour split, so nothing inside this paragraph can drift. Wording,
        size, weight, line-height and the group structure are untouched, and
        nothing here applies from 600px up. */
+    @media (width >= 600px) {
     html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary,
     html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary * {
       color: #fce0ad !important;
       -webkit-text-fill-color: #fce0ad !important;
     }
+    }
+    @media (width < 600px) {
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c1,
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m1 {
+      color: #fce0ad !important;
+      -webkit-text-fill-color: #fce0ad !important;
+    }
+    }
+    @media (width < 600px) {
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c2 .wildfire-hero-summary__m2,
+    html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line--c3 {
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+    }
+    }
   }
 }
-
 /* The one span the layer above cannot reach: H384-mobile-only-pass L151-154
    paints .wildfire-hero-summary__patio Text 2 with a layered !important at
    max-width 599. For IMPORTANT declarations the layer order is reversed, so
@@ -67,6 +83,7 @@
    answer is H421's: reopen that same layer from this file. Same layer, later
    source, higher specificity, so this is the last word on "Patio" - and the
    layer's own 600px+ freeze still holds. */
+@media (width >= 600px) {
 @layer ww-mobile-only-pass {
   @media (max-width: 599px) {
     html body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__patio {
@@ -75,7 +92,7 @@
     }
   }
 }
-
+}
 /* G 2026-09-03, Ruins on the phone: the small copy reads one step too large.
    20px flat, phone only. The selector is the same pair H380 L70-71 sized to
    1.4rem/22.4px (unlayered, so a layered !important takes it): every p and li
@@ -84,6 +101,7 @@
    prompt and the site footer live outside .wild-subpage-section, so none of
    them move. Font family, line-height, spacing, shadow and colour untouched,
    and 600px+ keeps 22.4px. */
+@media (width >= 600px) {
 @layer ww-phone-ruins-copy {
   @media (max-width: 599px) {
     html body#wildworks-body .wild-subpage--ruins .wild-subpage-section p,
@@ -92,7 +110,7 @@
     }
   }
 }
-
+}
 @layer ww-phone-projects-kicker {
   @media (max-width: 520px) {
     /* H441b makes the paragraph a flex COLUMN on phones, and a flex item is
@@ -117,12 +135,14 @@
        H384 L104-108 already paints __and-builds and __part--b this same
        #edc775 in an earlier layer at max-width 599 - same value, so its win
        over this layer changes nothing on the phone. */
+    @media (width >= 600px) {
     html body#wildworks-body .wild-subpage--projects .wild-projects-page-intro,
     html body#wildworks-body .wild-subpage--projects .wild-projects-page-intro *,
     html body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker,
     html body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker * {
       color: #edc775 !important;
       -webkit-text-fill-color: #edc775 !important;
+    }
     }
   }
 }

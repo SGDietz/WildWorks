@@ -10,9 +10,9 @@
   --ww-button-inset-top: transparent;
   --ww-button-inset-bottom: transparent;
 }
-
 /* Actual buttons plus the canonical link-rendered button family. Merely setting
    border width does not create a line where border-style is none. */
+
 body#wildworks-body :is(
   button,
   [role="button"],
@@ -32,9 +32,9 @@ body#wildworks-body :is(
   border-color: #8f3a14 !important;
   border-width: 1px !important;
 }
-
 /* Keep keyboard focus visible on controls only; ordinary text links and form
    fields retain their established focus treatment. */
+
 body#wildworks-body :is(
   button,
   [role="button"],
@@ -53,13 +53,13 @@ body#wildworks-body :is(
 ):focus-visible {
   outline-color: #8f3a14 !important;
 }
-
 /* Gallery thumbnails use an inset focus ring so their dimensions never move. */
+
 body#wildworks-body .wild-home-projects__link:focus-visible {
   outline-color: #8f3a14 !important;
 }
-
 /* Project Wildfire and Projects share these lightbox controls. */
+
 body#wildworks-body :is(.wildfire-lightbox-nav, .wildfire-lightbox-bar button) {
   border-color: #8f3a14 !important;
   border-width: 1px !important;

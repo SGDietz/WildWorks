@@ -1,0 +1,1631 @@
+/* G, 2026-09-05: the named phone portrait walkthrough.
+   Existing text shadow layers become neutral black; no extra shadow layers.
+   Desktop, iPad, and phone landscape do not match this media query.
+   Large CTA type/icons and all-device email fields live in H488. */
+@layer ww-mobile-only-pass {
+  @media (max-width: 599px) and (orientation: portrait) {
+    /* Home: existing shadow color only; offsets, blur, and alpha retained. */
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-wordmark-text-orange {
+      text-shadow: rgb(0, 0, 0) 0px 0.00633101em 0px,
+        rgb(0, 0, 0) 0px 0.01266199em 0px,
+        rgb(0, 0, 0) 0px 0.018993em 0px,
+        rgb(0, 0, 0) 0px 0.02532298em 0px,
+        rgb(0, 0, 0) 0px 0.03165391em 0px,
+        rgb(0, 0, 0) 0px 0.0379851em 0px,
+        rgb(0, 0, 0) 0px 0.04431603em 0px,
+        rgb(0, 0, 0) 0px 0.05064696em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-headline__line.wild-hero-headline__line--makes-home {
+      text-shadow: rgb(0, 0, 0) 0px 0.01114301em 0px,
+        rgb(0, 0, 0) 0px 0.02228601em 0px,
+        rgb(0, 0, 0) 0px 0.03342902em 0px,
+        rgb(0, 0, 0) 0px 0.04457198em 0px,
+        rgb(0, 0, 0) 0px 0.05571408em 0px,
+        rgb(0, 0, 0) 0px 0.06685681em 0px,
+        rgb(0, 0, 0) 0px 0.078em 0px,
+        rgb(0, 0, 0) 0px 0.08914319em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-headline__line.wild-hero-headline__line--irresistible > em:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.006857em 0px,
+        rgb(0, 0, 0) 0px 0.013714em 0px,
+        rgb(0, 0, 0) 0px 0.020571em 0px,
+        rgb(0, 0, 0) 0px 0.027429em 0px,
+        rgb(0, 0, 0) 0px 0.03428613em 0px,
+        rgb(0, 0, 0) 0px 0.0411429em 0px,
+        rgb(0, 0, 0) 0px 0.048em 0px,
+        rgb(0, 0, 0) 0px 0.0548571em 0px,
+        rgb(0, 0, 0) 0px 0.06171387em 0px,
+        rgb(0, 0, 0) 0px 0.06857193em 0px,
+        rgb(0, 0, 0) 0px 0.07542903em 0px,
+        rgb(0, 0, 0) 0px 0.08228613em 0px,
+        rgb(0, 0, 0) 0px 0.0891429em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-lede-line.wild-hero-lede-line--beautiful {
+      text-shadow: rgb(0, 0, 0) 0px 0.01485702em 0px,
+        rgb(0, 0, 0) 0px 0.02971399em 0px,
+        rgb(0, 0, 0) 0px 0.04457201em 0px,
+        rgb(0, 0, 0) 0px 0.05942925em 0px,
+        rgb(0, 0, 0) 0px 0.07428617em 0px,
+        rgb(0, 0, 0) 0px 0.08914308em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-lede-line.wild-hero-lede-line--problems {
+      text-shadow: rgb(0, 0, 0) 0px 0.01485701em 0px,
+        rgb(0, 0, 0) 0px 0.02971403em 0px,
+        rgb(0, 0, 0) 0px 0.04457202em 0px,
+        rgb(0, 0, 0) 0px 0.05942903em 0px,
+        rgb(0, 0, 0) 0px 0.07428597em 0px,
+        rgb(0, 0, 0) 0px 0.08914329em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-hero-lede-line.wild-hero-lede-line--italic {
+      text-shadow: rgb(0, 0, 0) 0px 0.01485699em 0px,
+        rgb(0, 0, 0) 0px 0.02971394em 0px,
+        rgb(0, 0, 0) 0px 0.04457194em 0px,
+        rgb(0, 0, 0) 0px 0.05942898em 0px,
+        rgb(0, 0, 0) 0px 0.07428588em 0px,
+        rgb(0, 0, 0) 0px 0.08914279em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-hero-copy > div.wild-cta-row:nth-of-type(2) > a.money-cta.money-cta--primary.wild-iscott-action-button:nth-of-type(1) > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.153949px 0px,
+        rgb(0, 0, 0) 0px 0.307897px 0px,
+        rgb(0, 0, 0) 0px 0.461832px 0px,
+        rgb(0, 0, 0) 0px 0.61578px 0px,
+        rgb(0, 0, 0) 0px 0.769729px 0px,
+        rgb(0, 0, 0) 0px 0.923678px 0px,
+        rgb(0, 0, 0) 0px 1.07763px 0px,
+        rgb(0, 0, 0) 0px 1.23156px 0px,
+        rgb(0, 0, 0) 0px 1.38551px 0px,
+        rgb(0, 0, 0) 0px 1.53946px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-hero-copy > div.wild-cta-row:nth-of-type(2) > span:nth-of-type(1) > a.money-cta:nth-of-type(1) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00996802em 0px,
+        rgb(0, 0, 0) 0px 0.01993597em 0px,
+        rgb(0, 0, 0) 0px 0.02990399em 0px,
+        rgb(0, 0, 0) 0px 0.03987201em 0px,
+        rgb(0, 0, 0) 0px 0.04984003em 0px,
+        rgb(0, 0, 0) 0px 0.05980798em 0px,
+        rgb(0, 0, 0) 0px 0.069776em 0px,
+        rgb(0, 0, 0) 0px 0.0797443em 0px,
+        rgb(0, 0, 0) 0px 0.08971225em 0px,
+        rgb(0, 0, 0) 0px 0.0996802em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-hero > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.006367em 0px,
+        rgb(0, 0, 0) 0px 0.01273501em 0px,
+        rgb(0, 0, 0) 0px 0.01910201em 0px,
+        rgb(0, 0, 0) 0px 0.0254689em 0px,
+        rgb(0, 0, 0) 0px 0.0318359em 0px,
+        rgb(0, 0, 0) 0px 0.03820401em 0px,
+        rgb(0, 0, 0) 0px 0.04457101em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-hero > span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.63px 0px,
+        rgb(0, 0, 0) 0px 1.26px 0px,
+        rgb(0, 0, 0) 0px 1.89px 0px,
+        rgb(0, 0, 0) 0px 2.52px 0px,
+        rgb(0, 0, 0) 0px 3.15px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-kicker:nth-of-type(1) > span.wild-iscott-kicker__color.wild-iscott-kicker__color--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-kicker:nth-of-type(1) > span.wild-iscott-kicker__color.wild-iscott-kicker__color--one:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-kicker:nth-of-type(1) > span.wild-iscott-kicker__color.wild-iscott-kicker__color--one:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.0107em 0px,
+        rgb(0, 0, 0) 0px 0.02141001em 0px,
+        rgb(0, 0, 0) 0px 0.03211001em 0px,
+        rgb(0, 0, 0) 0px 0.04282002em 0px,
+        rgb(0, 0, 0) 0px 0.05352002em 0px,
+        rgb(0, 0, 0) 0px 0.06421991em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-iscott-title__segment.wild-iscott-title__segment--one,
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-iscott-title__segment.wild-iscott-title__segment--two,
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-iscott-title__segment.wild-iscott-title__segment--three {
+      text-shadow: rgb(0, 0, 0) 0px 0.506656px 0px,
+        rgb(0, 0, 0) 0px 1.01331px 0px,
+        rgb(0, 0, 0) 0px 1.51997px 0px,
+        rgb(0, 0, 0) 0px 2.02662px 0px,
+        rgb(0, 0, 0) 0px 2.53328px 0px,
+        rgb(0, 0, 0) 0px 3.03994px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-body.wild-iscott-body.wild-iscott-body--color-one:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-body.wild-iscott-body.wild-iscott-body--color-one:nth-of-type(3),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.money-step-list.wild-iscott-steps-inline > div:nth-of-type(1) > div.money-step-content:nth-of-type(1) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.money-step-list.wild-iscott-steps-inline > div:nth-of-type(2) > div.money-step-content:nth-of-type(1) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.money-step-list.wild-iscott-steps-inline > div:nth-of-type(3) > div.money-step-content:nth-of-type(1) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.money-step-list.wild-iscott-steps-inline > div:nth-of-type(4) > div.money-step-content:nth-of-type(1) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-split.wild-split--lead > div.wild-copy-stack:nth-of-type(1) > p.wild-body.wild-iscott-body.wild-iscott-body--color-one:nth-of-type(4) {
+      text-shadow: rgb(0, 0, 0) 0px 0.14332px 0px,
+        rgb(0, 0, 0) 0px 0.286641px 0px,
+        rgb(0, 0, 0) 0px 0.429961px 0px,
+        rgb(0, 0, 0) 0px 0.573281px 0px,
+        rgb(0, 0, 0) 0px 0.716602px 0px,
+        rgb(0, 0, 0) 0px 0.859922px 0px,
+        rgb(0, 0, 0) 0px 1.00324px 0px,
+        rgb(0, 0, 0) 0px 1.14656px 0px,
+        rgb(0, 0, 0) 0px 1.28988px 0px,
+        rgb(0, 0, 0) 0px 1.4332px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > p.money-panel-kicker:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.375412px 0px,
+        rgb(0, 0, 0) 0px 0.620585px 0px,
+        rgb(0, 0, 0) 0px 0.865758px 0px,
+        rgb(0, 0, 0) 0px 1.11093px 0px,
+        rgb(0, 0, 0) 0px 1.35609px 0px,
+        rgb(0, 0, 0) 0px 1.60126px 0px,
+        rgb(0, 0, 0) 0px 1.84643px 0px,
+        rgb(0, 0, 0) 0px 2.09161px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > h2.wild-start-title:nth-of-type(1) > span.wild-start-title__start:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > h2.wild-start-title:nth-of-type(1) > span.wild-start-title__with:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > h2.wild-start-title:nth-of-type(1) > span.wild-start-title__name:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.353232px 0px,
+        rgb(0, 0, 0) 0px 0.706464px 0px,
+        rgb(0, 0, 0) 0px 1.0597px 0px,
+        rgb(0, 0, 0) 0px 1.41293px 0px,
+        rgb(0, 0, 0) 0px 1.76616px 0px,
+        rgb(0, 0, 0) 0px 2.11939px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-site-avatar-overlay-cta > span:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-home-projects__more > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(1) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(2) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-signup-submit > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.140672px 0px,
+        rgb(0, 0, 0) 0px 0.281344px 0px,
+        rgb(0, 0, 0) 0px 0.421998px 0px,
+        rgb(0, 0, 0) 0px 0.56267px 0px,
+        rgb(0, 0, 0) 0px 0.703342px 0px,
+        rgb(0, 0, 0) 0px 0.844014px 0px,
+        rgb(0, 0, 0) 0px 0.984686px 0px,
+        rgb(0, 0, 0) 0px 1.12534px 0px,
+        rgb(0, 0, 0) 0px 1.26601px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-iscott-upload.wild-iscott-upload--mobile > button.money-cta.money-cta--primary.wild-iscott-upload__button:nth-of-type(1) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.13816px 0px,
+        rgb(0, 0, 0) 0px 0.27632px 0px,
+        rgb(0, 0, 0) 0px 0.414462px 0px,
+        rgb(0, 0, 0) 0px 0.552622px 0px,
+        rgb(0, 0, 0) 0px 0.690782px 0px,
+        rgb(0, 0, 0) 0px 0.828942px 0px,
+        rgb(0, 0, 0) 0px 0.967102px 0px,
+        rgb(0, 0, 0) 0px 1.10524px 0px,
+        rgb(0, 0, 0) 0px 1.2434px 0px,
+        rgb(0, 0, 0) 0px 1.38156px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > p.wild-iscott-disclosure:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #talk-to-iscott > p.wild-iscott-disclosure:nth-of-type(2) > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.107184px 0px,
+        rgb(0, 0, 0) 0px 0.214368px 0px,
+        rgb(0, 0, 0) 0px 0.321552px 0px,
+        rgb(0, 0, 0) 0px 0.428736px 0px,
+        rgb(0, 0, 0) 0px 0.53592px 0px,
+        rgb(0, 0, 0) 0px 0.643104px 0px,
+        rgb(0, 0, 0) 0px 0.750288px 0px,
+        rgb(0, 0, 0) 0px 0.857472px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.07184px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-flame-title__text {
+      text-shadow: rgb(0, 0, 0) 0px 0.005112em 0px,
+        rgb(0, 0, 0) 0px 0.01022499em 0px,
+        rgb(0, 0, 0) 0px 0.01533799em 0px,
+        rgb(0, 0, 0) 0px 0.02044999em 0px,
+        rgb(0, 0, 0) 0px 0.0255621em 0px,
+        rgb(0, 0, 0) 0px 0.03067492em 0px,
+        rgb(0, 0, 0) 0px 0.03578707em 0px,
+        rgb(0, 0, 0) 0px 0.04089989em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h3.wild-section-title.wild-line-title.wild-wildfire-title > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00892em 0px,
+        rgb(0, 0, 0) 0px 0.017841em 0px,
+        rgb(0, 0, 0) 0px 0.02676103em 0px,
+        rgb(0, 0, 0) 0px 0.03568103em 0px,
+        rgb(0, 0, 0) 0px 0.04460205em 0px,
+        rgb(0, 0, 0) 0px 0.05352205em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--patio {
+      text-shadow: rgb(0, 0, 0) 0px 0.382546px 0px,
+        rgb(0, 0, 0) 0px 0.765093px 0px,
+        rgb(0, 0, 0) 0px 1.14767px 0px,
+        rgb(0, 0, 0) 0px 1.53022px 0px,
+        rgb(0, 0, 0) 0px 1.91276px 0px,
+        rgb(0, 0, 0) 0px 2.29531px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--lounge {
+      text-shadow: rgb(0, 0, 0) 0px 0.332162px 0px,
+        rgb(0, 0, 0) 0px 0.664324px 0px,
+        rgb(0, 0, 0) 0px 0.996515px 0px,
+        rgb(0, 0, 0) 0px 1.32868px 0px,
+        rgb(0, 0, 0) 0px 1.66084px 0px,
+        rgb(0, 0, 0) 0px 1.993px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--going {
+      text-shadow: rgb(0, 0, 0) 0px 0.507574px 0px,
+        rgb(0, 0, 0) 0px 1.01515px 0px,
+        rgb(0, 0, 0) 0px 1.52276px 0px,
+        rgb(0, 0, 0) 0px 2.03034px 0px,
+        rgb(0, 0, 0) 0px 2.53791px 0px,
+        rgb(0, 0, 0) 0px 3.04549px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-build-note__line.wild-wildfire-build-note__line--lead {
+      text-shadow: rgb(0, 0, 0) 0px 0.01457902em 0px,
+        rgb(0, 0, 0) 0px 0.02915799em 0px,
+        rgb(0, 0, 0) 0px 0.04373701em 0px,
+        rgb(0, 0, 0) 0px 0.05831598em 0px,
+        rgb(0, 0, 0) 0px 0.0728951em 0px,
+        rgb(0, 0, 0) 0px 0.08747423em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-build-note__line.wild-wildfire-build-note__line--middle {
+      text-shadow: rgb(0, 0, 0) 0px 0.01457902em 0px,
+        rgb(0, 0, 0) 0px 0.02915799em 0px,
+        rgb(0, 0, 0) 0px 0.043737em 0px,
+        rgb(0, 0, 0) 0px 0.05831616em 0px,
+        rgb(0, 0, 0) 0px 0.07289485em 0px,
+        rgb(0, 0, 0) 0px 0.08747401em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-wildfire-build-note__line.wild-wildfire-build-note__line--close {
+      text-shadow: rgb(0, 0, 0) 0px 0.01457899em 0px,
+        rgb(0, 0, 0) 0px 0.02915799em 0px,
+        rgb(0, 0, 0) 0px 0.04373703em 0px,
+        rgb(0, 0, 0) 0px 0.0583159em 0px,
+        rgb(0, 0, 0) 0px 0.07289518em 0px,
+        rgb(0, 0, 0) 0px 0.08747405em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-cta-row.wild-cta-row--center > a.money-cta.money-cta--primary.wild-iscott-action-button:nth-of-type(1) > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.191917px 0px,
+        rgb(0, 0, 0) 0px 0.383834px 0px,
+        rgb(0, 0, 0) 0px 0.575752px 0px,
+        rgb(0, 0, 0) 0px 0.767669px 0px,
+        rgb(0, 0, 0) 0px 0.959586px 0px,
+        rgb(0, 0, 0) 0px 1.1515px 0px,
+        rgb(0, 0, 0) 0px 1.34342px 0px,
+        rgb(0, 0, 0) 0px 1.53534px 0px,
+        rgb(0, 0, 0) 0px 1.72726px 0px,
+        rgb(0, 0, 0) 0px 1.91917px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-cta-row.wild-cta-row--center > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.178627px 0px,
+        rgb(0, 0, 0) 0px 0.357253px 0px,
+        rgb(0, 0, 0) 0px 0.53588px 0px,
+        rgb(0, 0, 0) 0px 0.714506px 0px,
+        rgb(0, 0, 0) 0px 0.893133px 0px,
+        rgb(0, 0, 0) 0px 1.07176px 0px,
+        rgb(0, 0, 0) 0px 1.25039px 0px,
+        rgb(0, 0, 0) 0px 1.42901px 0px,
+        rgb(0, 0, 0) 0px 1.60764px 0px,
+        rgb(0, 0, 0) 0px 1.78627px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-statement__line.wild-home-statement__line--one > span.wild-home-statement__phrase:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-statement__line.wild-home-statement__line--one > span.wild-home-statement__phrase:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-statement__line.wild-home-statement__line--two > span.wild-home-statement__phrase:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-statement__line.wild-home-statement__line--two > span.wild-home-statement__phrase:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.01031501em 0px,
+        rgb(0, 0, 0) 0px 0.02063001em 0px,
+        rgb(0, 0, 0) 0px 0.03094502em 0px,
+        rgb(0, 0, 0) 0px 0.04126099em 0px,
+        rgb(0, 0, 0) 0px 0.05157587em 0px,
+        rgb(0, 0, 0) 0px 0.06189113em 0px,
+        rgb(0, 0, 0) 0px 0.07220597em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-statement__line.wild-home-statement__line--four {
+      text-shadow: rgb(0, 0, 0) 0px 0.011461em 0px,
+        rgb(0, 0, 0) 0px 0.022923em 0px,
+        rgb(0, 0, 0) 0px 0.03438399em 0px,
+        rgb(0, 0, 0) 0px 0.04584499em 0px,
+        rgb(0, 0, 0) 0px 0.05730599em 0px,
+        rgb(0, 0, 0) 0px 0.06876789em 0px,
+        rgb(0, 0, 0) 0px 0.08022879em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-tree > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696399em 0px,
+        rgb(0, 0, 0) 0px 0.01392901em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785708em 0px,
+        rgb(0, 0, 0) 0px 0.03482207em 0px,
+        rgb(0, 0, 0) 0px 0.04178595em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571505em 0px,
+        rgb(0, 0, 0) 0px 0.06267893em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body figcaption.wild-home-hero-stonework-note.wild-home-image-stonework-note {
+      text-shadow: rgb(0, 0, 0) 0px 0.137808px 0px,
+        rgb(0, 0, 0) 0px 0.275616px 0px,
+        rgb(0, 0, 0) 0px 0.413424px 0px,
+        rgb(0, 0, 0) 0px 0.551232px 0px,
+        rgb(0, 0, 0) 0px 0.68904px 0px,
+        rgb(0, 0, 0) 0px 0.826848px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.10246px 0px,
+        rgb(0, 0, 0) 0px 1.24027px 0px,
+        rgb(0, 0, 0) 0px 1.37808px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-line-title.wild-tree-title > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-line-title.wild-tree-title > span.wild-line-title__line.wild-line-title__line--two:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-section-heading.wild-site-offer-heading > h2.wild-section-title.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-section-heading.wild-site-offer-heading > h2.wild-section-title.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--two:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.342528px 0px,
+        rgb(0, 0, 0) 0px 0.685094px 0px,
+        rgb(0, 0, 0) 0px 1.02762px 0px,
+        rgb(0, 0, 0) 0px 1.37015px 0px,
+        rgb(0, 0, 0) 0px 1.71272px 0px,
+        rgb(0, 0, 0) 0px 2.05524px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-line-title__line.wild-line-title__line--three {
+      text-shadow: rgb(0, 0, 0) 0px 0.36308px 0px,
+        rgb(0, 0, 0) 0px 0.7262px 0px,
+        rgb(0, 0, 0) 0px 1.08928px 0px,
+        rgb(0, 0, 0) 0px 1.45236px 0px,
+        rgb(0, 0, 0) 0px 1.81548px 0px,
+        rgb(0, 0, 0) 0px 2.17856px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #wildworks-proof > div.wild-split:nth-of-type(1) > div.wild-copy-stack:nth-of-type(1) > p.wild-body:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #wildworks-proof > div.wild-split:nth-of-type(1) > div.wild-copy-stack:nth-of-type(1) > p.wild-body:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(3),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(4),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(5),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-site-offer-shell > p.wild-body.wild-site-offer-copy:nth-of-type(1) > span.wild-site-offer-copy__line:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.154345px 0px,
+        rgb(0, 0, 0) 0px 0.30869px 0px,
+        rgb(0, 0, 0) 0px 0.463035px 0px,
+        rgb(0, 0, 0) 0px 0.61738px 0px,
+        rgb(0, 0, 0) 0px 0.771725px 0px,
+        rgb(0, 0, 0) 0px 0.92607px 0px,
+        rgb(0, 0, 0) 0px 1.08041px 0px,
+        rgb(0, 0, 0) 0px 1.23476px 0px,
+        rgb(0, 0, 0) 0px 1.3891px 0px,
+        rgb(0, 0, 0) 0px 1.54345px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(1) > span.wild-signature-title__one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(2) > span.wild-signature-title__one:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.007598em 0px,
+        rgb(0, 0, 0) 0px 0.015195em 0px,
+        rgb(0, 0, 0) 0px 0.022793em 0px,
+        rgb(0, 0, 0) 0px 0.03039099em 0px,
+        rgb(0, 0, 0) 0px 0.03798906em 0px,
+        rgb(0, 0, 0) 0px 0.04558599em 0px,
+        rgb(0, 0, 0) 0px 0.05318386em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(3) > span.wild-signature-title__two:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(3) > span.wild-signature-title__two:nth-of-type(1) > span.wild-signature-title__having:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-signature-title__two.wild-signature-title__having {
+      text-shadow: rgb(0, 0, 0) 0px 0.00802301em 0px,
+        rgb(0, 0, 0) 0px 0.016046em 0px,
+        rgb(0, 0, 0) 0px 0.02406901em 0px,
+        rgb(0, 0, 0) 0px 0.03209193em 0px,
+        rgb(0, 0, 0) 0px 0.04011413em 0px,
+        rgb(0, 0, 0) 0px 0.04813696em 0px,
+        rgb(0, 0, 0) 0px 0.0561601em 0px,
+        rgb(0, 0, 0) 0px 0.06418293em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-signature-title__three.wild-signature-title__having {
+      text-shadow: rgb(0, 0, 0) 0px 0.00891999em 0px,
+        rgb(0, 0, 0) 0px 0.017841em 0px,
+        rgb(0, 0, 0) 0px 0.02676091em 0px,
+        rgb(0, 0, 0) 0px 0.03568092em 0px,
+        rgb(0, 0, 0) 0px 0.04460201em 0px,
+        rgb(0, 0, 0) 0px 0.05352203em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-story-copy > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-story-copy > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--two:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.485248px 0px,
+        rgb(0, 0, 0) 0px 0.97055px 0px,
+        rgb(0, 0, 0) 0px 1.4558px 0px,
+        rgb(0, 0, 0) 0px 1.94105px 0px,
+        rgb(0, 0, 0) 0px 2.42635px 0px,
+        rgb(0, 0, 0) 0px 2.9116px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-story-actions.wild-story-actions--ruins > a.money-cta.money-cta--primary.wild-story-action:nth-of-type(1) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-story-actions.wild-story-actions--ruins > a.money-cta.money-cta--primary.wild-story-action:nth-of-type(2) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(3) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(4) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.17584px 0px,
+        rgb(0, 0, 0) 0px 0.35168px 0px,
+        rgb(0, 0, 0) 0px 0.527498px 0px,
+        rgb(0, 0, 0) 0px 0.703338px 0px,
+        rgb(0, 0, 0) 0px 0.879178px 0px,
+        rgb(0, 0, 0) 0px 1.05502px 0px,
+        rgb(0, 0, 0) 0px 1.23086px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px,
+        rgb(0, 0, 0) 0px 1.58252px 0px,
+        rgb(0, 0, 0) 0px 1.75836px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-services > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696399em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785708em 0px,
+        rgb(0, 0, 0) 0px 0.03482096em 0px,
+        rgb(0, 0, 0) 0px 0.04178595em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571394em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-projects__title-wildworks,
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-home-projects__title-projects {
+      text-shadow: rgb(0, 0, 0) 0px 0.007028em 0px,
+        rgb(0, 0, 0) 0px 0.01405599em 0px,
+        rgb(0, 0, 0) 0px 0.02108409em 0px,
+        rgb(0, 0, 0) 0px 0.02811198em 0px,
+        rgb(0, 0, 0) 0px 0.03514106em 0px,
+        rgb(0, 0, 0) 0px 0.04216896em 0px,
+        rgb(0, 0, 0) 0px 0.04919705em 0px,
+        rgb(0, 0, 0) 0px 0.05622495em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-home-projects__tagline > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00738599em 0px,
+        rgb(0, 0, 0) 0px 0.014771em 0px,
+        rgb(0, 0, 0) 0px 0.02215699em 0px,
+        rgb(0, 0, 0) 0px 0.02954289em 0px,
+        rgb(0, 0, 0) 0px 0.0369289em 0px,
+        rgb(0, 0, 0) 0px 0.04431399em 0px,
+        rgb(0, 0, 0) 0px 0.0517em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-home-projects__capabilities > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-home-projects__capabilities > p:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.17226px 0px,
+        rgb(0, 0, 0) 0px 0.34452px 0px,
+        rgb(0, 0, 0) 0px 0.51678px 0px,
+        rgb(0, 0, 0) 0px 0.68904px 0px,
+        rgb(0, 0, 0) 0px 0.8613px 0px,
+        rgb(0, 0, 0) 0px 1.03356px 0px,
+        rgb(0, 0, 0) 0px 1.20582px 0px,
+        rgb(0, 0, 0) 0px 1.37808px 0px,
+        rgb(0, 0, 0) 0px 1.55034px 0px,
+        rgb(0, 0, 0) 0px 1.7226px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-video > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.01392799em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785694em 0px,
+        rgb(0, 0, 0) 0px 0.03482099em 0px,
+        rgb(0, 0, 0) 0px 0.04178601em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571411em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-kicker-frame {
+      text-shadow: rgb(0, 0, 0) 0px 0.33324px 0px,
+        rgb(0, 0, 0) 0px 0.66648px 0px,
+        rgb(0, 0, 0) 0px 0.99972px 0px,
+        rgb(0, 0, 0) 0px 1.33294px 0px,
+        rgb(0, 0, 0) 0px 1.66618px 0px,
+        rgb(0, 0, 0) 0px 1.99942px 0px,
+        rgb(0, 0, 0) 0px 2.33266px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #services > div.wild-section-heading:nth-of-type(1) > h2.wild-section-title.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body #services > div.wild-section-heading:nth-of-type(1) > h2.wild-section-title.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--two:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.42816px 0px,
+        rgb(0, 0, 0) 0px 0.856368px 0px,
+        rgb(0, 0, 0) 0px 1.28453px 0px,
+        rgb(0, 0, 0) 0px 1.71269px 0px,
+        rgb(0, 0, 0) 0px 2.1409px 0px,
+        rgb(0, 0, 0) 0px 2.56906px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-services-title__wildworks {
+      text-shadow: rgb(0, 0, 0) 0px 0.33024px 0px,
+        rgb(0, 0, 0) 0px 0.66048px 0px,
+        rgb(0, 0, 0) 0px 0.99072px 0px,
+        rgb(0, 0, 0) 0px 1.32096px 0px,
+        rgb(0, 0, 0) 0px 1.6512px 0px,
+        rgb(0, 0, 0) 0px 1.98144px 0px,
+        rgb(0, 0, 0) 0px 2.31168px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(2) > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(3) > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(4) > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body article.wild-card.wild-card--capability-fit > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-heading:nth-of-type(1) > h3.wild-line-title:nth-of-type(1) > span.wild-line-title__line.wild-line-title__line--one:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.209798px 0px,
+        rgb(0, 0, 0) 0px 0.41962px 0px,
+        rgb(0, 0, 0) 0px 0.629419px 0px,
+        rgb(0, 0, 0) 0px 0.839217px 0px,
+        rgb(0, 0, 0) 0px 1.04904px 0px,
+        rgb(0, 0, 0) 0px 1.25884px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(2) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(2) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(3) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(3) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(4) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(4) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body article.wild-card.wild-card--capability-fit > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body article.wild-card.wild-card--capability-fit > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.146383px 0px,
+        rgb(0, 0, 0) 0px 0.292765px 0px,
+        rgb(0, 0, 0) 0px 0.439148px 0px,
+        rgb(0, 0, 0) 0px 0.585531px 0px,
+        rgb(0, 0, 0) 0px 0.731914px 0px,
+        rgb(0, 0, 0) 0px 0.878296px 0px,
+        rgb(0, 0, 0) 0px 1.02468px 0px,
+        rgb(0, 0, 0) 0px 1.17106px 0px,
+        rgb(0, 0, 0) 0px 1.31744px 0px,
+        rgb(0, 0, 0) 0px 1.46383px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-body:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body strong.wild-worlds-wildest-builds-copy,
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-aiasap-wordmark {
+      text-shadow: rgb(0, 0, 0) 0px 0.3px 0px,
+        rgb(0, 0, 0) 0px 0.68px 0px,
+        rgb(0, 0, 0) 0px 1.15px 0px,
+        rgb(0, 0, 0) 0px 1.6px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-kicker.wild-preserve-ai-case.wild-kicker--framed {
+      text-shadow: rgb(0, 0, 0) 0px 0.311024px 0px,
+        rgb(0, 0, 0) 0px 0.622048px 0px,
+        rgb(0, 0, 0) 0px 0.933072px 0px,
+        rgb(0, 0, 0) 0px 1.24407px 0px,
+        rgb(0, 0, 0) 0px 1.5551px 0px,
+        rgb(0, 0, 0) 0px 1.86612px 0px,
+        rgb(0, 0, 0) 0px 2.17715px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-footer > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.300845px 0px,
+        rgb(0, 0, 0) 0px 0.60169px 0px,
+        rgb(0, 0, 0) 0px 0.902578px 0px,
+        rgb(0, 0, 0) 0px 1.20342px 0px,
+        rgb(0, 0, 0) 0px 1.50427px 0px,
+        rgb(0, 0, 0) 0px 1.80516px 0px,
+        rgb(0, 0, 0) 0px 2.106px 0px,
+        rgb(0, 0, 0) 0px 2.40684px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h3.wild-signup-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.427654px 0px,
+        rgb(0, 0, 0) 0px 0.855307px 0px,
+        rgb(0, 0, 0) 0px 1.28296px 0px,
+        rgb(0, 0, 0) 0px 1.71061px 0px,
+        rgb(0, 0, 0) 0px 2.13827px 0px,
+        rgb(0, 0, 0) 0px 2.56592px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print,
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(2),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.110859px 0px,
+        rgb(0, 0, 0) 0px 0.221718px 0px,
+        rgb(0, 0, 0) 0px 0.332577px 0px,
+        rgb(0, 0, 0) 0px 0.443436px 0px,
+        rgb(0, 0, 0) 0px 0.554294px 0px,
+        rgb(0, 0, 0) 0px 0.665153px 0px,
+        rgb(0, 0, 0) 0px 0.776012px 0px,
+        rgb(0, 0, 0) 0px 0.886871px 0px,
+        rgb(0, 0, 0) 0px 0.99773px 0px,
+        rgb(0, 0, 0) 0px 1.10859px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body h2.wild-footer-contact-cta__title {
+      text-shadow: rgb(0, 0, 0) 0px 0.3624px 0px,
+        rgb(0, 0, 0) 0px 0.7248px 0px,
+        rgb(0, 0, 0) 0px 1.0872px 0px,
+        rgb(0, 0, 0) 0px 1.452px 0px,
+        rgb(0, 0, 0) 0px 1.8144px 0px,
+        rgb(0, 0, 0) 0px 2.1768px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.344348px 0px,
+        rgb(0, 0, 0) 0px 0.688696px 0px,
+        rgb(0, 0, 0) 0px 1.03304px 0px,
+        rgb(0, 0, 0) 0px 1.37737px 0px,
+        rgb(0, 0, 0) 0px 1.72172px 0px,
+        rgb(0, 0, 0) 0px 2.06606px 0px,
+        rgb(0, 0, 0) 0px 2.41041px 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis {
+      text-shadow: rgb(0, 0, 0) 0px 0.00901001em 0px,
+        rgb(0, 0, 0) 0px 0.01847101em 0px,
+        rgb(0, 0, 0) 0px 0.027932em 0px,
+        rgb(0, 0, 0) 0px 0.03739186em 0px,
+        rgb(0, 0, 0) 0px 0.04685312em 0px,
+        rgb(0, 0, 0) 0px 0.0563141em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--footer-closing > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.02089299em 0px,
+        rgb(0, 0, 0) 0px 0.02785691em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178594em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px,
+        rgb(0, 0, 0) 0px 0.05571406em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-stonework-note > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-stonework-note__second-line {
+      text-shadow: rgb(0, 0, 0) 0px 0.02180598em 0px,
+        rgb(0, 0, 0) 0px 0.03604701em 0px,
+        rgb(0, 0, 0) 0px 0.05028798em 0px,
+        rgb(0, 0, 0) 0px 0.06452877em 0px,
+        rgb(0, 0, 0) 0px 0.07876923em 0px,
+        rgb(0, 0, 0) 0px 0.09301026em 0px,
+        rgb(0, 0, 0) 0px 0.10725071em 0px,
+        rgb(0, 0, 0) 0px 0.12149174em 0px !important;
+    }
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(1) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(2) > span:nth-of-type(1),
+    html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(3) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.148861px 0px,
+        rgb(0, 0, 0) 0px 0.297723px 0px,
+        rgb(0, 0, 0) 0px 0.446584px 0px,
+        rgb(0, 0, 0) 0px 0.595446px 0px,
+        rgb(0, 0, 0) 0px 0.744307px 0px,
+        rgb(0, 0, 0) 0px 0.893169px 0px,
+        rgb(0, 0, 0) 0px 1.04203px 0px,
+        rgb(0, 0, 0) 0px 1.19089px 0px,
+        rgb(0, 0, 0) 0px 1.33975px 0px,
+        rgb(0, 0, 0) 0px 1.48861px 0px !important;
+    }
+
+    /* Wildfire: existing shadow color only; offsets, blur, and alpha retained. */
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--wildfire > section:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--wildfire > section:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.004875em 0px,
+        rgb(0, 0, 0) 0px 0.00975001em 0px,
+        rgb(0, 0, 0) 0px 0.014625em 0px,
+        rgb(0, 0, 0) 0px 0.01950008em 0px,
+        rgb(0, 0, 0) 0px 0.02437502em 0px,
+        rgb(0, 0, 0) 0px 0.02924996em 0px,
+        rgb(0, 0, 0) 0px 0.03412506em 0px,
+        rgb(0, 0, 0) 0px 0.039em 0px,
+        rgb(0, 0, 0) 0px 0.04387494em 0px,
+        rgb(0, 0, 0) 0px 0.04875004em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--wildfire > section:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(2),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--wildfire > section:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.004875em 0px,
+        rgb(0, 0, 0) 0px 0.00975em 0px,
+        rgb(0, 0, 0) 0px 0.014625em 0px,
+        rgb(0, 0, 0) 0px 0.0195em 0px,
+        rgb(0, 0, 0) 0px 0.024375em 0px,
+        rgb(0, 0, 0) 0px 0.02925em 0px,
+        rgb(0, 0, 0) 0px 0.034125em 0px,
+        rgb(0, 0, 0) 0px 0.039em 0px,
+        rgb(0, 0, 0) 0px 0.043875em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body h1 > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body h1 > span:nth-of-type(2),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body #ww-wildfire-first-fire {
+      text-shadow: rgb(0, 0, 0) 0px 0.0175em 0px,
+        rgb(0, 0, 0) 0px 0.03498999em 0px,
+        rgb(0, 0, 0) 0px 0.0525em 0px,
+        rgb(0, 0, 0) 0px 0.06999003em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-body > span:nth-of-type(1) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.01071402em 0px,
+        rgb(0, 0, 0) 0px 0.02142899em 0px,
+        rgb(0, 0, 0) 0px 0.03214301em 0px,
+        rgb(0, 0, 0) 0px 0.04285691em 0px,
+        rgb(0, 0, 0) 0px 0.05357113em 0px,
+        rgb(0, 0, 0) 0px 0.06428619em 0px,
+        rgb(0, 0, 0) 0px 0.075em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-body > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-body > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.007656em 0px,
+        rgb(0, 0, 0) 0px 0.01531199em 0px,
+        rgb(0, 0, 0) 0px 0.02296799em 0px,
+        rgb(0, 0, 0) 0px 0.03062399em 0px,
+        rgb(0, 0, 0) 0px 0.03827998em 0px,
+        rgb(0, 0, 0) 0px 0.0459359em 0px,
+        rgb(0, 0, 0) 0px 0.05359181em 0px,
+        rgb(0, 0, 0) 0px 0.06124814em 0px,
+        rgb(0, 0, 0) 0px 0.06890405em 0px,
+        rgb(0, 0, 0) 0px 0.07655997em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-body > span:nth-of-type(2) > span:nth-of-type(2),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-body > span:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.01522002em 0px,
+        rgb(0, 0, 0) 0px 0.03042998em 0px,
+        rgb(0, 0, 0) 0px 0.04565012em 0px,
+        rgb(0, 0, 0) 0px 0.0608598em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--wildfire > p:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.4002px 0px,
+        rgb(0, 0, 0) 0px 0.8004px 0px,
+        rgb(0, 0, 0) 0px 1.2006px 0px,
+        rgb(0, 0, 0) 0px 1.6008px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-footer > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696399em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785708em 0px,
+        rgb(0, 0, 0) 0px 0.03482096em 0px,
+        rgb(0, 0, 0) 0px 0.04178595em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571394em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body h3.wild-signup-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.427654px 0px,
+        rgb(0, 0, 0) 0px 0.855307px 0px,
+        rgb(0, 0, 0) 0px 1.28296px 0px,
+        rgb(0, 0, 0) 0px 1.71061px 0px,
+        rgb(0, 0, 0) 0px 2.13827px 0px,
+        rgb(0, 0, 0) 0px 2.56592px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.118064px 0px,
+        rgb(0, 0, 0) 0px 0.236128px 0px,
+        rgb(0, 0, 0) 0px 0.354177px 0px,
+        rgb(0, 0, 0) 0px 0.472241px 0px,
+        rgb(0, 0, 0) 0px 0.590305px 0px,
+        rgb(0, 0, 0) 0px 0.708369px 0px,
+        rgb(0, 0, 0) 0px 0.826433px 0px,
+        rgb(0, 0, 0) 0px 0.944482px 0px,
+        rgb(0, 0, 0) 0px 1.06255px 0px,
+        rgb(0, 0, 0) 0px 1.18061px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-signup-submit > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body a.money-cta.money-cta--primary.wild-site-avatar-overlay-cta > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.140672px 0px,
+        rgb(0, 0, 0) 0px 0.281344px 0px,
+        rgb(0, 0, 0) 0px 0.421998px 0px,
+        rgb(0, 0, 0) 0px 0.56267px 0px,
+        rgb(0, 0, 0) 0px 0.703342px 0px,
+        rgb(0, 0, 0) 0px 0.844014px 0px,
+        rgb(0, 0, 0) 0px 0.984686px 0px,
+        rgb(0, 0, 0) 0px 1.12534px 0px,
+        rgb(0, 0, 0) 0px 1.26601px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print,
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(2),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.0955469px 0px,
+        rgb(0, 0, 0) 0px 0.191094px 0px,
+        rgb(0, 0, 0) 0px 0.286641px 0px,
+        rgb(0, 0, 0) 0px 0.382188px 0px,
+        rgb(0, 0, 0) 0px 0.477734px 0px,
+        rgb(0, 0, 0) 0px 0.573281px 0px,
+        rgb(0, 0, 0) 0px 0.668828px 0px,
+        rgb(0, 0, 0) 0px 0.764375px 0px,
+        rgb(0, 0, 0) 0px 0.859922px 0px,
+        rgb(0, 0, 0) 0px 0.955469px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body h2.wild-footer-contact-cta__title {
+      text-shadow: rgb(0, 0, 0) 0px 0.3624px 0px,
+        rgb(0, 0, 0) 0px 0.7248px 0px,
+        rgb(0, 0, 0) 0px 1.0872px 0px,
+        rgb(0, 0, 0) 0px 1.452px 0px,
+        rgb(0, 0, 0) 0px 1.8144px 0px,
+        rgb(0, 0, 0) 0px 2.1768px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(3) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.1256px 0px,
+        rgb(0, 0, 0) 0px 0.2512px 0px,
+        rgb(0, 0, 0) 0px 0.376784px 0px,
+        rgb(0, 0, 0) 0px 0.502384px 0px,
+        rgb(0, 0, 0) 0px 0.627984px 0px,
+        rgb(0, 0, 0) 0px 0.753584px 0px,
+        rgb(0, 0, 0) 0px 0.879184px 0px,
+        rgb(0, 0, 0) 0px 1.00477px 0px,
+        rgb(0, 0, 0) 0px 1.13037px 0px,
+        rgb(0, 0, 0) 0px 1.25597px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(3) > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(4) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.133136px 0px,
+        rgb(0, 0, 0) 0px 0.266272px 0px,
+        rgb(0, 0, 0) 0px 0.399391px 0px,
+        rgb(0, 0, 0) 0px 0.532527px 0px,
+        rgb(0, 0, 0) 0px 0.665663px 0px,
+        rgb(0, 0, 0) 0px 0.798799px 0px,
+        rgb(0, 0, 0) 0px 0.931935px 0px,
+        rgb(0, 0, 0) 0px 1.06505px 0px,
+        rgb(0, 0, 0) 0px 1.19819px 0px,
+        rgb(0, 0, 0) 0px 1.33133px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.344348px 0px,
+        rgb(0, 0, 0) 0px 0.688696px 0px,
+        rgb(0, 0, 0) 0px 1.03304px 0px,
+        rgb(0, 0, 0) 0px 1.37737px 0px,
+        rgb(0, 0, 0) 0px 1.72172px 0px,
+        rgb(0, 0, 0) 0px 2.06606px 0px,
+        rgb(0, 0, 0) 0px 2.41041px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.money-panel-kicker {
+      text-shadow: rgb(0, 0, 0) 0px 0.490199px 0px,
+        rgb(0, 0, 0) 0px 0.810337px 0px,
+        rgb(0, 0, 0) 0px 1.13047px 0px,
+        rgb(0, 0, 0) 0px 1.45061px 0px,
+        rgb(0, 0, 0) 0px 1.77073px 0px,
+        rgb(0, 0, 0) 0px 2.09086px 0px,
+        rgb(0, 0, 0) 0px 2.411px 0px,
+        rgb(0, 0, 0) 0px 2.73114px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__start,
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__with,
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__name {
+      text-shadow: rgb(0, 0, 0) 0px 0.39937px 0px,
+        rgb(0, 0, 0) 0px 0.798706px 0px,
+        rgb(0, 0, 0) 0px 1.19808px 0px,
+        rgb(0, 0, 0) 0px 1.59744px 0px,
+        rgb(0, 0, 0) 0px 1.99678px 0px,
+        rgb(0, 0, 0) 0px 2.39615px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure,
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.107184px 0px,
+        rgb(0, 0, 0) 0px 0.214368px 0px,
+        rgb(0, 0, 0) 0px 0.321552px 0px,
+        rgb(0, 0, 0) 0px 0.428736px 0px,
+        rgb(0, 0, 0) 0px 0.53592px 0px,
+        rgb(0, 0, 0) 0px 0.643104px 0px,
+        rgb(0, 0, 0) 0px 0.750288px 0px,
+        rgb(0, 0, 0) 0px 0.857472px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.07184px 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis {
+      text-shadow: rgb(0, 0, 0) 0px 0.00901001em 0px,
+        rgb(0, 0, 0) 0px 0.01847101em 0px,
+        rgb(0, 0, 0) 0px 0.027932em 0px,
+        rgb(0, 0, 0) 0px 0.03739186em 0px,
+        rgb(0, 0, 0) 0px 0.04685312em 0px,
+        rgb(0, 0, 0) 0px 0.0563141em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--footer-closing > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.02089299em 0px,
+        rgb(0, 0, 0) 0px 0.02785691em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178594em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px,
+        rgb(0, 0, 0) 0px 0.05571406em 0px !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-stonework-note > span:nth-of-type(1),
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-stonework-note__second-line {
+      text-shadow: rgb(0, 0, 0) 0px 0.02180598em 0px,
+        rgb(0, 0, 0) 0px 0.03604701em 0px,
+        rgb(0, 0, 0) 0px 0.05028798em 0px,
+        rgb(0, 0, 0) 0px 0.06452877em 0px,
+        rgb(0, 0, 0) 0px 0.07876923em 0px,
+        rgb(0, 0, 0) 0px 0.09301026em 0px,
+        rgb(0, 0, 0) 0px 0.10725071em 0px,
+        rgb(0, 0, 0) 0px 0.12149174em 0px !important;
+    }
+
+    /* The-ruins: existing shadow color only; offsets, blur, and alpha retained. */
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body h1 {
+      text-shadow: rgb(0, 0, 0) 0px 0.77px 0px,
+        rgb(0, 0, 0) 0px 1.53956px 0px,
+        rgb(0, 0, 0) 0px 2.31px 0px,
+        rgb(0, 0, 0) 0px 3.07956px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > p:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p.wild-ruins-body:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(4),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.ruins-color-band.ruins-tone--a.ruins-color-band--intro > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(5),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(3) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(3) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(3) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > p.wild-ruins-body:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(4),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(5),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(5) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(5) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(5) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(5) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(4),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(7) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(7) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > ul:nth-of-type(1) > li.wild-ruins-list-item:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > ul:nth-of-type(1) > li.wild-ruins-list-item:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > ul:nth-of-type(1) > li.wild-ruins-list-item:nth-of-type(3),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > ul:nth-of-type(1) > li.wild-ruins-list-item:nth-of-type(4),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(4),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(5) {
+      text-shadow: rgb(0, 0, 0) 0px 0.1372px 0px,
+        rgb(0, 0, 0) 0px 0.2744px 0px,
+        rgb(0, 0, 0) 0px 0.411578px 0px,
+        rgb(0, 0, 0) 0px 0.548778px 0px,
+        rgb(0, 0, 0) 0px 0.685978px 0px,
+        rgb(0, 0, 0) 0px 0.823178px 0px,
+        rgb(0, 0, 0) 0px 0.960378px 0px,
+        rgb(0, 0, 0) 0px 1.09756px 0px,
+        rgb(0, 0, 0) 0px 1.23476px 0px,
+        rgb(0, 0, 0) 0px 1.37196px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.wild-ruins-home-contact:nth-of-type(2) > div.wild-phone-number-line.wild-phone-number-line--home-footer:nth-of-type(1) > a:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.wild-ruins-home-contact:nth-of-type(6) > div.wild-phone-number-line.wild-phone-number-line--home-footer:nth-of-type(1) > a:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.wild-ruins-home-contact:nth-of-type(9) > div.wild-phone-number-line.wild-phone-number-line--home-footer:nth-of-type(1) > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696399em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785708em 0px,
+        rgb(0, 0, 0) 0px 0.03482096em 0px,
+        rgb(0, 0, 0) 0px 0.04178595em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571394em 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(3) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > h2:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(4) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > h2:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(5) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > h2:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-subpage.wild-subpage--ruins > div.ruins-color-band.ruins-tone--b:nth-of-type(7) > section.wild-subpage-section:nth-of-type(1) > div.wild-ruins-rail:nth-of-type(1) > h2:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body section.wild-subpage-section.wild-subpage-contact > div.wild-ruins-rail:nth-of-type(1) > h2:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.63px 0px,
+        rgb(0, 0, 0) 0px 1.25964px 0px,
+        rgb(0, 0, 0) 0px 1.89px 0px,
+        rgb(0, 0, 0) 0px 2.51964px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-iscott-prompt__ask {
+      text-shadow: rgb(0, 0, 0) 0px 0.00891401em 0px,
+        rgb(0, 0, 0) 0px 0.01782901em 0px,
+        rgb(0, 0, 0) 0px 0.02674299em 0px,
+        rgb(0, 0, 0) 0px 0.03565814em 0px,
+        rgb(0, 0, 0) 0px 0.04457093em 0px,
+        rgb(0, 0, 0) 0px 0.05348605em 0px,
+        rgb(0, 0, 0) 0px 0.0624em 0px,
+        rgb(0, 0, 0) 0px 0.07131395em 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body h3.wild-signup-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.427654px 0px,
+        rgb(0, 0, 0) 0px 0.855307px 0px,
+        rgb(0, 0, 0) 0px 1.28296px 0px,
+        rgb(0, 0, 0) 0px 1.71061px 0px,
+        rgb(0, 0, 0) 0px 2.13827px 0px,
+        rgb(0, 0, 0) 0px 2.56592px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.118064px 0px,
+        rgb(0, 0, 0) 0px 0.236128px 0px,
+        rgb(0, 0, 0) 0px 0.354177px 0px,
+        rgb(0, 0, 0) 0px 0.472241px 0px,
+        rgb(0, 0, 0) 0px 0.590305px 0px,
+        rgb(0, 0, 0) 0px 0.708369px 0px,
+        rgb(0, 0, 0) 0px 0.826433px 0px,
+        rgb(0, 0, 0) 0px 0.944482px 0px,
+        rgb(0, 0, 0) 0px 1.06255px 0px,
+        rgb(0, 0, 0) 0px 1.18061px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-signup-submit > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body a.money-cta.money-cta--primary.wild-site-avatar-overlay-cta > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.140672px 0px,
+        rgb(0, 0, 0) 0px 0.281344px 0px,
+        rgb(0, 0, 0) 0px 0.421998px 0px,
+        rgb(0, 0, 0) 0px 0.56267px 0px,
+        rgb(0, 0, 0) 0px 0.703342px 0px,
+        rgb(0, 0, 0) 0px 0.844014px 0px,
+        rgb(0, 0, 0) 0px 0.984686px 0px,
+        rgb(0, 0, 0) 0px 1.12534px 0px,
+        rgb(0, 0, 0) 0px 1.26601px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print,
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(2),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.0955469px 0px,
+        rgb(0, 0, 0) 0px 0.191094px 0px,
+        rgb(0, 0, 0) 0px 0.286641px 0px,
+        rgb(0, 0, 0) 0px 0.382188px 0px,
+        rgb(0, 0, 0) 0px 0.477734px 0px,
+        rgb(0, 0, 0) 0px 0.573281px 0px,
+        rgb(0, 0, 0) 0px 0.668828px 0px,
+        rgb(0, 0, 0) 0px 0.764375px 0px,
+        rgb(0, 0, 0) 0px 0.859922px 0px,
+        rgb(0, 0, 0) 0px 0.955469px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body h2.wild-footer-contact-cta__title {
+      text-shadow: rgb(0, 0, 0) 0px 0.3624px 0px,
+        rgb(0, 0, 0) 0px 0.7248px 0px,
+        rgb(0, 0, 0) 0px 1.0872px 0px,
+        rgb(0, 0, 0) 0px 1.452px 0px,
+        rgb(0, 0, 0) 0px 1.8144px 0px,
+        rgb(0, 0, 0) 0px 2.1768px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(3) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.1256px 0px,
+        rgb(0, 0, 0) 0px 0.2512px 0px,
+        rgb(0, 0, 0) 0px 0.376784px 0px,
+        rgb(0, 0, 0) 0px 0.502384px 0px,
+        rgb(0, 0, 0) 0px 0.627984px 0px,
+        rgb(0, 0, 0) 0px 0.753584px 0px,
+        rgb(0, 0, 0) 0px 0.879184px 0px,
+        rgb(0, 0, 0) 0px 1.00477px 0px,
+        rgb(0, 0, 0) 0px 1.13037px 0px,
+        rgb(0, 0, 0) 0px 1.25597px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(3) > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(4) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.133136px 0px,
+        rgb(0, 0, 0) 0px 0.266272px 0px,
+        rgb(0, 0, 0) 0px 0.399391px 0px,
+        rgb(0, 0, 0) 0px 0.532527px 0px,
+        rgb(0, 0, 0) 0px 0.665663px 0px,
+        rgb(0, 0, 0) 0px 0.798799px 0px,
+        rgb(0, 0, 0) 0px 0.931935px 0px,
+        rgb(0, 0, 0) 0px 1.06505px 0px,
+        rgb(0, 0, 0) 0px 1.19819px 0px,
+        rgb(0, 0, 0) 0px 1.33133px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.344348px 0px,
+        rgb(0, 0, 0) 0px 0.688696px 0px,
+        rgb(0, 0, 0) 0px 1.03304px 0px,
+        rgb(0, 0, 0) 0px 1.37737px 0px,
+        rgb(0, 0, 0) 0px 1.72172px 0px,
+        rgb(0, 0, 0) 0px 2.06606px 0px,
+        rgb(0, 0, 0) 0px 2.41041px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.money-panel-kicker {
+      text-shadow: rgb(0, 0, 0) 0px 0.490199px 0px,
+        rgb(0, 0, 0) 0px 0.810337px 0px,
+        rgb(0, 0, 0) 0px 1.13047px 0px,
+        rgb(0, 0, 0) 0px 1.45061px 0px,
+        rgb(0, 0, 0) 0px 1.77073px 0px,
+        rgb(0, 0, 0) 0px 2.09086px 0px,
+        rgb(0, 0, 0) 0px 2.411px 0px,
+        rgb(0, 0, 0) 0px 2.73114px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__start,
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__with,
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__name {
+      text-shadow: rgb(0, 0, 0) 0px 0.39937px 0px,
+        rgb(0, 0, 0) 0px 0.798706px 0px,
+        rgb(0, 0, 0) 0px 1.19808px 0px,
+        rgb(0, 0, 0) 0px 1.59744px 0px,
+        rgb(0, 0, 0) 0px 1.99678px 0px,
+        rgb(0, 0, 0) 0px 2.39615px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure,
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.107184px 0px,
+        rgb(0, 0, 0) 0px 0.214368px 0px,
+        rgb(0, 0, 0) 0px 0.321552px 0px,
+        rgb(0, 0, 0) 0px 0.428736px 0px,
+        rgb(0, 0, 0) 0px 0.53592px 0px,
+        rgb(0, 0, 0) 0px 0.643104px 0px,
+        rgb(0, 0, 0) 0px 0.750288px 0px,
+        rgb(0, 0, 0) 0px 0.857472px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.07184px 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis {
+      text-shadow: rgb(0, 0, 0) 0px 0.00901001em 0px,
+        rgb(0, 0, 0) 0px 0.01847101em 0px,
+        rgb(0, 0, 0) 0px 0.027932em 0px,
+        rgb(0, 0, 0) 0px 0.03739186em 0px,
+        rgb(0, 0, 0) 0px 0.04685312em 0px,
+        rgb(0, 0, 0) 0px 0.0563141em 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--footer-closing > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.02089299em 0px,
+        rgb(0, 0, 0) 0px 0.02785691em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178594em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px,
+        rgb(0, 0, 0) 0px 0.05571406em 0px !important;
+    }
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-stonework-note > span:nth-of-type(1),
+    html:has(.wild-subpage--ruins) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-stonework-note__second-line {
+      text-shadow: rgb(0, 0, 0) 0px 0.02180598em 0px,
+        rgb(0, 0, 0) 0px 0.03604701em 0px,
+        rgb(0, 0, 0) 0px 0.05028798em 0px,
+        rgb(0, 0, 0) 0px 0.06452877em 0px,
+        rgb(0, 0, 0) 0px 0.07876923em 0px,
+        rgb(0, 0, 0) 0px 0.09301026em 0px,
+        rgb(0, 0, 0) 0px 0.10725071em 0px,
+        rgb(0, 0, 0) 0px 0.12149174em 0px !important;
+    }
+
+    /* Projects: existing shadow color only; offsets, blur, and alpha retained. */
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body h1.wild-projects-page-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.00633101em 0px,
+        rgb(0, 0, 0) 0px 0.012662em 0px,
+        rgb(0, 0, 0) 0px 0.01899396em 0px,
+        rgb(0, 0, 0) 0px 0.02532491em 0px,
+        rgb(0, 0, 0) 0px 0.03165604em 0px,
+        rgb(0, 0, 0) 0px 0.037987em 0px,
+        rgb(0, 0, 0) 0px 0.04431795em 0px,
+        rgb(0, 0, 0) 0px 0.05064908em 0px,
+        rgb(0, 0, 0) 0px 0.05698095em 0px,
+        rgb(0, 0, 0) 0px 0.06331209em 0px,
+        rgb(0, 0, 0) 0px 0.06964304em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-projects-click-note {
+      text-shadow: rgb(0, 0, 0) 0px 0.01735598em 0px,
+        rgb(0, 0, 0) 0px 0.03471203em 0px,
+        rgb(0, 0, 0) 0px 0.05206801em 0px,
+        rgb(0, 0, 0) 0px 0.0694243em 0px,
+        rgb(0, 0, 0) 0px 0.08678022em 0px,
+        rgb(0, 0, 0) 0px 0.10413614em 0px,
+        rgb(0, 0, 0) 0px 0.12149206em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-projects-page-intro__part--a,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-projects-page-intro__and-builds,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-projects-page-intro__part--b,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-projects-page-intro__line.wild-projects-page-intro__line--two,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-projects-page-intro__three-ink {
+      text-shadow: rgb(0, 0, 0) 0px 0.249592px 0px,
+        rgb(0, 0, 0) 0px 0.499212px 0px,
+        rgb(0, 0, 0) 0px 0.748804px 0px,
+        rgb(0, 0, 0) 0px 0.998424px 0px,
+        rgb(0, 0, 0) 0px 1.24799px 0px,
+        rgb(0, 0, 0) 0px 1.49761px 0px,
+        rgb(0, 0, 0) 0px 1.7472px 0px,
+        rgb(0, 0, 0) 0px 1.99679px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-projects-page-kicker > span.wild-projects-page-kicker__line:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-projects-page-kicker > span.wild-projects-page-kicker__line:nth-of-type(2),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-projects-page-kicker > span.wild-projects-page-kicker__line:nth-of-type(3),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-projects-page-kicker > span.wild-projects-page-kicker__line:nth-of-type(4) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00891399em 0px,
+        rgb(0, 0, 0) 0px 0.01782899em 0px,
+        rgb(0, 0, 0) 0px 0.02674298em 0px,
+        rgb(0, 0, 0) 0px 0.03565798em 0px,
+        rgb(0, 0, 0) 0px 0.04457097em 0px,
+        rgb(0, 0, 0) 0px 0.05348589em 0px,
+        rgb(0, 0, 0) 0px 0.0624em 0px,
+        rgb(0, 0, 0) 0px 0.07131411em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-footer > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696399em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785708em 0px,
+        rgb(0, 0, 0) 0px 0.03482096em 0px,
+        rgb(0, 0, 0) 0px 0.04178595em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571394em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body h3.wild-signup-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.427654px 0px,
+        rgb(0, 0, 0) 0px 0.855307px 0px,
+        rgb(0, 0, 0) 0px 1.28296px 0px,
+        rgb(0, 0, 0) 0px 1.71061px 0px,
+        rgb(0, 0, 0) 0px 2.13827px 0px,
+        rgb(0, 0, 0) 0px 2.56592px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.118064px 0px,
+        rgb(0, 0, 0) 0px 0.236128px 0px,
+        rgb(0, 0, 0) 0px 0.354177px 0px,
+        rgb(0, 0, 0) 0px 0.472241px 0px,
+        rgb(0, 0, 0) 0px 0.590305px 0px,
+        rgb(0, 0, 0) 0px 0.708369px 0px,
+        rgb(0, 0, 0) 0px 0.826433px 0px,
+        rgb(0, 0, 0) 0px 0.944482px 0px,
+        rgb(0, 0, 0) 0px 1.06255px 0px,
+        rgb(0, 0, 0) 0px 1.18061px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-signup-submit > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body a.money-cta.money-cta--primary.wild-site-avatar-overlay-cta > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.140672px 0px,
+        rgb(0, 0, 0) 0px 0.281344px 0px,
+        rgb(0, 0, 0) 0px 0.421998px 0px,
+        rgb(0, 0, 0) 0px 0.56267px 0px,
+        rgb(0, 0, 0) 0px 0.703342px 0px,
+        rgb(0, 0, 0) 0px 0.844014px 0px,
+        rgb(0, 0, 0) 0px 0.984686px 0px,
+        rgb(0, 0, 0) 0px 1.12534px 0px,
+        rgb(0, 0, 0) 0px 1.26601px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(2),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.0955469px 0px,
+        rgb(0, 0, 0) 0px 0.191094px 0px,
+        rgb(0, 0, 0) 0px 0.286641px 0px,
+        rgb(0, 0, 0) 0px 0.382188px 0px,
+        rgb(0, 0, 0) 0px 0.477734px 0px,
+        rgb(0, 0, 0) 0px 0.573281px 0px,
+        rgb(0, 0, 0) 0px 0.668828px 0px,
+        rgb(0, 0, 0) 0px 0.764375px 0px,
+        rgb(0, 0, 0) 0px 0.859922px 0px,
+        rgb(0, 0, 0) 0px 0.955469px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body h2.wild-footer-contact-cta__title {
+      text-shadow: rgb(0, 0, 0) 0px 0.3624px 0px,
+        rgb(0, 0, 0) 0px 0.7248px 0px,
+        rgb(0, 0, 0) 0px 1.0872px 0px,
+        rgb(0, 0, 0) 0px 1.452px 0px,
+        rgb(0, 0, 0) 0px 1.8144px 0px,
+        rgb(0, 0, 0) 0px 2.1768px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(3) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.1256px 0px,
+        rgb(0, 0, 0) 0px 0.2512px 0px,
+        rgb(0, 0, 0) 0px 0.376784px 0px,
+        rgb(0, 0, 0) 0px 0.502384px 0px,
+        rgb(0, 0, 0) 0px 0.627984px 0px,
+        rgb(0, 0, 0) 0px 0.753584px 0px,
+        rgb(0, 0, 0) 0px 0.879184px 0px,
+        rgb(0, 0, 0) 0px 1.00477px 0px,
+        rgb(0, 0, 0) 0px 1.13037px 0px,
+        rgb(0, 0, 0) 0px 1.25597px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(3) > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(4) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.133136px 0px,
+        rgb(0, 0, 0) 0px 0.266272px 0px,
+        rgb(0, 0, 0) 0px 0.399391px 0px,
+        rgb(0, 0, 0) 0px 0.532527px 0px,
+        rgb(0, 0, 0) 0px 0.665663px 0px,
+        rgb(0, 0, 0) 0px 0.798799px 0px,
+        rgb(0, 0, 0) 0px 0.931935px 0px,
+        rgb(0, 0, 0) 0px 1.06505px 0px,
+        rgb(0, 0, 0) 0px 1.19819px 0px,
+        rgb(0, 0, 0) 0px 1.33133px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.344348px 0px,
+        rgb(0, 0, 0) 0px 0.688696px 0px,
+        rgb(0, 0, 0) 0px 1.03304px 0px,
+        rgb(0, 0, 0) 0px 1.37737px 0px,
+        rgb(0, 0, 0) 0px 1.72172px 0px,
+        rgb(0, 0, 0) 0px 2.06606px 0px,
+        rgb(0, 0, 0) 0px 2.41041px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.money-panel-kicker {
+      text-shadow: rgb(0, 0, 0) 0px 0.490199px 0px,
+        rgb(0, 0, 0) 0px 0.810337px 0px,
+        rgb(0, 0, 0) 0px 1.13047px 0px,
+        rgb(0, 0, 0) 0px 1.45061px 0px,
+        rgb(0, 0, 0) 0px 1.77073px 0px,
+        rgb(0, 0, 0) 0px 2.09086px 0px,
+        rgb(0, 0, 0) 0px 2.411px 0px,
+        rgb(0, 0, 0) 0px 2.73114px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__start,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__with,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__name {
+      text-shadow: rgb(0, 0, 0) 0px 0.39937px 0px,
+        rgb(0, 0, 0) 0px 0.798706px 0px,
+        rgb(0, 0, 0) 0px 1.19808px 0px,
+        rgb(0, 0, 0) 0px 1.59744px 0px,
+        rgb(0, 0, 0) 0px 1.99678px 0px,
+        rgb(0, 0, 0) 0px 2.39615px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure,
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.107184px 0px,
+        rgb(0, 0, 0) 0px 0.214368px 0px,
+        rgb(0, 0, 0) 0px 0.321552px 0px,
+        rgb(0, 0, 0) 0px 0.428736px 0px,
+        rgb(0, 0, 0) 0px 0.53592px 0px,
+        rgb(0, 0, 0) 0px 0.643104px 0px,
+        rgb(0, 0, 0) 0px 0.750288px 0px,
+        rgb(0, 0, 0) 0px 0.857472px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.07184px 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis {
+      text-shadow: rgb(0, 0, 0) 0px 0.00901001em 0px,
+        rgb(0, 0, 0) 0px 0.01847101em 0px,
+        rgb(0, 0, 0) 0px 0.027932em 0px,
+        rgb(0, 0, 0) 0px 0.03739186em 0px,
+        rgb(0, 0, 0) 0px 0.04685312em 0px,
+        rgb(0, 0, 0) 0px 0.0563141em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--footer-closing > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.02089299em 0px,
+        rgb(0, 0, 0) 0px 0.02785691em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178594em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px,
+        rgb(0, 0, 0) 0px 0.05571406em 0px !important;
+    }
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-stonework-note > span:nth-of-type(1),
+    html:has(.wild-subpage--projects) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-stonework-note__second-line {
+      text-shadow: rgb(0, 0, 0) 0px 0.02180598em 0px,
+        rgb(0, 0, 0) 0px 0.03604701em 0px,
+        rgb(0, 0, 0) 0px 0.05028798em 0px,
+        rgb(0, 0, 0) 0px 0.06452877em 0px,
+        rgb(0, 0, 0) 0px 0.07876923em 0px,
+        rgb(0, 0, 0) 0px 0.09301026em 0px,
+        rgb(0, 0, 0) 0px 0.10725071em 0px,
+        rgb(0, 0, 0) 0px 0.12149174em 0px !important;
+    }
+
+    /* who-is-g: existing shadow color only; offsets, blur, and alpha retained. */
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body #ww-bio-primary-heading {
+      text-shadow: rgb(0, 0, 0) 0px 0.00534899em 0px,
+        rgb(0, 0, 0) 0px 0.01069701em 0px,
+        rgb(0, 0, 0) 0px 0.016046em 0px,
+        rgb(0, 0, 0) 0px 0.02139399em 0px,
+        rgb(0, 0, 0) 0px 0.02674301em 0px,
+        rgb(0, 0, 0) 0px 0.03209096em 0px,
+        rgb(0, 0, 0) 0px 0.03743987em 0px,
+        rgb(0, 0, 0) 0px 0.04278907em 0px,
+        rgb(0, 0, 0) 0px 0.04813706em 0px,
+        rgb(0, 0, 0) 0px 0.05348596em 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body h2.wild-bio-reinvention-heading {
+      text-shadow: rgb(0, 0, 0) 0px 0.005349em 0px,
+        rgb(0, 0, 0) 0px 0.010697em 0px,
+        rgb(0, 0, 0) 0px 0.016046em 0px,
+        rgb(0, 0, 0) 0px 0.02139399em 0px,
+        rgb(0, 0, 0) 0px 0.02674307em 0px,
+        rgb(0, 0, 0) 0px 0.03209091em 0px,
+        rgb(0, 0, 0) 0px 0.03744004em 0px,
+        rgb(0, 0, 0) 0px 0.04278891em 0px,
+        rgb(0, 0, 0) 0px 0.04813701em 0px,
+        rgb(0, 0, 0) 0px 0.05348588em 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--home-footer > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.020893em 0px,
+        rgb(0, 0, 0) 0px 0.02785701em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178609em 0px,
+        rgb(0, 0, 0) 0px 0.04875006em 0px,
+        rgb(0, 0, 0) 0px 0.05571402em 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body h3.wild-signup-title {
+      text-shadow: rgb(0, 0, 0) 0px 0.427654px 0px,
+        rgb(0, 0, 0) 0px 0.855307px 0px,
+        rgb(0, 0, 0) 0px 1.28296px 0px,
+        rgb(0, 0, 0) 0px 1.71061px 0px,
+        rgb(0, 0, 0) 0px 2.13827px 0px,
+        rgb(0, 0, 0) 0px 2.56592px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body fieldset.wild-signup-choice > button.wild-signup-choice-button:nth-of-type(2) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.118064px 0px,
+        rgb(0, 0, 0) 0px 0.236128px 0px,
+        rgb(0, 0, 0) 0px 0.354177px 0px,
+        rgb(0, 0, 0) 0px 0.472241px 0px,
+        rgb(0, 0, 0) 0px 0.590305px 0px,
+        rgb(0, 0, 0) 0px 0.708369px 0px,
+        rgb(0, 0, 0) 0px 0.826433px 0px,
+        rgb(0, 0, 0) 0px 0.944482px 0px,
+        rgb(0, 0, 0) 0px 1.06255px 0px,
+        rgb(0, 0, 0) 0px 1.18061px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body button.money-cta.money-cta--primary.wild-signup-submit > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body a.money-cta.money-cta--primary.wild-site-avatar-overlay-cta > span:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.140672px 0px,
+        rgb(0, 0, 0) 0px 0.281344px 0px,
+        rgb(0, 0, 0) 0px 0.421998px 0px,
+        rgb(0, 0, 0) 0px 0.56267px 0px,
+        rgb(0, 0, 0) 0px 0.703342px 0px,
+        rgb(0, 0, 0) 0px 0.844014px 0px,
+        rgb(0, 0, 0) 0px 0.984686px 0px,
+        rgb(0, 0, 0) 0px 1.12534px 0px,
+        rgb(0, 0, 0) 0px 1.26601px 0px,
+        rgb(0, 0, 0) 0px 1.40668px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print,
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(2),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-signup-fine-print > a:nth-of-type(3) {
+      text-shadow: rgb(0, 0, 0) 0px 0.0955469px 0px,
+        rgb(0, 0, 0) 0px 0.191094px 0px,
+        rgb(0, 0, 0) 0px 0.286641px 0px,
+        rgb(0, 0, 0) 0px 0.382188px 0px,
+        rgb(0, 0, 0) 0px 0.477734px 0px,
+        rgb(0, 0, 0) 0px 0.573281px 0px,
+        rgb(0, 0, 0) 0px 0.668828px 0px,
+        rgb(0, 0, 0) 0px 0.764375px 0px,
+        rgb(0, 0, 0) 0px 0.859922px 0px,
+        rgb(0, 0, 0) 0px 0.955469px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body h2.wild-footer-contact-cta__title {
+      text-shadow: rgb(0, 0, 0) 0px 0.3624px 0px,
+        rgb(0, 0, 0) 0px 0.7248px 0px,
+        rgb(0, 0, 0) 0px 1.0872px 0px,
+        rgb(0, 0, 0) 0px 1.452px 0px,
+        rgb(0, 0, 0) 0px 1.8144px 0px,
+        rgb(0, 0, 0) 0px 2.1768px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(1) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-mobile-strip-inner > a.wild-footer-mobile-link:nth-of-type(3) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.1256px 0px,
+        rgb(0, 0, 0) 0px 0.2512px 0px,
+        rgb(0, 0, 0) 0px 0.376784px 0px,
+        rgb(0, 0, 0) 0px 0.502384px 0px,
+        rgb(0, 0, 0) 0px 0.627984px 0px,
+        rgb(0, 0, 0) 0px 0.753584px 0px,
+        rgb(0, 0, 0) 0px 0.879184px 0px,
+        rgb(0, 0, 0) 0px 1.00477px 0px,
+        rgb(0, 0, 0) 0px 1.13037px 0px,
+        rgb(0, 0, 0) 0px 1.25597px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(2) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(3) > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-footer-contact-cta__actions > a.money-cta.money-cta--primary:nth-of-type(4) > span:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.133136px 0px,
+        rgb(0, 0, 0) 0px 0.266272px 0px,
+        rgb(0, 0, 0) 0px 0.399391px 0px,
+        rgb(0, 0, 0) 0px 0.532527px 0px,
+        rgb(0, 0, 0) 0px 0.665663px 0px,
+        rgb(0, 0, 0) 0px 0.798799px 0px,
+        rgb(0, 0, 0) 0px 0.931935px 0px,
+        rgb(0, 0, 0) 0px 1.06505px 0px,
+        rgb(0, 0, 0) 0px 1.19819px 0px,
+        rgb(0, 0, 0) 0px 1.33133px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2) {
+      text-shadow: rgb(0, 0, 0) 0px 0.344348px 0px,
+        rgb(0, 0, 0) 0px 0.688696px 0px,
+        rgb(0, 0, 0) 0px 1.03304px 0px,
+        rgb(0, 0, 0) 0px 1.37737px 0px,
+        rgb(0, 0, 0) 0px 1.72172px 0px,
+        rgb(0, 0, 0) 0px 2.06606px 0px,
+        rgb(0, 0, 0) 0px 2.41041px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.money-panel-kicker {
+      text-shadow: rgb(0, 0, 0) 0px 0.490199px 0px,
+        rgb(0, 0, 0) 0px 0.810337px 0px,
+        rgb(0, 0, 0) 0px 1.13047px 0px,
+        rgb(0, 0, 0) 0px 1.45061px 0px,
+        rgb(0, 0, 0) 0px 1.77073px 0px,
+        rgb(0, 0, 0) 0px 2.09086px 0px,
+        rgb(0, 0, 0) 0px 2.411px 0px,
+        rgb(0, 0, 0) 0px 2.73114px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__start,
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__with,
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body span.wild-start-title__name {
+      text-shadow: rgb(0, 0, 0) 0px 0.39937px 0px,
+        rgb(0, 0, 0) 0px 0.798706px 0px,
+        rgb(0, 0, 0) 0px 1.19808px 0px,
+        rgb(0, 0, 0) 0px 1.59744px 0px,
+        rgb(0, 0, 0) 0px 1.99678px 0px,
+        rgb(0, 0, 0) 0px 2.39615px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure,
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-iscott-disclosure > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.107184px 0px,
+        rgb(0, 0, 0) 0px 0.214368px 0px,
+        rgb(0, 0, 0) 0px 0.321552px 0px,
+        rgb(0, 0, 0) 0px 0.428736px 0px,
+        rgb(0, 0, 0) 0px 0.53592px 0px,
+        rgb(0, 0, 0) 0px 0.643104px 0px,
+        rgb(0, 0, 0) 0px 0.750288px 0px,
+        rgb(0, 0, 0) 0px 0.857472px 0px,
+        rgb(0, 0, 0) 0px 0.964656px 0px,
+        rgb(0, 0, 0) 0px 1.07184px 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis {
+      text-shadow: rgb(0, 0, 0) 0px 0.00901001em 0px,
+        rgb(0, 0, 0) 0px 0.01847101em 0px,
+        rgb(0, 0, 0) 0px 0.027932em 0px,
+        rgb(0, 0, 0) 0px 0.03739186em 0px,
+        rgb(0, 0, 0) 0px 0.04685312em 0px,
+        rgb(0, 0, 0) 0px 0.0563141em 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body div.wild-phone-number-line.wild-phone-number-line--footer-closing > a:nth-of-type(1) {
+      text-shadow: rgb(0, 0, 0) 0px 0.00696401em 0px,
+        rgb(0, 0, 0) 0px 0.013928em 0px,
+        rgb(0, 0, 0) 0px 0.02089299em 0px,
+        rgb(0, 0, 0) 0px 0.02785691em 0px,
+        rgb(0, 0, 0) 0px 0.03482097em 0px,
+        rgb(0, 0, 0) 0px 0.04178594em 0px,
+        rgb(0, 0, 0) 0px 0.04875em 0px,
+        rgb(0, 0, 0) 0px 0.05571406em 0px !important;
+    }
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body p.wild-footer-stonework-note > span:nth-of-type(1),
+    html:has(.wild-subpage--bio) body#wildworks-body#wildworks-body#wildworks-body span.wild-footer-stonework-note__second-line {
+      text-shadow: rgb(0, 0, 0) 0px 0.02180598em 0px,
+        rgb(0, 0, 0) 0px 0.03604701em 0px,
+        rgb(0, 0, 0) 0px 0.05028798em 0px,
+        rgb(0, 0, 0) 0px 0.06452877em 0px,
+        rgb(0, 0, 0) 0px 0.07876923em 0px,
+        rgb(0, 0, 0) 0px 0.09301026em 0px,
+        rgb(0, 0, 0) 0px 0.10725071em 0px,
+        rgb(0, 0, 0) 0px 0.12149174em 0px !important;
+    }
+
+    /* Home: match the normal small-body text beside the work examples. */
+    html body#wildworks-body#wildworks-body #top .wild-home-projects__capabilities > p {
+      font-size: 1.26rem !important;
+      line-height: 1.62 !important;
+    }
+    /* Shared visible avatar headings on the main pages. */
+    html body#wildworks-body#wildworks-body .wild-iscott-panel > .money-panel-kicker {
+      font-size: 1rem !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-iscott-panel > .wild-start-title,
+    html body#wildworks-body#wildworks-body .wild-iscott-panel > .wild-start-title > span {
+      font-size: min(11.5vw, 2.75rem) !important;
+    }
+
+    /* Wildfire: more readable type, less space below the existing banner,
+       and a separate breathing space before the construction photographs. */
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-copy {
+      padding-top: 1.5rem !important;
+      padding-bottom: 2rem !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-headline__line {
+      font-size: clamp(1.5rem, 7.9vw, 2.15rem) !important;
+      color: var(--ww-text-2) !important;
+      -webkit-text-fill-color: var(--ww-text-2) !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line,
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary__line > span {
+      font-size: clamp(1.4rem, 7.1vw, 1.9rem) !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary,
+    html body#wildworks-body#wildworks-body .wild-subpage--wildfire .wildfire-hero-summary * {
+      color: var(--ww-text-1) !important;
+      -webkit-text-fill-color: var(--ww-text-1) !important;
+    }
+    html:has(.wild-subpage--wildfire) body#wildworks-body#wildworks-body footer .wild-footer-aiasap-wordmark {
+      color: var(--ww-text-2) !important;
+      -webkit-text-fill-color: var(--ww-text-2) !important;
+      font-style: italic !important;
+    }
+
+    /* Ruins body copy: 22.4px -> 21.4px. Only the final contact sequence moves. */
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins .wild-subpage-section :is(p, li) {
+      font-size: 1.3375rem !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins .wild-subpage-contact {
+      padding-bottom: .25rem !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins > .wild-ruins-home-contact:last-child {
+      padding-top: .125rem !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--ruins > .wild-ruins-home-contact:last-child .wild-iscott-prompt {
+      margin-top: 1.5rem !important;
+      margin-bottom: 1.25rem !important;
+    }
+
+    /* Projects: one consistent color per text block; wording stays intact. */
+    html body#wildworks-body#wildworks-body .wild-subpage--projects .wild-projects-page-intro,
+    html body#wildworks-body#wildworks-body .wild-subpage--projects .wild-projects-page-intro * {
+      color: var(--ww-text-2) !important;
+      -webkit-text-fill-color: var(--ww-text-2) !important;
+    }
+    html body#wildworks-body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker,
+    html body#wildworks-body#wildworks-body .wild-subpage--projects .wild-projects-page-kicker * {
+      color: var(--ww-text-1) !important;
+      -webkit-text-fill-color: var(--ww-text-1) !important;
+    }
+    /* All six legal pages: just the return label is smaller on portrait phones. */
+    html body#wildworks-body#wildworks-body .wild-home-phone-iscott-test--legal-return > a,
+    html body#wildworks-body#wildworks-body .wild-home-phone-iscott-test--legal-return > a > span:last-child {
+      font-size: 1.375rem !important;
+    }
+  }
+}

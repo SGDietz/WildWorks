@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { visitorChoseContactMethod } from "./iscottLeadCaptureUi";
 import { truncateUtf8String } from "./apiRouteSecurity";
 import {
@@ -50,6 +51,8 @@ import {
   visitorProjectNeedFromRows,
   visitorProjectAreaFromRows,
   visitorProjectDetailsFromRows,
+  summariseLeadQualification,
+  visitorLinesFromTranscript,
 } from "./iscottLeadParsing";
 import { classifyTraffic, trafficColumns } from "./trafficClassification";
 import {
@@ -325,6 +328,24 @@ function sourceEventKey(
 // take part in an idempotency comparison, because a comparison it silently
 // fails is a duplicate package to Scott, and one it silently passes is a lead
 // that never travels.
+function projectFactKey(value: string): string {
+  return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
+function leadProjectFacts(lead: LeadRow): string[] {
+  const details = [lead.project_need, ...(Array.isArray(lead.metadata?.project_details) ? lead.metadata.project_details : [])]
+    .filter((value): value is string => typeof value === "string" && isSpecificProjectNeed(value));
+  const qual = summariseLeadQualification(visitorLinesFromTranscript(lead.transcript_text ?? ""));
+  const facts = [
+    ...details.map((detail) => `Project: ${detail}`),
+    lead.location ? `Location: ${lead.location}` : null,
+    typeof lead.metadata?.project_area === "string" ? `Area: ${lead.metadata.project_area}` : null,
+    qual.budget ? `Budget: ${qual.budget}` : null,
+    qual.timeline ? `Timing: ${qual.timeline}` : null,
+  ].filter((value): value is string => Boolean(value));
+  return facts.filter((fact, index) => facts.findIndex((other) => projectFactKey(other) === projectFactKey(fact)) === index);
+}
+
 function lastSentContact(metadata: Record<string, unknown> | null | undefined): string | null {
   const value = metadata?.last_sent_contact;
   if (typeof value !== "string") return null;
@@ -1069,9 +1090,12 @@ export async function processIScottTranscriptRows(args: {
     notification_status: notificationStatus,
     ...trafficColumns(traffic),
     ...transcriptFields,
-    media_snapshot: existing?.media_snapshot ?? [],
     metadata: {
       ...(existing?.metadata ?? {}),
+      // Save the sent baseline before extracting additions, including for
+      // older submitted leads. A failed enqueue must remain retryable.
+      ...(existing?.status === "submitted" && !Array.isArray(existing.metadata?.last_sent_project_facts)
+        ? { last_sent_project_facts: leadProjectFacts(existing) } : {}),
       ...(existing?.metadata?.client_device || !args.clientDevice || Object.keys(args.clientDevice).length === 0
         ? {}
         : { client_device: args.clientDevice }),
@@ -1116,24 +1140,29 @@ export async function processIScottTranscriptRows(args: {
   try {
     const wasAlreadySent =
       existing?.status === "submitted" && Boolean((existing?.submitted_at ?? "").trim());
-    const needIsNew =
-      Boolean(projectNeed) &&
-      isSpecificProjectNeed(projectNeed) &&
-      leadPackageFieldChanged("intent", existing?.project_need ?? null, projectNeed);
+    const facts = leadProjectFacts(row);
+    const sentFacts = Array.isArray(row.metadata?.last_sent_project_facts)
+      ? row.metadata.last_sent_project_facts.filter((value): value is string => typeof value === "string") : [];
+    const sentKeys = new Set(sentFacts.map(projectFactKey));
+    const addedFacts = facts.filter((fact) => !sentKeys.has(projectFactKey(fact)));
     const sendFollowUp = voiceEmailNotifications.notifyIScottLeadByEmail;
-    if (wasAlreadySent && needIsNew && typeof sendFollowUp === "function") {
-      // Deterministic per need text, no crypto import needed here: the outbox
-      // key is derived from this eventId, so the same need can only mail once.
-      const needDigest = Buffer.from(String(projectNeed).toLowerCase().replace(/\s+/g, " ").trim(), "utf8")
-        .toString("base64url")
-        .slice(0, 24);
+    if (wasAlreadySent && addedFacts.length && row.status === "submitted"
+      && row.consent_status === "accepted" && !postSubmitContactChanged
+      && canDispatchIScottLeadNotification({ trafficClass: row.traffic_class,
+        visitorId: row.anonymous_visitor_id, sessionId: row.session_id,
+        operatorQa: row.metadata?.operator_qa === true })
+      && typeof sendFollowUp === "function") {
+      // Hash every fact, not a truncated prefix of the primary need. Persist
+      // the baseline only after enqueue; retries reuse the exact outbox key.
+      const needDigest = createHash("sha256").update(JSON.stringify(facts.map(projectFactKey).sort())).digest("hex").slice(0, 32);
       const urls = dashboardUrls(args.sessionId);
-      await sendFollowUp({
+      const notification = await sendFollowUp({
         eventId: `${args.sessionId}#followup-${needDigest}`,
         sessionId: args.sessionId,
         fullName: row.full_name,
         location: row.location,
         projectNeed: row.project_need,
+        projectArea: typeof row.metadata?.project_area === "string" ? row.metadata.project_area : null,
         projectDetails: Array.isArray(row.metadata?.project_details)
           ? row.metadata.project_details.filter((value): value is string => typeof value === "string")
           : [],
@@ -1144,17 +1173,23 @@ export async function processIScottTranscriptRows(args: {
         transcript: transcriptFields.transcript_text,
         leadDashboardUrl: urls.lead,
         transcriptDashboardUrl: urls.transcript,
-        followUp: { previousNeed: existing?.project_need ?? null },
+        followUp: { previousNeed: existing?.project_need ?? null, addedFacts },
         metadata: {
           source: "iscott_liveavatar",
           follow_up: true,
           previous_need: existing?.project_need ?? null,
         },
       });
+      if (notification.queued || notification.delivered) {
+        row.metadata = { ...(row.metadata ?? {}), last_sent_project_facts: facts };
+        await writeLead({ session_id: row.session_id, metadata: row.metadata });
+      } else {
+        console.warn("iScott project update was not queued; retained for retry.");
+      }
     }
   } catch {
-    // A missed follow-up is Scott reading it in Supabase instead; a thrown one
-    // would take the whole transcript sync down with it.
+    // Retain the sent baseline so the next sync retries the same outbox key.
+    console.warn("iScott project update failed; retained for retry.");
   }
 
   // G 2026-08-19: "There is no tap." The visitor says yes out loud and the send
@@ -1370,13 +1405,67 @@ async function readTranscript(sessionId: string): Promise<{
 async function readMedia(lead: LeadRow): Promise<MediaRow[]> {
   const filters = [`session_id.eq.${encodeURIComponent(lead.session_id)}`];
   if (lead.anonymous_visitor_id) {
-    filters.push(`anonymous_visitor_id.eq.${encodeURIComponent(lead.anonymous_visitor_id)}`);
+    // Legacy uploads without a session may belong to this inquiry. Never pull
+    // in a different conversation's photos just because the browser is the same.
+    filters.push(`and(session_id.is.null,anonymous_visitor_id.eq.${encodeURIComponent(lead.anonymous_visitor_id)},created_at.gte.${encodeURIComponent(lead.created_at)})`);
   }
   const result = await rest<MediaRow>(
     `iscott_media?or=(${filters.join(",")})&select=*&order=created_at.asc&limit=100`,
   );
   if (!result.ok) throw new Error(`iscott media read failed (${result.status})`);
   return result.rows;
+}
+
+/** A photo uploaded after consent must still reach the same saved inquiry. */
+export async function refreshIScottLeadMedia(args: {
+  sessionId: string;
+  anonymousVisitorId: string | null;
+  uploadId: string;
+}): Promise<{ linked: boolean; followUpStatus: string | null }> {
+  const lead = await readLead(args.sessionId);
+  if (!lead || !args.anonymousVisitorId || lead.anonymous_visitor_id !== args.anonymousVisitorId) {
+    return { linked: false, followUpStatus: null };
+  }
+  const media = await readMedia(lead);
+  const uploaded = media.find((item) => item.upload_id === args.uploadId);
+  if (!uploaded) return { linked: false, followUpStatus: null };
+  await writeLead({
+    session_id: lead.session_id,
+    media_snapshot: media.map((item) => ({
+      id: item.id, bucket: item.bucket, object_path: item.object_path,
+      original_name: item.original_name, mime_type: item.mime_type,
+      size_bytes: item.size_bytes, created_at: item.created_at,
+    })),
+  });
+  if (lead.status !== "submitted" || !lead.submitted_at || lead.consent_status !== "accepted"
+    || !canDispatchIScottLeadNotification({ trafficClass: lead.traffic_class,
+      visitorId: lead.anonymous_visitor_id, sessionId: lead.session_id,
+      operatorQa: lead.metadata?.operator_qa === true })) {
+    return { linked: true, followUpStatus: null };
+  }
+  const urls = dashboardUrls(lead.session_id);
+  const delivery = await notifyIScottLeadByEmail({
+    eventId: `${lead.session_id}#media-${args.uploadId}`,
+    sessionId: lead.session_id,
+    fullName: lead.full_name,
+    location: lead.location,
+    projectNeed: lead.project_need,
+    projectArea: typeof lead.metadata?.project_area === "string" ? lead.metadata.project_area : null,
+    projectDetails: Array.isArray(lead.metadata?.project_details)
+      ? lead.metadata.project_details.filter((value): value is string => typeof value === "string") : [],
+    contactMethod: lead.contact_method,
+    email: lead.email,
+    phone: lead.phone,
+    transcript: lead.transcript_text,
+    leadDashboardUrl: urls.lead,
+    transcriptDashboardUrl: urls.transcript,
+    media: [{ name: uploaded.original_name ?? "Uploaded file", mimeType: uploaded.mime_type,
+      sizeBytes: uploaded.size_bytes, signedUrl: await signMedia(uploaded) }],
+    followUp: { previousNeed: lead.project_need, kind: "media" },
+    metadata: { source: "iscott_media_upload", mediaCount: 1, uploadId: args.uploadId },
+  });
+  if (!delivery.queued && !delivery.delivered) throw new Error("iscott_media_follow_up_not_queued");
+  return { linked: true, followUpStatus: delivery.outboxStatus };
 }
 
 async function signMedia(media: MediaRow): Promise<string | null> {
@@ -1736,6 +1825,7 @@ export async function confirmAndSubmitIScottLead(args: {
     metadata: {
       ...(confirmed.metadata ?? {}),
       last_sent_contact: notification.queued ? sentContactValue : lastSentContact(confirmed.metadata),
+      last_sent_project_facts: notification.queued ? leadProjectFacts(confirmed) : confirmed.metadata?.last_sent_project_facts,
       // A submitted package has passed the exact read-back and permission
       // chronology. Keep the convenience flags aligned with that authority.
       contact_readback_correct: confirmed.consent_status === "accepted" && Boolean(confirmed.contact_confirmed_at),

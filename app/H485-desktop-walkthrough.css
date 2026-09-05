@@ -1,0 +1,100 @@
+/* G, 2026-09-05: exact desktop/laptop walkthrough corrections only.
+   A fine primary pointer and hover keep touch iPads out, including landscape.
+   The layer's important declarations beat old unlayered specificity locks
+   without extending their repeated-ID selectors. No shared tokens are changed.
+   Home: existing depth x1.2. Legal titles: existing depth x0.8.
+   Wildfire: existing depth x0.9, resampled into a continuous subpixel shadow. */
+@layer ww-desktop-walkthrough-20260905 {
+  @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-copy-stack > .wild-kicker,
+    #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-iscott-kicker__color {
+      text-shadow: rgba(35, 9, 2, 0.518) 0em 0.01284em 0em,
+        rgba(33, 8, 2, 0.486) 0em 0.02569201em 0em,
+        rgba(31, 8, 2, 0.455) 0em 0.03853201em 0em,
+        rgba(29, 7, 1, 0.424) 0em 0.05138402em 0em,
+        rgba(27, 7, 1, 0.392) 0em 0.06422402em 0em,
+        rgba(25, 6, 1, 0.36) 0em 0.07706426em 0em !important;
+    }
+
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c1 {
+      text-shadow: rgba(35, 9, 2, 0.33291219) 0em 0.0029952em 0em,
+        rgba(35, 9, 2, 0.32848177) 0em 0.00599039em 0em,
+        rgba(34, 9, 2, 0.3197197) 0em 0.00898559em 0em,
+        rgba(33, 9, 2, 0.31060866) 0em 0.01198079em 0em,
+        rgba(32, 8, 2, 0.30022804) 0em 0.01497598em 0em,
+        rgba(32, 8, 2, 0.29002049) 0em 0.01797118em 0em,
+        rgba(31, 8, 2, 0.2808842) 0em 0.02096638em 0em,
+        rgba(30, 8, 2, 0.2718787) 0em 0.02396157em 0em,
+        rgba(29, 8, 2, 0.26299884) 0em 0.02695677em 0em,
+        rgba(28, 7, 2, 0.25423964) 0em 0.02995197em 0em,
+        rgba(28, 7, 2, 0.24516722) 0em 0.03294716em 0em,
+        rgba(27, 7, 1, 0.23579446) 0em 0.03594236em 0em,
+        rgba(27, 7, 1, 0.22669037) 0em 0.03893756em 0em,
+        rgba(26, 6, 1, 0.21811917) 0em 0.04193275em 0em,
+        rgba(25, 6, 1, 0.20965404) 0em 0.04492795em 0em !important;
+    }
+
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c2 {
+      text-shadow: rgba(35, 9, 2, 0.33291219) 0em 0.0029952em 0em,
+        rgba(35, 9, 2, 0.32848177) 0em 0.00599039em 0em,
+        rgba(34, 9, 2, 0.3197197) 0em 0.00898559em 0em,
+        rgba(33, 9, 2, 0.31060866) 0em 0.01198079em 0em,
+        rgba(32, 8, 2, 0.30022804) 0em 0.01497598em 0em,
+        rgba(32, 8, 2, 0.29002049) 0em 0.01797118em 0em,
+        rgba(31, 8, 2, 0.2808842) 0em 0.02096638em 0em,
+        rgba(30, 8, 2, 0.2718787) 0em 0.02396157em 0em,
+        rgba(29, 8, 2, 0.26299884) 0em 0.02695677em 0em,
+        rgba(28, 7, 2, 0.25423964) 0em 0.02995197em 0em,
+        rgba(28, 7, 2, 0.24516722) 0em 0.03294716em 0em,
+        rgba(27, 7, 1, 0.23579446) 0em 0.03594236em 0em,
+        rgba(27, 7, 1, 0.22669037) 0em 0.03893756em 0em,
+        rgba(26, 6, 1, 0.21811917) 0em 0.04193275em 0em,
+        rgba(25, 6, 1, 0.20965404) 0em 0.04492795em 0em !important;
+    }
+
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c3 {
+      text-shadow: rgba(35, 9, 2, 0.16692508) 0em 0.00288284em 0em,
+        rgba(35, 9, 2, 0.16692508) 0em 0.00576568em 0em,
+        rgba(35, 9, 2, 0.16692508) 0em 0.00864853em 0em,
+        rgba(35, 9, 2, 0.16692508) 0em 0.01153137em 0em,
+        rgba(35, 9, 2, 0.16561805) 0em 0.01441421em 0em,
+        rgba(34, 9, 2, 0.16043329) 0em 0.01729705em 0em,
+        rgba(34, 9, 2, 0.15536588) 0em 0.02017989em 0em,
+        rgba(33, 8, 2, 0.15040999) 0em 0.02306274em 0em,
+        rgba(32, 8, 2, 0.14556019) 0em 0.02594558em 0em,
+        rgba(32, 8, 2, 0.14081302) 0em 0.02882842em 0em,
+        rgba(31, 8, 2, 0.13616373) 0em 0.03171126em 0em,
+        rgba(30, 7, 1, 0.13160643) 0em 0.03459411em 0em,
+        rgba(29, 7, 1, 0.12713708) 0em 0.03747695em 0em,
+        rgba(28, 7, 1, 0.12275195) 0em 0.04035979em 0em,
+        rgba(28, 7, 1, 0.11823254) 0em 0.04324263em 0em,
+        rgba(27, 7, 1, 0.11372751) 0em 0.04612547em 0em,
+        rgba(26, 6, 1, 0.10930675) 0em 0.04900832em 0em,
+        rgba(26, 6, 1, 0.10496677) 0em 0.05189116em 0em,
+        rgba(25, 6, 1, 0.10070431) 0em 0.054774em 0em !important;
+    }
+
+    /* LegalPage is used by exactly the six requested legal routes. */
+    .wild-legal-home .wild-legal-title {
+      text-shadow: rgba(35, 9, 2, 0.58) 0em 0.003072em 0em,
+        rgba(34, 9, 2, 0.565) 0em 0.006144em 0em,
+        rgba(33, 8, 2, 0.553) 0em 0.00921601em 0em,
+        rgba(32, 8, 2, 0.533) 0em 0.01228797em 0em,
+        rgba(32, 8, 2, 0.52) 0em 0.01536em 0em,
+        rgba(31, 8, 2, 0.506) 0em 0.01843203em 0em,
+        rgba(30, 8, 2, 0.49) 0em 0.02150399em 0em,
+        rgba(29, 7, 1, 0.475) 0em 0.02457601em 0em,
+        rgba(28, 7, 1, 0.46) 0em 0.02764797em 0em,
+        rgba(28, 7, 1, 0.443) 0em 0.03072em 0em,
+        rgba(27, 6, 1, 0.427) 0em 0.03379203em 0em,
+        rgba(26, 6, 1, 0.41) 0em 0.03686399em 0em,
+        rgba(25, 6, 1, 0.396) 0em 0.03993601em 0em !important;
+    }
+
+    html:has(.wild-legal-home)
+      footer#footer :is(.wild-signup-choice-button, .wild-signup-submit) {
+      background-color: rgba(0, 0, 0, 0) !important;
+      background-image: radial-gradient(circle at 50% -30%, rgba(255, 250, 232, 0.95), rgba(0, 0, 0, 0) 52%), linear-gradient(rgb(252, 224, 173) 0%, rgb(237, 199, 117) 38%, rgb(240, 140, 40) 72%, rgb(196, 77, 11) 100%) !important;
+    }
+  }
+}

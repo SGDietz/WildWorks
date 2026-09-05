@@ -1,0 +1,22 @@
+/* G, 2026-09-05: all Talk to iScott controls use the existing small-button
+   reference's Cambria lettering and filled TalkArcClusterIcon. Button sizes,
+   destinations and behavior remain owned by their existing components.
+   Email lettering and field styling remain in H488. */
+@layer ww-mobile-only-pass {
+  html body#wildworks-body#wildworks-body :is(a, button)[aria-label="Talk to iScott"],
+  html body#wildworks-body#wildworks-body :is(a, button)[aria-label="Talk to iScott"] > span {
+    font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+    font-weight: 750 !important;
+    font-style: normal !important;
+    letter-spacing: normal !important;
+  }
+}
+/* Reuse the filled icon's existing stacking layer so it paints once, with
+   its attached duplicate shadow. Scale the large glyph like the small one. */
+@layer ww-h457-icon {
+  html body#wildworks-body#wildworks-body .wild-large-iscott-talk .ww-home-btn-icon {
+    width: 1.11607143em !important;
+    height: 1.11607143em !important;
+    flex: 0 0 1.11607143em !important;
+  }
+}

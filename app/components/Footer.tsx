@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, type CSSProperties, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, MessageSquareText, Phone, Send, Sparkles } from "lucide-react";
+import { Mail, MessageSquareText, Phone, Send } from "lucide-react";
+import TalkArcClusterIcon from "./TalkArcClusterIcon";
 import BrandText from "./BrandText";
 import PhoneNumberLine from "./PhoneNumberLine";
 import { SIGNUP_CHANNEL_OPTIONS } from "../../src/lib/marketingConsent.mjs";
@@ -343,8 +344,8 @@ export default function Footer() {
             Let&apos;s Talk About Your Dream Project
           </motion.h2>
           <motion.div className="wild-footer-contact-cta__actions" variants={fadeInUp}>
-            <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
-              <Sparkles aria-hidden className="h-5 w-5" />
+            <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" aria-label="Talk to iScott" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+              <TalkArcClusterIcon />
               <span>Talk to iScott</span>
             </motion.a>
             <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443 797 2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>

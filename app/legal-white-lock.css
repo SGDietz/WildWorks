@@ -1,3 +1,5 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
+
 /* WILDWORKS LEGAL WHITE LOCK — G approved 2026-08-05.
    Historical base lock, now aligned with the public-site Color 1.
    H129 adds the Color 2 hierarchy and dark-copper interactive ink. */
@@ -8,6 +10,7 @@
 
 /* Permanent site palette: legal footers are primary fields too. Keep this
    separate from the white-text lock so the required copy remains untouched. */
+
 html:has(.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer.wild-footer--legal {
@@ -39,6 +42,7 @@ html body#wildworks-body#wildworks-body:has(.wild-legal-home) svg {
 
 /* Footer controls have an intentionally high-specificity copper-ink rule on
    non-legal pages. The legal-page exception wins here too. */
+
 html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
   #footer#footer#footer :is(
     .wild-signup-choice-button,
@@ -63,6 +67,7 @@ html body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
 
 /* G 2026-08-08: legal pages use the same two primary surfaces as the site.
    This changes only the materials behind the permanent white-print rule. */
+
 html:has(.wild-legal-home) {
   --ww-legal-primary-field: #c44d0b !important;
   --ww-legal-primary-card: #e96819 !important;
@@ -135,6 +140,19 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     background-color: var(--ww-legal-primary-card) !important;
   }
 
+  @media (width < 600px) {
+
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
+    .wild-mobile-menu-button.wild-mobile-menu-button {
+    border: 2px solid #fff4d2 !important;
+    border-radius: 9999px !important;
+    background: linear-gradient(135deg, var(--ww-legal-primary-card) 0 50%, var(--ww-legal-primary-field) 50% 100%) !important;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.35) !important;
+  }
+  }
+
+  @media (width >= 600px) {
+
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(.wild-legal-home)
     .wild-mobile-menu-button.wild-mobile-menu-button {
     border: 1px solid #8f3a14 !important;
@@ -142,10 +160,12 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     background: linear-gradient(135deg, var(--ww-legal-primary-card) 0 50%, var(--ww-legal-primary-field) 50% 100%) !important;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.35) !important;
   }
+  }
 }
 
 /* Legal actions use the restored polished material too.  The permanent legal
    white-print rule above remains the only authority for their wording/icons. */
+
 html:has(.wild-legal-home) {
   --ww-legal-original-spirit-button: var(--ww-approved-button-material);
 }
@@ -176,6 +196,20 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
 /* G 2026-08-08 final legal palette. Every legal route now mirrors Home:
    Russet Flame primary, Copper Flame secondary, white rims, permanent white print. */
+
+@media (width < 600px) {
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) {
+  --ww-legal-primary-field: #c44d0b !important;
+  --ww-legal-primary-card: #e96819 !important;
+  --ww-card-flat: #e96819 !important;
+  --ww-card-finish: #e96819 !important;
+  --ww-card-rim: #fff !important;
+  --ww-legal-original-spirit-button: var(--ww-approved-button-material);
+  scrollbar-color: #e96819 #c44d0b !important;
+}
+}
+
+@media (width >= 600px) {
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) {
   --ww-legal-primary-field: #c44d0b !important;
   --ww-legal-primary-card: #e96819 !important;
@@ -184,6 +218,7 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   --ww-card-rim: #fff !important;
   --ww-legal-original-spirit-button: var(--ww-approved-button-material);
   scrollbar-color: #edc775 #c44d0b !important;
+}
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
@@ -207,6 +242,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   background-image: none !important;
 }
 
+@media (width >= 600px) {
+
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -221,16 +258,42 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   background-color: #edc775 !important;
   background-image: none !important;
 }
+}
 
 /* Legal content panels are cards, not controls. Keep their established flat
    copper surface separate from the Color 2 treatment used by the controls in
    the rule above. */
+
+@media (width >= 600px) {
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(.wild-legal-card, .wild-legal-index-card, .wild-legal-topbar, .wild-legal-meta-row span) {
   background: #e96819 !important;
   background-color: #e96819 !important;
   background-image: none !important;
+}
+}
+
+@media (width < 600px) {
+
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
+  body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(
+    .wild-legal-card,
+    .wild-legal-index-card,
+    .wild-legal-topbar,
+    .wild-legal-meta-row span,
+    .wild-footer-contact-cta,
+    .wild-signup-panel,
+    .wild-signup-choice,
+    .wild-signup-field input,
+    .wild-footer-mobile-strip,
+    .wild-mobile-menu > div
+  ) {
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+  background-image: none !important;
+}
 }
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
@@ -288,16 +351,30 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   background-color: #c44d0b !important;
 }
 
+@media (width < 600px) {
+
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-thumb,
+html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) body::-webkit-scrollbar-thumb {
+  border-color: #fff !important;
+  background: #e96819 !important;
+  background-color: #e96819 !important;
+}
+}
+
+@media (width >= 600px) {
+
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)::-webkit-scrollbar-thumb,
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home) body::-webkit-scrollbar-thumb {
   border-color: #fff !important;
   background: #edc775 !important;
   background-color: #edc775 !important;
 }
+}
 
 /* Legal-print authority, superseded on 2026-08-10: the base legal copy now
    uses Color 1. H129 applies the public site's Color 2 hierarchy and dark
    copper interactive ink across every legal route. */
+
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -346,6 +423,8 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
 /* Legal signup surfaces follow the same flat orange treatment as the legal
    cards. Keep this scoped to a rendered legal route so the shared signup on
    Home and the main project pages retains its approved palette. */
+
+@media (width >= 600px) {
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(
@@ -360,6 +439,9 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   background-color: #e96819 !important;
   background-image: none !important;
 }
+}
+
+@media (width >= 600px) {
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -375,6 +457,9 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 }
+}
+
+@media (width >= 600px) {
 
 html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home)
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
@@ -383,10 +468,13 @@ html:has(.wild-legal-home.wild-legal-home.wild-legal-home.wild-legal-home.wild-l
   -webkit-text-fill-color: #fff !important;
   opacity: 1 !important;
 }
+}
 
 /* Terminal legal-only winner over the global fidelity lock, whose deliberate
    repeated-ID specificity otherwise restores gold button surfaces later in
    the cascade. */
+
+@media (width >= 600px) {
 html:has(.wild-legal-home) body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
   :is(
     .wild-signup-panel,
@@ -402,10 +490,14 @@ html:has(.wild-legal-home) body#wildworks-body footer#footer#footer#footer#foote
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 }
+}
+
+@media (width >= 600px) {
 
 html:has(.wild-legal-home) body#wildworks-body footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer#footer
   .wild-signup-field input::placeholder {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   opacity: 1 !important;
+}
 }

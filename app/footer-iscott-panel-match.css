@@ -1,3 +1,5 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
+
 /* Footer iScott panel = EXACT computed-style copy of the mid-page
    #talk-to-iscott panel (G 2026-08-17: identical, colors/placements/size).
    Values below are transplanted from getComputedStyle of the live mid-page
@@ -52,6 +54,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 }
 
 /* H276's approved shadow — measured on the live mid-page title. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title.wild-start-title.wild-start-title:not(#_):not(#_),
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-start-title.wild-start-title.wild-start-title:not(#_):not(#_) * {
   filter: none !important;
@@ -75,23 +78,48 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 }
 
 /* Image frame: mid is 288px wide, footer was 320px. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-live-avatar-frame {
   max-width: 18rem !important;
 }
 
 /* G: space under the big Talk button — reads as its own section. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-phone-iscott-group:has(.wild-iscott-panel--footer) .wild-home-phone-iscott-test--footer-closing {
   margin-bottom: 2.5rem !important;
 }
 
 /* G: "Or Call WildWorks Today!" one digit in on both ends of the phone
    number — measured: 0.655em of the number's size. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-footer-phone-iscott-group:has(.wild-iscott-panel--footer) .wild-phone-number-line__call-today {
   font-size: 0.655em !important;
 }
 
 /* Disclosure: mid is 14px, footer was 12px. */
+
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer .wild-iscott-panel--footer.wild-iscott-panel--footer.wild-iscott-panel--footer .wild-iscott-disclosure {
   font-size: 0.875rem !important;
   color: #fce0ad !important;
+}
+
+/* Mobile hierarchy on the four non-Home main pages. Home's mid-page avatar
+   is the read-only authority: 17.216px kicker / 39.6px title at 412x915.
+   Only type size changes here; the panel, spacing, colour, shadow, image,
+   controls, and desktop treatment stay with their existing owners. */
+
+@media (width >= 600px) {
+@layer ww-footer-iscott-mobile-hierarchy {
+@media (max-width: 719px) {
+  html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) footer#footer .wild-iscott-panel--footer .money-panel-kicker,
+  html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) footer#footer .wild-iscott-panel--footer .money-panel-kicker * {
+    font-size: 1.076rem !important;
+  }
+
+  html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) footer#footer .wild-iscott-panel--footer .wild-start-title,
+  html:has(:is(.wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) footer#footer .wild-iscott-panel--footer .wild-start-title * {
+    font-size: 2.475rem !important;
+  }
+}
+}
 }

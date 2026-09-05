@@ -84,7 +84,7 @@ export function classifyOperationalTelemetryEvent(args) {
 
 export function formatOperationalAlert(args, timestamp = new Date().toISOString()) {
   return [
-    "WildWorks operational failure",
+    args.severity === "low" ? "WildWorks health update" : "WildWorks operational failure",
     `time: ${timestamp}`,
     "company: WildWorks",
     `environment: ${compactSafeText(args.environment ?? "runtime", 32)}`,

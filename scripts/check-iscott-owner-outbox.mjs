@@ -86,6 +86,7 @@ export const emailMailto = (address) => address;
 export const emailLink = (href, label) => label + ":" + href;
 `);
 
+await transpile("src/lib/emailTheme.ts", "stub-theme");
 await transpile("src/lib/voiceEmailNotifications.ts", "voiceEmailNotifications", [
   ['from "resend"', 'from "./stub-resend.mjs"'],
   ['from "./apiRouteSecurity"', 'from "./stub-security.mjs"'],
@@ -232,13 +233,13 @@ try {
   assert.equal(rows.length, 1);
   assert.equal(Provider.sendCalls.length, 1);
   const firstRow = { ...rows[0] };
-  assert.equal(firstRow.subject, "New WildWorks inquiry — Sample Visitor — Backyard pool and waterfall; stone firepit");
+  assert.equal(firstRow.subject, "New WildWorks inquiry — Sample Visitor — Northlake — Backyard landscape project with a pool, a waterfall, a stone firepit, and covered outdoor dining");
   assert.match(firstRow.text_body, /Sample Visitor would like help with a backyard landscape centered on a pool and a waterfall with broader landscaping still to be defined\./);
   assert.match(firstRow.text_body, /Permission: Confirmed — Sample Visitor authorized the WildWorks team to make contact by email about this project\./);
   assert.match(firstRow.text_body, /Area: Backyard/);
   assert.match(firstRow.text_body, /Additional details: A stone firepit; A covered dining area\./);
   assert.match(firstRow.text_body, /Requested features: .*A stone firepit; A covered dining area/);
-  assert.match(firstRow.text_body, /Not discussed: Readiness, Timing, Budget, Property ownership, Other contractors/);
+  assert.match(firstRow.text_body, /Not captured: Readiness, Timing, Budget, Property ownership, Other contractors/);
   assert.doesNotMatch(firstRow.text_body, /Timing: Not discussed|Budget: Not discussed|Property ownership: Not discussed/);
   assert.doesNotMatch(firstRow.text_body, /PLANNING|Property:|So I, you know/i);
   assert.match(firstRow.text_body, /yard-plan\.jpg \(image\/jpeg, 2048 bytes\)/);
@@ -361,7 +362,7 @@ try {
   assert.equal(smokeRegression.delivered, true);
   const smokeRow = rows.find((row) => row.id === smokeRegression.outboxId);
   assert.equal(smokeRow?.subject,
-    "New WildWorks inquiry — Scott — Build a digital company that I have some ideas for");
+    "New WildWorks inquiry — Scott — Northlake — Digital business development");
   assert.doesNotMatch(`${smokeRow?.subject}\n${smokeRow?.text_body}\n${smokeRow?.html_body}`, /\bscott\b/,
     "lower-case scott must never appear in generated owner copy");
   assert.doesNotMatch(`${smokeRow?.subject}\n${smokeRow?.text_body}`, /Scott to reach out/i,
@@ -380,13 +381,57 @@ try {
   assert.equal(fillerNameRegression.delivered, true);
   const fillerRow = rows.find((row) => row.id === fillerNameRegression.outboxId);
   const fillerCopy = `${fillerRow?.subject}\n${fillerRow?.text_body}\n${fillerRow?.html_body}`;
-  assert.equal(fillerRow?.subject, "New WildWorks inquiry — Visitor — big swimming pool; Roman bath style");
+  assert.equal(fillerRow?.subject, "New WildWorks inquiry — Visitor — Northlake — Roman bath and ruins-inspired landscape project with a large pool and hot tubs");
   assert.match(fillerRow?.text_body ?? "", /Visitor would like help with a big swimming pool\. Additional details: A Roman bath style; Hot tubs to make it look like ruins\./);
   assert.match(fillerRow?.text_body ?? "", /Name: Visitor/);
   assert.match(fillerRow?.text_body ?? "", /Visitor authorized the WildWorks team/);
   assert.doesNotMatch(fillerCopy, /\bUm\b|\ba a\b|\ban an\b|\ba an\b|\ban a\b/i,
     "invalid filler identity and duplicate articles never render in owner mail");
 
+  const mediaArgs = {
+    ...base, eventId: "photo-update-session#media-upload1", sessionId: "photo-update-session",
+    followUp: { kind: "media", previousNeed: "Standing water in the yard" },
+    media: [{ name: "photo.png", mimeType: "image/png", sizeBytes: 1024, signedUrl: "https://media.invalid/photo" }],
+  };
+  const sendsBeforeMedia = Provider.sendCalls.length;
+  const mediaFirst = await Notifications.notifyIScottLeadByEmail(mediaArgs);
+  const mediaRetry = await Notifications.notifyIScottLeadByEmail(mediaArgs);
+  assert.equal(mediaFirst.outboxId, mediaRetry.outboxId);
+  assert.equal(Provider.sendCalls.length, sendsBeforeMedia + 1, "one late photo update despite retry");
+  const mediaRow = rows.find(row => row.id === mediaFirst.outboxId);
+  assert.match(mediaRow.subject, /photos or videos added/);
+  assert.match(mediaRow.text_body, /photo.png/);
+  assert.doesNotMatch(mediaRow.text_body, /came back with something new/);
+  const chinaArgs = {
+    ...base, eventId: "china-email", sessionId: "china-email", fullName: "Morgan",
+    location: "China", projectArea: null,
+    projectNeed: "Beautiful boulders and, well, pool and waterfalls, everything around my house",
+    projectDetails: ["Beautiful boulders and pool and waterfalls, everything around my house"],
+    transcript: "VISITOR: I live in China.\nVISITOR: Waterfalls, everything around my house. I have a quarter million dollar budget.\nVISITOR: As soon as possible.",
+  };
+  const china = await Notifications.notifyIScottLeadByEmail(chinaArgs);
+  const chinaRow = rows.find(row => row.id === china.outboxId);
+  assert.match(chinaRow.subject, /Morgan — China/);
+  assert.equal(chinaRow.subject, "New WildWorks inquiry — Morgan — China — Residential landscape project with boulders, a pool, and waterfalls");
+  assert.doesNotMatch(chinaRow.subject, /beautiful|well|my house|you know/i);
+  assert.match(chinaRow.text_body, /Location: China\. Budget: 250,000 dollars\. Timing: As soon as possible\./);
+  assert.match(chinaRow.text_body, /Broader scope: Landscaping around the house/);
+  assert.doesNotMatch(chinaRow.text_body, /with a beautiful|and, well|Budget: Waterfalls|Additional details: Beautiful/i);
+  await fs.writeFile(path.join(out, "china-email-preview.html"), chinaRow.html_body);
+  const projectUpdateArgs = {
+    ...chinaArgs, eventId: "china-email#followup-one",
+    projectDetails: [...chinaArgs.projectDetails, "Have ruins", "An outdoor kitchen"],
+    followUp: { previousNeed: chinaArgs.projectNeed, addedFacts: ["Project: Have ruins", "Project: An outdoor kitchen"] },
+  };
+  const sendsBeforeUpdate = Provider.sendCalls.length;
+  const projectUpdate = await Notifications.notifyIScottLeadByEmail(projectUpdateArgs);
+  const projectRetry = await Notifications.notifyIScottLeadByEmail(projectUpdateArgs);
+  assert.equal(projectUpdate.outboxId, projectRetry.outboxId);
+  assert.equal(Provider.sendCalls.length, sendsBeforeUpdate + 1);
+  const projectUpdateRow = rows.find(row => row.id === projectUpdate.outboxId);
+  assert.match(projectUpdateRow.subject, /UPDATE.*ruins.*outdoor kitchen/);
+  assert.match(projectUpdateRow.text_body, /Morgan added to the inquiry: Project: Have ruins; Project: An outdoor kitchen/);
+  await fs.writeFile(path.join(out, "china-update-preview.html"), projectUpdateRow.html_body);
   assert.ok(requests.some(({ method }) => method === "POST"));
   assert.ok(requests.some(({ method, resource }) => method === "GET" && resource.includes("idempotency_key=eq.")));
   assert.ok(requests.some(({ method }) => method === "PATCH"));

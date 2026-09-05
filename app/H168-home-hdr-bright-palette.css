@@ -1,3 +1,5 @@
+/* Mobile visuals restored from 7c55504 (2026-09-03). Below 600px uses that exact rule set; 600px and wider retains the pre-restoration styling. */
+
 /* G 2026-08-13: restrained Home-only lift of the five existing colors.
    Each role keeps its original hue and hierarchy. Only lightness/chroma move
    a few points; existing gradients, smoke, imagery, and button chrome remain. */
@@ -46,6 +48,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
 
 /* The old cascade contains high-specificity flat-color locks. This route-only
    lock is intentionally stronger and is imported last. */
+
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   :is(.wild-site-backdrop, header.wild-site-header, footer.discordSection),
@@ -106,6 +109,7 @@ html:has(#top.wild-home:not(.wild-legal-home))
 
 /* Keep the permanent 1 / 2 / 3 sequence, but lift each face to the new
    luminous set. The existing black depth/smoke remains the contrast control. */
+
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   #top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top#top.wild-home
@@ -223,14 +227,25 @@ html:has(#top.wild-home:not(.wild-legal-home))
 }
 
 /* The mobile contact strip belongs visually to the Home page field. */
+
 html:has(#top.wild-home:not(.wild-legal-home))
   body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
   .wild-footer-mobile-strip.wild-footer-mobile-strip {
   background-color: var(--ww-home-hdr-primary) !important;
 }
 
+@media (width < 600px) {
+
+html:has(#top.wild-home:not(.wild-legal-home)) {
+  scrollbar-color: var(--ww-home-hdr-secondary) var(--ww-home-hdr-primary) !important;
+}
+}
+
+@media (width >= 600px) {
+
 html:has(#top.wild-home:not(.wild-legal-home)) {
   scrollbar-color: #edc775 var(--ww-home-hdr-primary) !important;
+}
 }
 
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-track,
@@ -238,15 +253,28 @@ html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-track {
   background-color: var(--ww-home-hdr-primary) !important;
 }
 
+@media (width < 600px) {
+
+html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
+html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb {
+  background-color: var(--ww-home-hdr-secondary) !important;
+  border-color: #a74322 !important;
+}
+}
+
+@media (width >= 600px) {
+
 html:has(#top.wild-home:not(.wild-legal-home))::-webkit-scrollbar-thumb,
 html:has(#top.wild-home:not(.wild-legal-home)) body::-webkit-scrollbar-thumb {
   background-color: #edc775 !important;
   border-color: #a74322 !important;
 }
+}
 
 /* Historical palette files intentionally carry up to sixty ID points of
    specificity. This impossible :not() argument contributes specificity while
    remaining route-local and without changing the markup. */
+
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override)
   body#wildworks-body,
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override#ww-hdr-override)
@@ -269,6 +297,7 @@ html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-override#ww-hdr-overr
 
 /* Finish the Color 1 lift on body copy that older inline Home rules painted
    with the previous cream. Button ink remains untouched. */
+
 html:has(#top.wild-home:not(.wild-legal-home)):not(#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type#ww-hdr-type)
   body#wildworks-body
   #top.wild-home

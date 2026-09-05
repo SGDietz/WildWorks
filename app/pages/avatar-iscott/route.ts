@@ -320,7 +320,34 @@ const wildWorksButtonCss = `
       overflow: hidden !important;
     }
 
-    body::before {
+    :where(html[data-ww-mobile-visual-reference]) body::before {
+      content: "Loading iScott" !important;
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      padding-bottom: 0 !important;
+      /* G 2026-08-19: "make that color number two" - the Loading iScott wordmark
+         moves off text-1 onto text-2. The field behind it is already the primary
+         background (#c44d0b), which is what he asked for. */
+      color: #edc775 !important;
+      -webkit-text-fill-color: #edc775 !important;
+      background: none !important;
+      font-family: "Goudy Old Style", "Baskerville Old Face", Garamond, Georgia, serif !important;
+      font-size: clamp(2.7rem, 12vw, 4.8rem) !important;
+      font-weight: 800 !important;
+      font-style: normal !important;
+      letter-spacing: -0.025em !important;
+      line-height: 0.95 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.72), 0 0.38rem 0.58rem rgba(0, 0, 0, 0.3) !important;
+    }
+
+    :where(html:not([data-ww-mobile-visual-reference])) body::before {
       content: "Loading iScott" !important;
       position: fixed !important;
       inset: 0 !important;
@@ -349,6 +376,7 @@ const wildWorksButtonCss = `
 
     /* On a phone, use the frame's height to give the loading name a clean
        two-line lockup without changing its approved color or depth. */
+
     @media (max-width: 560px) {
       body::before {
         content: "Loading\\A iScott" !important;
@@ -363,6 +391,7 @@ const wildWorksButtonCss = `
        read as a hole punched in the card while it loaded. Both are brand
        colours; the wrong one was chosen. It now matches the surface it covers,
        so "Loading iScott" reads as the card thinking rather than a gap. */
+
     html.wildworks-avatar-loading body::before {
       z-index: 2147483646 !important;
       background:
@@ -381,6 +410,7 @@ const wildWorksButtonCss = `
 
     /* The remote app briefly mounts a dark start-screen layer. WildWorks owns
        the loading experience, so keep that entire phase on the orange field. */
+
     [class*="bg-black"],
     [class*="bg-neutral-950"],
     [class*="bg-zinc-950"],
@@ -409,6 +439,7 @@ const wildWorksButtonCss = `
     /* Any icon on these buttons that IS an svg. The Finish button's sparkle is
        not - it is a ::before background-image and is handled on that rule. This
        one is kept for the buttons that do use svg markup. */
+
     .btn-wood svg,
     .btn-inset svg,
     [data-ww-finish] svg,
@@ -434,6 +465,7 @@ const wildWorksButtonCss = `
        little more effect" without moving anything's position. NOT visually
        confirmed live - flagging for G to eyeball and correct again if this
        still isn't it, same as the color judgment calls in RISK.md. */
+
     [data-ww-finish] svg,
     [data-ww-talk] svg {
       filter:
@@ -545,6 +577,7 @@ const wildWorksButtonCss = `
        that lacked one. Labels, icons, the shadow ladders, box metrics, radius,
        fills, borders, the state machine, the Finish handler and the timing are
        all untouched. ============================================== */
+
     html[data-ww-avatar-embedded] .fixed.bottom-28:has(.btn-wood) {
       left: 0 !important;
       right: 0 !important;
@@ -595,6 +628,7 @@ const wildWorksButtonCss = `
        site-wide baseline (0.75px / 1.5px - "attached," matching every other
        icon including Restart's own), the extra 20% moved to the far layer's
        opacity instead (0.6 -> 0.72). Not visually confirmed live. */
+
     [data-ww-finish]::before {
       filter:
         drop-shadow(rgba(35, 9, 2, 0.9) 0px 0.75px 0px)
@@ -633,6 +667,7 @@ const wildWorksButtonCss = `
 
        Style only. Labels, icons, sizes, geometry, the state machine and the
        Finish handler are all untouched. ============================== */
+
     html[data-ww-avatar-embedded] [data-ww-talk],
     html[data-ww-avatar-embedded] [data-ww-finish] {
       /* THIS is the rule that paints the Finish and Talk labels, and it covers
@@ -675,6 +710,7 @@ const wildWorksButtonCss = `
        remains legible through Talk -> Finish -> returned Talk. G's 2026-08-30
        visual pass asked for a little more depth without restoring the chain,
        so only that one attached edge becomes slightly darker/deeper. */
+
     html[data-ww-avatar-embedded] [data-ww-talk]::before,
     html[data-ww-avatar-embedded] [data-ww-finish]::before,
     html[data-ww-avatar-embedded] [data-ww-talk] svg,
@@ -928,6 +964,7 @@ const wildWorksButtonCss = `
     }
 
     /* G 2026-09-02: email is words-only. Keep the phone glyph for phone. */
+
     .wildworks-lead-label-icon[data-method="email"] {
       display: none !important;
     }
@@ -1025,6 +1062,7 @@ const wildWorksButtonCss = `
          1.85rem padding -> 270 - 59.2 - 2 - 6 = 202.8px
          0.95rem padding -> 270 - 30.4 - 2 - 6 = 231.6px   (+14%)
        With the 2.22rem ceiling that is roughly double what he called midget. */
+
     @media (max-width: 520px) {
       #wildworks-lead-value {
         padding-inline: 0.95rem !important;
@@ -1033,6 +1071,7 @@ const wildWorksButtonCss = `
 
     /* The browsers' own in-field controls sit exactly where the value ends.
        These are the supported opt-outs for each engine. */
+
     #wildworks-lead-value::-webkit-credentials-auto-fill-button,
     #wildworks-lead-value::-webkit-contacts-auto-fill-button,
     #wildworks-lead-value::-webkit-caps-lock-indicator {
@@ -1053,6 +1092,7 @@ const wildWorksButtonCss = `
        password manager anywhere else on the site - but this one field holds a
        stranger's contact details and nothing may sit on top of it. Named roots
        only, so an unrelated node is never hidden by accident. */
+
     .wildworks-lead-capture [data-lastpass-icon-root],
     .wildworks-lead-capture [data-lastpass-root],
     .wildworks-lead-capture [data-lastpass-infield],
@@ -1066,6 +1106,7 @@ const wildWorksButtonCss = `
     }
 
     /* iOS/Chrome autofill repaints the field and the ink. Hold the brand. */
+
     #wildworks-lead-value:-webkit-autofill,
     #wildworks-lead-value:-webkit-autofill:hover,
     #wildworks-lead-value:-webkit-autofill:focus,
@@ -1086,6 +1127,7 @@ const wildWorksButtonCss = `
 
     /* iOS turns anything that looks like an address or a number into a blue
        system link inside the panel. Brand ink wins. */
+
     #wildworks-lead-confirmation a,
     #wildworks-lead-confirmation a:visited,
     #wildworks-lead-confirmation [x-apple-data-detectors] {
@@ -1157,6 +1199,7 @@ const wildWorksButtonCss = `
        flight the box stays exactly where it is, dimmed and locked, so the
        visitor can still see the value that is being sent. Only a verified
        submitted/submittedAt reply is allowed to take the capture away. */
+
     .wildworks-lead-card[data-box-view="sending"] .wildworks-lead-capture {
       opacity: 0.72 !important;
       pointer-events: none !important;
@@ -1175,6 +1218,7 @@ const wildWorksButtonCss = `
        and read-only; its received label supplements rather than replaces it.
        G's physical ride, 2026-08-29: the box vanished and nothing replaced it,
        so there was no way to tell a completed handoff from a lost one. */
+
     .wildworks-lead-card[data-box-view="sent"] #wildworks-lead-sent,
     .wildworks-lead-card[data-box-view="submitted"] #wildworks-lead-sent {
       display: flex !important;
@@ -1190,6 +1234,7 @@ const wildWorksButtonCss = `
        status line that printed "Test session - not sent.", and the sync notice.
        The elements remain in the DOM on purpose: plenty of existing logic still
        queries them, and deleting the nodes would null-crash that code. */
+
     .wildworks-lead-actions,
     #wildworks-lead-confirm,
     #wildworks-lead-status,
@@ -1207,12 +1252,14 @@ const wildWorksButtonCss = `
        re-showed the button + status paragraph is gone. A refused send (missing
        project need) keeps the clean box; iScott asks for the need by voice.
        The nodes stay in the DOM (logic still queries them) and stay hidden. */
+
     /* G, ride 308c9716: "the check mark was underneath the check mark box.
        Should be on one line with the text." It was a block <p> inside a 19rem
        card, so "Phone and email sent to Scott" wrapped and pushed the tick onto
        its own line. One flex row that cannot wrap, with the SIZE allowed to
        shrink to fit instead of the LINE allowed to break. Cambria to match the
        rest of the panel; Arial was never the brand face. */
+
     #wildworks-lead-sent {
       display: none !important;
       margin: 0.4rem 0 0 !important;
@@ -1248,7 +1295,6 @@ const wildWorksButtonCss = `
       background: linear-gradient(180deg, #a56a2a, #6d3d12) !important;
     }
 
-
     /* ==================================================================
        G, 2026-09-01 09:17 + 09:18, two screenshots side by side:
          "when this box is up, YOUR EMAIL, make it about the size that the
@@ -1269,6 +1315,7 @@ const wildWorksButtonCss = `
        inner edges that make it read as a pressed surface rather than a flat
        patch. Nothing here leaves the locked five.
        ================================================================== */
+
     .wildworks-lead-card {
       /* H429 Packet C: G "no fucking glow". This rival re-painted the cream
          radial + inset hairline over the solid Secondary at 715-732. Retired.
@@ -1280,6 +1327,7 @@ const wildWorksButtonCss = `
 
     /* The label and its envelope, sized to sit with the address rather than
        shout over it. Icon stays in em so it keeps tracking the label. */
+
     .wildworks-lead-label {
       margin: 0 0 0.24rem !important;
       gap: 0.4rem !important;
@@ -1293,6 +1341,7 @@ const wildWorksButtonCss = `
        the value takes the sent panel's ink and optical size - which is the
        one he said was right. The password-manager side padding is UNCHANGED:
        a badge still lands on padding and never on the address. */
+
     #wildworks-lead-value {
       min-height: 1.75rem !important;
       padding-block: 0.1rem !important;
@@ -1310,6 +1359,7 @@ const wildWorksButtonCss = `
 
     /* The send button loses its top gap - the box above it is shorter now, and
        the old 0.7rem was spacing away from a field that no longer sprawls. */
+
     #wildworks-lead-confirm {
       margin-top: 0.42rem !important;
       font-size: 0.95rem !important;
@@ -1425,6 +1475,7 @@ const wildWorksButtonCss = `
     }
 
     /* Avatar-route card surfaces only: the Home card material. */
+
     :is(.bg-gray-800\/90, .bg-gray-900, .wildworks-session-ended-card) {
       background: #8B5A2B !important;
       background-image: none !important;
@@ -1490,6 +1541,7 @@ const wildWorksButtonCss = `
 
     /* Phone portrait plus bounded landscape-phone only. Do not impose the
        phone shell on iPad portrait or ordinary short desktop windows. */
+
     @media (max-width: 520px), (max-width: 932px) and (max-height: 560px) and (orientation: landscape) {
       /* Home keeps the bottom agreement. Do not paint a second legal
          strip on the avatar, especially while he is talking. */
@@ -1640,6 +1692,7 @@ const wildWorksButtonCss = `
        rule on a tablet at all, and the embedded player placed him wherever it
        liked. This is the same framing the phone already uses, applied to the
        gap between phone and desktop. Desktop is untouched. */
+
     @media (min-width: 521px) and (max-width: 1279px) {
       [data-ww-avatar-shell] [data-ww-avatar-video],
       [data-ww-avatar-shell] video,
@@ -1666,6 +1719,7 @@ const wildWorksButtonCss = `
        is pinned to the visible top-left corner at the frame's true pixel
        size, so the whole video sits inside the visible box and the face
        crop centers within it. */
+
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] [data-ww-avatar-video],
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] video,
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] canvas,
@@ -1691,6 +1745,7 @@ const wildWorksButtonCss = `
        layout viewport, which put every fixed midpoint/bottom low-right of the
        visible window. Reuse rev-H's measured box for overlays only; do not
        touch the proven video/canvas geometry above. */
+
     html[data-ww-avatar-embedded][data-ww-embed-measured] body::before,
     html[data-ww-avatar-embedded][data-ww-embed-measured] #wildworks-session-ended-panel {
       inset: 0 auto auto 0 !important;
@@ -1735,6 +1790,7 @@ const wildWorksButtonCss = `
        current scale while moving only its horizontal position. This covers
        initial, failed, and returned Talk states; live video/canvas stays under
        the separate no-transform media pin below. */
+
     html[data-ww-avatar-embedded][data-ww-embed-measured]
       img[alt="Start screen"] {
       position: fixed !important;
@@ -1781,6 +1837,7 @@ const wildWorksButtonCss = `
        clamp the Finish control in this document already uses. No new numbers
        invented. Video sizing, the session-ended panel and the lead card all
        ride the measured flag too and are deliberately left alone. */
+
     html[data-ww-avatar-embedded]:not([data-ww-embed-measured])[data-ww-finish-returned]
       .fixed.bottom-28:has([data-ww-talk]) {
       position: fixed !important;
@@ -1800,6 +1857,7 @@ const wildWorksButtonCss = `
 
     /* G 2026-08-17 (phone ride): on a phone the email box takes up a big
        part of the screen, sitting right over the Finish button. */
+
     @media (min-width: 288px) and (max-width: 640px) {
       #wildworks-lead-confirmation {
         width: calc(100vw - 0.75rem) !important;
@@ -1845,6 +1903,7 @@ const wildWorksButtonCss = `
        Covers both avatar states: the overlay CTA shown on a stopped avatar, and
        the restart and send-details controls shown while it is live and after it
        ends. */
+
     :is(
       #wildworks-avatar-restart,
       #wildworks-lead-confirm,
@@ -1885,6 +1944,7 @@ const wildWorksButtonCss = `
        Colour only here - font-size on the value is written inline by the JS
        fit loop and must not be fought from CSS. Last in this style block on
        purpose. */
+
     .wildworks-lead-card .wildworks-lead-label,
     .wildworks-lead-card #wildworks-lead-label-text,
     .wildworks-lead-card #wildworks-lead-value {
@@ -1919,6 +1979,7 @@ const wildWorksButtonCss = `
        card orange, no card glow, less height, and a larger envelope. These
        overrides intentionally come after the older shine and phone-expansion
        rules above so the served page cannot fall back to either one. */
+
     .wildworks-lead-card {
       background: #e96819 !important;
       box-shadow: 0 10px 26px rgba(35, 9, 2, 0.42) !important;
@@ -1935,6 +1996,7 @@ const wildWorksButtonCss = `
        Text 2; the envelope and YOUR EMAIL move to Text 1. YOUR EMAIL is one
        unbroken line so "YOUR" can never stack above "EMAIL" again. The phone
        state is outside this selector and stays unchanged. */
+
     #wildworks-lead-confirmation[data-contact-method="email"] .wildworks-lead-label,
     #wildworks-lead-confirmation[data-contact-method="email"] #wildworks-lead-label-text,
     #wildworks-lead-confirmation[data-contact-method="email"] .wildworks-lead-label-icon,
@@ -1958,6 +2020,7 @@ const wildWorksButtonCss = `
        Only its sparkle grows 10% (1.344em -> 1.48em), with the existing
        attached ten-step shadow extended 10%. Finish and initial Talk stay
        untouched. */
+
     html[data-ww-avatar-embedded][data-ww-finish-returned] [data-ww-talk]::before {
       width: 1.48em !important;
       height: 1.48em !important;
@@ -2002,6 +2065,7 @@ const wildWorksButtonCss = `
        Word: one treatment on the orange button at 1.35rem phone / measured
        iPad - deeper ladder 0.312px a step x 10 = 3.12px, same H432 alphas,
        tighter letter-spacing -0.02em, weight 800. */
+
     html [data-ww-finish],
     html[data-ww-avatar-embedded] [data-ww-finish],
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-finish] {
@@ -2051,6 +2115,7 @@ const wildWorksButtonCss = `
     }
 
     /* ===== H442 (Grok, 2026-09-02 11:58 ET) — spliced by Claude. G 11:55: "All that it is is there's a little bit of extra shadow on the text and no, no shadow on the icon. That's it. 100%. That's it. Only fix that." Word ladders x0.9; icons ONE attached drop-shadow, blur 0 (the H437 0.02px chain does not rasterise on iPad). ===== */
+
     /* H442 — Talk / Finish / Upload ONLY. route.ts style-block APPEND (before the style closer).
        Packet: H442-ipad-beautiful. Do not install from this author. Grok copies to Claude.
        Do not touch "Start with iScott", patio/lounge/deck, card, video, Upload size,
@@ -2078,6 +2143,7 @@ const wildWorksButtonCss = `
 
     /* 1. Word: a little less. Standalone Talk + Upload = live .btn-wood/.btn-inset
        3-stop (L429) alphas * 0.9. Offsets stay. Not Restart (.btn-wood alone). */
+
     html [data-ww-talk],
     html .btn-inset {
       text-shadow:
@@ -2087,6 +2153,7 @@ const wildWorksButtonCss = `
     }
 
     /* Finish word = live H437 10-stop (L1930) alphas * 0.9. Offsets stay. */
+
     html [data-ww-finish],
     html[data-ww-avatar-embedded] [data-ww-finish],
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-finish] {
@@ -2105,6 +2172,7 @@ const wildWorksButtonCss = `
 
     /* Embedded Talk word = live L604 10-stop alphas * 0.9. Offsets stay.
        After the standalone Talk rule so this keeps the embed ladder. */
+
     html[data-ww-avatar-embedded] [data-ww-talk] {
       text-shadow:
         rgba(35,9,2,0.509) 0 0.008722em 0,
@@ -2122,6 +2190,7 @@ const wildWorksButtonCss = `
     /* 2. Icon: currently reads as none. ONE attached drop-shadow, blur 0.
        Same H395/H400 attached edge the rest of the site already approved.
        Beats H437's 10-chain with 0.02px (that is a blur). Do not size the glyph. */
+
     html [data-ww-finish]::before,
     html [data-ww-finish] svg,
     html [data-ww-talk]::before,
@@ -2139,6 +2208,7 @@ const wildWorksButtonCss = `
     }
 
     /* ===== H445b (Grok, 2026-09-02 13:16 ET) — spliced by Claude. Desktop Edge ride 13:07. G: "why is this still fucked, the shadow effect. this is desktop. fix it" / "fix these things". NOTE: the Start with iScott heading rule in here is INERT (that heading lives on the Home page, outside this frame) — bounced to Grok for a Home-side file. ===== */
+
     /* H445b — desktop Microsoft Edge/Windows. Not iPad Safari. Not H445.
        Packet: H445b-ipad-desktop. Splice into app/pages/avatar-iscott/route.ts
        wildWorksAvatarCss, last rules before the style closer (after H442).
@@ -2169,11 +2239,12 @@ const wildWorksButtonCss = `
 
     /* CLAUDE 2026-09-02 13:35 ET: Grok's media (min-width: 600px) wrapper REMOVED. Inside the embedded frame the viewport is 286px wide, so that query never matched and every rule below was inert in the real embed (proved in a live session: word still .325). G, this morning: "Make sure it's all the same across all devices." These rules now apply everywhere. */
 
-      /* 1. HEADING Start with iScott. Vendor h1/h2 plus the sibling after the
+    /* 1. HEADING Start with iScott. Vendor h1/h2 plus the sibling after the
          stamped WILDWORKS CONCIERGE node (JS only stamps that kicker, not the
          title). Beat blurry vendor / 0.24rem 0.85rem style with an attached
          3-stop, alphas cut. Filter none so a drop-shadow filter cannot win. */
-      :is(
+
+    :is(
       html[data-ww-avatar-shell] h1,
       html[data-ww-avatar-shell] h2,
       html [data-ww-avatar-heading] + h1,
@@ -2189,10 +2260,11 @@ const wildWorksButtonCss = `
         -webkit-filter: none !important;
       }
 
-      /* 2. Finish WORD. Same H437 10-stop px offsets. Alphas * 0.5 of H437
+    /* 2. Finish WORD. Same H437 10-stop px offsets. Alphas * 0.5 of H437
          (0.362..0.246 -> 0.181..0.123). H442 *0.9 still read heavy on the
          1:09 Microsoft shot. Offsets stay 0.312px..3.120px. */
-      :is(
+
+    :is(
       html [data-ww-finish],
       html[data-ww-avatar-embedded] [data-ww-finish],
       html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-finish]
@@ -2200,9 +2272,10 @@ const wildWorksButtonCss = `
       /* CLAUDE 2026-09-02 13:58 ET: H445b's 10-stop Finish word ladder retired here — G, iPad 13:45: "the letters are smudged". The 3-stop from H449 below is the live Finish word shadow. */
       }
 
-      /* 3. Standalone Talk + Upload WORD. Same L429 3-stop offsets.
+    /* 3. Standalone Talk + Upload WORD. Same L429 3-stop offsets.
          Alphas * 0.5 of live 0.715/0.656/0.525. Not Restart. */
-      :is(
+
+    :is(
       html [data-ww-talk],
       html .btn-inset
     ):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
@@ -2212,9 +2285,10 @@ const wildWorksButtonCss = `
           rgba(25, 6, 1, 0.263) 0 0.05192em 0 !important;
       }
 
-      /* 4. Embedded Talk WORD. After standalone so embed keeps its 10-stop.
+    /* 4. Embedded Talk WORD. After standalone so embed keeps its 10-stop.
          Alphas * 0.5 of L604 0.566..0.385. */
-      html[data-ww-avatar-embedded] [data-ww-talk]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
+
+    html[data-ww-avatar-embedded] [data-ww-talk]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
         text-shadow:
           rgba(35,9,2,0.283) 0 0.008722em 0,
           rgba(34,9,2,0.275) 0 0.017444em 0,
@@ -2228,11 +2302,12 @@ const wildWorksButtonCss = `
           rgba(25,6,1,0.193) 0 0.087220em 0 !important;
       }
 
-      /* 5. ICON. Finish/Talk star is ::before background-image sparkle, not svg.
+    /* 5. ICON. Finish/Talk star is ::before background-image sparkle, not svg.
          Upload is svg. Edge is Chromium so unprefixed filter should paint, but
          H442 died behind a style-closer comment. Set both prefixes. One attached
          edge, blur 0. Not a 10-chain. Not 0.02px. Do not size the glyph. */
-      :is(
+
+    :is(
       html [data-ww-finish]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_)::before,
       html [data-ww-finish] svg:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_),
       html [data-ww-talk]:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_)::before,
@@ -2244,13 +2319,14 @@ const wildWorksButtonCss = `
         filter: drop-shadow(0 0.078500em 0 rgba(30, 8, 2, 0.93)) !important;
       }
 
-      /* 6. AVATAR CENTER on desktop. Live 521-1279 sets margin auto + transform
+    /* 6. AVATAR CENTER on desktop. Live 521-1279 sets margin auto + transform
          none and stops at 1279, so a Microsoft window >=1280 has no center rule.
          Winner that shoves left on smaller desktop windows: inset 0 auto auto 0
          (left pin) on the 520 phone rule if the window is narrow, and no rule
          at all above 1279. Center without transform: left 0 AND right 0,
          margin-inline auto. Face object-position 50% 28% leave. */
-      :is(
+
+    :is(
       html[data-ww-avatar-shell] [data-ww-avatar-video],
       html[data-ww-avatar-shell] video,
       html[data-ww-avatar-shell] canvas,
@@ -2264,7 +2340,9 @@ const wildWorksButtonCss = `
         display: block !important;
         inset: 0 0 auto 0 !important;
       }
+
     /* (media wrapper closer removed) */
+
     /* CLAUDE 2026-09-02 17:40 ET - iPad "avatar is to the right" (rides 8e110daa,
        fa6b1fe5; G 16:2x: "the avatar's to the right"). Paid headless rides at
        834x1194 with the iPad UA: the source video is 720x1280 portrait, the box
@@ -2276,12 +2354,14 @@ const wildWorksButtonCss = `
        right of the visible centre - the same fault the card had (H436). In the
        measured state pin the media to the visible slice's left edge instead;
        the video is one embed-width wide, so left 0 IS centred. Chrome: no-op. */
+
     /* G 2026-09-02, controlling visual acceptance: whenever the EMAIL card is
        visible it paints exactly two lines — YOUR EMAIL and the captured address.
        Keep the existing captured/sending/submitted/failed/sent state machine,
        sent hold timer, DOM truth, and aria-live nodes intact; suppress only
        their visual paint. In sent state, reveal the same capture underneath the
        visually hidden confirmation node until the existing timer hides the panel. */
+
     @layer ww-email-two-lines-all-states {
       /* H473, 2026-09-02. The success states left this list. Measured in a free
          headless render of the real sent state, the confirmation node computed
@@ -2355,16 +2435,19 @@ const wildWorksButtonCss = `
         display: none !important;
       }
     }
+
     /* G, phone ride 1eac57a2, 2026-09-02 16:23 ET, verbatim: "I can still see the
        finish box underneath when this box is on there. I shouldn't be able to see
        that." Measured on his phone: card 336-398, Finish 355-416 - an 18px peek.
        While the contact box is up, Finish is gone; hidePanel() brings it back. */
+
     @layer ww-card-covers-finish {
       html:has(#wildworks-lead-confirmation.wildworks-lead-visible) [data-ww-finish] {
         visibility: hidden !important;
         pointer-events: none !important;
       }
     }
+
     @layer ww-ipad-media-pin {
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] :is([data-ww-avatar-video], video, canvas) {
       left: 0 !important;
@@ -2380,7 +2463,9 @@ const wildWorksButtonCss = `
       object-fit: cover !important;
     }
     }
+
     /* ===== H451 Item B (Grok, 2026-09-02 14:12 ET) — Finish inert 1.5 s after mount. ===== */
+
     /* H451 Item B. Session e8645bf9 lasted 2 seconds.
        Talk tap 17:02:47 -> iframe 0.6s -> session_ended reason finish at 2.0s.
        Finish sits at Talk's 22% anchor. Accidental Finish because it is where Talk was.
@@ -2388,13 +2473,14 @@ const wildWorksButtonCss = `
        Spec 0,3,0 beats [data-ww-conversation-control] pointer-events auto (L1408).
        ANCHOR: after comment (media wrapper closer removed). Last rule in wildWorksAvatarCss, immediately before the existing style end.
        Do not move Finish. Do not change Talk, Upload, heading, card. */
+
     [data-ww-finish][data-ww-finish-inert],
     [data-ww-conversation-control][data-ww-finish][data-ww-finish-inert] {
       pointer-events: none !important;
     }
 
-
     /* ===== H449 (Grok, 2026-09-02 13:48 ET) — spliced by Claude after H447. iPad ride 8e110daa 13:38: face to the right, YOUR PHONE Text 1 before the number, box too tall, Finish letters smudged. ===== */
+
     /* H449 — iPad iframe 286. Face center + YOUR PHONE Text 1 + shorter
        capture box + crisp Finish/Upload/label type. Packet: H449-phone-avatar-box.
        THIS RIDE IS iPAD (status bar 13:38-13:39). Not desktop Microsoft.
@@ -2432,6 +2518,7 @@ const wildWorksButtonCss = `
        object-position 50% 28%. 50% X + object-fit cover on a 286 frame leaves
        him on the right of the source. Shift X toward the right of the source
        so the face sits in the middle. Keep Y 28% (locked face height). */
+
     :is(
       html[data-ww-avatar-shell] [data-ww-avatar-video],
       html[data-ww-avatar-shell] video,
@@ -2449,6 +2536,7 @@ const wildWorksButtonCss = `
        number is typed: Text 1 #fce0ad. Live phone label paints #edc775 Text 2
        (.wildworks-lead-card .wildworks-lead-label L1808). Email-only L1858
        already Text 1; phone did not. Icon follows the words (same color). */
+
     :is(
       .wildworks-lead-card .wildworks-lead-label,
       .wildworks-lead-card #wildworks-lead-label-text,
@@ -2470,6 +2558,7 @@ const wildWorksButtonCss = `
     /* 3. Capture box TOO TALL (1:38 iPad, dead pad above YOUR PHONE and below
        the number). Cut vertical padding / min-height. Keep horizontal 0.75rem.
        Do not size Finish or Upload. Do not size the heading (H446). */
+
     :is(
       .wildworks-lead-card
     ):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) {
@@ -2496,6 +2585,7 @@ const wildWorksButtonCss = `
        PHONE, Finish, Upload so all text on that card is clean with a nice
        shadow. Not flat. Not blur. Do not set filter:none on Finish (icon
        drop-shadow lives on ::before). */
+
     :is(
       html [data-ww-finish],
       html[data-ww-avatar-embedded] [data-ww-finish],
@@ -2519,20 +2609,20 @@ const wildWorksButtonCss = `
       -webkit-text-stroke: 0 !important;
     }
 
-  
-/* H464 A+C. Append immediately before the style closer in wildWorksButtonCss.
+    /* H464 A+C. Append immediately before the style closer in wildWorksButtonCss.
    File: app/pages/avatar-iscott/route.ts
    Grok does not install. Claude inspects and installs.
    Envelope stays. Palette lock. No 600-wide media query. */
 
-/* ITEM A — email capture box ~20% wider + address type bigger.
+    /* ITEM A — email capture box ~20% wider + address type bigger.
    Live smoke card: max-width min(15rem, 70vw) = 200px in the 286 iframe.
    20% wider: min(18rem, 84vw) = 240px. Beats the later embed-measured 100%
    so the box does not jump to the full confirmation panel. Address type
    follows the existing fit loop, which gets more width so it paints bigger.
    Fit loop still starts at 2.22. Extra width paints the address bigger.
    CSS floor 1.15rem and min-height 2.4rem undo the 1.75rem shrink. */
-html[data-ww-avatar-embedded] .wildworks-lead-card,
+
+    html[data-ww-avatar-embedded] .wildworks-lead-card,
 /* H477, G 19:03: "The box is a little small. It can be, you know, a good 20%
    wider, you know, side to side." 18rem -> 21.6rem is that 20%. On a phone the
    rem is what binds, so the box really does grow. On his iPad the FRAME binds
@@ -2545,25 +2635,26 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
   max-width: min(21.6rem, 92vw) !important;
 }
 
-#wildworks-lead-value,
+    #wildworks-lead-value,
 .wildworks-lead-card #wildworks-lead-value,
 #wildworks-lead-confirmation[data-contact-method="email"] #wildworks-lead-value {
   font-size: clamp(1.16rem, 4.4vw, 2.22rem) !important;
   min-height: 2.4rem !important;
 }
 
-/* ITEM C — same confirmation node / copy / sent+submitted machine.
+    /* ITEM C — same confirmation node / copy / sent+submitted machine.
    G: confirmation was just a strip / bar, he could hardly see it.
    Do not invent a new confirmation UX. Give the existing sent box
    real height and padding. Text-1 only. */
-.wildworks-lead-card[data-box-view="sent"],
+
+    .wildworks-lead-card[data-box-view="sent"],
 .wildworks-lead-card[data-box-view="submitted"] {
   min-height: 4.6rem !important;
   padding: 0.7rem 0.9rem !important;
   justify-content: center !important;
 }
 
-.wildworks-lead-card[data-box-view="sent"] #wildworks-lead-sent,
+    .wildworks-lead-card[data-box-view="sent"] #wildworks-lead-sent,
 .wildworks-lead-card[data-box-view="submitted"] #wildworks-lead-sent {
   display: flex !important;
   visibility: visible !important;
@@ -2578,7 +2669,6 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
   -webkit-text-fill-color: #fce0ad !important;
 }
 
-  
     /* H466 - Claude (installer-writer, per G's "Claude, Codex, whoever"),
        2026-09-02 ~19:5x. G word for word:
        "And then your email, sgd2pm.me, that right there is the perfect size...
@@ -2591,6 +2681,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        state G loves is the box without it. Hiding the icon everywhere delivers
        both asks in one cut: no envelope, and the box paints at its short
        height from the first frame. Label text stays; palette untouched. */
+
     .wildworks-lead-card .wildworks-lead-label-icon {
       display: none !important;
       visibility: hidden !important;
@@ -2615,6 +2706,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        button whose text is exactly "Finish" - so in-frame Talk and Restart
        (also .btn-wood) keep the old glyph. Beats .btn-wood::before on
        specificity: html + attribute + pseudo-element. */
+
     html [data-ww-finish]::before {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='%23e96819' stroke='none'%3E%3Cg transform='translate%280.15 2.55%29 scale%280.76%29'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3C/g%3E%3Cg transform='translate%2813.15 0.35%29 scale%280.40%29'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3C/g%3E%3Cg transform='translate%2814.55 13.55%29 scale%280.28%29'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3C/g%3E%3C/svg%3E") !important;
     }
@@ -2624,6 +2716,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        the cluster sat jammed against the F. Match the RATIO so it holds
        at every button size. Icon size untouched - the larger Finish glyph
        is G's own approved 2026-09-01 "twenty percent larger". */
+
     html [data-ww-finish] {
       gap: 0.18em !important;
     }
@@ -2638,6 +2731,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        18.92px font. Descenders need about 1.3x the font size, so the box itself
        was shearing the tails off g and p. This is a height fault, not a font
        fault - which is why changing the font never fixed it. */
+
     html .wildworks-lead-card #wildworks-lead-value,
     html #wildworks-lead-confirmation[data-contact-method="email"] #wildworks-lead-value {
       line-height: 1.4 !important;
@@ -2655,7 +2749,8 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        The fit loop still owns the final size and still shrinks long addresses,
        so this cannot overflow. Card, field, label and every other breakpoint
        keep their established geometry. */
-    html[data-ww-parent-laptop]
+
+    html:where(:not([data-ww-mobile-visual-reference]))[data-ww-parent-laptop]
       #wildworks-lead-confirmation[data-contact-method="email"]
       #wildworks-lead-value {
       padding-inline: 0.55rem !important;
@@ -2680,6 +2775,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        second shot), and the field is a FIXED 34px line box. A long email only
        shrinks the type inside that box. Layered so it beats the unlayered
        !important rules above without another id ladder. */
+
     @layer ww-card-pin-label {
       html .wildworks-lead-card:not([data-box-view="sent"]):not([data-box-view="submitted"]) {
         justify-content: flex-start !important;
@@ -2703,6 +2799,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        lands. Pin the CAPTURE states to one height so it cannot move at all.
        The sent/submitted confirmation box is deliberately taller (ITEM C) and
        is excluded here. */
+
     html .wildworks-lead-card:not([data-box-view="sent"]):not([data-box-view="submitted"]) {
       min-height: 4.6rem !important;
       height: 4.6rem !important;
@@ -2713,6 +2810,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        are great." (20:51:31) The ICONS are approved and untouched - only the
        label grows. The icon is sized in em, so it would grow with the label;
        hold it at its approved pixel size so only the word changes. */
+
     html [data-ww-finish] {
       font-size: 1.28em !important;
     }
@@ -2744,6 +2842,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        PORTRAIT TABLET parent 521-1279 wide. Phones (~390-430) and desktop never
        match it, so their framing is untouched. Scale is deliberately small -
        just enough room to pan - so he does not visibly grow. */
+
     html[data-ww-avatar-embedded][data-ww-embed-measured] [data-ww-avatar-shell] {
       overflow: hidden !important;
     }
@@ -2769,6 +2868,7 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
        Layered so it beats the unlayered !important 28% rules above (H449's
        68% 28% included); img only - video/canvas keep their framing, and the
        measured iPad's own 1.14 pan/zoom below still rides on top unchanged. */
+
     @layer ww-still-align {
       html[data-ww-avatar-shell] img[data-ww-avatar-video] {
         object-fit: cover !important;
@@ -2795,17 +2895,16 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
 
     /* H482: only the Home iframe gets the repeated two-step orange rim.
        Standalone iScott retains its existing treatment. No sizing changes. */
-    html[data-ww-avatar-embedded] :is(.btn-inset, [data-ww-talk], [data-ww-finish]) {
+
+    html:where(:not([data-ww-mobile-visual-reference]))[data-ww-avatar-embedded] :is(.btn-inset, [data-ww-talk], [data-ww-finish]) {
       border-color: #8f3a14 !important;
       box-shadow: 0 12px 28px rgba(53, 17, 4, 0.28) !important;
     }
 
-    html[data-ww-avatar-embedded]
+    html:where(:not([data-ww-mobile-visual-reference]))[data-ww-avatar-embedded]
       :is(button, a, input, select, textarea, [role="button"]):focus-visible {
       outline-color: #8f3a14 !important;
-    }
-
-  </style>
+    }</style>
 `;
 
 const wildWorksLegalBandScript = `
@@ -2817,6 +2916,7 @@ const wildWorksLegalBandScript = `
       const syncParentLaptopClass = () => {
         try {
           const parentWidth = Number(window.parent.innerWidth);
+          document.documentElement.toggleAttribute("data-ww-mobile-visual-reference", parentWidth < 600);
           if (window.parent !== window && parentWidth >= 1280 && parentWidth <= 1599) {
             document.documentElement.setAttribute("data-ww-parent-laptop", "true");
           } else {
@@ -2828,6 +2928,7 @@ const wildWorksLegalBandScript = `
       };
       syncParentLaptopClass();
       window.addEventListener("resize", syncParentLaptopClass);
+      try { window.parent.addEventListener("resize", syncParentLaptopClass); } catch {}
       // G's iPad, 2026-08-20: inside an iPadOS frame the inner viewport can
       // be laid out against expanded content, so inner percentages and inner
       // media queries cannot place the video reliably. The parent page is
@@ -3904,9 +4005,24 @@ const wildWorksIdleTimeoutScript = `
       };
 
       let pendingStartGate = null;
+      let mediaPickerUntil = 0;
+      let mediaPickerTimer = null;
+      window.addEventListener("wildworks:media-picker", (event) => {
+        if (mediaPickerTimer !== null) window.clearTimeout(mediaPickerTimer);
+        mediaPickerUntil = event.detail?.open === true ? Date.now() + 120000 : 0;
+        if (mediaPickerUntil) {
+          clearIdleTimer();
+          mediaPickerTimer = window.setTimeout(() => {
+            mediaPickerUntil = 0;
+            if (document.visibilityState === "hidden") void stopForIdle();
+            else armIdleTimer();
+          }, 120000);
+        } else armIdleTimer();
+      });
 
       const armIdleTimer = () => {
         if (!sessionActive || stopping) return;
+        if (Date.now() < mediaPickerUntil) return;
         clearIdleTimer();
         idleTimer = window.setTimeout(stopForIdle, idleLimitMs);
       };
@@ -3935,8 +4051,12 @@ const wildWorksIdleTimeoutScript = `
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
           markMeasuredIPadLifecycle("visibility_hidden_before_idle_stop");
+          if (Date.now() < mediaPickerUntil) return;
           void stopForIdle();
         } else {
+          mediaPickerUntil = 0;
+          if (mediaPickerTimer !== null) window.clearTimeout(mediaPickerTimer);
+          armIdleTimer();
           markMeasuredIPadLifecycle("visibility_visible");
         }
       });

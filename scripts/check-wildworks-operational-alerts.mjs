@@ -69,7 +69,7 @@ assert.doesNotMatch(alertSource, /NEXT_PUBLIC_TELEGRAM/);
 // connectivity category, and the 10-minute dedupe stays in front of every send.
 assert.match(alertSource, /createConnectivityMissGate\(\{\s*threshold:\s*2,\s*windowMs:\s*60_000\s*\}\)/);
 assert.match(alertSource, /alert\.category === "supabase_connectivity" && !admitConnectivity\(/);
-assert.match(alertSource, /const DEDUPE_MS = 10 \* 60 \* 1000;/);
+assert.match(alertSource, /const DEDUPE_MS = 60 \* 60 \* 1000;/);
 assert.match(alertSource, /failStreak\?: number \| null;/);
 assert.match(alertSource, /deferToClientStreak\?: boolean;/);
 

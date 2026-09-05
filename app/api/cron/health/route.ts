@@ -1,7 +1,9 @@
+import { readCodexOperationsHealth } from "@/src/lib/codexOperationsHealth";
 import { authorizeVoiceEmailDrainRequest } from "@/src/lib/voiceCronAuthorization";
 import { getSupabaseAdminConfig, isSupabaseAdminConfigured } from "@/src/lib/supabaseAdmin";
 import { sendWildWorksOperationalAlert } from "@/src/lib/wildworksOperationalAlerts";
 import { logServerTelemetryEvent } from "@/src/lib/serverTelemetryCapture";
+import { nextHealthNotice, type HealthNotice } from "@/src/lib/wildworksHealthNoticePolicy";
 import {
   API_KEY as LIVEAVATAR_API_KEY,
   API_URL as LIVEAVATAR_API_URL,
@@ -43,6 +45,31 @@ const LOOKBACK_MINUTES = 20;
 const OUTBOX_STUCK_MINUTES = 20;
 
 type Finding = { headline: string; detail: string };
+const HEALTH_ENVIRONMENT = process.env.VERCEL_ENV ?? "local";
+// Held automated tests cannot represent a missed customer delivery. Preserve
+// unclassified historical leads and genuine owner smoke tests in the check.
+const DELIVERABLE_LEADS = "&or=(traffic_class.is.null,traffic_class.in.(public,owner))";
+
+async function readLastHealthNotice(): Promise<HealthNotice | null> {
+  if (!isSupabaseAdminConfigured()) return null;
+  const { url, serviceRoleKey } = getSupabaseAdminConfig();
+  try {
+    const query = new URLSearchParams({
+      select: "payload", event_type: "in.(wildworks_cloud_health_ok,wildworks_cloud_health_finding)",
+      "payload->>health_environment": `eq.${HEALTH_ENVIRONMENT}`,
+      order: "created_at.desc", limit: "1",
+    });
+    const response = await fetch(`${url}/rest/v1/app_events?${query}`, {
+      headers: { apikey: serviceRoleKey, Authorization: `Bearer ${serviceRoleKey}` },
+      cache: "no-store", signal: AbortSignal.timeout(5_000),
+    });
+    if (!response.ok) return null;
+    const rows = await response.json();
+    const notice = rows?.[0]?.payload?.last_notice;
+    return notice && typeof notice.fingerprint === "string" && typeof notice.healthy === "boolean"
+      && typeof notice.at === "string" && Number.isFinite(Date.parse(notice.at)) ? notice : null;
+  } catch { return null; }
+}
 
 type LiveAvatarResource = "avatar" | "context" | "voice";
 
@@ -102,6 +129,7 @@ export async function GET(request: Request) {
   }
 
   const daily = new URL(request.url).searchParams.get("daily") === "1";
+  const dryRun = new URL(request.url).searchParams.get("dryRun") === "1";
   const findings: Finding[] = [];
   const notes: string[] = [];
 
@@ -180,7 +208,7 @@ export async function GET(request: Request) {
   }
 
   const ownerDrift = await countRows(
-    "iscott_leads?select=session_id&status=eq.submitted&notification_status=neq.sent",
+    "iscott_leads?select=session_id&status=eq.submitted&notification_status=neq.sent" + DELIVERABLE_LEADS,
   );
   if (ownerDrift && ownerDrift > 0) {
     findings.push({
@@ -190,7 +218,7 @@ export async function GET(request: Request) {
   }
 
   const visitorPairFailures = await countRows(
-    "iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=in.(failed,blocked)",
+    "iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=in.(failed,blocked)" + DELIVERABLE_LEADS,
   );
   if (visitorPairFailures && visitorPairFailures > 0) {
     findings.push({
@@ -200,7 +228,7 @@ export async function GET(request: Request) {
   }
 
   const staleVisitorQueue = await countRows(
-    `iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=eq.queued&submitted_at=lt.${encodeURIComponent(stuckSince)}`,
+    `iscott_leads?select=session_id&status=eq.submitted&contact_method=eq.email&visitor_confirmation_status=eq.queued&submitted_at=lt.${encodeURIComponent(stuckSince)}` + DELIVERABLE_LEADS,
   );
   if (staleVisitorQueue && staleVisitorQueue > 0) {
     findings.push({
@@ -221,25 +249,28 @@ export async function GET(request: Request) {
     notes.push(`Database reachable (${reachable.toLocaleString()} sessions recorded).`);
   }
 
+  if (isSupabaseAdminConfigured()) {
+    const { url, serviceRoleKey } = getSupabaseAdminConfig();
+    for (const issue of await readCodexOperationsHealth("wildworks", url, serviceRoleKey)) {
+      findings.push({ headline: issue.code, detail: issue.detail });
+    }
+  }
   const healthy = findings.length === 0;
+  if (dryRun) return Response.json({ ok: true, healthy, dryRun, findings, notes, monitorVersion: "2026-09-05-errors-only" });
+  let lastNotice = await readLastHealthNotice();
+  if (healthy) lastNotice = null; // Silent recovery re-arms a later recurrence.
+  const notice = nextHealthNotice({ findings: findings.map((finding) => finding.headline),
+    daily, previous: lastNotice, now: Date.now() });
 
-  if (!healthy) {
-    await sendWildWorksOperationalAlert({
+  if (notice && !healthy) {
+    const delivery = await sendWildWorksOperationalAlert({
       category: "cloud-health",
       component: "wildworks cloud watcher",
       route: "/api/cron/health",
       correlationId: findings[0].headline,
       summary: findings.map((f) => `${f.headline} - ${f.detail}`).join(" | "),
     });
-  } else if (daily) {
-    // Silence is a finding. Speak once a day even when all is well.
-    await sendWildWorksOperationalAlert({
-      category: "cloud-health",
-      component: "wildworks cloud watcher",
-      route: "/api/cron/health",
-      correlationId: "daily-all-clear",
-      summary: `Daily all-clear. Watcher ran and found nothing. ${notes.join(" ")}`,
-    });
+    if (delivery.sent) lastNotice = notice;
   }
 
   await logServerTelemetryEvent({
@@ -249,11 +280,12 @@ export async function GET(request: Request) {
     provider: "supabase",
     route: "/api/cron/health",
     statusCode: 200,
-    payload: { daily, findingCount: findings.length, findings: findings.map((f) => f.headline) },
+    payload: { daily, findingCount: findings.length, findings: findings.map((f) => f.headline),
+      health_environment: HEALTH_ENVIRONMENT, last_notice: lastNotice },
   });
 
   return Response.json(
-    { ok: true, healthy, daily, findings, notes },
+    { ok: true, healthy, findings, notes, monitorVersion: "2026-09-05-errors-only" },
     { headers: { "Cache-Control": "no-store" } },
   );
 }

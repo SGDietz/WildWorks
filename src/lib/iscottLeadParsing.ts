@@ -31,7 +31,7 @@ const PROJECT_NEED_PATTERNS: RegExp[] = [
   // brands." There is no subject because the question already supplied it.
   /^((?:to\s+)?(?:build|make|design|create|redo|rebuild|launch)\s+[^.!?]{3,260})[.!?]*$/i,
   // I want / I need / I'd like / I'm looking for / I'm interested in / we ...
-  /\b(?:i|we)\s*(?:'|’)?\s*(?:want|wanted|need|needed|would\s+like|d\s+like|am\s+looking|m\s+looking|are\s+looking|re\s+looking|am\s+interested|m\s+interested|am\s+after|m\s+after|ve\s+been\s+wanting)\b\s*(?:to\s+|for\s+|in\s+)?([^.!?]{3,260})/i,
+  /\b(?:i|we)\s*(?:'|’)?\s*(?:want|wanted|need|needed|would\s+like|d\s+like|would\s+love|d\s+love|am\s+looking|m\s+looking|are\s+looking|re\s+looking|am\s+interested|m\s+interested|am\s+after|m\s+after|ve\s+been\s+wanting)\b\s*(?:to\s+|for\s+|in\s+)?([^.!?]{3,260})/i,
   // "Him to build my brand" / "Scott to redo the patio" - the bare answer to
   // iScott's own question, where the subject is him and not the visitor.
   /\b(?:him|scott|iscott|you)\s+to\s+((?:build|make|design|create|do|redo|rebuild|help)[^.!?]{3,260})/i,
@@ -55,6 +55,8 @@ function stripSpokenProjectFiller(text: string): string {
   return text
     .replace(/,?\s*\byou know\b,?\s*/gi, " ")
     .replace(/\b(?:um+|uh+|er|ah)\b,?\s*/gi, " ")
+    .replace(/,\s*well,\s*/gi, " ")
+    .replace(/,?\s*like,?\s+i\s+(?:want|need)\s*$/i, "")
     .replace(/\bi(?:'d| would)?\s+(?:want|wanted|need|needed|would like)\s+(?:to\s+)?like\b\s*(?:an?\s+)?/gi, "")
     .replace(/^(?:like|so|well)\b[\s,.-]*/i, "")
     // H453 (Codex spec, applied by Claude 2026-09-02): "a website and then I What type..." (89c453ff) is
@@ -148,11 +150,27 @@ export function extractProjectNeed(text: string): string | null {
     const match = text.match(pattern);
     if (!match?.[1]) continue;
     const candidate = stripSpokenProjectFiller(match[1].replace(/\s+/g, " ").trim());
+    if (/^at\s+(?:the|this|your)\s+(?:site|website|page|screen|picture|photo)\b/i.test(candidate)) continue;
     if (/^(?:talk|speak|know|ask|say)\b/i.test(candidate)) continue;
     if (isCoachingOrPersonaNeed(candidate)) continue;
     if (CONTACT_MECHANICS_NEED.test(candidate)) continue;
     const normalized = candidate.charAt(0).toUpperCase() + candidate.slice(1);
     best = preferProjectNeed(best, normalized);
+  }
+  // A visitor often describes the problem instead of saying "I want".
+  // Keep their actual site conditions, including separate follow-on sentences.
+  // Session f4fd4e6f described standing water and dead grass; all three
+  // sentences previously disappeared from the lead and its email summary.
+  if (!isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text)) {
+    const problem = stripSpokenProjectFiller(text).replace(/[.!?]+$/g, "");
+    const personalSite = /\b(?:my|our)\s+(?:yard|lawn|garden|property|patio|basement|driveway|plants?|grass)\b|\b(?:i|we)(?:'ve| have| have got|'ve got|\s+got|\s+have)\b/i.test(problem);
+    const siteCondition = /\b(?:holds? water|standing water|water (?:pools?|collects?|sits)|flood(?:s|ing|ed)?|drainage|erosion|dead grass|grass is (?:just )?dead|problem areas?|soggy|waterlogged)\b/i.test(problem);
+    const growingProblem = /\b(?:can(?:'|’)t|cannot|can not) get (?:anything|grass|plants?|flowers?) to grow\b/i.test(problem);
+    if (((personalSite && siteCondition) || growingProblem)
+      && !/\b(?:no|without)\s+(?:drainage|water|flooding|erosion|problem)|\b(?:doesn(?:'|’)t|does not|no longer)\s+(?:hold|flood|collect)\b/i.test(problem)
+      && !CONTACT_MECHANICS_NEED.test(problem)) {
+      best = preferProjectNeed(best, problem.charAt(0).toUpperCase() + problem.slice(1));
+    }
   }
   return best;
 }
@@ -576,6 +594,13 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
       || /\b[Cc]all me [A-Z][a-z]+\b/.test(normalized))) {
     return null;
   }
+  // Describing an outgoing notification is not choosing how to be contacted.
+  // The restarted 23073d24 ride mentioned a follow-up email about a photo;
+  // the broad email match opened an unsolicited empty capture box.
+  const personalContactChoice = /\b(?:e-?mail me|contact me|reach me|reach out to me|(?:prefer|by|via|use)\s+e-?mail|my e-?mail (?:is|address))\b/i.test(normalized);
+  if (!personalContactChoice && /\bfollow[- ]?up\s+e-?mail\b|\b(?:send|sent|sending|receive[ds]?|saved|upload\w*)\b[\s\S]{0,70}\be-?mail\b|\be-?mail\b[\s\S]{0,70}\b(?:send|sent|sending|saved|lead|notification|receipt|information|upload\w*)\b/i.test(normalized)) {
+    return null;
+  }
   if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
     && !/\b(?:e-?mail)\b/i.test(normalized)) {
     return "phone";
@@ -612,7 +637,7 @@ export function extractLocation(text: string): string | null {
   const fromPlace = extractSpokenNameAndPlace(text).location;
   if (fromPlace) return fromPlace;
   const match = text.match(
-    /\b(?:i(?:'m| am)|we(?:'re| are)|located|based)\s+in\s+([^.!?]{2,120})/i,
+    /\b(?:i(?:'m| am| live)|we(?:'re| are| live)|located|based)\s+in\s+([^.!?]{2,120})/i,
   );
   if (!match?.[1]) return null;
   const matchIndex = match.index ?? 0;
@@ -632,6 +657,7 @@ export function extractLocation(text: string): string | null {
     .trim();
   if (candidate.length < 2 || candidate.length > 120) return null;
   if (/^(?:it|uh|um)$/i.test(candidate)) return null;
+  if (/^(?:a|an)\s+(?:house|home|apartment|condo)|^(?:the\s+)?(?:moment|past|future|fear|hope|hope of)\b/i.test(candidate)) return null;
   if (/\b(?:you're|you are|scott|home territory|great)\b/i.test(candidate)) return null;
   return titleLocationWords(candidate);
 }
@@ -1061,7 +1087,15 @@ export function visitorProjectAreaFromRows(texts: string[]): string | null {
     (text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text) && !isAppScreenCopyEcho(text),
   );
   let area: string | null = null;
+  let browsingPortfolio = false;
   for (const text of safe) {
+    // A portfolio question ("this patio", "where is this?") describes the
+    // website, not the visitor's property. Require an actual project or owner.
+    const ownProject = Boolean(extractProjectNeed(text)) || /\b(?:my|our)\s+(?:back\s*yard|front\s*yard|side\s*yard|whole property|entire property|garden|patio)\b/i.test(text);
+    if (ownProject) browsingPortfolio = false;
+    else if (/\b(?:looking at (?:the|this|your) (?:site|website|page)|where is this|this (?:patio|project|garden)|tree of life)\b/i.test(text)) browsingPortfolio = true;
+    const bareArea = /^(?:the\s+)?(?:back\s*yard|front\s*yard|side\s*yard|whole property|entire property|garden|patio)[.!?]*$/i.test(text.trim());
+    if (!ownProject && (browsingPortfolio || !bareArea)) continue;
     const match = text.match(/\b(back\s*yard|front\s*yard|side\s*yard|whole property|entire property|garden|patio)\b/i);
     if (!match) continue;
     const normalized = match[1].replace(/\s+/g, " ").toLowerCase();
@@ -1694,7 +1728,7 @@ const SPECIFIC_FEEDBACK_PATTERNS: RegExp[] = [
   /\b(?:no,|nope|that(?:'s| is) (?:not|wrong|incorrect)|not right|not correct|incorrect|that(?:'s| is) not what)\b/i,
   /\b(?:too fast|too slow|slow down|speed up|say it (?:slower|again)|a little slower|you repeated|you said it (?:twice|again))\b/i,
   /\b(?:move (?:it|that|the)|lower|higher|closer|further|bigger|smaller|too (?:big|wide|narrow|low|high))\b/i,
-  /\b(?:that(?:'s| is)? not my|my (?:email|phone|name) is|spell it|let me (?:correct|redo|try again)|start over)\b/i,
+  /\b(?:that(?:'s| is)? not my|spell it|let me (?:correct|redo|try again)|start over)\b/i,
 ];
 
 export function isSpecificFeedback(text: string): boolean {
@@ -2540,6 +2574,63 @@ function needCarriesConcreteDetail(text: string): boolean {
   return tokens.some((token) => !NEED_SCAFFOLD_TOKENS.has(token));
 }
 
+/** Email titles describe the project, rather than replaying a visitor's speech. */
+export function summariseProjectForEmail(details: readonly string[], area?: string | null): string | null {
+  const valid = details.filter(value => isSpecificProjectNeed(value)
+    && !/[<>\[\]{}\x00-\x1f]|\b(?:assistant|developer|system|tool call|transcript|supabase)\b/i.test(value));
+  if (!valid.length) return null;
+  // A rejected feature must not become a requested feature in the title.
+  const description = valid.join("; ").split(/[.;!?]|,|\b(?:but|however)\b/i)
+    .map(clause => clause.replace(/\b(?:no|not(?!\s+only\b)|without|don['’]t want|do not want|don['’]t need|do not need|instead of|rather than)\b.*$/i, ""))
+    .join(" ").toLowerCase();
+  const features: string[] = [];
+  const add = (pattern: RegExp, label: string) => { if (pattern.test(description)) features.push(label); };
+  add(/\bboulders?\b/, "boulders");
+  add(/\b(?:(?:swimming|plunge)\s+)?pools?\b(?!\s+table)/, /\b(?:big|large)\s+(?:swimming\s+)?pool\b/.test(description) ? "a large pool" : "a pool");
+  add(/\bwaterfalls?\b/, /\bwaterfalls\b/.test(description) ? "waterfalls" : "a waterfall");
+  add(/\b(?:hot tubs?|spas?)\b/, /\bhot tubs\b/.test(description) ? "hot tubs" : "a spa");
+  add(/\bponds?\b/, "a pond");
+  add(/\b(?:streams?|creeks?)\b/, "a stream");
+  if (!/\b(?:waterfall|pond|stream|creek)s?\b/.test(description)) add(/\bwater features?\b/, "a water feature");
+  add(/\b(?:outdoor|outside) kitchen\b/, "an outdoor kitchen");
+  add(/\bpizza oven\b/, "a pizza oven");
+  add(/\bfire\s?pits?\b/, /\bstone fire\s?pit/.test(description) ? "a stone firepit" : "a firepit");
+  add(/\bfireplaces?\b/, "a fireplace");
+  add(/\b(?:outdoor|covered) dining\b/, /\bcovered dining\b/.test(description) ? "covered outdoor dining" : "outdoor dining");
+  add(/\b(?:patios?|terraces?)\b/, "a patio");
+  add(/\b(?:walkways?|paths?|pathways?)\b/, "walkways");
+  add(/\b(?:retaining|stone|rock) walls?\b/, /\bretaining walls?\b/.test(description) ? "retaining walls" : "stone walls");
+  add(/\b(?:drainage|standing water|flooding)\b/, "drainage improvements");
+  add(/\berosion\b/, "erosion control");
+  add(/\b(?:outdoor|landscape|garden|yard) lighting\b/, "outdoor lighting");
+  add(/\b(?:plantings?|plants|flower beds?|garden beds?)\b/, "garden planting");
+  add(/\b(?:pergolas?|gazebos?|pavilions?)\b/, "an outdoor shade structure");
+  add(/\bdecks?\b/, "a deck");
+  add(/\bdriveways?\b/, "a driveway");
+  add(/\b(?:outdoor|outside) showers?\b/, "an outdoor shower");
+  const roman = /\broman baths?\b/.test(description);
+  const ruins = /\bruins?\b/.test(description);
+  const style = roman && ruins ? "Roman bath and ruins-inspired" : roman ? "Roman bath-inspired" : ruins ? "Ruins-inspired" : null;
+  const safeArea = /^(?:backyard|front yard|side yard|whole property|entire property|garden|patio)$/i.test(area ?? "") ? area!.toLowerCase() : null;
+  const residential = /\b(?:my|our|the) (?:house|home)\b/.test(description);
+  const prefix = style ? `${style} landscape project` : safeArea ? `${safeArea} landscape project`
+    : residential ? "residential landscape project" : "landscape project";
+  const list = (values: string[]) => values.length < 3 ? values.join(" and ") : `${values.slice(0,-1).join(", ")}, and ${values.at(-1)}`;
+  let summary: string;
+  if (features.length) {
+    const selected = features.slice(0, 6);
+    while (`${prefix} with ${list(selected)}`.length > 140 && selected.length > 1) selected.pop();
+    summary = `${prefix} with ${list(selected)}`;
+  } else if (/\b(?:digital|online) (?:company|business)\b/.test(description)) {
+    summary = "Digital business development";
+  } else if (style || safeArea || residential || /\blandscap(?:e|ing)\b/.test(description)) {
+    summary = prefix;
+  } else {
+    summary = "Custom project consultation";
+  }
+  return summary.charAt(0).toUpperCase() + summary.slice(1);
+}
+
 export function isSpecificProjectNeed(need: string | null | undefined): boolean {
   const text = (need ?? "").replace(/\s+/g, " ").replace(/[.!?,;:\s]+$/g, "").trim();
   if (!text) return false;
@@ -3104,12 +3195,16 @@ export function summariseLeadQualification(
   const signals: string[] = [];
 
   for (const { key, re } of QUAL_PATTERNS) {
-    for (const line of clean) {
+    for (const line of clean.flatMap((text) => text.split(/(?<=[.!?])\s+/))) {
       const m = line.match(re);
       if (!m) continue;
       // Quote the visitor's sentence, not the matched fragment - Scott needs the
       // context, and a bare keyword is how a lead gets misread.
-      const quote = line.length > 160 ? `${line.slice(0, 157)}...` : line;
+      let quote = line.length > 160 ? `${line.slice(0, 157)}...` : line;
+      if (key === "budget" && /\b(?:a |one )?quarter million dollars?\b/i.test(line)
+        && !/\b(?:not|no|under|over|less|more|maybe|if|wish|could)\b/i.test(line)) {
+        quote = "250,000 dollars";
+      }
       found[key] = quote;
       signals.push(`${key}: "${quote}"`);
       break;

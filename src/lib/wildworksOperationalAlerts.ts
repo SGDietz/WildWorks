@@ -27,7 +27,7 @@ type OperationalAlert = {
 const execFileAsync = promisify(execFile);
 const recentAlerts = new Map<string, number>();
 const sentTimes: number[] = [];
-const DEDUPE_MS = 10 * 60 * 1000;
+const DEDUPE_MS = 60 * 60 * 1000;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 6;
 let configPromise: Promise<{ token: string; chatId: string } | null> | null = null;
@@ -82,10 +82,13 @@ export async function sendWildWorksOperationalAlert(alert: OperationalAlert) {
     correlationId: compactSafeText(alert.correlationId, 40),
     summary: compactSafeText(alert.summary, 180),
   };
-  const key = `${normalized.category}|${normalized.component}|${normalized.correlationId}`;
+  const key = `${normalized.environment}|${normalized.category}|${normalized.component}|${normalized.route}|${normalized.severity}|${normalized.summary}`;
   if (!admit(key)) return { sent: false, reason: "suppressed" } as const;
   const config = await loadAlertConfig();
-  if (!config) return { sent: false, reason: "not_configured" } as const;
+  if (!config) {
+    recentAlerts.delete(key);
+    return { sent: false, reason: "not_configured" } as const;
+  }
 
   try {
     const controller = new AbortController();
@@ -97,10 +100,13 @@ export async function sendWildWorksOperationalAlert(alert: OperationalAlert) {
       signal: controller.signal,
       cache: "no-store",
     }).finally(() => clearTimeout(timeout));
-    return response.ok
+    const receipt = await response.json().catch(() => null);
+    if (!response.ok || receipt?.ok !== true) recentAlerts.delete(key);
+    return response.ok && receipt?.ok === true
       ? { sent: true, reason: "sent" } as const
       : { sent: false, reason: "telegram_rejected" } as const;
   } catch {
+    recentAlerts.delete(key);
     return { sent: false, reason: "telegram_unavailable" } as const;
   }
 }

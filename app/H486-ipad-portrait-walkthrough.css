@@ -1,0 +1,213 @@
+/* G, 2026-09-05: only the named iPad portrait walkthrough corrections.
+   Coarse-pointer portrait tablets cover iPad mini through the 13-inch iPad.
+   Home reference lines, legal headings, and other viewports are untouched.
+   Named important layer overrides the legacy unlayered specificity locks. */
+@layer ww-ipad-portrait-walkthrough-20260905 {
+  @media (min-width: 744px) and (max-width: 1032px) and (orientation: portrait) and (pointer: coarse) {
+    /* Home kicker: visibly stronger depth (60%), preserving its ink colors. */
+    #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-copy-stack > .wild-kicker,
+    #top.wild-home:not(.wild-legal-home) #iscott-sales .wild-iscott-kicker__color {
+      text-shadow: rgba(35, 9, 2, 0.518) 0em 0.01712em 0em,
+        rgba(33, 8, 2, 0.486) 0em 0.03425604em 0em,
+        rgba(31, 8, 2, 0.455) 0em 0.05137604em 0em,
+        rgba(29, 7, 1, 0.424) 0em 0.06851198em 0em,
+        rgba(27, 7, 1, 0.392) 0em 0.08563198em 0em,
+        rgba(25, 6, 1, 0.36) 0em 0.10275225em 0em !important;
+    }
+    /* Match the accepted middle line's actual depth without resizing text. */
+    #top.wild-home:not(.wild-legal-home) #project-wildfire .wild-wildfire-build-note__line--close {
+      text-shadow: rgba(35, 9, 2, 0.467) 0rem 0.02988694rem 0rem,
+        rgba(33, 8, 2, 0.435) 0rem 0.05977387rem 0rem,
+        rgba(31, 8, 2, 0.408) 0rem 0.08966062rem 0rem,
+        rgba(29, 7, 1, 0.376) 0rem 0.1195475rem 0rem,
+        rgba(27, 7, 1, 0.345) 0rem 0.149435rem 0rem,
+        rgba(25, 6, 1, 0.318) 0rem 0.17932187rem 0rem !important;
+    }
+
+    /* Wildfire: connected subpixel steps, preserving each paint owner's depth.
+       Transmittance weighting avoids adding ink as the steps become denser. */
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c1,
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c2 {
+      text-shadow: rgba(35, 9, 2, 0.30037172) 0em 0.00293647em 0em,
+        rgba(35, 9, 2, 0.29819778) 0em 0.00587294em 0em,
+        rgba(34, 9, 2, 0.29101983) 0em 0.00880941em 0em,
+        rgba(33, 9, 2, 0.28394423) 0em 0.01174588em 0em,
+        rgba(33, 9, 2, 0.2758136) 0em 0.01468235em 0em,
+        rgba(32, 8, 2, 0.26743337) 0em 0.01761882em 0em,
+        rgba(32, 8, 2, 0.25933665) 0em 0.02055529em 0em,
+        rgba(31, 8, 2, 0.25195082) 0em 0.02349176em 0em,
+        rgba(30, 8, 2, 0.24466773) 0em 0.02642824em 0em,
+        rgba(29, 8, 2, 0.2374836) 0em 0.02936471em 0em,
+        rgba(29, 7, 2, 0.23039488) 0em 0.03230118em 0em,
+        rgba(28, 7, 2, 0.22332872) 0em 0.03523765em 0em,
+        rgba(28, 7, 2, 0.21573595) 0em 0.03817412em 0em,
+        rgba(27, 7, 1, 0.20824676) 0em 0.04111059em 0em,
+        rgba(27, 7, 1, 0.20110217) 0em 0.04404706em 0em,
+        rgba(26, 6, 1, 0.19424553) 0em 0.04698353em 0em,
+        rgba(25, 6, 1, 0.18747124) 0em 0.04992em 0em !important;
+    }
+    .wild-subpage--wildfire .wildfire-hero-headline__line--c3 {
+      text-shadow: rgba(35, 9, 2, 0.15230824) 0em 0.0028981em 0em,
+        rgba(35, 9, 2, 0.15230824) 0em 0.0057962em 0em,
+        rgba(35, 9, 2, 0.15230824) 0em 0.0086943em 0em,
+        rgba(35, 9, 2, 0.15230824) 0em 0.01159239em 0em,
+        rgba(35, 9, 2, 0.15230824) 0em 0.01449049em 0em,
+        rgba(35, 9, 2, 0.14904628) 0em 0.01738859em 0em,
+        rgba(34, 9, 2, 0.14476832) 0em 0.02028669em 0em,
+        rgba(33, 8, 2, 0.14057942) 0em 0.02318479em 0em,
+        rgba(33, 8, 2, 0.13647553) 0em 0.02608289em 0em,
+        rgba(32, 8, 2, 0.1324529) 0em 0.02898098em 0em,
+        rgba(32, 8, 2, 0.1285093) 0em 0.03187908em 0em,
+        rgba(31, 8, 2, 0.12464137) 0em 0.03477718em 0em,
+        rgba(30, 8, 2, 0.12084475) 0em 0.03767528em 0em,
+        rgba(29, 7, 1, 0.11711656) 0em 0.04057338em 0em,
+        rgba(29, 7, 1, 0.1134541) 0em 0.04347148em 0em,
+        rgba(28, 7, 1, 0.10979516) 0em 0.04636958em 0em,
+        rgba(27, 7, 1, 0.10602155) 0em 0.04926767em 0em,
+        rgba(27, 7, 1, 0.10231446) 0em 0.05216577em 0em,
+        rgba(26, 6, 1, 0.09867131) 0em 0.05506387em 0em,
+        rgba(26, 6, 1, 0.09508969) 0em 0.05796197em 0em,
+        rgba(25, 6, 1, 0.09156732) 0em 0.06086007em 0em !important;
+    }
+    .wild-subpage--wildfire .wildfire-hero-summary__line--c1,
+    .wild-subpage--wildfire .wildfire-hero-summary__line--c2,
+    .wild-subpage--wildfire .wildfire-hero-summary__line--c3,
+    .wild-subpage--wildfire .wildfire-hero-summary__patio {
+      text-shadow: rgba(35, 9, 2, 0.62537742) 0em 0.003em 0em,
+        rgba(35, 9, 2, 0.62537742) 0em 0.006em 0em,
+        rgba(35, 9, 2, 0.62537742) 0em 0.009em 0em,
+        rgba(35, 9, 2, 0.60501943) 0em 0.012em 0em,
+        rgba(35, 9, 2, 0.56584812) 0em 0.015em 0em,
+        rgba(34, 9, 2, 0.53410779) 0em 0.018em 0em,
+        rgba(34, 9, 2, 0.50712081) 0em 0.021em 0em,
+        rgba(34, 9, 2, 0.48384087) 0em 0.024em 0em,
+        rgba(33, 8, 2, 0.46304087) 0em 0.027em 0em,
+        rgba(33, 8, 2, 0.44412824) 0em 0.03em 0em,
+        rgba(33, 8, 2, 0.42673913) 0em 0.033em 0em,
+        rgba(32, 8, 2, 0.41060954) 0em 0.036em 0em,
+        rgba(32, 8, 2, 0.39554132) 0em 0.039em 0em,
+        rgba(31, 8, 2, 0.3813815) 0em 0.042em 0em,
+        rgba(31, 8, 2, 0.36800947) 0em 0.045em 0em,
+        rgba(30, 8, 2, 0.35532791) 0em 0.048em 0em,
+        rgba(29, 7, 1, 0.34325722) 0em 0.051em 0em,
+        rgba(29, 7, 1, 0.33160522) 0em 0.054em 0em,
+        rgba(28, 7, 1, 0.31972916) 0em 0.057em 0em,
+        rgba(28, 7, 1, 0.30836351) 0em 0.06em 0em,
+        rgba(27, 7, 1, 0.29745882) 0em 0.063em 0em,
+        rgba(27, 7, 1, 0.28750745) 0em 0.066em 0em,
+        rgba(26, 7, 1, 0.2782893) 0em 0.069em 0em,
+        rgba(26, 6, 1, 0.26936435) 0em 0.072em 0em,
+        rgba(25, 6, 1, 0.26071125) 0em 0.075em 0em !important;
+    }
+    .wild-subpage--wildfire .wildfire-hero-summary__m1,
+    .wild-subpage--wildfire .wildfire-hero-summary__m2 {
+      text-shadow: rgba(35, 9, 2, 0.53972238) 0em 0.00294461em 0em,
+        rgba(35, 9, 2, 0.53972238) 0em 0.00588922em 0em,
+        rgba(35, 9, 2, 0.53224319) 0em 0.00883383em 0em,
+        rgba(34, 9, 2, 0.51433625) 0em 0.01177844em 0em,
+        rgba(34, 9, 2, 0.4974278) 0em 0.01472305em 0em,
+        rgba(34, 9, 2, 0.48376093) 0em 0.01766766em 0em,
+        rgba(33, 8, 2, 0.47122329) 0em 0.02061227em 0em,
+        rgba(33, 8, 2, 0.45914409) 0em 0.02355688em 0em,
+        rgba(33, 8, 2, 0.44748183) 0em 0.02650149em 0em,
+        rgba(32, 8, 2, 0.43620069) 0em 0.0294461em 0em,
+        rgba(32, 8, 2, 0.42462419) 0em 0.03239071em 0em,
+        rgba(31, 8, 2, 0.41299223) 0em 0.03533532em 0em,
+        rgba(31, 8, 2, 0.40171783) 0em 0.03827993em 0em,
+        rgba(30, 8, 2, 0.39142787) 0em 0.04122454em 0em,
+        rgba(29, 7, 1, 0.38140901) 0em 0.04416915em 0em,
+        rgba(29, 7, 1, 0.37102167) 0em 0.04711377em 0em,
+        rgba(28, 7, 1, 0.35999476) 0em 0.05005838em 0em,
+        rgba(28, 7, 1, 0.34926373) 0em 0.05300299em 0em,
+        rgba(28, 7, 1, 0.34018695) 0em 0.0559476em 0em,
+        rgba(27, 7, 1, 0.3316438) 0em 0.05889221em 0em,
+        rgba(27, 7, 1, 0.32316141) 0em 0.06183682em 0em,
+        rgba(27, 7, 1, 0.31441255) 0em 0.06478143em 0em,
+        rgba(26, 6, 1, 0.30583877) 0em 0.06772604em 0em,
+        rgba(26, 6, 1, 0.29743116) 0em 0.07067065em 0em,
+        rgba(25, 6, 1, 0.28918152) 0em 0.07361526em 0em,
+        rgba(25, 6, 1, 0.2810823) 0em 0.07655987em 0em !important;
+    }
+    .wild-subpage--wildfire .wildfire-hero-summary__group,
+    .wild-subpage--wildfire .wildfire-hero-summary__line {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      text-align: center !important;
+      transform: none !important;
+    }
+    .wild-subpage--wildfire .wildfire-hero-summary__line,
+    .wild-subpage--wildfire .wildfire-hero-summary__line > span {
+      font-size: min(1.9rem, 3.7vw) !important;
+    }
+
+    /* Projects: four complete, centered intro lines with breathing room. */
+    .wild-subpage--projects .wild-projects-page-intro,
+    .wild-subpage--projects .wild-projects-page-kicker {
+      width: 100% !important;
+      max-width: calc(100vw - 4rem) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      text-align: center !important;
+    }
+    .wild-subpage--projects .wild-projects-page-intro {
+      display: block !important;
+    }
+    .wild-subpage--projects :is(.wild-projects-page-intro, .wild-projects-page-intro *, .wild-projects-page-kicker, .wild-projects-page-kicker *) {
+      font-size: clamp(1.75rem, 4.8vw, 2.752rem) !important;
+      line-height: 1.2 !important;
+    }
+    .wild-subpage--projects :is(.wild-projects-page-intro__line, .wild-projects-page-intro__part--a, .wild-projects-page-intro__part--b, .wild-projects-page-kicker__line) {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+      transform: none !important;
+    }
+    /* The second block uses the first block's accepted eight-layer shadow. */
+    .wild-subpage--projects .wild-projects-page-kicker,
+    .wild-subpage--projects .wild-projects-page-kicker * {
+      text-shadow: rgba(35, 9, 2, 0.58) 0em 0.00891399em 0em,
+        rgba(34, 9, 2, 0.557) 0em 0.01782899em 0em,
+        rgba(32, 8, 2, 0.53) 0em 0.02674303em 0em,
+        rgba(31, 8, 2, 0.5) 0em 0.03565793em 0em,
+        rgba(29, 7, 1, 0.475) 0em 0.04457091em 0em,
+        rgba(28, 7, 1, 0.447) 0em 0.05348606em 0em,
+        rgba(26, 6, 1, 0.424) 0em 0.0624em 0em,
+        rgba(25, 6, 1, 0.396) 0em 0.07131394em 0em !important;
+    }
+
+    /* Restore only the interiors of the three buttons on all six legal pages. */
+    html:has(.wild-legal-home) footer#footer :is(.wild-signup-choice-button, .wild-signup-submit) {
+      background-color: rgba(0, 0, 0, 0) !important;
+      background-image: radial-gradient(circle at 50% -30%, rgba(255, 250, 232, 0.95), rgba(0, 0, 0, 0) 52%), linear-gradient(rgb(252, 224, 173) 0%, rgb(237, 199, 117) 38%, rgb(240, 140, 40) 72%, rgb(196, 77, 11) 100%) !important;
+    }
+  }
+}
+
+/* H431 paints Going in an earlier important layer. Reopen the preceding
+   layer for this one portrait rule; its old phone rules stay untouched. */
+@layer ww-mobile-only-pass {
+  @media (min-width: 744px) and (max-width: 1032px) and (orientation: portrait) and (pointer: coarse) {
+    /* Match the accepted Lounge's actual depth, following its font clamp. */
+    #top.wild-home:not(.wild-legal-home) #project-wildfire .wild-wildfire-sequence-callout__line--going {
+      --ww-ipad-lounge-reference-size: clamp(1.65rem, 5.03vw, 2.47rem);
+      text-shadow: rgba(35, 9, 2, 0.467) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.01166301) 0,
+        rgba(33, 8, 2, 0.435) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.02332601) 0,
+        rgba(31, 8, 2, 0.408) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.03498988) 0,
+        rgba(29, 7, 1, 0.376) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.04665309) 0,
+        rgba(27, 7, 1, 0.345) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.05831604) 0,
+        rgba(25, 6, 1, 0.318) 0 calc(var(--ww-ipad-lounge-reference-size) * 0.069979) 0 !important;
+    }
+    @media (min-width: 1025px) {
+      #top.wild-home:not(.wild-legal-home) #project-wildfire .wild-wildfire-sequence-callout__line--going {
+        /* The existing Lounge type switches to 60px above 1024px. */
+        --ww-ipad-lounge-reference-size: 3.75rem;
+      }
+    }
+  }
+}

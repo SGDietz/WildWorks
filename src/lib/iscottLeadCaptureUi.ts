@@ -38,6 +38,13 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
       || /\b[Cc]all me [A-Z][a-z]+\b/.test(normalized))) {
     return null;
   }
+  // Describing an outgoing notification is not choosing how to be contacted.
+  // The restarted 23073d24 ride mentioned a follow-up email about a photo;
+  // the broad email match opened an unsolicited empty capture box.
+  const personalContactChoice = /\b(?:e-?mail me|contact me|reach me|reach out to me|(?:prefer|by|via|use)\s+e-?mail|my e-?mail (?:is|address))\b/i.test(normalized);
+  if (!personalContactChoice && /\bfollow[- ]?up\s+e-?mail\b|\b(?:send|sent|sending|receive[ds]?|saved|upload\w*)\b[\s\S]{0,70}\be-?mail\b|\be-?mail\b[\s\S]{0,70}\b(?:send|sent|sending|saved|lead|notification|receipt|information|upload\w*)\b/i.test(normalized)) {
+    return null;
+  }
   if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
     && !/\b(?:e-?mail)\b/i.test(normalized)) {
     return "phone";

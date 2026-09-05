@@ -1,0 +1,9 @@
+/* G, 2026-09-05: Home Tree of Life heading on phone portrait only.
+   Increase the existing solid-black shadow depth 10%; type and layout stay. */
+@layer ww-mobile-only-pass {
+ @media (max-width: 599px) and (orientation: portrait) {
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) h2.wild-tree-title > span.wild-line-title__line--one { text-shadow: rgb(0, 0, 0) 0em 0.009812em 0em, rgb(0, 0, 0) 0em 0.019625089em 0em, rgb(0, 0, 0) 0em 0.029437031em 0em, rgb(0, 0, 0) 0em 0.039249089em 0em, rgb(0, 0, 0) 0em 0.049062292em 0em, rgb(0, 0, 0) 0em 0.058874063em 0em !important; }
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) h2.wild-tree-title > span.wild-line-title__line--two { text-shadow: rgb(0, 0, 0) 0em 0.009812em 0em, rgb(0, 0, 0) 0em 0.019625089em 0em, rgb(0, 0, 0) 0em 0.029437031em 0em, rgb(0, 0, 0) 0em 0.039249089em 0em, rgb(0, 0, 0) 0em 0.049062292em 0em, rgb(0, 0, 0) 0em 0.058874063em 0em !important; }
+  html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) h2.wild-tree-title > span.wild-line-title__line--three { text-shadow: rgb(0, 0, 0) 0em 0.009812009em 0em, rgb(0, 0, 0) 0em 0.019625098em 0em, rgb(0, 0, 0) 0em 0.029437107em 0em, rgb(0, 0, 0) 0em 0.039249116em 0em, rgb(0, 0, 0) 0em 0.049062205em 0em, rgb(0, 0, 0) 0em 0.058874214em 0em !important; }
+ }
+}
