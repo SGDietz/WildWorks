@@ -8,9 +8,15 @@ import fs from "node:fs/promises";
 const routeSource = await fs.readFile("app/pages/avatar-iscott/route.ts", "utf8");
 const scriptBlock = routeSource.match(/const wildWorksLeadConfirmationScript = `([\s\S]*?)\n`;/);
 assert.ok(scriptBlock, "lead-confirmation script must remain extractable");
+const autoCloseSource = await fs.readFile("src/lib/iscottAutoClose.ts", "utf8");
+const autoCloseBlock = autoCloseSource.match(/export const iscottAutoCloseFactory = String\.raw`([\s\S]*?)`;?/);
+assert.ok(autoCloseBlock, "current iScott auto-close factory must remain extractable");
+assert.match(scriptBlock[1], /\$\{iscottAutoCloseFactory\}/, "route must embed the real current auto-close factory");
 const scriptBody = scriptBlock[1]
   .replace(/^\s*<script id="wildworks-avatar-lead-confirmation">/, "")
+  .replace("${iscottAutoCloseFactory}", autoCloseBlock[1])
   .replace(/<\/script>\s*$/, "");
+assert.doesNotMatch(scriptBody, /\$\{iscottAutoCloseFactory\}/, "harness must resolve the accepted W5 interpolation");
 
 const VOID_TAGS = new Set(["input", "br", "img", "hr", "meta", "link"]);
 

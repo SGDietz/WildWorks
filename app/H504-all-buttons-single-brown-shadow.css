@@ -1,0 +1,106 @@
+/* G, 2026-09-07: one black shadow layer for every non-legal actionable button surface.
+   This is intentionally late and narrow: it changes only painted shadow
+   treatments, not layout, fill, borders, labels, destinations, or behavior.
+   Legal routes are explicitly excluded and are not changed by this file. */
+
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood
+) {
+  border: 0.5px solid #8f3a14 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Button artwork must not add a second shadow. This includes the avatar's
+   moving and replacement controls because the rule follows the live control,
+   not its state-specific class name. */
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.btn-wood
+) :is(svg, img, i, .icon, .wild-iscott-upload__icon, .ww-mail, .ww-phone) {
+  filter: none !important;
+}
+
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.btn-wood
+) * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Decorative pseudo surfaces may retain their fill/motion behavior, but never
+   add a second rim or shadow. The selector follows ordinary and avatar/replaced
+   control semantics instead of any one state name. */
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a[class*="button"],
+  a[class*="cta"]
+)::before,
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a[class*="button"],
+  a[class*="cta"]
+)::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Home Ruins only: the enlarge hit area must not outline the letterbox space. */
+@layer ww-mobile-only-pass {
+html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body #top.wild-home .wild-story-card--feature .wild-story-media .wild-zoom-hit-area { border-color: transparent !important; }
+}

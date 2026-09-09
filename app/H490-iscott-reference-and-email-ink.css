@@ -3,8 +3,8 @@
    destinations and behavior remain owned by their existing components.
    Email lettering and field styling remain in H488. */
 @layer ww-mobile-only-pass {
-  html body#wildworks-body#wildworks-body :is(a, button)[aria-label="Talk to iScott"],
-  html body#wildworks-body#wildworks-body :is(a, button)[aria-label="Talk to iScott"] > span {
+  html body#wildworks-body#wildworks-body :is(a, button):is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+  html body#wildworks-body#wildworks-body :is(a, button):is([aria-label="Talk to iScott"], [data-iscott-start-cta]) > span {
     font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
     font-weight: 750 !important;
     font-style: normal !important;

@@ -65,8 +65,8 @@
 @layer ww-h457-icon {
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -84,8 +84,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -102,8 +102,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -121,8 +121,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -133,8 +133,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -154,8 +154,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -167,8 +167,8 @@
   }
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -176,8 +176,8 @@
     .ww-home-btn-icon > .ww-home-btn-icon__shadow svg.ww-talk-arc-cluster,
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta
@@ -299,8 +299,8 @@ html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body #talk-to-isco
 @layer ww-h457-icon-filter-kill {
   html body#wildworks-body
     :is(
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-home-phone-iscott-test__button,
       .wild-iscott-action-button,
       .wild-site-avatar-overlay-cta

@@ -1,0 +1,9 @@
+/* G, 2026-09-07: Home text only, one connected downward stop, x=0, no blur.
+   Painters: min 1px, rate 0.0625, cap 4px. Small type stays 1px; large phone/headlines scale.
+   Button icons: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.4)), lighter than adjacent label.
+   Logo stays opaque 1px. Runtime enforcer owns painters + button icons. */
+@layer wildworks-zero-shadows {
+  html:has(#top.wild-home) body#wildworks-body#wildworks-body .wild-top-logo {
+    filter: drop-shadow(0 1px 0 #000) !important;
+  }
+}

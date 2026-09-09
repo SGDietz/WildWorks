@@ -41,8 +41,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     button.money-cta,
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"]
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
   ):not(#talk-to-iscott):not(#talk-to-iscott *):not(.wild-site-avatar-overlay-cta) {
   display: none !important;
 }
@@ -55,8 +55,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     button.money-cta,
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"]
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
   ):not(#talk-to-iscott):not(#talk-to-iscott *):not(.wild-site-avatar-overlay-cta) {
   display: none !important;
 }
@@ -153,8 +153,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   :is(
     a.money-cta,
     button.money-cta,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"],
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
     .wild-iscott-action-button,
     .wild-iscott-upload__button,
     .wild-card-cta,

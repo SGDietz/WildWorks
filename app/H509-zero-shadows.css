@@ -1,0 +1,36 @@
+/* G, 2026-09-07: reset all eleven pages to ZERO shadows, without delegation.
+   First important layer prevents legacy CSS from repainting text/box shadows. */
+@layer wildworks-zero-shadows {
+  html, body, body *, body *::before, body *::after, body *::marker,
+  body *::placeholder, body *::first-letter, body *::first-line {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  /* H517, G/Codex/Grok: Home restores its existing connected shadow on the
+     actual glyph paint paths. The zero reset on ::first-line made headings
+     and CTA labels look flat even when their element shadow audit passed.
+     Inherit each painter's current band, including the lighter iScott row,
+     without extra shadow stops, ancestor overrides, or persistent JS rules.
+     G, 2026-09-08: extend this same paint path to Wildfire, Ruins, Projects
+     and Bio, including their header/footer. Home is unchanged; legal fails closed. */
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body *::first-line,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body *::first-letter,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body *::placeholder {
+    text-shadow: inherit !important;
+  }
+  /* G: solid black only. One hard black filter paints each logo/tagline.
+     Suppress the old brown/translucent masks instead of stacking over them. */
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home))
+    :is(.wild-top-logo-tagline, .wild-top-logo-living, .wild-home-statement__brand-lockup)::before {
+    display: none !important;
+    content: none !important;
+  }
+  .wild-top-logo, .wild-top-logo-source, .wild-top-logo::after {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  .wild-top-logo::before, .ww-home-btn-icon__shadow {
+    display: none !important;
+    content: none !important;
+  }
+}

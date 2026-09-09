@@ -20,21 +20,21 @@
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #top > div.wild-phone-number-line.wild-phone-number-line--home-hero > a
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.00636701em 0, rgba(33, 8, 2, 0.553) 0 0.01273495em 0, rgba(32, 8, 2, 0.52) 0 0.01910196em 0, rgba(30, 8, 2, 0.49) 0 0.02546898em 0, rgba(28, 7, 1, 0.46) 0 0.03183599em 0, rgba(27, 6, 1, 0.427) 0 0.03820404em 0, rgba(25, 6, 1, 0.396) 0 0.04457105em 0 !important;
+      text-shadow: #000 0 0.00636701em 0, #000 0 0.01273495em 0, #000 0 0.01910196em 0, #000 0 0.02546898em 0, #000 0 0.03183599em 0, #000 0 0.03820404em 0, #000 0 0.04457105em 0 !important;
     }
 
     /* Call WildWorks Today! */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #top > div.wild-phone-number-line.wild-phone-number-line--home-hero > span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--desktop
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.00879899em 0, rgba(34, 9, 2, 0.56) 0 0.01759796em 0, rgba(32, 8, 2, 0.537) 0 0.02639694em 0, rgba(31, 8, 2, 0.51) 0 0.03519501em 0, rgba(29, 7, 1, 0.486) 0 0.04399399em 0, rgba(28, 7, 1, 0.46) 0 0.05279297em 0, rgba(26, 6, 1, 0.435) 0 0.06159195em 0, rgba(25, 6, 1, 0.408) 0 0.07039108em 0 !important;
+      text-shadow: #000 0 0.00879899em 0, #000 0 0.01759796em 0, #000 0 0.02639694em 0, #000 0 0.03519501em 0, #000 0 0.04399399em 0, #000 0 0.05279297em 0, #000 0 0.06159195em 0, #000 0 0.07039108em 0 !important;
     }
 
     /* Call Today! */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #top > div.wild-phone-number-line.wild-phone-number-line--home-hero > span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.00879901em 0, rgba(34, 9, 2, 0.56) 0 0.01759799em 0, rgba(32, 8, 2, 0.537) 0 0.02639702em 0, rgba(31, 8, 2, 0.51) 0 0.03519496em 0, rgba(29, 7, 1, 0.486) 0 0.04399396em 0, rgba(28, 7, 1, 0.46) 0 0.05279297em 0, rgba(26, 6, 1, 0.435) 0 0.06159197em 0, rgba(25, 6, 1, 0.408) 0 0.07039098em 0 !important;
+      text-shadow: #000 0 0.00879901em 0, #000 0 0.01759799em 0, #000 0 0.02639702em 0, #000 0 0.03519496em 0, #000 0 0.04399396em 0, #000 0 0.05279297em 0, #000 0 0.06159197em 0, #000 0 0.07039098em 0 !important;
     }
 
     /* Built / to Expedite */
@@ -43,7 +43,7 @@
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > p.wild-kicker > span.wild-iscott-kicker__color.wild-iscott-kicker__color--one:nth-of-type(2),
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > p.wild-kicker > span.wild-iscott-kicker__color.wild-iscott-kicker__color--one:nth-of-type(3)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.0107em 0, rgba(33, 8, 2, 0.486) 0 0.02141001em 0, rgba(31, 8, 2, 0.455) 0 0.03211001em 0, rgba(29, 7, 1, 0.424) 0 0.04282002em 0, rgba(27, 7, 1, 0.392) 0 0.05352002em 0, rgba(25, 6, 1, 0.36) 0 0.06422021em 0 !important;
+      text-shadow: #000 0 0.0107em 0, #000 0 0.02141001em 0, #000 0 0.03211001em 0, #000 0 0.04282002em 0, #000 0 0.05352002em 0, #000 0 0.06422021em 0 !important;
     }
 
     /* iScott / is the */
@@ -52,7 +52,7 @@
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > h2.wild-section-title.wild-iscott-title.wild-iscott-title--front-door > span.wild-iscott-title__row > span.wild-iscott-title__segment.wild-iscott-title__segment--two,
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > h2.wild-section-title.wild-iscott-title.wild-iscott-title--front-door > span.wild-iscott-title__segment.wild-iscott-title__segment--three
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01783996em 0, rgba(31, 8, 2, 0.455) 0 0.02676004em 0, rgba(29, 7, 1, 0.424) 0 0.03568002em 0, rgba(27, 7, 1, 0.392) 0 0.0446em 0, rgba(25, 6, 1, 0.36) 0 0.05351998em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01783996em 0, #000 0 0.02676004em 0, #000 0 0.03568002em 0, #000 0 0.0446em 0, #000 0 0.05351998em 0 !important;
     }
 
     /* Start with iScott, Scott's digital twin. Talk to him like yo / Show him your space using the Upload Photos or Videos button */
@@ -65,7 +65,7 @@
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > div.money-step-list.wild-iscott-steps-inline > div:nth-of-type(4) > div.money-step-content > p,
       #iscott-sales > div.wild-split.wild-split--lead > div.wild-copy-stack > p.wild-body.wild-iscott-body.wild-iscott-body--color-one:nth-of-type(4)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.00765598em 0, rgba(34, 9, 2, 0.83) 0 0.01531202em 0, rgba(33, 8, 2, 0.8) 0 0.022968em 0, rgba(32, 8, 2, 0.77) 0 0.03062398em 0, rgba(31, 8, 2, 0.737) 0 0.03828002em 0, rgba(29, 7, 1, 0.706) 0 0.045936em 0, rgba(28, 7, 1, 0.67) 0 0.05359199em 0, rgba(27, 7, 1, 0.64) 0 0.06124821em 0, rgba(26, 6, 1, 0.608) 0 0.06890371em 0, rgba(25, 6, 1, 0.576) 0 0.07655981em 0 !important;
+      text-shadow: #000 0 0.00765598em 0, #000 0 0.01531202em 0, #000 0 0.022968em 0, #000 0 0.03062398em 0, #000 0 0.03828002em 0, #000 0 0.045936em 0, #000 0 0.05359199em 0, #000 0 0.06124821em 0, #000 0 0.06890371em 0, #000 0 0.07655981em 0 !important;
     }
 
     /* 1 / 2 */
@@ -83,7 +83,7 @@
       #talk-to-iscott > p.money-panel-kicker,
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.money-panel.wild-iscott-panel.wild-iscott-panel--footer > p.money-panel-kicker
     ) {
-      text-shadow: rgba(35, 9, 2, 0.97) 0 0.02180601em 0, rgba(34, 9, 2, 0.925) 0 0.03604702em 0, rgba(32, 8, 2, 0.882) 0 0.05028781em 0, rgba(31, 8, 2, 0.835) 0 0.06452891em 0, rgba(29, 8, 2, 0.792) 0 0.07876913em 0, rgba(28, 7, 2, 0.75) 0 0.09300979em 0, rgba(26, 7, 1, 0.706) 0 0.10725089em 0, rgba(25, 6, 1, 0.66) 0 0.12149199em 0 !important;
+      text-shadow: #000 0 0.02180601em 0, #000 0 0.03604702em 0, #000 0 0.05028781em 0, #000 0 0.06452891em 0, rgba(29, 8, 2, 0.792) 0 0.07876913em 0, rgba(28, 7, 2, 0.75) 0 0.09300979em 0, rgba(26, 7, 1, 0.706) 0 0.10725089em 0, #000 0 0.12149199em 0 !important;
     }
 
     /* Start / with */
@@ -92,7 +92,7 @@
       #talk-to-iscott > h2.wild-start-title > span.wild-start-title__with,
       #talk-to-iscott > h2.wild-start-title > span.wild-start-title__name
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784em 0, rgba(31, 8, 2, 0.455) 0 0.02676008em 0, rgba(29, 7, 1, 0.424) 0 0.03568004em 0, rgba(27, 7, 1, 0.392) 0 0.0446em 0, rgba(25, 6, 1, 0.36) 0 0.05351996em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784em 0, #000 0 0.02676008em 0, #000 0 0.03568004em 0, #000 0 0.0446em 0, #000 0 0.05351996em 0 !important;
     }
 
     /* By talking to iScott or uploading media, you agree WildWorks / Privacy Policy */
@@ -104,42 +104,42 @@
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.money-panel.wild-iscott-panel.wild-iscott-panel--footer > p.wild-iscott-disclosure,
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.money-panel.wild-iscott-panel.wild-iscott-panel--footer > p.wild-iscott-disclosure > a
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.007656em 0, rgba(34, 9, 2, 0.83) 0 0.015312em 0, rgba(33, 8, 2, 0.8) 0 0.022968em 0, rgba(32, 8, 2, 0.77) 0 0.030624em 0, rgba(31, 8, 2, 0.737) 0 0.03828em 0, rgba(29, 7, 1, 0.706) 0 0.045936em 0, rgba(28, 7, 1, 0.67) 0 0.053592em 0, rgba(27, 7, 1, 0.64) 0 0.061248em 0, rgba(26, 6, 1, 0.608) 0 0.068904em 0, rgba(25, 6, 1, 0.576) 0 0.07656em 0 !important;
+      text-shadow: #000 0 0.007656em 0, #000 0 0.015312em 0, #000 0 0.022968em 0, #000 0 0.030624em 0, #000 0 0.03828em 0, #000 0 0.045936em 0, #000 0 0.053592em 0, #000 0 0.061248em 0, #000 0 0.068904em 0, #000 0 0.07656em 0 !important;
     }
 
     /* Project Wildfire */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-section-heading.wild-wildfire-spread-heading > h2.wild-wildfire-flame-title.wild-wildfire-flame-title--dormant > span.wild-wildfire-flame-title__text
     ) {
-      text-shadow: rgba(35, 9, 2, 0.565) 0 0.005112em 0, rgba(34, 9, 2, 0.545) 0 0.01022504em 0, rgba(32, 8, 2, 0.525) 0 0.01533803em 0, rgba(31, 8, 2, 0.506) 0 0.02044998em 0, rgba(29, 7, 1, 0.486) 0 0.02556202em 0, rgba(28, 7, 1, 0.467) 0 0.03067502em 0, rgba(26, 6, 1, 0.447) 0 0.03578697em 0, rgba(25, 6, 1, 0.427) 0 0.04089996em 0 !important;
+      text-shadow: #000 0 0.005112em 0, #000 0 0.01022504em 0, #000 0 0.01533803em 0, #000 0 0.02044998em 0, #000 0 0.02556202em 0, #000 0 0.03067502em 0, #000 0 0.03578697em 0, #000 0 0.04089996em 0 !important;
     }
 
     /* It Started with a Fireplace..... */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-section-heading.wild-wildfire-spread-heading > h3.wild-section-title.wild-line-title.wild-wildfire-title > span.wild-line-title__line.wild-line-title__line--one
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00891999em 0, rgba(33, 8, 2, 0.486) 0 0.01784099em 0, rgba(31, 8, 2, 0.455) 0 0.02676105em 0, rgba(29, 7, 1, 0.424) 0 0.03568094em 0, rgba(27, 7, 1, 0.392) 0 0.04460204em 0, rgba(25, 6, 1, 0.36) 0 0.05352193em 0 !important;
+      text-shadow: #000 0 0.00891999em 0, #000 0 0.01784099em 0, #000 0 0.02676105em 0, #000 0 0.03568094em 0, #000 0 0.04460204em 0, #000 0 0.05352193em 0 !important;
     }
 
     /* Then Came the Patio. */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-wildfire-sequence-callout > span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--patio
     ) {
-      text-shadow: rgba(35, 9, 2, 0.42) 0 0.011663em 0, rgba(33, 8, 2, 0.392) 0 0.02332598em 0, rgba(31, 8, 2, 0.37) 0 0.03498998em 0, rgba(29, 7, 1, 0.337) 0 0.04665303em 0, rgba(27, 7, 1, 0.31) 0 0.05831596em 0, rgba(25, 6, 1, 0.286) 0 0.06997901em 0 !important;
+      text-shadow: #000 0 0.011663em 0, #000 0 0.02332598em 0, #000 0 0.03498998em 0, #000 0 0.04665303em 0, #000 0 0.05831596em 0, #000 0 0.06997901em 0 !important;
     }
 
     /* Then Came the Lounge. */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-wildfire-sequence-callout > span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--lounge
     ) {
-      text-shadow: rgba(35, 9, 2, 0.467) 0 0.01166301em 0, rgba(33, 8, 2, 0.435) 0 0.02332595em 0, rgba(31, 8, 2, 0.408) 0 0.03499002em 0, rgba(29, 7, 1, 0.376) 0 0.04665307em 0, rgba(27, 7, 1, 0.345) 0 0.05831597em 0, rgba(25, 6, 1, 0.318) 0 0.06997902em 0 !important;
+      text-shadow: #000 0 0.01166301em 0, #000 0 0.02332595em 0, #000 0 0.03499002em 0, #000 0 0.04665307em 0, #000 0 0.05831597em 0, #000 0 0.06997902em 0 !important;
     }
 
     /* Then We Just Kept Going. */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-wildfire-sequence-callout > span.wild-wildfire-sequence-callout__line.wild-wildfire-sequence-callout__line--going
     ) {
-      text-shadow: rgba(35, 9, 2, 0.42) 0 0.011663em 0, rgba(33, 8, 2, 0.392) 0 0.02332597em 0, rgba(31, 8, 2, 0.37) 0 0.03498994em 0, rgba(29, 7, 1, 0.337) 0 0.04665302em 0, rgba(27, 7, 1, 0.31) 0 0.05831591em 0, rgba(25, 6, 1, 0.286) 0 0.06997899em 0 !important;
+      text-shadow: #000 0 0.011663em 0, #000 0 0.02332597em 0, #000 0 0.03498994em 0, #000 0 0.04665302em 0, #000 0 0.05831591em 0, #000 0 0.06997899em 0 !important;
     }
 
     /* We Photographed Every Step of the / Build, from Breaking Ground */
@@ -148,7 +148,7 @@
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-wildfire-build-note > span.wild-wildfire-build-note__line.wild-wildfire-build-note__line--middle,
       #project-wildfire > div.wild-wildfire-spread-shell > div.wild-wildfire-build-note > span.wild-wildfire-build-note__line.wild-wildfire-build-note__line--close
     ) {
-      text-shadow: rgba(35, 9, 2, 0.467) 0 0.01457901em 0, rgba(33, 8, 2, 0.435) 0 0.02915802em 0, rgba(31, 8, 2, 0.408) 0 0.04373703em 0, rgba(29, 7, 1, 0.376) 0 0.05831604em 0, rgba(27, 7, 1, 0.345) 0 0.07289505em 0, rgba(25, 6, 1, 0.318) 0 0.08747406em 0 !important;
+      text-shadow: #000 0 0.01457901em 0, #000 0 0.02915802em 0, #000 0 0.04373703em 0, #000 0 0.05831604em 0, #000 0 0.07289505em 0, #000 0 0.08747406em 0 !important;
     }
 
     /* Design at the Limits / of Human Imagination. */
@@ -158,28 +158,28 @@
       #top > section.wild-home-statement > h2.wild-home-statement__title > span.wild-home-statement__line.wild-home-statement__line--two > span.wild-home-statement__phrase:nth-of-type(1),
       #top > section.wild-home-statement > h2.wild-home-statement__title > span.wild-home-statement__line.wild-home-statement__line--two > span.wild-home-statement__phrase:nth-of-type(2)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.009284em 0, rgba(33, 8, 2, 0.553) 0 0.01856699em 0, rgba(32, 8, 2, 0.52) 0 0.02785093em 0, rgba(30, 8, 2, 0.49) 0 0.03713506em 0, rgba(28, 7, 1, 0.46) 0 0.04641792em 0, rgba(27, 6, 1, 0.427) 0 0.05570205em 0, rgba(25, 6, 1, 0.396) 0 0.06498491em 0 !important;
+      text-shadow: #000 0 0.009284em 0, #000 0 0.01856699em 0, #000 0 0.02785093em 0, #000 0 0.03713506em 0, #000 0 0.04641792em 0, #000 0 0.05570205em 0, #000 0 0.06498491em 0 !important;
     }
 
     /* Where Fine Art Meets the Wild */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #top > section.wild-home-statement > h2.wild-home-statement__title > span.wild-home-statement__line.wild-home-statement__line--four
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.010315em 0, rgba(33, 8, 2, 0.553) 0 0.02063101em 0, rgba(32, 8, 2, 0.52) 0 0.03094597em 0, rgba(30, 8, 2, 0.49) 0 0.04126108em 0, rgba(28, 7, 1, 0.46) 0 0.0515749em 0, rgba(27, 6, 1, 0.427) 0 0.06189108em 0, rgba(25, 6, 1, 0.396) 0 0.07220597em 0 !important;
+      text-shadow: #000 0 0.010315em 0, #000 0 0.02063101em 0, #000 0 0.03094597em 0, #000 0 0.04126108em 0, #000 0 0.0515749em 0, #000 0 0.06189108em 0, #000 0 0.07220597em 0 !important;
     }
 
     /* 1+443-797-2166 */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #top > div.wild-phone-number-line.wild-phone-number-line--home-tree > a
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.00696401em 0, rgba(34, 9, 2, 0.56) 0 0.01392895em 0, rgba(32, 8, 2, 0.533) 0 0.02089302em 0, rgba(31, 8, 2, 0.514) 0 0.02785698em 0, rgba(30, 8, 2, 0.49) 0 0.03482197em 0, rgba(29, 7, 1, 0.467) 0 0.04178604em 0, rgba(28, 7, 1, 0.443) 0 0.04875em 0, rgba(26, 6, 1, 0.42) 0 0.05571499em 0, rgba(25, 6, 1, 0.396) 0 0.06267895em 0 !important;
+      text-shadow: #000 0 0.00696401em 0, #000 0 0.01392895em 0, #000 0 0.02089302em 0, #000 0 0.02785698em 0, #000 0 0.03482197em 0, #000 0 0.04178604em 0, #000 0 0.04875em 0, #000 0 0.05571499em 0, #000 0 0.06267895em 0 !important;
     }
 
     /* All stonework on this site is real, built by WildWorks. */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #wildworks-proof > div.wild-split > figure.wild-home-proof-figure > figcaption.wild-home-hero-stonework-note.wild-home-image-stonework-note
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.007656em 0, rgba(34, 9, 2, 0.83) 0 0.015312em 0, rgba(33, 8, 2, 0.8) 0 0.022968em 0, rgba(32, 8, 2, 0.77) 0 0.030624em 0, rgba(31, 8, 2, 0.737) 0 0.03828em 0, rgba(29, 7, 1, 0.706) 0 0.045936em 0, rgba(28, 7, 1, 0.67) 0 0.053592em 0, rgba(27, 7, 1, 0.64) 0 0.06124778em 0, rgba(26, 6, 1, 0.608) 0 0.06890389em 0, rgba(25, 6, 1, 0.576) 0 0.07656em 0 !important;
+      text-shadow: #000 0 0.007656em 0, #000 0 0.015312em 0, #000 0 0.022968em 0, #000 0 0.030624em 0, #000 0 0.03828em 0, #000 0 0.045936em 0, #000 0 0.053592em 0, #000 0 0.06124778em 0, #000 0 0.06890389em 0, #000 0 0.07656em 0 !important;
     }
 
     /* The Tree of / Life Natural */
@@ -189,14 +189,14 @@
       #ai-websites > div.wild-site-offer-shell > div.wild-section-heading.wild-site-offer-heading > h2.wild-section-title.wild-line-title > span.wild-line-title__line.wild-line-title__line--one,
       #ai-websites > div.wild-site-offer-shell > div.wild-section-heading.wild-site-offer-heading > h2.wild-section-title.wild-line-title > span.wild-line-title__line.wild-line-title__line--two
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784094em 0, rgba(31, 8, 2, 0.455) 0 0.02676094em 0, rgba(29, 7, 1, 0.424) 0 0.03568094em 0, rgba(27, 7, 1, 0.392) 0 0.04460203em 0, rgba(25, 6, 1, 0.36) 0 0.05352203em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784094em 0, #000 0 0.02676094em 0, #000 0 0.03568094em 0, #000 0 0.04460203em 0, #000 0 0.05352203em 0 !important;
     }
 
     /* Stone Patio */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #wildworks-proof > div.wild-split > div.wild-copy-stack > h2.wild-section-title.wild-line-title.wild-tree-title > span.wild-line-title__line.wild-line-title__line--three
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784095em 0, rgba(31, 8, 2, 0.455) 0 0.02676106em 0, rgba(29, 7, 1, 0.424) 0 0.03568101em 0, rgba(27, 7, 1, 0.392) 0 0.044602em 0, rgba(25, 6, 1, 0.36) 0 0.05352196em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784095em 0, #000 0 0.02676106em 0, #000 0 0.03568101em 0, #000 0 0.044602em 0, #000 0 0.05352196em 0 !important;
     }
 
     /* An Artsy Young Couple of Irish Descent in Mount Washington,  / The People I Love Working With Look at a Space and Ask, “Wha */
@@ -210,7 +210,7 @@
       #ai-websites > div.wild-site-offer-shell > div.wild-section-heading.wild-site-offer-heading > p.wild-body.wild-body--center.wild-site-offer-copy > span.wild-site-offer-copy__line:nth-of-type(5),
       #ai-websites > div.wild-site-offer-shell > p.wild-body.wild-site-offer-copy > span.wild-site-offer-copy__line
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.00765599em 0, rgba(34, 9, 2, 0.83) 0 0.01531202em 0, rgba(33, 8, 2, 0.8) 0 0.02296801em 0, rgba(32, 8, 2, 0.77) 0 0.03062399em 0, rgba(31, 8, 2, 0.737) 0 0.03827998em 0, rgba(29, 7, 1, 0.706) 0 0.04593602em 0, rgba(28, 7, 1, 0.67) 0 0.05359195em 0, rgba(27, 7, 1, 0.64) 0 0.06124808em 0, rgba(26, 6, 1, 0.608) 0 0.06890421em 0, rgba(25, 6, 1, 0.576) 0 0.07655987em 0 !important;
+      text-shadow: #000 0 0.00765599em 0, #000 0 0.01531202em 0, #000 0 0.02296801em 0, #000 0 0.03062399em 0, #000 0 0.03827998em 0, #000 0 0.04593602em 0, #000 0 0.05359195em 0, #000 0 0.06124808em 0, #000 0 0.06890421em 0, #000 0 0.07655987em 0 !important;
     }
 
     /* What Could / Be Cooler */
@@ -218,14 +218,14 @@
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(1) > span.wild-signature-title__one,
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(2) > span.wild-signature-title__one
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.007598em 0, rgba(33, 8, 2, 0.557) 0 0.01519498em 0, rgba(32, 8, 2, 0.53) 0 0.022793em 0, rgba(30, 8, 2, 0.498) 0 0.03039103em 0, rgba(28, 7, 1, 0.467) 0 0.03798905em 0, rgba(27, 6, 1, 0.44) 0 0.045586em 0, rgba(25, 6, 1, 0.408) 0 0.05318403em 0 !important;
+      text-shadow: #000 0 0.007598em 0, #000 0 0.01519498em 0, #000 0 0.022793em 0, #000 0 0.03039103em 0, #000 0 0.03798905em 0, #000 0 0.045586em 0, #000 0 0.05318403em 0 !important;
     }
 
     /* Than */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(3) > span.wild-signature-title__two
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.008023em 0, rgba(34, 9, 2, 0.557) 0 0.01604594em 0, rgba(32, 8, 2, 0.53) 0 0.02406904em 0, rgba(31, 8, 2, 0.5) 0 0.03209201em 0, rgba(29, 7, 1, 0.475) 0 0.04011405em 0, rgba(28, 7, 1, 0.447) 0 0.04813702em 0, rgba(26, 6, 1, 0.424) 0 0.05615999em 0, rgba(25, 6, 1, 0.396) 0 0.06418296em 0 !important;
+      text-shadow: #000 0 0.008023em 0, #000 0 0.01604594em 0, #000 0 0.02406904em 0, #000 0 0.03209201em 0, #000 0 0.04011405em 0, #000 0 0.04813702em 0, #000 0 0.05615999em 0, #000 0 0.06418296em 0 !important;
     }
 
     /* Having / A Ruin */
@@ -233,14 +233,14 @@
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(3) > span.wild-signature-title__two > span.wild-signature-title__having,
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(4) > span.wild-signature-title__two.wild-signature-title__having
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.00722099em 0, rgba(34, 9, 2, 0.557) 0 0.01444097em 0, rgba(32, 8, 2, 0.53) 0 0.02166199em 0, rgba(31, 8, 2, 0.5) 0 0.02888301em 0, rgba(29, 7, 1, 0.475) 0 0.03610296em 0, rgba(28, 7, 1, 0.447) 0 0.04332305em 0, rgba(26, 6, 1, 0.424) 0 0.05054394em 0, rgba(25, 6, 1, 0.396) 0 0.05776496em 0 !important;
+      text-shadow: #000 0 0.00722099em 0, #000 0 0.01444097em 0, #000 0 0.02166199em 0, #000 0 0.02888301em 0, #000 0 0.03610296em 0, #000 0 0.04332305em 0, #000 0 0.05054394em 0, #000 0 0.05776496em 0 !important;
     }
 
     /* Of Your Own? */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #signature-work > div.wild-section-heading > h2.wild-section-title.wild-signature-title > span.wild-signature-title__line:nth-of-type(5) > span.wild-signature-title__three.wild-signature-title__having
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784096em 0, rgba(31, 8, 2, 0.455) 0 0.02676098em 0, rgba(29, 7, 1, 0.424) 0 0.035681em 0, rgba(27, 7, 1, 0.392) 0 0.04460203em 0, rgba(25, 6, 1, 0.36) 0 0.05352196em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784096em 0, #000 0 0.02676098em 0, #000 0 0.035681em 0, #000 0 0.04460203em 0, #000 0 0.05352196em 0 !important;
     }
 
     /* The / Ruins */
@@ -248,7 +248,7 @@
       #signature-work > div.wild-story-list > article.wild-story-card.wild-story-card--feature > div.wild-story-copy > h3.wild-line-title > span.wild-line-title__line.wild-line-title__line--one,
       #signature-work > div.wild-story-list > article.wild-story-card.wild-story-card--feature > div.wild-story-copy > h3.wild-line-title > span.wild-line-title__line.wild-line-title__line--two
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784101em 0, rgba(31, 8, 2, 0.455) 0 0.02676098em 0, rgba(29, 7, 1, 0.424) 0 0.03568095em 0, rgba(27, 7, 1, 0.392) 0 0.04460198em 0, rgba(25, 6, 1, 0.36) 0 0.05352196em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784101em 0, #000 0 0.02676098em 0, #000 0 0.03568095em 0, #000 0 0.04460198em 0, #000 0 0.05352196em 0 !important;
     }
 
     /* Want the Coolest Party Zone You Have Ever Seen — in Your Own / If You've Got a Space, We Can Create an Area that Looks Like */
@@ -267,7 +267,7 @@
       #top > div.wild-phone-number-line.wild-phone-number-line--home-footer > a,
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.wild-phone-number-line.wild-phone-number-line--footer-closing > a
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.00696401em 0, rgba(34, 9, 2, 0.557) 0 0.01392803em 0, rgba(32, 8, 2, 0.53) 0 0.02089302em 0, rgba(31, 8, 2, 0.5) 0 0.02785698em 0, rgba(29, 7, 1, 0.475) 0 0.03482105em 0, rgba(28, 7, 1, 0.447) 0 0.04178604em 0, rgba(26, 6, 1, 0.424) 0 0.04875em 0, rgba(25, 6, 1, 0.396) 0 0.05571396em 0 !important;
+      text-shadow: #000 0 0.00696401em 0, #000 0 0.01392803em 0, #000 0 0.02089302em 0, #000 0 0.02785698em 0, #000 0 0.03482105em 0, #000 0 0.04178604em 0, #000 0 0.04875em 0, #000 0 0.05571396em 0 !important;
     }
 
     /* WildWorks / Projects */
@@ -275,14 +275,14 @@
       #projects > h2.wild-home-projects__title > span.wild-home-projects__title-wildworks,
       #projects > h2.wild-home-projects__title > span.wild-home-projects__title-projects
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.007809em 0, rgba(34, 9, 2, 0.56) 0 0.01561804em 0, rgba(32, 8, 2, 0.537) 0 0.02342698em 0, rgba(31, 8, 2, 0.51) 0 0.03123607em 0, rgba(29, 7, 1, 0.486) 0 0.03904502em 0, rgba(28, 7, 1, 0.46) 0 0.04685396em 0, rgba(26, 6, 1, 0.435) 0 0.05466306em 0, rgba(25, 6, 1, 0.408) 0 0.062472em 0 !important;
+      text-shadow: #000 0 0.007809em 0, #000 0 0.01561804em 0, #000 0 0.02342698em 0, #000 0 0.03123607em 0, #000 0 0.03904502em 0, #000 0 0.04685396em 0, #000 0 0.05466306em 0, #000 0 0.062472em 0 !important;
     }
 
     /* Wild by design */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #projects > p.wild-home-projects__tagline > span
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.007386em 0, rgba(33, 8, 2, 0.553) 0 0.01477101em 0, rgba(32, 8, 2, 0.52) 0 0.02215705em 0, rgba(30, 8, 2, 0.49) 0 0.02954295em 0, rgba(28, 7, 1, 0.46) 0 0.03692899em 0, rgba(27, 6, 1, 0.427) 0 0.04431396em 0, rgba(25, 6, 1, 0.396) 0 0.0517em 0 !important;
+      text-shadow: #000 0 0.007386em 0, #000 0 0.01477101em 0, #000 0 0.02215705em 0, #000 0 0.02954295em 0, #000 0 0.03692899em 0, #000 0 0.04431396em 0, #000 0 0.0517em 0 !important;
     }
 
     /* Your browser does not support HTML video. */
@@ -303,7 +303,7 @@
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #services > div.wild-section-heading > p.wild-kicker > span.wild-kicker-frame
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.01388499em 0, rgba(33, 8, 2, 0.553) 0 0.02776998em 0, rgba(32, 8, 2, 0.52) 0 0.04165497em 0, rgba(30, 8, 2, 0.49) 0 0.05553893em 0, rgba(28, 7, 1, 0.46) 0 0.06942392em 0, rgba(27, 6, 1, 0.427) 0 0.08330891em 0, rgba(25, 6, 1, 0.396) 0 0.0971939em 0 !important;
+      text-shadow: #000 0 0.01388499em 0, #000 0 0.02776998em 0, #000 0 0.04165497em 0, #000 0 0.05553893em 0, #000 0 0.06942392em 0, #000 0 0.08330891em 0, #000 0 0.0971939em 0 !important;
     }
 
     /* What / is Known for: */
@@ -311,14 +311,14 @@
       #services > div.wild-section-heading > h2.wild-section-title.wild-line-title > span.wild-line-title__line.wild-line-title__line--one,
       #services > div.wild-section-heading > h2.wild-section-title.wild-line-title > span.wild-line-title__line.wild-line-title__line--two
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892001em 0, rgba(33, 8, 2, 0.486) 0 0.01784106em 0, rgba(31, 8, 2, 0.455) 0 0.02676101em 0, rgba(29, 7, 1, 0.424) 0 0.03568097em 0, rgba(27, 7, 1, 0.392) 0 0.04460195em 0, rgba(25, 6, 1, 0.36) 0 0.05352203em 0 !important;
+      text-shadow: #000 0 0.00892001em 0, #000 0 0.01784106em 0, #000 0 0.02676101em 0, #000 0 0.03568097em 0, #000 0 0.04460195em 0, #000 0 0.05352203em 0 !important;
     }
 
     /* WildWorks */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #services > div.wild-section-heading > h2.wild-section-title.wild-line-title > span.wild-line-title__line.wild-line-title__line--one > span.wild-services-title__wildworks
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.00687999em 0, rgba(33, 8, 2, 0.557) 0 0.01375999em 0, rgba(32, 8, 2, 0.53) 0 0.02063998em 0, rgba(30, 8, 2, 0.498) 0 0.02751998em 0, rgba(28, 7, 1, 0.467) 0 0.03439997em 0, rgba(27, 6, 1, 0.44) 0 0.04127997em 0, rgba(25, 6, 1, 0.408) 0 0.04815996em 0 !important;
+      text-shadow: #000 0 0.00687999em 0, #000 0 0.01375999em 0, #000 0 0.02063998em 0, #000 0 0.02751998em 0, #000 0 0.03439997em 0, #000 0 0.04127997em 0, #000 0 0.04815996em 0 !important;
     }
 
     /* Wild Design / Problem Solving */
@@ -330,7 +330,7 @@
       #services > div.wild-card-grid > article.wild-card.wild-card--capability-fit > div.wild-card-heading > h3.wild-line-title > span.wild-line-title__line.wild-line-title__line--one,
       #services > div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-heading > h3.wild-line-title > span.wild-line-title__line.wild-line-title__line--one
     ) {
-      text-shadow: rgba(35, 9, 2, 0.518) 0 0.00892em 0, rgba(33, 8, 2, 0.486) 0 0.01784101em 0, rgba(31, 8, 2, 0.455) 0 0.02676101em 0, rgba(29, 7, 1, 0.424) 0 0.03568101em 0, rgba(27, 7, 1, 0.392) 0 0.04460202em 0, rgba(25, 6, 1, 0.36) 0 0.05352202em 0 !important;
+      text-shadow: #000 0 0.00892em 0, #000 0 0.01784101em 0, #000 0 0.02676101em 0, #000 0 0.03568101em 0, #000 0 0.04460202em 0, #000 0 0.05352202em 0 !important;
     }
 
     /* WildWorks is for People Who Want Designs at the Limits of Hu / After Four Decades of Designing and Building Hands-On, Scott */
@@ -348,35 +348,35 @@
       #services > div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-body > p:nth-of-type(1),
       #services > div.wild-card-grid > article.wild-card:nth-of-type(6) > div.wild-card-body > p:nth-of-type(2)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.00765601em 0, rgba(34, 9, 2, 0.83) 0 0.01531198em 0, rgba(33, 8, 2, 0.8) 0 0.02296799em 0, rgba(32, 8, 2, 0.77) 0 0.03062401em 0, rgba(31, 8, 2, 0.737) 0 0.03828002em 0, rgba(29, 7, 1, 0.706) 0 0.04593598em 0, rgba(28, 7, 1, 0.67) 0 0.05359205em 0, rgba(27, 7, 1, 0.64) 0 0.06124791em 0, rgba(26, 6, 1, 0.608) 0 0.06890377em 0, rgba(25, 6, 1, 0.576) 0 0.07656015em 0 !important;
+      text-shadow: #000 0 0.00765601em 0, #000 0 0.01531198em 0, #000 0 0.02296799em 0, #000 0 0.03062401em 0, #000 0 0.03828002em 0, #000 0 0.04593598em 0, #000 0 0.05359205em 0, #000 0 0.06124791em 0, #000 0 0.06890377em 0, #000 0 0.07656015em 0 !important;
     }
 
     /* Wherever You are in the World. */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #services > div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-body > p:nth-of-type(1) > em
     ) {
-      text-shadow: rgba(35, 9, 2, 0.96) 0 0.01569038em 0, rgba(30, 8, 2, 0.88) 0 0.03556485em 0, rgba(25, 6, 1, 0.78) 0 0.06014644em 0, rgba(25, 6, 1, 0.64) 0 0.08368201em 0 !important;
+      text-shadow: #000 0 0.01569038em 0, #000 0 0.03556485em 0, #000 0 0.06014644em 0, #000 0 0.08368201em 0 !important;
     }
 
     /* Your Project Could be the Next Among the World's Wildest Bui */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #services > div.wild-card-grid > article.wild-card:nth-of-type(1) > div.wild-card-body > p:nth-of-type(2) > strong.wild-worlds-wildest-builds-copy
     ) {
-      text-shadow: rgba(35, 9, 2, 0.96) 0 0.01736111em 0, rgba(30, 8, 2, 0.88) 0 0.03935185em 0, rgba(25, 6, 1, 0.78) 0 0.06655093em 0, rgba(25, 6, 1, 0.64) 0 0.09259259em 0 !important;
+      text-shadow: #000 0 0.01736111em 0, #000 0 0.03935185em 0, #000 0 0.06655093em 0, #000 0 0.09259259em 0 !important;
     }
 
     /* Ai-Native Websites */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #ai-websites > div.wild-site-offer-shell > div.wild-section-heading.wild-site-offer-heading > p.wild-kicker.wild-preserve-ai-case.wild-kicker--framed
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.013885em 0, rgba(33, 8, 2, 0.553) 0 0.02777em 0, rgba(32, 8, 2, 0.52) 0 0.04165508em 0, rgba(30, 8, 2, 0.49) 0 0.05553906em 0, rgba(28, 7, 1, 0.46) 0 0.06942383em 0, rgba(27, 6, 1, 0.427) 0 0.08330898em 0, rgba(25, 6, 1, 0.396) 0 0.09719414em 0 !important;
+      text-shadow: #000 0 0.013885em 0, #000 0 0.02777em 0, #000 0 0.04165508em 0, #000 0 0.05553906em 0, #000 0 0.06942383em 0, #000 0 0.08330898em 0, #000 0 0.09719414em 0 !important;
     }
 
     /* Sign Up for Email or SMS */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #footer > div.wild-footer-main > div.wild-signup-system > div.wild-signup-panel > h3.wild-signup-title
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.01619901em 0, rgba(33, 8, 2, 0.545) 0 0.03239797em 0, rgba(31, 8, 2, 0.51) 0 0.04859709em 0, rgba(29, 7, 1, 0.47) 0 0.06479593em 0, rgba(27, 7, 1, 0.43) 0 0.08099506em 0, rgba(25, 6, 1, 0.396) 0 0.0971939em 0 !important;
+      text-shadow: #000 0 0.01619901em 0, #000 0 0.03239797em 0, #000 0 0.04859709em 0, #000 0 0.06479593em 0, #000 0 0.08099506em 0, #000 0 0.0971939em 0 !important;
     }
 
     /* Email Address */
@@ -402,14 +402,14 @@
       #footer > div.wild-footer-main > div.wild-signup-system > div.wild-signup-panel > form.wild-signup-form > p.wild-signup-fine-print > a:nth-of-type(2),
       #footer > div.wild-footer-main > div.wild-signup-system > div.wild-signup-panel > form.wild-signup-form > p.wild-signup-fine-print > a:nth-of-type(3)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.867) 0 0.00765601em 0, rgba(34, 9, 2, 0.83) 0 0.01531202em 0, rgba(33, 8, 2, 0.8) 0 0.02296802em 0, rgba(32, 8, 2, 0.77) 0 0.03062403em 0, rgba(31, 8, 2, 0.737) 0 0.03827997em 0, rgba(29, 7, 1, 0.706) 0 0.04593598em 0, rgba(28, 7, 1, 0.67) 0 0.05359199em 0, rgba(27, 7, 1, 0.64) 0 0.061248em 0, rgba(26, 6, 1, 0.608) 0 0.06890401em 0, rgba(25, 6, 1, 0.576) 0 0.07656008em 0 !important;
+      text-shadow: #000 0 0.00765601em 0, #000 0 0.01531202em 0, #000 0 0.02296802em 0, #000 0 0.03062403em 0, #000 0 0.03827997em 0, #000 0 0.04593598em 0, #000 0 0.05359199em 0, #000 0 0.061248em 0, #000 0 0.06890401em 0, #000 0 0.07656008em 0 !important;
     }
 
     /* Let's Talk About Your Dream Project */
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #footer > div.wild-footer-main > div.wild-footer-contact-card-region > div.wild-footer-contact-cta > h2.wild-footer-contact-cta__title
     ) {
-      text-shadow: rgba(35, 9, 2, 0.96) 0 0.02160904em 0, rgba(32, 8, 2, 0.82) 0 0.04321809em 0, rgba(28, 7, 2, 0.714) 0 0.06482713em 0, rgba(25, 6, 1, 0.616) 0 0.08643617em 0, rgba(25, 6, 1, 0.475) 0 0.10804521em 0, rgba(25, 6, 1, 0.443) 0 0.12965426em 0 !important;
+      text-shadow: #000 0 0.02160904em 0, #000 0 0.04321809em 0, rgba(28, 7, 2, 0.714) 0 0.06482713em 0, #000 0 0.08643617em 0, #000 0 0.10804521em 0, #000 0 0.12965426em 0 !important;
     }
 
     /* Start the / Conversation Now */
@@ -417,7 +417,7 @@
       #footer > div.wild-footer-main > div.wild-footer-contact-card-region > div.wild-footer-contact-cta > p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(1),
       #footer > div.wild-footer-main > div.wild-footer-contact-card-region > div.wild-footer-contact-cta > p.wild-footer-contact-cta__kicker > span.wild-footer-contact-cta__kicker-line:nth-of-type(2)
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.013885em 0, rgba(33, 8, 2, 0.553) 0 0.02777em 0, rgba(32, 8, 2, 0.52) 0 0.041655em 0, rgba(30, 8, 2, 0.49) 0 0.055539em 0, rgba(28, 7, 1, 0.46) 0 0.069424em 0, rgba(27, 6, 1, 0.427) 0 0.083309em 0, rgba(25, 6, 1, 0.396) 0 0.097194em 0 !important;
+      text-shadow: #000 0 0.013885em 0, #000 0 0.02777em 0, #000 0 0.041655em 0, #000 0 0.055539em 0, #000 0 0.069424em 0, #000 0 0.083309em 0, #000 0 0.097194em 0 !important;
     }
 
     /* Start / with */
@@ -426,7 +426,7 @@
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.money-panel.wild-iscott-panel.wild-iscott-panel--footer > h2.wild-start-title > span.wild-start-title__with,
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.money-panel.wild-iscott-panel.wild-iscott-panel--footer > h2.wild-start-title > span.wild-start-title__name
     ) {
-      text-shadow: rgba(35, 9, 2, 0.58) 0 0.01188601em 0, rgba(33, 8, 2, 0.545) 0 0.02377093em 0, rgba(31, 8, 2, 0.51) 0 0.03565698em 0, rgba(29, 7, 1, 0.47) 0 0.04754302em 0, rgba(27, 7, 1, 0.43) 0 0.05942791em 0, rgba(25, 6, 1, 0.396) 0 0.07131395em 0 !important;
+      text-shadow: #000 0 0.01188601em 0, #000 0 0.02377093em 0, #000 0 0.03565698em 0, #000 0 0.04754302em 0, #000 0 0.05942791em 0, #000 0 0.07131395em 0 !important;
     }
 
     /* Or Call WildWorks Today! / Or Call Today! */
@@ -434,7 +434,7 @@
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.wild-phone-number-line.wild-phone-number-line--footer-closing > span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--desktop.wild-phone-number-line__call-today--emphasis,
       #footer > div.wild-footer-final-region > div.wild-footer-phone-iscott-group > div.wild-phone-number-line.wild-phone-number-line--footer-closing > span.wild-phone-number-line__call-today.wild-phone-number-line__call-today--mobile.wild-phone-number-line__call-today--emphasis
     ) {
-      text-shadow: rgba(35, 9, 2, 0.59) 0 0.00901em 0, rgba(33, 9, 2, 0.553) 0 0.01847106em 0, rgba(31, 8, 2, 0.518) 0 0.027932em 0, rgba(29, 8, 2, 0.48) 0 0.03739205em 0, rgba(27, 7, 1, 0.443) 0 0.04685298em 0, rgba(25, 6, 1, 0.408) 0 0.05631392em 0 !important;
+      text-shadow: #000 0 0.00901em 0, rgba(33, 9, 2, 0.553) 0 0.01847106em 0, #000 0 0.027932em 0, rgba(29, 8, 2, 0.48) 0 0.03739205em 0, #000 0 0.04685298em 0, #000 0 0.05631392em 0 !important;
     }
 
     /* All Stonework on this Site was Designed, / Engineered, and Built by WildWorks. */
@@ -442,7 +442,7 @@
       #footer > div.wild-footer-final-region > div.wild-footer-closing > p.wild-footer-stonework-note > span:nth-of-type(1),
       #footer > div.wild-footer-final-region > div.wild-footer-closing > p.wild-footer-stonework-note > span.wild-footer-stonework-note__second-line
     ) {
-      text-shadow: rgba(35, 9, 2, 0.97) 0 0.02180599em 0, rgba(34, 9, 2, 0.925) 0 0.03604687em 0, rgba(32, 8, 2, 0.882) 0 0.05028809em 0, rgba(31, 8, 2, 0.835) 0 0.06452897em 0, rgba(29, 8, 2, 0.792) 0 0.07876888em 0, rgba(28, 7, 2, 0.75) 0 0.09301009em 0, rgba(26, 7, 1, 0.706) 0 0.10725098em 0, rgba(25, 6, 1, 0.66) 0 0.12149186em 0 !important;
+      text-shadow: #000 0 0.02180599em 0, #000 0 0.03604687em 0, #000 0 0.05028809em 0, #000 0 0.06452897em 0, rgba(29, 8, 2, 0.792) 0 0.07876888em 0, rgba(28, 7, 2, 0.75) 0 0.09301009em 0, rgba(26, 7, 1, 0.706) 0 0.10725098em 0, #000 0 0.12149186em 0 !important;
     }
 
     /* Discover What’s Possible With */
@@ -456,7 +456,7 @@
     html:has(#top.wild-home:not(.wild-legal-home)) body#wildworks-body :is(
       #footer > div.wild-footer-final-region > div.wild-footer-closing > a.wild-footer-aiasap-link > span.wild-footer-aiasap-wordmark
     ) {
-      text-shadow: rgba(35, 9, 2, 0.96) 0 0.00732422em 0, rgba(30, 8, 2, 0.88) 0 0.01660156em 0, rgba(25, 6, 1, 0.78) 0 0.02807617em 0, rgba(25, 6, 1, 0.64) 0 0.0390625em 0 !important;
+      text-shadow: #000 0 0.00732422em 0, #000 0 0.01660156em 0, #000 0 0.02807617em 0, #000 0 0.0390625em 0 !important;
     }
 
     /* ©2026 WildWorks. All Rights Reserved. */

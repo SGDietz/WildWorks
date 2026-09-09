@@ -1,0 +1,29 @@
+{
+  "authority": "G explicitly requests mobile shadow gap repair on only five main pages/logo, legal untouched; then leave accepted appearance alone. Crawl means inspect, not permission to restyle.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "at": "2026-09-09T01:38:45.837Z",
+      "authority": "G: mobile gap repair, crawl only five main pages including logo; legal untouched; leave accepted appearance alone afterward.",
+      "path": "app/components/ZeroShadowEnforcer.tsx",
+      "before": "e15e77d97aaf2b541d98a938b43ab63d332a935102906b4f452e319a5b2c4f9e",
+      "after": "f56a9cf6ea14f03e085127d593f845dfc388db9b8c2c959dfb3967014d574148",
+      "replacements": [
+        [
+          "      const homeScales = new WeakMap<Element, number>();",
+          "      // G: mobile gap correction only. Keep the accepted desktop treatment.\n      const compactContact = referenceShadowsAllowed && window.matchMedia(\"(max-width: 1023px)\").matches;\n      const homeScales = new WeakMap<Element, number>();"
+        ],
+        [
+          "          const topDown = shadow;",
+          "          // A displaced 2.5px copy separates from mobile hairlines. Use one\n          // attached 1px native offset for compact page ink; approved controls\n          // retain their existing paint. Never add strokes or shadow layers.\n          const topDown = compactContact && !element.closest(CONTROL_SELECTOR)\n            ? homeConnectedTextShadow(homeOffset, false)\n            : shadow;"
+        ],
+        [
+          "          element.style.setProperty(\"filter\", homeConnectedDropFilter(homeOffset, true), \"important\");",
+          "          // The scaled logo flourishes need a close, visible single rendered\n          // pixel; subpixel filter offsets can round away in rasterization.\n          element.style.setProperty(\"filter\", compactContact\n            ? homeConnectedDropFilter(homeOffset, false)\n            : homeConnectedDropFilter(homeOffset, true), \"important\");"
+        ]
+      ],
+      "scope": "At <=1023 CSS px only: noncontrol page text and logo one opaque black down1px. Existing scale compensation retained. Desktop, approved controls and all other application source untouched.",
+      "reviewStatus": "Grok H549 authenticated: agrees displaced2.5px diagnosis; multi-stop ladder rejected under G one-effect rule. Codex installed native mobile-only offset correction."
+    }
+  },
+  "stopRule": "No further visual edits, cleanup, historical restoration, normalization or packet installation without a NEW exact user request. Test/source success is not physical-device acceptance."
+}

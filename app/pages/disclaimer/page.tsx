@@ -3,6 +3,7 @@ import LegalPage from "../../components/LegalPage";
 export default function DisclaimerPage() {
   return (
     <LegalPage
+      pageKey="disclaimer"
       title="Disclaimer"
       description="Important limits on website information, project examples, iScott responses, property guidance, resale discussion, safety, permitting, estimates, and design/build decisions."
       sections={[

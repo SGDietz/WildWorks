@@ -1,0 +1,26 @@
+/* G, 2026-09-07: non-legal logo only, every responsive range. Remove all
+   painted logo shadows while preserving the logo artwork and geometry. */
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  :is(.wild-top-logo, .wild-top-logo-source, .wild-top-logo-landscaping-effect) {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 1.62px 0.81px #000) !important;
+}
+
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo::before {
+  content: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  transform: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+  .wild-top-logo::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}

@@ -1,0 +1,14 @@
+/* G, 2026-09-07: Project Wildfire and WildWorks Projects, on Home and
+   their own pages, use the font of "What Could Be Cooler ... Of Your Own?".
+   Only font-family changes; reuse that headline's existing font token. */
+@layer wildworks-zero-shadows {
+  #top.wild-home #project-wildfire .wild-wildfire-flame-title,
+  #top.wild-home #project-wildfire .wild-wildfire-flame-title__text,
+  #top.wild-home .wild-home-projects__title,
+  #top.wild-home .wild-home-projects__title-projects,
+  .wild-subpage--wildfire .wildfire-page-heading,
+  .wild-subpage--wildfire .wildfire-page-heading span,
+  .wild-subpage--projects .wild-projects-page-title {
+    font-family: var(--ww-body-copy-font) !important;
+  }
+}

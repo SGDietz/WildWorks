@@ -470,6 +470,7 @@ const scriptBlock = routeSource.match(
 );
 assert.ok(scriptBlock, "the lead-confirmation script must still be a template literal in the route");
 const scriptBody = scriptBlock[1]
+  .replace('${iscottAutoCloseFactory}', (await fs.readFile('src/lib/iscottAutoClose.ts', 'utf8')).match(/export const iscottAutoCloseFactory = String.raw`([\s\S]*?)`;/)[1])
   .replace(/^\s*<script id="wildworks-avatar-lead-confirmation">/, "")
   .replace(/<\/script>\s*$/, "");
 assert.ok(scriptBody.includes("const confirmLead"), "extracted the wrong block - confirmLead is missing");

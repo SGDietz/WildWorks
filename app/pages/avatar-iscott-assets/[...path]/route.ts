@@ -1,3 +1,5 @@
+import { bridgeIScottAvatarSpeechEvents } from "../../../../src/lib/iscottAvatarSpeechBridge";
+
 const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
 const LOCAL_ASSET_PREFIX = "/pages/avatar-iscott-assets/_next/";
 
@@ -70,7 +72,10 @@ export async function GET(
     contentType.startsWith("text/") ||
     contentType.includes("json")
   ) {
-    return new Response(rewriteRemoteAssetReferences(await response.text()), {
+    const source = rewriteRemoteAssetReferences(await response.text());
+    const bridged = bridgeIScottAvatarSpeechEvents(source);
+    if (bridged !== source) headers.set("Cache-Control", "no-store");
+    return new Response(bridged, {
       status: response.status,
       headers,
     });

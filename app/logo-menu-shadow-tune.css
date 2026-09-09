@@ -10,7 +10,7 @@
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body nav a:not(#_):not(#_):not(#_) {
   text-shadow:
     0 1px 0 rgba(40, 12, 2, 0.75),
-    0 2px 0.5px rgba(25, 6, 1, 0.35) !important;
+    0 2px 0.5px #000 !important;
 }
 
 /* G: the dark rectangle behind the logo ("shows all the time — that means to
@@ -39,6 +39,6 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body nav a:not(#_):not(#_):not(#_) {
     text-shadow:
       0 0.9px 0 rgba(40, 12, 2, 0.75),
-      0 1.8px 0.45px rgba(25, 6, 1, 0.35) !important;
+      0 1.8px 0.45px #000 !important;
   }
 }

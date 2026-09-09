@@ -42,8 +42,8 @@
     button.money-cta,
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"],
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
     .wild-site-avatar-overlay-cta
   ):not(#talk-to-iscott):not(#talk-to-iscott *) {
   display: flex !important;
@@ -58,8 +58,8 @@
     button.money-cta,
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"],
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
     .wild-site-avatar-overlay-cta
   ):not(#talk-to-iscott):not(#talk-to-iscott *) {
   display: flex !important;
@@ -88,8 +88,8 @@
   :is(
     a.money-cta,
     button.money-cta,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"],
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
     .wild-iscott-upload__button,
@@ -119,8 +119,8 @@
   :is(
     a.money-cta,
     button.money-cta,
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"],
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
     a.wild-iscott-action-button,
     button.wild-iscott-action-button,
     .wild-iscott-upload__button,

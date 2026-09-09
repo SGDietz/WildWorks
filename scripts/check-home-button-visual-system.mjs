@@ -9,6 +9,7 @@ const anchor = read("app/H153-projects-gallery.css");
 const avatar = read("app/pages/avatar-iscott/route.ts");
 const home = read("app/pages/Home/page.tsx");
 const globals = read("app/globals.css");
+const rims = read("app/H482-home-button-dark-rims.css");
 
 const requireText = (source, needle, label) => {
   assert.ok(source.includes(needle), `${label}: missing ${JSON.stringify(needle)}`);
@@ -18,7 +19,7 @@ const requireText = (source, needle, label) => {
 for (const token of [
   "radial-gradient(circle at 50% -30%",
   "linear-gradient(#fce0ad 0%, #edc775 38%, #f08c28 72%, #c44d0b 100%)",
-  "border-color: #fce0ad",
+  "border-color: var(--ww-button-rim-color, #fce0ad)",
   "color: #e96819",
   "--ww-large-cta-shadow",
   "html:has(#top.wild-home)",
@@ -31,6 +32,10 @@ for (const token of [
 ]) {
   requireText(treatment, token, "shared Home material");
 }
+
+// G's accepted dark rim is supplied by the shared variable; pale gold remains
+// only its fallback. Do not restore the retired pale border to satisfy this guard.
+requireText(rims, "--ww-button-rim-color: #8f3a14", "accepted shared button rim");
 
 // Exactly two intentional label-depth tiers and one icon-depth variable.
 requireText(treatment, "--ww-cta-label-shadow:", "normal label tier");
@@ -363,27 +368,24 @@ const assertIconShadowContract = (sources) => {
     .filter((rule) => /data-ww-(talk|finish)/.test(rule.selector) && /(svg|::before)/.test(rule.selector));
   assert.ok(talkFinishIconRules.length > 0,
     "embedded iScott icons: no filter rule targets the Talk/Finish glyphs at all");
-  const winning = talkFinishIconRules[talkFinishIconRules.length - 1];
-  assert.ok(winning.selector.includes("html[data-ww-avatar-embedded]"),
-    `embedded iScott icons: the last Talk/Finish icon filter ("${abbreviate(winning.selector)}") is not `
-    + `scoped to html[data-ww-avatar-embedded], so the Home embed is not the state being corrected`);
+  const finalRule = talkFinishIconRules[talkFinishIconRules.length - 1];
+  // The accepted later rule covers the complete avatar document, including the
+  // embed. Repeated specificity guards and :is() do not remove that coverage.
+  // This checks declared coverage/depth; a rendered cascade audit is separate.
+  const finalSelector = finalRule.selector.replaceAll(":not(#_)", "");
   for (const surface of [
     "[data-ww-talk]::before",
     "[data-ww-finish]::before",
     "[data-ww-talk] svg",
     "[data-ww-finish] svg",
   ]) {
-    assert.ok(winning.selector.includes(surface),
+    assert.ok(finalSelector.includes(`html ${surface}`)
+      || finalSelector.includes(`html[data-ww-avatar-embedded] ${surface}`),
       `embedded iScott icons: the corrected rule does not cover ${surface}, so that surface keeps an older shadow`);
   }
-  assertSingleAttachedShadow(winning.value, "embedded iScott Talk/Finish icon filter");
-  // Earlier Talk/Finish icon rules are only harmless while they stay
-  // out-specified by the embedded-scoped correction above.
-  for (const rule of talkFinishIconRules.slice(0, -1)) {
-    assert.ok(!rule.selector.includes("html[data-ww-avatar-embedded]"),
-      `embedded iScott icons: "${abbreviate(rule.selector)}" carries the same embedded scope as the corrected `
-      + `rule but declares its own filter, so which shadow wins is now order-dependent`);
-  }
+  assertSingleAttachedShadow(finalRule.value, "embedded iScott Talk/Finish icon filter");
+  assert.equal(dropShadowArguments(finalRule.value).length, 1,
+    "the final avatar icon treatment must keep its accepted single attached shadow");
 };
 
 /* ---------------------------------------------------------------------------
@@ -531,8 +533,26 @@ const mutateBand = (source, transform, label) => {
   return mutated;
 };
 
-const CORRECTED_EDGE = "drop-shadow(rgba(35, 9, 2, 0.90) 0 clamp(0.9px, 0.045em, 1.4px) 0.25px)";
 const SECOND_SHADOW = " drop-shadow(rgba(25, 6, 1, 0.6) 0 1.5px 0)";
+
+// Mutate the current declaration itself, rather than retired literal values.
+const mutateSharedIcon = (transform) => {
+  const clean = stripCssComments(treatment);
+  const start = clean.indexOf("--ww-cta-icon-shadow:");
+  assert.notEqual(start, -1, "fixture cannot find the shared icon variable");
+  const colon = clean.indexOf(":", start);
+  const value = readDeclarationValue(clean, colon);
+  const valueStart = clean.indexOf(value, colon + 1);
+  const replacement = transform(value);
+  assert.notEqual(replacement, value, "fixture did not change the shared icon value");
+  return clean.slice(0, valueStart) + replacement + clean.slice(valueStart + value.length);
+};
+const appendAvatarIconRule = (transformSelector, transformValue) => {
+  const rule = findFilterDeclarations(avatar)
+    .filter((r) => /data-ww-(talk|finish)/.test(r.selector) && /(svg|::before)/.test(r.selector)).at(-1);
+  assert.ok(rule, "fixture cannot find the final avatar icon rule");
+  return `${avatar}\n${transformSelector(rule.selector)} { filter: ${transformValue(rule.value)}; }`;
+};
 
 // Records the assertion each fixture tripped, so the run prints proof that the
 // guard rejected the break for the intended reason rather than by accident.
@@ -549,10 +569,7 @@ const expectRejection = (label, run) => {
 
 const iconFixtures = [
   ["compounded shared icon variable", () => ({
-    treatment: mutate(treatment,
-      `${CORRECTED_EDGE} !important;`,
-      `${CORRECTED_EDGE}${SECOND_SHADOW} !important;`,
-      "compounded shared icon variable"),
+    treatment: mutateSharedIcon((value) => value.replace("!important", `${SECOND_SHADOW} !important`)),
     avatar,
   })],
   ["Home icon variable narrowed off the page root", () => ({
@@ -563,8 +580,7 @@ const iconFixtures = [
     avatar,
   })],
   ["Home icon shadow blurred off its stroke", () => ({
-    treatment: mutate(treatment, "1.4px) 0.25px)", "1.4px) 4px)",
-      "Home icon shadow blurred off its stroke"),
+    treatment: mutateSharedIcon((value) => value.replace("0.12px)", "4px)")),
     avatar,
   })],
   ["Home icon filter stops reading the shared variable", () => ({
@@ -574,15 +590,12 @@ const iconFixtures = [
   })],
   ["compounded embedded Talk/Finish icon", () => ({
     treatment,
-    avatar: mutate(avatar,
-      `${CORRECTED_EDGE} !important;`,
-      `${CORRECTED_EDGE}${SECOND_SHADOW} !important;`,
-      "compounded embedded Talk/Finish icon"),
+    avatar: appendAvatarIconRule((selector) => selector,
+      (value) => value.replace("!important", `${SECOND_SHADOW} !important`)),
   })],
-  ["embedded Talk/Finish correction deleted, bare chain wins again", () => ({
+  ["final avatar correction loses Talk coverage", () => ({
     treatment,
-    avatar: removeRule(avatar, "html[data-ww-avatar-embedded] [data-ww-talk]::before,",
-      "embedded Talk/Finish correction deleted, bare chain wins again"),
+    avatar: appendAvatarIconRule((selector) => selector.replaceAll("data-ww-talk", "data-ww-missing"), (value) => value),
   })],
 ];
 
@@ -625,11 +638,13 @@ assertCompactIScottBand(globals);
 // ...and both guards must reject every representative break.
 console.log("Home icon shadow contract, negative self-checks:");
 for (const [label, build] of iconFixtures) {
-  expectRejection(label, () => assertIconShadowContract(build()));
+  const broken = build(); // A broken fixture is an error, never a successful rejection.
+  expectRejection(label, () => assertIconShadowContract(broken));
 }
 console.log("Compact desktop iScott band, negative self-checks:");
 for (const [label, build] of bandFixtures) {
-  expectRejection(label, () => assertCompactIScottBand(build()));
+  const broken = build();
+  expectRejection(label, () => assertCompactIScottBand(broken));
 }
 
 console.log(`Home icon shadow contract: PASS (${iconFixtures.length} negative fixtures rejected)`);

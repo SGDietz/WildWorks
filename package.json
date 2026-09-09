@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run check:home-shadow-lock",
+    "prebuild": "npm run check:home-shadow-lock",
+    "prestart": "npm run check:home-shadow-lock",
+    "check:home-shadow-lock": "node scripts/check-home-shadow-lock.mjs",
     "dev": "next dev",
     "build": "npm run check:iscott-style-block && npm run check:palette && npm run check:bg && npm run check:x-links && npm run check:phone-links && npm run check:legal-white-zone && next build",
     "start": "next start",

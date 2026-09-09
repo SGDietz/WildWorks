@@ -1,0 +1,193 @@
+/* H506 — Grok handoff for Chief (Codex). Grok does not install.
+   Scott exact words: Chief has a job for you, removing all the shadow effect in all the buttons everywhere on the on the five major pages Write all the code, hand it off to chief.
+
+   Scope: five major nav pages only —
+     Home (#top.wild-home), Wildfire, Ruins, Projects, Bio.
+   Legal routes excluded. Mobile not specially targeted; same zero on all viewports.
+   Intent: ZERO button shadows (box-shadow, text-shadow, filter, -webkit-filter),
+   including icon twin-glyph layers. No layout/fill/geometry/copy changes beyond
+   shadow kill. Beats H337 by matching ~20× #wildworks-body weight.
+*/
+
+/* Controls: no painted shadow at all */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood,
+  a[class*="button"],
+  a[class*="cta"]
+) {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Every descendant inside those controls */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood,
+  a[class*="button"],
+  a[class*="cta"]
+) * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Pseudos on controls */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood,
+  a[class*="button"],
+  a[class*="cta"]
+)::before,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood,
+  a[class*="button"],
+  a[class*="cta"]
+)::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* TalkArcClusterIcon / H457 twin-glyph structural shadow copy */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  button,
+  [role="button"],
+  input[type="submit"],
+  a.money-cta,
+  a.wild-card-cta,
+  a.wild-sell-feature-cta,
+  a.wild-utility-button,
+  a.wild-signup-choice-button,
+  a.wild-signup-submit,
+  a.wild-footer-top-button,
+  a.wild-footer-mobile-link,
+  a.wild-home-phone-iscott-test__button,
+  a.wild-iscott-action-button,
+  a.wild-iscott-upload__button,
+  a.wild-site-avatar-overlay-cta,
+  a.wild-story-action,
+  a.wild-story-cta,
+  a.wild-logo-download-button,
+  a.wild-wildfire-photo-button,
+  a.btn-wood,
+  a[class*="button"],
+  a[class*="cta"]
+) .ww-home-btn-icon__shadow,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .ww-home-btn-icon__shadow {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+}
+
+/* H493 renders the large Start/Talk surface as a nested clone. Address its
+   concrete painter directly for the pre-hydration frame as well as the normal
+   dynamic-control pass: no label stack, no surface shadow, no dark icon twin. */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-large-iscott-talk > .wild-iscott-clone-surface,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-large-iscott-talk > .wild-iscott-clone-surface > .wild-iscott-clone-label {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-large-iscott-talk .ww-home-btn-icon__shadow {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  transform: none !important;
+}
+
+@layer ww-mobile-only-pass {
+/* G, 2026-09-07: one thin outer rim; the scaled clone must not paint another.
+   Transparent border retains the accepted clone dimensions and fill geometry. */
+html:not(:has(.wild-legal-home)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-large-iscott-talk > .wild-iscott-clone-surface {
+  border-color: transparent !important;
+}
+}

@@ -9,8 +9,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     button.wild-iscott-upload__button,
     .wild-subpage-iscott-cta > a.money-cta,
     footer#footer a.money-cta[href*="wake-iscott=1"],
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"]
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
   ) {
   display: inline-flex !important;
   align-items: center !important;
@@ -41,8 +41,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     button.wild-iscott-upload__button,
     .wild-subpage-iscott-cta > a.money-cta,
     footer#footer a.money-cta[href*="wake-iscott=1"],
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"]
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
   )
   > :is(svg, span) {
   align-self: center !important;
@@ -57,8 +57,8 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
     button.wild-iscott-upload__button,
     .wild-subpage-iscott-cta > a.money-cta,
     footer#footer a.money-cta[href*="wake-iscott=1"],
-    a[aria-label="Talk to iScott"],
-    button[aria-label="Talk to iScott"]
+    a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+    button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
   )
   > span {
   line-height: 1 !important;

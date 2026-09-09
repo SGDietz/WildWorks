@@ -300,7 +300,7 @@ const signatureWork = [
     titleLines: ["The", "Ruins"],
     body: [
       "Want the Coolest Party Zone You Have Ever Seen — in Your Own Back Yard?",
-      "If You've Got a Space, We Can Create an Area that Looks Like the Original Farmhouse the Neighborhood Was Built Around – or Sooo Many Other Things – and Turn It into a Purpose-Built Outdoor Kitchen Your Family Will Love. Start with iScott for Ideas. ",
+      "If You've Got a Space, We Can Create an Area that Looks Like the Original Farmhouse the Neighborhood Was Built Around – or So Many Other Things – and Turn It into a Purpose-Built Outdoor Kitchen or Party Zone That Your Friends and Family Will Love. Start with iScott for Ideas. ",
       "Wherever You Are, Anywhere in the World, If You Want a Space that is Unforgettable — Something People Will Talk About for Generations — Talk to iScott or Call Now.",
     ],
     image: "/ww-art-ruins.jpeg",
@@ -660,11 +660,11 @@ function renderSignatureStoryLine(
         className="wild-story-contact-link wild-story-contact-link--iscott"
         href="#talk-to-iscott"
         onClick={onIScottClick}
-        aria-label="Talk to iScott"
+        aria-label="Start with iScott" data-iscott-start-cta=""
         style={storyInlineActionStyle}
       >
         <TalkArcClusterIcon />
-        <span>{iScottText}</span>
+        <span>Start with iScott</span>
       </a>
       <BrandText>{line.slice(iScottIndex + iScottText.length)}</BrandText>
     </>
@@ -701,10 +701,10 @@ function TalkToIScottButton({
       href="#talk-to-iscott"
       className={`money-cta money-cta--primary wild-iscott-action-button${className ? ` ${className}` : ""}`}
       onClick={onClick}
-      aria-label="Talk to iScott"
+      aria-label="Start with iScott" data-iscott-start-cta=""
     >
       <TalkArcClusterIcon />
-      <span>Talk to iScott</span>
+      <span>Start with iScott</span>
     </a>
   );
 }
@@ -2474,9 +2474,9 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             </span>
           </motion.p>
           <motion.div className="wild-cta-row" variants={fadeInUp}>
-            <a href="#talk-to-iscott" className="money-cta money-cta--primary wild-iscott-action-button" onClick={handleIScottCtaClick} aria-label="Talk to iScott">
+            <a href="#talk-to-iscott" className="money-cta money-cta--primary wild-iscott-action-button" onClick={handleIScottCtaClick} aria-label="Start with iScott" data-iscott-start-cta="">
               <TalkArcClusterIcon />
-              <span>Talk to iScott</span>
+              <span>Start with iScott</span>
             </a>
             <span
               style={{
@@ -2548,6 +2548,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
       />
 
       <LargeIScottCta referenceIcon
+        label="Start with iScott"
         className="wild-home-phone-iscott-test--hero-compact"
         onClick={handleIScottCtaClick}
       />
@@ -3353,7 +3354,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon label="Start with iScott" onClick={handleIScottCtaClick} />
 
       <motion.section
         id="wildworks-proof"
@@ -3676,7 +3677,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon label="Start with iScott" onClick={handleIScottCtaClick} />
 
       <motion.section
         id="projects"
@@ -3688,12 +3689,8 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         viewport={viewportReplay}
       >
         <motion.h2 className="wild-home-projects__title" variants={fadeInUp}>
-          <span className="wild-home-projects__title-wildworks">WildWorks</span>{" "}
-          <span className="wild-home-projects__title-projects">Projects</span>
+          <span className="wild-home-projects__title-projects">WildWorks Projects</span>
         </motion.h2>
-        <motion.p className="wild-home-projects__tagline" variants={fadeInUp}>
-          <span>Wild by design</span>
-        </motion.p>
         <div className="wild-home-projects__capabilities">
           <p>
             WildWorks is a complete design-build company for hardscapes,
@@ -3743,7 +3740,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         <motion.div className="wild-home-projects__more" variants={fadeInUp}>
           <Link href="/pages/Projects" className="money-cta money-cta--primary">
             <Images aria-hidden className="h-5 w-5" />
-            <span>See More WildWorks Projects</span>
+            <span>More WildWorks Projects</span>
           </Link>
         </motion.div>
       </motion.section>
@@ -3771,6 +3768,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
             showCallToday={false}
           />
           <LargeIScottCta referenceIcon
+            label="Start with iScott"
             className="wild-home-phone-iscott-test--video"
             onClick={handleIScottCtaClick}
           />
@@ -3990,7 +3988,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         showCallToday={false}
       />
 
-      <LargeIScottCta referenceIcon onClick={handleIScottCtaClick} />
+      <LargeIScottCta referenceIcon label="Start with iScott" onClick={handleIScottCtaClick} />
     </div>
   );
 }

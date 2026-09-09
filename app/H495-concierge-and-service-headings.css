@@ -1,0 +1,32 @@
+/* G, 2026-09-06: larger Concierge labels in the existing avatar panels;
+   black shadows on Home service-card headings, across devices.
+   G subsequent walkthrough: reduce those six header shadow depths by 20%.
+   Keep avatar controls, main Start titles, card text, colors and geometry.
+   This existing layer also contains approved sitewide large-button rules.
+   Narrow selectors override older sizing/shadow locks only for these targets. */
+@layer ww-mobile-only-pass {
+  html body#wildworks-body#wildworks-body#wildworks-body
+    .wild-iscott-panel > p.money-panel-kicker {
+    font-size: clamp(1.25rem, 5.75vw, 1.875rem) !important;
+    /* Keep the enlarged uppercase label within the narrow phone panel. */
+    letter-spacing: 0.06em !important;
+  }
+
+  html body#wildworks-body#wildworks-body#wildworks-body
+    #top.wild-home #services .wild-card h3 > .wild-line-title__line {
+    text-shadow: 0 0.04em 0 #000, 0 0.08em 0 #000, 0 0.12em 0 #000 !important;
+  }
+
+  /* G 2026-09-06: desktop/laptop Concierge only, 30px -> 27px.
+     Preserve the existing line box so Start and the avatar do not move.
+     Shadow offsets are 80% of the measured original after the size change.
+     Keep touch phone/tablet styles and all other headings unchanged. */
+  @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body
+      .wild-iscott-panel > p.money-panel-kicker {
+      font-size: 1.6875rem !important;
+      line-height: 2.34375rem !important;
+      text-shadow: rgba(35, 9, 2, 0.97) 0em 0.0193831111em 0em, rgba(34, 9, 2, 0.925) 0em 0.0320417778em 0em, rgba(32, 8, 2, 0.882) 0em 0.0447004444em 0em, rgba(31, 8, 2, 0.835) 0em 0.0573591111em 0em, rgba(29, 8, 2, 0.792) 0em 0.0700168889em 0em, rgba(28, 7, 2, 0.75) 0em 0.0826755556em 0em, rgba(26, 7, 1, 0.706) 0em 0.0953342222em 0em, rgba(25, 6, 1, 0.66) 0em 0.1079928889em 0em !important;
+    }
+  }
+}

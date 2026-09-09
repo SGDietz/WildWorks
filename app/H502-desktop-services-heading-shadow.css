@@ -1,0 +1,19 @@
+/* G, 2026-09-06: desktop/laptop Home Services lockup shadow only. */
+@layer ww-mobile-only-pass {
+  @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body {
+      & #top.wild-home:not(.wild-legal-home) #services .wild-kicker-frame {
+        text-shadow: 0 .037594em 0 rgba(25,6,1,.5) !important;
+      }
+
+      & #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading .wild-section-title > .wild-line-title__line {
+        text-shadow: 0 .037594em 0 rgba(25,6,1,.5) !important;
+      }
+
+      & #top.wild-home:not(.wild-legal-home) #services > .wild-section-heading .wild-services-title__wildworks {
+        text-shadow: inherit !important;
+        filter: none !important;
+      }
+    }
+  }
+}

@@ -1,3 +1,7 @@
+import { iscottAutoCloseFactory } from "../../../src/lib/iscottAutoClose";
+import { versionIScottSpeechAssetReferences } from "../../../src/lib/iscottAvatarSpeechBridge";
+import { iscottHomeShadowColorsScript } from "../../../src/lib/iscottHomeShadowColors";
+
 const REMOTE_AVATAR_ORIGIN = "https://live-avatar-web-sdk-demo.vercel.app";
 const LOCAL_AVATAR_ASSET_PREFIX = "/pages/avatar-iscott-assets/_next/";
 const WILDWORKS_AVATAR_REQUEST_HEADER = "x-wildworks-avatar-request";
@@ -482,7 +486,9 @@ const wildWorksButtonCss = `
       align-items: center !important;
       justify-content: center !important;
       gap: 0.22rem !important;
-      border: 1px solid #fce0ad !important;
+      /* G 2026-09-05: every avatar control uses the accepted button rim,
+         including phone Talk, Finish, returned Talk and Restart. */
+      border: 1px solid #8f3a14 !important;
       border-radius: 8px !important;
       /* Same stack H337 puts on every button on the site. The old middle stops
          #e8ad59 and #b96d2d are not WildWorks colours and were what turned the
@@ -514,9 +520,7 @@ const wildWorksButtonCss = `
         rgba(25, 6, 1, 0.525) 0 0.05192em 0 !important;
       box-shadow:
         0 16px 42px rgba(58, 33, 8, 0.44),
-        0 0 24px rgba(240, 140, 40, 0.22),
-        inset 0 1px 0 rgba(252, 224, 173, 0.78),
-        inset 0 -1px 0 rgba(196, 77, 11, 0.46) !important;
+        0 0 24px rgba(240, 140, 40, 0.22) !important;
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease !important;
       white-space: nowrap !important;
     }
@@ -775,13 +779,13 @@ const wildWorksButtonCss = `
          the thumb is the same defect arriving a second later. */
       filter: none !important;
       transform: translateY(-2px) !important;
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 232, 190, 0.38) !important;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42) !important;
     }
 
     .btn-wood:active:not(:disabled),
     .btn-inset:active:not(:disabled) {
       transform: translateY(1px) !important;
-      box-shadow: 0 8px 22px rgba(16, 6, 1, 0.45), inset 0 1px 0 rgba(255, 232, 190, 0.28) !important;
+      box-shadow: 0 8px 22px rgba(16, 6, 1, 0.45) !important;
     }
 
     .btn-wood:disabled,
@@ -891,7 +895,8 @@ const wildWorksButtonCss = `
          colour, so it moves to #fce0ad - Text 1, the lightest tone in the
          locked five - so the box still reads as a card with a defined edge
          instead of a flat, borderless patch. */
-      border: 1px solid #fce0ad !important;
+      /* G 2026-09-06 smoke: use the approved Talk to iScott rim on this card. */
+      border: 1px solid #8f3a14 !important;
       border-radius: 8px !important;
       /* G 2026-09-01: "make it just a solid orange. The solid orange is just
          gorgeous... So take the glow out in there. Just make it that beautiful
@@ -1153,7 +1158,7 @@ const wildWorksButtonCss = `
     #wildworks-lead-dismiss {
       margin-top: 0.7rem !important;
       min-height: 44px !important;
-      border: 1px solid rgba(246, 211, 154, 0.36) !important;
+      border: 1px solid #8f3a14 !important;
       border-radius: 0.42rem !important;
       /* Match the site's gold btn-wood treatment. */
       background:
@@ -2893,8 +2898,8 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
       transform-origin: center center !important;
     }
 
-    /* H482: only the Home iframe gets the repeated two-step orange rim.
-       Standalone iScott retains its existing treatment. No sizing changes. */
+    /* H482: retain the larger-screen embedded control shadow. The base rule
+       above now carries the accepted rim on phones and standalone iScott too. */
 
     html:where(:not([data-ww-mobile-visual-reference]))[data-ww-avatar-embedded] :is(.btn-inset, [data-ww-talk], [data-ww-finish]) {
       border-color: #8f3a14 !important;
@@ -2903,6 +2908,10 @@ html[data-ww-avatar-embedded][data-ww-embed-measured] .wildworks-lead-card,
 
     html:where(:not([data-ww-mobile-visual-reference]))[data-ww-avatar-embedded]
       :is(button, a, input, select, textarea, [role="button"]):focus-visible {
+      outline-color: #8f3a14 !important;
+    }
+
+    html :is(.btn-wood, .btn-inset):focus-visible {
       outline-color: #8f3a14 !important;
     }</style>
 `;
@@ -4322,6 +4331,20 @@ const wildWorksCaptureBridgeScript = `
         sessionLive: false,
       };
 
+      // The SDK instance must own the current token. Only bounded speech
+      // events leave this closure; the token never enters an event or log.
+      window.__wildworksAvatarSpeechSession = () => state.sessionLive ? state.liveAvatarSessionId : null;
+      window.__wildworksAvatarSpeechEvent = (token, type, payload) => {
+        if (!state.sessionLive || !state.sessionToken || token !== state.sessionToken) return;
+        if (!["user.speak_started", "user.speak_ended", "user.transcription", "avatar.transcription", "avatar.speak_started", "avatar.speak_ended"].includes(type)) return;
+        window.dispatchEvent(new CustomEvent("wildworks:avatar-speech", { detail: {
+          sessionId: state.liveAvatarSessionId,
+          type,
+          eventId: typeof payload?.event_id === "string" ? payload.event_id.slice(0, 160) : null,
+          text: typeof payload?.text === "string" ? payload.text.slice(0, 2000) : "",
+        } }));
+      };
+
       const safeRandomId = (prefix) => {
         const random = crypto?.randomUUID
           ? crypto.randomUUID().replace(/-/g, "")
@@ -5624,6 +5647,17 @@ const wildWorksLeadConfirmationScript = `
         window.dispatchEvent(new CustomEvent("wildworks:avatar-session-ended", { detail: { reason } }));
       };
 
+      const autoClose = (${iscottAutoCloseFactory})({
+        currentSessionId: () => window.__wildworksAvatarSpeechSession?.() || null,
+        canClose: (id) => activeLead?.sessionId === id && hasSubmittedTruth(activeLead) && hasDeliveredTruth(activeLead),
+        setTimer: (callback, delay) => window.setTimeout(callback, delay),
+        clearTimer: (timer) => window.clearTimeout(timer),
+        stop: (reason) => { void stopSession(reason); },
+      });
+      window.addEventListener("wildworks:avatar-speech", (event) => autoClose.event(event.detail));
+      window.addEventListener("wildworks:avatar-session-ended", () => autoClose.reset());
+      window.addEventListener("pagehide", () => autoClose.reset());
+
       const confirmLead = async () => {
         if (!activeLead) return;
         const retryingFailedSubmission =
@@ -6057,7 +6091,7 @@ const wildWorksLeadConfirmationScript = `
         void stopSession("finish");
       }, true);
 
-      window.addEventListener("wildworks:lead-state", (event) => showLead(event.detail));
+      window.addEventListener("wildworks:lead-state", (event) => { showLead(event.detail); autoClose.leadChanged(); });
       window.addEventListener("wildworks:sync-failed", () => {
         const sync = document.getElementById("wildworks-lead-sync");
         if (sync) sync.hidden = false;
@@ -6218,13 +6252,13 @@ export async function GET(request: Request) {
     .replaceAll("/_next/", LOCAL_AVATAR_ASSET_PREFIX)
     .replaceAll("/favicon.ico", `${REMOTE_AVATAR_ORIGIN}/favicon.ico`)
     .replaceAll("/startscreen.png", "/Avatar1-live-startscreen.png")
-    .replace("</head>", `${wildWorksButtonCss}${wildWorksLoadingBootstrapScript}</head>`)
+    .replace("</head>", `${wildWorksButtonCss}${iscottHomeShadowColorsScript}${wildWorksLoadingBootstrapScript}</head>`)
     .replace(
       "</body>",
       `${wildWorksLoadingGateScript}${wildWorksMediaProbeScript}${wildWorksStartScreenScript}${wildWorksIdleTimeoutScript}${wildWorksCaptureBridgeScript}${wildWorksLeadConfirmationScript}${wildWorksGalleryBridgeScript}${wildWorksSessionEndedScript}${wildWorksLegalBandScript}${shouldWake ? wildWorksAutoWakeScript : ""}</body>`,
     );
 
-  return new Response(html, {
+  return new Response(versionIScottSpeechAssetReferences(html), {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/html; charset=utf-8",

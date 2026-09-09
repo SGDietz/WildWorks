@@ -90,6 +90,45 @@ const drainage = [
 assert.match(m.visitorProjectNeedFromRows(drainage).projectNeed ?? "", /holds water|problem areas/);
 assert.match(m.visitorProjectDetailsFromRows(drainage).join(" "), /holds water.*grass is.*dead/i);
 assert.match(m.visitorProjectDetailsFromRows(drainage).join(" "), /grow there/i);
+
+assert.match(
+  m.visitorProjectNeedFromRows([
+    "I need a koi pond in the backyard.",
+    "Never mind the photo upload.",
+  ]).projectNeed ?? "",
+  /koi pond/i,
+  "cancelling a photo upload must not erase the project",
+);
+assert.match(
+  m.visitorProjectNeedFromRows([
+    "I need a website makeover.",
+    "Scratch that, I need the retaining wall rebuilt.",
+  ]).projectNeed ?? "",
+  /retaining wall/i,
+  "a same-utterance replacement must replace the earlier project",
+);
+assert.equal(
+  m.visitorProjectNeedFromRows([
+    "I need a koi pond in the backyard.",
+    "Scratch that. Never mind about the project.",
+  ]).projectNeed,
+  null,
+  "an explicit project retraction must not resurrect the earlier project",
+);
+assert.equal(
+  m.projectNeedWasExplicitlyRetracted([
+    "I need a koi pond in the backyard.",
+    "Scratch that. Never mind about the project.",
+  ]),
+  true,
+);
+assert.equal(
+  m.projectNeedWasExplicitlyRetracted([
+    "I need a website makeover.",
+    "Scratch that, I need the retaining wall rebuilt.",
+  ]),
+  false,
+);
 assert.equal(m.isSpecificFeedback("My name is Morgan and my email is visitor@example.com."), false);
 assert.equal(m.isSpecificFeedback("No, that's not my email. Let me correct it."), true);
 

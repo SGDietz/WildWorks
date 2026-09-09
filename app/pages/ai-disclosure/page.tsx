@@ -3,6 +3,7 @@ import LegalPage from "../../components/LegalPage";
 export default function AiDisclosurePage() {
   return (
     <LegalPage
+      pageKey="ai-disclosure"
       title="Ai Disclosure"
       description="How WildWorks uses iScott, avatar intake, assisted organization, human review, uploaded photos, and automated communications."
       sections={[

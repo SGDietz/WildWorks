@@ -1,0 +1,38 @@
+﻿/* H513 - Home phone callout: full number always visible + no glyph stroke rim.
+   Scott exact (2026-09-07): icons are good keep going; screenshot shows
+   1+443-797-21 clipped on the Home phone band under the hero.
+   Cause in phone-number-lines.css: white-space:nowrap + clamp(3.6rem,6.85vw,7.8rem)
+   + letter-spacing up to 0.3em overruns the rail. Also -webkit-text-stroke still paints
+   a rim that H507 already forbids on five majors.
+   Scope: Home only (#top.wild-home). Preserve Color 1 #fce0ad / Color 2 #edc775,
+   Playfair face, layout/copy/links, button boxes, H508 borders. Grok does not install. */
+@layer wildworks-home-phone-fit {
+  html:has(#top.wild-home) body#wildworks-body .wild-phone-number-line > a {
+    -webkit-text-stroke-width: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    max-width: min(100%, calc(100vw - 1.75rem)) !important;
+    box-sizing: border-box !important;
+    /* Fit all 14 glyphs of 1+443-797-2166; tighter tracking beats clipping */
+    font-size: clamp(1.7rem, 4.55vw, 6.2rem) !important;
+    letter-spacing: clamp(0.028em, 0.26vw, 0.12em) !important;
+  }
+
+  html:has(#top.wild-home) body#wildworks-body .wild-phone-number-line--home-hero > a {
+    font-size: clamp(1.85rem, 4.9vw, 6.4rem) !important;
+    letter-spacing: clamp(0.03em, 0.28vw, 0.13em) !important;
+  }
+
+  html:has(#top.wild-home) body#wildworks-body .wild-phone-number-line__call-today {
+    -webkit-text-stroke-width: 0 !important;
+  }
+
+  @media (max-width: 640px) {
+    html:has(#top.wild-home) body#wildworks-body .wild-phone-number-line > a,
+    html:has(#top.wild-home) body#wildworks-body .wild-phone-number-line--home-hero > a {
+      font-size: clamp(1.55rem, 7.2vw, 2.85rem) !important;
+      letter-spacing: clamp(0.02em, 0.35vw, 0.08em) !important;
+      -webkit-text-stroke-width: 0 !important;
+    }
+  }
+}

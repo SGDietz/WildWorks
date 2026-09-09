@@ -1,0 +1,62 @@
+/* H523 â€” Grok handoff for Chief. WildWorks HOME only.
+   G: "Only black. Solid black." Soft #000 blur reads brown on orange.
+   Kill legacy brown masks (#000 / rgba(74,31,9)). Opaque #000, no blur.
+   Geometry/fonts/copy untouched. Non-Home/legal untouched. */
+
+@layer wildworks-zero-shadows {
+  html:has(#top.wild-home):not(:has(.wild-legal-home)) body#wildworks-body {
+    --ww-letter-effect-filter: drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) !important;
+    --ww-letter-effect-filter-small: drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) drop-shadow(0 0.25px 0 #000) !important;
+  }
+
+  html:has(#top.wild-home):not(:has(.wild-legal-home))
+    body#wildworks-body
+    :is(.wild-top-logo, .wild-top-logo-tagline, .wild-top-logo-living, .wild-home-statement__brand-lockup)::before {
+    background: #000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  html:has(#top.wild-home):not(:has(.wild-legal-home))
+    body#wildworks-body
+    :is(.wild-top-logo-tagline, .wild-top-logo-living)::after {
+    /* The host owns the shadow; ::after is the cream foreground mask. */
+    filter: none !important;
+  }
+/* H523: Talk → Finish → other Talk — solid black letter + icon (no blur). */
+  html:has(#top.wild-home):not(:has(.wild-legal-home))
+    body#wildworks-body
+    :is(
+      a.wild-home-phone-iscott-test__button,
+      a.wild-home-phone-iscott-test__button .wild-iscott-clone-label,
+      a.wild-home-phone-iscott-test__button > span,
+      a.wild-iscott-action-button,
+      a.wild-iscott-action-button span,
+      a.wild-site-avatar-overlay-cta,
+      a.wild-site-avatar-overlay-cta span
+    ) {
+    text-shadow: 0 1px 0 #000,
+      0 0.75px 0 #000,
+      0 1px 0 #000 !important;
+  }
+
+  html:has(#top.wild-home):not(:has(.wild-legal-home))
+    body#wildworks-body
+    :is(
+      a.wild-home-phone-iscott-test__button,
+      a.wild-iscott-action-button,
+      a.wild-site-avatar-overlay-cta
+    )
+    :is(svg, .ww-talk-arc-cluster, .wild-iscott-upload__icon, .icon, i) {
+    filter:
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000) !important;
+    -webkit-filter:
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000)
+      drop-shadow(0 0.25px 0 #000) !important;
+  }
+}

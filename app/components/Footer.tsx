@@ -142,6 +142,35 @@ export default function Footer() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // The six detail legal routes retain only the standard copyright and legal
+  // navigation. Marketing, contact, iScott and mobile-contact UI stays absent.
+  if (isSixPageLegalRoute) {
+    return (
+      <footer id="footer" className="wild-footer--legal wild-footer--legal-minimal">
+        <div
+          className="wild-footer-closing mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2 text-center text-sm text-[#fce0ad] sm:px-6"
+          style={{ width: "100%", maxWidth: "none" }}
+        >
+          <span
+            className="wild-legal-minimal-copyright"
+            style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
+          >
+            &copy;2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
+          </span>
+        </div>
+        <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#fce0ad] sm:flex-row sm:px-6 sm:text-left">
+          <span className="wild-footer-legal-links flex flex-wrap justify-center gap-x-3 gap-y-2 sm:text-sm">
+            {legalNavItems.map((item) => (
+              <Link key={item.href} href={item.href} className="wild-legal-minimal-link">
+                {item.label}
+              </Link>
+            ))}
+          </span>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer
       id="footer"
@@ -344,9 +373,9 @@ export default function Footer() {
             Let&apos;s Talk About Your Dream Project
           </motion.h2>
           <motion.div className="wild-footer-contact-cta__actions" variants={fadeInUp}>
-            <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" aria-label="Talk to iScott" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="/pages/Home?wake-iscott=1#talk-to-iscott" className="money-cta money-cta--primary" aria-label="Start with iScott" data-iscott-start-cta="" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <TalkArcClusterIcon />
-              <span>Talk to iScott</span>
+              <span>Start with iScott</span>
             </motion.a>
             <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443 797 2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Phone aria-hidden className="h-5 w-5" />
@@ -393,6 +422,7 @@ export default function Footer() {
               <LargeIScottCta
                 className="wild-home-phone-iscott-test--footer-closing"
                 href="/pages/Home?wake-iscott=1#talk-to-iscott"
+                label="Start with iScott"
               />
             </>
           ) : (

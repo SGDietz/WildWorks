@@ -47,7 +47,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
   background-image: none !important;
   box-shadow: none !important;
   font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
-  font-size: clamp(2.1rem, 7vw, 3.225rem) !important;  /* mid: 51.6px */
+  font-size: clamp(1.785rem, 5.95vw, 2.74125rem) !important; /* G: restored Start title -15%. */  /* mid: 51.6px */
   line-height: 0.98 !important;
   white-space: nowrap !important;
   text-align: center !important;

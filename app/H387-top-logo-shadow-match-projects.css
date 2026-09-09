@@ -55,12 +55,8 @@ html
      the straight-down geometry is what he approved. By the sitewide heaviness
      metric sum(alpha x (|dy| + blur)) this is exactly -20%. The logo is one
      shared component, so this lands on every page's header at once. */
-  filter:
-    drop-shadow(0 clamp(1px, 0.128vw, 1.6px) 0 rgba(50, 16, 5, 0.76))
-    drop-shadow(0 clamp(1px, 0.128vw, 1.6px) 0 rgba(50, 16, 5, 0.672))
-    drop-shadow(0 clamp(1px, 0.128vw, 1.6px) 0 rgba(50, 16, 5, 0.544))
-    drop-shadow(0 clamp(1px, 0.128vw, 1.6px) 0 rgba(50, 16, 5, 0.384))
-    !important;
+  /* G, 2026-09-07: one restrained black, vertical-only logo shadow. */
+  filter: drop-shadow(0 1.62px 0.81px #000) !important;
 }
 
 html

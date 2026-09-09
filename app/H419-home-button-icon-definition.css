@@ -66,8 +66,8 @@
     :is(
       a.money-cta,
       button.money-cta,
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-iscott-upload__button,
       .wild-card-cta,
       .wild-sell-feature-cta,
@@ -88,8 +88,8 @@
     :is(
       a.money-cta,
       button.money-cta,
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-iscott-upload__button,
       .wild-card-cta,
       .wild-sell-feature-cta,
@@ -111,8 +111,8 @@
     :is(
       a.money-cta,
       button.money-cta,
-      a[aria-label="Talk to iScott"],
-      button[aria-label="Talk to iScott"],
+      a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
+      button:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
       .wild-iscott-upload__button,
       .wild-card-cta,
       .wild-sell-feature-cta,

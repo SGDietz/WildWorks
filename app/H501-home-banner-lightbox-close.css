@@ -1,0 +1,25 @@
+/* G, 2026-09-06: Home banner lightbox close-control paint only. */
+body#wildworks-body
+  .wild-image-lightbox.wild-home-hero-lightbox
+  .wild-image-lightbox__bar.wild-image-lightbox__bar--close-only {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+body#wildworks-body
+  .wild-image-lightbox.wild-home-hero-lightbox
+  .wild-image-lightbox__bar--close-only
+  > button {
+  border-color: #6f2a10 !important;
+  background:
+    radial-gradient(circle at 50% -30%, rgba(255, 247, 213, 0.92), transparent 52%),
+    var(--ww-button-gradient) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 247, 218, 0.78),
+    inset 0 -1px 0 rgba(72, 28, 6, 0.46),
+    0 5px 12px rgba(45, 14, 3, 0.32),
+    0 0 0 1px rgba(232, 182, 109, 0.18) !important;
+}

@@ -1,0 +1,54 @@
+/* H507 — Grok handoff for Chief. Grok does not install.
+   Scott exact words (t498u + t499u):
+   Okay, there's a rim on like the logo and on letters all over the place, and it needs to be removed. It's just fucking stupid looking. Okay, remove. You know, it's on, I'll give you one example. I gave Chief a couple examples. Here's one, like in this first one, then we just kept going. I think that's got a rim around it. No fucking rims. this you know, Chief, I asked Chief to, you know, like, in the second image, I just got is a front door. Front door seems to have a rim, so does Wildworks concierge. Whatever, all the rims must go on the letters, on the letters and numbers. All the rims must go.
+   This has a rim. Fuck those rims. Get fucking goddamn rid of those fucking goddamn rims.
+
+   Intent: ZERO text-shadow / filter drop-shadow rims on letters and numbers
+   (phone, Call WildWorks Today, Front Door, Concierge, Then We Just Kept Going,
+   headings, logo wordmark CSS, body copy). Five major pages. Legal untouched.
+   Also stops H504 enforcer re-applying 0 1px 0 #000 rims — see H507 enforcer.
+*/
+
+/* Nuclear letter/number rim kill on five majors */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, li, label, strong, em, b, i,
+  .wild-phone-number-line,
+  .wild-phone-number-line *,
+  .wild-phone-number-line__call-today,
+  .wild-brand-text,
+  .wild-line-title,
+  .wild-line-title *,
+  .wild-line-title__line,
+  .wild-iscott-panel,
+  .wild-iscott-panel *,
+  .wild-top-logo,
+  .wild-top-logo *,
+  .wild-top-logo-source,
+  .wild-top-logo-landscaping-effect,
+  .wild-home-statement,
+  .wild-home-statement *,
+  .wild-section-title,
+  .wild-card-title,
+  .wild-bio-body,
+  .wild-bio-reinvention-heading,
+  .wild-sell-break-heading,
+  .money-panel *,
+  .wild-card *,
+  .wild-answer-card *,
+  .wild-story-card *
+) {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+  -webkit-text-stroke-width: 0 !important;
+}
+
+/* Logo CSS rim (drop-shadow filters) — five majors */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(.wild-top-logo, .wild-top-logo-source, .wild-top-logo-landscaping-effect),
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo::before,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body .wild-top-logo::after {
+  filter: none !important;
+  -webkit-filter: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}

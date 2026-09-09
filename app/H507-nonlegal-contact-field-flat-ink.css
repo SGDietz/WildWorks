@@ -1,0 +1,47 @@
+/* G H537, 2026-09-08: the editable field should belong with the existing
+   gold buttons. Match their serif lettering and material, retaining field
+   dimensions, labels, native editing/focus behavior and flat readable ink.
+   Both signup modes share this treatment; legal pages remain excluded. */
+@layer wildworks-zero-shadows {
+  html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio))
+    footer#footer .wild-signup-field :is(input[type="email"], input[type="tel"]) {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 750 !important;
+    text-align: center !important;
+    background-color: transparent !important;
+    background-image: radial-gradient(circle at 50% -30%, rgba(255, 250, 232, .95), transparent 52%), linear-gradient(#fce0ad 0%, #edc775 38%, #f08c28 72%, #c44d0b 100%) !important;
+    color: #e96819 !important;
+    -webkit-text-fill-color: #e96819 !important;
+    border-color: #8f3a14 !important;
+  }
+  html:has(#top.wild-home):not(:has(.wild-legal-home))
+    footer#footer .wild-signup-field :is(input[type="email"], input[type="tel"]) {
+    border-color: rgba(143, 58, 20, .45) !important;
+  }
+  html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio))
+    footer#footer .wild-signup-field :is(input[type="email"], input[type="tel"])::placeholder {
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    color: #e96819 !important;
+    -webkit-text-fill-color: #e96819 !important;
+    opacity: 1 !important;
+  }
+}
+
+/* G, 2026-09-07: the five public routes keep their existing contact-field
+   geometry and rim, but their editable/display text and field adornments are
+   flat. Legal pages and non-field form copy remain outside this scope. */
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-signup-field > span,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-signup-field :is(input, select, textarea, svg, img, i, .icon, .ww-mail, .ww-phone) {
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-signup-field :is(input, select, textarea)::placeholder,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-signup-field :is(input, select, textarea)::before,
+html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)) body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer .wild-signup-field :is(input, select, textarea)::after {
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}

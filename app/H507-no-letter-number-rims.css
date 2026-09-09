@@ -1,0 +1,25 @@
+/* G, 2026-09-07: no rims around any letters or numbers anywhere.
+   This first-declared layer wins important stroke rules in older layers before
+   hydration. Only glyph outlines and the logo's duplicate dark silhouette
+   are removed; existing downward shadows, fills and geometry are preserved. */
+@layer wildworks-no-text-rims {
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body *,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body *::before,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body *::after {
+    -webkit-text-stroke-width: 0 !important;
+  }
+
+  /* SVG text only: icon paths and their intentional strokes are not text rims. */
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body svg text,
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body svg tspan {
+    stroke-width: 0 !important;
+  }
+
+  /* The cream ::after mask remains the logo face. Its parent retains the
+     single downward drop-shadow; the older brown silhouette cannot rim it. */
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body .wild-top-logo::before {
+    content: none !important;
+    display: none !important;
+  }
+}

@@ -172,14 +172,20 @@ export function extractProjectNeed(text: string): string | null {
       best = preferProjectNeed(best, problem.charAt(0).toUpperCase() + problem.slice(1));
     }
   }
-  return best;
+  return best && isCoachingOrPersonaNeed(best) ? null : best;
 }
 
 export function isCoachingOrPersonaNeed(candidate: string): boolean {
   const normalized = candidate.replace(/\s+/g, " ").trim();
   return /^(?:you|i ?scott)\b/i.test(normalized)
     || /\b(?:you to be|super positive|salesman|persona|what you should say|you need to say)\b/i.test(normalized)
-    || /\b(?:can (?:build|create|help you build) your (?:brand|site|website|business)|what do you most need solved|pain point|quickest way to making money)\b/i.test(normalized);
+    || /\b(?:can (?:build|create|help you build) your (?:brand|site|website|business)|what do you most need solved|pain point|quickest way to making money)\b/i.test(normalized)
+    // These smoke-test fragments describe the avatar, not a landscaping job.
+    // Keep ordinary requests such as reducing a retaining wall's height valid.
+    || /\bintro(?:duction)?\s+auto\s+opening\s+line\b/i.test(normalized)
+    || /^at right now when we(?:'re| are) talking,? needs to be reduced in height\b/i.test(normalized)
+    || /\b(?:avatar|finish(?:ed)? (?:button|box)|contact card|email box|phone box)\b.{0,100}\b(?:height|width|shadow|rim|font)\b/i.test(normalized)
+    || /^(?:his help|at it|scott to reach out|reach out(?: to me)?)[.!?]*$/i.test(normalized);
 }
 
 const NAME_STOP =
@@ -574,7 +580,7 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   // Talking about the visible field is not choosing a contact method. Keep
   // this before the broad phone/email branches: f1163ff3 said "the box ...
   // your phone" while correcting the UI and briefly flipped the live field.
-  if (/\b(?:email|phone|capture)\s+box\b|\bbox\b[\s\S]{0,40}\b(?:email|phone)\b|\b(?:email|phone)\b[\s\S]{0,40}\b(?:box|words?|label|glow)\b/i.test(normalized)) {
+  if (/\b(?:email|phone|capture)\s+box\b|\bbox\b[\s\S]{0,40}\b(?:email|phone)\b|\b(?:email|phone)\b[\s\S]{0,40}\b(?:box|card|rim|words?|label|glow)\b/i.test(normalized)) {
     return null;
   }
   // A physical-phone complaint is also not a contact-method choice. Keep the
@@ -601,14 +607,25 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   if (!personalContactChoice && /\bfollow[- ]?up\s+e-?mail\b|\b(?:send|sent|sending|receive[ds]?|saved|upload\w*)\b[\s\S]{0,70}\be-?mail\b|\be-?mail\b[\s\S]{0,70}\b(?:send|sent|sending|saved|lead|notification|receipt|information|upload\w*)\b/i.test(normalized)) {
     return null;
   }
-  if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
-    && !/\b(?:e-?mail)\b/i.test(normalized)) {
+  // A visitor must choose how to be contacted. The September 6 smoke
+  // mentioned Scott's contact information while coaching, then "An email."
+  // Neither is a choice. A real short answer ("Email.") still works.
+  if (!personalContactChoice && /\b(?:scott['’]s|his|her|their)\s+(?:personal\s+)?(?:cell\s+)?(?:phone|telephone|e-?mail)\b|\byou can tell people\b/i.test(normalized)) {
+    return null;
+  }
+  const phoneDeclined = /\b(?:do not|don't|dont|never|no|not)\s+(?:(?:want|use|prefer|by|via|a|an|to|be|me|please|any)\s+){0,4}(?:phone|call|telephone|text|sms)\b/i.test(normalized);
+  const emailDeclined = /\b(?:do not|don't|dont|never|no|not)\s+(?:(?:want|use|prefer|by|via|a|an|to|be|me|please|any)\s+){0,4}e-?mail\b/i.test(normalized);
+  const answer = normalized.replace(/^(?:(?:um+|uh+|er|ah|oh|well|okay|ok|yeah|yes)\b[,.\s]+)+/i, "");
+  const phoneChoice = /\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|give\s+me\s+a\s+call|call\s+me|call\s+you\s+on\s+the\s+phone|(?:by|via|prefer|use|choose)\s+(?:the\s+)?(?:phone|telephone|sms)|(?:phone|telephone)(?:'s| is)?\s+(?:fine|best|good|okay|ok|works)|my\s+(?:phone|telephone)\s+(?:number|is))\b/i.test(normalized)
+    || /^(?:phone|telephone|call|sms|text)(?:[,.!?]|\s*$)/i.test(answer);
+  if (!phoneDeclined && phoneChoice && (emailDeclined || !/\be-?mail\b/i.test(normalized))) {
     return "phone";
   }
   if (/\bas soon as i\b|\bemail box\b|\bstupid\b.{0,40}\bbox\b/i.test(normalized)) {
     return null;
   }
-  if (/\b(?:e-?mail(?:'s| is)?\s+fine|prefer\s+(?:an?\s+)?e-?mail|by\s+e-?mail|use\s+e-?mail|e-?mail)\b/i.test(normalized)) {
+  if (!emailDeclined && (/\b(?:e-?mail(?:'s| is)?\s+(?:fine|great)|prefer\s+(?:an?\s+)?e-?mail|(?:by|via|use|choose)\s+e-?mail|e-?mail\s+me|e-?mail\s+works|my\s+e-?mail(?:\s+address)?\s+is)\b/i.test(normalized)
+    || /^e-?mail(?:[,.!?]|\s*$)/i.test(answer))) {
     return "email";
   }
   return null;
@@ -896,8 +913,14 @@ export function extractContactPreference(text: string): "sms" | "voice" | "email
 export function deniesContactReadBack(text: string): boolean {
   const normalized = text.replace(/\s+/g, " ").trim();
   if (!normalized) return false;
+  // A real correction always wins, even when the same turn reports a UI bug.
+  if (/\b(?:not (?:right|correct|it|quite)|isn't (?:right|correct|it)|that's wrong|incorrect(?:ly)?|you got (?:that|it) wrong|wrong (?:email|address|number)|not my (?:email|address|number))\b/i.test(normalized)) return true;
+  // "No, the box did not come up" rejects the display behavior, not the
+  // spoken contact. It neither confirms the contact nor grants send consent.
+  if (/\b(?:box|field|screen)\b/i.test(normalized)
+    && /\b(?:did(?:n't| not)|does(?:n't| not)|has(?:n't| not)|never|not)\s+(?:come up|show(?:n)?|appear(?:ed)?|update(?:d)?|change(?:d)?|display(?:ed)?)\b/i.test(normalized)) return false;
   if (/^(?:no|nope|nah)\b/i.test(normalized)) return true;
-  return /\b(?:not (?:right|correct|it|quite)|isn't (?:right|correct|it)|that's wrong|incorrect|you got (?:that|it) wrong|wrong (?:email|address|number)|not my (?:email|address|number))\b/i.test(normalized);
+  return false;
 }
 
 export function detectsContactReadBackCorrect(text: string): boolean {
@@ -907,7 +930,7 @@ export function detectsContactReadBackCorrect(text: string): boolean {
   // "almost right" - none of these are a confirmation, and several of them
   // contain the very words the positive patterns look for.
   if (
-    /\b(?:not|isn't|isnt|ain't|aint|wasn't|wrong|incorrect|nope|nah|almost|nearly|close but|other way)\b/i.test(
+    /\b(?:not|isn't|isnt|ain't|aint|wasn't|wrong(?:ly)?|incorrect(?:ly)?|nope|nah|almost|nearly|close but|other way)\b/i.test(
       normalized,
     )
   ) {
@@ -1042,7 +1065,18 @@ export function visitorProjectNeedFromRows(
   const visitorTexts = texts.filter((text) => !isOperatorSalesLanguage(text) && !isCoachingOrPersonaNeed(text) && !isAppScreenCopyEcho(text));
   let projectNeed: string | null = null;
   for (const text of visitorTexts) {
-    projectNeed = preferProjectNeed(projectNeed, extractProjectNeed(text));
+    const nextNeed = extractProjectNeed(text);
+    if (nextNeed) {
+      // A correction in the same utterance replaces the earlier job even when
+      // the new wording is shorter. Normal follow-on detail still uses the
+      // established specificity preference.
+      projectNeed = /\b(?:actually|instead|scratch that|rather|change that)\b/i.test(text)
+        && isSpecificProjectNeed(nextNeed)
+        ? nextNeed
+        : preferProjectNeed(projectNeed, nextNeed);
+      continue;
+    }
+    if (isProjectNeedRetraction(text)) projectNeed = null;
   }
   // G's ride 89c453ff, 2026-08-19. Scott was mailed
   // "A website and then I What type is he good with, you know, coming up with
@@ -1080,6 +1114,29 @@ export function visitorProjectNeedFromRows(
     projectNeed,
     operatorServiceScript,
   };
+}
+
+/** True only when the visitor retracts the project itself, not an upload step. */
+export function isProjectNeedRetraction(text: string): boolean {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (!/\b(?:scratch that|never mind|forget it|cancel(?: that| the)?|drop that)\b/i.test(normalized)) return false;
+  const namesMediaOnly = /\b(?:photo|video|upload|file|attachment)\b/i.test(normalized)
+    && !/\b(?:project|job|work|build|plan|idea|request|need)\b/i.test(normalized);
+  if (namesMediaOnly) return false;
+  return /^(?:scratch that|never mind|forget it|cancel that|drop that)[.!?]*$/i.test(normalized)
+    || /\b(?:project|job|work|build|plan|idea|request|need)\b/i.test(normalized);
+}
+
+/** Whether the last substantive project directive in chronological rows clears the need. */
+export function projectNeedWasExplicitlyRetracted(texts: string[]): boolean {
+  for (let index = texts.length - 1; index >= 0; index -= 1) {
+    const text = texts[index];
+    if (isOperatorSalesLanguage(text) || isCoachingOrPersonaNeed(text) || isAppScreenCopyEcho(text)) continue;
+    const nextNeed = extractProjectNeed(text);
+    if (nextNeed && isSpecificProjectNeed(nextNeed)) return false;
+    if (isProjectNeedRetraction(text)) return true;
+  }
+  return false;
 }
 
 export function visitorProjectAreaFromRows(texts: string[]): string | null {

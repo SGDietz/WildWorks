@@ -3,6 +3,7 @@ import LegalPage from "../../components/LegalPage";
 export default function AccessibilityPage() {
   return (
     <LegalPage
+      pageKey="accessibility"
       title="Accessibility Statement"
       description="WildWorks wants this website to be usable by as many people as possible and welcomes reports about accessibility barriers."
       sections={[

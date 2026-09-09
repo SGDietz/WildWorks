@@ -1,0 +1,13 @@
+{
+  "userRequest": "you can crawl the site. there are problems there ... do the crawl again",
+  "namedDefect": "Large lettering flattened by the previous blanket 1px override.",
+  "scope": "Only large non-control lettering on five main pages: one native opaque black straight-down 1.5px shadow. Body and logo remain 1px. Approved buttons and all legal paths/styles are unchanged.",
+  "acceptance": "Locally rendered correction, not physical-device approval by G.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "3665f768a11b5450bd099b967aa341fb0ea7b4373f8811637d7c7b8677d9e2a9",
+      "after": "7439b4c1d093cd3075b1eae925383cb8d3434fd5528c8a92f1aba76ecefaab50"
+    }
+  },
+  "stopRule": "Do not change appearance during future crawls. Preserve this installed correction unless G names a further repair. Do not treat an older reference as authority to silently roll back."
+}

@@ -34,7 +34,7 @@ export default function LegalPage({ pageKey, title, description, sections }: Leg
           </nav>
 
           <div className="wild-legal-hero grid gap-2 text-center">
-            <h1 className="wild-section-title wild-line-title wild-legal-title">
+            <h1 className="wild-section-title wild-line-title wild-legal-detail-title">
               <BrandText>{title}</BrandText>
             </h1>
             <p

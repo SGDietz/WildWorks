@@ -14,14 +14,15 @@ type LargeIScottCtaProps = {
 export default function LargeIScottCta({
   className = "",
   href = "#talk-to-iscott",
-  label = "Talk to iScott",
+  label = "Start with iScott",
   onClick,
 }: LargeIScottCtaProps) {
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const usesTalkSurface = label === "Talk to iScott" || label === "Start with iScott";
 
   useLayoutEffect(() => {
     const button = buttonRef.current;
-    if (!button || label !== "Talk to iScott") return;
+    if (!button || !usesTalkSurface) return;
     const setScale = (width: number) => {
       button.style.setProperty("--ww-iscott-clone-scale", String(width / 339.015625));
     };
@@ -29,18 +30,18 @@ export default function LargeIScottCta({
     const observer = new ResizeObserver(([entry]) => setScale(entry.contentRect.width));
     observer.observe(button);
     return () => observer.disconnect();
-  }, [label]);
+  }, [usesTalkSurface]);
 
   return (
     <div className={`wild-home-phone-iscott-test${className ? ` ${className}` : ""}`}>
       <a
         ref={buttonRef}
         href={href}
-        className={`wild-home-phone-iscott-test__button${label === "Talk to iScott" ? " wild-large-iscott-talk" : ""}`}
+        className={`wild-home-phone-iscott-test__button${usesTalkSurface ? " wild-large-iscott-talk" : ""}`}
         onClick={onClick}
         aria-label={label}
       >
-        {label === "Talk to iScott" ? (
+        {usesTalkSurface ? (
           <span className="wild-iscott-clone-surface" aria-hidden="true">
             <TalkArcClusterIcon />
             <span className="wild-iscott-clone-label">{label}</span>

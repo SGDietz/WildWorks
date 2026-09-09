@@ -1,0 +1,21 @@
+/* G: one black shadow only, straight down, Home only. No shadow ladders. */
+@layer wildworks-zero-shadows {
+  html:has(#top.wild-home):not(:has(.wild-legal-home)) body#wildworks-body {
+    --ww-letter-effect-filter: drop-shadow(0 1.5px 0 #000) !important;
+    --ww-letter-effect-filter-small: drop-shadow(0 1.5px 0 #000) !important;
+  }
+  html:has(#top.wild-home):not(:has(.wild-legal-home)) body#wildworks-body
+    :is(.wild-top-logo, .wild-top-logo-tagline, .wild-top-logo-living, .wild-home-statement__brand-lockup)::before {
+    background: #000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  html:has(#top.wild-home):not(:has(.wild-legal-home)) body#wildworks-body
+    :is(.wild-top-logo-tagline, .wild-top-logo-living)::after {
+    filter: none !important;
+  }
+  html:has(#top.wild-home):not(:has(.wild-legal-home)) body#wildworks-body
+    :is(.wild-home-phone-iscott-test__button, .wild-iscott-action-button, .wild-site-avatar-overlay-cta) {
+    text-shadow: 0 1.25px 0 #000 !important;
+  }
+}

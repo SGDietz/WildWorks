@@ -1,0 +1,14 @@
+/* Home only: remove repeated pale gradient edge and duplicate image frames.
+   Keep all existing dimensions, fills, focus outlines and image interactions. */
+@layer wildworks-home-clean-rims {
+  html:has(#top.wild-home) body#wildworks-body .wild-large-iscott-talk > .wild-iscott-clone-surface {
+    background-repeat: no-repeat !important;
+    background-origin: border-box !important;
+  }
+  html:has(#top.wild-home) body#wildworks-body :is(.wild-wildfire-photo, .wild-home-proof-figure .wild-image-frame, .wild-home-projects__item) {
+    border-color: transparent !important;
+  }
+  html:has(#top.wild-home) body#wildworks-body :is(button, [role="button"], a.money-cta, a[class*="button"], a[class*="cta"], .wild-home-projects__link):not(header *, nav *) {
+    border-color: rgba(143, 58, 20, 0.45) !important;
+  }
+}

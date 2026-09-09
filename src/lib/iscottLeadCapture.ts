@@ -44,6 +44,7 @@ import {
   LeadNotQualifiedError,
   leadPackageFieldChanged,
   preferProjectNeed,
+  projectNeedWasExplicitlyRetracted,
   sameContactValue,
   spokenPreferenceSignal,
   sessionLooksLikeOperatorQa,
@@ -868,7 +869,8 @@ export async function processIScottTranscriptRows(args: {
   if (projectNeed && (isOperatorSalesLanguage(projectNeed) || /salesman|super positive/i.test(projectNeed))) {
     projectNeed = null;
   }
-  projectNeed = capturedNeed.projectNeed ?? projectNeed;
+  projectNeed = capturedNeed.projectNeed
+    ?? (projectNeedWasExplicitlyRetracted(userTurnTexts(rows)) ? null : projectNeed);
   if (!contactMethod) {
     if (email && !phone) contactMethod = "email";
     else if (phone && !email) contactMethod = "phone";

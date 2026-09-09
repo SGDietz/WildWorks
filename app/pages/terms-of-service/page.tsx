@@ -4,6 +4,7 @@ import LegalPage from "../../components/LegalPage";
 export default function TermsOfServicePage() {
   return (
     <LegalPage
+      pageKey="terms-of-service"
       title="Terms of Service"
       description="The basic rules for using the WildWorks website, submitting project information, contacting iScott, receiving communications, and starting a project conversation."
       sections={[

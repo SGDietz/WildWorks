@@ -5,10 +5,10 @@
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
   a.wild-iscott-action-button,
-  a[aria-label="Talk to iScott"],
+  a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
   a[href*="wake-iscott=1"],
   a.wild-home-phone-iscott-test__button[href*="talk-to-iscott"],
-  a.wild-home-phone-iscott-test__button[aria-label="Talk to iScott"]
+  a.wild-home-phone-iscott-test__button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
 ):not(.wild-site-avatar-overlay-cta):not([aria-label="Return to WildWorks"]) {
   --ww-talk-control-brightness: 0.78 !important;
   --ww-talk-control-brightness-hover: 0.82 !important;
@@ -17,10 +17,10 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
   a.wild-iscott-action-button,
-  a[aria-label="Talk to iScott"],
+  a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
   a[href*="wake-iscott=1"],
   a.wild-home-phone-iscott-test__button[href*="talk-to-iscott"],
-  a.wild-home-phone-iscott-test__button[aria-label="Talk to iScott"]
+  a.wild-home-phone-iscott-test__button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
 ):not(.wild-site-avatar-overlay-cta):not([aria-label="Return to WildWorks"]):is(:hover, :focus-visible) {
   filter: brightness(var(--ww-talk-control-brightness-hover, 0.82)) !important;
 }

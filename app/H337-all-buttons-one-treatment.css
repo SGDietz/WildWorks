@@ -600,7 +600,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 @media (width < 600px) {
 html body#wildworks-body :is(
   .wild-home-phone-iscott-test:not(.wild-home-phone-iscott-test--legal-return) > .wild-home-phone-iscott-test__button,
-  a.wild-iscott-action-button[aria-label="Talk to iScott"]
+  a.wild-iscott-action-button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
 ) {
   --ww-large-cta-brightness: 0.94 !important;
   --ww-large-cta-shadow:
@@ -614,7 +614,7 @@ html body#wildworks-body :is(
 @media (width >= 600px) {
 html body#wildworks-body :is(
   .wild-home-phone-iscott-test:not(.wild-home-phone-iscott-test--legal-return) > .wild-home-phone-iscott-test__button,
-  a.wild-iscott-action-button[aria-label="Talk to iScott"]
+  a.wild-iscott-action-button:is([aria-label="Talk to iScott"], [data-iscott-start-cta])
 ) {
   --ww-large-cta-brightness: 0.94 !important;
   --ww-large-cta-shadow:

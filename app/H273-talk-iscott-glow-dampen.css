@@ -5,7 +5,7 @@
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
   a.wild-home-phone-iscott-test__button,
   a.wild-iscott-action-button,
-  a[aria-label="Talk to iScott"],
+  a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
   a[href*="wake-iscott=1"],
   .wild-footer-contact-cta__actions a.money-cta[href*="wake-iscott=1"]
 ):not(.wild-site-avatar-overlay-cta) {
@@ -17,7 +17,7 @@ html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body :is(
   a.wild-home-phone-iscott-test__button,
   a.wild-iscott-action-button,
-  a[aria-label="Talk to iScott"],
+  a:is([aria-label="Talk to iScott"], [data-iscott-start-cta]),
   a[href*="wake-iscott=1"],
   .wild-footer-contact-cta__actions a.money-cta[href*="wake-iscott=1"]
 ):not(.wild-site-avatar-overlay-cta):is(:hover, :focus-visible) {

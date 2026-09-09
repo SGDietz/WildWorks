@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
@@ -8,6 +8,14 @@ import {
   Manrope,
   Caladea,
 } from "next/font/google";
+import "./H511-home-text-depth.css";
+import "./H510-logo-menu-connected-shadow.css";
+import "./H509-zero-shadows.css";
+import "./Home-single-black-shadow.css";
+import "./Title-font-match.css";
+import ZeroShadowEnforcer from "./components/ZeroShadowEnforcer";
+import "./H508-home-clean-rims.css";
+import "./H507-no-letter-number-rims.css";
 import "./globals.css";
 import "./gold-standard.css";
 import "./grok-h58-h64.css";
@@ -381,15 +389,30 @@ import "./H487-mobile-portrait-walkthrough.css";
 import "./H488-large-iscott-and-email.css";
 import "./H489-desktop-corrections.css";
 import "./H490-iscott-reference-and-email-ink.css";
-import "./H492-mobile-tree-shadow.css";
 import "./H493-large-iscott-exact-clone.css";
 import "./H494-footer-aiasap-brand.css";
+import "./H495-concierge-and-service-headings.css";
+import "./H496-copper-page-scrollbar.css";
+import "./H497-named-walkthrough-refinements.css";
+import "./H498-exact-device-shadow-walkthrough.css";
+import "./H499-desktop-named-shadow-reduction.css";
+import "./H500-mobile-dream-project-action-match.css";
+import "./H501-home-banner-lightbox-close.css";
+import "./H502-desktop-services-heading-shadow.css";
+import "./H504-all-buttons-single-brown-shadow.css";
+import "./H505-laptop-logo-single-shadow.css";
+import "./H506-five-major-pages-buttons-zero-shadow.css";
+import "./H507-nonlegal-contact-field-flat-ink.css";
+import "./H503-six-legal-pages-final-lock.css";
 import "./H232-legal-white-zone-lock.css";
 import Header from "./components/Header";
 import BrandLogo from "./components/BrandLogo";
 import Footer from "./components/Footer";
 import TelemetryBoot from "./components/TelemetryBoot";
 import MainPageSwipeNavigation from "./components/MainPageSwipeNavigation";
+import H504NonLegalShadowEnforcer from "./components/H504NonLegalShadowEnforcer";
+import H506FiveMajorButtonZeroShadowEnforcer from "./components/H506FiveMajorButtonZeroShadowEnforcer";
+import { SITE_BROWSER_TITLE } from "./lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -505,10 +528,7 @@ const universalCopperCanvasCss = `
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "WildWorks | Fine Art Natural Stone Landscaping",
-    template: "%s | WildWorks",
-  },
+  title: SITE_BROWSER_TITLE,
   description:
     "WildWorks designs and builds natural stone patios, outdoor fireplaces, stone stairs, boulder work, ruins, and high-impact landscape transformations.",
   keywords: [
@@ -630,6 +650,20 @@ export default function RootLayout({
     // cannot apply until <body> starts parsing.
     <html lang="en" style={{ backgroundColor: "#c44d0b" }}>
       <head>
+        <style id="ww-zero-shadows-first-paint">{`
+          @layer wildworks-zero-shadows {
+            html, body, body *, body *::before, body *::after, body *::marker,
+            body *::placeholder, body *::first-letter, body *::first-line {
+              text-shadow: none !important; box-shadow: none !important;
+            }
+            .wild-top-logo, .wild-top-logo-source, .wild-top-logo::after {
+              filter: none !important; -webkit-filter: none !important;
+            }
+            .wild-top-logo::before, .ww-home-btn-icon__shadow {
+              display: none !important; content: none !important;
+            }
+          }
+        `}</style>
         <link rel="preconnect" href="https://api.liveavatar.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.liveavatar.com" />
         <script
@@ -649,6 +683,9 @@ export default function RootLayout({
             <BrandLogo />
             <TelemetryBoot />
             <MainPageSwipeNavigation />
+            <H504NonLegalShadowEnforcer />
+            <H506FiveMajorButtonZeroShadowEnforcer />
+            <ZeroShadowEnforcer />
             <main className="wild-main-shell flex-1">{children}</main>
             <Footer />
           </div>

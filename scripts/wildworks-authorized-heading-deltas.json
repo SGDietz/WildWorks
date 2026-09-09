@@ -1,0 +1,53 @@
+{
+  "authority": [
+    "G via authenticated Grok packet: front door 10% sorry",
+    "G via authenticated Grok packet: Start with iScott backed off 15% from all avatars everywhere on the site"
+  ],
+  "scope": "Only Front Door shadow -10%; avatar-panel Start title font and shadow -15% from restored afternoon. No Front Door font change.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "f3f7bb93ddb3b8233df3eed9fe825c35c7a04f011224b8e0a3057f1e6978b88b",
+      "after": "d05188bd1f6de9018b88694f5668186c9227c55b7b6acbd49111e9d0b4384d0e",
+      "replacements": [
+        [
+          "          // H538: G explicitly reported the Start heading's lighter exception\n          // as inconsistent with Front Door. Both now use the large-text band.\n          // Keep the separate Talk/Upload button treatment at 1px.\n          const shadow = element.closest(HOME_LIGHT_ISCOTT_CONTROLS)",
+          "          // G via Grok, 2026-09-08 20:26 ET: afternoon reference, with only\n          // avatar Start title shadow -15% and Front Door shadow -10%.\n          // Keep the original native renderer and its scale compensation.\n          const shadow = element.closest(\"#talk-to-iscott .wild-start-title, .wild-iscott-panel--footer .wild-start-title\")\n            ? homeConnectedTextShadow(homeOffset * 0.85, true)\n            : element.closest(\"#top.wild-home .wild-iscott-title--front-door\")\n            ? homeConnectedTextShadow(homeOffset * 0.9, true)\n            : element.closest(HOME_LIGHT_ISCOTT_CONTROLS)"
+        ]
+      ]
+    },
+    "app/home-small-type-size-lock.css": {
+      "before": "a284ce003fe34fc3f369b6de6cccbe68a88febf3b26222939abc86ad2826f7ac",
+      "after": "673c199d6f2157e53930d3f5f9b9d81b83858345da5531ced43cdab82c514ab7",
+      "replacements": [
+        [
+          "font-size: 3.225rem !important;",
+          "font-size: 2.74125rem !important; /* G: restored Start title -15%. */"
+        ],
+        [
+          "font-size: 2.475rem !important;",
+          "font-size: 2.10375rem !important; /* G: restored Start title -15%. */"
+        ]
+      ]
+    },
+    "app/footer-iscott-panel-match.css": {
+      "before": "2724fca49202e9739d4392293cffccb154a16242ddb3e54bfccef614474b0e38",
+      "after": "00634bce1d6161b10de7a0a899f521dd8bde7da26e7cb215a0e155aca9259d37",
+      "replacements": [
+        [
+          "font-size: clamp(2.1rem, 7vw, 3.225rem) !important;",
+          "font-size: clamp(1.785rem, 5.95vw, 2.74125rem) !important; /* G: restored Start title -15%. */"
+        ]
+      ]
+    },
+    "app/H497-named-walkthrough-refinements.css": {
+      "before": "be6421d18975ac27bd819ad4bfea3257a891ebc4ea9efe9225097046e00e876f",
+      "after": "198f63db493fd559b755e0ac7404408717909e6b9b356e3922febc3bb517e024",
+      "replacements": [
+        [
+          "font-size: min(12.5vw, 3rem) !important;",
+          "font-size: min(10.625vw, 2.55rem) !important; /* G: restored Start title -15%. */"
+        ]
+      ]
+    }
+  }
+}

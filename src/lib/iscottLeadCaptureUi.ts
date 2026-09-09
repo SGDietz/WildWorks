@@ -18,7 +18,7 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   // Talking about the visible field is not choosing a contact method. Keep
   // this before the broad phone/email branches: f1163ff3 said "the box ...
   // your phone" while correcting the UI and briefly flipped the live field.
-  if (/\b(?:email|phone|capture)\s+box\b|\bbox\b[\s\S]{0,40}\b(?:email|phone)\b|\b(?:email|phone)\b[\s\S]{0,40}\b(?:box|words?|label|glow)\b/i.test(normalized)) {
+  if (/\b(?:email|phone|capture)\s+box\b|\bbox\b[\s\S]{0,40}\b(?:email|phone)\b|\b(?:email|phone)\b[\s\S]{0,40}\b(?:box|card|rim|words?|label|glow)\b/i.test(normalized)) {
     return null;
   }
   // A physical-phone complaint is also not a contact-method choice. Keep the
@@ -45,14 +45,25 @@ export function visitorChoseContactMethod(text: string): "email" | "phone" | nul
   if (!personalContactChoice && /\bfollow[- ]?up\s+e-?mail\b|\b(?:send|sent|sending|receive[ds]?|saved|upload\w*)\b[\s\S]{0,70}\be-?mail\b|\be-?mail\b[\s\S]{0,70}\b(?:send|sent|sending|saved|lead|notification|receipt|information|upload\w*)\b/i.test(normalized)) {
     return null;
   }
-  if (/\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|sms|phone|call|telephone)\b/i.test(normalized)
-    && !/\b(?:e-?mail)\b/i.test(normalized)) {
+  // A visitor must choose how to be contacted. The September 6 smoke
+  // mentioned Scott's contact information while coaching, then "An email."
+  // Neither is a choice. A real short answer ("Email.") still works.
+  if (!personalContactChoice && /\b(?:scott['’]s|his|her|their)\s+(?:personal\s+)?(?:cell\s+)?(?:phone|telephone|e-?mail)\b|\byou can tell people\b/i.test(normalized)) {
+    return null;
+  }
+  const phoneDeclined = /\b(?:do not|don't|dont|never|no|not)\s+(?:(?:want|use|prefer|by|via|a|an|to|be|me|please|any)\s+){0,4}(?:phone|call|telephone|text|sms)\b/i.test(normalized);
+  const emailDeclined = /\b(?:do not|don't|dont|never|no|not)\s+(?:(?:want|use|prefer|by|via|a|an|to|be|me|please|any)\s+){0,4}e-?mail\b/i.test(normalized);
+  const answer = normalized.replace(/^(?:(?:um+|uh+|er|ah|oh|well|okay|ok|yeah|yes)\b[,.\s]+)+/i, "");
+  const phoneChoice = /\b(?:or\s+text|text\s+me|by\s+text|via\s+sms|give\s+me\s+a\s+call|call\s+me|call\s+you\s+on\s+the\s+phone|(?:by|via|prefer|use|choose)\s+(?:the\s+)?(?:phone|telephone|sms)|(?:phone|telephone)(?:'s| is)?\s+(?:fine|best|good|okay|ok|works)|my\s+(?:phone|telephone)\s+(?:number|is))\b/i.test(normalized)
+    || /^(?:phone|telephone|call|sms|text)(?:[,.!?]|\s*$)/i.test(answer);
+  if (!phoneDeclined && phoneChoice && (emailDeclined || !/\be-?mail\b/i.test(normalized))) {
     return "phone";
   }
   if (/\bas soon as i\b|\bemail box\b|\bstupid\b.{0,40}\bbox\b/i.test(normalized)) {
     return null;
   }
-  if (/\b(?:e-?mail(?:'s| is)?\s+fine|prefer\s+(?:an?\s+)?e-?mail|by\s+e-?mail|use\s+e-?mail|e-?mail)\b/i.test(normalized)) {
+  if (!emailDeclined && (/\b(?:e-?mail(?:'s| is)?\s+(?:fine|great)|prefer\s+(?:an?\s+)?e-?mail|(?:by|via|use|choose)\s+e-?mail|e-?mail\s+me|e-?mail\s+works|my\s+e-?mail(?:\s+address)?\s+is)\b/i.test(normalized)
+    || /^e-?mail(?:[,.!?]|\s*$)/i.test(answer))) {
     return "email";
   }
   return null;

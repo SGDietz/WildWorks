@@ -1,0 +1,46 @@
+{
+  "authority": [
+    "Yeah, just run with this one. It's great. It's a little light, but it's fine.",
+    "Chief, you take over the code installation again. Grok. Failed. Whatever. Make sure he knows what you're doing now."
+  ],
+  "reference": {
+    "file": "Screenshot 2026-09-07 220658.png",
+    "sha256": "ff57342f7dc9522ee050d9f1f9fc33e2299b9b219bf0bc330078db4c36882bcd",
+    "date": "2026-09-07 22:06:58 America/New_York",
+    "sourceEvidence": "rollout-2026-09-07T19-35-12-01a07e39-ccd1-7b83-8e0e-9c916bdfe350.jsonl, 2026-09-08T01:54:45.654Z"
+  },
+  "scope": "Restore original native large/logo 2.5px black downward shadow on the five main routes. Preserve approved controls, body, captions, all foreground/background colors, fonts, layout, legal bytes, Start1.0625px and FrontDoor1.125px exceptions. Accepted lightness is not permission for extra tuning.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "path": "app/components/ZeroShadowEnforcer.tsx",
+      "before": "d05188bd1f6de9018b88694f5668186c9227c55b7b6acbd49111e9d0b4384d0e",
+      "after": "e15e77d97aaf2b541d98a938b43ab63d332a935102906b4f452e319a5b2c4f9e",
+      "replacements": [
+        [
+          "// H539: bring large lettering from 2.5px to 1.25px against the glyphs.",
+          "// G-approved September 7 22:06:58 reference: large lettering 2.5px."
+        ],
+        [
+          "control ? 2.5 : caption ? 2.5 : large ? 2.5 : 2",
+          "control ? 2.5 : caption ? 2.5 : large ? 5 : 2"
+        ],
+        [
+          "// avatar Start title shadow -15% and Front Door shadow -10%.",
+          "// avatar Start title 1.0625px and Front Door 1.125px stay fixed."
+        ],
+        [
+          "homeConnectedTextShadow(homeOffset * 0.85, true)",
+          "homeConnectedTextShadow(homeOffset * 0.85, false, true)"
+        ],
+        [
+          "homeConnectedTextShadow(homeOffset * 0.9, true)",
+          "homeConnectedTextShadow(homeOffset * 0.9, false, true)"
+        ],
+        [
+          "// H539: one 1px logo shadow touches the fine strokes and flourishes.\n          element.style.setProperty(\"filter\", homeConnectedDropFilter(homeOffset, false), \"important\");",
+          "// Original approved native single black logo shadow; one owner only.\n          element.style.setProperty(\"filter\", homeConnectedDropFilter(homeOffset, true), \"important\");"
+        ]
+      ]
+    }
+  }
+}

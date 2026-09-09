@@ -64,7 +64,7 @@ html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
 
 html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
   #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-start-title {
-  font-size: 3.225rem !important;
+  font-size: 2.74125rem !important; /* G: restored Start title -15%. */
 }
 
 html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
@@ -108,6 +108,6 @@ html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
 
   html body#wildworks-body:has(#top.wild-home:not(.wild-legal-home))
     #top.wild-home:not(.wild-legal-home) #talk-to-iscott .wild-start-title {
-    font-size: 2.475rem !important;
+    font-size: 2.10375rem !important; /* G: restored Start title -15%. */
   }
 }

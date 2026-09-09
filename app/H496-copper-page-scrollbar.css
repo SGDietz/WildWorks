@@ -1,0 +1,73 @@
+/* G, 2026-09-06: approved copper scrollbar, on all devices.
+   Only the document-edge scrollbar is in scope. Native scrolling, page
+   content, internal panels and avatar controls retain their existing rules. */
+@layer ww-mobile-only-pass {
+  @media (forced-colors: none) {
+    /* Standards fallback (including Firefox): copper thumb / dark track. */
+    html:has(body#wildworks-body) {
+      scrollbar-color: #e96819 #8f3a14 !important;
+    }
+
+    @supports selector(::-webkit-scrollbar) {
+      html:has(body#wildworks-body) {
+        /* Non-auto standard values suppress the WebKit part styling. */
+        scrollbar-color: auto !important;
+        scrollbar-width: auto !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar {
+        /* Preserve the measured 10px document gutter at every breakpoint. */
+        width: 10px !important;
+        height: 10px !important;
+        background: #8f3a14 !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-track,
+      html:has(body#wildworks-body)::-webkit-scrollbar-corner {
+        background: #8f3a14 !important;
+        border: 0 !important;
+        box-shadow: inset 1px 0 0 #6f2a10 !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #f08c28, #e96819 48%, #e96819) !important;
+        background-clip: padding-box !important;
+        border: 1px solid #8f3a14 !important;
+        border-radius: 999px !important;
+        box-shadow: inset 1px 0 0 rgba(252, 224, 173, 0.33) !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(90deg, #fce0ad, #f08c28 38%, #e96819) !important;
+        background-clip: padding-box !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-button {
+        display: block !important;
+        width: 10px !important;
+        height: 12px !important;
+        background: #8f3a14 !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: 6px 4px !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+
+      /* One up arrow at the top and one down arrow at the bottom. */
+      html:has(body#wildworks-body)::-webkit-scrollbar-button:vertical:decrement:end,
+      html:has(body#wildworks-body)::-webkit-scrollbar-button:vertical:increment:start,
+      html:has(body#wildworks-body)::-webkit-scrollbar-button:horizontal {
+        display: none !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-button:vertical:decrement {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 4'%3E%3Cpath fill='%23fce0ad' d='M3 0 6 4H0Z'/%3E%3C/svg%3E") !important;
+      }
+
+      html:has(body#wildworks-body)::-webkit-scrollbar-button:vertical:increment {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 4'%3E%3Cpath fill='%23fce0ad' d='M0 0H6L3 4Z'/%3E%3C/svg%3E") !important;
+      }
+    }
+  }
+}

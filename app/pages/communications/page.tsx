@@ -3,6 +3,7 @@ import LegalPage from "../../components/LegalPage";
 export default function CommunicationsPage() {
   return (
     <LegalPage
+      pageKey="communications"
       title="Communications Policy"
       description="How WildWorks may contact visitors and clients by email, SMS/text, phone, social platforms, iScott follow-up, and related marketing or project channels."
       sections={[

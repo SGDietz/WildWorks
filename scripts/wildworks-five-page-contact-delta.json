@@ -1,0 +1,28 @@
+{
+  "authority": [
+    "G: fuckin finish it assmunch",
+    "G: no fucking goddamn anything to the legal pages"
+  ],
+  "scope": "Complete the already-requested five-main-page text/logo contact correction across all widths; remove missed desktop exemption. Preserve controls, colors, fonts, geometry, behavior and EVERY legal file/style. Existing legal exclusion predicate is unchanged.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "f56a9cf6ea14f03e085127d593f845dfc388db9b8c2c959dfb3967014d574148",
+      "after": "3665f768a11b5450bd099b967aa341fb0ea7b4373f8811637d7c7b8677d9e2a9",
+      "replacements": [
+        [
+          "// G: mobile gap correction only. Keep the accepted desktop treatment.",
+          "// G: complete contact correction on the five main pages at every width."
+        ],
+        [
+          "const compactContact = referenceShadowsAllowed && window.matchMedia(\"(max-width: 1023px)\").matches;",
+          "const compactContact = referenceShadowsAllowed;"
+        ],
+        [
+          "// A displaced 2.5px copy separates from mobile hairlines. Use one\n          // attached 1px native offset for compact page ink; approved controls",
+          "// A displaced 2.5px copy separates from thin strokes at any width. Use one\n          // attached 1px native offset for five-page ink; approved controls"
+        ]
+      ]
+    }
+  },
+  "stopRule": "After this named repair, stop. Crawls are read-only, no new styling or historical rollback without G exact new request."
+}

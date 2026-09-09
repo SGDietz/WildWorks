@@ -4,32 +4,32 @@
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-kicker,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-kicker .wild-iscott-kicker__color--one {
   filter: none !important;
-  text-shadow: 0 0.9px 0 rgba(35, 9, 2, 0.8), 0 1.9px 0 rgba(25, 6, 1, 0.5) !important;
+  text-shadow: 0 1.25px 0 #000 !important;
 }
 
 /* iScott is the - THE IDEAL exactly. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--one,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--two {
   filter: none !important;
-  text-shadow: rgba(35,9,2,0.96) 0 0.5200px 0, rgba(34,9,2,0.936) 0 1.0400px 0, rgba(33,8,2,0.911) 0 1.5600px 0, rgba(32,8,2,0.887) 0 2.0800px 0, rgba(31,8,2,0.862) 0 2.6000px 0, rgba(29,7,1,0.838) 0 3.1200px 0, rgba(28,7,1,0.813) 0 3.6400px 0, rgba(27,7,1,0.789) 0 4.1600px 0, rgba(26,6,1,0.764) 0 4.6800px 0, rgba(25,6,1,0.74) 0 5.2000px 0 !important;
+  text-shadow: #000 0 0.5200px 0, #000 0 1.0400px 0, #000 0 1.5600px 0, #000 0 2.0800px 0, #000 0 2.6000px 0, #000 0 3.1200px 0, #000 0 3.6400px 0, #000 0 4.1600px 0, #000 0 4.6800px 0, #000 0 5.2000px 0 !important;
 }
 
 /* Front Door - deliberately lighter because the darker face reads heavier. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #iscott-sales .wild-iscott-title .wild-iscott-title__segment--three {
   filter: none !important;
-  text-shadow: 0 0.8px 0 rgba(35, 9, 2, 0.68), 0 1.7px 0 rgba(25, 6, 1, 0.42) !important;
+  text-shadow: 0 1.25px 0 #000 !important;
 }
 
 /* WILDWORKS CONCIERGE kicker. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott .money-panel-kicker,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott .money-panel-kicker * {
   filter: none !important;
-  text-shadow: 0 0.9px 0 rgba(35, 9, 2, 0.8), 0 1.9px 0 rgba(25, 6, 1, 0.5) !important;
+  text-shadow: 0 1.25px 0 #000 !important;
 }
 
 /* Start with iScott - one step under THE IDEAL on the lighter card. */
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott .wild-start-title,
 html body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body:has(#top#top.wild-home:not(.wild-legal-home)) #top#top#top#top.wild-home #talk-to-iscott .wild-start-title * {
   filter: none !important;
-  text-shadow: rgba(35,9,2,0.94) 0 0.4700px 0, rgba(34,9,2,0.916) 0 0.9400px 0, rgba(33,8,2,0.891) 0 1.4100px 0, rgba(32,8,2,0.867) 0 1.8800px 0, rgba(31,8,2,0.842) 0 2.3500px 0, rgba(29,7,1,0.818) 0 2.8200px 0, rgba(28,7,1,0.793) 0 3.2900px 0, rgba(27,7,1,0.769) 0 3.7600px 0, rgba(26,6,1,0.744) 0 4.2300px 0, rgba(25,6,1,0.72) 0 4.7000px 0 !important;
+  text-shadow: #000 0 0.4700px 0, #000 0 0.9400px 0, #000 0 1.4100px 0, #000 0 1.8800px 0, #000 0 2.3500px 0, #000 0 2.8200px 0, #000 0 3.2900px 0, #000 0 3.7600px 0, #000 0 4.2300px 0, #000 0 4.7000px 0 !important;
 }

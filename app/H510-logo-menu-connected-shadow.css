@@ -1,0 +1,10 @@
+/* G, 2026-09-07: ONLY the logo and menu on the five main pages.
+   One connected 1px vertical black shadow: no blur, horizontal offset or rim. */
+@layer wildworks-zero-shadows {
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body .wild-top-logo {
+    filter: drop-shadow(0 1px 0 #000) !important;
+  }
+  html:has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio)):not(:has(.wild-legal-home)) body#wildworks-body :is(.wild-nav-link, .wild-mobile-nav-link) {
+    text-shadow: 0 1px 0 #000 !important;
+  }
+}

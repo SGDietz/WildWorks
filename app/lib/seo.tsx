@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+export const SITE_BROWSER_TITLE = "WildWorks Fine Art & Practical Landscaping";
+
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://wildworks.ai"
 ).replace(/\/$/, "");
@@ -28,7 +30,7 @@ export function buildPageMetadata({
   const imageUrl = `${SITE_URL}${image}`;
 
   return {
-    title,
+    title: { absolute: SITE_BROWSER_TITLE },
     description,
     alternates: { canonical: path },
     openGraph: {

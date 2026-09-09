@@ -1,0 +1,19 @@
+/* G, 2026-09-05: pause the broader walkthrough. Home Talk to iScott
+   buttons only, on every device, so G can verify the unchanged preview link.
+   Reuse the existing small button's Cambria font and filled arc-cluster icon. */
+@layer ww-mobile-only-pass {
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) :is(a, button)[aria-label="Talk to iScott"],
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) :is(a, button)[aria-label="Talk to iScott"] > span {
+    font-family: Cambria, "Cambria Math", Georgia, "Times New Roman", serif !important;
+    font-weight: 750 !important;
+    font-style: normal !important;
+    letter-spacing: normal !important;
+  }
+}
+@layer ww-h457-icon {
+  html body#wildworks-body#wildworks-body:has(#top.wild-home:not(.wild-legal-home)) .wild-large-iscott-talk .ww-home-btn-icon {
+    width: 1.11607143em !important;
+    height: 1.11607143em !important;
+    flex: 0 0 1.11607143em !important;
+  }
+}

@@ -1,0 +1,27 @@
+/* G, 2026-09-06: mobile-only Dream Project action-card correction.
+   The lower Start with iScott action must match Call, Text, and Email in the
+   same footer card on every route. Preserve the card, button geometry, and
+   all non-mobile styles. */
+@media (max-width: 599px) and (hover: none) and (pointer: coarse) {
+  footer#footer .wild-footer-contact-cta__actions > a[data-iscott-start-cta] > span:last-child {
+    font-size: inherit !important;
+  }
+
+  footer#footer .wild-footer-contact-cta__actions > a[data-iscott-start-cta] > .ww-home-btn-icon,
+  footer#footer .wild-footer-contact-cta__actions > a[data-iscott-start-cta] > .ww-home-btn-icon svg.ww-talk-arc-cluster {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+/* G H537, 2026-09-08: the five main pages' footer buttons should look like
+   one family again. Their mixed Cambria/Goudy stacks rendered with visibly
+   different weight in WebKit. Use the established gold-control serif face
+   for button lettering only; preserve sizes, geometry, page type and legal. */
+@layer wildworks-zero-shadows {
+  html:not(:has(.wild-legal-home)):has(:is(#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio))
+    footer#footer :is(.wild-footer-contact-cta__actions > a, .wild-footer-contact-cta__actions > a > span, .wild-signup-choice-button, .wild-signup-submit) {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 750 !important;
+  }
+}
