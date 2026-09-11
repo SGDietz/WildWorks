@@ -64,6 +64,26 @@ body .wild-phone-number-line__call-today--emphasis {
   font-size: clamp(2.85rem, 5.4vw, 5.2rem);
 }
 
+/* 2026-09-11: the toll-free display is two glyphs shorter than the former
+   public number. Restore the first Home callout's substantial visual width
+   and headline presence without changing its exact text or the line below. */
+html:has(#top.wild-home)
+  body#wildworks-body
+  .wild-phone-number-line--home-hero
+  > a {
+  font-size: clamp(4.1rem, 7.85vw, 8.9rem) !important;
+}
+
+@media (max-width: 640px) {
+  html:has(#top.wild-home)
+    body#wildworks-body
+    .wild-phone-number-line--home-hero
+    > a {
+    font-size: clamp(3rem, 13.2vw, 4.2rem) !important;
+    letter-spacing: clamp(0.025em, 0.38vw, 0.075em) !important;
+  }
+}
+
 body .wild-phone-number-line--subpage {
   /* The gallery hands directly to this two-line callout. Equal space above
      and below centers it between the photo field and the contact card. */

@@ -72,7 +72,7 @@ export default function CommunicationsPage() {
               </p>
               <p>
                 Reply HELP for help and STOP to opt out of marketing texts. You may also request help or text
-                opt-out by emailing hello@wildworks.ai or calling WildWorks at 1+443-797-2166.
+                opt-out by emailing hello@wildworks.ai or calling WildWorks at 855-253-2727.
               </p>
             </>
           ),
@@ -166,7 +166,7 @@ export default function CommunicationsPage() {
           children: (
             <p>
               Communication requests, opt-outs, and questions can be sent to hello@wildworks.ai or raised by
-              calling WildWorks at 1+443-797-2166.
+              calling WildWorks at 855-253-2727.
             </p>
           ),
         },

@@ -1,0 +1,45 @@
+{
+  "authority": "G explicitly authorized production migration of the public corporate number to +1 855-253-2727 across all six properties on 2026-09-11.",
+  "scope": "Only replace WildWorks public phone references with visible 855-253-2727 while preserving tel:+18552532727 internally, removing visible DietzX.ai cross-brand promotion, retaining DietzX LLC only where legally required, restoring the shorter toll-free number to the prior substantial headline presence, and preserving unrelated design, layout, biography, and behavior.",
+  "files": {
+    "app/components/Footer.tsx": {
+      "after": "e70227ad8afeca392178b69eeebf3d6b92995d13dfae0b2693febef27334ea38"
+    },
+    "app/components/PhoneNumberLine.tsx": {
+      "after": "598c1bfca082a718bb616d12353fafe161fc6917186f82a6394b12efeb8946d1"
+    },
+    "app/components/SubpageCallCta.tsx": {
+      "after": "a08e33884aa0ab5b9fe9c06606a1273f85ab4975c4c32d9eea081a2a0cdebdc3"
+    },
+    "app/layout.tsx": {
+      "after": "5c015d970038187074f95a2bc7f4e65802cb4a6c4d9ed0db792e8af2df94ba79"
+    },
+    "app/pages/Home/page.tsx": {
+      "after": "c47bb0878b382e8124abeca7060bfca0b93cfa88fef3c40fa7d2ac4f4c2ca208"
+    },
+    "app/pages/Inspiration/DormantInspirationPage.tsx": {
+      "after": "6d30f9030cfa99bcaa7ac6b5fb5f8b5dbba33a3ceccdd5e43f000cd9d8c6a718"
+    },
+    "app/pages/accessibility/page.tsx": {
+      "after": "c9790474a58743ae4c4698fdc7a86a204d3402f9d427930383fd5401d3298e24"
+    },
+    "app/pages/ai-disclosure/page.tsx": {
+      "after": "5df823339662d62b75b9322df0f67f4ad0863655b7e583ee4430a079468b47d5"
+    },
+    "app/pages/communications/page.tsx": {
+      "after": "9eaa90e8a1b7a29bf8ef12f9fafc6f4ec5ea78d2a42843bd455c339f49620ad8"
+    },
+    "app/pages/disclaimer/page.tsx": {
+      "after": "48e1f9551b36bac9150173e61a1884df9928a86441d6e7ae95f7d03d760c44ac"
+    },
+    "app/pages/privacy-policy/page.tsx": {
+      "after": "2d834940dc7374065c7a89200af4314d6f45ea3a1007bccb4599f253c5f33664"
+    },
+    "app/pages/terms-of-service/page.tsx": {
+      "after": "4436c28901d23ea9789b0d301a19a9a3e5a31f7a62ac7144d10afe2b3d79f142"
+    },
+    "app/phone-number-lines.css": {
+      "after": "ff5129c1b13ff5aaeea55c53959c234288fee0290d9b5032544ae9d9915504ad"
+    }
+  }
+}

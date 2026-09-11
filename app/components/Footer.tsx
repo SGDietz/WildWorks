@@ -155,7 +155,7 @@ export default function Footer() {
             className="wild-legal-minimal-copyright"
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
-            &copy;2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
+            &copy;2026 DietzX llc. All Rights Reserved.
           </span>
         </div>
         <div className="wild-footer-legal-row mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-2 text-center text-sm text-[#fce0ad] sm:flex-row sm:px-6 sm:text-left">
@@ -377,11 +377,11 @@ export default function Footer() {
               <TalkArcClusterIcon />
               <span>Start with iScott</span>
             </motion.a>
-            <motion.a href="tel:+14437972166" aria-label="Call WildWorks at 1+443 797 2166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="tel:+18552532727" aria-label="Call WildWorks at 855-253-2727" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Phone aria-hidden className="h-5 w-5" />
               <span>Call Now</span>
             </motion.a>
-            <motion.a href="sms:+14437972166" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="sms:+18552532727" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <MessageSquareText aria-hidden className="h-5 w-5" />
               <span>Text Now</span>
             </motion.a>
@@ -499,7 +499,7 @@ export default function Footer() {
             className="wild-footer-copyright"
             style={{ fontFamily: "var(--font-geist-sans), Arial, sans-serif" }}
           >
-            &copy;2026 <BrandText>WildWorks</BrandText>. All Rights Reserved.
+            &copy;2026 DietzX llc. All Rights Reserved.
           </span>
         </div>
 
@@ -521,7 +521,7 @@ export default function Footer() {
       >
         <div className="wild-footer-mobile-strip-inner flex items-center justify-around px-2 py-4">
           <motion.a
-            href="tel:+14437972166"
+            href="tel:+18552532727"
             className={mobileBrandLink}
             aria-label="Call Now"
             whileHover={{ scale: 1.1 }}
@@ -541,7 +541,7 @@ export default function Footer() {
             <span className="sr-only">Email Now</span>
           </motion.a>
           <motion.a
-            href="sms:+14437972166"
+            href="sms:+18552532727"
             className={mobileBrandLink}
             aria-label="Text Now"
             whileHover={{ scale: 1.1 }}

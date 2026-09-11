@@ -27,6 +27,9 @@ const finish = JSON.parse(read(finishPath));
 const largeContactPath = "scripts/wildworks-large-contact-correction.json";
 const LARGE_CONTACT_SHA256 = "3dbffefebadcdf936edb795ad41dfa98694d5e7f8d07a42289b904d9dd976649";
 const largeContact = JSON.parse(read(largeContactPath));
+const corporateContactPath = "scripts/wildworks-corporate-phone-footer-20260911.json";
+const CORPORATE_CONTACT_SHA256 = "6674611fa0ad779568fe9333b88884c7151294ae5d8b34d218b8b5c6b8733cbf";
+const corporateContact = JSON.parse(read(corporateContactPath));
 const approved = JSON.parse(read(deltaPath));
 const dependencies = JSON.parse(read(dependenciesPath));
 const referenceText = read(referencePath);
@@ -36,6 +39,7 @@ const cssImports = source => [...source.matchAll(/^import\s+["'][^"']+\.css["'];
 
 function violations(readSource) {
   const failures = [];
+  if (digest(readSource(corporateContactPath)) !== CORPORATE_CONTACT_SHA256) failures.push("Corporate phone/footer authorization changed");
   if (digest(readSource(largeContactPath)) !== LARGE_CONTACT_SHA256) failures.push("Large-letter contact correction changed");
   if (digest(readSource(finishPath)) !== FINISH_SHA256) failures.push("Five-page contact authorization changed");
   if (digest(readSource(contactPath)) !== CONTACT_SHA256) failures.push("Authorized mobile contact correction or stop rule changed");
@@ -44,10 +48,10 @@ function violations(readSource) {
   if (digest(readSource(deltaPath)) !== DELTA_SHA256) failures.push("Authorized delta record changed");
   if (digest(readSource(dependenciesPath)) !== DEPENDENCIES_SHA256) failures.push("Appearance dependency reference changed");
   for (const [path, sha256] of Object.entries(dependencies.files)) {
-    if (digest(readSource(path)) !== sha256) failures.push(`Appearance dependency changed: ${path}`);
+    if (digest(readSource(path)) !== (corporateContact.files[path]?.after ?? sha256)) failures.push(`Appearance dependency changed: ${path}`);
   }
   for (const [path, sha256] of Object.entries(reference.files)) {
-    if (digest(readSource(path)) !== (largeContact.files[path]?.after ?? finish.files[path]?.after ?? contact.files[path]?.after ?? selected.files[path]?.after ?? approved.files[path]?.after ?? sha256)) failures.push(`Afternoon source changed: ${path}`);
+    if (digest(readSource(path)) !== (corporateContact.files[path]?.after ?? largeContact.files[path]?.after ?? finish.files[path]?.after ?? contact.files[path]?.after ?? selected.files[path]?.after ?? approved.files[path]?.after ?? sha256)) failures.push(`Afternoon source changed: ${path}`);
   }
   if (digest(cssImports(readSource("app/layout.tsx"))) !== reference.stylesheetImportsSha256) failures.push("Stylesheet import order changed");
   const renderer = readSource("app/components/ZeroShadowEnforcer.tsx");

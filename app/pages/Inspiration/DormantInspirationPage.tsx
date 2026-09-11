@@ -437,10 +437,10 @@ export default function DormantInspirationPage() {
         </div>
 
         <a
-          href="tel:+14437972166"
+          href="tel:+18552532727"
           className="inspiration-cta-phone block pt-4 mt-2 text-4xl text-center text-white/90 sm:mt-4 sm:text-5xl min-h-[44px] mb-6 sm:mb-10 transition-opacity hover:opacity-90"
         >
-          1+443-797-2166
+          855-253-2727
         </a>
         <h1 className="inspiration-cta-name text-center text-5xl sm:text-6xl mb-6 sm:mb-12">Scott</h1>
 

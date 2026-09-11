@@ -102,7 +102,7 @@ export default function AiDisclosurePage() {
           children: (
             <p>
               Questions about iScott or assisted tools can be sent to hello@wildworks.ai or raised by calling
-              WildWorks at 1+443-797-2166.
+              WildWorks at 855-253-2727.
             </p>
           ),
         },

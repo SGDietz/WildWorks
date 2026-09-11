@@ -531,6 +531,14 @@ export const metadata: Metadata = {
   title: SITE_BROWSER_TITLE,
   description:
     "WildWorks designs and builds natural stone patios, outdoor fireplaces, stone stairs, boulder work, ruins, and high-impact landscape transformations.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=gold-w-1", sizes: "16x16 32x32 48x48" },
+      { url: "/icon.png?v=gold-w-1", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico?v=gold-w-1",
+    apple: [{ url: "/apple-icon.png?v=gold-w-1", sizes: "180x180", type: "image/png" }],
+  },
   keywords: [
     "WildWorks",
     "fine art landscaping",
@@ -598,7 +606,7 @@ export default function RootLayout({
         name: "WildWorks",
         url: siteUrl,
         email: "hello@wildworks.ai",
-        telephone: "+1-443-797-2166",
+        telephone: "+1-855-253-2727",
         image: heroImageUrl,
         logo: `${siteUrl}/wildLogo.png`,
         sameAs: ["https://x.com/WildWorksArt"],
