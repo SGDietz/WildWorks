@@ -5,7 +5,6 @@ import {
 } from "../../../../src/lib/apiRouteSecurity";
 import { logIScottOriginRejection } from "../../../../src/lib/iscottOriginTelemetry";
 import { checkRateLimit } from "../../../../src/lib/rateLimit";
-import { queueOperationalAlertFromTelemetry } from "../../../../src/lib/wildworksOperationalAlerts";
 import { isSupabaseAdminConfigured } from "../../../../src/lib/supabaseAdmin";
 import {
   getRequestTelemetryContext,
@@ -474,14 +473,6 @@ export async function POST(request: Request) {
       payload,
       ...classified,
     };
-    queueOperationalAlertFromTelemetry({
-      eventType: row.event_type,
-      provider: row.provider,
-      route: row.route,
-      statusCode: row.status_code,
-      sessionId: row.session_id ?? row.anonymous_visitor_id,
-      failStreak: (() => { const value = (row.payload as Record<string, unknown>).failStreak; return typeof value === "number" && Number.isFinite(value) ? value : null; })(),
-    });
     const err = await storeWithConversationFallback({
       table: "app_events",
       row,

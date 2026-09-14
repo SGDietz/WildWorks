@@ -329,6 +329,7 @@ try {
     security: `export function assertAllowedOrigin(){ return null; }`,
     rateLimit: `export async function checkCriticalRateLimit(){ return null; }`,
     nextServer: `export function after(task){ globalThis.__speechTruthAfterTasks.push(task); }`,
+    telemetryServer: `export async function insertSupabaseRow(){ return { ok: true, status: 200 }; }`,
   };
   for (const [name, source] of Object.entries(stubs)) {
     await fs.writeFile(path.join(temp, `${name}.mjs`), source, "utf8");
@@ -342,7 +343,9 @@ try {
     .replace('from "../../../src/lib/rateLimit"', `from "${fileUrl("rateLimit.mjs")}"`)
     .replace('from "next/server"', `from "${fileUrl("nextServer.mjs")}"`)
     .replace('from "../../../src/lib/iscottRuntimeSpeechTruth"', `from "${fileUrl("policy.mjs")}"`);
-  await fs.writeFile(path.join(temp, "route.mjs"), routeOutput, "utf8");
+  const securedRouteOutput = routeOutput
+    .replace('from "../../../src/lib/telemetryServer"', `from "${fileUrl("telemetryServer.mjs")}"`);
+  await fs.writeFile(path.join(temp, "route.mjs"), securedRouteOutput, "utf8");
 
   globalThis.__speechTruthTelemetry = [];
   globalThis.__speechTruthAfterTasks = [];

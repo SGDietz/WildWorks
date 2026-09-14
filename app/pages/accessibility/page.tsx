@@ -55,7 +55,7 @@ export default function AccessibilityPage() {
           children: (
             <p>
               If you have trouble using any part of this website, contact hello@wildworks.ai or call WildWorks at
-              855-253-2727. Please describe the page, the issue, your browser or device, and the assistive
+              1+855-253-2727. Please describe the page, the issue, your browser or device, and the assistive
               technology involved if applicable.
             </p>
           ),

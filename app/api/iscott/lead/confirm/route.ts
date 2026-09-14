@@ -4,6 +4,7 @@ import { confirmAndSubmitIScottLead } from "../../../../../src/lib/iscottLeadCap
 import { changedPackageStatusCopy, leadNotQualifiedReason } from "../../../../../src/lib/iscottLeadParsing";
 import { checkRateLimit } from "../../../../../src/lib/rateLimit";
 import { logServerTelemetryEvent } from "../../../../../src/lib/serverTelemetryCapture";
+import { ownsIScottSession, sessionTokenFromCookie } from "../../../../../src/lib/iscottSessionOwnership";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const sessionId = typeof body?.sessionId === "string" ? body.sessionId.trim() : "";
+    const sessionToken = sessionTokenFromCookie(request);
     const contactMethod = body?.contactMethod === "phone"
       ? "phone"
       : body?.contactMethod === "email"
@@ -38,6 +40,9 @@ export async function POST(request: Request) {
 
     if (!isSafeTranscriptionSessionId(sessionId)) {
       return Response.json({ ok: false, error: "Invalid session." }, { status: 400 });
+    }
+    if (!(await ownsIScottSession(sessionId, sessionToken))) {
+      return Response.json({ ok: false, error: "Session ownership could not be verified." }, { status: 403 });
     }
     if (!contactMethod || !contactValue) {
       return Response.json({ ok: false, error: "Choose email or phone and confirm the value." }, { status: 400 });

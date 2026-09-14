@@ -55,10 +55,10 @@ export default function PhoneNumberLine({
       {callTextFirst ? callToday : null}
       <a
         href="tel:+18552532727"
-        aria-label="Call WildWorks at 855-253-2727"
+        aria-label="Call WildWorks at 1+855-253-2727"
         style={iScottDepthEffect}
       >
-        855-253-2727
+        1+855-253-2727
       </a>
       {callTextFirst ? null : callToday}
     </div>

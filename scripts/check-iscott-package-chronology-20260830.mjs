@@ -452,6 +452,9 @@ await stub("stub-route-security", `export function assertAllowedOrigin() { retur
 export function isSafeTranscriptionSessionId(id) { return typeof id === "string" && /^[A-Za-z0-9_-]{4,120}$/.test(id); }
 `);
 await stub("stub-route-rate", "export async function checkRateLimit() { return null; }\n");
+await stub("stub-session-ownership", `export function sessionTokenFromCookie() { return "test-session-token-ownership-123"; }
+export async function ownsIScottSession() { return true; }
+`);
 await stub("stub-route-telemetry", `export const telemetry = [];
 export async function logServerTelemetryEvent(event) { telemetry.push(event); }
 export async function logIScottOriginRejection() {}
@@ -463,6 +466,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", [
   ['from "../../../../../src/lib/rateLimit"', 'from "./pc-stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./pc-stub-route-telemetry.mjs"'],
   ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./pc-stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottSessionOwnership"', 'from "./pc-stub-session-ownership.mjs"'],
 ]);
 const Route = await import(url("route"));
 

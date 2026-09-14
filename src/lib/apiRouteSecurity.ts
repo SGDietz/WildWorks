@@ -55,8 +55,6 @@ function isAllowedRequestOrigin(value: string, request: Request): boolean {
 }
 
 export function assertAllowedOrigin(request: Request, options: AllowedOriginOptions = {}): Response | null {
-  if (process.env.NODE_ENV !== "production") return null;
-
   const origin = request.headers.get("origin");
   // Safari may send the literal opaque origin "null" (or omit Origin and
   // Referer) for a same-origin POST made by an iframe after an iPadOS

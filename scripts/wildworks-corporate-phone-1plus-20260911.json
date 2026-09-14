@@ -1,0 +1,52 @@
+{
+  "authority": "G answered Yes on 2026-09-11 ~20:40 ET in the active Codex voice session to: \"Do you authorize us to resolve that lock and put the verified newer WildWorks build behind the same permanent link?\" (relayed by Chief in C:\\AgentComms\\inbox\\claude-local\\20260911-204000-codex-to-claude-wildworks-public-runtime-authorized.md). G then told Claude: \"work with chief\".",
+  "scope": "Corporate phone display format only, per Chief's 2026-09-11 universal phone lock (every visible corporate-phone instance reads 1+855-253-2727, link target tel:+18552532727). Each change below replaces the text 855-253-2727 with 1+855-253-2727 in visible copy, aria-labels, the clipboard string, or the Home story-line matcher. tel:/sms: link targets are unchanged. No other character changed: git diff against the authorized base is 11 files, 17 lines out, 17 lines in. No visual, layout, color, typography, shadow, legal wording, or behavior change is authorized or recorded here.",
+  "base": "7ecabc84fda411d787b23b09552dd474ff39f2c8 - every before hash below equals the after hash in scripts/wildworks-corporate-phone-footer-20260911.json, which stays unchanged",
+  "recordedBy": "Claude, 2026-09-11, after line-by-line review of the diff (prechange backup: C:\\Users\\sgdie\\Documents\\Claude\\Scheduled\\backups\\ww-lock-20260911)",
+  "files": {
+    "app/components/Footer.tsx": {
+      "before": "e70227ad8afeca392178b69eeebf3d6b92995d13dfae0b2693febef27334ea38",
+      "after": "95dfd4feaba06b915ae363b284a3ba7725d1cb88a5af686bde6e325e86ecf7be"
+    },
+    "app/components/PhoneNumberLine.tsx": {
+      "before": "598c1bfca082a718bb616d12353fafe161fc6917186f82a6394b12efeb8946d1",
+      "after": "9249059ae7107c7e32302b5d8115095df2531ddeb3b06bbab65ee7bbf7532703"
+    },
+    "app/components/SubpageCallCta.tsx": {
+      "before": "a08e33884aa0ab5b9fe9c06606a1273f85ab4975c4c32d9eea081a2a0cdebdc3",
+      "after": "6db7332134420667797fa076abbe320c079afbcf10a085f857c5c904c99c8a60"
+    },
+    "app/pages/Home/page.tsx": {
+      "before": "c47bb0878b382e8124abeca7060bfca0b93cfa88fef3c40fa7d2ac4f4c2ca208",
+      "after": "d488884c6ef919ec7d5cc82c4445d71a2aca0c968d9e02baa235f94a3f5e8eec"
+    },
+    "app/pages/Inspiration/DormantInspirationPage.tsx": {
+      "before": "6d30f9030cfa99bcaa7ac6b5fb5f8b5dbba33a3ceccdd5e43f000cd9d8c6a718",
+      "after": "4f8a08adbb9ee821b02da989d0b202e243fc18258aba5f28ce09f380fbb11885"
+    },
+    "app/pages/accessibility/page.tsx": {
+      "before": "c9790474a58743ae4c4698fdc7a86a204d3402f9d427930383fd5401d3298e24",
+      "after": "e852a74d5e5ef644e99462df5a6ded575521afeb8c5171879da9c1b96a6ba0ac"
+    },
+    "app/pages/ai-disclosure/page.tsx": {
+      "before": "5df823339662d62b75b9322df0f67f4ad0863655b7e583ee4430a079468b47d5",
+      "after": "394d1ebdc67601c7f1d7978b651d6c86a256d336fcbc6776673bb720012508a1"
+    },
+    "app/pages/communications/page.tsx": {
+      "before": "9eaa90e8a1b7a29bf8ef12f9fafc6f4ec5ea78d2a42843bd455c339f49620ad8",
+      "after": "827cb57110f69e8dd457ea0921d6d68daef3f394a426f64b68ca9b81cc8a3313"
+    },
+    "app/pages/disclaimer/page.tsx": {
+      "before": "48e1f9551b36bac9150173e61a1884df9928a86441d6e7ae95f7d03d760c44ac",
+      "after": "f0e1cd4710ecd4b036d39a75eba5a57f910241ace4801c822ed4a2533c284872"
+    },
+    "app/pages/privacy-policy/page.tsx": {
+      "before": "2d834940dc7374065c7a89200af4314d6f45ea3a1007bccb4599f253c5f33664",
+      "after": "df49971e7008dc9ea13b342435a7a4d5fa88fcab74bc9d93db122b514df1ee56"
+    },
+    "app/pages/terms-of-service/page.tsx": {
+      "before": "4436c28901d23ea9789b0d301a19a9a3e5a31f7a62ac7144d10afe2b3d79f142",
+      "after": "c6a511f60784a24cad197d83693e4af947d98048d8104d14057c5fb829d78830"
+    }
+  }
+}

@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { assertAllowedOrigin } from "../../../../src/lib/apiRouteSecurity";
+import { checkRateLimit } from "../../../../src/lib/rateLimit";
 
 /** Public handle (no @) */
 const X_USERNAME = "WildWorksArt";
@@ -81,7 +83,15 @@ function bearer(): string | undefined {
   return process.env.X_BEARER_TOKEN ?? process.env.TWITTER_BEARER_TOKEN;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const originError = assertAllowedOrigin(request, { allowDirectNavigation: true });
+  if (originError) return originError;
+  const rateLimitError = await checkRateLimit(request, {
+    prefix: "x-latest",
+    perMinute: 10,
+    perDay: 500,
+  });
+  if (rateLimitError) return rateLimitError;
   const token = bearer()?.trim();
   if (!token) {
     return NextResponse.json<LatestTweetFailure>(
@@ -103,12 +113,12 @@ export async function GET() {
     );
 
     if (!userRes.ok) {
-      const body = await userRes.text();
+      await userRes.body?.cancel().catch(() => undefined);
       return NextResponse.json<LatestTweetFailure>(
         {
           ok: false,
           error: "Could not look up X profile.",
-          detail: body.slice(0, 300),
+          detail: `upstream_status_${userRes.status}`,
         },
         { status: userRes.status === 404 ? 404 : 502 }
       );
@@ -194,7 +204,7 @@ export async function GET() {
         {
           ok: false,
           error: "Could not load posts from X.",
-          detail: JSON.stringify(tweetsJson.errors ?? tweetsJson).slice(0, 300),
+          detail: "upstream_timeline_error",
         },
         { status: 502 }
       );

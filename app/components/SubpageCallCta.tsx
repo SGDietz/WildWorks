@@ -5,7 +5,7 @@ export default function SubpageCallCta() {
     <div className="wild-subpage-iscott-cta">
       <a
         href="tel:+18552532727"
-        aria-label="Call WildWorks at 855-253-2727"
+        aria-label="Call WildWorks at 1+855-253-2727"
         className="money-cta money-cta--primary"
       >
         <Phone aria-hidden className="h-5 w-5" />

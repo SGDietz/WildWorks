@@ -117,7 +117,11 @@ export async function POST(request: Request) {
 
     // Check the declared length BEFORE parsing. formData() buffers the whole
     // upload, so the old order read a 2 GB body and only then said it was too big.
-    const declaredLength = Number(request.headers.get("content-length") || 0);
+    const contentLengthHeader = request.headers.get("content-length");
+    if (!contentLengthHeader) {
+      return Response.json({ error: "Upload size is required." }, { status: 411 });
+    }
+    const declaredLength = Number(contentLengthHeader);
     if (Number.isFinite(declaredLength) && declaredLength > MAX_MEDIA_BYTES) {
       return Response.json(
         { error: `That file is larger than the ${Math.floor(MAX_MEDIA_BYTES / 1024 / 1024)} MB upload limit.` },

@@ -203,7 +203,7 @@ export default function PrivacyPolicyPage() {
           children: (
             <p>
               Privacy questions can be sent to hello@wildworks.ai or raised by calling WildWorks at
-              855-253-2727.
+              1+855-253-2727.
             </p>
           ),
         },

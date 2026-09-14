@@ -377,7 +377,7 @@ export default function Footer() {
               <TalkArcClusterIcon />
               <span>Start with iScott</span>
             </motion.a>
-            <motion.a href="tel:+18552532727" aria-label="Call WildWorks at 855-253-2727" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <motion.a href="tel:+18552532727" aria-label="Call WildWorks at 1+855-253-2727" className="money-cta money-cta--primary" whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Phone aria-hidden className="h-5 w-5" />
               <span>Call Now</span>
             </motion.a>

@@ -6,12 +6,14 @@ import {
   LANGUAGE,
   VOICE_ID,
 } from "../liveavatar/secrets";
+import { createHash } from "node:crypto";
 import { after } from "next/server";
 import { logServerTelemetryEvent } from "../../../src/lib/serverTelemetryCapture";
 import { logIScottOriginRejection } from "../../../src/lib/iscottOriginTelemetry";
 import { assertAllowedOrigin } from "../../../src/lib/apiRouteSecurity";
 import { checkCriticalRateLimit } from "../../../src/lib/rateLimit";
 import { iscottHandoffTruthDynamicVariables } from "../../../src/lib/iscottRuntimeSpeechTruth";
+import { insertSupabaseRow } from "../../../src/lib/telemetryServer";
 
 export const dynamic = "force-dynamic";
 const WILDWORKS_AVATAR_REQUEST_HEADER = "x-wildworks-avatar-request";
@@ -139,6 +141,36 @@ export async function POST(request: Request) {
       );
     }
 
+    const liveAvatarSessionId = typeof data?.data?.session_id === "string" ? data.data.session_id.trim() : "";
+    const sessionToken = typeof data?.data?.session_token === "string" ? data.data.session_token.trim() : "";
+    if (!liveAvatarSessionId || !sessionToken) {
+      return Response.json({ error: "LiveAvatar returned an incomplete session" }, { status: 502 });
+    }
+    const ownership = await insertSupabaseRow(
+      "conversation_sessions",
+      {
+        session_id: liveAvatarSessionId,
+        liveavatar_session_id: liveAvatarSessionId,
+        source: "liveavatar_session_mint",
+        metadata: {
+          token_fp: createHash("sha256").update(sessionToken).digest("hex").slice(0, 32),
+        },
+      },
+      { onConflict: "session_id", mergeDuplicates: true },
+    );
+    if (!ownership.ok) {
+      await logServerTelemetryEvent({
+        request,
+        eventType: "liveavatar_session_owner_store_failed",
+        severity: "critical",
+        provider: "supabase",
+        sessionId: liveAvatarSessionId,
+        route: "/api/start-session",
+        statusCode: ownership.status || 503,
+      });
+      return Response.json({ error: "LiveAvatar session ownership could not be secured" }, { status: 503 });
+    }
+
     const tokenRequestMs = Date.now() - tokenRequestStartedAt;
     after(async () => {
       await logServerTelemetryEvent({
@@ -159,7 +191,12 @@ export async function POST(request: Request) {
         },
       }).catch(() => undefined);
     });
-    return Response.json(data.data);
+    const response = Response.json(data.data);
+    response.headers.append(
+      "Set-Cookie",
+      `wildworks_iscott_session=${encodeURIComponent(sessionToken)}; Path=/api/iscott/lead/confirm; HttpOnly; Secure; SameSite=Strict; Max-Age=1200`,
+    );
+    return response;
   } catch (error) {
     await logServerTelemetryEvent({
       request,

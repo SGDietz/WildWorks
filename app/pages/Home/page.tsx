@@ -630,12 +630,12 @@ function renderSignatureStoryLine(
   line: string,
   onIScottClick: (event: MouseEvent<HTMLAnchorElement>) => void,
 ) {
-  if (line.trim() === "855-253-2727") {
+  if (line.trim() === "1+855-253-2727") {
     return (
       <a
         className="wild-story-contact-link wild-story-contact-link--phone"
         href="tel:+18552532727"
-        aria-label="Call WildWorks at 855-253-2727"
+        aria-label="Call WildWorks at 1+855-253-2727"
         style={storyInlineActionStyle}
       >
         <Phone aria-hidden className="wild-story-contact-icon" />
@@ -674,7 +674,7 @@ function renderSignatureStoryLine(
 function signatureStoryLineClassName(line: string) {
   const normalizedLine = line.trim();
 
-  if (normalizedLine === "855-253-2727") {
+  if (normalizedLine === "1+855-253-2727") {
     return "wild-story-contact-line wild-story-contact-line--phone";
   }
 
@@ -808,7 +808,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     }
     setCallNumberVisible(true);
     try {
-      void navigator.clipboard?.writeText("855-253-2727").catch(() => undefined);
+      void navigator.clipboard?.writeText("1+855-253-2727").catch(() => undefined);
     } catch {}
     setPhoneCopied(true);
     window.setTimeout(() => {

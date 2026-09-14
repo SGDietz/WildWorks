@@ -73,14 +73,13 @@ assert.match(alertSource, /const DEDUPE_MS = 60 \* 60 \* 1000;/);
 assert.match(alertSource, /failStreak\?: number \| null;/);
 assert.match(alertSource, /deferToClientStreak\?: boolean;/);
 
-// Both telemetry entry points must forward the streak, and the duplicate
-// server-side sync observation must mark itself as deferring to the client.
-for (const relativePath of ["../app/api/app-events/log/route.ts", "../src/lib/serverTelemetryCapture.ts"]) {
-  const source = readSource(relativePath);
-  assert.match(source, /queueOperationalAlertFromTelemetry\(\{/, relativePath);
-  assert.match(source, /failStreak:[\s\S]{0,240}Number\.isFinite\(value\)/, relativePath);
-}
+// Public client telemetry is stored but must never be allowed to page the
+// owner. Only server-observed failures may enter the operational alert lane.
+const publicTelemetrySource = readSource("../app/api/app-events/log/route.ts");
+assert.doesNotMatch(publicTelemetrySource, /queueOperationalAlertFromTelemetry/);
 const captureSource = readSource("../src/lib/serverTelemetryCapture.ts");
+assert.match(captureSource, /queueOperationalAlertFromTelemetry\(\{/);
+assert.match(captureSource, /failStreak:[\s\S]{0,240}Number\.isFinite\(value\)/);
 assert.match(captureSource, /deferToClientStreak: args\.deferToClientStreak === true/);
 // Admission-only: the marker must never reach the stored app_events row.
 const rowStart = captureSource.indexOf("const row = {");

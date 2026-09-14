@@ -84,6 +84,9 @@ await write("stub-route-capture", `export const state = { result: null };
 export async function confirmAndSubmitIScottLead() { return structuredClone(state.result); }
 `);
 await write("stub-route-rate", `export async function checkRateLimit() { return null; }\n`);
+await write("stub-session-ownership", `export function sessionTokenFromCookie() { return "test-session-token-ownership-123"; }
+export async function ownsIScottSession() { return true; }
+`);
 await write("stub-route-telemetry", `export const events = [];
 export async function logServerTelemetryEvent(event) {
   events.push({ ...event, request: undefined, payload: structuredClone(event.payload) });
@@ -97,6 +100,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", "confirmRoute", [
   ['from "../../../../../src/lib/rateLimit"', 'from "./stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./stub-route-telemetry.mjs"'],
   ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottSessionOwnership"', 'from "./stub-session-ownership.mjs"'],
 ]);
 
 const Capture = await import(url("iscottLeadCapture"));

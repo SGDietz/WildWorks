@@ -41,9 +41,13 @@ function hashIp(ip: string): string {
 }
 
 function getClientIp(request: Request): string {
+  const vercelForwarded = request.headers.get("x-vercel-forwarded-for");
+  if (vercelForwarded) return vercelForwarded.split(",")[0].trim();
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp) return realIp.trim();
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return request.headers.get("x-real-ip") || "unknown";
+  if (forwarded) return forwarded.split(",").at(-1)?.trim() || "unknown";
+  return "unknown";
 }
 
 async function upstashPipeline(commands: (string | number)[][]): Promise<(number | null)[]> {
@@ -101,8 +105,6 @@ function checkMemoryRateLimit(request: Request, options: RateLimitOptions): Resp
 }
 
 export async function checkRateLimit(request: Request, options: RateLimitOptions = {}): Promise<Response | null> {
-  if (process.env.NODE_ENV !== "production") return null;
-
   const base = process.env.UPSTASH_REDIS_REST_URL?.trim();
   const token = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
   if (!base || !token) return checkMemoryRateLimit(request, options);
@@ -140,7 +142,6 @@ export async function checkCriticalRateLimit(
     globalPerDay?: number;
   },
 ): Promise<Response | null> {
-  if (process.env.NODE_ENV !== "production") return null;
   if (!isSupabaseAdminConfigured()) {
     queueSupabaseOperationalAlert({ component: "critical rate limiter", operation: "RPC reserve_api_rate_limit", failureKind: "configuration", correlationSource: "rate-limit:configuration" });
     return unavailableResponse();

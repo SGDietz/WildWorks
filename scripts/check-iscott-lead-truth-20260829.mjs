@@ -1931,6 +1931,9 @@ export function isSafeTranscriptionSessionId(id) { return typeof id === "string"
 `, "utf8");
 await fs.writeFile(path.join(out, "lt-stub-route-rate.mjs"), `export async function checkRateLimit() { return null; }
 `, "utf8");
+await fs.writeFile(path.join(out, "lt-stub-session-ownership.mjs"), `export function sessionTokenFromCookie() { return "test-session-token-ownership-123"; }
+export async function ownsIScottSession() { return true; }
+`, "utf8");
 await fs.writeFile(path.join(out, "lt-stub-route-telemetry.mjs"), `export const telemetry = [];
 export async function logServerTelemetryEvent(event) { telemetry.push(event); }
 export async function logIScottOriginRejection() {}
@@ -1948,6 +1951,7 @@ await transpile("app/api/iscott/lead/confirm/route.ts", [
   ['from "../../../../../src/lib/rateLimit"', 'from "./lt-stub-route-rate.mjs"'],
   ['from "../../../../../src/lib/serverTelemetryCapture"', 'from "./lt-stub-route-telemetry.mjs"'],
   ['from "../../../../../src/lib/iscottOriginTelemetry"', 'from "./lt-stub-route-telemetry.mjs"'],
+  ['from "../../../../../src/lib/iscottSessionOwnership"', 'from "./lt-stub-session-ownership.mjs"'],
 ]);
 const Route = await import(url("route"));
 const RouteCapture = await import(url("stub-route-capture"));
