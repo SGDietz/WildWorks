@@ -3,11 +3,13 @@ import path from "node:path";
 
 const ROOT = path.resolve(process.cwd(), "app");
 const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx"]);
-const SITE_E164 = "+18552532727";
-const SITE_DIGITS = "18552532727";
+const SITE_E164 = "+14437972166";
+const SITE_DIGITS = "14437972166";
 const RETIRED_NUMBER_PATTERNS = [
   /18776002474/g,
   /\+?1?[\s().-]*877[\s().-]*600[\s().-]*2474/g,
+  /18552532727/g,
+  /\+?1?[\s().-]*855[\s().-]*253[\s().-]*2727/g,
 ];
 
 function sourceFiles(directory) {
@@ -68,5 +70,5 @@ if (errors.length) {
 }
 
 console.log(
-  `WildWorks phone-link check OK: ${telLinkCount} tel: links and ${smsLinkCount} sms: links use ${SITE_E164}; no retired 877 number remains in app source.`,
+  `WildWorks phone-link check OK: ${telLinkCount} tel: links and ${smsLinkCount} sms: links use ${SITE_E164}; no retired 855 or 877 number remains in app source.`,
 );

@@ -630,12 +630,12 @@ function renderSignatureStoryLine(
   line: string,
   onIScottClick: (event: MouseEvent<HTMLAnchorElement>) => void,
 ) {
-  if (line.trim() === "1+855-253-2727") {
+  if (line.trim() === "1+443-797-2166") {
     return (
       <a
         className="wild-story-contact-link wild-story-contact-link--phone"
-        href="tel:+18552532727"
-        aria-label="Call WildWorks at 1+855-253-2727"
+        href="tel:+14437972166"
+        aria-label="Call WildWorks at 1+443-797-2166"
         style={storyInlineActionStyle}
       >
         <Phone aria-hidden className="wild-story-contact-icon" />
@@ -674,7 +674,7 @@ function renderSignatureStoryLine(
 function signatureStoryLineClassName(line: string) {
   const normalizedLine = line.trim();
 
-  if (normalizedLine === "1+855-253-2727") {
+  if (normalizedLine === "1+443-797-2166") {
     return "wild-story-contact-line wild-story-contact-line--phone";
   }
 
@@ -808,7 +808,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
     }
     setCallNumberVisible(true);
     try {
-      void navigator.clipboard?.writeText("1+855-253-2727").catch(() => undefined);
+      void navigator.clipboard?.writeText("1+443-797-2166").catch(() => undefined);
     } catch {}
     setPhoneCopied(true);
     window.setTimeout(() => {
@@ -2489,7 +2489,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               onMouseLeave={hideCallNumber}
             >
               <a
-                href="tel:+18552532727"
+                href="tel:+14437972166"
                 className="money-cta"
                 onClick={handleCallNow}
                 onFocus={showCallNumber}
@@ -2502,7 +2502,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               {callNumberVisible || phoneCopied ? (
                 <motion.a
                   id="hero-call-number-reveal"
-                  href="tel:+18552532727"
+                  href="tel:+14437972166"
                   onClick={handleCallNow}
                   aria-label="Call Now"
                   initial={{ opacity: 0 }}
@@ -3384,8 +3384,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
               An Artsy Young Couple of Irish Descent in Mount Washington, Baltimore City,
               Wanted a Natural Stone Patio. I had Always Been Fascinated by the
               Celtic Tree of Life, so I Asked What They Thought about Building
-              One in Their Back Yard. They Loved the Idea, and I am Still
-              Grateful They Let Us Build This Work of&nbsp;Art.
+              One in Their Back Yard&nbsp;😊
             </motion.p>
             <motion.p className="wild-body" variants={fadeInRight} style={noWhiteBlendTextStyle}>
               The People I Love Working With Look at a Space and Ask, “What’s the
@@ -3656,7 +3655,7 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
                         <span>{project.cta}</span>
                       </Link>
                       <a
-                        href="tel:+18552532727"
+                        href="tel:+14437972166"
                         className="money-cta money-cta--primary wild-story-action"
                         aria-label="Call Now"
                       >
@@ -3693,23 +3692,23 @@ const [iScottMediaStatus, setIScottMediaStatus] = useState("");
         </motion.h2>
         <div className="wild-home-projects__capabilities">
           <p>
-            WildWorks is a complete design-build company for hardscapes,
-            landscapes, and one-of-a-kind property improvements. We build with
-            natural stone, concrete pavers, segmental retaining-wall block,
-            brick, masonry block, poured concrete, boulders, wood, steel, tile,
-            and other materials selected for the site, structure, and finished
-            design.
+            WildWorks Is a Complete Design-Build Company for Hardscapes,
+            Landscapes, and One-of-a-Kind Property Improvements. We Build with
+            Natural Stone, Concrete Pavers, Segmental Retaining-Wall Block,
+            Brick, Masonry Block, Poured Concrete, Boulders, Wood, Steel, Tile,
+            and Other Materials Selected for the Site, Structure, and Finished
+            Design.
           </p>
           <p>
-            WildWorks designs and builds walkways and garden paths;
-            freestanding, seat, garden, and retaining walls; patios and
-            terraces; steps and staircases; columns, piers, entrances, and
-            porches; outdoor fireplaces and fire features; water features;
-            drainage and grading solutions; planting, landscape lighting,
-            repairs, restorations, and complete outdoor living spaces. Based in
-            Baltimore and available for selected projects worldwide, WildWorks
-            can build the work directly or lead the design, diagnosis, and
-            specialist team from start to finish.
+            WildWorks Designs and Builds Walkways and Garden Paths;
+            Freestanding, Seat, Garden, and Retaining Walls; Patios and
+            Terraces; Steps and Staircases; Columns, Piers, Entrances, and
+            Porches; Outdoor Fireplaces and Fire Features; Water Features;
+            Drainage and Grading Solutions; Planting, Landscape Lighting,
+            Repairs, Restorations, and Complete Outdoor Living Spaces. Based in
+            Baltimore and Available for Selected Projects Worldwide, WildWorks
+            Can Build the Work Directly or Lead the Design, Diagnosis, and
+            Specialist Team from Start to Finish.
           </p>
         </div>
         <div className="wild-home-projects__grid">

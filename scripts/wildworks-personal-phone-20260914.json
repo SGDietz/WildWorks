@@ -1,0 +1,18 @@
+{
+  "authority": "G, 2026-09-14 ~13:40 ET, to Claude: \"Go ahead and change the phone number everywhere on the site to 1+443-797-2166\". Applied to the served worktree release-20260908-yesterday-d9ffb9c (snapshot d9ffb9c).",
+  "scope": "WildWorks-only phone replacement: visitor-facing displays use 1+443-797-2166; tel targets use tel:+14437972166; sms targets use sms:+14437972166; structured data uses +1-443-797-2166. Nothing else changes.",
+  "files": {
+    "app/components/PhoneNumberLine.tsx": "6d90fb4fc01ece00a7bcdeb555ac632ffe8bbd3725a6025c5c7ae2fcbe8fd35e",
+    "app/components/SubpageCallCta.tsx": "0eee1b918a7d4dee00380492d4146578aa24f7ce5ed7c5acb8f1187cad2c24a6",
+    "app/pages/Inspiration/DormantInspirationPage.tsx": "63836f88c823a3904fb8194564eea7e35a3de772da1282d05abddf4b1f08c791",
+    "app/layout.tsx": "15116a72815cd24c59e3aef045aa64e5dc1139257ad71bbbfa3b3f8671e17046",
+    "app/pages/accessibility/page.tsx": "92932e3ada29974a3f8ea5afeff5af656678f719a1e33002bef7682fb5b7941d",
+    "app/pages/ai-disclosure/page.tsx": "998e9e3d089ebd8e8e8a84d6d136264c36740b3b30f4ab3f13757ef0052f73e7",
+    "app/pages/communications/page.tsx": "6a70a9b36f60d32afae5b9a19fdf53625e7234864587c6c54460c82d331763b5",
+    "app/pages/disclaimer/page.tsx": "25cd7686f3ad809a6aaf39a281516e858ed228e0b1512ca6ccf5a7a4dac057c1",
+    "app/pages/privacy-policy/page.tsx": "e8bef979501ae53d4cbcd7ed04b24a7553cc5789750747667bc19cb5d70b5ae7",
+    "app/pages/terms-of-service/page.tsx": "11bd2ccfeed2a40d305c4af1e770e58f2eb8ecda831de636f50b2becac4c5b02",
+    "app/components/Footer.tsx": "eac36433a29f495e4418fa990cd0832a2c66f0f36eaa661028c8f473dfe96813",
+    "app/pages/Home/page.tsx": "6a9fd201b509e81b073849a01ab2466a689ca4fa428d8375841b193052aefd02"
+  }
+}

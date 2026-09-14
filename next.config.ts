@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   // Keep local previews visually identical to the site. The Next development
   // badge/panel can leave a non-brand rail along a viewport edge.
   devIndicators: false,
+  // G's canonical link reaches 3020 through the tailnet host. Next 16 dev refuses its dev resources to any other host unless
+  // it is listed here - WildWorks then rendered without its shadows and with hidden sections (2026-09-14, Claude).
+  allowedDevOrigins: ["mission-control.tail00dfe0.ts.net", "127.0.0.1"],
   // G 2026-08-17: pages must never go stale in a visitor's browser — the
   // default year-long s-maxage made every install invisible until a hard
   // refresh. no-cache = the browser revalidates each visit (cheap 304 when

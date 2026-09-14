@@ -1,0 +1,8 @@
+{
+  "authority": "G, 2026-09-14 ~14:55-15:10 ET, to Claude, while inspecting WildWorks on the canonical link: (1) Tree of Life Natural Stone Patio: 'take out this line... Take that out completely, and just put a, um, like, a smiley face emoji in there after the word yard... leave that whole second paragraph'; (2) 'the bar on the right that that little thing moves up and down... just make that bar the same color as the background, the primary background color... do that everywhere'; (3) the WildWorks Projects paragraphs: 'capitalize the first letter of every major word'. Applied to the served worktree release-20260908-yesterday-d9ffb9c (snapshot d9ffb9c).",
+  "scope": "Home: the Tree of Life first paragraph now ends 'in Their Back Yard' + nbsp + U+1F60A (the 'They Loved the Idea ... Work of Art.' sentence removed; the second paragraph untouched); the two WildWorks Projects paragraphs in title case, words unchanged. H496: the document-edge scrollbar track, corner, arrow buttons and thumb edge ring #8f3a14 -> #c44d0b (primary background), the #6f2a10 inset line removed; the copper thumb unchanged. Nothing else changes.",
+  "files": {
+    "app/pages/Home/page.tsx": "d090d8f66cc1d16dc1bf3063eaad63693e03fbf2a8037713eaab9b94c1ca9ab7",
+    "app/H496-copper-page-scrollbar.css": "87686b6ddeade63a44e29ce1a72cebd4c4ec7a87ce2d4170b9f7ab53f9df8f3e"
+  }
+}

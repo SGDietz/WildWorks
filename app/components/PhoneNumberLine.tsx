@@ -54,11 +54,11 @@ export default function PhoneNumberLine({
     <div className={`wild-phone-number-line ${className}`.trim()}>
       {callTextFirst ? callToday : null}
       <a
-        href="tel:+18552532727"
-        aria-label="Call WildWorks at 1+855-253-2727"
+        href="tel:+14437972166"
+        aria-label="Call WildWorks at 1+443-797-2166"
         style={iScottDepthEffect}
       >
-        1+855-253-2727
+        1+443-797-2166
       </a>
       {callTextFirst ? null : callToday}
     </div>

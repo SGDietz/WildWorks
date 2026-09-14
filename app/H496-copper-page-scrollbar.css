@@ -1,11 +1,14 @@
 /* G, 2026-09-06: approved copper scrollbar, on all devices.
+   G, 2026-09-14: "just make that bar the same color as the background, the primary
+   background color... do that everywhere" - track, corner, arrow buttons and the thumb's
+   edge ring are now #c44d0b; the copper thumb itself is unchanged.
    Only the document-edge scrollbar is in scope. Native scrolling, page
    content, internal panels and avatar controls retain their existing rules. */
 @layer ww-mobile-only-pass {
   @media (forced-colors: none) {
-    /* Standards fallback (including Firefox): copper thumb / dark track. */
+    /* Standards fallback (including Firefox): copper thumb / primary-background track. */
     html:has(body#wildworks-body) {
-      scrollbar-color: #e96819 #8f3a14 !important;
+      scrollbar-color: #e96819 #c44d0b !important;
     }
 
     @supports selector(::-webkit-scrollbar) {
@@ -19,20 +22,20 @@
         /* Preserve the measured 10px document gutter at every breakpoint. */
         width: 10px !important;
         height: 10px !important;
-        background: #8f3a14 !important;
+        background: #c44d0b !important;
       }
 
       html:has(body#wildworks-body)::-webkit-scrollbar-track,
       html:has(body#wildworks-body)::-webkit-scrollbar-corner {
-        background: #8f3a14 !important;
+        background: #c44d0b !important;
         border: 0 !important;
-        box-shadow: inset 1px 0 0 #6f2a10 !important;
+        box-shadow: none !important;
       }
 
       html:has(body#wildworks-body)::-webkit-scrollbar-thumb {
         background: linear-gradient(90deg, #f08c28, #e96819 48%, #e96819) !important;
         background-clip: padding-box !important;
-        border: 1px solid #8f3a14 !important;
+        border: 1px solid #c44d0b !important;
         border-radius: 999px !important;
         box-shadow: inset 1px 0 0 rgba(252, 224, 173, 0.33) !important;
       }
@@ -46,7 +49,7 @@
         display: block !important;
         width: 10px !important;
         height: 12px !important;
-        background: #8f3a14 !important;
+        background: #c44d0b !important;
         background-repeat: no-repeat !important;
         background-position: center !important;
         background-size: 6px 4px !important;
