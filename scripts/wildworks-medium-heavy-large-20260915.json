@@ -1,0 +1,15 @@
+{
+  "authority": "G direct 2026-09-15 instruction: heavier large shadow is the reference; medium display only on five main pages; Grok writes, Codex inspects and installs",
+  "workId": "WW-MEDIUM-MATCH-HEAVY-LARGE-20260915",
+  "source": "20260915-085421-grok-to-codex-COMPLETE-WW-MEDIUM-MATCH-HEAVY-LARGE-20260915.md",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "9fc1cea4febac686633b37f4faf237e5fbb30ee7748b0ad68009607c022c982c",
+      "after": "f704b7f7a174611e455adb542906955c688efe3cbe1d78f87834f4acdf0b15c1"
+    }
+  },
+  "mediumMultiplier": { "desktop": 3, "phone": 2 },
+  "largeMultiplier": { "desktop": 3, "phone": 2 },
+  "frozen": ["legal", "small/body", "large", "logo", "signup", "controls"],
+  "visualAcceptance": "Pending five-page desktop/phone inspection and G physical review"
+}

@@ -45,6 +45,35 @@ const personalPhone = JSON.parse(read(personalPhonePath));
 const gOrdersPath = "scripts/wildworks-g-orders-20260914-pm.json";
 const G_ORDERS_SHA256 = "eb1a7dd593c1d48c18d0f7de00ec2464576564fbd94ee6b03ebfcc949d8b3b3d";
 const gOrders = JSON.parse(read(gOrdersPath));
+// G's separately authorized Home-only large shadow delta; all prior records stay intact.
+const homeDoublePath = "scripts/wildworks-home-large-double-20260914.json";
+const HOME_DOUBLE_SHA256 = "421b571a9ab4db5b04aced3bf4710f75b9ff1ce8d16cce7d3ed869d8dea854e8";
+const homeDouble = JSON.parse(read(homeDoublePath));
+// G's five-main-page and mobile-contact follow-on; prior authorization bytes stay intact.
+const fiveMajorsPath = "scripts/wildworks-five-majors-shadow-20260914.json";
+const FIVE_MAJORS_SHA256 = "5cba5db2e5da77905eb8fb430a6bc9f6f77362bb38072e773539ee78df13116d";
+const fiveMajors = JSON.parse(read(fiveMajorsPath));
+// G final clarification: only the medium tier may tighten; large/small remain frozen.
+const mediumPath = "scripts/wildworks-medium-contact-20260914.json";
+const MEDIUM_SHA256 = "831255f77d2d1fb30fde70278b7a9cb003e286c62b93cd6fa16600a5eee794b6";
+const medium = JSON.parse(read(mediumPath));
+// G rejected the medium1px result; keep its record immutable and append only this exact Grok correction.
+const middlePath = "scripts/wildworks-medium-middle-ground-20260914.json";
+const MIDDLE_SHA256 = "bf3d8cdb721d2647c53ef4fffe429d773fee2a1f2bcda7b0805d37b60cf08b3c";
+const middle = JSON.parse(read(middlePath));
+// G's 2026-09-15 medium-only heavier-large match; prior records stay immutable.
+const heavyPath = "scripts/wildworks-medium-heavy-large-20260915.json";
+const HEAVY_SHA256 = "c0659a89e21d762eb12a00c0fcf8fcd8f20a81ae6bc9ac3107a5e309858eaedb";
+const heavy = JSON.parse(read(heavyPath));
+const sweetPath = "scripts/wildworks-medium-sweet-spot-20260915.json";
+const SWEET_SHA256 = "1de8739723d7c5b96e559dd2d938a51669b64f38995fda98f8873f53271d68f6";
+const sweet = JSON.parse(read(sweetPath));
+const signupPath = "scripts/wildworks-signup-shadow-20260915.json";
+const SIGNUP_SHA256 = "d3d90def7bce937497d70caa3edd5be48ded952f7983aa2002c8d94aac47b023";
+const signup = JSON.parse(read(signupPath));
+const logoPath = "scripts/wildworks-logo-heavy-20260915.json";
+const LOGO_SHA256 = "c16ffe342e2ee08193957a276d944104aaa8453a84adff2980b4c34ae2598204";
+const logo = JSON.parse(read(logoPath));
 const approved = JSON.parse(read(deltaPath));
 const dependencies = JSON.parse(read(dependenciesPath));
 const referenceText = read(referencePath);
@@ -54,6 +83,51 @@ const cssImports = source => [...source.matchAll(/^import\s+["'][^"']+\.css["'];
 
 function violations(readSource) {
   const failures = [];
+  if (digest(readSource(sweetPath)) !== SWEET_SHA256) failures.push("Sweet-spot authorization changed");
+  if (digest(readSource(signupPath)) !== SIGNUP_SHA256) failures.push("Signup shadow authorization changed");
+  if (digest(readSource(logoPath)) !== LOGO_SHA256) failures.push("Logo-heavy authorization changed");
+  const guardedFile = "app/components/ZeroShadowEnforcer.tsx";
+  if (Object.keys(sweet.files).length !== 1 || Object.keys(signup.files).length !== 1 || Object.keys(logo.files).length !== 1 ||
+      sweet.files[guardedFile]?.before !== heavy.files[guardedFile]?.after ||
+      signup.files[guardedFile]?.before !== sweet.files[guardedFile]?.after ||
+      logo.files[guardedFile]?.before !== signup.files[guardedFile]?.after ||
+      digest(readSource(guardedFile)) !== logo.files[guardedFile]?.after) failures.push("Sweet/signup/logo source chain or scope changed");
+  if (digest(readSource(heavyPath)) !== HEAVY_SHA256) failures.push("Heavy-medium authorization changed");
+  const heavyFiles = Object.keys(heavy.files);
+  if (heavyFiles.length !== 1 || heavyFiles[0] !== "app/components/ZeroShadowEnforcer.tsx" ||
+      heavy.files[heavyFiles[0]].before !== middle.files[heavyFiles[0]]?.after ||
+      heavy.files[heavyFiles[0]].after !== sweet.files[heavyFiles[0]]?.before) failures.push("Heavy-medium source chain or scope changed");
+  if (digest(readSource(middlePath)) !== MIDDLE_SHA256) failures.push("Middle-ground authorization changed");
+  const middleFiles = Object.keys(middle.files);
+  if (middleFiles.length !== 1 || middleFiles[0] !== "app/components/ZeroShadowEnforcer.tsx" || middle.files[middleFiles[0]].before !== medium.files[middleFiles[0]]?.after) failures.push("Middle-ground source chain or scope changed");
+  for (const [path, sha256] of Object.entries(middle.frozenLegalFiles)) {
+    if (digest(path.endsWith(".docx") ? readFileSync(resolve(root,path)) : readSource(path)) !== sha256) failures.push(`Middle-ground pass changed frozen legal source: ${path}`);
+  }
+  if (digest(readSource(mediumPath)) !== MEDIUM_SHA256) failures.push("Medium-only authorization changed");
+  const mediumFiles = Object.keys(medium.files);
+  if (mediumFiles.length !== 1 || mediumFiles[0] !== "app/components/ZeroShadowEnforcer.tsx" || medium.files[mediumFiles[0]].before !== fiveMajors.files[mediumFiles[0]]?.after) failures.push("Medium-only source chain or scope changed");
+  for (const [path, sha256] of Object.entries(medium.frozenLegalFiles)) {
+    if (digest(path.endsWith(".docx") ? readFileSync(resolve(root,path)) : readSource(path)) !== sha256.toLowerCase()) failures.push(`Medium pass changed frozen legal source: ${path}`);
+  }
+  if (digest(readSource(fiveMajorsPath)) !== FIVE_MAJORS_SHA256) failures.push("Five-main-page shadow authorization changed");
+  const fiveMajorsFiles = Object.keys(fiveMajors.files);
+  if (fiveMajorsFiles.length !== 1 || fiveMajorsFiles[0] !== "app/components/ZeroShadowEnforcer.tsx" ||
+      fiveMajors.files[fiveMajorsFiles[0]].before !== homeDouble.files[fiveMajorsFiles[0]]?.after) {
+    failures.push("Five-main-page delta scope or source chain changed");
+  }
+  for (const [path, sha256] of Object.entries(fiveMajors.frozenAssets)) {
+    if (digest(readFileSync(resolve(root, path))) !== sha256) failures.push(`Frozen logo asset changed: ${path}`);
+  }
+
+  if (digest(readSource(homeDoublePath)) !== HOME_DOUBLE_SHA256) failures.push("Home-only stronger-shadow authorization changed");
+  const homeDoubleFiles = Object.keys(homeDouble.files);
+  if (homeDoubleFiles.length !== 1 || homeDoubleFiles[0] !== "app/components/ZeroShadowEnforcer.tsx" ||
+      homeDouble.files[homeDoubleFiles[0]].before !== largeContact.files[homeDoubleFiles[0]]?.after) {
+    failures.push("Home-only delta scope or source chain changed");
+  }
+  for (const [path, sha256] of Object.entries(homeDouble.frozenLegalFiles)) {
+    if (digest(path.endsWith(".docx") ? readFileSync(resolve(root, path)) : readSource(path)) !== sha256) failures.push(`Frozen legal source changed: ${path}`);
+  }
   if (digest(readSource(gOrdersPath)) !== G_ORDERS_SHA256) failures.push("G 09-14 afternoon WildWorks orders changed");
   if (digest(readSource(personalPhonePath)) !== PERSONAL_PHONE_SHA256) failures.push("Personal WildWorks phone authorization changed");
   if (digest(readSource(phoneFormatPath)) !== PHONE_FORMAT_SHA256) failures.push("Corporate phone 1+ format authorization changed");
@@ -69,7 +143,7 @@ function violations(readSource) {
     if (digest(readSource(path)) !== (gOrders.files[path] ?? personalPhone.files[path] ?? phoneFormat.files[path]?.after ?? corporateContact.files[path]?.after ?? sha256)) failures.push(`Appearance dependency changed: ${path}`);
   }
   for (const [path, sha256] of Object.entries(reference.files)) {
-    if (digest(readSource(path)) !== (gOrders.files[path] ?? personalPhone.files[path] ?? phoneFormat.files[path]?.after ?? corporateContact.files[path]?.after ?? largeContact.files[path]?.after ?? finish.files[path]?.after ?? contact.files[path]?.after ?? selected.files[path]?.after ?? approved.files[path]?.after ?? sha256)) failures.push(`Afternoon source changed: ${path}`);
+    if (digest(readSource(path)) !== (logo.files[path]?.after ?? signup.files[path]?.after ?? sweet.files[path]?.after ?? heavy.files[path]?.after ?? middle.files[path]?.after ?? medium.files[path]?.after ?? fiveMajors.files[path]?.after ?? homeDouble.files[path]?.after ?? gOrders.files[path] ?? personalPhone.files[path] ?? phoneFormat.files[path]?.after ?? corporateContact.files[path]?.after ?? largeContact.files[path]?.after ?? finish.files[path]?.after ?? contact.files[path]?.after ?? selected.files[path]?.after ?? approved.files[path]?.after ?? sha256)) failures.push(`Afternoon source changed: ${path}`);
   }
   if (digest(cssImports(readSource("app/layout.tsx"))) !== reference.stylesheetImportsSha256) failures.push("Stylesheet import order changed");
   const renderer = readSource("app/components/ZeroShadowEnforcer.tsx");
@@ -92,6 +166,24 @@ if (failures.length) {
   const path = "app/components/ZeroShadowEnforcer.tsx";
   const original = read(path);
   const cases = [
+    ["sweet-spot authorization rebaseline", sweetPath, read(sweetPath) + "\n"],
+    ["signup authorization rebaseline", signupPath, read(signupPath) + "\n"],
+    ["logo authorization rebaseline", logoPath, read(logoPath) + "\n"],
+    ["logo source rollback", path, original.replace("const logoMult = phoneViewport ? 2 : 3", "const logoMult = phoneViewport ? 1 : 1.5")],
+    ["signup input re-excluded", path, original.replace('!element.matches("script, style")', '!element.matches("script, style, footer#footer .wild-signup-field input")')],
+    ["heavy-medium authorization rebaseline", heavyPath, read(heavyPath) + "\n"],
+    ["sweet-medium source rollback", path, original.replace("phoneViewport ? 1.5 : 2", "phoneViewport ? 1 : 1")],
+    ["middle-ground authorization rebaseline", middlePath, read(middlePath) + "\n"],
+    ["medium authorization rebaseline", mediumPath, read(mediumPath) + "\n"],
+    ["large tier changed", path, original.replace("phoneViewport ? 2 : 3", "phoneViewport ? 1.25 : 3")],
+    ["medium scope replaced by large sequence", path, original.replace('".wild-wildfire-build-note",', '".wild-wildfire-sequence-callout",')],
+    ["five-page authorization rebaseline", fiveMajorsPath, read(fiveMajorsPath) + "\n"],
+    ["mobile gap rollback", path, original.replace("phoneViewport ? 2 : 3", "phoneViewport ? 3 : 3")],
+    ["missing Ruins final heading", path, original.replace(".wild-iscott-prompt--ruins-single .wild-iscott-prompt__ask", ".missing-ruins-heading")],
+    ["second logo shadow painter", path, original.replace("drop-shadow(${homeConnectedTextShadow(offsetPx, large, control)})", "drop-shadow(${homeConnectedTextShadow(offsetPx, large, control)}) drop-shadow(0 1px 0 #000)")],
+    ["Home double authorization rebaseline", homeDoublePath, read(homeDoublePath) + "\n"],
+    ["Home stronger shadow rollback", path, original.replace("phoneViewport ? 2 : 3", "phoneViewport ? 2 : 1.5")],
+    ["extra native shadow layer", path, original.replace("}px 0 #000", "}px 0 #000, 0 1px 0 #000")],
     ["imported CSS drift", "app/globals.css", read("app/globals.css") + "\n/* unauthorized change */\n"],
     ["brown ink", path, original.replace("#000", "#321005")],
     ["shadow geometry", path, original.replace("OFFSET_PX = 0.5", "OFFSET_PX = 2")],
@@ -109,7 +201,7 @@ if (failures.length) {
     assert.notEqual(altered, read(file), `Invalid test fixture: ${name}`);
     assert(violations(p => p === file ? altered : read(p)).length, `Did not reject ${name}`);
   }
-  console.log("Twelve negative controls rejected. No source files were mutated.");
+  console.log(`${cases.length} negative controls rejected. No source files were mutated.`);
 } else {
   console.log(`Selected appearance plus explicit mobile contact correction matched: ${Object.keys(reference.files).length} protected reference files with explicit heading deltas, imported stylesheets, layout and npm hooks.`);
   console.log("This is restoration/drift evidence, not permission to redesign or a substitute for device review.");

@@ -65,6 +65,75 @@ const HOME_DISPLAY_TEXT_SELECTOR = [
   ".wild-subpage--bio h1",
   ".wild-bio-reinvention-heading",
 ].join(",");
+// Five-majors large-display inventory: keep accepted Home entries EXACT;
+// append Wildfire/Ruins/Projects/Bio display titles only. Fail-closed
+// outside fiveMajorsOnly; never legal / --sell. No generic .wild-line-title.
+const HOME_LARGE_DOUBLE_SELECTOR = [
+  ".wild-hero-headline",
+  ".wild-hero-wordmark-text-orange",
+  ".wild-home-statement__title",
+  ".wild-iscott-title--front-door",
+  ".wild-section-title",
+  ".wild-tree-title",
+  ".wild-signature-title",
+  "#signature-work .wild-story-card--feature .wild-story-copy > .wild-line-title",
+  ".wild-sell-feature-title",
+  ".wild-home-projects__title",
+  ".wild-wildfire-sequence-callout",
+  ".wild-wildfire-flame-title__text",
+  ".wild-services-title__wildworks",
+  ".wild-phone-number-line",
+  // Subpage large non-button display (match accepted Home 3px desktop).
+  // Rendered Ruins h2s are 108px on desktop; final iScott display is 61.6px.
+  ".wildfire-page-heading",
+  ".wildfire-page-heading__project",
+  ".wildfire-page-heading__wildfire",
+  ".wildfire-hero-headline",
+  ".wildfire-hero-headline__line",
+  ".wild-subpage--ruins h1",
+  ".wild-subpage--ruins h2",
+  ".wild-iscott-prompt--ruins-single .wild-iscott-prompt__ask",
+  ".wild-projects-page-title",
+  ".wild-subpage--bio h1",
+  "#ww-bio-primary-heading",
+  ".wild-bio-reinvention-heading",
+].join(",");
+// Medium display inventory (Scott 2026-09-14 + avatar-panel steering):
+// mid-size lettering that still showed orange separation gap.
+// Includes avatar-panel lettering: Concierge + Start with iScott
+// (FooterIScottPanel + Home #talk-to-iscott). Talk to iScott CTA stays
+// on CONTROL path (Chief freeze). Moved off HOME_LARGE_DOUBLE.
+// Unrelated small/body kickers frozen. Font-size rationale in NOTES.
+const HOME_MEDIUM_DISPLAY_SELECTOR = [
+  // Avatar-panel / Concierge kickers (Home mid-page + footer panel, all five majors)
+  ".wild-iscott-kicker__color",
+  ".money-panel-kicker",
+  // Avatar-panel card title: "Start with iScott"
+  ".wild-start-title",
+  // Home hero lede lines (Beautiful / Problems / italic mid)
+  ".wild-hero-lede-line",
+  // Home fireplace lede + build note (mid under Project Wildfire)
+  ".wild-wildfire-title",
+  ".wild-wildfire-build-note",
+  // Wildfire page summary / gallery note
+  ".wildfire-hero-summary",
+  ".wildfire-gallery-rolodex-note",
+  // Projects mid display
+  ".wild-projects-page-intro",
+  ".wild-projects-page-kicker",
+  // Footer medium display (Scott signup / conversation shot)
+  ".wild-signup-title",
+  ".wild-footer-contact-cta__title",
+  ".wild-footer-contact-cta__kicker-line",
+  ".wild-footer-stonework-note",
+  ".wild-footer-aiasap-link",
+  ".wild-footer-aiasap-wordmark",
+  // Home Services / Ai-Native mid kickers only (scoped)
+  "#services .wild-kicker-frame",
+  "#ai-websites .wild-site-offer-heading > .wild-kicker--framed",
+].join(",");
+// Alias kept so named-caption references stay wired to medium.
+const HOME_NAMED_CAPTION_DOUBLE_SELECTOR = HOME_MEDIUM_DISPLAY_SELECTOR;
 
 function homeShadowDepthPx(offsetPx: number, large: boolean, control = false, caption = false) {
   // Rendered depths: body 1px; named captions and controls 1.25px;
@@ -150,6 +219,14 @@ export default function ZeroShadowEnforcer() {
         Boolean(document.querySelector("#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio"));
       // G: complete contact correction on the five main pages at every width.
       const compactContact = referenceShadowsAllowed;
+      // Five-majors double: Home inventory unchanged; subpages get same desktop 3/2.
+      // Fail closed on legal and non-major wild-subpage variants (e.g. --sell).
+      // Phone: large-double / logo keep live depths. Medium sweet-spot phone*1.5/desk*2 (WW-MEDIUM-SWEET-SPOT; midway too-far large-match and too-close *1). Body/control/clone exact homeOffset. Logo/signup not in this delta.
+      const fiveMajorsOnly = !document.querySelector(".wild-legal-home") &&
+        Boolean(document.querySelector(
+          "#top.wild-home, .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio",
+        ));
+      const phoneViewport = window.matchMedia("(max-width: 719px)").matches;
       const homeScales = new WeakMap<Element, number>();
       for (const element of document.querySelectorAll<HTMLElement | SVGElement>("body, body *")) {
         const computed = getComputedStyle(element);
@@ -159,9 +236,8 @@ export default function ZeroShadowEnforcer() {
           : HOME_RENDERED_SHADOW_OFFSET_PX;
         const inReferenceCta = referenceShadowsAllowed && Boolean(element.closest(HOME_CTA_SELECTOR));
         const referenceCopy = referenceShadowsAllowed &&
-          // H537: keep the existing H507 flat editable-field ink. Applying
-          // the page-text shadow here darkened the placeholder and typed text.
-          !element.matches("script, style, footer#footer .wild-signup-field input") &&
+          // G explicitly reopened the signup input on all five main pages.
+          !element.matches("script, style") &&
           (Array.from(element.childNodes).some(node =>
             node.nodeType === Node.TEXT_NODE && Boolean(node.textContent?.trim())) ||
             (element instanceof HTMLInputElement && Boolean(element.value || element.placeholder)) ||
@@ -191,11 +267,52 @@ export default function ZeroShadowEnforcer() {
           // A displaced 2.5px copy separates from thin strokes at any width. Use one
           // native offset: 1px body and 1.5px large ink; approved controls
           // retain their existing paint. Never add strokes or shadow layers.
-          const topDown = compactContact && !element.closest(CONTROL_SELECTOR)
-            ? homeConnectedTextShadow(homeOffset * (large ? 1.5 : 1), false)
+          // Five majors: desktop large 3px / captions 2px. Phone flush only those + logo.
+          // Body/control/Talk/Upload/clone keep exact homeOffset. One #000 downward. CONTROL wins.
+                    // Medium display flush (WW-MEDIUM-LETTER-FLUSH): check MEDIUM first
+          // so dual-class nodes (e.g. wild-wildfire-title + wild-section-title,
+          // avatar-panel start-title) sweet-spot phone*1.5/desk*2 (WW-MEDIUM-SWEET-SPOT-20260915; five majors + avatars).
+          const homeMediumDouble = fiveMajorsOnly &&
+            Boolean(element.closest(HOME_MEDIUM_DISPLAY_SELECTOR));
+          const homeLargeDouble = fiveMajorsOnly && !homeMediumDouble &&
+            Boolean(element.closest(HOME_LARGE_DOUBLE_SELECTOR));
+          const homeCaptionDouble = homeMediumDouble; // back-compat alias
+          // Scott exact (via Codex WW-MEDIUM-MATCH-HEAVY-LARGE-20260915): match heavier large shadow on medium-size letters.
+          // Medium authorizedMult now shares large phone*2 / desk*3. Small/body final branch FROZEN. Logo/control/legal untouched.
+          // SUPERSEDES middle-ground *1.5 only for medium; does NOT change logoMult or signup exclusion (signup stays WW-SIGNUP R3).
+          // Scott 2026-09-15: medium a little too far; sweet spot middle of too-far & too-close.
+          // Large kept phone*2/desk*3. Medium phone*1.5/desk*2. Small/body/legal/logo/signup untouched.
+          const authorizedMult = homeLargeDouble
+            ? (phoneViewport ? 2 : 3)
+            : homeMediumDouble
+            ? (phoneViewport ? 1.5 : 2)
+            : large ? 1.5 : 1;
+          const signupFieldInput = fiveMajorsOnly &&
+            element.matches("footer#footer .wild-signup-field input");
+          const signupShadow = homeConnectedTextShadow(homeOffset, false, true);
+          const topDown = signupFieldInput
+            ? signupShadow
+            : compactContact && !element.closest(CONTROL_SELECTOR)
+            ? homeConnectedTextShadow(
+                homeOffset * authorizedMult,
+                false,
+              )
             : shadow;
           if (element.style.getPropertyValue("text-shadow") !== topDown) {
             element.style.setProperty("text-shadow", topDown, "important");
+          }
+          if (signupFieldInput) {
+            element.style.setProperty("--ww-signup-control-shadow", signupShadow);
+            const inputSelector =
+              "html:has(#top.wild-home:not(.wild-legal-home), .wild-subpage--wildfire, .wild-subpage--ruins, .wild-subpage--projects, .wild-subpage--bio) " +
+              "body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body#wildworks-body footer#footer#footer#footer " +
+              ".wild-signup-field input";
+            pseudoRules.set(
+              "ww-signup-field-control-shadow",
+              `${inputSelector}{text-shadow:var(--ww-signup-control-shadow, ${signupShadow}) !important;}` +
+              `${inputSelector}::placeholder{text-shadow:var(--ww-signup-control-shadow, ${signupShadow}) !important;}`,
+            );
+            changedRules = true;
           }
           // WebKit can suppress a valid text-shadow when legacy stroke-first
           // paint meets a zero-width stroke. Restore normal glyph painting only
@@ -216,12 +333,13 @@ export default function ZeroShadowEnforcer() {
           !element.matches(".wild-top-logo, .ww-home-btn-icon__shadow") &&
           Boolean(element.closest(CONTROL_SELECTOR));
         if (referenceShadowsAllowed && element.matches(HOME_LOGO_FAMILY)) {
-          // Original approved native single black logo shadow; one owner only.
-          // The scaled logo flourishes need a close, visible single rendered
-          // pixel; subpixel filter offsets can round away in rasterization.
-          element.style.setProperty("filter", compactContact
-            ? homeConnectedDropFilter(homeOffset, false)
-            : homeConnectedDropFilter(homeOffset, true), "important");
+          // Logo lettering: .wild-top-logo + tagline (HOME_LOGO_FAMILY). Not hero/photo.
+          // Scott 2026-09-15: logo shadow needs substantially more — match large weight
+          // (phone *2 / desk *3), top-down #000 only. Five majors. Artwork frozen.
+          // Prior flush *1/*1.5 was too light vs large/medium work. Native drop-filter only.
+          const logoMult = phoneViewport ? 2 : 3;
+          element.style.setProperty("filter",
+            homeConnectedDropFilter(homeOffset * logoMult, false), "important");
         } else if (homeButtonIcon) {
           const filter = element.closest(HOME_LIGHT_ISCOTT_CONTROLS)
             ? homeConnectedDropFilter(homeOffset, false)

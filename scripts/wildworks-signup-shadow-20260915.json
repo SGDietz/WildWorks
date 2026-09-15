@@ -1,0 +1,12 @@
+{
+  "authority": "G direct 2026-09-15 screenshot and request to fix you@example.com on all five main pages",
+  "source": "Grok WW-MEDIUM-MATCH-LARGE-20260915 signup hunk, reviewed and scoped by Codex after G reopened signup field",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "5509146ddb8e573a0dab4dad889b8222af9243340f200c654d303c78c21fa4b6",
+      "after": "33aae1be0ea829cf382b1f3750cea83052cda88f0bca728a567a20836fe4af7d"
+    }
+  },
+  "scope": "Signup input typed text and placeholder on Home, Wildfire, Ruins, Projects, Bio only",
+  "frozen": ["legal", "small/body outside signup", "large", "medium", "logo", "other controls"]
+}

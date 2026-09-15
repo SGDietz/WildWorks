@@ -1,0 +1,15 @@
+{
+  "authority": "G direct physical rejection of detached heavy medium shadow 2026-09-15; middle ground between too close and too far on five main pages and avatar panels",
+  "workId": "WW-MEDIUM-SWEET-SPOT-20260915",
+  "source": "20260915-092849-grok-to-codex-WW-MEDIUM-SWEET-SPOT-20260915.md",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "f704b7f7a174611e455adb542906955c688efe3cbe1d78f87834f4acdf0b15c1",
+      "after": "5509146ddb8e573a0dab4dad889b8222af9243340f200c654d303c78c21fa4b6"
+    }
+  },
+  "mediumMultiplier": { "desktop": 2, "phone": 1.5 },
+  "largeMultiplier": { "desktop": 3, "phone": 2 },
+  "frozen": ["legal", "small/body", "large", "logo", "signup", "controls"],
+  "visualAcceptance": "Pending five-page avatar and medium text physical review"
+}

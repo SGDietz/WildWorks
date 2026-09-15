@@ -1,0 +1,41 @@
+{
+  "authorized": "G, 2026-09-14, originating task 01a0a19e-24f4-7a11-b682-7e76328b4ed7",
+  "request": "Apply the Home heavy shadow to the other four main pages and existing logo; tighten the mobile shadow against the letters on all five pages.",
+  "role": "Implementation scope and immutable source delta, not a claim of physical acceptance.",
+  "routes": [
+    "/pages/Home",
+    "/pages/Wildfire",
+    "/pages/The-ruins",
+    "/pages/Projects",
+    "/pages/who-is-g"
+  ],
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "fad1eeea492167ddda8f7f7e070b9a5ebc89e4ac0431a73bb2bdd3bfa970fbc7",
+      "after": "c770a2b6f6d3871569ef4d347dd46c457106a5581a8f1bcf71b732321fbf1922"
+    }
+  },
+  "grok": {
+    "originalSource": "141859448a5fe7750d41147054fd57b07f1c5e6f6ea6355a23d82241be320016",
+    "patch": "b0d95969f13e9bcd7cab5dc968f3adaff74c85f77f08c99199814361c2b1c57b"
+  },
+  "codexCorrections": "Restored rendered 108px Ruins h2 inventory; included Ruins 61.6px final heading and Wildfire 39.2px summary / 29.6px gallery note. Preserved original line endings. No change to Grok numerical styling.",
+  "renderedDepths": {
+    "desktop": {
+      "large": 3,
+      "namedCaptions": 2,
+      "logo": 3
+    },
+    "phone719AndBelow": {
+      "large": 2,
+      "namedCaptions": 1.5,
+      "logo": 2
+    }
+  },
+  "frozen": "Buttons, labels, icons, body, small text, fonts, faces, images, layout, legal pages and nonmajor pages. Only exact named captions and logo are authorized exceptions.",
+  "shadow": "One opaque #000 native shadow, zero X offset, zero blur, positive Y only. No strokes, halos, stacked copies or second logo painter.",
+  "frozenAssets": {
+    "public/wildworks-live-logo-transparent-number2-v5.png": "472d8e8fcfcf9d22d888bfbd1218a9c908b1d7be37f5ab57485ba6cf7d83065f"
+  },
+  "baselineEvidence": "work/main-pages-logo-20260914/before-{home,wildfire,ruins,projects,bio}-{desktop,phone}.json"
+}

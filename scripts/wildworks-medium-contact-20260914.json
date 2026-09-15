@@ -1,0 +1,67 @@
+{
+  "authorized": "G final medium-only clarification, 2026-09-14, originating task 01a0a19e-24f4-7a11-b682-7e76328b4ed7",
+  "request": "Tighten medium semantic text plus full-logo lettering across five main pages. G added the logo exception at18:53 ET. Every non-logo large heading, small/body, buttons, fonts, sizes, layout, imagery and legal remain frozen.",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "c770a2b6f6d3871569ef4d347dd46c457106a5581a8f1bcf71b732321fbf1922",
+      "after": "d30691f807eef28d087c5b6dc95e4bfe578c236ef233ec6d4ed6709c1332c6ad"
+    }
+  },
+  "depths": {
+    "basis": "Grok combined d30691f8 preserves f40ee8fa medium1px; adds only logo1.5px desktop and1px phone native downward shadow",
+    "medium": {
+      "desktop": 1,
+      "phone": 1
+    },
+    "caption": {
+      "desktop": 1,
+      "phone": 1
+    },
+    "logo": {
+      "desktop": 1.5,
+      "phone": 1
+    }
+  },
+  "frozenLegalFiles": {
+    "app/H106z-footer-brand-tone-and-legal-boundary.css": "B9DA367D0E79C469E4B3955D38E72DCAF2AF2836D08596EB92B7A6C6CB3AF772",
+    "app/H108-footer-legal-links-color-one.css": "88C96F30AF9E7920A5493579BBB9AA4F8D3515A64910073484BD6198CBF96668",
+    "app/H129-legal-text-match-public-site.css": "01DE46755EC3D11317C4CB51BBD6E1CB420F874AC3D8CDD3C5F07B647CC2CBC6",
+    "app/H132-legal-document-pure-white.css": "F12A1697AE13357C9D97B58854F6F40086911A90140368F6B34A8B4C9754937D",
+    "app/H199-sitewide-footer-effects-and-legal-colors.css": "8D0818DE698EC3CEF93ED1AEAD92B515CBA7EB6C35A74DC74AC80C2CF74E8565",
+    "app/H232-legal-white-zone-lock.css": "3CAFA6E86A592B6604E9139E631C5F857640C627F7658C10B78E62971E0BBD20",
+    "app/H234-mobile-ipad-legal-footer-color-scope.css": "351752C8538974A6D91387C207F1CF46339E38F2D7594C608D3BA003048396CF",
+    "app/H244-legal-return-cta-spacing.css": "04C9F867BC4065DAB6B40EE4B1E6D7593715A63A6597AF43CB8BE07476DAE53B",
+    "app/H255-legal-footer-card-fit-and-title-depth.css": "6317E79B690B66A1B6CF3B7B525F684C4F366F744798D32297D9C5559CE33F27",
+    "app/H256-iscott-mobile-legal-band.css": "CCF100CE671D99AFDDD28B53ABC3D799CDEEC767F0663080AA2BFA99361FB1CC",
+    "app/H275-legal-return-button-inside.css": "DC2BC7C0845991DD533B5F7EB3285952D06C21DB6330BDFE2C432583A2C250CF",
+    "app/H355-legal-return-button.css": "DC79839AE5715148649EA8533471AEC0B093CFB539EA5EF587A5338CCCEC5983",
+    "app/H402-legal-header-shadow.css": "4CE122BDF614E05E009F4CC96EAC74534A1FD978034CB9E8C516C50D469C12C2",
+    "app/H415-subpages-legal-shadow-20.css": "B75BF5323A8023F25553E6931E5D097D74EBD6F11BDB68D4418F2BC3810FF5FB",
+    "app/H416-legal-header-shadow-20.css": "C029233A1A1C4C78EEACF2E244C5C033872A5EE076C24968B88FB4F9FA45870C",
+    "app/H426-text3-legal-icons.css": "C59936027E9BEBE48690DDC0576E26CD381F2E0858E631E2F9E3C15B8A858B05",
+    "app/H426b-legal-footer-icons.css": "B36BF9CBFA85B9EE9A2F3B8C35DAF8B62A451C3247AA4B92F0994194D3E1519C",
+    "app/H503-six-legal-pages-final-lock.css": "219AC9188C8309B47E5AD418FDDF5CA50C8B526F36DEAC765C4E25259CB901C9",
+    "app/H507-nonlegal-contact-field-flat-ink.css": "F88237B369D192BEFBAF5D6FA8F4DEDBB68DA5860B8828298D2DB5C2B3B70752",
+    "app/WildWorkLegalChatGPT-20260305.docx": "1A8B44299A5AF11D7A9938F4F6F7D4A89F56D1AAD2C5380A9D86A59CC1D51EDF",
+    "app/components/H504NonLegalShadowEnforcer.tsx": "4B3AABD9C1D15B3027754622904467696ECDE28393749D3D342152A2B4D5EDB5",
+    "app/components/LegalPage.tsx": "FFCCCF866A625E76C2576BF23145A0CD8F14B26E4A221847B0FB88A62906443E",
+    "app/components/LegalPageSwipeNavigation.tsx": "45C00005ECB7646C28800D3758F0AF7CE7788FE48C57C30DCC884E86670F5442",
+    "app/legal-button-ink-lock.css": "10500E9AC1CF32AF969CD6372EC956B5B8CB7A418E51E2EBA60837227474EE0C",
+    "app/legal-footer-spacing-lock.css": "529DFC5B925EB49DC651E2F7218A9CBFAFEA44BB2B92C395ADCA2A4427F9BC55",
+    "app/legal-white-lock.css": "13E9F8B22DA763D9B3B3B63220E00EE63F57383C80B70B7FEECD8FF95D2471AB",
+    "app/lib/legalRoutes.ts": "39FF9AEBA5955ADAB67DEFF90ABB929857C62A93664CF005201FC85BA5D4C958",
+    "app/pages/accessibility/layout.tsx": "821912D54904D6C9559FAE1774CB532E2D23CCEF3A77AD8682FBC2AC793F4A29",
+    "app/pages/accessibility/page.tsx": "92932E3ADA29974A3F8EA5AFEFF5AF656678F719A1E33002BEF7682FB5B7941D",
+    "app/pages/disclaimer/layout.tsx": "C7E647D7358579C1BBF106E4D6563C8E0035D9B5DE33CB76B02AAB1B85297896",
+    "app/pages/disclaimer/page.tsx": "25CD7686F3AD809A6AAF39A281516E858ED228E0B1512CA6CCF5A7A4DAC057C1",
+    "app/pages/privacy-policy/layout.tsx": "514968BAA0477546199C2607EA88485B7237DC128E848E4831EBC159ED4C401C",
+    "app/pages/privacy-policy/page.tsx": "E8BEF979501AE53D4CBCD7ED04B24A7553CC5789750747667BC19CB5D70B5AE7",
+    "app/pages/terms-of-service/layout.tsx": "036868F36D4FFCE83BF5AC33B99E543422BBB5BD70086A81F7D6C3CF5D52E837",
+    "app/pages/terms-of-service/page.tsx": "11BD2CCFEED2A40D305C4AF1E770E58F2EB8ECDA831DE636F50B2BECAC4C5B02",
+    "scripts/check-iscott-mobile-legal.mjs": "EF9CB2C42BE46571222DA78C4318DE6B3CF75EBE39476D4DD7CD09D5783B86CC",
+    "scripts/check-legal-white-zone.mjs": "57121BC9057CC041C7E0542DA474F1FBAB6A188729E5852705147E89CEA60C4C"
+  },
+  "frozenTierBaselineSha256": "f4d89fe6d28048a2003f9e6c928974028b076c81d13e43939de533ff0c049040",
+  "evidence": "work/medium-contact-20260914/before-*.json and comparison-*.json; physical screenshots are acceptance references, not proof from offset numbers",
+  "role": "Grok-authored combined revision d30691f8; authenticated receipt6264fc0e. Immutable authorization and drift guard; does not claim G physical acceptance."
+}

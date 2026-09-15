@@ -1,0 +1,12 @@
+{
+  "authority": "G direct 2026-09-15 instruction to make the WildWorks logo shadow substantially stronger on all five main pages",
+  "source": "Authenticated Grok WW-LOGO-HEAVY-20260915 package, logo-only",
+  "files": {
+    "app/components/ZeroShadowEnforcer.tsx": {
+      "before": "33aae1be0ea829cf382b1f3750cea83052cda88f0bca728a567a20836fe4af7d",
+      "after": "8ce3c1763ee3df09f2503400badf69ff423f79859703a4805b35f2d874a5475e"
+    }
+  },
+  "scope": "WildWorks logo and tagline shadow on Home, Wildfire, Ruins, Projects, Bio",
+  "frozen": ["logo artwork", "medium", "small", "legal", "signup"]
+}
