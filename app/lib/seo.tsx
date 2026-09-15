@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_BROWSER_TITLE = "WildWorks Fine Art & Practical Landscaping";
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://wildworks.ai"
-).replace(/\/$/, "");
+export const SITE_URL = "https://wildworks.live";
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -22,23 +20,21 @@ export function buildPageMetadata({
   title,
   description,
   path,
-  image = "/wildworks-home-banner-20260726.png",
-  imageAlt = "WildWorks natural stone landscape and fine art stonework",
   noIndex = false,
 }: PageMetadataInput): Metadata {
   const url = `${SITE_URL}${path}`;
-  const imageUrl = `${SITE_URL}${image}`;
+  const imageUrl = `${SITE_URL}/wildworks-share-preview-one-20260915.png`;
 
   return {
     title: { absolute: SITE_BROWSER_TITLE },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
       url,
       siteName: "WildWorks",
-      images: [{ url: imageUrl, alt: imageAlt }],
+      images: [{ url: imageUrl, alt: "WildWorks Fine Art & Practical Landscaping: sunlit stone stairs and portrait", width: 1734, height: 907 }],
       locale: "en_US",
       type: "website",
     },
@@ -46,7 +42,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [{ url: imageUrl, alt: imageAlt }],
+      images: [{ url: imageUrl, alt: "WildWorks Fine Art & Practical Landscaping: sunlit stone stairs and portrait", width: 1734, height: 907 }],
     },
     robots: noIndex
       ? { index: false, follow: true }

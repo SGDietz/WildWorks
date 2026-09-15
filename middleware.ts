@@ -22,6 +22,13 @@ export function shouldRedirectToSecureTailnet(request: NextRequest): boolean {
 }
 
 export function middleware(request: NextRequest) {
+  const hostname = hostnameFromHostHeader(request.headers.get("host"));
+  const isWebsiteRead = request.method === "GET" || request.method === "HEAD";
+  const isApi = request.nextUrl.pathname === "/api" || request.nextUrl.pathname.startsWith("/api/");
+  if (isWebsiteRead && !isApi && ["wildworks.ai", "www.wildworks.ai", "www.wildworks.live"].includes(hostname)) {
+    const destination = new URL(request.nextUrl.pathname + request.nextUrl.search, "https://wildworks.live");
+    return NextResponse.redirect(destination, 308);
+  }
   if (!shouldRedirectToSecureTailnet(request)) return NextResponse.next();
 
   const destination = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${SECURE_TAILNET_HOST}`);

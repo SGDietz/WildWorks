@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://wildworks.ai").replace(/\/$/, "");
+const siteUrl = "https://wildworks.live";
 
 const routes: Array<{
   path: string;
